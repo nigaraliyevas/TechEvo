@@ -14,7 +14,6 @@ export default function RegisterPage() {
 
     
     return (
-        <section className={styles.section}>
             <div className={styles.container}>
                 {showPage2 ? (<RegisterPage2/>) : (
                     <div className={styles.innerCont}>
@@ -35,7 +34,5 @@ export default function RegisterPage() {
                     </div>
                 )}
             </div>
-                
-        </section>
     )
 }

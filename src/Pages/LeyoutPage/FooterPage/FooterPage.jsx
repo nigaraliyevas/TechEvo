@@ -2,7 +2,9 @@ import './Footer.scss'
 
 const FooterPage = () => {
   return (
-    <div className='footer_div'>Footer</div>
+    <div className='footer_div'>
+    
+    </div>
   )
 }
 

@@ -1,8 +1,13 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import RoutesPage from "./Pages/RouterPage/RoutesPage";
+
 const App = () => {
   return (
-    <div>
-      <h1>Welcome Front-End Team. </h1>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/*" element={<RoutesPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
 

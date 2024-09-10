@@ -1,0 +1,74 @@
+@use '../../../Assets/varaible' as variables;
+* {
+    list-style: none;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1300px;
+    margin: 0 auto;
+}
+.navbar_bg{
+    background:variables.$bgColor;
+    padding: 24px 56px 24px 56px;
+    border-bottom: 1px solid rgba(34, 37, 39, 1);
+}
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: variables.$firstColor;
+    gap: 80px;
+    .navbar_right{
+        display: flex;
+        align-items: center;
+        gap: 58px;
+    }
+    .navbar_pages {
+        display: flex;
+        align-items: center;
+        gap: 46px;
+    }
+
+    .navbar_icons {
+        display: flex;
+        cursor: pointer;
+        gap: 16px;
+        
+    }
+
+    .navbar_title {
+        font-family: variables.$fontFamily;
+        font-size: 32px;
+        font-weight: 500;
+        line-height: 28px;
+        text-align: left;
+        cursor: pointer;
+    }
+
+    .navbar_links {
+        font-family: variables.$fontFamily;
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 28px;
+        letter-spacing: 0.02em;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .navbar_ideal {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 212px;
+        height: 44px;
+        text-align: center;
+        background:variables.$linearGradient;
+        gap: 10px;
+        position: relative;
+        clip-path: polygon(0 0, 100% 0, 85% 100%, 15% 100%); 
+        cursor: pointer;
+    }
+}

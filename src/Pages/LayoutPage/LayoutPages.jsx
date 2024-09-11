@@ -1,7 +1,7 @@
 import HeaderPage from "./HeaderPage/HeaderPage";
 import FooterPage from "./FooterPage/FooterPage";
 
-const LeyotPages = ({ children }) => {
+const LayoutPages = ({ children }) => {
   return (
     <div>
       <HeaderPage />
@@ -11,4 +11,4 @@ const LeyotPages = ({ children }) => {
   );
 };
 
-export default LeyotPages;
+export default LayoutPages;

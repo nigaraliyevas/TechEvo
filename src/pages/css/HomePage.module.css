@@ -1,0 +1,125 @@
+body {
+  background-color: rgb(9, 13, 17);
+}
+
+#bg {
+  background-image: url("../../../public/assets/images/HomePage/Slider/NeonLight.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 800px;
+}
+
+.container {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+.container .mainTitle {
+  color: white;
+  width: 719px;
+  color: white;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.container .mainTitle h1 {
+  font-size: 70px;
+  font-weight: 700;
+  line-height: 80px;
+}
+.container .mainTitle p {
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 32px;
+  color: #CCCCCC;
+}
+
+#specialselected h3 {
+  color: white;
+  padding-top: 56px;
+}
+#specialselected .pc {
+  color: white;
+  padding-top: 56px;
+  padding-bottom: 20px;
+}
+#specialselected .cardMain {
+  display: flex;
+  gap: 20px;
+}
+#specialselected .card {
+  padding: 12px;
+  border: 1px solid transparent;
+  background: radial-gradient(circle at 100% 100%, #000000 0, #000000 4px, transparent 4px) 0% 0%/5px 5px no-repeat, radial-gradient(circle at 0 100%, #000000 0, #000000 4px, transparent 4px) 100% 0%/5px 5px no-repeat, radial-gradient(circle at 100% 0, #000000 0, #000000 4px, transparent 4px) 0% 100%/5px 5px no-repeat, radial-gradient(circle at 0 0, #000000 0, #000000 4px, transparent 4px) 100% 100%/5px 5px no-repeat, linear-gradient(#000000, #000000) 50% 50%/calc(100% - 2px) calc(100% - 10px) no-repeat, linear-gradient(#000000, #000000) 50% 50%/calc(100% - 10px) calc(100% - 2px) no-repeat, linear-gradient(90deg, rgb(70, 29, 72) 0%, rgb(39, 58, 161) 100%);
+  border-radius: 5px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+#specialselected .card .mailTitle {
+  padding: 0 12px;
+}
+#specialselected .card .mailTitle .namePrice {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+#specialselected .card .mailTitle h3 {
+  width: 205px;
+  height: 56px;
+  color: white;
+}
+#specialselected .card .mailTitle p {
+  color: white;
+}
+#specialselected .card .mailTitle .ratingBasket {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 28px;
+}
+#specialselected .card .mailTitle .ratingBasket .basketBg {
+  width: 36px;
+  height: 28px;
+  border: 1px solid transparent;
+  background: linear-gradient(125.92deg, #FD3C43 -59.69%, #B622DC 41.4%, #3F27EB 124.93%);
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#specialselected .card .mailTitle .ratingBasket .basketBg img {
+  max-width: 100%;
+  max-height: 100%;
+}
+#specialselected .card .heartSpan {
+  color: white;
+  position: absolute;
+  right: 3%;
+  top: 3%;
+  font-size: x-large;
+}
+
+.mouse {
+  color: white;
+  padding-top: 56px;
+  padding-bottom: 20px;
+}
+
+.keyboard {
+  color: white;
+  padding-top: 56px;
+  padding-bottom: 20px;
+}
+
+.cardMs {
+  display: flex;
+  gap: 20px;
+}
+
+.cardKb {
+  display: flex;
+  gap: 20px;
+}/*# sourceMappingURL=HomePage.module.css.map */

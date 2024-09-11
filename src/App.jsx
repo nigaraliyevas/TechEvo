@@ -1,8 +1,14 @@
+import HomePage from "./pages/HomePage/HomePage";
+import "./App.css";
+import './pages/css/HomePage.module.css'
+
 const App = () => {
   return (
-    <div>
-      <h1>Welcome Front-End Team. </h1>
-    </div>
+    <>
+      <HomePage />
+
+     
+    </>
   );
 };
 

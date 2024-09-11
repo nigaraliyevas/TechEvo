@@ -1,12 +1,13 @@
-import React from "react";
 import HeaderPage from "./HeaderPage/HeaderPage";
 import FooterPage from "./FooterPage/FooterPage";
 
 const LeyotPages = ({ children }) => {
   return (
-    <div>
+    <div style={{backgroundColor:"black"}}>
       <HeaderPage />
+
       {children}
+  
       <FooterPage />
     </div>
   );

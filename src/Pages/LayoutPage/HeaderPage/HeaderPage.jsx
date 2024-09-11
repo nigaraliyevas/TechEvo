@@ -1,11 +1,13 @@
-import styles from "../HeaderPage/Header.module.scss";
+import styles from "./Header.module.scss";
 import { CiSearch } from "react-icons/ci";
 import { SlBasket } from "react-icons/sl";
 import { BiUser } from "react-icons/bi";
 import { GoRocket } from "react-icons/go";
+import { useEffect, useState } from "react";
 const HeaderPage = () => {
+
   return (
-    <div className={`${styles.container} ${styles.navbar_bg}`}>
+    <div className={`${styles.container} ${styles.navbar_bg} `}>
       <nav className={styles.navbar}>
         <div className={styles.navbar_title}>TechEvo</div>
         <div className={styles.navbar_right}>

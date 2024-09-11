@@ -7,8 +7,7 @@ const RoutesPage = () => {
     <div>
       <LayoutPages>
         <Routes>
-          <Route path="/login" element={<WelcomeRegisterPage/>} />
-            
+          <Route path="/login" element={<WelcomeRegisterPage />} />
         </Routes>
       </LayoutPages>
     </div>

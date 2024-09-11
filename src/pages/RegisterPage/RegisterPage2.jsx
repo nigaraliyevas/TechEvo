@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "./RegisterPage2.module.scss";
 import passwordIcon from '../../public/images/Register/PasswordIcon.svg'
+import passwordIcon2 from '../../public/images/Register/PasswordIcon2.svg'
 import axios from "axios";
 export default function RegisterPage2() {
 
@@ -12,6 +13,8 @@ export default function RegisterPage2() {
         password: '',
         repeatPassword: '',
     });
+    const [showPassword, setShowPassword] = useState(false);
+    const [showRepeatedPassword, setShowRepeatedPassword] = useState(false);
 
     const handleSubmit = async(e) => {
         e.preventDefault();
@@ -30,6 +33,13 @@ export default function RegisterPage2() {
         setFormData({...formData, 
                     [e.target.name]: e.target.value});
     }   
+
+    const handlePassword = () => {
+        setShowPassword(!showPassword);
+    }
+    const handleRepeatedPassword = () => {
+        setShowRepeatedPassword(!showRepeatedPassword);
+    }
 
     return (
         <div className={styles.innerCont}>
@@ -77,13 +87,14 @@ export default function RegisterPage2() {
                             onChange={handleChange}
                             required 
                             className={styles.innerInput}
-                            type="text"
+                            type={showPassword ? `text` : `password`}
                             placeholder="Şifrənizi daxil edin"
                         />
                         <div className={styles.icon}>
                             <img 
+                                onClick={handlePassword}
                                 className={styles.iconImage}
-                                src={passwordIcon} 
+                                src={showPassword ? passwordIcon2 : passwordIcon} 
                                 alt="ClosedEyeIcon" />
                         </div>
                     </div>
@@ -98,13 +109,14 @@ export default function RegisterPage2() {
                             onChange={handleChange}
                             required 
                             className={styles.innerInput}
-                            type="text"
+                            type={showRepeatedPassword ? `text` : `password`}
                             placeholder="Şifrənizi daxil edin"
                         />
                         <div className={styles.icon}>
                             <img 
+                                onClick={handleRepeatedPassword}
                                 className={styles.iconImage}
-                                src={passwordIcon} 
+                                src={showRepeatedPassword ? passwordIcon2 : passwordIcon} 
                                 alt="ClosedEyeIcon" />
                         </div>
                     </div>

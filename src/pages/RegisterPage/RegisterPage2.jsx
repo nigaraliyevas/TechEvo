@@ -1,16 +1,51 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./RegisterPage2.module.scss";
 import passwordIcon from '../../public/images/Register/PasswordIcon.svg'
+import axios from "axios";
 export default function RegisterPage2() {
+
+    const [error, setError] = useState('');
+    const [success, setSuccess] = useState('');
+    const [formData, setFormData] = useState({
+        name: '',
+        surname: '',
+        password: '',
+        repeatPassword: '',
+    });
+
+    const handleSubmit = async(e) => {
+        e.preventDefault();
+        setError('');
+        setSuccess('');
+        try {
+            const response = await axios.post('url', formData);
+            setSuccess('Registration successfull');
+        }
+        catch (error) {
+            setError('Registration error')
+        }
+    }
+
+    const handleChange = (e) => {
+        setFormData({...formData, 
+                    [e.target.name]: e.target.value});
+    }   
+
     return (
         <div className={styles.innerCont}>
             <div className={styles.topText}>Qeydiyyat</div>
             <div className={styles.infoText}>Daxil olmaq üçün aşağıdakı xanaları doldurun.</div>
-            <div className={styles.register2Container}>
+            <form
+                onSubmit={handleSubmit}
+                className={styles.register2Container}>
                 <div>
                     <div className={styles.subHeader}>Ad</div>
                     <div className={styles.inputContainer}>
                         <input 
+                            name="name"
+                            value={formData.name}
+                            onChange={handleChange}
+                            required 
                             className={styles.innerInput}
                             type="text"
                             placeholder="Ad"
@@ -22,6 +57,10 @@ export default function RegisterPage2() {
                     <div className={styles.subHeader}>Soyad</div>
                     <div className={styles.inputContainer}>
                         <input 
+                            name="surname"
+                            value={formData.surname}
+                            onChange={handleChange}
+                            required 
                             className={styles.innerInput}
                             type="text"
                             placeholder="Soyad"
@@ -33,6 +72,10 @@ export default function RegisterPage2() {
                     <div className={styles.subHeader}>Şifrə</div>
                     <div className={styles.inputContainer}>
                         <input 
+                            name="password"
+                            value={formData.password}
+                            onChange={handleChange}
+                            required 
                             className={styles.innerInput}
                             type="text"
                             placeholder="Şifrənizi daxil edin"
@@ -50,6 +93,10 @@ export default function RegisterPage2() {
                     <div className={styles.subHeader}>Şifrəni təkrarla</div>
                     <div className={styles.inputContainer}>
                         <input 
+                            name="repeatPassword"
+                            value={formData.repeatPassword}
+                            onChange={handleChange}
+                            required 
                             className={styles.innerInput}
                             type="text"
                             placeholder="Şifrənizi daxil edin"
@@ -62,7 +109,7 @@ export default function RegisterPage2() {
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
             <div className={styles.agreementBox}>
                 <div className={styles.checkBoxContainer}>
                     <input 
@@ -74,9 +121,11 @@ export default function RegisterPage2() {
                 </div>
                 <div>İstifadəçi şərtləri ilə razıyam</div>
             </div>
-            <div className={styles.btnGradient}>
+            <button
+                type="submit" 
+                className={styles.btnGradient}>
                 Qeydiyyatdan keç
-            </div>
+            </button>
         </div>
     )
 }

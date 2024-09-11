@@ -1,15 +1,11 @@
 import { Route, Routes } from "react-router-dom";
-import LeyotPages from "../LeyoutPage/LeyotPages";
+import LayoutPages from "../LayoutPage/LayoutPages";
 
 const RoutesPage = () => {
   return (
-    <div>
-      <LeyotPages>
-        <Routes>
-            
-        </Routes>
-      </LeyotPages>
-    </div>
+    <LayoutPages>
+      <Routes></Routes>
+    </LayoutPages>
   );
 };
 

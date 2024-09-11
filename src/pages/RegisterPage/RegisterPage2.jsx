@@ -6,7 +6,6 @@ import axios from "axios";
 export default function RegisterPage2() {
 
     const [error, setError] = useState('');
-    const [success, setSuccess] = useState('');
     const [formData, setFormData] = useState({
         name: '',
         surname: '',
@@ -19,13 +18,16 @@ export default function RegisterPage2() {
     const handleSubmit = async(e) => {
         e.preventDefault();
         setError('');
-        setSuccess('');
+
+        if(formData.password !== formData.repeatPassword) {
+            alert("Passwords do not match!");
+            return;
+        }
         try {
             const response = await axios.post('url', formData);
-            setSuccess('Registration successfull');
         }
         catch (error) {
-            setError('Registration error')
+            setError('Registration error');
         }
     }
 
@@ -121,23 +123,24 @@ export default function RegisterPage2() {
                         </div>
                     </div>
                 </div>
-            </form>
-            <div className={styles.agreementBox}>
-                <div className={styles.checkBoxContainer}>
-                    <input 
-                        className={styles.checkBoxInput}
-                        type="checkbox" />
-                    <span 
-                        className={styles.customCheckmark}>
-                    </span>
+            
+                <div className={styles.agreementBox}>
+                    <div className={styles.checkBoxContainer}>
+                        <input 
+                            className={styles.checkBoxInput}
+                            type="checkbox" />
+                        <span 
+                            className={styles.customCheckmark}>
+                        </span>
+                    </div>
+                    <div>İstifadəçi şərtləri ilə razıyam</div>
                 </div>
-                <div>İstifadəçi şərtləri ilə razıyam</div>
-            </div>
-            <button
-                type="submit" 
-                className={styles.btnGradient}>
-                Qeydiyyatdan keç
-            </button>
+                <button
+                    type="submit" 
+                    className={styles.btnGradient}>
+                    Qeydiyyatdan keç
+                </button>
+            </form>
         </div>
     )
 }

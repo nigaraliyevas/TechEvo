@@ -1,8 +1,11 @@
+import WelcomeRegisterPage from "./pages/WelcomeRegisterPage/WelcomeRegisterPage";
+
 const App = () => {
   return (
-    <div>
-      <h1>Welcome Front-End Team. </h1>
-    </div>
+    <>
+    <WelcomeRegisterPage/>
+     
+    </>
   );
 };
 

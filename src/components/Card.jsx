@@ -6,14 +6,18 @@ function Card({ card }) {
     const { name, price, image, rating, basket } = card
     return (
         <div className={style.card}>
-            <div style={{position:"relative"}}>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <div style={{ position: "relative" }}>
 
-                <img src={image} />
-                <span className={style.heartSpan}><PiHeartBold /></span>
+                    <img src={image} style={{ objectFit: "contain", width: "100%", height: "100%" }} />
+                <div className={style.heartSpan}><PiHeartBold /></div>
 
                 <div className={style.mailTitle}>
                     <div className={style.namePrice}>
-                        <h3>{name}</h3>
+                        <h4>{name}</h4>
                         <p>{price}</p>
                     </div>
                     <div className={style.ratingBasket}>

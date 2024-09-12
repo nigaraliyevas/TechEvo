@@ -3,12 +3,12 @@ import Card from './Card'
 import { cards } from '../DataHome'
 import styles from '../pages/HomePage/HomePage.module.scss'
 
-const MsPage = () => {
+const PcSection = () => {
     return (
         <div>
-            <div className={styles.cardMs}>
+            <div className={styles.cardMain}>
                 {
-                    cards?.slice(3,6).map((card) => (
+                    cards?.slice(0, 3).map((card) => (
                         <Card key={card.id} card={card} />
                     ))
                 }
@@ -17,4 +17,4 @@ const MsPage = () => {
     )
 }
 
-export default MsPage
+export default PcSection

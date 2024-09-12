@@ -1,3 +1,4 @@
+@charset "UTF-8";
 body {
   background-color: rgb(9, 13, 17);
 }
@@ -24,6 +25,7 @@ body {
   display: flex;
   justify-content: center;
   flex-direction: column;
+  gap: 36px;
 }
 .container .mainTitle h1 {
   font-size: 70px;
@@ -35,52 +37,87 @@ body {
   font-weight: 400;
   line-height: 32px;
   color: #CCCCCC;
+  width: 442px;
 }
 
-#specialselected h3 {
+#specialselected .specialH3 {
   color: white;
   padding-top: 56px;
 }
-#specialselected .pc {
+
+.pc {
   color: white;
   padding-top: 56px;
   padding-bottom: 20px;
 }
-#specialselected .cardMain {
+
+.cardMain {
   display: flex;
   gap: 20px;
 }
-#specialselected .card {
+
+.card {
   padding: 12px;
   border: 1px solid transparent;
   background: radial-gradient(circle at 100% 100%, #000000 0, #000000 4px, transparent 4px) 0% 0%/5px 5px no-repeat, radial-gradient(circle at 0 100%, #000000 0, #000000 4px, transparent 4px) 100% 0%/5px 5px no-repeat, radial-gradient(circle at 100% 0, #000000 0, #000000 4px, transparent 4px) 0% 100%/5px 5px no-repeat, radial-gradient(circle at 0 0, #000000 0, #000000 4px, transparent 4px) 100% 100%/5px 5px no-repeat, linear-gradient(#000000, #000000) 50% 50%/calc(100% - 2px) calc(100% - 10px) no-repeat, linear-gradient(#000000, #000000) 50% 50%/calc(100% - 10px) calc(100% - 2px) no-repeat, linear-gradient(90deg, rgb(70, 29, 72) 0%, rgb(39, 58, 161) 100%);
   border-radius: 5px;
-  padding: 10px;
   box-sizing: border-box;
+  width: 429px;
+  height: 348px;
+  background-clip: border-box;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  /* İç mətn üçün stillər */
 }
-#specialselected .card .mailTitle {
+.card :hover {
+  cursor: pointer;
+}
+.card::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  background: radial-gradient(circle at 100% 100%, #000000 0, #000000 4px, transparent 4px) 0% 0%/5px 5px no-repeat, radial-gradient(circle at 0 100%, #000000 0, #000000 4px, transparent 4px) 100% 0%/5px 5px no-repeat, radial-gradient(circle at 100% 0, #000000 0, #000000 4px, transparent 4px) 0% 100%/5px 5px no-repeat, radial-gradient(circle at 0 0, #000000 0, #000000 4px, transparent 4px) 100% 100%/5px 5px no-repeat, linear-gradient(#000000, #000000) 50% 50%/calc(100% - 2px) calc(100% - 10px) no-repeat, linear-gradient(#000000, #000000) 50% 50%/calc(100% - 10px) calc(100% - 2px) no-repeat, linear-gradient(90deg, rgb(70, 29, 72) 0%, rgb(39, 58, 161) 100%);
+  z-index: -1;
+  border-radius: inherit;
+  transform: rotate(0deg);
+  transition: transform 0.5s ease-in-out;
+}
+.card:hover::before {
+  transform: rotate(360deg);
+  /* 360 dərəcə fırlanma */
+}
+
+.mailTitle {
   padding: 0 12px;
 }
-#specialselected .card .mailTitle .namePrice {
+.mailTitle .namePrice {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+  padding-top: 16px;
+  padding-bottom: 8px;
 }
-#specialselected .card .mailTitle h3 {
+.mailTitle h3 {
   width: 205px;
   height: 56px;
   color: white;
 }
-#specialselected .card .mailTitle p {
+.mailTitle p {
   color: white;
 }
-#specialselected .card .mailTitle .ratingBasket {
+.mailTitle .ratingBasket {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding-bottom: 28px;
 }
-#specialselected .card .mailTitle .ratingBasket .basketBg {
+.mailTitle .ratingBasket .basketBg {
   width: 36px;
   height: 28px;
   border: 1px solid transparent;
@@ -90,11 +127,12 @@ body {
   justify-content: center;
   align-items: center;
 }
-#specialselected .card .mailTitle .ratingBasket .basketBg img {
+.mailTitle .ratingBasket .basketBg img {
   max-width: 100%;
   max-height: 100%;
 }
-#specialselected .card .heartSpan {
+
+.heartSpan {
   color: white;
   position: absolute;
   right: 3%;
@@ -122,4 +160,42 @@ body {
 .cardKb {
   display: flex;
   gap: 20px;
+}
+
+.services {
+  color: white;
+  padding-top: 56px;
+  padding-bottom: 20px;
+}
+
+.mainServices {
+  display: flex;
+  gap: 20px;
+}
+.mainServices .border {
+  width: 317px;
+  height: 260px;
+  border: 1px solid rgb(89, 89, 89);
+}
+.mainServices .border img {
+  width: 80px;
+  height: 80px;
+}
+.mainServices .iconsCenter {
+  display: flex;
+  padding-top: 32px;
+  flex-direction: column;
+  align-items: center;
+}
+.mainServices .text {
+  text-align: center;
+}
+.mainServices .text h3 {
+  color: #E6E6E6;
+  margin-bottom: 12px;
+  margin-top: 16px;
+}
+.mainServices .text p {
+  color: #989DA2;
+  width: 249px;
 }/*# sourceMappingURL=HomePage.module.css.map */

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import{ useState } from "react";
 import styles from "./WelcomeRegisterPage.module.scss";
 import "../../components/css/Button.scss";
 import eyeIcon from "../../../public/assets/images/Welcome/Faeye.png";
@@ -56,7 +56,7 @@ const WelcomeRegisterPage = () => {
                     onChange={(e) => setPassword(e.target.value)}
                   />
                   <img
-                    src={showPassword ? openEye : eyeIcon}
+                    src={showPassword ? eyeIcon : openEye}
                     alt="Toggle visibility"
                     onClick={handleTogglePassword}
                     style={{

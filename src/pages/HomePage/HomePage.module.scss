@@ -97,7 +97,7 @@ body {
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    transition:  0.3s ease all;
+    transition: 0.3s ease all;
     z-index: 2;
 
     span:not(:nth-child(5)) {
@@ -188,6 +188,15 @@ body {
         50%,
         100% {
             bottom: 100%;
+        }
+    }
+
+
+    .cardImg {
+        transition: transform 0.3s ease;
+
+        &:hover {
+            transform: scale(1.1);
         }
     }
 }

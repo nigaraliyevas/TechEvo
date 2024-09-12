@@ -1,10 +1,17 @@
-import ForgetPassPage from "./pages/ForgetPasswordPage/ForgetPassPage";
+
+
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import RoutesPage from "./Pages/RouterPage/RoutesPage";
 
 const App = () => {
   return (
-    <div>
-      <ForgetPassPage></ForgetPassPage>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/*" element={<RoutesPage />} />
+      </Routes>
+    </BrowserRouter>
+
+
   );
 };
 

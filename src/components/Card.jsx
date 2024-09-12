@@ -12,7 +12,8 @@ function Card({ card }) {
             <span></span>
             <div style={{ position: "relative" }}>
 
-                <img className={style.cardImg} src={image} style={{ objectFit: "contain", width: "100%", height: "100%" }} />
+                <img className={style.cardImg} src={image}
+                />
                 <div className={style.heartSpan}><PiHeartBold /></div>
 
                 <div className={style.mailTitle}>

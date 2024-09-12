@@ -5,9 +5,7 @@ const LeyotPages = ({ children }) => {
   return (
     <div style={{backgroundColor:"black"}}>
       <HeaderPage />
-
       {children}
-  
       <FooterPage />
     </div>
   );

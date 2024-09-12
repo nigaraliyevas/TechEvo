@@ -1,4 +1,4 @@
-@import '../../../../public/assets/variables/variable';
+@import '../../../../public/assets/variables/variables';
 
 * {
     list-style: none;
@@ -6,80 +6,104 @@
     margin: 0;
     padding: 0;
 }
-
+// header{
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+// }
 .container {
     max-width: 1300px;
     margin: 0 auto;
 }
 
-.navbar_bg {
-    position: fixed;
-    width: 100%;
-    left: 13px;
-    top: 0;
-    z-index: 100;
-    background:$bgColor;
-    padding: 24px 56px 24px 56px;
-    border-bottom: 1px solid rgba(34, 37, 39, 1);
-}
 
-.navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    color:$firstColor;
-    gap: 80px;
- 
 
-    .navbar_right {
-        display: flex;
-        align-items: center;
-        gap: 58px;
+header{
+    position: relative;
+    &::after{
+        content: "";
+        position: absolute;
+        width: 100vw;
+        left: 0;
+        right: 0;
+        bottom: 0px;
+        height: 1px;
+        background-color: rgba(34, 37, 39, 1);
     }
-
-    .navbar_pages {
-        display: flex;
-        align-items: center;
-        gap: 46px;
+    .navbar_bg {
+        position: sticky; 
+        top:0px;                 
+        margin-left: auto;
+        margin-left: auto;
+        width: 100%;                
+        padding: 24px 56px;        
+        background: $bgColor;        
     }
-
-    .navbar_icons {
-        display: flex;
-        cursor: pointer;
-        gap: 16px;
-
-    }
-
-    .navbar_title {
-        font-family:$fontFamily;
-        font-size: 32px;
-        font-weight: 500;
-        line-height: 28px;
-        text-align: left;
-        cursor: pointer;
-    }
-
-    .navbar_links {
-        font-family:$fontFamily;
-        font-size: 20px;
-        font-weight: 400;
-        line-height: 28px;
-        letter-spacing: 0.02em;
-        text-align: center;
-        cursor: pointer;
-    }
-
-    .navbar_ideal {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 212px;
-        height: 44px;
-        text-align: center;
-        background:$linearGradient;
-        gap: 10px;
+    .navbar {
         position: relative;
-        clip-path: polygon(0 0, 100% 0, 85% 100%, 15% 100%);
-        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color:$firstColor;
+        gap: 80px;
+        width: 100% !important;
+
+    
+        .navbar_right {
+            display: flex;
+            align-items: center;
+            gap: 58px;
+        }
+    
+        .navbar_pages {
+            display: flex;
+            align-items: center;
+            gap: 46px;
+        }
+    
+        .navbar_icons {
+            display: flex;
+            cursor: pointer;
+            gap: 16px;
+    
+        }
+    
+        .navbar_title {
+            font-family:$fontFamily;
+            font-size: 32px;
+            font-weight: 500;
+            line-height: 28px;
+            text-align: left;
+            cursor: pointer;
+        }
+    
+        .navbar_links {
+            font-family:$fontFamily;
+            font-size: 20px;
+            font-weight: 400;
+            line-height: 28px;
+            letter-spacing: 0.02em;
+            text-align: center;
+            cursor: pointer;
+        }
+    
+        .navbar_ideal {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 212px;
+            height: 44px;
+            text-align: center;
+            background:$linearGradient;
+            gap: 10px;
+            position: relative;
+            clip-path: polygon(0 0, 100% 0, 85% 100%, 15% 100%);
+            cursor: pointer;
+        }
     }
+}
+.navbar_line{
+    width: 100%;
+    height: 1px;
+    background-color: rgba(34, 37, 39, 1);
 }

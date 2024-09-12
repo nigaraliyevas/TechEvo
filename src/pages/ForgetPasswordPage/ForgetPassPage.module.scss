@@ -1,3 +1,5 @@
+@import "../../../public/assets/variables/variable";
+
 .ForgetPass{
     background-color: #090D11;
     width: 100%;
@@ -11,7 +13,7 @@
 .ForgetPassContainer{
     background-color: #161A1E;
     width: 480px;
-    height: 400px;
+    height: 494px;
     border-radius: 2px;
     display: flex;
     flex-direction: column;
@@ -27,6 +29,7 @@
     align-content: flex-start;
 }
 .ForgetPassContainer h1{
+    font-family: $fontFamily;
     color: #ffffff;
     font-weight: 700;
     font-size: 40px;

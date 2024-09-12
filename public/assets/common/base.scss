@@ -1,0 +1,10 @@
+@use "/public/assets/variables/variable" as variables;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: variables.$fontFamily;
+  background-color: variables.$bgColor;
+}

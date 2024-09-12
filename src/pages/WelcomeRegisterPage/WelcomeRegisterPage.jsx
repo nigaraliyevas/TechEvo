@@ -4,6 +4,7 @@ import "../../components/css/Button.scss";
 import eyeIcon from "../../../public/assets/images/Welcome/Faeye.png";
 import openEye from "../../../public/assets/images/Welcome/OpenEye.png";
 import axios from "axios";
+import Button from "../../components/Button/Button";
 
 const WelcomeRegisterPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -13,12 +14,12 @@ const WelcomeRegisterPage = () => {
     event.preventDefault();
     axios
       .post("url/", { email, password })
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
   }
 
   const handleTogglePassword = () => {
-    setShowPassword((prev) => !prev);
+    setShowPassword(prev => !prev);
   };
   return (
     <>
@@ -36,25 +37,13 @@ const WelcomeRegisterPage = () => {
                   E-poçt
                 </label>
 
-                <input
-                  type="text"
-                  placeholder="E-poçt"
-                  value={email}
-                  className={styles.inp}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
+                <input type="text" placeholder="E-poçt" value={email} className={styles.inp} onChange={e => setEmail(e.target.value)} />
 
                 <label htmlFor="password" className={styles.labelContent}>
                   Şifrə
                 </label>
                 <div style={{ position: "relative", display: "inline-block" }}>
-                  <input
-                    className={styles.inp}
-                    type={showPassword ? "text" : "password"}
-                    value={password}
-                    placeholder="Şifrəni daxil edin"
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
+                  <input className={styles.inp} type={showPassword ? "text" : "password"} value={password} placeholder="Şifrəni daxil edin" onChange={e => setPassword(e.target.value)} />
                   <img
                     src={showPassword ? eyeIcon : openEye}
                     alt="Toggle visibility"
@@ -74,9 +63,7 @@ const WelcomeRegisterPage = () => {
                 <div className={styles.forgetPassword}>
                   <a href="#">şifrəni unutmusan?</a>
                 </div>
-                <button className="Btn" type="submit">
-                  Daxil ol
-                </button>
+                {<Button buttonText={"Daxil ol"} />}
               </form>
             </div>
           </div>

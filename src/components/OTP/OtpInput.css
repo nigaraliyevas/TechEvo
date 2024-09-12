@@ -1,0 +1,12 @@
+.otp-input {
+  width: 84px;
+  height: 84px;
+  padding: 0;
+  text-align: center;
+  font-size: 24px;
+  margin: 0 5px;
+}
+.otp-input::-webkit-outer-spin-button, .otp-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}/*# sourceMappingURL=OtpInput.css.map */

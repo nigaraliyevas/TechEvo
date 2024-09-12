@@ -1,0 +1,11 @@
+.gradient-button {
+  background-image: linear-gradient(to right bottom, #e1327d, #de1c8c, #d8009d, #cc00b0, #b900c5, #ab0ccf, #9918da, #8323e4, #7723e5, #6a24e7, #5b25e8, #4926e9);
+  color: white;
+  width: 100%;
+  padding: 18px 80px 18px 80px;
+  margin-top: 48px;
+  font-size: 20px;
+  border-radius: 2px;
+  border: none;
+  cursor: pointer;
+}/*# sourceMappingURL=Button.css.map */

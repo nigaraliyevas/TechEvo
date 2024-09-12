@@ -1,4 +1,4 @@
-@use "/public/assets/variables/variable" as variables;
+@use "/public/assets/variables/variables" as variables;
 * {
   margin: 0;
   padding: 0;
@@ -7,6 +7,9 @@
 .container {
   max-width: 1300px;
   margin: 0 auto;
+  background-color: #090d11;
+  padding-top: 88px;
+  padding-bottom: 120px;
 }
 body {
   background-color: #090c11;
@@ -16,7 +19,8 @@ body {
   max-width: 480px;
   height: 614px;
   background-color: #161a1e;
-  margin: 68px auto;
+  margin: 0 auto;
+
   border-radius: 8px;
 }
 .welcomeBox_container {

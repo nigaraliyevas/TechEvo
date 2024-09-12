@@ -5,7 +5,7 @@ import { FaFacebook } from "react-icons/fa";
 import { FiPhone } from "react-icons/fi";
 const FooterPage = () => {
   return (
-    <div style={{paddingTop:"92px"}}>
+    <div>
       <footer className={`${style.container} ${style.footer}`}>
         <div className={style.footer_top}>
           <div className={style.footer_title}>TechEvo</div>

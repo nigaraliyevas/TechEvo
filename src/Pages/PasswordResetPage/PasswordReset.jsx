@@ -1,4 +1,4 @@
-import "./PasswordReset.scss";
+import"./PasswordReset.scss";
 import "../../../public/assets/common/base.scss";
 import Button from "../../components/Button/Button";
 import Input from "../../components/Input/Input";

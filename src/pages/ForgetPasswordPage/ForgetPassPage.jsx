@@ -5,6 +5,7 @@ function ForgetPassPage() {
         <>
 
             <section className={styles.ForgetPass}>
+                <div className={styles.forgetPassword_container}>
                 <div className={styles.ForgetPassContainer}>
                     <div className={styles.ForgetPassContainerUp}>
                         <h1>
@@ -26,6 +27,7 @@ function ForgetPassPage() {
                         </div>
 
                     </div>
+                </div>
                 </div>
             </section>
 

@@ -1,7 +1,9 @@
+import ForgetPassPage from "./pages/ForgetPasswordPage/ForgetPassPage";
+
 const App = () => {
   return (
     <div>
-      <h1>Welcome Front-End Team. </h1>
+      <ForgetPassPage></ForgetPassPage>
     </div>
   );
 };

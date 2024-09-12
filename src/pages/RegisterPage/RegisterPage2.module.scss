@@ -1,6 +1,6 @@
 .innerCont {
     padding: 64px 50px;
-    border-radius: 8px;
+    border-radius: 2px;
     background: #161A1E;
     max-width: 480px;
     margin: 0 auto;
@@ -42,7 +42,7 @@
 .inputContainer {
     width: 100%;
     border: 1px solid #595959;
-    border-radius: 8px;
+    border-radius: 4px;
     padding: 18px 14px;
     height: 56px;
     position: relative;
@@ -86,7 +86,6 @@
     color: #CCCCCC;
     font-size: 16px;
     line-height: 20px;
-    margin-bottom: 48px;
 }
 .checkBoxContainer {
     width: 20px;
@@ -123,30 +122,4 @@
     border: solid #FFFFFF;
     border-width: 0 2px 2px 0;
     transform: rotate(45deg);
-}
-.btnGradient {
-    background-image: linear-gradient(to 
-        right bottom, 
-        #fd3c43, 
-        #ff1b5d, 
-        #ff0079, 
-        #f50096, 
-        #e300b3, 
-        #d300c2, 
-        #bd0dd1, 
-        #a120e0, 
-        #8f20e3, 
-        #7b22e6, 
-        #6224e8, 
-        #3f27eb);
-    color: #FFFFFF;
-    font-size: 20px;
-    font-weight: 500;
-    line-height: 28px;
-    text-align: center;
-    border-radius: 4px;
-    padding: 14px 80px;
-    cursor: pointer;
-    width: 100%;
-    border: none;
 }

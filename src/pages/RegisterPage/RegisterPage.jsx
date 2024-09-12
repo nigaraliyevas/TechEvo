@@ -1,21 +1,16 @@
 import React, { useState } from "react";
 import styles from "./RegisterPage.module.scss"
 import RegisterPage2 from "./RegisterPage2";
+import "../../components/css/Button.scss";
 export default function RegisterPage() {
 
     const [showPage2, setShowPage2] = useState(false)
     const [email, setEmail] = useState("");
 
-    const validateEmail = (email) => {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-    }
-    const openPage2 = () => {
-        validateEmail(email) ? setShowPage2(true) : alert("Incorrect e-mail");
-    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        openPage2();        
+        setShowPage2(true)        
     }
 
     
@@ -33,13 +28,14 @@ export default function RegisterPage() {
                                     placeholder="salayevafidan2003@gmail" 
                                     type="email"
                                     value={email}
+                                    required
                                     onChange={(e) => setEmail(e.target.value)}
                                     />
                             </div>
                             <button 
                                 type="submit"
-                                className={styles.buttonGradient} 
-                                onClick={openPage2}>
+                                className="Btn"
+                               >
                                     Davam et
                             </button>
                         </form>

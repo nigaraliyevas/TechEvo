@@ -8,6 +8,7 @@ import "../../components/css/Button.scss";
 export default function RegisterPage2() {
   const navigate = useNavigate();
   const [isChecked, setIsChecked] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const [error, setError] = useState("");
   const [formData, setFormData] = useState({
     name: "",

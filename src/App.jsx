@@ -10,8 +10,6 @@ const App = () => {
         <Route path="/*" element={<RoutesPage />} />
       </Routes>
     </BrowserRouter>
-
-
   );
 };
 

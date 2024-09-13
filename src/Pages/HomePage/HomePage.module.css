@@ -2,14 +2,26 @@ body {
   background-color: #090d11;
 }
 
-#bg {
-  background-image: url("../../../public/assets/images/HomePage/Slider/NeonLight.png");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: 800px;
+.sliderContainer {
   max-width: 1300px;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.slick-arrow {
+  display: none !important;
+}
+
+.slide {
+  position: relative;
+}
+.slide img {
+  width: 100%;
+  height: auto;
+}
+
+.slick-slider div {
+  padding-top: 93px !important;
 }
 
 .container_bottom {
@@ -66,7 +78,7 @@ body {
 }
 
 .card {
-  padding: 12px;
+  padding: 12px !important;
   border: 2px solid transparent;
   cursor: pointer;
   background: radial-gradient(circle at 100% 100%, #000000 0, #000000 4px, transparent 4px) 0% 0%/5px 5px no-repeat, radial-gradient(circle at 0 100%, #000000 0, #000000 4px, transparent 4px) 100% 0%/5px 5px no-repeat, radial-gradient(circle at 100% 0, #000000 0, #000000 4px, transparent 4px) 0% 100%/5px 5px no-repeat, radial-gradient(circle at 0 0, #000000 0, #000000 4px, transparent 4px) 100% 100%/5px 5px no-repeat, linear-gradient(#000000, #000000) 50% 50%/calc(100% - 2px) calc(100% - 10px) no-repeat, linear-gradient(#000000, #000000) 50% 50%/calc(100% - 10px) calc(100% - 2px) no-repeat, linear-gradient(90deg, rgb(70, 29, 72) 0%, rgb(39, 58, 161) 100%);
@@ -155,6 +167,10 @@ body {
   }
 }
 .card .cardImg {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
   transition: transform 0.3s ease;
 }
 .card .cardImg:hover {

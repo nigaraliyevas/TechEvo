@@ -85,7 +85,7 @@
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 
 .agreementBox {
@@ -136,4 +136,4 @@
   border: solid #ffffff;
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
-}/*# sourceMappingURL=RegisterPage2.module.css.map */
+} /*# sourceMappingURL=RegisterPage2.module.css.map */

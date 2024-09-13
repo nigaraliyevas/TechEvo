@@ -36,6 +36,7 @@ body {
 .container_bottom {
     width: 100%;
     max-width: 1300px;
+    overflow: hidden;
     background-color: #090d11;
     margin: 0 auto;
     padding: 0 15px;
@@ -46,12 +47,15 @@ body {
     max-width: 1300px;
     margin: 0 auto;
     padding: 0 15px;
+    position: absolute;
+    bottom: 30%;
+    left: 10%;
 
     .mainTitle {
         color: white;
-        width: 719px;
+        max-width: 719px;
         color: white;
-        height: 100vh;
+        // height: 100vh;
         display: flex;
         justify-content: center;
         flex-direction: column;
@@ -90,6 +94,8 @@ body {
 .cardMain {
     display: flex;
     gap: 20px;
+    // grid-template-columns: repeat(3, 1fr);
+
 }
 
 .card {

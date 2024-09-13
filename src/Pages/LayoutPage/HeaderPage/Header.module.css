@@ -1,0 +1,97 @@
+@import url("https://fonts.cdnfonts.com/css/sf-pro-display");
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+* {
+  list-style: none;
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+header {
+  position: relative;
+}
+header::after {
+  content: "";
+  position: absolute;
+  width: 100vw;
+  left: 0;
+  right: 0;
+  bottom: 0px;
+  height: 1px;
+  background-color: rgb(34, 37, 39);
+}
+header .navbar_bg {
+  position: sticky;
+  top: 0px;
+  margin-left: auto;
+  margin-left: auto;
+  width: 100%;
+  padding: 24px 56px;
+  background: rgb(9, 13, 17);
+}
+header .navbar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: rgb(255, 255, 255);
+  gap: 80px;
+  width: 100% !important;
+}
+header .navbar .navbar_right {
+  display: flex;
+  align-items: center;
+  gap: 58px;
+}
+header .navbar .navbar_pages {
+  display: flex;
+  align-items: center;
+  gap: 46px;
+}
+header .navbar .navbar_icons {
+  display: flex;
+  cursor: pointer;
+  gap: 16px;
+}
+header .navbar .navbar_title {
+  font-family: "SF Pro Display", sans-serif;
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 28px;
+  text-align: left;
+  cursor: pointer;
+}
+header .navbar .navbar_links {
+  font-family: "SF Pro Display", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 28px;
+  letter-spacing: 0.02em;
+  text-align: center;
+  cursor: pointer;
+}
+header .navbar .navbar_ideal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 212px;
+  height: 44px;
+  text-align: center;
+  background: linear-gradient(125.92deg, #fd3c43 -59.69%, #b622dc 41.4%, #3f27eb 124.93%);
+  gap: 10px;
+  position: relative;
+  -webkit-clip-path: polygon(0 0, 100% 0, 85% 100%, 15% 100%);
+          clip-path: polygon(0 0, 100% 0, 85% 100%, 15% 100%);
+  cursor: pointer;
+}
+
+.navbar_line {
+  width: 100%;
+  height: 1px;
+  background-color: rgb(34, 37, 39);
+}/*# sourceMappingURL=Header.module.css.map */

@@ -3,7 +3,7 @@ import FooterPage from "./FooterPage/FooterPage";
 
 const LayoutPages = ({ children }) => {
   return (
-    <div>
+    <div style={{backgroundColor:"black"}}>
       <HeaderPage />
       {children}
       <FooterPage />

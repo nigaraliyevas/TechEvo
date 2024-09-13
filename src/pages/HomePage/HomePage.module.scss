@@ -1,0 +1,306 @@
+body {
+  background-color: #090d11;
+}
+#bg {
+  background-image: url("../../../public/assets/images/HomePage/Slider/NeonLight.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 800px;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+.container_bottom{
+  width: 100%;
+  max-width: 1300px;
+  background-color: #090d11;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+.container_top {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 15px;
+
+  .mainTitle {
+    color: white;
+    width: 719px;
+    color: white;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 36px;
+
+    h1 {
+      font-size: 70px;
+      font-weight: 700;
+      line-height: 80px;
+    }
+
+    p {
+      font-size: 24px;
+      font-weight: 400;
+      line-height: 32px;
+      color: #cccccc;
+      width: 442px;
+    }
+  }
+}
+
+#specialselected {
+  .specialH3 {
+    color: white;
+    padding-top: 56px;
+  }
+}
+
+.pc {
+  color: white;
+  padding-top: 56px;
+  padding-bottom: 20px;
+}
+
+.cardMain {
+  display: flex;
+  gap: 20px;
+}
+
+.card {
+  padding: 12px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  background: radial-gradient(circle at 100% 100%, #000000 0, #000000 4px, transparent 4px) 0% 0%/5px 5px no-repeat, radial-gradient(circle at 0 100%, #000000 0, #000000 4px, transparent 4px) 100% 0%/5px 5px no-repeat, radial-gradient(circle at 100% 0, #000000 0, #000000 4px, transparent 4px) 0% 100%/5px 5px no-repeat, radial-gradient(circle at 0 0, #000000 0, #000000 4px, transparent 4px) 100% 100%/5px 5px no-repeat, linear-gradient(#000000, #000000) 50% 50% / calc(100% - 2px) calc(100% - 10px) no-repeat, linear-gradient(#000000, #000000) 50% 50% / calc(100% - 10px) calc(100% - 2px) no-repeat, linear-gradient(90deg, rgba(70, 29, 72, 1) 0%, rgba(39, 58, 161, 1) 100%);
+
+  border-radius: 5px;
+  box-sizing: border-box;
+  width: 429px;
+  height: 348px;
+
+  background-clip: border-box;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  transition: 0.3s ease all;
+  z-index: 2;
+
+  span:not(:nth-child(5)) {
+    position: absolute;
+    display: block;
+  }
+
+  &:hover span:nth-child(1) {
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 0.125rem;
+    background: linear-gradient(90deg, transparent, #e31c25);
+    animation: btn-anim1 1s linear infinite;
+  }
+
+  @keyframes btn-anim1 {
+    0% {
+      left: -100%;
+    }
+
+    50%,
+    100% {
+      left: 100%;
+    }
+  }
+
+  &:hover span:nth-child(2) {
+    top: -100%;
+    right: 0;
+    width: 0.125rem;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, #e31c25);
+    animation: btn-anim2 1s linear infinite;
+    animation-delay: 0.25s;
+  }
+
+  @keyframes btn-anim2 {
+    0% {
+      top: -100%;
+    }
+
+    50%,
+    100% {
+      top: 100%;
+    }
+  }
+
+  &:hover span:nth-child(3) {
+    bottom: 0;
+    right: -100%;
+    width: 100%;
+    height: 0.125rem;
+    background: linear-gradient(270deg, transparent, #e31c25);
+    animation: btn-anim3 1s linear infinite;
+    animation-delay: 0.5s;
+  }
+
+  @keyframes btn-anim3 {
+    0% {
+      right: -100%;
+    }
+
+    50%,
+    100% {
+      right: 100%;
+    }
+  }
+
+  &:hover span:nth-child(4) {
+    bottom: -100%;
+    left: 0;
+    width: 0.125rem;
+    height: 100%;
+    background: linear-gradient(360deg, transparent, #e31c25);
+    animation: btn-anim4 1s linear infinite;
+    animation-delay: 0.75s;
+  }
+
+  @keyframes btn-anim4 {
+    0% {
+      bottom: -100%;
+    }
+
+    50%,
+    100% {
+      bottom: 100%;
+    }
+  }
+
+  .cardImg {
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}
+
+.mailTitle {
+  .namePrice {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-top: 16px;
+    padding-bottom: 8px;
+    line-height: 28px;
+  }
+
+  h4 {
+    max-width: 250px;
+    height: 56px;
+    color: white;
+    font-weight: 500;
+  }
+
+  p {
+    color: white;
+  }
+
+  .ratingBasket {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 28px;
+
+    .basketBg {
+      width: 36px;
+      height: 28px;
+      border: 1px solid transparent;
+      background: linear-gradient(125.92deg, #fd3c43 -59.69%, #b622dc 41.4%, #3f27eb 124.93%);
+      border-radius: 3px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        max-width: 100%;
+        max-height: 100%;
+      }
+    }
+  }
+}
+
+.heartSpan {
+  color: white;
+  position: absolute;
+  right: 3%;
+  top: 3%;
+  font-size: x-large;
+}
+
+.mouse {
+  color: white;
+  padding-top: 56px;
+  padding-bottom: 20px;
+}
+
+.keyboard {
+  color: white;
+  padding-top: 56px;
+  padding-bottom: 20px;
+}
+
+.cardMs {
+  display: flex;
+  gap: 20px;
+}
+
+.cardKb {
+  display: flex;
+  gap: 20px;
+}
+
+.services {
+  color: white;
+  padding-top: 56px;
+  padding-bottom: 20px;
+}
+
+.mainServices {
+  display: flex;
+  gap: 20px;
+  padding-bottom: 120px;
+
+  .border {
+    width: 317px;
+    height: 260px;
+    border: 1px solid rgba(89, 89, 89, 1);
+    border-radius: 5px;
+
+    img {
+      width: 80px;
+      height: 80px;
+    }
+  }
+
+  .iconsCenter {
+    display: flex;
+    padding-top: 32px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .text {
+    text-align: center;
+
+    h3 {
+      color: #e6e6e6;
+      margin-bottom: 12px;
+      margin-top: 16px;
+    }
+
+    p {
+      color: #989da2;
+      width: 249px;
+    }
+  }
+}

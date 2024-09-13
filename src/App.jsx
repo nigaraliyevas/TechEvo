@@ -1,3 +1,5 @@
+
+
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import RoutesPage from "./Pages/RouterPage/RoutesPage";
 
@@ -8,7 +10,6 @@ const App = () => {
         <Route path="/*" element={<RoutesPage />} />
       </Routes>
     </BrowserRouter>
-
   );
 };
 

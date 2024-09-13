@@ -6,17 +6,24 @@ import InternCr from "../../../public/assets/images/HomePage/Products/InternCr.p
 import Delivery from "../../../public/assets/images/HomePage/Products/Delivery.png";
 import Repair from "../../../public/assets/images/HomePage/Products/Repair.png";
 import SecondHand from "../../../public/assets/images/HomePage/Products/SecondHand.png";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import SliderComponent from "../../components/Slider.jsx";
 
 const HomePage = () => {
   return (
     <>
-      <section id={styles.bg}>
-        <div className={styles.container_top}>
-          <div className={styles.mainTitle}>
-            <h1>Empower Your Digital World</h1>
-            <p>Find the perfect computer, PC, or laptop for unbeatable performance</p>
-          </div>
+      <section>
+        <div className="" style={{ paddingTop: "93px" }}>
+          <SliderComponent />
         </div>
+
+        {/* <div className={styles.container_top}>
+                    <div className={styles.mainTitle}>
+                        <h1>Empower Your Digital World</h1>
+                        <p>Find the perfect computer, PC, or laptop for unbeatable performance</p>
+                    </div>
+                </div> */}
       </section>
 
       <section id={styles.specialselected}>
@@ -34,7 +41,7 @@ const HomePage = () => {
           <div className={styles.services}>Xidmətlərimiz</div>
 
           <div className={styles.mainServices}>
-            <div className={`${styles.internalCr} ${styles.border} ${styles.iconsCenter}`}>
+            <div className={` ${styles.border} ${styles.iconsCenter}`}>
               <img src={InternCr} />
               <div className={styles.text}>
                 <h3>Daxili kredit</h3>
@@ -42,7 +49,7 @@ const HomePage = () => {
               </div>
             </div>
 
-            <div className={`${styles.delivery} ${styles.border} ${styles.iconsCenter}`}>
+            <div className={`${styles.border} ${styles.iconsCenter}`}>
               <img src={Delivery} />
 
               <div className={styles.text}>
@@ -51,7 +58,7 @@ const HomePage = () => {
               </div>
             </div>
 
-            <div className={`${styles.repair} ${styles.border} ${styles.iconsCenter}`}>
+            <div className={`${styles.border} ${styles.iconsCenter}`}>
               <img src={Repair} />
               <div className={styles.text}>
                 <h3>Təmir</h3>
@@ -59,7 +66,7 @@ const HomePage = () => {
               </div>
             </div>
 
-            <div className={`${styles.secondHand} ${styles.border} ${styles.iconsCenter}`}>
+            <div className={`${styles.border} ${styles.iconsCenter}`}>
               <img src={SecondHand} />
               <div className={styles.text}>
                 <h3>İkinci əl satış</h3>

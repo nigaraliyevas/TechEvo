@@ -5,7 +5,7 @@ import eyeIcon from "../../../public/assets/images/Welcome/Faeye.png";
 import openEye from "../../../public/assets/images/Welcome/OpenEye.png";
 import Button from "../../components/Button/Button";
 import "/public/assets//common/base.scss";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const WelcomeRegisterPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -141,7 +141,7 @@ const WelcomeRegisterPage = () => {
               {passwordError && <p className={styles.error}>{passwordError}</p>}
 
               <div className={styles.forgetPassword}>
-                <a href="#">şifrəni unutmusan?</a>
+                <Link to="/forget">şifrəni unutmusan?</Link>
               </div>
               <Button buttonText={"Daxil ol"} />
             </form>

@@ -61,7 +61,7 @@ export default function RegisterPage2() {
       });
   
       if (response.ok) {
-          navigate("/welcome");
+          navigate("/login");
       } else {
           const errorData = await response.json();
           const { name, surname, password, repeatPassword } = errorData.errors || {};

@@ -25,7 +25,7 @@ export default function RegisterPage() {
                             <div className={styles.inputContainer}>
                                 <input 
                                     className={styles.innerInput}
-                                    placeholder="salayevafidan2003@gmail" 
+                                    placeholder="E-poçt" 
                                     type="email"
                                     value={email}
                                     required

@@ -3,7 +3,7 @@
   border-radius: 2px;
   background: #161a1e;
   max-width: 480px;
-  margin: 88px auto;
+  margin: 0 auto;
   margin-bottom: 0;
 }
 
@@ -99,6 +99,8 @@
   position: absolute;
   opacity: 0;
   cursor: pointer;
+  top: -50%;
+  left: 0;
 }
 .customCheckmark {
   width: 100%;

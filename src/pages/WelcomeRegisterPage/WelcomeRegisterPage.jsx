@@ -3,7 +3,6 @@ import styles from "./WelcomeRegisterPage.module.scss";
 import "../../components/css/Button.scss";
 import eyeIcon from "../../../public/assets/images/Welcome/Faeye.png";
 import openEye from "../../../public/assets/images/Welcome/OpenEye.png";
-import axios from "axios";
 import Button from "../../components/Button/Button";
 
 const WelcomeRegisterPage = () => {
@@ -13,7 +12,7 @@ const WelcomeRegisterPage = () => {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
-  const handleSubmit = event => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     setEmailError("");
     setPasswordError("");
@@ -21,28 +20,41 @@ const WelcomeRegisterPage = () => {
     const isValid = validateForm();
     if (!isValid) return;
 
-    axios
-      .post("https://your-api-url.com/login", { email, password })
-      .then(res => {
-        console.log(res);
-        setEmailError("");
-        setPasswordError("");
-      })
-      .catch(err => {
-        if (err.response && err.response.data) {
-          const errors = err.response.data.errors;
+    try {
+      const response = await fetch("https://your-api-url.com/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
 
-          if (errors.email) {
-            setEmailError(errors.email.message || "Girişdə səhv baş verdi.");
+      if (!response.ok) {
+        const errorData = await response.json();
+        if (errorData.errors) {
+          if (errorData.errors.email) {
+            setEmailError(errorData.errors.email.message || "Girişdə səhv baş verdi.");
           }
-          if (errors.password) {
-            setPasswordError(errors.password.message || "Girişdə səhv baş verdi.");
+          if (errorData.errors.password) {
+            setPasswordError(errorData.errors.password.message || "Girişdə səhv baş verdi.");
           }
         } else {
           setEmailError("Şəbəkə səhvi.");
           setPasswordError("Şəbəkə səhvi.");
         }
-      });
+      } else {
+        const data = await response.json();
+        console.log(data); 
+        console.log("E-poçt:", email); 
+        console.log("Şifrə:", password); 
+        setEmailError("");
+        setPasswordError("");
+      }
+    } catch (err) {
+      console.error(err);
+      setEmailError("Şəbəkə səhvi.");
+      setPasswordError("Şəbəkə səhvi.");
+    }
   };
 
   const validateForm = () => {
@@ -62,8 +74,9 @@ const WelcomeRegisterPage = () => {
 
     return isValid;
   };
+
   const handleTogglePassword = () => {
-    setShowPassword(prev => !prev);
+    setShowPassword((prev) => !prev);
   };
 
   return (
@@ -79,13 +92,26 @@ const WelcomeRegisterPage = () => {
               <label htmlFor="email" className={styles.labelContent}>
                 E-poçt
               </label>
-              <input type="text" placeholder="E-poçt" value={email} className={styles.inp} onChange={e => setEmail(e.target.value)} />
+              <input
+                type="text"
+                placeholder="E-poçt"
+                value={email}
+                className={styles.inp}
+                onChange={(e) => setEmail(e.target.value)}
+              />
               {emailError && <p className={styles.error}>{emailError}</p>}
+
               <label htmlFor="password" className={styles.labelContent}>
                 Şifrə
               </label>
               <div style={{ position: "relative", display: "inline-block" }}>
-                <input className={styles.inp} type={showPassword ? "text" : "password"} value={password} placeholder="Şifrəni daxil edin" onChange={e => setPassword(e.target.value)} />
+                <input
+                  className={styles.inp}
+                  type={showPassword ? "text" : "password"}
+                  value={password}
+                  placeholder="Şifrəni daxil edin"
+                  onChange={(e) => setPassword(e.target.value)}
+                />
                 <img
                   src={showPassword ? eyeIcon : openEye}
                   alt="Toggle visibility"

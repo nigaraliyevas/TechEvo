@@ -8,3 +8,9 @@ body {
   font-family: variables.$fontFamily;
   background-color: variables.$bgColor;
 }
+
+.container {
+  max-width: 1300px;
+  width: 100%;
+  margin: 0 auto;
+}

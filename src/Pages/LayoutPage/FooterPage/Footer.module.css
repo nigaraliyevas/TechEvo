@@ -7,8 +7,6 @@
 
 .footer {
   padding: 72px 56px 72px 56px;
-  gap: 10px;
-  opacity: 0px;
   background: rgb(22, 26, 30);
 }
 .footer .footer_top {

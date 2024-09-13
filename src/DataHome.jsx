@@ -75,7 +75,7 @@ export const cards = [
 
     {
         id: 7,
-        name: "Microsoft Surface Precision Mouse",
+        name: "Corsair K95 RGB Platinum XT",
         price: 300,
         image: Kb1,
         rating: Rating,
@@ -84,7 +84,7 @@ export const cards = [
 
     {
         id: 8,
-        name: "Microsoft Surface Precision Mouse",
+        name: "Microsoft Surface Keyboard",
         price: 250,
         image: Kb2,
         rating: Rating,
@@ -93,7 +93,7 @@ export const cards = [
 
     {
         id: 9,
-        name: "Microsoft Surface Precision Mouse",
+        name: "Logitech G915 TKL Wireless Mechanical",
         price: 350,
         image: Kb3,
         rating: Rating,

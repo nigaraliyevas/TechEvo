@@ -5,6 +5,7 @@ import eyeIcon from "../../../public/assets/images/Welcome/Faeye.png";
 import openEye from "../../../public/assets/images/Welcome/OpenEye.png";
 import Button from "../../components/Button/Button";
 import "/public/assets//common/base.scss";
+import { useNavigate } from "react-router-dom";
 
 const WelcomeRegisterPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -12,8 +13,9 @@ const WelcomeRegisterPage = () => {
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const navigate = useNavigate();
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async event => {
     event.preventDefault();
     setEmailError("");
     setPasswordError("");
@@ -22,7 +24,7 @@ const WelcomeRegisterPage = () => {
     if (!isValid) return;
 
     try {
-      const response = await fetch("https://your-api-url.com/login", {
+      const response = await fetch("https://7d7e-5-133-233-247.ngrok-freeapi/v1/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -45,11 +47,12 @@ const WelcomeRegisterPage = () => {
         }
       } else {
         const data = await response.json();
-        console.log(data); 
-        console.log("E-poçt:", email); 
-        console.log("Şifrə:", password); 
+        console.log(data);
+        console.log("E-poçt:", email);
+        console.log("Şifrə:", password);
         setEmailError("");
         setPasswordError("");
+        return navigate("/");
       }
     } catch (err) {
       console.error(err);
@@ -77,12 +80,11 @@ const WelcomeRegisterPage = () => {
   };
 
   const handleTogglePassword = () => {
-    setShowPassword((prev) => !prev);
+    setShowPassword(prev => !prev);
   };
 
   return (
     <div className="container" id={styles.container_bg}>
-
       <div className={styles.welcomeBox}>
         <div className={styles.welcomeBox_container}>
           <div className={styles.welcomeBox_container_head}>
@@ -94,26 +96,14 @@ const WelcomeRegisterPage = () => {
               <label htmlFor="email" className={styles.labelContent}>
                 E-poçt
               </label>
-              <input
-                type="text"
-                placeholder="E-poçt"
-                value={email}
-                className={styles.inp}
-                onChange={(e) => setEmail(e.target.value)}
-              />
+              <input type="text" placeholder="E-poçt" value={email} className={styles.inp} onChange={e => setEmail(e.target.value)} />
               {emailError && <p className={styles.error}>{emailError}</p>}
 
               <label htmlFor="password" className={styles.labelContent}>
                 Şifrə
               </label>
               <div style={{ position: "relative", display: "inline-block" }}>
-                <input
-                  className={styles.inp}
-                  type={showPassword ? "text" : "password"}
-                  value={password}
-                  placeholder="Şifrəni daxil edin"
-                  onChange={(e) => setPassword(e.target.value)}
-                />
+                <input className={styles.inp} type={showPassword ? "text" : "password"} value={password} placeholder="Şifrəni daxil edin" onChange={e => setPassword(e.target.value)} />
                 <img
                   src={showPassword ? eyeIcon : openEye}
                   alt="Toggle visibility"

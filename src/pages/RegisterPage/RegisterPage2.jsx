@@ -2,7 +2,6 @@ import  { useState } from "react";
 import styles from "./RegisterPage2.module.scss";
 import passwordIcon from "/public/assets/images/Register/PasswordIcon.svg";
 import passwordIcon2 from "/public/assets/images/Register/PasswordIcon2.svg";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "../../components/css/Button.scss";
 export default function RegisterPage2() {
@@ -38,26 +37,45 @@ export default function RegisterPage2() {
       repeatPassword: "",
     });
     
+    if (formData.password !== formData.repeatPassword) {
+      setErrors(prevErrors => ({
+        ...prevErrors,
+        repeatPassword: "Passwords do not match",
+      }));
+      return; 
+    }
 
     if (!isChecked) {
       alert("Please agree to the terms and conditions.");
       return;
     }
+    
 
     try {
-      const response = await axios.post("http://localhost:8081/api/v1/auth/register", formData);      
-      navigate("/welcome");
-    } catch (error) {
-      if(error.response && error.response.data) {
-        const {name, surname, password, repeatPassword} = error.response.data.errors || {};
-        setErrors({
-          name: name || "",
-          surname: surname || "",
-          password: password || "",
-          repeatPassword: repeatPassword || "",
-        });
+      const response = await fetch("https://ff82f4df-f72b-4dec-84ca-487132aff620.mock.pstmn.io/api/v1/auth/register", {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+      });
+  
+      if (response.ok) {
+          navigate("/welcome");
+      } else {
+          const errorData = await response.json();
+          const { name, surname, password, repeatPassword } = errorData.errors || {};
+          setErrors({
+              name: name || "",
+              surname: surname || "",
+              password: password || "",
+              repeatPassword: repeatPassword || "",
+          });
       }
-    }
+  } catch (error) {
+      console.error("An error occurred:", error);
+  }
+  
   };
 
   const handleChange = e => {

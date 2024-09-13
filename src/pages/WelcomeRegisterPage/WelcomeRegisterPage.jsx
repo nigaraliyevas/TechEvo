@@ -3,9 +3,9 @@ import styles from "./WelcomeRegisterPage.module.scss";
 import "../../components/css/Button.scss";
 import eyeIcon from "../../../public/assets/images/Welcome/Faeye.png";
 import openEye from "../../../public/assets/images/Welcome/OpenEye.png";
-import axios from "axios";
 import Button from "../../components/Button/Button";
 import "/public/assets//common/base.scss";
+import { Link, useNavigate } from "react-router-dom";
 
 const WelcomeRegisterPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -13,8 +13,9 @@ const WelcomeRegisterPage = () => {
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const navigate = useNavigate();
 
-  const handleSubmit = event => {
+  const handleSubmit = async event => {
     event.preventDefault();
     setEmailError("");
     setPasswordError("");
@@ -22,28 +23,42 @@ const WelcomeRegisterPage = () => {
     const isValid = validateForm();
     if (!isValid) return;
 
-    axios
-      .post("https://your-api-url.com/login", { email, password })
-      .then(res => {
-        console.log(res);
-        setEmailError("");
-        setPasswordError("");
-      })
-      .catch(err => {
-        if (err.response && err.response.data) {
-          const errors = err.response.data.errors;
+    try {
+      const response = await fetch("https://7d7e-5-133-233-247.ngrok-freeapi/v1/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
 
-          if (errors.email) {
-            setEmailError(errors.email.message || "Girişdə səhv baş verdi.");
+      if (!response.ok) {
+        const errorData = await response.json();
+        if (errorData.errors) {
+          if (errorData.errors.email) {
+            setEmailError(errorData.errors.email.message || "Girişdə səhv baş verdi.");
           }
-          if (errors.password) {
-            setPasswordError(errors.password.message || "Girişdə səhv baş verdi.");
+          if (errorData.errors.password) {
+            setPasswordError(errorData.errors.password.message || "Girişdə səhv baş verdi.");
           }
         } else {
           setEmailError("Şəbəkə səhvi.");
           setPasswordError("Şəbəkə səhvi.");
         }
-      });
+      } else {
+        const data = await response.json();
+        console.log(data);
+        console.log("E-poçt:", email);
+        console.log("Şifrə:", password);
+        setEmailError("");
+        setPasswordError("");
+        return navigate("/");
+      }
+    } catch (err) {
+      console.error(err);
+      setEmailError("Şəbəkə səhvi.");
+      setPasswordError("Şəbəkə səhvi.");
+    }
   };
 
   const validateForm = () => {
@@ -63,13 +78,13 @@ const WelcomeRegisterPage = () => {
 
     return isValid;
   };
+
   const handleTogglePassword = () => {
     setShowPassword(prev => !prev);
   };
 
   return (
     <div className="container" id={styles.container_bg}>
-
       <div className={styles.welcomeBox}>
         <div className={styles.welcomeBox_container}>
           <div className={styles.welcomeBox_container_head}>
@@ -83,6 +98,7 @@ const WelcomeRegisterPage = () => {
               </label>
               <input type="text" placeholder="E-poçt" value={email} className={styles.inp} onChange={e => setEmail(e.target.value)} />
               {emailError && <p className={styles.error}>{emailError}</p>}
+
               <label htmlFor="password" className={styles.labelContent}>
                 Şifrə
               </label>
@@ -106,7 +122,7 @@ const WelcomeRegisterPage = () => {
               {passwordError && <p className={styles.error}>{passwordError}</p>}
 
               <div className={styles.forgetPassword}>
-                <a href="#">şifrəni unutmusan?</a>
+                <Link to="/forget">şifrəni unutmusan?</Link>
               </div>
               <Button buttonText={"Daxil ol"} />
             </form>

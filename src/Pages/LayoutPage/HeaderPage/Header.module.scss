@@ -1,16 +1,12 @@
 @import '../../../../public/assets/variables/variables';
 
 * {
+    // border: 1px solid red;
     list-style: none;
     text-decoration: none;
     margin: 0;
     padding: 0;
 }
-// header{
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-// }
 .container {
     max-width: 1300px;
     margin: 0 auto;
@@ -19,13 +15,16 @@
 
 
 header{
+      width: 100%;
+    align-items: center;
+    display: flex   ;
     position: relative;
+    background: $bgColor;
     &::after{
         content: "";
         position: absolute;
-        width: 100vw;
+        width: 100%;
         left: 0;
-        right: 0;
         bottom: 0px;
         height: 1px;
         background-color: rgba(34, 37, 39, 1);
@@ -35,11 +34,12 @@ header{
         top:0px;                 
         margin-left: auto;
         margin-left: auto;
-        width: 100%;                
-        padding: 24px 56px;        
-        background: $bgColor;        
+        width: 100%;      
+  
+        padding: 0px 24px;        
     }
     .navbar {
+        height: 96px;
         position: relative;
         display: flex;
         align-items: center;
@@ -78,6 +78,9 @@ header{
         }
     
         .navbar_links {
+            height: 96px;
+            min-height: 100%;
+            position: relative;
             font-family:$fontFamily;
             font-size: 20px;
             font-weight: 400;
@@ -85,6 +88,38 @@ header{
             letter-spacing: 0.02em;
             text-align: center;
             cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            list-style: none;
+            .link_catagiries{
+                display: none;
+                position: absolute;
+                width: 177px;
+                top: 97px;
+                background: rgba(22, 26, 30, 1);
+                text-align: start;
+                padding: 24px 24px 24px 16px;
+            
+                ul{
+                   display: flex;
+                   flex-direction: column;
+                   gap: 8px;
+                   li{
+                    span{
+                        display: inline-block;
+                        margin: 0 5px;
+                    }
+                   }
+                }
+              
+            }
+            
+            &:hover {
+              .link_catagiries {
+                display: block;
+              }
+        }
         }
     
         .navbar_ideal {

@@ -1,0 +1,36 @@
+.input-group {
+  position: relative;
+  margin-bottom: 20px;
+
+  .password-reset__input {
+    width: 100%;
+    padding: 18px 14px;
+    background-color: #161a1e;
+    border: 1px solid #595959;
+    border-radius: 5px;
+    color: #fff;
+  }
+  .password-reset__input:focus {
+    outline: none;
+  }
+  .toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 70%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 18px;
+    color: #fff;
+  }
+  .input-label {
+    display: block;
+    color: white;
+    margin-bottom: 5px;
+    text-align: left;
+    font-size: 18px;
+  }
+  ::placeholder {
+    color: #999999;
+    font-size: 16px;
+  }
+}

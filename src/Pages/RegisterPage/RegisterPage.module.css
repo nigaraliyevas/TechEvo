@@ -5,13 +5,13 @@
 }
 
 .container {
-  max-width: 1300px;
   margin: 0 auto;
-  padding: 68px 0 120px;
+  padding: 180px 0 120px;
   background-color: #090d11;
 }
 
 .innerCont {
+  max-width: 1300px;
   padding: 64px 50px;
   border-radius: 2px;
   background: #161a1e;
@@ -75,4 +75,10 @@
   opacity: 1;
   font-size: 16px;
   line-height: 20px;
+}
+
+.errorMessage {
+  color: #db3549;
+  line-height: 20px;
+  margin-top: 6px;
 }/*# sourceMappingURL=RegisterPage.module.css.map */

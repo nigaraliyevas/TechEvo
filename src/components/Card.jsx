@@ -11,9 +11,9 @@ function Card({ card }) {
             <span></span>
             <span></span>
             <div style={{ position: "relative" }}>
-
-                <img className={style.cardImg} src={image}
-                />
+                <div style={{overflow:"hidden"}}>
+                    <img className={style.cardImg} src={image} />
+                </div>
                 <div className={style.heartSpan}><PiHeartBold /></div>
 
                 <div className={style.mailTitle}>

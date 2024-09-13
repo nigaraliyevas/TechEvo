@@ -40,22 +40,27 @@ export default function RegisterPage() {
         setShowPage2(true);
         
         
-        // try {
-        //     const response = await axios.post('http://localhost:8081/api/v1/auth/store-email', {
-        //         email: email,
-        //     });
-
-        //     if(response.status === 200) {
-        //         localStorage.setItem('email', email);
-        //         setError('');
-        //         setShowPage2(true);
-        //     }
-        //     else {
-        //         setError('Failed to store email');
-        //     }
-        // } catch (err) {
-        //     setError('An error occurred while storing the email');
-        // }
+        try {
+            const response = await fetch('https://ff82f4df-f72b-4dec-84ca-487132aff620.mock.pstmn.io/api/v1/auth/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email: email }),
+            });
+        
+            if (response.ok) { // response.ok is true if the status code is in the range 200-299
+                localStorage.setItem('email', email);
+                setError('');
+                setShowPage2(true);
+            } else {
+                setError('Failed to store email');
+            }
+        } catch (err) {
+            setError('An error occurred while storing the email');
+            console.error(err);
+        }
+        
     };
     
     

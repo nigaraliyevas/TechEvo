@@ -15,7 +15,7 @@ const WelcomeRegisterPage = () => {
   const [passwordError, setPasswordError] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = async event => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     setEmailError("");
     setPasswordError("");
@@ -24,22 +24,29 @@ const WelcomeRegisterPage = () => {
     if (!isValid) return;
 
     try {
-      const response = await fetch("https://7d7e-5-133-233-247.ngrok-freeapi/v1/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
+      const response = await fetch(
+        "https://7d7e-5-133-233-247.ngrok-freeapi/v1/auth/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, password }),
+        }
+      );
 
       if (!response.ok) {
         const errorData = await response.json();
         if (errorData.errors) {
           if (errorData.errors.email) {
-            setEmailError(errorData.errors.email.message || "Girişdə səhv baş verdi.");
+            setEmailError(
+              errorData.errors.email.message || "Girişdə səhv baş verdi."
+            );
           }
           if (errorData.errors.password) {
-            setPasswordError(errorData.errors.password.message || "Girişdə səhv baş verdi.");
+            setPasswordError(
+              errorData.errors.password.message || "Girişdə səhv baş verdi."
+            );
           }
         } else {
           setEmailError("Şəbəkə səhvi.");
@@ -80,7 +87,7 @@ const WelcomeRegisterPage = () => {
   };
 
   const handleTogglePassword = () => {
-    setShowPassword(prev => !prev);
+    setShowPassword((prev) => !prev);
   };
 
   return (
@@ -96,14 +103,26 @@ const WelcomeRegisterPage = () => {
               <label htmlFor="email" className={styles.labelContent}>
                 E-poçt
               </label>
-              <input type="text" placeholder="E-poçt" value={email} className={styles.inp} onChange={e => setEmail(e.target.value)} />
+              <input
+                type="text"
+                placeholder="E-poçt"
+                value={email}
+                className={styles.inp}
+                onChange={(e) => setEmail(e.target.value)}
+              />
               {emailError && <p className={styles.error}>{emailError}</p>}
 
               <label htmlFor="password" className={styles.labelContent}>
                 Şifrə
               </label>
               <div style={{ position: "relative", display: "inline-block" }}>
-                <input className={styles.inp} type={showPassword ? "text" : "password"} value={password} placeholder="Şifrəni daxil edin" onChange={e => setPassword(e.target.value)} />
+                <input
+                  className={styles.inp}
+                  type={showPassword ? "text" : "password"}
+                  value={password}
+                  placeholder="Şifrəni daxil edin"
+                  onChange={(e) => setPassword(e.target.value)}
+                />
                 <img
                   src={showPassword ? eyeIcon : openEye}
                   alt="Toggle visibility"

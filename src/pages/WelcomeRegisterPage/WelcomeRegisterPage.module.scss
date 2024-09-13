@@ -69,3 +69,9 @@ body {
     text-decoration: none;
   }
 }
+.error {
+  color: red;
+  font-size: 0.875rem; /* İstədiyiniz font ölçüsünü seçə bilərsiniz */
+  margin-top: -5px; /* Yuxarı boşluq */
+  margin-bottom: 10px;
+}

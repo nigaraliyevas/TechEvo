@@ -5,7 +5,7 @@ import { FaFacebook } from "react-icons/fa";
 import { FiPhone } from "react-icons/fi";
 const FooterPage = () => {
   return (
-    <div>
+    <>
       <footer className={`${style.container} ${style.footer}`}>
         <div className={style.footer_top}>
           <div className={style.footer_title}>TechEvo</div>
@@ -39,7 +39,7 @@ const FooterPage = () => {
        <p><span><FiPhone size={22}/></span>+994(70) 911 36 35</p>
         </div>
       </footer>
-    </div>
+    </>
   );
 };
 

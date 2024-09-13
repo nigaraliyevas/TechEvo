@@ -3,9 +3,10 @@ import { CiSearch } from "react-icons/ci";
 import { SlBasket } from "react-icons/sl";
 import { BiUser } from "react-icons/bi";
 import { GoRocket } from "react-icons/go";
+import { useNavigate } from "react-router-dom";
 
 const HeaderPage = () => {
-
+ const navigate=useNavigate()
   return (
 
     <header>
@@ -33,7 +34,7 @@ const HeaderPage = () => {
               <SlBasket size={24} />
             </div>
             <div>
-              <BiUser size={24} />
+              <BiUser onClick={()=>navigate("/login")} size={24} />
             </div>
           </div>
         </div>

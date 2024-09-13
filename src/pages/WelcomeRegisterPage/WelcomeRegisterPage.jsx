@@ -5,6 +5,7 @@ import eyeIcon from "../../../public/assets/images/Welcome/Faeye.png";
 import openEye from "../../../public/assets/images/Welcome/OpenEye.png";
 import axios from "axios";
 import Button from "../../components/Button/Button";
+import "/public/assets//common/base.scss";
 
 const WelcomeRegisterPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -67,7 +68,8 @@ const WelcomeRegisterPage = () => {
   };
 
   return (
-    <div className="container">
+    <div className="container" id={styles.container_bg}>
+
       <div className={styles.welcomeBox}>
         <div className={styles.welcomeBox_container}>
           <div className={styles.welcomeBox_container_head}>

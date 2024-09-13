@@ -13,26 +13,23 @@
 }
 
 header {
-  position: relative;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1111;
+  background: #090c11;
 }
 header::after {
   content: "";
-  position: absolute;
-  width: 100vw;
-  left: 0;
-  right: 0;
-  bottom: 0px;
+  display: block;
   height: 1px;
-  background-color: rgb(34, 37, 39);
+  background-color: #222527;
 }
 header .navbar_bg {
-  position: sticky;
-  top: 0px;
   margin-left: auto;
   margin-left: auto;
   width: 100%;
   padding: 24px 56px;
-  background: rgb(9, 13, 17);
 }
 header .navbar {
   position: relative;

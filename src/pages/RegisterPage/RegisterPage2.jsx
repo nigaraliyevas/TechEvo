@@ -1,9 +1,10 @@
-import  { useState } from "react";
+import { useState } from "react";
 import styles from './RegisterPage2.module.scss';
 import passwordIcon from "../../../public/assets/images/Register/PasswordIcon.svg";
 import passwordIcon2 from "../../../public/assets/images/Register/PasswordIcon2.svg";
 import { useNavigate } from "react-router-dom";
 import "../../components/css/Button.scss";
+
 export default function RegisterPage2() {
   const navigate = useNavigate();
   const [isChecked, setIsChecked] = useState(false);
@@ -13,6 +14,7 @@ export default function RegisterPage2() {
     surname: "",
     password: "",
     repeatPassword: "",
+    terms: ""
   });
   const [formData, setFormData] = useState({
     name: "",
@@ -23,95 +25,103 @@ export default function RegisterPage2() {
   const [showPassword, setShowPassword] = useState(false);
   const [showRepeatedPassword, setShowRepeatedPassword] = useState(false);
 
-  const handleChangeChecked = event => {
+  const handleChangeChecked = (event) => {
     setIsChecked(event.target.checked);
+    setErrors((prevErrors) => ({ ...prevErrors, terms: "" }));
   };
 
-  const handleSubmit = async e => {
+  const validatePassword = (password) => {
+    const passwordErrors = [];
+
+    if (password.length < 8) {
+      passwordErrors.push("Şifrə ən azı 8 simvoldan ibarət olmalıdır.");
+    }
+    if (!/[A-Za-z]/.test(password)) {
+      passwordErrors.push("Şifrə ən azı bir hərfdən ibarət olmalıdır.");
+    }
+    if (!/\d/.test(password)) {
+      passwordErrors.push("Şifrə ən azı bir rəqəmdən ibarət olmalıdır.");
+    }
+
+    return passwordErrors;
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Reset errors
     setErrors({
       name: "",
       surname: "",
       password: "",
       repeatPassword: "",
+      terms: ""
     });
 
-    const validatePassword = password => {
-      const passwordErrors = [];
-      
-      if (password.length < 8) {
-        passwordErrors.push("Şifrə ən azı 8 simvoldan ibarət olmalıdır.");
-      }
-    
-      if (!/[A-Za-z]/.test(password)) {
-        passwordErrors.push("Şifrə ən azı bir hərfdən ibarət olmalıdır.");
-      }
-    
-      if (!/\d/.test(password)) {
-        passwordErrors.push("Şifrə ən azı bir rəqəmdən ibarət olmalıdır.");
-      }
-    
-      return passwordErrors;
-    };
-
+    // Password validation
     const passwordErrors = validatePassword(formData.password);
-  
     if (passwordErrors.length > 0) {
-      setErrors(prevErrors => ({
+      setErrors((prevErrors) => ({
         ...prevErrors,
         password: passwordErrors.join("\n"),
       }));
       return;
     }
-    
+
+    // Confirm password matching
     if (formData.password !== formData.repeatPassword) {
-      setErrors(prevErrors => ({
+      setErrors((prevErrors) => ({
         ...prevErrors,
         repeatPassword: "Şifrələr uyğun gəlmir",
       }));
-      return; 
-    }
-
-    if (!isChecked) {
-      alert("İstifadəçi şərtləri qəbul olunmayıb.");
       return;
     }
-    
-    const email = localStorage.getItem('email');
+
+    // Terms validation
+    if (!isChecked) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        terms: "İstifadəçi şərtləri qəbul olunmayıb.",
+      }));
+      return;
+    }
+
+    const email = localStorage.getItem("email");
 
     try {
-      const response = await fetch("https://2884-212-47-129-142.ngrok-free.app/api/v1/auth/register", {
-          method: 'POST',
+      const response = await fetch(
+        "https://2884-212-47-129-142.ngrok-free.app/api/v1/auth/register",
+        {
+          method: "POST",
           headers: {
-              'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
           body: JSON.stringify({ ...formData, email }),
-      });
-  
+        }
+      );
+
       if (response.ok) {
-          navigate("/login");
+        navigate("/login");
+        console.log('success');
+        
       } else {
-        const responseText = await response.text(); // Read response as text
-        const errorData = responseText ? JSON.parse(responseText) : {}; // Parse text if it's not empty
-          const { name, surname, password, repeatPassword } = errorData.errors || {};
-          setErrors({
-              name: name || "",
-              surname: surname || "",
-              password: password || "",
-              repeatPassword: repeatPassword || "",
-          });
+        const errorData = await response.json().catch(() => ({})); // Try to parse as JSON
+        const { name, surname, password, repeatPassword } = errorData.errors || {};
+        setErrors({
+          name: name || "",
+          surname: surname || "",
+          password: password || "",
+          repeatPassword: repeatPassword || "",
+        });
       }
-  } catch (error) {
+    } catch (error) {
       console.error("An error occurred:", error);
-  }
-  
+    }
   };
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-
-    setErrors(prevErrors => ({...prevErrors, [e.target.name]: ""}));
+    setErrors((prevErrors) => ({ ...prevErrors, [e.target.name]: "" }));
   };
 
   const handlePassword = () => {
@@ -128,6 +138,7 @@ export default function RegisterPage2() {
         Daxil olmaq üçün aşağıdakı xanaları doldurun.
       </div>
       <form onSubmit={handleSubmit} className={styles.register2Container}>
+        {/* Name Field */}
         <div>
           <div className={styles.subHeader}>Ad</div>
           <div className={styles.inputContainer}>
@@ -144,6 +155,7 @@ export default function RegisterPage2() {
           {errors.name && <p className={styles.errorMessage}>{errors.name}</p>}
         </div>
 
+        {/* Surname Field */}
         <div>
           <div className={styles.subHeader}>Soyad</div>
           <div className={styles.inputContainer}>
@@ -157,9 +169,12 @@ export default function RegisterPage2() {
               placeholder="Soyad"
             />
           </div>
-          {errors.surname && <p className={styles.errorMessage}>{errors.surname}</p>}
+          {errors.surname && (
+            <p className={styles.errorMessage}>{errors.surname}</p>
+          )}
         </div>
 
+        {/* Password Field */}
         <div>
           <div className={styles.subHeader}>Şifrə</div>
           <div className={styles.inputContainer}>
@@ -169,7 +184,7 @@ export default function RegisterPage2() {
               onChange={handleChange}
               required
               className={styles.innerInput}
-              type={showPassword ? `text` : `password`}
+              type={showPassword ? "text" : "password"}
               placeholder="Şifrənizi daxil edin"
             />
             <div className={styles.icon}>
@@ -181,9 +196,12 @@ export default function RegisterPage2() {
               />
             </div>
           </div>
-          {errors.password && <p className={styles.errorMessage}>{errors.password}</p>}
+          {errors.password && (
+            <p className={styles.errorMessage}>{errors.password}</p>
+          )}
         </div>
 
+        {/* Repeat Password Field */}
         <div>
           <div className={styles.subHeader}>Şifrəni təkrarla</div>
           <div className={styles.inputContainer}>
@@ -193,7 +211,7 @@ export default function RegisterPage2() {
               onChange={handleChange}
               required
               className={styles.innerInput}
-              type={showRepeatedPassword ? `text` : `password`}
+              type={showRepeatedPassword ? "text" : "password"}
               placeholder="Şifrənizi daxil edin"
             />
             <div className={styles.icon}>
@@ -205,9 +223,12 @@ export default function RegisterPage2() {
               />
             </div>
           </div>
-          {errors.repeatPassword && <p className={styles.errorMessage}>{errors.repeatPassword}</p>}
+          {errors.repeatPassword && (
+            <p className={styles.errorMessage}>{errors.repeatPassword}</p>
+          )}
         </div>
 
+        {/* Agreement Field */}
         <div className={styles.agreementBox}>
           <div className={styles.checkBoxContainer}>
             <input
@@ -220,7 +241,9 @@ export default function RegisterPage2() {
           </div>
           <div>İstifadəçi şərtləri ilə razıyam</div>
         </div>
+        {errors.terms && <p className={styles.errorMessage}>{errors.terms}</p>}
 
+        {/* Submit Button */}
         <button type="submit" className="Btn">
           Qeydiyyatdan keç
         </button>

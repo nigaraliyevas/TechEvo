@@ -126,3 +126,11 @@
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
 }
+
+
+.errorMessage {
+  color: #db3549;
+  line-height: 20px;
+  margin-top: 6px;
+  white-space: pre-line;
+}

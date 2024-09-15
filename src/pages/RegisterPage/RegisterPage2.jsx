@@ -1,7 +1,7 @@
 import  { useState } from "react";
-import styles from "./RegisterPage2.module.scss";
-import passwordIcon from "/public/assets/images/Register/PasswordIcon.svg";
-import passwordIcon2 from "/public/assets/images/Register/PasswordIcon2.svg";
+import styles from './RegisterPage2.module.scss';
+import passwordIcon from "../../../public/assets/images/Register/PasswordIcon.svg";
+import passwordIcon2 from "../../../public/assets/images/Register/PasswordIcon2.svg";
 import { useNavigate } from "react-router-dom";
 import "../../components/css/Button.scss";
 export default function RegisterPage2() {
@@ -36,34 +36,64 @@ export default function RegisterPage2() {
       password: "",
       repeatPassword: "",
     });
+
+    const validatePassword = password => {
+      const passwordErrors = [];
+      
+      if (password.length < 8) {
+        passwordErrors.push("Şifrə ən azı 8 simvoldan ibarət olmalıdır.");
+      }
+    
+      if (!/[A-Za-z]/.test(password)) {
+        passwordErrors.push("Şifrə ən azı bir hərfdən ibarət olmalıdır.");
+      }
+    
+      if (!/\d/.test(password)) {
+        passwordErrors.push("Şifrə ən azı bir rəqəmdən ibarət olmalıdır.");
+      }
+    
+      return passwordErrors;
+    };
+
+    const passwordErrors = validatePassword(formData.password);
+  
+    if (passwordErrors.length > 0) {
+      setErrors(prevErrors => ({
+        ...prevErrors,
+        password: passwordErrors.join("\n"),
+      }));
+      return;
+    }
     
     if (formData.password !== formData.repeatPassword) {
       setErrors(prevErrors => ({
         ...prevErrors,
-        repeatPassword: "Passwords do not match",
+        repeatPassword: "Şifrələr uyğun gəlmir",
       }));
       return; 
     }
 
     if (!isChecked) {
-      alert("Please agree to the terms and conditions.");
+      alert("İstifadəçi şərtləri qəbul olunmayıb.");
       return;
     }
     
+    const email = localStorage.getItem('email');
 
     try {
-      const response = await fetch("https://ff82f4df-f72b-4dec-84ca-487132aff620.mock.pstmn.io/api/v1/auth/register", {
+      const response = await fetch("https://2884-212-47-129-142.ngrok-free.app/api/v1/auth/register", {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json',
           },
-          body: JSON.stringify(formData),
+          body: JSON.stringify({ ...formData, email }),
       });
   
       if (response.ok) {
-          navigate("/welcome");
+          navigate("/login");
       } else {
-          const errorData = await response.json();
+        const responseText = await response.text(); // Read response as text
+        const errorData = responseText ? JSON.parse(responseText) : {}; // Parse text if it's not empty
           const { name, surname, password, repeatPassword } = errorData.errors || {};
           setErrors({
               name: name || "",
@@ -111,7 +141,7 @@ export default function RegisterPage2() {
               placeholder="Ad"
             />
           </div>
-          {errors.name && <p>{errors.name}</p>}
+          {errors.name && <p className={styles.errorMessage}>{errors.name}</p>}
         </div>
 
         <div>
@@ -127,7 +157,7 @@ export default function RegisterPage2() {
               placeholder="Soyad"
             />
           </div>
-          {errors.surname && <p>{errors.surname}</p>}
+          {errors.surname && <p className={styles.errorMessage}>{errors.surname}</p>}
         </div>
 
         <div>
@@ -151,7 +181,7 @@ export default function RegisterPage2() {
               />
             </div>
           </div>
-          {errors.password && <p>{errors.password}</p>}
+          {errors.password && <p className={styles.errorMessage}>{errors.password}</p>}
         </div>
 
         <div>
@@ -175,7 +205,7 @@ export default function RegisterPage2() {
               />
             </div>
           </div>
-          {errors.repeatPassword && <p>{errors.repeatPassword}</p>}
+          {errors.repeatPassword && <p className={styles.errorMessage}>{errors.repeatPassword}</p>}
         </div>
 
         <div className={styles.agreementBox}>

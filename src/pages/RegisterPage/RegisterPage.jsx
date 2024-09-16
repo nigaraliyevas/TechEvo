@@ -38,7 +38,7 @@ export default function RegisterPage() {
 
         setError('');
         // localStorage.setItem('email', email);
-        setShowPage2(true);
+        // setShowPage2(true);
         
         
         try {

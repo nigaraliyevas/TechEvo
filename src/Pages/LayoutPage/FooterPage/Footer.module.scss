@@ -1,5 +1,9 @@
 @import '../../../../public/assets/variables/variables';
 
+body{
+    overflow-x: hidden;
+}
+
 .container {
     max-width: 1300px;
     margin: 0 auto;
@@ -9,7 +13,29 @@
     padding: 72px 56px 72px 56px;
     gap: 10px;
     opacity: 0px;
+    position: relative;
     background: rgba(22, 26, 30, 1);
+
+    // &::after{
+    //     content: "";
+    //     position: absolute;
+    //     height: 410px;
+    //     left: 0;
+    //     top: 0;
+    //     z-index: -1;
+    //     width: 100vw;
+    //     background-color: rgba(22, 26, 30, 1);
+    // }
+    // &::before{
+    //     content: "";
+    //     position: absolute;
+    //     height: 410px;
+    //     right: 0;
+    //     z-index: -1;
+    //     top: 0;
+    //     width: 100vw;
+    //     background-color: rgba(22, 26, 30, 1);
+    // }
 
     .footer_top {
         display: flex;

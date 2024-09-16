@@ -12,7 +12,7 @@
 
 .innerCont {
   max-width: 1300px;
-  padding: 64px 50px;
+  padding: 56px 50px;
   border-radius: 2px;
   background: #161a1e;
   max-width: 480px;
@@ -80,7 +80,7 @@
   font-size: 16px;
 }
 
-@media (max-width: 600px) {
+@media (min-width: 393px) and (max-width: 600px) {
   .container {
     margin: 0 auto;
     padding: 128px 0 72px;
@@ -127,6 +127,8 @@
     border: 1px solid #595959;
     border-radius: 4px;
     height: 48px;
+    display: flex;
+    align-items: center;
   
     .innerInput {
       width: 100%;
@@ -140,7 +142,7 @@
       margin-top: 0;
     }
   
-    &::placeholder {
+    .innerInput::placeholder {
       color: 999999;
       opacity: 1;
       font-size: 14px;
@@ -150,6 +152,14 @@
 
   .errorMessage {
     font-size: 14px;
+  }
+
+  .btnResponsive {
+    margin-top: 32px !important;
+    padding: 8px 0;
+    font-size: 16px;
+    line-height: 28px;
+    border-radius: 2px;
   }
   
 }

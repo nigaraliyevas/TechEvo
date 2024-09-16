@@ -38,11 +38,11 @@ export default function RegisterPage() {
 
         setError('');
         // localStorage.setItem('email', email);
-        // setShowPage2(true);
+        setShowPage2(true);
         
         
         try {
-            const response = await fetch('https://2884-212-47-129-142.ngrok-free.app/api/v1/auth/store-email', {
+            const response = await fetch('https://fbfd-212-47-148-88.ngrok-free.app/api/v1/auth/store-email', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -87,7 +87,7 @@ export default function RegisterPage() {
                             {submitted && error && <div className={styles.errorMessage}>{error}</div>}
                             <button 
                                 type="submit"
-                                className="Btn"
+                                className={`${styles.btnResponsive} Btn`}
                                >
                                     Davam et
                             </button>

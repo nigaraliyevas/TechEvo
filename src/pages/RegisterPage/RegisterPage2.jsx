@@ -10,24 +10,32 @@ export default function RegisterPage2() {
   const [isChecked, setIsChecked] = useState(false);
 
   const [errors, setErrors] = useState({
-    name: "",
-    surname: "",
+    firstName: "",
+    lastName: "",
     password: "",
-    repeatPassword: "",
-    terms: ""
+    confirmPassword: "",
+    acceptTerms: ""
   });
+
   const [formData, setFormData] = useState({
-    name: "",
-    surname: "",
+    firstName: "",
+    lastName: "",
     password: "",
-    repeatPassword: "",
+    confirmPassword: "",
+    acceptTerms: false
   });
+
   const [showPassword, setShowPassword] = useState(false);
   const [showRepeatedPassword, setShowRepeatedPassword] = useState(false);
 
   const handleChangeChecked = (event) => {
-    setIsChecked(event.target.checked);
-    setErrors((prevErrors) => ({ ...prevErrors, terms: "" }));
+    const isChecked = event.target.checked;
+    setIsChecked(isChecked);
+    setFormData((prevFormData) =>({
+      ...prevFormData,
+      acceptTerms: isChecked
+    }));
+    setErrors((prevErrors) => ({...prevErrors, acceptTerms: ""}));
   };
 
   const validatePassword = (password) => {
@@ -51,11 +59,11 @@ export default function RegisterPage2() {
 
     // Reset errors
     setErrors({
-      name: "",
-      surname: "",
+      firstName: "",
+      lastName: "",
       password: "",
-      repeatPassword: "",
-      terms: ""
+      confirmPassword: "",
+      acceptTerms: ""
     });
 
     // Password validation
@@ -69,10 +77,10 @@ export default function RegisterPage2() {
     }
 
     // Confirm password matching
-    if (formData.password !== formData.repeatPassword) {
+    if (formData.password !== formData.confirmPassword) {
       setErrors((prevErrors) => ({
         ...prevErrors,
-        repeatPassword: "Şifrələr uyğun gəlmir",
+        confirmPassword: "Şifrələr uyğun gəlmir",
       }));
       return;
     }
@@ -81,16 +89,17 @@ export default function RegisterPage2() {
     if (!isChecked) {
       setErrors((prevErrors) => ({
         ...prevErrors,
-        terms: "İstifadəçi şərtləri qəbul olunmayıb.",
+        acceptTerms: "İstifadəçi şərtləri qəbul olunmayıb.",
       }));
       return;
     }
 
     const email = localStorage.getItem("email");
+    console.log(formData, email);
 
     try {
       const response = await fetch(
-        "https://fbfd-212-47-148-88.ngrok-free.app/api/v1/auth/register",
+        "https://c82b-5-133-233-247.ngrok-free.app/api/v1/auth/register",
         {
           method: "POST",
           headers: {
@@ -103,16 +112,16 @@ export default function RegisterPage2() {
       if (response.ok) {
         navigate("/login");
         console.log('success');
-        
       } else {
-        const errorData = await response.json().catch(() => ({})); // Try to parse as JSON
-        const { name, surname, password, repeatPassword } = errorData.errors || {};
+        const { firstName, lastName, password, confirmPassword, acceptTerms } = errorData.errors || {};
         setErrors({
-          name: name || "",
-          surname: surname || "",
+          firstName: firstName || "",
+          lastName: lastName || "",
           password: password || "",
-          repeatPassword: repeatPassword || "",
+          confirmPassword: confirmPassword || "",
+          acceptTerms: acceptTerms || "",
         });
+        console.log(errorData);
       }
     } catch (error) {
       console.error("An error occurred:", error);
@@ -138,14 +147,14 @@ export default function RegisterPage2() {
         Daxil olmaq üçün aşağıdakı xanaları doldurun.
       </div>
       <form onSubmit={handleSubmit}>
-        {/* Name Field */}
-        <div  className={styles.register2Container}>
+        {/* First Name Field */}
+        <div className={styles.register2Container}>
           <div>
             <div className={styles.subHeader}>Ad</div>
             <div className={styles.inputContainer}>
               <input
-                name="name"
-                value={formData.name}
+                name="firstName"
+                value={formData.firstName}
                 onChange={handleChange}
                 required
                 className={styles.innerInput}
@@ -153,16 +162,16 @@ export default function RegisterPage2() {
                 placeholder="Ad"
               />
             </div>
-            {errors.name && <p className={styles.errorMessage}>{errors.name}</p>}
+            {errors.firstName && <p className={styles.errorMessage}>{errors.firstName}</p>}
           </div>
 
-          {/* Surname Field */}
+          {/* Last Name Field */}
           <div>
             <div className={styles.subHeader}>Soyad</div>
             <div className={styles.inputContainer}>
               <input
-                name="surname"
-                value={formData.surname}
+                name="lastName"
+                value={formData.lastName}
                 onChange={handleChange}
                 required
                 className={styles.innerInput}
@@ -170,8 +179,8 @@ export default function RegisterPage2() {
                 placeholder="Soyad"
               />
             </div>
-            {errors.surname && (
-              <p className={styles.errorMessage}>{errors.surname}</p>
+            {errors.lastName && (
+              <p className={styles.errorMessage}>{errors.lastName}</p>
             )}
           </div>
 
@@ -202,13 +211,13 @@ export default function RegisterPage2() {
             )}
           </div>
 
-          {/* Repeat Password Field */}
+          {/* Confirm Password Field */}
           <div>
             <div className={styles.subHeader}>Şifrəni təkrarla</div>
             <div className={styles.inputContainer}>
               <input
-                name="repeatPassword"
-                value={formData.repeatPassword}
+                name="confirmPassword"
+                value={formData.confirmPassword}
                 onChange={handleChange}
                 required
                 className={styles.innerInput}
@@ -224,8 +233,8 @@ export default function RegisterPage2() {
                 />
               </div>
             </div>
-            {errors.repeatPassword && (
-              <p className={styles.errorMessage}>{errors.repeatPassword}</p>
+            {errors.confirmPassword && (
+              <p className={styles.errorMessage}>{errors.confirmPassword}</p>
             )}
           </div>
         </div>

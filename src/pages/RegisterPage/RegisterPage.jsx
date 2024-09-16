@@ -42,14 +42,17 @@ export default function RegisterPage() {
         
         
         try {
-            const response = await fetch('https://fbfd-212-47-148-88.ngrok-free.app/api/v1/auth/store-email', {
+            console.log(email);
+            
+            const response = await fetch('https://c82b-5-133-233-247.ngrok-free.app/api/v1/auth/store-email', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ email: email }),
             });
-        
+            console.log(response);
+            
             if (response.ok) { 
                 localStorage.setItem('email', email);
                 // setError('');
@@ -64,7 +67,6 @@ export default function RegisterPage() {
         }
         
     };
-    
     
     return (
             <div className={styles.container}>

@@ -6,8 +6,9 @@ import { FiPhone } from "react-icons/fi";
 const FooterPage = () => {
   return (
     <>
+    
       <footer className={`${style.container} ${style.footer}`}>
-        <div className={style.footer_top}>
+        <div className={style.footer_top}>  
           <div className={style.footer_title}>TechEvo</div>
           <div>
             <span className={style.footer_icon}>

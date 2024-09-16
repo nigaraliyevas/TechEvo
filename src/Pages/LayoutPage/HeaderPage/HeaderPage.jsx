@@ -3,27 +3,15 @@ import { CiSearch } from "react-icons/ci";
 import { SlBasket } from "react-icons/sl";
 import { BiUser } from "react-icons/bi";
 import { GoRocket } from "react-icons/go";
-import { useState } from "react";
 import { LiaUserPlusSolid } from "react-icons/lia";
 import { PiSignInFill } from "react-icons/pi";
 import { IoSettingsOutline } from "react-icons/io5";
+import { IoMdMenu } from "react-icons/io";
+
+
+
 const HeaderPage = () => {
-  const [navShow, setNavShow] = useState(false);
-  const [navShow2, setNavShow2] = useState(false);
-  function showNavbar() {
-    if (navShow == false) {
-      setNavShow(true);
-    } else {
-      setNavShow(false);
-    }
-  }
-  function showNavbar2() {
-    if (navShow2 == false) {
-      setNavShow2(true);
-    } else {
-      setNavShow2(false);
-    }
-  }
+ 
   return (
     <header>
       <div className={`${styles.container} ${styles.navbar_bg} `}>
@@ -89,13 +77,14 @@ const HeaderPage = () => {
             </ul>
 
             <div className={styles.navbar_icons}>
-              <div>
+              <div className={styles.navbar_icon}>
                 <CiSearch size={24} />
+
               </div>
-              <div>
+              <div className={styles.navbar_icon} >
                 <SlBasket size={24} />
               </div>
-              <div className={styles.navbar_users} style={{padding:"30px 0px"}}>
+              <div className={styles.navbar_users } style={{padding:"32px 0px"}}>
                 <BiUser size={24} />
                 <div className={styles.navbar_users_items}>
                   <div className={styles.navbar_users_item}>

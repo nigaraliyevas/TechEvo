@@ -8,7 +8,7 @@ const MsSection = () => {
         <div>
             <div className={styles.cardMs}>
                 {
-                    cards?.slice(3, 6).map((card) => (
+                    cards?.slice(3, 7).map((card) => (
                         <Card key={card.id} card={card} />
                     ))
                 }

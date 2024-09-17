@@ -13,19 +13,18 @@ const WelcomeRegisterPage = () => {
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     setEmailError("");
     setPasswordError("");
-
-    const isValid = validateForm();
-    if (!isValid) return;
+    setMessage("");
 
     try {
       const response = await fetch(
-        "https://7d7e-5-133-233-247.ngrok-freeapi/v1/auth/login",
+        "https://c82b-5-133-233-247.ngrok-free.app/api/v1/auth/login",
         {
           method: "POST",
           headers: {
@@ -34,56 +33,29 @@ const WelcomeRegisterPage = () => {
           body: JSON.stringify({ email, password }),
         }
       );
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        if (errorData.errors) {
-          if (errorData.errors.email) {
-            setEmailError(
-              errorData.errors.email.message || "Girişdə səhv baş verdi."
-            );
-          }
-          if (errorData.errors.password) {
-            setPasswordError(
-              errorData.errors.password.message || "Girişdə səhv baş verdi."
-            );
-          }
-        } else {
-          setEmailError("Şəbəkə səhvi.");
-          setPasswordError("Şəbəkə səhvi.");
-        }
-      } else {
+      console.log(response);
+      if (response.ok) {
         const data = await response.json();
         console.log(data);
-        console.log("E-poçt:", email);
-        console.log("Şifrə:", password);
-        setEmailError("");
-        setPasswordError("");
-        return navigate("/");
+
+        console.log(data.accessToken);
+        console.log(data.refreshToken);
+
+        setMessage(data.message);
+        navigate("/");
+      } else {
+        const errorData = await response.json();
+        if (errorData.email) {
+          setEmailError(errorData.email);
+        }
+        if (errorData.password) {
+          setPasswordError(errorData.password);
+        }
       }
     } catch (err) {
       console.error(err);
-      setEmailError("Şəbəkə səhvi.");
-      setPasswordError("Şəbəkə səhvi.");
+      setPasswordError("İstifadəçi adı və ya şifrə yanlışdır");
     }
-  };
-
-  const validateForm = () => {
-    let isValid = true;
-    if (!email) {
-      setEmailError("Email sahəsi boş olmamalıdır.");
-      isValid = false;
-    } else if (!/\S+@\S+\.\S+/.test(email)) {
-      setEmailError("Düzgün bir e-poçt ünvanı daxil edin.");
-      isValid = false;
-    }
-
-    if (!password) {
-      setPasswordError("Şifrə sahəsi boş olmamalıdır.");
-      isValid = false;
-    }
-
-    return isValid;
   };
 
   const handleTogglePassword = () => {
@@ -106,9 +78,11 @@ const WelcomeRegisterPage = () => {
               <input
                 type="text"
                 placeholder="E-poçt"
+                id="email"
                 value={email}
                 className={styles.inp}
                 onChange={(e) => setEmail(e.target.value)}
+                required
               />
               {emailError && <p className={styles.error}>{emailError}</p>}
 
@@ -120,8 +94,10 @@ const WelcomeRegisterPage = () => {
                   className={styles.inp}
                   type={showPassword ? "text" : "password"}
                   value={password}
+                  id="password"
                   placeholder="Şifrəni daxil edin"
                   onChange={(e) => setPassword(e.target.value)}
+                  required
                 />
                 <img
                   src={showPassword ? eyeIcon : openEye}
@@ -143,7 +119,8 @@ const WelcomeRegisterPage = () => {
               <div className={styles.forgetPassword}>
                 <Link to="/forget">şifrəni unutmusan?</Link>
               </div>
-              <Button buttonText={"Daxil ol"} />
+              <Button buttonText={"Daxil ol"} type="submit" />
+              {message && <p className="success">{message}</p>}
             </form>
           </div>
         </div>

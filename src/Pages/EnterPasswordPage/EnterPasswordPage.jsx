@@ -1,4 +1,3 @@
-import { useRef } from "react";
 import "./EnterPasswordPage.scss";
 import "../../../public/assets/common/base.scss";
 import Button from "../../components/Button/Button";

@@ -12,7 +12,7 @@
 
 .innerCont {
   max-width: 1300px;
-  padding: 64px 50px;
+  padding: 56px 50px;
   border-radius: 2px;
   background: #161a1e;
   max-width: 480px;
@@ -57,7 +57,7 @@
   width: 100%;
   border: none;
   background: transparent;
-  color: #999999;
+  color: white;
   font-weight: 400;
   font-size: 16px;
   line-height: 20px;
@@ -81,4 +81,85 @@
   color: #db3549;
   line-height: 20px;
   margin-top: 6px;
+  font-size: 16px;
+}
+
+@media (min-width: 393px) and (max-width: 600px) {
+  .container {
+    margin: 0 auto;
+    padding: 128px 0 72px;
+  }
+  .innerCont {
+    padding: 48px 32px;
+    border-radius: 2px;
+    background: #161a1e;
+    max-width: 361px;
+    margin: 0 auto;
+  }
+  .topText {
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 40px;
+    letter-spacing: 2%;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  .infoText {
+    color: #cccccc;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 28px;
+    letter-spacing: 2%;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .emailText {
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 28px;
+    margin-bottom: 4px;
+  }
+  .inputContainer {
+    width: 100%;
+    border: 1px solid #595959;
+    border-radius: 4px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+  }
+  .inputContainer .innerInput {
+    width: 100%;
+    border: none;
+    background: transparent;
+    color: white;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    outline: none;
+    margin-top: 0;
+  }
+  .inputContainer .innerInput::-moz-placeholder {
+    color: 999999;
+    opacity: 1;
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .inputContainer .innerInput::placeholder {
+    color: 999999;
+    opacity: 1;
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .errorMessage {
+    font-size: 14px;
+  }
+  .btnResponsive {
+    margin-top: 32px !important;
+    padding: 8px 0;
+    font-size: 16px;
+    line-height: 28px;
+    border-radius: 2px;
+  }
 }/*# sourceMappingURL=RegisterPage.module.css.map */

@@ -6,7 +6,7 @@
 }
 body {
   font-family: variables.$fontFamily;
-  background-color: variables.$bgColor;
+  background-color: variables.$bgColor !important;
 }
 
 .container {

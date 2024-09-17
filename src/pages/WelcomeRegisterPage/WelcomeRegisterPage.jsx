@@ -54,7 +54,7 @@ const WelcomeRegisterPage = () => {
       }
     } catch (err) {
       console.error(err);
-      setPasswordError("İstifadəçi tapılmadı");
+      setPasswordError("İstifadəçi adı və ya şifrə yanlışdır");
     }
   };
 

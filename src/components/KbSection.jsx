@@ -8,7 +8,7 @@ const KbSection = () => {
         <div>
             <div className={styles.cardKb}>
                 {
-                    cards?.slice(6,9).map((card) => (
+                    cards?.slice(5,9).map((card) => (
                         <Card key={card.id} card={card} />
                     ))
                 }

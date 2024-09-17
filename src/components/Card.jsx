@@ -3,7 +3,7 @@ import style from '../pages/HomePage/HomePage.module.scss'
 import { PiHeartBold } from "react-icons/pi";
 
 function Card({ card }) {
-    const { name, price, image, rating, basket } = card
+    const { name, price, image, rating } = card
     return (
         <div className={style.card}>
             <span></span>
@@ -23,7 +23,7 @@ function Card({ card }) {
                     </div>
                     <div className={style.ratingBasket}>
                         <div> <img src={rating} /></div>
-                        <div className={style.basketBg}><img src={basket} /></div>
+                        {/* <div className={style.basketBg}><img src={basket} /></div> */}
                     </div>
                 </div>
             </div>

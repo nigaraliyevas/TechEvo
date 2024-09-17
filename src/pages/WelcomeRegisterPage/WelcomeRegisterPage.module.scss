@@ -1,0 +1,72 @@
+@use "/public/assets/variables/variables" as variables;
+
+#container_bg {
+  background-color: #090c11;
+  padding-top: 88px;
+  padding-bottom: 120px;
+}
+
+.welcomeBox {
+  max-width: 480px;
+  height: 614px;
+  background-color: #161a1e;
+  margin: 0 auto;
+
+  border-radius: 2px;
+}
+.welcomeBox_container {
+  width: 380px;
+  margin: auto;
+  padding: 56px 0px 56px 0px;
+}
+.welcomeBox_container_head {
+  text-align: center;
+  color: #fff;
+  h1 {
+    font-size: 40px;
+  }
+  p {
+    font-size: 18px;
+    margin-top: 20px;
+    color: #cccccc;
+  }
+}
+
+.form_group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 56px;
+
+  input {
+    background-color: #161a1e !important;
+    padding: 18px 14px 18px 14px;
+    border: 1px solid #595959;
+    border-radius: 8px;
+    width: 100%;
+    margin: 10px 0px;
+    font-size: 16px;
+    color: white;
+    // outline: none;
+  }
+}
+.labelContent {
+  color: white;
+  font-size: 18px;
+}
+.forgetPassword {
+  text-align: end;
+  margin-top: -5px;
+
+  a {
+    color: white;
+    font-size: 16px;
+    text-decoration: none;
+  }
+}
+.error {
+  color: red;
+  font-size: 0.875rem;
+  margin-top: -5px;
+  margin-bottom: 10px;
+}

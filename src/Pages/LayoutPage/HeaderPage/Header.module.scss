@@ -1,6 +1,7 @@
-@import '../../../../public/assets/variables/variables';
+@import "../../../../public/assets/variables/variables";
 
 * {
+
     // border: 1px solid red;
     list-style: none;
     text-decoration: none;
@@ -9,51 +10,40 @@
 }
 
 
-
-
+.container {
+    max-width: 1300px;
+    margin: 0 auto;
+}
 
 header {
-    z-index: 1;
-    // width: 100%;
-    align-items: center;
-    display: flex;
-    position: relative;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1111;
     background: $bgColor;
 
     &::after {
         content: "";
-        position: absolute;
-        width: 100%;
-        left: 0;
-        bottom: 0px;
+        display: block;
         height: 1px;
-        background-color: rgba(34, 37, 39, 1);
-    }
-
-    .container {
-        max-width: 1300px;
-        margin: 0 auto;
+        background-color: #222527;
     }
 
     .navbar_bg {
-        position: sticky;
-        top: 0px;
         margin-left: auto;
         margin-left: auto;
         width: 100%;
-        padding: 0px 24px;
+        padding: 0px 56px;
     }
 
     .navbar {
-        height: 96px;
         position: relative;
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: center;
         color: $firstColor;
-        // gap: 80px;
+        gap: 100px;
         width: 100% !important;
-
 
         .navbar_right {
             display: flex;
@@ -90,7 +80,7 @@ header {
                     background: rgba(22, 26, 30, 1);
                     transition: height 0.3s ease-in-out, opacity 0.3s ease-in-out;
                     border-radius: 8px;
-             
+
 
                     .navbar_users_item {
                         display: flex;
@@ -102,7 +92,7 @@ header {
                         letter-spacing: 0.02em;
                         text-align: center;
                         padding: 5px 0;
-                      
+
 
                         span {
                             margin: 0px 12px;
@@ -134,94 +124,93 @@ header {
             }
         }
 
-
-
-    }
-
-    .navbar_title {
-        font-family: $fontFamily;
-        font-size: 32px;
-        font-weight: 500;
-        line-height: 28px;
-        text-align: left;
-        cursor: pointer;
-    }
-
-    .navbar_links {
-        height: 96px;
-        min-height: 100%;
-        position: relative;
-        font-family: $fontFamily;
-        font-size: 20px;
-        font-weight: 400;
-        line-height: 28px;
-        letter-spacing: 0.02em;
-        text-align: center;
-        cursor: pointer;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        list-style: none;
-    
-
-        &:hover {
-            background: linear-gradient(102.09deg, #FD393F 4.1%, #DB35E2 55.43%, #4E3DEE 94.96%);
-            ;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .navbar_title {
+            font-family: $fontFamily;
+            font-size: 32px;
+            font-weight: 500;
+            line-height: 28px;
+            text-align: left;
+            cursor: pointer;
         }
 
-        .link_catagiries {
-            height: 0;
-            top: 97px;
-            opacity: 0;
-            padding: 0;
-            width: 177px;
-            overflow: hidden;
-            text-align: start;
-            border-radius: 8px;
-            position: absolute;
-            color: white !important;
-            -webkit-text-fill-color: white;
-            background: rgba(22, 26, 30, 1);
-            transition: height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        .navbar_links {
+            height: 96px;
+            min-height: 100%;
+            position: relative;
+            font-family: $fontFamily;
+            font-size: 20px;
+            font-weight: 400;
+            line-height: 28px;
+            letter-spacing: 0.02em;
+            text-align: center;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            list-style: none;
 
-            ul {
-                gap: 8px;
-                display: flex;
-                flex-direction: column;
+
+            &:hover {
+                background: linear-gradient(102.09deg, #FD393F 4.1%, #DB35E2 55.43%, #4E3DEE 94.96%);
+                ;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
             }
-        }
 
-        &:hover {
             .link_catagiries {
-                opacity: 1;
-                height: auto;
-                padding: 24px 24px 24px 16px;
+                height: 0;
+                top: 97px;
+                opacity: 0;
+                padding: 0;
+                width: 177px;
+                overflow: hidden;
+                text-align: start;
+                border-radius: 8px;
+                position: absolute;
+                color: white !important;
+                -webkit-text-fill-color: white;
+                background: rgba(22, 26, 30, 1);
+                transition: height 0.3s ease-in-out, opacity 0.3s ease-in-out;
 
+                ul {
+                    gap: 8px;
+                    display: flex;
+                    flex-direction: column;
+                }
+            }
+
+            &:hover {
+                .link_catagiries {
+                    opacity: 1;
+                    height: auto;
+                    padding: 24px 24px 24px 16px;
+
+                }
             }
         }
+
+        .navbar_links {
+            font-family: $fontFamily;
+            font-size: 20px;
+            font-weight: 400;
+            line-height: 28px;
+            letter-spacing: 0.02em;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .navbar_ideal {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            //   width: 212px;
+            //   height: 44px;
+            text-align: center;
+            //   background: $linearGradient;
+            gap: 10px;
+            position: relative;
+            //   clip-path: polygon(0 0, 100% 0, 85% 100%, 15% 100%);
+            cursor: pointer;
+        }
     }
-
-
-    .navbar_ideal {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 212px;
-        height: 44px;
-        text-align: center;
-        background: $linearGradient;
-        gap: 10px;
-        position: relative;
-        clip-path: polygon(0 0, 100% 0, 85% 100%, 15% 100%);
-        cursor: pointer;
-    }
-}
-
-
-.navbar_line {
-    width: 100%;
-    height: 1px;
-    background-color: rgba(34, 37, 39, 1);
 }

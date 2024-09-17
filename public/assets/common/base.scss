@@ -1,0 +1,16 @@
+@use "/public/assets/variables/variables" as variables;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: variables.$fontFamily;
+  background-color: variables.$bgColor;
+}
+
+.container {
+  max-width: 1300px;
+  width: 100%;
+  margin: 0 auto;
+}

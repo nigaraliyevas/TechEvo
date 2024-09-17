@@ -7,11 +7,14 @@ import { LiaUserPlusSolid } from "react-icons/lia";
 import { PiSignInFill } from "react-icons/pi";
 import { IoSettingsOutline } from "react-icons/io5";
 import { IoMdMenu } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
+
 
 
 
 const HeaderPage = () => {
- 
+ const navigate=useNavigate()
+
   return (
     <header>
       <div className={`${styles.container} ${styles.navbar_bg} `}>
@@ -23,7 +26,7 @@ const HeaderPage = () => {
                 style={{ padding: "0px 20px" }}
                 className={styles.navbar_links}
               >
-                Pc
+                Pc 
                 <div className={styles.link_catagiries}>
                   <div>
                     <ul>

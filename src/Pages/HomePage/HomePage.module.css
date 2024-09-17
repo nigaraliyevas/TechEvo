@@ -1,5 +1,5 @@
 body {
-  background-color: #090d11;
+  background-color: #090d11 !important;
 }
 
 .sliderContainer {
@@ -81,7 +81,7 @@ body {
   padding: 12px !important;
   border: 2px solid transparent;
   cursor: pointer;
-  background: radial-gradient(circle at 100% 100%, #000000 0, #000000 4px, transparent 4px) 0% 0%/5px 5px no-repeat, radial-gradient(circle at 0 100%, #000000 0, #000000 4px, transparent 4px) 100% 0%/5px 5px no-repeat, radial-gradient(circle at 100% 0, #000000 0, #000000 4px, transparent 4px) 0% 100%/5px 5px no-repeat, radial-gradient(circle at 0 0, #000000 0, #000000 4px, transparent 4px) 100% 100%/5px 5px no-repeat, linear-gradient(#000000, #000000) 50% 50%/calc(100% - 2px) calc(100% - 10px) no-repeat, linear-gradient(#000000, #000000) 50% 50%/calc(100% - 10px) calc(100% - 2px) no-repeat, linear-gradient(90deg, rgb(70, 29, 72) 0%, rgb(39, 58, 161) 100%);
+  background: radial-gradient(circle at 100% 100%, #000000 0, #000000 4px, transparent 4px) 0% 0%/5px 5px no-repeat, radial-gradient(circle at 0 100%, #000000 0, #000000 4px, transparent 4px) 100% 0%/5px 5px no-repeat, radial-gradient(circle at 100% 0, #000000 0, #000000 4px, transparent 4px) 0% 100%/5px 5px no-repeat, radial-gradient(circle at 0 0, #000000 0, #000000 4px, transparent 4px) 100% 100%/5px 5px no-repeat, linear-gradient(#000000, #000000) 50% 50% / calc(100% - 2px) calc(100% - 10px) no-repeat, linear-gradient(#000000, #000000) 50% 50% / calc(100% - 10px) calc(100% - 2px) no-repeat, linear-gradient(90deg, rgb(70, 29, 72) 0%, rgb(39, 58, 161) 100%);
   border-radius: 5px;
   box-sizing: border-box;
   width: 429px;
@@ -111,7 +111,8 @@ body {
   0% {
     left: -100%;
   }
-  50%, 100% {
+  50%,
+  100% {
     left: 100%;
   }
 }
@@ -128,7 +129,8 @@ body {
   0% {
     top: -100%;
   }
-  50%, 100% {
+  50%,
+  100% {
     top: 100%;
   }
 }
@@ -145,7 +147,8 @@ body {
   0% {
     right: -100%;
   }
-  50%, 100% {
+  50%,
+  100% {
     right: 100%;
   }
 }
@@ -162,7 +165,8 @@ body {
   0% {
     bottom: -100%;
   }
-  50%, 100% {
+  50%,
+  100% {
     bottom: 100%;
   }
 }
@@ -170,7 +174,7 @@ body {
   height: 100%;
   width: 100%;
   -o-object-fit: contain;
-     object-fit: contain;
+  object-fit: contain;
   transition: transform 0.3s ease;
 }
 .card .cardImg:hover {
@@ -283,4 +287,4 @@ body {
 .mainServices .text p {
   color: #989da2;
   width: 249px;
-}/*# sourceMappingURL=HomePage.module.css.map */
+} /*# sourceMappingURL=HomePage.module.css.map */

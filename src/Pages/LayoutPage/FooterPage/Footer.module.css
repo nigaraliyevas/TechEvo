@@ -1,0 +1,76 @@
+@import url("https://fonts.cdnfonts.com/css/sf-pro-display");
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+.container {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.footer {
+  padding: 72px 56px 72px 56px;
+  background: rgb(22, 26, 30);
+}
+.footer .footer_top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.footer .footer_top .footer_title {
+  font-family: "SF Pro Display", sans-serif;
+  color: rgb(255, 255, 255);
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 28px;
+  text-align: left;
+}
+.footer .footer_top .footer_icon {
+  display: inline-block;
+  width: 23.99px;
+  height: 24px;
+  gap: 0px;
+  opacity: 0px;
+  color: rgb(230, 230, 230);
+  cursor: pointer;
+}
+.footer .footer_text {
+  font-family: "SF Pro Display", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: left;
+  color: rgb(230, 230, 230);
+  margin: 32px 0px;
+}
+.footer .footer_links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+.footer .footer_links li {
+  font-family: "SF Pro Display", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 28px;
+  letter-spacing: 0.02em;
+  text-align: center;
+  color: rgb(255, 255, 255);
+  margin-bottom: 32px;
+}
+.footer .footer_bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgb(29, 34, 39);
+  margin-top: 32px;
+  padding-top: 33px;
+}
+.footer .footer_bottom p {
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+  color: rgb(191, 191, 191);
+}
+.footer .footer_bottom p span {
+  margin-right: 12px;
+}/*# sourceMappingURL=Footer.module.css.map */

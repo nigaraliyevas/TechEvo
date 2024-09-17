@@ -1,11 +1,10 @@
-@import url('https://fonts.cdnfonts.com/css/sf-pro-display');
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url("https://fonts.cdnfonts.com/css/sf-pro-display");
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
-$firstColor:rgba(255, 255, 255, 1);
+$firstColor: rgba(255, 255, 255, 1);
 $secondColor: rgba(191, 191, 191, 1);
-$linearGradient: linear-gradient(125.92deg, #FD3C43 -59.69%, #B622DC 41.4%, #3F27EB 124.93%);
-$fontFamily:'SF Pro Display', sans-serif;
+$linearGradient: linear-gradient(125.92deg, #fd3c43 -59.69%, #b622dc 41.4%, #3f27eb 124.93%);
+$fontFamily: "SF Pro Display", sans-serif;
 $fontFamilyInter: "Inter", sans-serif;
-$bgColor:rgba(9, 13, 17, 1);
+$bgColor: #090c11;
 $thirdColor: rgba(230, 230, 230, 1);
-

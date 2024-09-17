@@ -165,7 +165,8 @@ header {
     
 
         &:hover {
-            background: $linearGradient;
+            background: linear-gradient(102.09deg, #FD393F 4.1%, #DB35E2 55.43%, #4E3DEE 94.96%);
+            ;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }

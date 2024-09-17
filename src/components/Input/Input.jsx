@@ -15,7 +15,7 @@ const Input = ({ labelText, type = "text", placeholder }) => {
       <input className="password-reset__input" type={type === "password" && showPassword ? "text" : type} value={inputValue} onChange={e => setInputValue(e.target.value)} placeholder={placeholder} />
       {type === "password" && (
         <span className="toggle-password" onClick={togglePasswordVisibility}>
-          {showPassword ? <img src="/public/assets/images/Welcome/OpenEye.png" alt="" /> : <img src="/public/assets/images/Welcome/Faeye.png" alt="" />}
+          {showPassword ? <img src="/public/assets/images/Welcome/Faeye.png" alt="" /> : <img src="/public/assets/images/Welcome/OpenEye.png" alt="" />}
         </span>
       )}
     </div>

@@ -8,7 +8,7 @@ const PcSection = () => {
         <div>
             <div className={styles.cardMain}>
                 {
-                    cards?.slice(0, 3).map((card) => (
+                    cards?.slice(0, 4).map((card) => (
                         <Card key={card.id} card={card} />
                     ))
                 }

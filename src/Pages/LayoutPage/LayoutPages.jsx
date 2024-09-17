@@ -1,4 +1,4 @@
-import HeaderPage from "./HeaderPage/HeaderPage";
+  import HeaderPage from "./HeaderPage/HeaderPage";
 import FooterPage from "./FooterPage/FooterPage";
 
 const LayoutPages = ({ children }) => {

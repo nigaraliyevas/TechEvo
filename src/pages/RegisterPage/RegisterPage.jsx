@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./RegisterPage.module.scss"
 import RegisterPage2 from "./RegisterPage2";
 import "../../components/css/Button.scss";
-import axios from "axios";
+// import axios from "axios";
 export default function RegisterPage() {
 
     const [error, setError] = useState('');
@@ -37,24 +37,29 @@ export default function RegisterPage() {
 
 
         setError('');
-        setShowPage2(true);
+        // localStorage.setItem('email', email);
+        // setShowPage2(true);
         
         
         try {
-            const response = await fetch('https://ff82f4df-f72b-4dec-84ca-487132aff620.mock.pstmn.io/api/v1/auth/register', {
+            console.log(email);
+            
+            const response = await fetch('https://c82b-5-133-233-247.ngrok-free.app/api/v1/auth/store-email', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ email: email }),
             });
-        
-            if (response.ok) { // response.ok is true if the status code is in the range 200-299
+            console.log(response);
+            
+            if (response.ok) { 
                 localStorage.setItem('email', email);
-                setError('');
+                // setError('');
                 setShowPage2(true);
             } else {
-                setError('Failed to store email');
+                const errorText = await response.text(); // Read the response as text
+                setError(`Failed to store email: ${errorText}`);
             }
         } catch (err) {
             setError('An error occurred while storing the email');
@@ -62,7 +67,6 @@ export default function RegisterPage() {
         }
         
     };
-    
     
     return (
             <div className={styles.container}>
@@ -85,7 +89,7 @@ export default function RegisterPage() {
                             {submitted && error && <div className={styles.errorMessage}>{error}</div>}
                             <button 
                                 type="submit"
-                                className="Btn"
+                                className={`${styles.btnResponsive} Btn`}
                                >
                                     Davam et
                             </button>

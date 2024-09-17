@@ -1,87 +1,136 @@
-import  { useState } from "react";
-import styles from "./RegisterPage2.module.scss";
-import passwordIcon from "/public/assets/images/Register/PasswordIcon.svg";
-import passwordIcon2 from "/public/assets/images/Register/PasswordIcon2.svg";
+import { useState } from "react";
+import styles from './RegisterPage2.module.scss';
+import passwordIcon from "../../../public/assets/images/Register/PasswordIcon.svg";
+import passwordIcon2 from "../../../public/assets/images/Register/PasswordIcon2.svg";
 import { useNavigate } from "react-router-dom";
 import "../../components/css/Button.scss";
+
 export default function RegisterPage2() {
   const navigate = useNavigate();
   const [isChecked, setIsChecked] = useState(false);
 
   const [errors, setErrors] = useState({
-    name: "",
-    surname: "",
+    firstName: "",
+    lastName: "",
     password: "",
-    repeatPassword: "",
+    confirmPassword: "",
+    acceptTerms: ""
   });
+
   const [formData, setFormData] = useState({
-    name: "",
-    surname: "",
+    firstName: "",
+    lastName: "",
     password: "",
-    repeatPassword: "",
+    confirmPassword: "",
+    acceptTerms: false
   });
+
   const [showPassword, setShowPassword] = useState(false);
   const [showRepeatedPassword, setShowRepeatedPassword] = useState(false);
 
-  const handleChangeChecked = event => {
-    setIsChecked(event.target.checked);
+  const handleChangeChecked = (event) => {
+    const isChecked = event.target.checked;
+    setIsChecked(isChecked);
+    setFormData((prevFormData) =>({
+      ...prevFormData,
+      acceptTerms: isChecked
+    }));
+    setErrors((prevErrors) => ({...prevErrors, acceptTerms: ""}));
   };
 
-  const handleSubmit = async e => {
+  const validatePassword = (password) => {
+    const passwordErrors = [];
+
+    if (password.length < 8) {
+      passwordErrors.push("Şifrə ən azı 8 simvoldan ibarət olmalıdır.");
+    }
+    if (!/[A-Za-z]/.test(password)) {
+      passwordErrors.push("Şifrə ən azı bir hərfdən ibarət olmalıdır.");
+    }
+    if (!/\d/.test(password)) {
+      passwordErrors.push("Şifrə ən azı bir rəqəmdən ibarət olmalıdır.");
+    }
+
+    return passwordErrors;
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Reset errors
     setErrors({
-      name: "",
-      surname: "",
+      firstName: "",
+      lastName: "",
       password: "",
-      repeatPassword: "",
+      confirmPassword: "",
+      acceptTerms: ""
     });
-    
-    if (formData.password !== formData.repeatPassword) {
-      setErrors(prevErrors => ({
-        ...prevErrors,
-        repeatPassword: "Passwords do not match",
-      }));
-      return; 
-    }
 
-    if (!isChecked) {
-      alert("Please agree to the terms and conditions.");
+    // Password validation
+    const passwordErrors = validatePassword(formData.password);
+    if (passwordErrors.length > 0) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        password: passwordErrors.join("\n"),
+      }));
       return;
     }
-    
+
+    // Confirm password matching
+    if (formData.password !== formData.confirmPassword) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        confirmPassword: "Şifrələr uyğun gəlmir",
+      }));
+      return;
+    }
+
+    // Terms validation
+    if (!isChecked) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        acceptTerms: "İstifadəçi şərtləri qəbul olunmayıb.",
+      }));
+      return;
+    }
+
+    const email = localStorage.getItem("email");
+    console.log(formData, email);
 
     try {
-      const response = await fetch("https://ff82f4df-f72b-4dec-84ca-487132aff620.mock.pstmn.io/api/v1/auth/register", {
-          method: 'POST',
+      const response = await fetch(
+        "https://c82b-5-133-233-247.ngrok-free.app/api/v1/auth/register",
+        {
+          method: "POST",
           headers: {
-              'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
-          body: JSON.stringify(formData),
-      });
-  
+          body: JSON.stringify({ ...formData, email }),
+        }
+      );
+
       if (response.ok) {
-          navigate("/login");
+        navigate("/login");
+        console.log('success');
       } else {
-          const errorData = await response.json();
-          const { name, surname, password, repeatPassword } = errorData.errors || {};
-          setErrors({
-              name: name || "",
-              surname: surname || "",
-              password: password || "",
-              repeatPassword: repeatPassword || "",
-          });
+        const { firstName, lastName, password, confirmPassword, acceptTerms } = errorData.errors || {};
+        setErrors({
+          firstName: firstName || "",
+          lastName: lastName || "",
+          password: password || "",
+          confirmPassword: confirmPassword || "",
+          acceptTerms: acceptTerms || "",
+        });
+        console.log(errorData);
       }
-  } catch (error) {
+    } catch (error) {
       console.error("An error occurred:", error);
-  }
-  
+    }
   };
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-
-    setErrors(prevErrors => ({...prevErrors, [e.target.name]: ""}));
+    setErrors((prevErrors) => ({ ...prevErrors, [e.target.name]: "" }));
   };
 
   const handlePassword = () => {
@@ -97,87 +146,100 @@ export default function RegisterPage2() {
       <div className={styles.infoText}>
         Daxil olmaq üçün aşağıdakı xanaları doldurun.
       </div>
-      <form onSubmit={handleSubmit} className={styles.register2Container}>
-        <div>
-          <div className={styles.subHeader}>Ad</div>
-          <div className={styles.inputContainer}>
-            <input
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-              className={styles.innerInput}
-              type="text"
-              placeholder="Ad"
-            />
-          </div>
-          {errors.name && <p>{errors.name}</p>}
-        </div>
-
-        <div>
-          <div className={styles.subHeader}>Soyad</div>
-          <div className={styles.inputContainer}>
-            <input
-              name="surname"
-              value={formData.surname}
-              onChange={handleChange}
-              required
-              className={styles.innerInput}
-              type="text"
-              placeholder="Soyad"
-            />
-          </div>
-          {errors.surname && <p>{errors.surname}</p>}
-        </div>
-
-        <div>
-          <div className={styles.subHeader}>Şifrə</div>
-          <div className={styles.inputContainer}>
-            <input
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              required
-              className={styles.innerInput}
-              type={showPassword ? `text` : `password`}
-              placeholder="Şifrənizi daxil edin"
-            />
-            <div className={styles.icon}>
-              <img
-                onClick={handlePassword}
-                className={styles.iconImage}
-                src={showPassword ? passwordIcon2 : passwordIcon}
-                alt="ClosedEyeIcon"
+      <form onSubmit={handleSubmit}>
+        {/* First Name Field */}
+        <div className={styles.register2Container}>
+          <div>
+            <div className={styles.subHeader}>Ad</div>
+            <div className={styles.inputContainer}>
+              <input
+                name="firstName"
+                value={formData.firstName}
+                onChange={handleChange}
+                required
+                className={styles.innerInput}
+                type="text"
+                placeholder="Ad"
               />
             </div>
+            {errors.firstName && <p className={styles.errorMessage}>{errors.firstName}</p>}
           </div>
-          {errors.password && <p>{errors.password}</p>}
-        </div>
 
-        <div>
-          <div className={styles.subHeader}>Şifrəni təkrarla</div>
-          <div className={styles.inputContainer}>
-            <input
-              name="repeatPassword"
-              value={formData.repeatPassword}
-              onChange={handleChange}
-              required
-              className={styles.innerInput}
-              type={showRepeatedPassword ? `text` : `password`}
-              placeholder="Şifrənizi daxil edin"
-            />
-            <div className={styles.icon}>
-              <img
-                onClick={handleRepeatedPassword}
-                className={styles.iconImage}
-                src={showRepeatedPassword ? passwordIcon2 : passwordIcon}
-                alt="ClosedEyeIcon"
+          {/* Last Name Field */}
+          <div>
+            <div className={styles.subHeader}>Soyad</div>
+            <div className={styles.inputContainer}>
+              <input
+                name="lastName"
+                value={formData.lastName}
+                onChange={handleChange}
+                required
+                className={styles.innerInput}
+                type="text"
+                placeholder="Soyad"
               />
             </div>
+            {errors.lastName && (
+              <p className={styles.errorMessage}>{errors.lastName}</p>
+            )}
           </div>
-          {errors.repeatPassword && <p>{errors.repeatPassword}</p>}
+
+          {/* Password Field */}
+          <div>
+            <div className={styles.subHeader}>Şifrə</div>
+            <div className={styles.inputContainer}>
+              <input
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                required
+                className={styles.innerInput}
+                type={showPassword ? "text" : "password"}
+                placeholder="Şifrənizi daxil edin"
+              />
+              <div className={styles.icon}>
+                <img
+                  onClick={handlePassword}
+                  className={styles.iconImage}
+                  src={showPassword ? passwordIcon2 : passwordIcon}
+                  alt="ClosedEyeIcon"
+                />
+              </div>
+            </div>
+            {errors.password && (
+              <p className={styles.errorMessage}>{errors.password}</p>
+            )}
+          </div>
+
+          {/* Confirm Password Field */}
+          <div>
+            <div className={styles.subHeader}>Şifrəni təkrarla</div>
+            <div className={styles.inputContainer}>
+              <input
+                name="confirmPassword"
+                value={formData.confirmPassword}
+                onChange={handleChange}
+                required
+                className={styles.innerInput}
+                type={showRepeatedPassword ? "text" : "password"}
+                placeholder="Şifrənizi daxil edin"
+              />
+              <div className={styles.icon}>
+                <img
+                  onClick={handleRepeatedPassword}
+                  className={styles.iconImage}
+                  src={showRepeatedPassword ? passwordIcon2 : passwordIcon}
+                  alt="ClosedEyeIcon"
+                />
+              </div>
+            </div>
+            {errors.confirmPassword && (
+              <p className={styles.errorMessage}>{errors.confirmPassword}</p>
+            )}
+          </div>
         </div>
 
+        {/* Agreement Field */}
         <div className={styles.agreementBox}>
           <div className={styles.checkBoxContainer}>
             <input
@@ -190,8 +252,10 @@ export default function RegisterPage2() {
           </div>
           <div>İstifadəçi şərtləri ilə razıyam</div>
         </div>
+        {errors.terms && <p className={styles.errorMessage}>{errors.terms}</p>}
 
-        <button type="submit" className="Btn">
+        {/* Submit Button */}
+        <button type="submit" className={`${styles.btnResponsive} Btn`}>
           Qeydiyyatdan keç
         </button>
       </form>

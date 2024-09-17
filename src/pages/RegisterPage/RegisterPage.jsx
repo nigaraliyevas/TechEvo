@@ -59,10 +59,10 @@ export default function RegisterPage() {
                 setShowPage2(true);
             } else {
                 const errorText = await response.text(); // Read the response as text
-                setError(`Failed to store email: ${errorText}`);
+                setError(`Email saxlanıla bilmədi: ${errorText}`);
             }
         } catch (err) {
-            setError('An error occurred while storing the email');
+            setError('Xəta baş verdi.');
             console.error(err);
         }
         

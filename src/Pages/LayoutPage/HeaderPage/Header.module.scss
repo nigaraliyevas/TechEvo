@@ -11,7 +11,7 @@
 
 
 .container {
-    max-width: 1300px;
+    max-width: 1414px;
     margin: 0 auto;
 }
 
@@ -40,7 +40,7 @@ header {
         position: relative;
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: space-between;
         color: $firstColor;
         gap: 100px;
         width: 100% !important;
@@ -48,13 +48,13 @@ header {
         .navbar_right {
             display: flex;
             align-items: center;
-            gap: 58px;
+            gap: 106px;
         }
 
         .navbar_pages {
             display: flex;
             align-items: center;
-            gap: 46px;
+            gap: 56px;
         }
 
         .navbar_icons {
@@ -73,7 +73,7 @@ header {
                     opacity: 0;
                     overflow: hidden;
                     width: 177px;
-                    top: 90px;
+                    top: 93px;
                     left: -95px;
                     text-align: start;
                     padding: 0;
@@ -124,12 +124,9 @@ header {
             }
         }
 
-        .navbar_title {
-            font-family: $fontFamily;
-            font-size: 32px;
-            font-weight: 500;
-            line-height: 28px;
-            text-align: left;
+        .navbar_logo {
+            width: 48px;
+            height: 40.3px;
             cursor: pointer;
         }
 

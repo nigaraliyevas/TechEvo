@@ -2,6 +2,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { allCards } from "../../redux/slices/CardSlice";
 import { PiHeartBold } from "react-icons/pi";
 import { useEffect } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+
 import styles from "./CardPC.module.scss";
 
 const CardPC = () => {
@@ -9,7 +11,7 @@ const CardPC = () => {
   const { cards } = useSelector(state => state.pcCard);
 
   useEffect(() => {
-    dispatch(allCards()); // Call action when component mounts
+    dispatch(allCards());
   }, [dispatch]);
 
   return (

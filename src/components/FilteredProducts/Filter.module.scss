@@ -1,17 +1,17 @@
-#filterSide{
-    padding-top: 100px;
-}
+
 .filterSide{
     max-width: 324px;
     border: 1.5px solid rgb(35, 34, 34);
     border-radius: 2px;
+    
     .filterSide_container{
-        max-width: 260px;
+        // max-width: 260px;
         margin: 0 auto;
         .head{
             display: flex;
             align-items: center;
             justify-content: space-between;
+            padding: 0px 30px;
           
            height: 84px;
             .text{
@@ -31,4 +31,7 @@
 .filterSide_container{
     max-width: 300px;
     margin: 0 auto;
+}
+#accordionBody{
+    background-color: #090c11 !important;
 }

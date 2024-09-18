@@ -1,10 +1,10 @@
-import { useSelector, useDispatch } from "react-redux";
 import { allCards } from "../../redux/slices/CardSlice";
 import { PiHeartBold } from "react-icons/pi";
 import { useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import styles from "./CardPC.module.scss";
+import { useDispatch, useSelector } from "react-redux";
 
 const CardPC = () => {
   const dispatch = useDispatch();

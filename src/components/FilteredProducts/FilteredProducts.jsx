@@ -1,7 +1,14 @@
 import styles from "./Filter.module.scss";
 import filterImg from "../../../public/assets/images/FilterSide/filterImg.png";
+import PriceRangeSlider from "./components/Slider/Slider";
+import Accordion from "./components/Accordion/Accordion";
 
 const FilteredProducts = () => {
+  const items = [
+    { title: 'Qiymət', content:    <PriceRangeSlider /> },
+    { title: 'Bölmə 2', content: 'Bölmə 2-in məzmunu buradadır.' },
+    { title: 'Bölmə 3', content: 'Bölmə 3-in məzmunu buradadır.' },
+  ];
   return (
     <main>
       <section id={styles.filterSide}>
@@ -15,6 +22,9 @@ const FilteredProducts = () => {
                 <img src={filterImg} />
               </div>
             </div>
+            <Accordion items={items} />
+           
+            
           </div>
         </div>
       </section>

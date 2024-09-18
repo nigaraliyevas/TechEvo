@@ -1,6 +1,8 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import styles from "./PCPage.module.scss";
 import CardPC from "../../components/CardPC/CardPC";
+import Pagination from "../../components/Pagination/Pagination";
+
 
 const PCPage = () => {
   return (
@@ -21,7 +23,9 @@ const PCPage = () => {
             </div>
           </div>
         </div>
-        <div className="pagination-side"></div>
+        <div className="pagination-side">
+          <Pagination/>
+        </div>
       </div>
     </section>
   );

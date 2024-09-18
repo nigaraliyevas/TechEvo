@@ -2,10 +2,10 @@ import styles from "./HomePage.module.scss";
 import PcSection from "../../components/PcSection.jsx";
 import MsSection from "../../components/MsSection";
 import KbSection from "../../components/KbSection";
-import InternCr from "../../../public/assets/images/HomePage/Products/InternCr.png";
-import Delivery from "../../../public/assets/images/HomePage/Products/Delivery.png";
-import Repair from "../../../public/assets/images/HomePage/Products/Repair.png";
-import SecondHand from "../../../public/assets/images/HomePage/Products/SecondHand.png";
+import InternCr from "/assets/images/HomePage/Products/InternCr.png";
+import Delivery from "/assets/images/HomePage/Products/Delivery.png";
+import Repair from "/assets/images/HomePage/Products/Repair.png";
+import SecondHand from "/assets/images/HomePage/Products/SecondHand.png";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import SliderComponent from "../../components/Slider.jsx";
@@ -30,7 +30,7 @@ const HomePage = () => {
         <div className={styles.container_bottom}>
           <h3 className={styles.specialH3}>Xüsusi Seçimlər</h3>
           <div className={styles.pc}>PC</div>
-          <PcSection />
+          <PcSection count={4} />
 
           <div className={styles.mouse}>Mouse</div>
           <MsSection />

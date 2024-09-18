@@ -1,136 +1,44 @@
-// <<<<<<< HEAD
-// body {
-//     background-color: #090d11;
-// }
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
 
+::-webkit-scrollbar { 
+    width: 4px; 
+  } 
+   
+  ::-webkit-scrollbar-track { 
+    background: transparent; 
+  } 
+   
+  ::-webkit-scrollbar-thumb { 
+    background-color: #214440; 
+    border: 3px solid gray; 
+  } 
+   
+  ::-webkit-scrollbar-thumb:hover { 
+    background-color: #555; 
+  } 
+ 
+ 
+   /* Target horizontal scrollbar specifically */ 
+::-webkit-scrollbar:horizontal { 
+  height: 4px; /* Adjust the height of the horizontal scrollbar */ 
+} 
+ 
+::-webkit-scrollbar-thumb:horizontal { 
+//   background-color: rgb(174, 172, 172);
+//   border: 2px solid gray; 
+background-color: transparent; 
+border: transparent;
+  border-radius: 10px; 
+} 
+ 
+::-webkit-scrollbar-thumb:horizontal:hover { 
+  background-color: #555; 
+}
 
-// .sliderContainer {
-//     max-width: 1300px;
-//     margin-left: auto;
-//     margin-right: auto;
-// }
-
-// .slick-arrow{
-//     display: none !important;
-// }
-
-
-// .slide {
-//     position: relative;
-
-//     img {
-//         width: 100%;
-//         height: auto;
-//     }
-// }
-
-
-// // #bg {
-// //     background-image: url('../../../public/assets/images/HomePage/Slider/NeonSlide1.png');
-// //     background-position: center;
-// //     background-size: cover;
-// //     background-repeat: no-repeat;
-// //     height: 800px;
-// //     max-width: 1300px;
-// //     margin: 0 auto;
-// // }
-
-// .container_bottom {
-//     width: 100%;
-//     max-width: 1300px;
-//     overflow: hidden;
-//     background-color: #090d11;
-//     margin: 0 auto;
-//     padding: 0 15px;
-// }
-
-// .container_top {
-//     width: 100%;
-//     max-width: 1300px;
-//     margin: 0 auto;
-//     padding: 0 15px;
-//     position: absolute;
-//     bottom: 30%;
-//     left: 10%;
-
-//     .mainTitle {
-//         color: white;
-//         max-width: 719px;
-//         color: white;
-//         // height: 100vh;
-//         display: flex;
-//         justify-content: center;
-//         flex-direction: column;
-//         gap: 36px;
-
-//         h1 {
-//             font-size: 70px;
-//             font-weight: 700;
-//             line-height: 80px;
-//         }
-
-//         p {
-//             font-size: 24px;
-//             font-weight: 400;
-//             line-height: 32px;
-//             color: #cccccc;
-//             width: 442px;
-//         }
-//     }
-// }
-
-// #specialselected {
-//     .specialH3 {
-//         color: white;
-//         padding-top: 56px;
-//     }
-// }
-
-// .pc {
-//     color: white;
-//     padding-top: 56px;
-//     padding-bottom: 20px;
-// }
-
-
-// .cardMain {
-//     display: flex;
-//     gap: 20px;
-//     // grid-template-columns: repeat(3, 1fr);
-
-// }
-
-// .card {
-//     padding: 12px !important;
-//     border: 2px solid transparent;
-//     cursor: pointer;
-//     background: radial-gradient(circle at 100% 100%, #000000 0, #000000 4px, transparent 4px) 0% 0%/5px 5px no-repeat, radial-gradient(circle at 0 100%, #000000 0, #000000 4px, transparent 4px) 100% 0%/5px 5px no-repeat, radial-gradient(circle at 100% 0, #000000 0, #000000 4px, transparent 4px) 0% 100%/5px 5px no-repeat, radial-gradient(circle at 0 0, #000000 0, #000000 4px, transparent 4px) 100% 100%/5px 5px no-repeat, linear-gradient(#000000, #000000) 50% 50% / calc(100% - 2px) calc(100% - 10px) no-repeat, linear-gradient(#000000, #000000) 50% 50% / calc(100% - 10px) calc(100% - 2px) no-repeat, linear-gradient(90deg, rgba(70, 29, 72, 1) 0%, rgba(39, 58, 161, 1) 100%);
-
-//     border-radius: 5px;
-//     box-sizing: border-box;
-//     width: 429px;
-//     height: 348px;
-
-//     background-clip: border-box;
-//     position: relative;
-// =======
-// <<<<<<< HEAD
-
-// #bg {
-//   background-image: url("../../../public/assets/images/HomePage/Slider/NeonLight.png");
-//   background-position: center;
-//   background-size: cover;
-//   background-repeat: no-repeat;
-//   height: 800px;
-//   max-width: 1300px;
-//   margin: 0 auto;
-// }
-// .container_bottom {
-//   width: 100%;
-//   max-width: 1300px;
-//   margin: 0 auto;
-//   padding: 0 15px;
-// =======
 body {
     background-color: #090d11;
 }
@@ -160,7 +68,10 @@ body {
 
 .container_bottom {
     width: 100%;
-    max-width: 1300px;
+    max-width: 1440px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     background-color: #090d11;
     margin: 0 auto;
     padding: 0 15px;
@@ -217,6 +128,9 @@ body {
 
 .cardMain {
     display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    width: 100%;
     gap: 20px;
 }
 
@@ -224,22 +138,6 @@ body {
     padding: 12px !important;
     border: 1px solid transparent;
     cursor: pointer;
-    // background: radial-gradient(circle at 100% 100%, #000000 0, #000000 4px, transparent 4px) 0% 0%/5px 5px no-repeat, radial-gradient(circle at 0 100%, #000000 0, #000000 4px, transparent 4px) 100% 0%/5px 5px no-repeat, radial-gradient(circle at 100% 0, #000000 0, #000000 4px, transparent 4px) 0% 100%/5px 5px no-repeat, radial-gradient(circle at 0 0, #000000 0, #000000 4px, transparent 4px) 100% 100%/5px 5px no-repeat, linear-gradient(#000000, #000000) 50% 50% / calc(100% - 2px) calc(100% - 10px) no-repeat, linear-gradient(#000000, #000000) 50% 50% / calc(100% - 10px) calc(100% - 2px) no-repeat, linear-gradient(90deg, rgba(70, 29, 72, 1) 0%, rgba(39, 58, 161, 1) 100%);
-
-
-    // background: 
-    // radial-gradient(circle at 100% 100%, #000000 0, #000000 2px, transparent 2px) 0% 0% / 3px 3px no-repeat, 
-    // radial-gradient(circle at 0 100%, #000000 0, #000000 2px, transparent 2px) 100% 0% / 3px 3px no-repeat, 
-    // radial-gradient(circle at 100% 0, #000000 0, #000000 2px, transparent 2px) 0% 100% / 3px 3px no-repeat, 
-    // radial-gradient(circle at 0 0, #000000 0, #000000 2px, transparent 2px) 100% 100% / 3px 3px no-repeat, 
-    // linear-gradient(#000000, #000000) 50% 50% / calc(100% - 1px) calc(100% - 6px) no-repeat, 
-    // linear-gradient(#000000, #000000) 50% 50% / calc(100% - 6px) calc(100% - 1px) no-repeat, 
-    // linear-gradient(90deg, rgba(70, 29, 72, 1) 0%, rgba(39, 58, 161, 1) 100%);
-
-
-    // /background-image: linear-gradient(to right top, #461d48, #4b215b, #4a2771, #423088, #273aa1);
-
-
     background: 
     radial-gradient(circle at 100% 100%, #000000 0, #000000 2px, transparent 2px) 0% 0% / 3px 3px no-repeat, 
     radial-gradient(circle at 0 100%, #000000 0, #000000 2px, transparent 2px) 100% 0% / 3px 3px no-repeat, 
@@ -252,9 +150,7 @@ body {
 
     border-radius: 5px;
     box-sizing: border-box;
-    width: 429px;
-    height: 348px;
-
+    min-width: 400px;
     background-clip: border-box;
     position: relative;
     display: flex;
@@ -436,11 +332,17 @@ body {
 
 .cardMs {
     display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    width: 100%;
     gap: 20px;
 }
 
 .cardKb {
     display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    width: 100%;
     gap: 20px;
 }
 
@@ -452,14 +354,32 @@ body {
     font-weight: 700;
 }
 
-.mainServices {
-    display: flex;
-    gap: 20px;
-    padding-bottom: 120px;
+    .mainServices {
+        overflow: hidden;
+    display: grid;
+        grid-template-columns: 1fr;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        gap: 20px;
+        padding-bottom: 120px;
+
+        @media (min-width: 1170px) {
+            grid-template-columns: repeat(4, 1fr);
+          }
+        
+          /* For screens between 768px and 1024px (2 items in a row) */
+          @media (min-width: 750px) and (max-width: 1169px) {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        
+          /* For screens smaller than 768px (1 item in a row) */
+          @media (max-width: 749px) {
+            grid-template-columns: 1fr;
+          }
 
     .border {
-        width: 317px;
-        height: 260px;
+     padding: 40px 10px 30px 10px;
         border: 1px solid rgba(89, 89, 89, 1);
         border-radius: 5px;
         transition: 0.3s ease all;

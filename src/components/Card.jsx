@@ -1,4 +1,3 @@
-import React from 'react'
 import style from '../pages/HomePage/HomePage.module.scss'
 import { PiHeartBold } from "react-icons/pi";
 

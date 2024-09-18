@@ -30,7 +30,7 @@ const HomePage = () => {
         <div className={styles.container_bottom}>
           <h3 className={styles.specialH3}>Xüsusi Seçimlər</h3>
           <div className={styles.pc}>PC</div>
-          <PcSection />
+          <PcSection count={4} />
 
           <div className={styles.mouse}>Mouse</div>
           <MsSection />

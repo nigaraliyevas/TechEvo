@@ -12,9 +12,6 @@ const EnterPasswordPage = () => {
             <h2>Kodu daxil edin</h2>
             <p>Zəhmət olmasa kodu daxil edin.</p>
             <OtpInput />
-            <a className="text-decoration-none" href="">
-              Yenidən göndər
-            </a>
             <Button buttonText={"Davam et"} />
           </form>
         </div>

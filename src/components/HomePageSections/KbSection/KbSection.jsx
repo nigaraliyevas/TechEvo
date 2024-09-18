@@ -1,5 +1,5 @@
 import React from 'react'
-import Card from './Card'
+import Card from './Card/Card'
 import { cards } from '../DataHome'
 import styles from '../pages/HomePage/HomePage.module.scss'
 

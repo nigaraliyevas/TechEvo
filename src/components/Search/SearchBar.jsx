@@ -1,10 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from './SearchBar.module.scss';
 import SearchIcon from '../../../public/assets/images/Search/search.svg';
 import DropDownIcon from '../../../public/assets/images/Search/dropdownIcon.svg';
 import DropUpIcon from '../../../public/assets/images/Search/dropupIcon.svg';
 
 const SearchBar = () => {
+
+    const [showOrder, setShowOrder] = useState(false);
+
+    const handleOrder = () => {
+        setShowOrder(!showOrder);
+    }
+
   return (
     <>
       <div className={styles.container}>
@@ -26,23 +33,40 @@ const SearchBar = () => {
             </div>
             <div className={styles.orderContainer}>
                 <div className={styles.orderText}>Sıralama</div>
-                <div className={`${styles.dropdownContainer} ${styles.dropContainer}`}>
+                <div
+                    onClick={handleOrder} 
+                    className={styles.dropContainer}>
                     <img 
-                        className={`${styles.dropdownImg} ${styles.dropImg}`}
-                        src={DropDownIcon} 
+                        className={styles.dropImg}
+                        src={showOrder ? DropUpIcon : DropDownIcon} 
                         alt="DropDown Icon" 
                     />
                 </div>
-                <div className={`${styles.dropupContainer} ${styles.dropContainer}`}>
-                    <img 
-                        className={`${styles.dropupImg} ${styles.dropImg}`}
-                        src={DropUpIcon} 
-                        alt="DropUp Icon" 
-                    />
-                </div>
-                <div className={styles.orderMenu}>
-                    <div>Sıralama</div>
-                </div>
+                {showOrder ? 
+                    <div className={styles.orderMenu}>
+                        <div>
+                            <div className={styles.orderHeader}>Qiymət</div>
+                            <ul className={styles.orderUl}>
+                                <li>Azdan-çoxa</li>
+                                <li>Çoxdan-aza</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <div className={styles.orderHeader}>Reytinq</div>
+                            <ul className={styles.orderUl}>
+                                <li>Aşağıdan-yuxarı</li>
+                                <li>Yuxarıdan-aşağı</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <div className={styles.orderHeader}>Brend</div>
+                            <ul className={styles.orderUl}>
+                                <li>Brend adı (A-Z)</li>
+                                <li>Brend adı (Z-A)</li>
+                            </ul>
+                        </div>
+                    </div> : null
+                }
             </div>
         </section>
       </div>

@@ -58,6 +58,7 @@
 .dropContainer {
     width: 24px;
     height: 24px;
+    cursor: pointer;
 }
 .dropImg {
     width: 100%;
@@ -65,14 +66,37 @@
     object-fit: cover;
     vertical-align: baseline;
 }
-.dropupContainer {
-    display: none;
-}
 .orderMenu {
     position: absolute;
-    font-weight: 500;
-    color: white;
-    bottom: -36px;
+    padding: 24px 16px;
+    color: #CCCCCC;
+    background-color: #151719;
+    border-radius: 4px;
+    bottom: -312px;
     right: 3px;
-    // those are not real styles yet
+    display: flex;
+    flex-direction: column;
+    row-gap: 12px;
+}
+.orderUl {
+    white-space: nowrap;
+    margin: 0;
+}
+.orderHeader {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 28px;
+}
+.orderUl {
+    font-size: 16px;
+    line-height: 20px;
+
+    li{
+        list-style-type: disc;
+        cursor: pointer;
+    }
+
+    li:first-child{
+        margin-bottom: 4px;
+    }
 }

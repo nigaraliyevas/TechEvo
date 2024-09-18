@@ -1,9 +1,9 @@
 import React from "react";
 import Slider from "react-slick";
 import styles from "../pages/HomePage/HomePage.module.scss";
-import Slide1 from "../../public/assets/images/HomePage/Slider/NeonSlide1.png";
-import Slide2 from "../../public/assets/images/HomePage/Slider/NeonSlide2.png";
-import Slide3 from "../../public/assets/images/HomePage/Slider/NeonSlide3.png";
+import Slide1 from "/assets/images/HomePage/Slider/NeonSlide1.png";
+import Slide2 from "/assets/images/HomePage/Slider/NeonSlide2.png";
+import Slide3 from "/assets/images/HomePage/Slider/NeonSlide3.png";
 
 const SliderComponent = () => {
     const settings = {

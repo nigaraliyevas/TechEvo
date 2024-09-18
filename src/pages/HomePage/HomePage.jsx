@@ -6,6 +6,7 @@ import InternCr from "/assets/images/HomePage/Products/InternCr.png";
 import Delivery from "/assets/images/HomePage/Products/Delivery.png";
 import Repair from "/assets/images/HomePage/Products/Repair.png";
 import SecondHand from "/assets/images/HomePage/Products/SecondHand.png";
+
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import SliderComponent from "../../components/Slider.jsx";

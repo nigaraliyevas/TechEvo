@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { allCards } from "../../redux/slices/CardSlice";
+import { allCards } from "../../../redux/slices/CardSlice";
 import { PiHeartBold } from "react-icons/pi";
 import { useEffect } from "react";
 import styles from "./CardPC.module.scss";

@@ -1,11 +1,12 @@
 import styles from "./HomePage.module.scss";
-import PcSection from "../../components/PcSection.jsx";
-import MsSection from "../../components/MsSection";
-import KbSection from "../../components/KbSection";
+import PcSection from "../../components/HomePageSections/PcSection/PcSection.jsx";
+import MsSection from "../../components/HomePageSections/MsSection/MsSection.jsx";
+import KbSection from "../../components/HomePageSections/KbSection/KbSection.jsx";
 import InternCr from "/assets/images/HomePage/Products/InternCr.png";
 import Delivery from "/assets/images/HomePage/Products/Delivery.png";
 import Repair from "/assets/images/HomePage/Products/Repair.png";
 import SecondHand from "/assets/images/HomePage/Products/SecondHand.png";
+
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";

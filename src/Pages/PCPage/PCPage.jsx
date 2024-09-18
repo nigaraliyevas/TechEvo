@@ -1,5 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import styles from "./PCPage.module.scss";
+import FilteredProducts from "../../components/FilteredProducts/FilteredProducts";
 const PCPage = () => {
   return (
     <>
@@ -12,7 +13,9 @@ const PCPage = () => {
           </div>
         </div>
         <div className="row">
-          <div className="filter-side col-lg-3 col-md-6 mb-4"></div>
+          <div className="filter-side col-lg-3 col-md-6 mb-4">
+            <FilteredProducts/>
+          </div>
           <div className="product-side col-lg-9 col-md-6 mb-4"></div>
         </div>
         <div className="pagination-side"></div>

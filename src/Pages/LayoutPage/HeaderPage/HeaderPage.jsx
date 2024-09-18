@@ -8,6 +8,7 @@ import { PiSignInFill } from "react-icons/pi";
 import { IoSettingsOutline } from "react-icons/io5";
 import { IoMdMenu } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
+import navBarLogo from "../../../../public/assets/images/HeaderPage/tech-evo-logo 1.png"
 
 
 
@@ -19,7 +20,7 @@ const HeaderPage = () => {
     <header>
       <div className={`${styles.container} ${styles.navbar_bg} `}>
         <nav className={styles.navbar}>
-          <div className={styles.navbar_title}>TechEvo</div>
+          <div className={styles.navbar_logo}><img src={navBarLogo} alt="navBarLogo" /></div>
           <div className={styles.navbar_right}>
             <ul className={styles.navbar_pages}>
               <li

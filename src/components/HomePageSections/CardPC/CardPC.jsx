@@ -9,6 +9,12 @@ import styles from "./CardPC.module.scss";
 const CardPC = () => {
   const dispatch = useDispatch();
   const { cards } = useSelector(state => state.pcCard);
+  const { currentPage, itemsPerPage } = useSelector(state => state.pagination);
+
+  // Correctly slice the cards to show the right amount per page
+  const indexOfLastItem = currentPage * itemsPerPage; // End of current page
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage; // Start of current page
+  const currentItems = cards.slice(indexOfFirstItem, indexOfLastItem); // Get current page's items
 
   useEffect(() => {
     dispatch(allCards());
@@ -16,7 +22,7 @@ const CardPC = () => {
 
   return (
     <>
-      {cards.map(card => (
+      {currentItems.map(card => (
         <div key={card.id} className={styles.card}>
           <span></span>
           <span></span>

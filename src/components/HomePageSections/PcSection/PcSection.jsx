@@ -1,6 +1,6 @@
-import Card from "./Card";
-import { cards } from "../DataHome";
-import styles from "../pages/HomePage/HomePage.module.scss";
+import Card from "../../HomePageSections/Card/Card";
+import { cards } from "../../../../src/DataHome";
+import styles from "../../../Pages/HomePage/HomePage.module.scss";
 
 const PcSection = ({ count = null }) => {
   const sliceData = (count) => {

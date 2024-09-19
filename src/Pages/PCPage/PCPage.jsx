@@ -7,9 +7,11 @@ import SearchBar from "../../components/search/SearchBar";
 const PCPage = () => {
   const { cards } = useSelector((state) => state.pcCard);
   const [products,setProducts] = useState(cards);
-  useEffect(()=>{
-    setProducts(products.filter(item => item.price === 250));
-  },[cards]);
+  // useEffect(()=>{
+  //   setProducts(products
+  //     // .filter(item => item.price === 250)
+  //   );
+  // },[cards]);
 
   
   return (
@@ -23,7 +25,7 @@ const PCPage = () => {
               <div className="col-lg-4"></div>
               <div className="col-lg-4"></div>
             </div> */}
-          <SearchBar/>
+          <SearchBar products={products} setProducts={setProducts}/>
           </div>
           <div className="row mb-4">
             <div className="filter-side col-lg-3"></div>

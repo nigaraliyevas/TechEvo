@@ -5,9 +5,10 @@ import DropDownIcon from '../../../public/assets/images/Search/dropdownIcon.svg'
 import DropUpIcon from '../../../public/assets/images/Search/dropupIcon.svg';
 import { useSelector } from 'react-redux';
 
-const SearchBar = ({setSortedProducts}) => {
+const SearchBar = ({products, setProducts}) => {
 
-    const {cards} = useSelector(state => state.pcCard)
+    // const cards = products;
+    // const {cards} = useSelector(state => state.pcCard)
     const [showOrder, setShowOrder] = useState(false);
 
     const handleOrder = () => {
@@ -15,13 +16,13 @@ const SearchBar = ({setSortedProducts}) => {
     }
 
     const sortAscending = () => {
-        const sorted = [...cards].sort((a, b) => a.price - b.price);
-        setSortedProducts(sorted);
+        const sorted = [...products].sort((a, b) => a.price - b.price);
+        setProducts(sorted);
     }
     
     const sortDescending = () => {
-        const sorted = [...cards].sort((a, b) => b.price - a.price);
-        setSortedProducts(sorted);
+        const sorted = [...products].sort((a, b) => b.price - a.price);
+        setProducts(sorted);
     }
     
 

@@ -1,14 +1,16 @@
-.container {
+.searchBarContainer {
     background-color: #151719;
-    margin: 152px auto 56px;
+    width: 100% !important;
+    margin: 0 auto 56px;
 }
 .section {
     margin: 0 auto;
-    max-width: 1400px;
     padding: 18px 56px;
     display: flex;
+    width: 100%;
     align-items: center;
     justify-content: space-between;
+    user-select: none;
 }
 .pc {
     color: #ffffff;
@@ -41,13 +43,16 @@
     vertical-align: baseline;
 }
 .orderContainer {
-    display: flex;
-    align-items: center;
-    gap: 24px;
     padding: 8px 16px;
     border: 1px solid #323437;
     border-radius: 4px;
     position: relative;
+}
+.ordr {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    cursor: pointer;
 }
 .orderText {
     font-weight: 500;
@@ -58,7 +63,6 @@
 .dropContainer {
     width: 24px;
     height: 24px;
-    cursor: pointer;
 }
 .dropImg {
     width: 100%;

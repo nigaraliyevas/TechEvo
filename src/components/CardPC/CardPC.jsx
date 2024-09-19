@@ -6,9 +6,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import styles from "./CardPC.module.scss";
 
-const CardPC = () => {
+const CardPC = ({cards}) => {
   const dispatch = useDispatch();
-  const { cards } = useSelector(state => state.pcCard);
+
 
   useEffect(() => {
     dispatch(allCards());

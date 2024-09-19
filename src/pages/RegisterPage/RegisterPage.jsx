@@ -44,7 +44,7 @@ export default function RegisterPage() {
         try {
             console.log(email);
             
-            const response = await fetch('https://c82b-5-133-233-247.ngrok-free.app/api/v1/auth/store-email', {
+            const response = await fetch('https://9979-5-133-233-247.ngrok-free.app/api/v1/auth/store-email', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

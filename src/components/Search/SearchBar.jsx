@@ -1,42 +1,69 @@
-import React, { useState } from 'react'
-import styles from './SearchBar.module.scss';
-import SearchIcon from '../../../public/assets/images/Search/search.svg';
-import DropDownIcon from '../../../public/assets/images/Search/dropdownIcon.svg';
-import DropUpIcon from '../../../public/assets/images/Search/dropupIcon.svg';
-import { useSelector } from 'react-redux';
+import React, { useState } from "react";
+import styles from "./SearchBar.module.scss";
+import SearchIcon from "../../../public/assets/images/Search/search.svg";
+import DropDownIcon from "../../../public/assets/images/Search/dropdownIcon.svg";
+import DropUpIcon from "../../../public/assets/images/Search/dropupIcon.svg";
 
-const SearchBar = ({products, setProducts}) => {
+const SearchBar = ({ products, setProducts }) => {
+  const [showOrder, setShowOrder] = useState(false);
+  const [originalProducts, setOriginalProducts] = useState(products);
+  const [isThereProducts, setIsThereProducts] = useState(true);
 
-    // const cards = products;
-    // const {cards} = useSelector(state => state.pcCard)
-    const [showOrder, setShowOrder] = useState(false);
+  const handleOrder = () => {
+    setShowOrder(!showOrder);
+  };
 
-    const handleOrder = () => {
-        setShowOrder(!showOrder);
+  const sortAscending = () => {
+    const sorted = [...products].sort((a, b) => a.price - b.price);
+    setProducts(sorted);
+  };
+
+  const sortDescending = () => {
+    const sorted = [...products].sort((a, b) => b.price - a.price);
+    setProducts(sorted);
+  };
+
+  const sortAlphabeticallyAscending = () => {
+    const sorted = [...products].sort((a, b) => a.name.localeCompare(b.name));
+    setProducts(sorted);
+  };
+
+  const sortAlphabeticallyDescending = () => {
+    const sorted = [...products].sort((a, b) => b.name.localeCompare(a.name));
+    setProducts(sorted);
+  };
+
+  const sortRateAscending = () => {
+    const sorted = [...products].sort((a, b) => a.rate - b.rate);
+    setProducts(sorted);
+  };
+
+  const sortRateDescending = () => {
+    const sorted = [...products].sort((a, b) => b.rate - a.rate);
+    setProducts(sorted);
+  };
+
+  const findProducts = (e) => {
+    const searchValue = e.target.value.toLowerCase();
+    console.log(searchValue);
+
+    if (searchValue === "") {
+      setProducts(originalProducts);
+      setIsThereProducts(true);
+      return;
     }
 
-    const sortAscending = () => {
-        const sorted = [...products].sort((a, b) => a.price - b.price);
-        setProducts(sorted);
-    }
-    
-    const sortDescending = () => {
-        const sorted = [...products].sort((a, b) => b.price - a.price);
-        setProducts(sorted);
-    }
+    const filteredProducts = originalProducts.filter((prod) =>
+      prod.name.toLowerCase().includes(searchValue)
+    );
 
-    const sortAlphabeticallyAscending = () => {
-      const sorted = [...products].sort((a, b) => a.name.localeCompare(b.name));
-      setProducts(sorted);
-    }
-  
-    const sortAlphabeticallyDescending = () => {
-        const sorted = [...products].sort((a, b) => b.name.localeCompare(a.name));
-        setProducts(sorted);
-    }
-    
+    setProducts(filteredProducts);
+    setIsThereProducts(filteredProducts.length > 0);
 
-
+    if (filteredProducts.length === 0 && searchValue) {
+      console.log("Not Found");
+    }
+  };
 
   return (
     <>
@@ -45,6 +72,7 @@ const SearchBar = ({products, setProducts}) => {
           <div className={styles.pc}>PC</div>
           <div className={styles.searchContainer}>
             <input
+              onChange={findProducts}
               className={styles.searchInput}
               type="text"
               placeholder="Axtarış"
@@ -68,36 +96,43 @@ const SearchBar = ({products, setProducts}) => {
                 />
               </div>
             </div>
-            {showOrder ? (
-              <div className={styles.orderMenu}>
-                <div>
-                  <div className={styles.orderHeader}>Qiymət</div>
-                  <ul className={styles.orderUl}>
-                    <li onClick={sortAscending}>Azdan-çoxa</li>
-                    <li onClick={sortDescending}>Çoxdan-aza</li>
-                  </ul>
+            {showOrder && (
+              <>
+                <div className={styles.overlay}></div>
+                <div className={styles.orderMenu}>
+                  <div>
+                    <div className={styles.orderHeader}>Qiymət</div>
+                    <ul className={styles.orderUl}>
+                      <li onClick={sortAscending}>Azdan-çoxa</li>
+                      <li onClick={sortDescending}>Çoxdan-aza</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <div className={styles.orderHeader}>Reytinq</div>
+                    <ul className={styles.orderUl}>
+                      <li onClick={sortRateAscending}>Aşağıdan-yuxarı</li>
+                      <li onClick={sortRateDescending}>Yuxarıdan-aşağı</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <div className={styles.orderHeader}>Brend</div>
+                    <ul className={styles.orderUl}>
+                      <li onClick={sortAlphabeticallyAscending}>
+                        Brend adı (A-Z)
+                      </li>
+                      <li onClick={sortAlphabeticallyDescending}>
+                        Brend adı (Z-A)
+                      </li>
+                    </ul>
+                  </div>
                 </div>
-                <div>
-                  <div className={styles.orderHeader}>Reytinq</div>
-                  <ul className={styles.orderUl}>
-                    <li>Aşağıdan-yuxarı</li>
-                    <li>Yuxarıdan-aşağı</li>
-                  </ul>
-                </div>
-                <div>
-                  <div className={styles.orderHeader}>Brend</div>
-                  <ul className={styles.orderUl}>
-                    <li onClick={sortAlphabeticallyAscending}>Brend adı (A-Z)</li>
-                    <li onClick={sortAlphabeticallyDescending}>Brend adı (Z-A)</li>
-                  </ul>
-                </div>
-              </div>
-            ) : null}
+              </>
+            )}
           </div>
         </section>
       </div>
     </>
   );
-}
+};
 
 export default SearchBar;

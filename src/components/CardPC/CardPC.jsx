@@ -13,7 +13,6 @@ const CardPC = ({ cards }) => {
   useEffect(() => {
     dispatch(allCards());
   }, [dispatch]);
-  console.log(cards[0].rate);
   return (
     <>
     {cards.map((card) => (

@@ -24,6 +24,16 @@ const SearchBar = ({products, setProducts}) => {
         const sorted = [...products].sort((a, b) => b.price - a.price);
         setProducts(sorted);
     }
+
+    const sortAlphabeticallyAscending = () => {
+      const sorted = [...products].sort((a, b) => a.name.localeCompare(b.name));
+      setProducts(sorted);
+    }
+  
+    const sortAlphabeticallyDescending = () => {
+        const sorted = [...products].sort((a, b) => b.name.localeCompare(a.name));
+        setProducts(sorted);
+    }
     
 
 
@@ -77,8 +87,8 @@ const SearchBar = ({products, setProducts}) => {
                 <div>
                   <div className={styles.orderHeader}>Brend</div>
                   <ul className={styles.orderUl}>
-                    <li>Brend adı (A-Z)</li>
-                    <li>Brend adı (Z-A)</li>
+                    <li onClick={sortAlphabeticallyAscending}>Brend adı (A-Z)</li>
+                    <li onClick={sortAlphabeticallyDescending}>Brend adı (Z-A)</li>
                   </ul>
                 </div>
               </div>

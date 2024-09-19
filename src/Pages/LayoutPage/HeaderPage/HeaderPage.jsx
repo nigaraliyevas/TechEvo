@@ -1,5 +1,5 @@
 import styles from "./Header.module.scss";
-import { CiSearch } from "react-icons/ci";
+import { FiSearch } from "react-icons/fi";
 import { SlBasket } from "react-icons/sl";
 import { BiUser } from "react-icons/bi";
 import { GoRocket } from "react-icons/go";
@@ -82,7 +82,7 @@ const HeaderPage = () => {
 
             <div className={styles.navbar_icons}>
               <div className={styles.navbar_icon}>
-                <CiSearch size={24} />
+                <FiSearch size={24} />
 
               </div>
               <div className={styles.navbar_icon} >

@@ -22,8 +22,7 @@ export const cards = [
         price: 2500,
         image: Pc1,
         rating: Rating,
-
-
+        rate:5,
     },
 
     {
@@ -32,7 +31,7 @@ export const cards = [
         price: 2500,
         image: Pc2,
         rating: Rating,
-
+        rate:3,
 
     },
 
@@ -42,7 +41,7 @@ export const cards = [
         price: 2500,
         image: Pc3,
         rating: Rating,
-
+        rate:4.5,
 
     },
 
@@ -52,7 +51,7 @@ export const cards = [
         price: 100,
         image: Ms1,
         rating: Rating,
-
+        rate:2.5,
     },
 
     {
@@ -61,7 +60,7 @@ export const cards = [
         price: 90,
         image: Ms2,
         rating: Rating,
-
+        rate:1,
     },
 
     {
@@ -70,6 +69,7 @@ export const cards = [
         price: 110,
         image: Ms3,
         rating: Rating,
+        rate:3.5,
 
     },
 
@@ -79,6 +79,7 @@ export const cards = [
         price: 300,
         image: Kb1,
         rating: Rating,
+        rate:5,
 
     },
 
@@ -88,7 +89,7 @@ export const cards = [
         price: 250,
         image: Kb2,
         rating: Rating,
-
+        rate:0,
     },
 
     {
@@ -97,7 +98,7 @@ export const cards = [
         price: 350,
         image: Kb3,
         rating: Rating,
-
+        rate:0.5,
     }
 ]
 

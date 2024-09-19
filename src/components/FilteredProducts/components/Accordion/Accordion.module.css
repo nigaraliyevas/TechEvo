@@ -1,30 +1,30 @@
 .accordion {
-    border: 1px solid #222527;
-    border-radius: 5px;
-    width: 300px;
-    margin: 20px auto;
-  }
+  color: #cccccc;
+ 
+
+}
+
+.accordion_item {
+  border-bottom: 1px solid #222527;
   
-  .accordion_item {
-    border-bottom: 1px solid #222527;
-  }
-  
-  .accordion_title {
-    display: flex;
-    justify-content: space-between; 
-    align-items: center;
-    padding: 15px;
+}
+
+.accordion_title {
+  display: flex;
+  justify-content: space-between;
+  padding: 24px 24px 20px 50px;
     cursor: pointer;
+  background-color: #090c11;
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.accordion_content {
+  padding: 24px 24px 20px 50px;
     background-color: #090c11;
-    border-radius: 5px;
-    font-weight: bold;
-  }
-  
-  .accordion_content {
-    padding: 15px;
-    background-color: #090c11;
-  }
-  
-  .icon {
-    margin-left: 10px; 
-  }
+}
+
+.icon {
+  margin-left: 10px;
+  font-size: 17px;
+}

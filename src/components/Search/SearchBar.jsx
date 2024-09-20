@@ -7,7 +7,7 @@ import DropUpIcon from "../../../public/assets/images/Search/dropupIcon.svg";
 const SearchBar = ({ products, setProducts }) => {
   const [showOrder, setShowOrder] = useState(false);
   const [originalProducts, setOriginalProducts] = useState(products);
-  const [isThereProducts, setIsThereProducts] = useState(true);
+  const [isFound, setIsFound] = useState(true);
 
   const handleOrder = () => {
     setShowOrder(!showOrder);
@@ -49,7 +49,7 @@ const SearchBar = ({ products, setProducts }) => {
 
     if (searchValue === "") {
       setProducts(originalProducts);
-      setIsThereProducts(true);
+      setIsFound(true);
       return;
     }
 
@@ -58,10 +58,11 @@ const SearchBar = ({ products, setProducts }) => {
     );
 
     setProducts(filteredProducts);
-    setIsThereProducts(filteredProducts.length > 0);
+    setIsFound(filteredProducts.length > 0);
 
     if (filteredProducts.length === 0 && searchValue) {
       console.log("Not Found");
+      setIsFound(false);
     }
   };
 

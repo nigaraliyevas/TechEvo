@@ -71,7 +71,7 @@ const SearchBar = ({ products, setProducts }) => {
       <div className={styles.searchBarContainer}>
         <section className={styles.section}>
           <div className={styles.pc}>PC</div>
-          <div className={styles.searchContainer}>
+          <div className={`${styles.searchContainer} ${showOrder && styles.pointerNone}`}>
             <input
               onChange={findProducts}
               className={styles.searchInput}

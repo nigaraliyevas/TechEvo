@@ -6,8 +6,6 @@ import InternCr from "/assets/images/HomePage/Products/InternCr.png";
 import Delivery from "/assets/images/HomePage/Products/Delivery.png";
 import Repair from "/assets/images/HomePage/Products/Repair.png";
 import SecondHand from "/assets/images/HomePage/Products/SecondHand.png";
-
-
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import SliderComponent from "../../components/HomePageSections/HomeSlider/Slider.jsx";
@@ -19,13 +17,6 @@ const HomePage = () => {
         <div className="" style={{ paddingTop: "93px" }}>
           <SliderComponent />
         </div>
-
-        {/* <div className={styles.container_top}>
-                    <div className={styles.mainTitle}>
-                        <h1>Empower Your Digital World</h1>
-                        <p>Find the perfect computer, PC, or laptop for unbeatable performance</p>
-                    </div>
-                </div> */}
       </section>
 
       <section id={styles.specialselected}>

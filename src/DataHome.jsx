@@ -1,9 +1,8 @@
 import Pc1 from '/assets/images/HomePage/Products/Pc1.png'
 import Pc2 from '/assets/images/HomePage/Products/Pc2.png'
 import Pc3 from '/assets/images/HomePage/Products/Pc3.png'
-
 import Rating from '/assets/images/HomePage/Products/rating.png'
-//import Basket from '../public/assets/images/HomePage/Products/basket.png'
+import Basket from '/assets/images/HomePage/Products/Basket.png'
 import Ms1 from '/assets/images/HomePage/Products/Ms1.png'
 import Ms2 from '/assets/images/HomePage/Products/Ms2.png'
 import Ms3 from '/assets/images/HomePage/Products/Ms3.png'
@@ -22,6 +21,7 @@ export const cards = [
         price: 2500,
         image: Pc1,
         rating: Rating,
+        basket: Basket
 
 
     },
@@ -32,6 +32,7 @@ export const cards = [
         price: 2500,
         image: Pc2,
         rating: Rating,
+        basket: Basket
 
 
     },
@@ -42,6 +43,7 @@ export const cards = [
         price: 2500,
         image: Pc3,
         rating: Rating,
+        basket: Basket
 
 
     },
@@ -52,6 +54,7 @@ export const cards = [
         price: 100,
         image: Ms1,
         rating: Rating,
+        basket: Basket
 
     },
 
@@ -61,6 +64,7 @@ export const cards = [
         price: 90,
         image: Ms2,
         rating: Rating,
+        basket: Basket
 
     },
 
@@ -70,6 +74,7 @@ export const cards = [
         price: 110,
         image: Ms3,
         rating: Rating,
+        basket: Basket
 
     },
 
@@ -79,6 +84,7 @@ export const cards = [
         price: 300,
         image: Kb1,
         rating: Rating,
+        basket: Basket
 
     },
 
@@ -88,6 +94,7 @@ export const cards = [
         price: 250,
         image: Kb2,
         rating: Rating,
+        basket: Basket
 
     },
 
@@ -97,6 +104,7 @@ export const cards = [
         price: 350,
         image: Kb3,
         rating: Rating,
+        basket: Basket
 
     },
     {
@@ -105,6 +113,7 @@ export const cards = [
         price: 2500,
         image: Pc1,
         rating: Rating,
+        basket: Basket
 
 
     },
@@ -114,6 +123,7 @@ export const cards = [
         price: 2500,
         image: Pc1,
         rating: Rating,
+        basket: Basket
 
 
     },
@@ -124,6 +134,7 @@ export const cards = [
         price: 2500,
         image: Pc2,
         rating: Rating,
+        basket: Basket
 
 
     },
@@ -134,6 +145,7 @@ export const cards = [
         price: 2500,
         image: Pc3,
         rating: Rating,
+        basket: Basket
 
 
     },
@@ -144,6 +156,7 @@ export const cards = [
         price: 100,
         image: Ms1,
         rating: Rating,
+        basket: Basket
 
     },
 
@@ -153,6 +166,7 @@ export const cards = [
         price: 90,
         image: Ms2,
         rating: Rating,
+        basket: Basket
 
     },
 
@@ -162,6 +176,7 @@ export const cards = [
         price: 110,
         image: Ms3,
         rating: Rating,
+        basket: Basket
 
     },
 
@@ -171,6 +186,7 @@ export const cards = [
         price: 300,
         image: Kb1,
         rating: Rating,
+        basket: Basket
 
     },
 
@@ -180,7 +196,7 @@ export const cards = [
         price: 250,
         image: Kb2,
         rating: Rating,
-
+        basket: Basket
     },
 
     {
@@ -189,6 +205,7 @@ export const cards = [
         price: 350,
         image: Kb3,
         rating: Rating,
+        basket: Basket
 
     },
 
@@ -198,6 +215,7 @@ export const cards = [
         price: 2500,
         image: Pc2,
         rating: Rating,
+        basket: Basket
 
 
     },
@@ -208,6 +226,7 @@ export const cards = [
         price: 2500,
         image: Pc3,
         rating: Rating,
+        basket: Basket
 
 
     },
@@ -218,6 +237,7 @@ export const cards = [
         price: 100,
         image: Ms1,
         rating: Rating,
+        basket: Basket
 
     },
 
@@ -227,6 +247,7 @@ export const cards = [
         price: 90,
         image: Ms2,
         rating: Rating,
+        basket: Basket
 
     },
 
@@ -236,6 +257,7 @@ export const cards = [
         price: 110,
         image: Ms3,
         rating: Rating,
+        basket: Basket
 
     },
 
@@ -245,6 +267,7 @@ export const cards = [
         price: 300,
         image: Kb1,
         rating: Rating,
+        basket: Basket
 
     },
 
@@ -254,6 +277,7 @@ export const cards = [
         price: 250,
         image: Kb2,
         rating: Rating,
+        basket: Basket
 
     },
 
@@ -263,6 +287,7 @@ export const cards = [
         price: 350,
         image: Kb3,
         rating: Rating,
+        basket: Basket
 
     },
     {
@@ -271,6 +296,7 @@ export const cards = [
         price: 300,
         image: Kb1,
         rating: Rating,
+        basket: Basket
 
     },
 
@@ -280,6 +306,7 @@ export const cards = [
         price: 250,
         image: Kb2,
         rating: Rating,
+        basket: Basket
 
     },
 
@@ -289,6 +316,7 @@ export const cards = [
         price: 350,
         image: Kb3,
         rating: Rating,
+        basket: Basket
 
     },
 
@@ -298,6 +326,7 @@ export const cards = [
         price: 2500,
         image: Pc2,
         rating: Rating,
+        basket: Basket
 
 
     },
@@ -307,6 +336,7 @@ export const cards = [
         price: 2500,
         image: Pc3,
         rating: Rating,
+        basket: Basket
 
 
     },
@@ -316,6 +346,7 @@ export const cards = [
         price: 100,
         image: Ms1,
         rating: Rating,
+        basket: Basket
 
     },
 
@@ -325,6 +356,7 @@ export const cards = [
         price: 90,
         image: Ms2,
         rating: Rating,
+        basket: Basket
 
     },
 
@@ -334,6 +366,7 @@ export const cards = [
         price: 110,
         image: Ms3,
         rating: Rating,
+        basket: Basket
 
     },
 
@@ -343,6 +376,7 @@ export const cards = [
         price: 300,
         image: Kb1,
         rating: Rating,
+        basket: Basket
 
     },
 
@@ -352,6 +386,7 @@ export const cards = [
         price: 250,
         image: Kb2,
         rating: Rating,
+        basket: Basket
 
     },
 
@@ -361,6 +396,7 @@ export const cards = [
         price: 350,
         image: Kb3,
         rating: Rating,
+        basket: Basket
 
     },
     {
@@ -369,6 +405,7 @@ export const cards = [
         price: 300,
         image: Kb1,
         rating: Rating,
+        basket: Basket
 
     },
 
@@ -378,6 +415,7 @@ export const cards = [
         price: 250,
         image: Kb2,
         rating: Rating,
+        basket: Basket
 
     },
 
@@ -387,6 +425,7 @@ export const cards = [
         price: 350,
         image: Kb3,
         rating: Rating,
+        basket: Basket
 
     },
 
@@ -396,6 +435,7 @@ export const cards = [
         price: 2500,
         image: Pc2,
         rating: Rating,
+        basket: Basket
 
 
     },
@@ -405,6 +445,7 @@ export const cards = [
         price: 2500,
         image: Pc3,
         rating: Rating,
+        basket: Basket
 
 
     },
@@ -414,6 +455,7 @@ export const cards = [
         price: 100,
         image: Ms1,
         rating: Rating,
+        basket: Basket
 
     },
 
@@ -423,6 +465,7 @@ export const cards = [
         price: 90,
         image: Ms2,
         rating: Rating,
+        basket: Basket
 
     },
 
@@ -432,6 +475,7 @@ export const cards = [
         price: 110,
         image: Ms3,
         rating: Rating,
+        basket: Basket
 
     },
 
@@ -441,6 +485,7 @@ export const cards = [
         price: 300,
         image: Kb1,
         rating: Rating,
+        basket: Basket
 
     },
 
@@ -450,6 +495,7 @@ export const cards = [
         price: 250,
         image: Kb2,
         rating: Rating,
+        basket: Basket
 
     },
 
@@ -459,6 +505,7 @@ export const cards = [
         price: 350,
         image: Kb3,
         rating: Rating,
+        basket: Basket
     },
     {
         id: 50,
@@ -466,6 +513,7 @@ export const cards = [
         price: 300,
         image: Kb1,
         rating: Rating,
+        basket: Basket
 
     },
 
@@ -475,6 +523,7 @@ export const cards = [
         price: 250,
         image: Kb2,
         rating: Rating,
+        basket: Basket
 
     },
 
@@ -484,6 +533,7 @@ export const cards = [
         price: 350,
         image: Kb3,
         rating: Rating,
+        basket: Basket
 
     },
 
@@ -493,6 +543,7 @@ export const cards = [
         price: 2500,
         image: Pc2,
         rating: Rating,
+        basket: Basket
 
 
     },
@@ -502,6 +553,7 @@ export const cards = [
         price: 2500,
         image: Pc3,
         rating: Rating,
+        basket: Basket
 
 
     },
@@ -511,6 +563,7 @@ export const cards = [
         price: 100,
         image: Ms1,
         rating: Rating,
+        basket: Basket
 
     },
 
@@ -520,6 +573,7 @@ export const cards = [
         price: 90,
         image: Ms2,
         rating: Rating,
+        basket: Basket
 
     },
 
@@ -529,6 +583,7 @@ export const cards = [
         price: 110,
         image: Ms3,
         rating: Rating,
+        basket: Basket
 
     },
 
@@ -538,6 +593,7 @@ export const cards = [
         price: 300,
         image: Kb1,
         rating: Rating,
+        basket: Basket
 
     },
 
@@ -547,6 +603,7 @@ export const cards = [
         price: 250,
         image: Kb2,
         rating: Rating,
+        basket: Basket
 
     },
 
@@ -556,6 +613,7 @@ export const cards = [
         price: 350,
         image: Kb3,
         rating: Rating,
+        basket: Basket
 
     },
     {
@@ -564,6 +622,7 @@ export const cards = [
         price: 300,
         image: Kb1,
         rating: Rating,
+        basket: Basket
 
     },
 
@@ -573,6 +632,7 @@ export const cards = [
         price: 250,
         image: Kb2,
         rating: Rating,
+        basket: Basket
 
     },
 
@@ -582,6 +642,7 @@ export const cards = [
         price: 350,
         image: Kb3,
         rating: Rating,
+        basket: Basket
 
     },
 
@@ -591,6 +652,7 @@ export const cards = [
         price: 2500,
         image: Pc2,
         rating: Rating,
+        basket: Basket
 
 
     },
@@ -600,6 +662,7 @@ export const cards = [
         price: 2500,
         image: Pc3,
         rating: Rating,
+        basket: Basket
 
 
     },
@@ -609,6 +672,7 @@ export const cards = [
         price: 100,
         image: Ms1,
         rating: Rating,
+        basket: Basket
 
     },
 
@@ -618,6 +682,7 @@ export const cards = [
         price: 90,
         image: Ms2,
         rating: Rating,
+        basket: Basket
 
     },
 
@@ -627,6 +692,7 @@ export const cards = [
         price: 110,
         image: Ms3,
         rating: Rating,
+        basket: Basket
 
     },
 
@@ -636,6 +702,7 @@ export const cards = [
         price: 300,
         image: Kb1,
         rating: Rating,
+        basket: Basket
 
     },
 
@@ -645,6 +712,7 @@ export const cards = [
         price: 250,
         image: Kb2,
         rating: Rating,
+        basket: Basket
 
     },
 
@@ -654,6 +722,7 @@ export const cards = [
         price: 350,
         image: Kb3,
         rating: Rating,
+        basket: Basket
 
     }
 ]

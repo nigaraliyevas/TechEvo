@@ -1,4 +1,4 @@
-import style from '../pages/HomePage/HomePage.module.scss'
+import style from '../../../Pages/HomePage/HomePage.module.scss'
 import { PiHeartBold } from "react-icons/pi";
 
 function Card({ card }) {

@@ -148,15 +148,15 @@
     align-items: center;
     padding-bottom: 28px;
 
-    // .basketBg {
-    //     width: 36px;
-    //     height: 28px;
-    //     border: 1px solid transparent;
-    //     background: linear-gradient(125.92deg, #fd3c43 -59.69%, #b622dc 41.4%, #3f27eb 124.93%);
-    //     border-radius: 3px;
-    //     display: flex;
-    //     justify-content: center;
-    //     align-items: center;
+    .basketBg {
+        width: 36px;
+        height: 28px;
+        border: 1px solid transparent;
+        background: linear-gradient(125.92deg, #fd3c43 -59.69%, #b622dc 41.4%, #3f27eb 124.93%);
+        border-radius: 3px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
     img {
       max-width: 100%;
@@ -170,4 +170,5 @@
   right: 3%;
   top: 3%;
   font-size: x-large;
+}
 }

@@ -1,5 +1,6 @@
 import style from "../../../Pages/HomePage/HomePage.module.scss";
 import { PiHeartBold } from "react-icons/pi";
+import Basket from '/assets/images/HomePage/Products/basket.png'
 function Card({ card }) {
     const { name, price, image, rating } = card
     return (
@@ -21,7 +22,7 @@ function Card({ card }) {
                     </div>
                     <div className={style.ratingBasket}>
                         <div> <img src={rating} /></div>
-                        {/* <div className={style.basketBg}><img src={basket} /></div> */}
+                        <div className={style.basketBg}><img src={Basket} /></div>
                     </div>
                 </div>
             </div>

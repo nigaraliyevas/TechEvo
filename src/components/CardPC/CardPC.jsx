@@ -1,27 +1,14 @@
-// src/components/CardPC/CardPC.js
-
-import { allCards } from "../../redux/slices/CardSlice";
 import { PiHeartBold } from "react-icons/pi";
-import { useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import styles from "./CardPC.module.scss";
-import { useDispatch, useSelector } from "react-redux";
-
+import { useSelector } from "react-redux";
 const CardPC = () => {
-  const dispatch = useDispatch();
-  const { filteredProducts } = useSelector(state => state.filter);
-
-  //
+  const { filteredProducts } = useSelector((state) => state.filter);
   const { currentPage, itemsPerPage } = useSelector(state => state.pagination);
-  const indexOfLastItem = currentPage * itemsPerPage; // End of current page
+  const indexOfLastItem = currentPage * itemsPerPage; 
   const indexOfFirstItem = indexOfLastItem - itemsPerPage; //
   const currentItems = filteredProducts.slice(indexOfFirstItem, indexOfLastItem);
-  // end
-
-  useEffect(() => {
-    dispatch(allCards());
-  }, [dispatch]);
 
   return (
     <>

@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import CardPC from "../../components/CardPC/CardPC";
 import styles from "./PCPage.module.scss";
 import FilteredProducts from "../../components/FilteredProducts/FilteredProducts";
+import SearchBar from "../../components/Search/SearchBar";
 import Pagination from "../../components/Pagination/Pagination";
 
 const PCPage = () => {
@@ -11,11 +12,7 @@ const PCPage = () => {
       <div className="container">
         <div className={styles.pc_content}>
           <div className="row mb-4">
-            <div className="search-page col-lg-12 d-flex justify-content-between">
-              <div className="col-lg-4"></div>
-              <div className="col-lg-4"></div>
-              <div className="col-lg-4"></div>
-            </div>
+            <SearchBar />
           </div>
           <div className={`row ${styles.pc__bottom}`}>
             <div className="filter-side col-lg-3">

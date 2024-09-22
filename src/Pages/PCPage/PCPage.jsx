@@ -1,8 +1,10 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import CardPC from "../../components/HomePageSections/CardPC/CardPC";
-import Pagination from "../../components/Pagination/Pagination";
+// import CardPC from "../../components/HomePageSections/CardPC/CardPC";
+import CardPC from "../../components/CardPC/CardPC";
 import styles from "./PCPage.module.scss";
-
+import FilteredProducts from "../../components/FilteredProducts/FilteredProducts";
+import SearchBar from "../../components/Search/SearchBar";
+import Pagination from "../../components/Pagination/Pagination";
 
 const PCPage = () => {
   return (
@@ -10,29 +12,24 @@ const PCPage = () => {
       <div className="container">
         <div className={styles.pc_content}>
           <div className="row mb-4">
-            <div className="search-page col-lg-12 d-flex justify-content-between">
-              <div className="col-lg-4"></div>
-              <div className="col-lg-4"></div>
-              <div className="col-lg-4"></div>
-            </div>
+            <SearchBar />
           </div>
-          <div className="row mb-4">
-            <div className="filter-side col-lg-3"></div>
+          <div className={`row ${styles.pc__bottom}`}>
+            <div className="filter-side col-lg-3">
+              <FilteredProducts />
+            </div>
             <div className="product-side col-lg-9">
               <div className={styles.pc_section}>
                 <div className="d-flex flex-wrap gap-2">
                   <CardPC />
                 </div>
               </div>
+              <div className="pagination-side">
+                <Pagination />
+              </div>
             </div>
           </div>
-          <div className="pagination-side"></div>
         </div>
-
-        <div className="pagination-side">
-          <Pagination  />
-        </div>
-
       </div>
     </section>
   );

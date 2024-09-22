@@ -1,12 +1,12 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   currentPage: 1,
-  itemsPerPage: 10,
+  itemsPerPage: 15,
 };
 
-const PaginationSlice = createSlice({
-  name: 'pagination',
+export const PaginationSlice = createSlice({
+  name: "pagination",
   initialState,
   reducers: {
     setPage: (state, action) => {

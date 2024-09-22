@@ -1,18 +1,15 @@
 @import "../../../../public/assets/variables/variables";
 
 * {
+  // border: 1px solid red;
   list-style: none;
   text-decoration: none;
   margin: 0;
   padding: 0;
 }
-// header{
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-// }
+
 .container {
-  max-width: 1300px;
+  max-width: 1414px;
   margin: 0 auto;
 }
 
@@ -22,52 +19,163 @@ header {
   width: 100%;
   z-index: 1111;
   background: $bgColor;
+
   &::after {
     content: "";
     display: block;
     height: 1px;
     background-color: #222527;
   }
+
   .navbar_bg {
     margin-left: auto;
     margin-left: auto;
     width: 100%;
-    padding: 24px 56px;
+    padding: 0px 56px;
   }
+
   .navbar {
     position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
     color: $firstColor;
-    gap: 80px;
+    gap: 100px;
     width: 100% !important;
 
     .navbar_right {
       display: flex;
       align-items: center;
-      gap: 58px;
+      gap: 106px;
     }
 
     .navbar_pages {
       display: flex;
       align-items: center;
-      gap: 46px;
+      gap: 56px;
     }
 
     .navbar_icons {
       display: flex;
+      align-items: center;
       cursor: pointer;
+      color: rgba(204, 204, 204, 1);
       gap: 16px;
+
+      .navbar_users {
+        position: relative;
+        height: 100%;
+
+        .navbar_users_items {
+          position: absolute;
+          height: 0;
+          opacity: 0;
+          overflow: hidden;
+          width: 177px;
+          top: 93px;
+          left: -95px;
+          text-align: start;
+          padding: 0;
+          background: rgba(22, 26, 30, 1);
+          transition: height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+          border-radius: 2px;
+
+          .navbar_users_item {
+            display: flex;
+            align-items: center;
+            font-family: $fontFamily;
+            font-size: 20px;
+            font-weight: 400;
+            line-height: 28px;
+            letter-spacing: 0.02em;
+            text-align: center;
+            padding: 5px 0;
+
+            span {
+              margin: 0px 12px;
+              display: flex;
+              align-items: center;
+            }
+          }
+        }
+
+        &:hover {
+          color: #b622dc;
+
+          .navbar_users_items {
+            height: auto;
+            opacity: 1;
+            padding: 24px 24px 24px 16px;
+            color: rgba(204, 204, 204, 1);
+          }
+        }
+      }
+
+      .navbar_icon {
+        &:hover {
+          color: #b622dc;
+        }
+      }
     }
 
-    .navbar_title {
-      font-family: $fontFamily;
-      font-size: 32px;
-      font-weight: 500;
-      line-height: 28px;
-      text-align: left;
+    .navbar_logo {
+      width: 48px;
+      height: 40.3px;
       cursor: pointer;
+    }
+
+    .navbar_links {
+      height: 96px;
+      min-height: 100%;
+      position: relative;
+      font-family: $fontFamily;
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 28px;
+      letter-spacing: 0.02em;
+      text-align: center;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      list-style: none;
+
+      &:hover {
+        background: linear-gradient(102.09deg, #fd393f 4.1%, #db35e2 55.43%, #4e3dee 94.96%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .link_catagiries {
+        height: 0;
+        top: 97px;
+        opacity: 0;
+        padding: 0;
+        width: 177px;
+        overflow: hidden;
+
+        text-align: start;
+        border-radius: 2px;
+        position: absolute;
+        color: rgba(204, 204, 204, 1);
+        -webkit-text-fill-color: rgba(204, 204, 204, 1);
+        background: rgba(22, 26, 30, 1);
+        transition: height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+
+        ul {
+          gap: 8px;
+          display: flex;
+          flex-direction: column;
+        }
+      }
+
+      &:hover {
+        .link_catagiries {
+          opacity: 1;
+          height: auto;
+          padding: 24px 24px 24px 16px;
+        }
+      }
     }
 
     .navbar_links {
@@ -84,19 +192,14 @@ header {
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 212px;
-      height: 44px;
+      //   width: 212px;
+      //   height: 44px;
       text-align: center;
-      background: $linearGradient;
+      //   background: $linearGradient;
       gap: 10px;
       position: relative;
-      clip-path: polygon(0 0, 100% 0, 85% 100%, 15% 100%);
+      //   clip-path: polygon(0 0, 100% 0, 85% 100%, 15% 100%);
       cursor: pointer;
     }
   }
-}
-.navbar_line {
-  width: 100%;
-  height: 1px;
-  background-color: rgba(34, 37, 39, 1);
 }

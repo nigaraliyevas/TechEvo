@@ -99,7 +99,7 @@ export default function RegisterPage2() {
 
     try {
       const response = await fetch(
-        "https://c82b-5-133-233-247.ngrok-free.app/api/v1/auth/register",
+        "https://9979-5-133-233-247.ngrok-free.app/api/v1/auth/register",
         {
           method: "POST",
           headers: {

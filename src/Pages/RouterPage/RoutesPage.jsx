@@ -7,6 +7,7 @@ import HomePage from "../HomePage/HomePage";
 import PasswordReset from "../PasswordResetPage/PasswordReset";
 import EnterPasswordPage from "../EnterPasswordPage/EnterPasswordPage";
 import PCPage from "../PCPage/PCPage";
+import SearchBar from "../../components/search/SearchBar";
 
 const RoutesPage = () => {
   return (
@@ -20,6 +21,7 @@ const RoutesPage = () => {
           <Route path="/newpassword" element={<PasswordReset />} />
           <Route path="/enterpassword" element={<EnterPasswordPage />} />
           <Route path="/pc" element={<PCPage />} />
+          <Route path="/search" element={<SearchBar />} />
         </Routes>
       </LayoutPages>
     </div>

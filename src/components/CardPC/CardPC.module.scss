@@ -23,7 +23,12 @@
   }
 
 
-  &:hover .borderAnimation span:nth-child(1) {
+  span:not(:nth-child(5)) {
+    position: absolute;
+    display: block;
+  }
+
+  &:hover span:nth-child(1) {
     top: 0;
     left: -100%;
     width: 100%;
@@ -36,14 +41,13 @@
     0% {
       left: -100%;
     }
-
     50%,
     100% {
       left: 100%;
     }
   }
 
-  &:hover .borderAnimation  span:nth-child(2) {
+  &:hover span:nth-child(2) {
     top: -100%;
     right: 0;
     width: 0.125rem;
@@ -57,14 +61,13 @@
     0% {
       top: -100%;
     }
-
     50%,
     100% {
       top: 100%;
     }
   }
 
-  &:hover .borderAnimation  span:nth-child(3) {
+  &:hover span:nth-child(3) {
     bottom: 0;
     right: -100%;
     width: 100%;
@@ -78,14 +81,13 @@
     0% {
       right: -100%;
     }
-
     50%,
     100% {
       right: 100%;
     }
   }
 
-  &:hover .borderAnimation  span:nth-child(4) {
+  &:hover span:nth-child(4) {
     bottom: -100%;
     left: 0;
     width: 0.125rem;
@@ -99,7 +101,6 @@
     0% {
       bottom: -100%;
     }
-
     50%,
     100% {
       bottom: 100%;

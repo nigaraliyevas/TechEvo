@@ -3,7 +3,7 @@ import Pc2 from "/assets/images/HomePage/Products/Pc2.png";
 import Pc3 from "/assets/images/HomePage/Products/Pc3.png";
 
 import Rating from "/assets/images/HomePage/Products/rating.png";
-//import Basket from '../public/assets/images/HomePage/Products/basket.png'
+// import Basket from '/assets/images/HomePage/Products/basket.png'
 import Ms1 from "/assets/images/HomePage/Products/Ms1.png";
 import Ms2 from "/assets/images/HomePage/Products/Ms2.png";
 import Ms3 from "/assets/images/HomePage/Products/Ms3.png";

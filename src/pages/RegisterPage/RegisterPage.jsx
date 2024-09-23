@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import styles from "./RegisterPage.module.scss"
 import RegisterPage2 from "./RegisterPage2";
 import "../../components/css/Button.scss";
-import env from "../../../src/.env";
 // import axios from "axios";
 export default function RegisterPage() {
 
@@ -45,8 +44,7 @@ export default function RegisterPage() {
         try {
             console.log(email);
             
-            const response = await fetch(
-                `${env}/api/v1/auth/store-email`, {
+            const response = await fetch('https://0c5e-5-133-233-247.ngrok-free.app/api/v1/auth/store-email', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

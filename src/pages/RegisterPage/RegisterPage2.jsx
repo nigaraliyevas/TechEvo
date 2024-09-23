@@ -4,6 +4,7 @@ import passwordIcon from "../../../public/assets/images/Register/PasswordIcon.sv
 import passwordIcon2 from "../../../public/assets/images/Register/PasswordIcon2.svg";
 import { useNavigate } from "react-router-dom";
 import "../../components/css/Button.scss";
+import env from "../../../src/.env";
 
 export default function RegisterPage2() {
   const navigate = useNavigate();
@@ -99,7 +100,7 @@ export default function RegisterPage2() {
 
     try {
       const response = await fetch(
-        "https://9979-5-133-233-247.ngrok-free.app/api/v1/auth/register",
+        `${env}/api/v1/auth/register`,
         {
           method: "POST",
           headers: {

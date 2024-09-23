@@ -92,13 +92,17 @@ const HeaderPage = () => {
                     <span>
                       <LiaUserPlusSolid size={24} />
                     </span>
-                    Qeydiyyat
+                    <Link style={{ color: "rgb(204, 204, 204)" }} className="text-decoration-none " to="/register">
+                      Qeydiyyat
+                    </Link>
                   </div>
                   <div className={styles.navbar_users_item}>
                     <span>
                       <PiSignInFill size={24} />
                     </span>
-                    Daxil ol
+                    <Link style={{ color: "rgb(204, 204, 204)" }} className="text-decoration-none" to="/login">
+                      Daxil ol
+                    </Link>
                   </div>
                   <div className={styles.navbar_users_item}>
                     <span>

@@ -1,7 +1,7 @@
 import React from 'react'
 import Card from '../../HomePageSections/Card/Card'
 import { cards } from '../../../../src/DataHome'
-import styles from '../../../Pages/HomePage/HomePage.module.scss'
+import styles from "../../../Pages/HomePage/HomePage.module.scss";
 
 const MsSection = () => {
     return (
@@ -17,4 +17,4 @@ const MsSection = () => {
     )
 }
 
-export default MsSection
+export default MsSection 

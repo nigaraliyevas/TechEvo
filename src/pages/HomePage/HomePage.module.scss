@@ -129,6 +129,33 @@
     width: 100%;
     gap: 20px;
   }
+
+  .swiperSlide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+  }
+  
+  .swiperNav {
+
+    color: purple !important;
+
+  }
+  
+  .swiper-button-next {
+    right: -60px;
+  }
+  
+  .swiper-button-prev {
+    left: -60px;
+  }
+  
+  .swiper-button-next:hover,
+  .swiper-button-prev:hover {
+    background-color: rgba(235, 8, 8, 0.3);
+  }
+
   
   .card {
     padding: 12px !important;

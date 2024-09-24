@@ -1,6 +1,7 @@
 import styles from "./ProductPage.module.scss";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Description from "../../components/Description/Description";
 
 const ProductPage = () => {
   return (
@@ -10,7 +11,7 @@ const ProductPage = () => {
           <div className={styles.productDetail}>
             <Row>
               <Col xs={6}>Left side</Col>
-              <Col>Right side</Col>
+              <Col><Description/></Col>
             </Row>
           </div>
 

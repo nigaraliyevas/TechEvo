@@ -1,6 +1,7 @@
 import styles from "./ProductPage.module.scss";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Features from "../../components/DetailFeatures/Features";
 
 const ProductPage = () => {
   return (
@@ -17,7 +18,7 @@ const ProductPage = () => {
           <div className={styles.productDescription}>
             <Row>
               <Col>
-              Xüsusiyyətlər
+                <Features />
               </Col>
             </Row>
           </div>

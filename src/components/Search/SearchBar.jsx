@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { filterProductsByName, resetProducts, sortProductsByPriceAscending, sortProductsByPriceDescending, sortProductsByNameAscending, sortProductsByNameDescending, sortProductsByRatingAscending, sortProductsByRatingDescending } from "../../redux/slices/filterSlice"; 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./SearchBar.module.scss";
 import SearchIcon from "../../../public/assets/images/Search/search.svg"; // Make sure the asset path is correct
 import DropDownIcon from "../../../public/assets/images/Search/dropdownIcon.svg";
@@ -10,7 +10,25 @@ const SearchBar = () => {
   const dispatch = useDispatch();
   const [showOrder, setShowOrder] = useState(false);
 
-  const handleOrder = () => {
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (showOrder) {
+        setShowOrder(false);
+      }
+    };
+
+    if (showOrder) {
+      document.addEventListener("click", handleClickOutside);
+    }
+
+    // Cleanup the event listener when component unmounts or showOrder changes
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, [showOrder]);
+
+  const handleOrder = (e) => {
+    e.stopPropagation(); // Prevent closing when clicking on the order menu itself
     setShowOrder(!showOrder);
   };
 

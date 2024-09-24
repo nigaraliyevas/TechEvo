@@ -36,4 +36,25 @@
 .input-group ::placeholder {
   color: #999999;
   font-size: 16px;
+}
+
+@media (max-width: 393px) {
+  .password-reset__input {
+    padding: 10px 8px !important;
+    font-size: 16px;
+    max-width: 300px;
+  }
+  .input-label {
+    font-size: 14px !important;
+  }
+  .password-reset-box form h2 {
+    font-size: 28px !important;
+  }
+  .password-reset-container .password-reset-box p {
+    font-size: 14px !important;
+    margin-bottom: 26px !important;
+  }
+  .password-reset-box {
+    padding: 48px 32px !important;
+  }
 }/*# sourceMappingURL=Input.css.map */

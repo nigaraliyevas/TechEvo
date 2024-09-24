@@ -8,6 +8,11 @@
   padding: 0;
 }
 
+ul {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
 .container {
   max-width: 1414px;
   margin: 0 auto;
@@ -147,10 +152,10 @@ header {
       }
 
       .link_catagiries {
-        height: 0;
         top: 97px;
+        height: 0;
         opacity: 0;
-        padding: 0;
+        padding: 24px 24px 24px 16px;
         width: 177px;
         overflow: hidden;
 
@@ -173,7 +178,7 @@ header {
         .link_catagiries {
           opacity: 1;
           height: auto;
-          padding: 24px 24px 24px 16px;
+
         }
       }
     }
@@ -192,8 +197,8 @@ header {
       display: flex;
       align-items: center;
       justify-content: center;
-      //   width: 212px;
-      //   height: 44px;
+      // width: 212px;
+      // height: 44px;
       text-align: center;
       //   background: $linearGradient;
       gap: 10px;

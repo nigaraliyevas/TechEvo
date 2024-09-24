@@ -27,7 +27,7 @@ const HeaderPage = () => {
                 style={{ padding: "0px 20px" }}
                 className={styles.navbar_links}
               >
-                Pc 
+                PC 
                 <div className={styles.link_catagiries}>
                   <div>
                     <ul>
@@ -44,18 +44,40 @@ const HeaderPage = () => {
                         <span>•</span> Ev üçün
                       </li>
                       <li>
-                        <span>•</span> Hamısı
+                        <span>•</span> İkisi biribdə
                       </li>
                     </ul>
                   </div>
                 </div>
               </li>
-              <li className={styles.navbar_links}>Laptop</li>
+              <li className={styles.navbar_links}>Laptop
+              <div className={styles.link_catagiries}>
+                  <div>
+                    <ul>
+                      <li>
+                        <span>•</span> Oyun üçün
+                      </li>
+                      <li>
+                        <span>•</span> Dizayn üçün
+                      </li>
+                      <li>
+                        <span>•</span> Ofis üçün
+                      </li>
+                      <li>
+                        <span>•</span> Ev üçün
+                      </li>
+                      <li>
+                        <span>•</span> Hamnısı birində
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </li>
               <li className={styles.navbar_links}>
                 Aksesuarlar
                 <div className={styles.link_catagiries}>
                   <div>
-                    <ul>
+                    <ul >
                       <li>
                         <span>•</span> Aksesuarlar
                       </li>

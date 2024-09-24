@@ -1,12 +1,12 @@
 import style from "./Footer.module.scss";
 import { FaInstagram, FaTwitter, FaFacebook } from "react-icons/fa";
 import { FiPhone } from "react-icons/fi";
-
+import Logo from "../../../../public/assets/images/HeaderPage/tech-evo-logo 1.png"
 const FooterPage = () => {
   return (
     <footer className={`${style.container} ${style.footer}`}>
       <div className={style.footer_top}>
-        <div className={style.footer_title}>TechEvo</div>
+      <img className={style.logo} src={Logo} alt="logo" />
         <div className={style.footer_icons}>
           <span className={style.footer_icon}>
             <FaInstagram size={24}/>
@@ -22,7 +22,7 @@ const FooterPage = () => {
       <p className={style.footer_text}>
         Design amazing digital experiences that create more happy in the world.
       </p>
-      <ul className={style.footer_links}>
+      <ul className={style.footer_links}  style={{padding:"0"}}>
         <li>Haqqımızda</li>
         <li>Şərtlər və Qaydalar</li>
         <li>Ödəniş</li>

@@ -2,6 +2,7 @@
 
 body {
   overflow-x: hidden;
+  padding: 0;
 }
 
 .container {
@@ -21,13 +22,10 @@ body {
     align-items: center;
     justify-content: space-between;
 
-    .footer_title {
-      font-family: $fontFamily;
-      color: $firstColor;
-      font-size: 32px;
-      font-weight: 500;
-      line-height: 28px;
-      text-align: left;
+    .logo {
+      width: 48px;
+      height: 40.3px;
+      cursor: pointer;
     }
     .footer_icons{
       display: flex;

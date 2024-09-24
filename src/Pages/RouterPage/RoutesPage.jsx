@@ -8,6 +8,7 @@ import PasswordReset from "../PasswordResetPage/PasswordReset";
 import EnterPasswordPage from "../EnterPasswordPage/EnterPasswordPage";
 import PCPage from "../PCPage/PCPage";
 import SearchBar from "../../components/search/SearchBar";
+import Features from "../../components/DetailFeatures/Features";
 
 const RoutesPage = () => {
   return (
@@ -22,6 +23,7 @@ const RoutesPage = () => {
           <Route path="/enterpassword" element={<EnterPasswordPage />} />
           <Route path="/pc" element={<PCPage />} />
           <Route path="/search" element={<SearchBar />} />
+          <Route path="/detail" element={<Features />} />
         </Routes>
       </LayoutPages>
     </div>

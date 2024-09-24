@@ -4,9 +4,20 @@
   padding: 0;
   text-align: center;
   font-size: 24px;
-  margin: 0 5px;
+  margin-right: 5px;
 }
 .otp-input::-webkit-outer-spin-button, .otp-input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+@media (max-width: 393px) {
+  .otp-input {
+    width: 64px !important;
+    height: 64px !important;
+    margin-right: 2px !important;
+  }
+  .password-reset-box {
+    padding: 48px 32px !important;
+  }
 }/*# sourceMappingURL=OtpInput.css.map */

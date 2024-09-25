@@ -2,14 +2,14 @@ import style from "./Footer.module.scss";
 import { FaInstagram, FaTwitter, FaFacebook } from "react-icons/fa";
 import { FiPhone } from "react-icons/fi";
 import { Link } from "react-router-dom";
-
+import logo from "../../../../public/assets/images/HeaderPage/tech-evo-logo 1.png";
 const FooterPage = () => {
   return (
     <footer className={`${style.container} ${style.footer}`}>
       <div className={style.footer_top}>
         <div className={style.footer_title}>
           <Link className="text-white text-decoration-none" to="/">
-            TechEvo
+            <img src={logo} alt="" />
           </Link>
         </div>
         <div className={style.footer_icons}>

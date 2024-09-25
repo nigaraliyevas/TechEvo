@@ -8,7 +8,7 @@ import { PiSignInFill } from "react-icons/pi";
 import { IoSettingsOutline } from "react-icons/io5";
 import { IoMdMenu } from "react-icons/io";
 import { Link, useNavigate } from "react-router-dom";
-import navBarLogo from "../../../../public/assets/images/HeaderPage/tech-evo-logo 1.png";
+import logo from "../../../../public/assets/images/HeaderPage/tech-evo-logo 1.png";
 
 const HeaderPage = () => {
   const navigate = useNavigate();
@@ -19,13 +19,13 @@ const HeaderPage = () => {
         <nav className={styles.navbar}>
           <div className={styles.navbar_logo}>
             <Link to="/">
-              <img src={navBarLogo} alt="navBarLogo" />
+              <img src={logo} alt="navBarLogo" />
             </Link>
           </div>
           <div className={styles.navbar_right}>
             <ul className={styles.navbar_pages}>
               <Link to={"/pc"} style={{ padding: "0px 20px" }} className={`${styles.navbar_links}  text-decoration-none text-white`}>
-                Pc
+                PC
                 <div className={styles.link_catagiries}>
                   <div>
                     <ul>
@@ -42,13 +42,35 @@ const HeaderPage = () => {
                         <span>•</span> Ev üçün
                       </li>
                       <li>
-                        <span>•</span> Hamısı
+                        <span>•</span> İkisi birində
                       </li>
                     </ul>
                   </div>
                 </div>
               </Link>
-              <li className={styles.navbar_links}>Laptop</li>
+              <li className={styles.navbar_links}>Laptop
+              <div className={styles.link_catagiries}>
+                  <div>
+                    <ul>
+                      <li>
+                        <span>•</span> Oyun üçün
+                      </li>
+                      <li>
+                        <span>•</span> Dizayn üçün
+                      </li>
+                      <li>
+                        <span>•</span> Ofis üçün
+                      </li>
+                      <li>
+                        <span>•</span> Ev üçün
+                      </li>
+                      <li>
+                        <span>•</span> Hamısı birində
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </li>
               <li className={styles.navbar_links}>
                 Aksesuarlar
                 <div className={styles.link_catagiries}>

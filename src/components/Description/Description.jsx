@@ -1,15 +1,17 @@
 import React from 'react'
 import style from './Description.module.scss'
-import Birkart from '../../../public/assets/images/Description/birKart.png'
-import ShieldTick from '../../../public/assets/images/Description/shieldTick.png'
-import Box from '../../../public/assets/images/Description/box.png'
+import Birkart from '../../../public/assets/images/Description/birbank.png'
+import { RiShieldCheckLine } from "react-icons/ri";
+import { LuBox } from "react-icons/lu";
+import { Rating } from '@mui/material';
 
 const Description = () => {
     return (
         <div className={style.productCard}>
             <h1 className={style.productTitle}>Apple MacBook Pro M3 (MRW63RU)</h1>
             <div className={style.rating}>
-                <span className={style.stars}>⭐⭐⭐⭐⭐</span>
+                {/* <span className={style.stars}>⭐⭐⭐⭐⭐</span> */}
+                <Rating name="read-only" precision={0.5} value={4.5} readOnly />
                 <span className={style.ratingNumber}>4.5</span>
             </div>
             <p className={style.price}>1500.00 AZN</p>
@@ -26,21 +28,24 @@ const Description = () => {
             <div><p>Birkart taksitlə əldə et</p></div>
             <div className={style.footer}>
                 <div className={style.option}>
+                    <div className={style.optionImg}>
                     <img src={Birkart} alt="Birkart" />
+                    </div>
+                    
                     <span>12 ay 150 Azn</span>
-                    <div className={style.verticalLine}></div>
                 </div>
+                    <div className={style.verticalLine}></div>
                 <div className={style.option}>
                     <span>Daxili kredit üçün </span><a href="#">müraciət et</a>
-                    <div className={style.verticalLine}></div>
                 </div>
+                    <div className={style.verticalLine}></div>
 
                 <div className={style.option}>
-                    <img src={ShieldTick} ></img><span>1 il zəmanət</span>
-                    <div className={style.verticalLine}></div>
+                    <RiShieldCheckLine  size={22}/><span>1 il zəmanət</span>
                 </div>
+                    <div className={style.verticalLine}></div>
                 <div className={style.option}>
-                    <img src={Box} ></img><span>Çatdırılma</span>
+                    <LuBox  size={22}/><span>Çatdırılma</span>
                 </div>
             </div>
         </div>

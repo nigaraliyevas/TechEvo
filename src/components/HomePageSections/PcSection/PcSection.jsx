@@ -9,6 +9,8 @@ import 'swiper/css';
 import 'swiper/css/autoplay';
 import 'swiper/css/controller';
 import 'swiper/css/navigation';
+// import SwiperCore, { EffectFade } from "swiper";
+// SwiperCore.use([EffectFade]);
 
 const PcSection = ({ count = null }) => {
   // Access the `cards` from the Redux store using useSelector
@@ -21,6 +23,7 @@ const PcSection = ({ count = null }) => {
     <div>
       <div className={styles.cardMain}>
         <Swiper
+        // effect='fade'
         className={styles.swiper}
           spaceBetween={30}
           slidesPerView={3}

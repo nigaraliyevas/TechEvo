@@ -19,9 +19,7 @@ const Description = () => {
             <div className={style.line}></div>
 
             <p className={style.description}>
-                Apple MacBook Air M3 (MRXT3RU) təqdim edir həm keyfiyyəti, həm də mobilliyi.
-                Bu yüngül və incə apple notebook, gücü və effektivliyi hər yerdə sizinlə aparır.
-                M3 çipinə malik olan bu apple laptop, yüksək sürət və işləmə gücü təyin edir...
+            Apple MacBook Air M3 (MRXT3RU) təqdim edir həm keyfiyyət, həm də mobiliteyi. Bu yüngül və incə apple notebook, gücü və effektivliyi hər yerdə sizinlə aparır. M3 çipinə malik olan bu apple laptop, yüksək sürət və işləmə gücü təmin edir, iş və əyləncə üçün ideal bir cihazdır. Parlaq Retina ekranı və uzunömürlü batareyası ilə, Apple MacBook Air, gözlənilən təcrübədən daha çoxunu verir. Apple macbook qiymeti də, təklif etdiyi üstün xüsusiyyətlərə nəzərən münasibdir.
             </p>
 
             <div className={style.line}></div>

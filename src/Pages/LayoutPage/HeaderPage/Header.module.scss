@@ -7,9 +7,12 @@
   margin: 0;
   padding: 0;
 }
-
+ul{
+  margin-bottom: 0 !important;
+  padding-left: 0 !important;
+}
 .container {
-  max-width: 1414px;
+  max-width: 1440px;
   margin: 0 auto;
 }
 
@@ -31,7 +34,7 @@ header {
     margin-left: auto;
     margin-left: auto;
     width: 100%;
-    padding: 0px 56px;
+    padding: 0px 165px;
   }
 
   .navbar {
@@ -46,13 +49,13 @@ header {
     .navbar_right {
       display: flex;
       align-items: center;
-      gap: 106px;
+      gap: 51px;
     }
 
     .navbar_pages {
       display: flex;
       align-items: center;
-      gap: 56px;
+      gap: 36px;
     }
 
     .navbar_icons {
@@ -60,7 +63,7 @@ header {
       align-items: center;
       cursor: pointer;
       color: rgba(204, 204, 204, 1);
-      gap: 16px;
+      gap: 24px;
 
       .navbar_users {
         position: relative;
@@ -180,7 +183,7 @@ header {
 
     .navbar_links {
       font-family: $fontFamily;
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 400;
       line-height: 28px;
       letter-spacing: 0.02em;
@@ -192,7 +195,7 @@ header {
       display: flex;
       align-items: center;
       justify-content: center;
-      //   width: 212px;
+        width: 160px;
       //   height: 44px;
       text-align: center;
       //   background: $linearGradient;

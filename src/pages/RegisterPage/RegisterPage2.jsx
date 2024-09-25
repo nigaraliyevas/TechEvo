@@ -99,7 +99,7 @@ export default function RegisterPage2() {
 
     try {
       const response = await fetch(
-        "https://0c5e-5-133-233-247.ngrok-free.app/api/v1/auth/register",
+        "https://ff82f4df-f72b-4dec-84ca-487132aff620.mock.pstmn.io/api/v1/auth/register",
         {
           method: "POST",
           headers: {

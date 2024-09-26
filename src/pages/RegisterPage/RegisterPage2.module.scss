@@ -1,8 +1,8 @@
 .innerCont {
-  padding: 56px 50px;
+  padding: 64px 91.5px;
   border-radius: 2px;
   background: #161a1e;
-  max-width: 480px;
+  max-width: 540px;
   margin: 0 auto;
   margin-bottom: 0;
 }
@@ -14,7 +14,7 @@
   line-height: 40px;
   letter-spacing: 2%;
   text-align: center;
-  margin-bottom: 4px;
+  margin-bottom: 32px;
 }
 
 .infoText {
@@ -51,12 +51,12 @@
     width: 100%;
     border: none;
     background: transparent;
-    color: #999999;
+    color: white;
     font-weight: 400;
     font-size: 16px;
     line-height: 20px;
     outline: none;
-    margin-top: 0;
+    // margin-top: 0;
     height: 100%;
   }
 
@@ -79,6 +79,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    vertical-align: baseline!important;
   }
 }
 .agreementBox {
@@ -93,6 +94,11 @@
   width: 20px;
   height: 20px;
   position: relative;
+  
+  span {
+    cursor: pointer;
+    z-index: -1;
+  }
 }
 .checkBoxInput {
   width: 100%;
@@ -102,6 +108,7 @@
   cursor: pointer;
   top: 0;
   left: 0;
+  z-index: 1;
 }
 .customCheckmark {
   width: 100%;
@@ -111,6 +118,8 @@
   display: inline-block;
   border-radius: 4px;
   transition: background-color 0.1s;
+  z-index: 0;
+  pointer-events: none;
 }
 .checkBoxInput:checked + .customCheckmark {
   background-color: #00a56b;
@@ -127,7 +136,9 @@
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
 }
-
+.termsText {
+  cursor: pointer;
+}
 
 .errorMessage {
   color: #db3549;

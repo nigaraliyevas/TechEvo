@@ -4,10 +4,12 @@ import passwordIcon from "../../../public/assets/images/Register/PasswordIcon.sv
 import passwordIcon2 from "../../../public/assets/images/Register/PasswordIcon2.svg";
 import { useNavigate } from "react-router-dom";
 import "../../components/css/Button.scss";
+import UserAgreement from "../../components/TermsBox/UserAgreement";
 
 export default function RegisterPage2() {
   const navigate = useNavigate();
   const [isChecked, setIsChecked] = useState(false);
+  const [showTerms, setShowTerms] = useState(false);
 
   const [errors, setErrors] = useState({
     firstName: "",
@@ -140,8 +142,13 @@ export default function RegisterPage2() {
     setShowRepeatedPassword(!showRepeatedPassword);
   };
 
+  const handleTerms = () => {
+    setShowTerms(true);
+  }
+
   return (
-    <div className={styles.innerCont}>
+    <>
+      <div className={styles.innerCont}>
       <div className={styles.topText}>Qeydiyyat</div>
       <div className={styles.infoText}>
         Daxil olmaq üçün aşağıdakı xanaları doldurun.
@@ -250,7 +257,11 @@ export default function RegisterPage2() {
             />
             <span className={styles.customCheckmark}></span>
           </div>
-          <div>İstifadəçi şərtləri ilə razıyam</div>
+          <div
+            className={styles.termsText}
+            onClick={handleTerms}>
+            İstifadəçi şərtləri ilə razıyam
+          </div>
         </div>
         {errors.terms && <p className={styles.errorMessage}>{errors.terms}</p>}
 
@@ -260,5 +271,7 @@ export default function RegisterPage2() {
         </button>
       </form>
     </div>
+    {/* {setShowTerms ? <UserAgreement /> : null}  */}
+    </>
   );
 }

@@ -71,7 +71,7 @@
     justify-content: center;
     background-color: #090d11;
     margin: 0 auto;
-    padding: 0 15px;
+    padding: 0 160px;
   }
   
   .container_top {
@@ -141,16 +141,18 @@
   .swiperNav {
 
     color: purple !important;
+    position: absolute!important;
+  //   right: -100px;
 
   }
   
-  .swiper-button-next {
-    right: -60px;
-  }
+  // .swiper-button-next {
+  //   right: -100px;
+  // }
   
-  .swiper-button-prev {
-    left: -60px;
-  }
+  // .swiper-button-prev {
+  //   left: -60px;
+  // }
   
   .swiper-button-next:hover,
   .swiper-button-prev:hover {
@@ -172,7 +174,7 @@
       linear-gradient(to top left, #0b0b4b, #49146e);
     border-radius: 5px;
     box-sizing: border-box;
-    min-width: 400px;
+    max-width: 350px;
     background-clip: border-box;
     position: relative;
     display: flex;
@@ -328,7 +330,7 @@
     color: white;
     position: absolute;
     right: 3%;
-    top: 3%;
+    top: 0%;
     font-size: x-large;
   }
   

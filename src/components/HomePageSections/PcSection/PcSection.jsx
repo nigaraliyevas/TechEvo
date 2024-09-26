@@ -23,7 +23,7 @@ const PcSection = ({ count = null }) => {
     <div>
       <div className={styles.cardMain}>
         <Swiper
-        // effect='fade'
+        effect='fade'
         className={styles.swiper}
           spaceBetween={30}
           slidesPerView={3}

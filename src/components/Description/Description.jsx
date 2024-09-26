@@ -4,6 +4,7 @@ import Birkart from '../../../public/assets/images/Description/birbank.png'
 import { RiShieldCheckLine } from "react-icons/ri";
 import { LuBox } from "react-icons/lu";
 import { Rating } from '@mui/material';
+/*jhgjhgjhgj*/
 
 const Description = () => {
     return (

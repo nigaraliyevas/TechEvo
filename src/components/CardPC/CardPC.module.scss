@@ -5,7 +5,7 @@
   background: radial-gradient(circle at 100% 100%, #000000 0, #000000 2px, transparent 2px) 0% 0% / 3px 3px no-repeat, radial-gradient(circle at 0 100%, #000000 0, #000000 2px, transparent 2px) 100% 0% / 3px 3px no-repeat, radial-gradient(circle at 100% 0, #000000 0, #000000 2px, transparent 2px) 0% 100% / 3px 3px no-repeat, radial-gradient(circle at 0 0, #000000 0, #000000 2px, transparent 2px) 100% 100% / 3px 3px no-repeat, linear-gradient(#000000, #000000) 50% 50% / calc(100% - 1px) calc(100% - 6px) no-repeat, linear-gradient(#000000, #000000) 50% 50% / calc(100% - 6px) calc(100% - 1px) no-repeat, linear-gradient(to top left, #0b0b4b, #49146e);
   border-radius: 5px;
   box-sizing: border-box;
-  max-width: 336px;
+  max-width: 255px;
   background-clip: border-box;
   position: relative;
   display: flex;
@@ -132,7 +132,7 @@
     height: 56px;
     color: white;
     font-weight: 500;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 28px;
   }
 
@@ -145,6 +145,7 @@
     justify-content: space-between;
     align-items: center;
     padding-bottom: 28px;
+    font-size: 12px;
 
     .basketBg {
         width: 36px;
@@ -166,7 +167,7 @@
   color: white;
   position: absolute;
   right: 3%;
-  top: 3%;
+  top: 0%;
   font-size: x-large;
 }
 }

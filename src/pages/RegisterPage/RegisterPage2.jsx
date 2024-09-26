@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from './RegisterPage2.module.scss';
 import passwordIcon from "../../../public/assets/images/Register/PasswordIcon.svg";
 import passwordIcon2 from "../../../public/assets/images/Register/PasswordIcon2.svg";
@@ -29,6 +29,28 @@ export default function RegisterPage2() {
 
   const [showPassword, setShowPassword] = useState(false);
   const [showRepeatedPassword, setShowRepeatedPassword] = useState(false);
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (showTerms) {
+        setShowTerms(false);
+      }
+    };
+
+    if (showTerms) {
+      document.addEventListener("click", handleClickOutside);
+    }
+
+    // Cleanup the event listener when component unmounts or showTerms changes
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, [showTerms]);
+
+  const handleTerms = (e) => {
+    e.stopPropagation(); // Prevent closing when clicking on the terms menu itself
+    setShowTerms(!showTerms);
+  };
 
   const handleChangeChecked = (event) => {
     const isChecked = event.target.checked;
@@ -142,9 +164,9 @@ export default function RegisterPage2() {
     setShowRepeatedPassword(!showRepeatedPassword);
   };
 
-  const handleTerms = () => {
-    setShowTerms(true);
-  }
+  // const handleTerms = () => {
+  //   setShowTerms(true);
+  // }
 
   return (
     <>
@@ -154,8 +176,8 @@ export default function RegisterPage2() {
         Daxil olmaq üçün aşağıdakı xanaları doldurun.
       </div>
       <form onSubmit={handleSubmit}>
-        {/* First Name Field */}
         <div className={styles.register2Container}>
+          {/* First Name Field */}
           <div>
             <div className={styles.subHeader}>Ad</div>
             <div className={styles.inputContainer}>
@@ -263,7 +285,7 @@ export default function RegisterPage2() {
             İstifadəçi şərtləri ilə razıyam
           </div>
         </div>
-        {errors.terms && <p className={styles.errorMessage}>{errors.terms}</p>}
+        {errors.acceptTerms && <p className={styles.errorMessage}>{errors.acceptTerms}</p>}
 
         {/* Submit Button */}
         <button type="submit" className={`${styles.btnResponsive} Btn`}>
@@ -271,7 +293,7 @@ export default function RegisterPage2() {
         </button>
       </form>
     </div>
-    {/* {setShowTerms ? <UserAgreement /> : null}  */}
+    {showTerms ? <UserAgreement /> : null} 
     </>
   );
 }

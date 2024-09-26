@@ -254,7 +254,7 @@
     position: absolute;
     opacity: 0;
     cursor: pointer;
-    top: -50%;
+    top: 0;
     left: 0;
   }
   .customCheckmark {
@@ -273,8 +273,8 @@
   .checkBoxInput:checked + .customCheckmark::after {
     content: "";
     position: absolute;
-    top: 2px;
-    left: 6px;
+    top: 3px;
+    left: 7px;
     width: 5px;
     height: 10px;
     border: solid #ffffff;

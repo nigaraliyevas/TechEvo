@@ -1,68 +1,68 @@
-import  { useState, useEffect } from 'react';
-import axios from 'axios';
-import Swal from 'sweetalert2'; // SweetAlert2 daxil edilir
-import { formatDistanceToNow } from 'date-fns'; // 'date-fns' kitabxanası ilə vaxtı formatlayırıq
+import { useState, useEffect } from "react";
+import axios from "axios";
+import Swal from "sweetalert2";
+import { formatDistanceToNow } from "date-fns";
+import styles from "./Reviews.module.scss";
 
 const Reviews = () => {
-  const [reviews, setReviews] = useState([]); // Bütün rəylər
-  const [visibleReviewsCount, setVisibleReviewsCount] = useState(2); // İlk 2 rəy
-  const [newReview, setNewReview] = useState(''); // Yeni rəy inputu
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // İstifadəçi login olubmu?
+  const [reviews, setReviews] = useState([]);
+  const [visibleReviewsCount, setVisibleReviewsCount] = useState(2);
+  const [newReview, setNewReview] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  // API-dən rəyləri çək
   useEffect(() => {
-    axios.get('https://api.example.com/reviews') // API endpoint dəyişəcək
-      .then(response => {
-        setReviews(response.data); // Rəyləri state-ə yüklə
+    axios
+      .get("https://api.example.com/reviews")
+      .then((response) => {
+        setReviews(response.data);
       })
-      .catch(error => {
-        console.error('Rəyləri almaq mümkün olmadı:', error);
+      .catch((error) => {
+        console.error("Rəyləri almaq mümkün olmadı:", error);
       });
 
-    // Burada istifadəçinin login olub olmadığını yoxlayırıq (məsələn, token ilə)
-    const userToken = localStorage.getItem('token'); // Məsələn, localStorage-dən token yoxla
+    const userToken = localStorage.getItem("TechEvoToken");
     if (userToken) {
-      setIsLoggedIn(true); // Əgər token varsa, istifadəçi login olunub
+      setIsLoggedIn(true);
     }
   }, []);
 
-  // Yeni rəy əlavə et
   const handleAddReview = () => {
     if (!isLoggedIn) {
-      // Əgər istifadəçi qeydiyyatdan keçməyibsə SweetAlert ilə xəbərdarlıq göstər
       Swal.fire({
-        title: 'Xəbərdarlıq',
-        text: 'Rəy yazmaq üçün qeydiyyatdan keçməlisiniz!',
-        icon: 'warning',
-        confirmButtonText: 'Qeydiyyata keç'
+        title: "Xəbərdarlıq",
+        text: "Rəy yazmaq üçün qeydiyyatdan keçməlisiniz!",
+        icon: "warning",
+        confirmButtonText: "Qeydiyyata keç",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.href = "/register";
+        }
       });
       return;
     }
 
-    // İstifadəçi qeydiyyatdan keçibsə, rəy əlavə etməyi icra et
     if (newReview.trim()) {
-      axios.post('https://api.example.com/reviews', { review: newReview }) // Rəy POST metodu ilə göndərilir
-        .then(response => {
-          setReviews([response.data, ...reviews]); // Yeni rəy əlavə edilir və rəylər yenilənir
-          setNewReview(''); // Input sıfırlanır
+      axios
+        .post("url", { review: newReview })
+        .then((response) => {
+          setReviews([response.data, ...reviews]);
+          setNewReview("");
         })
-        .catch(error => {
-          console.error('Rəy əlavə etmək mümkün olmadı:', error);
+        .catch((error) => {
+          console.error("Rəy əlavə etmək mümkün olmadı:", error);
         });
     }
   };
 
-  // "Load More" düyməsi ilə əlavə rəyləri göstər
   const handleLoadMore = () => {
-    setVisibleReviewsCount(prevCount => prevCount + 2); // Görünən rəylərin sayını 2 artır
+    setVisibleReviewsCount((prevCount) => prevCount + 2);
   };
 
-  // Rating-i göstərən funksiya (ulduzlar)
   const renderStars = (rating) => {
     const stars = [];
     for (let i = 1; i <= 5; i++) {
       stars.push(
-        <span key={i} style={{ color: i <= rating ? '#ffc107' : '#e4e5e9' }}>
+        <span key={i} className={styles.stars}>
           ★
         </span>
       );
@@ -71,52 +71,53 @@ const Reviews = () => {
   };
 
   return (
-    <div>
-      <h3>Reviews</h3>
+    <div className="container">
+      <div className={styles.totalBox}>
+        <div className={styles.addReview}>
+          <textarea
+            value={newReview}
+            onChange={(e) => setNewReview(e.target.value)}
+            placeholder="Rəyinizi yazın"
+            className={styles.textArea}
+          />
+          <button onClick={handleAddReview} className={styles.addButton}>
+            Rəy yaz
+          </button>
+        </div>
 
-      {/* Rəy əlavə etmə formu */}
-      <div>
-        <textarea
-          value={newReview}
-          onChange={(e) => setNewReview(e.target.value)}
-          placeholder="Rəyinizi yazın"
-        />
-        <button onClick={handleAddReview}>Rəy əlavə et</button>
-      </div>
-
-      {/* Rəylər */}
-      <div>
-        {reviews.slice(0, visibleReviewsCount).map((review, index) => (
-          <div key={index} className="review" style={{ border: '1px solid #ccc', padding: '10px', margin: '10px 0' }}>
-            {/* İstifadəçi haqqında məlumat */}
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-              <img
-                src={review.user.profileImage} // Profil şəkli
-                alt="Profil şəkli"
-                style={{ width: '40px', height: '40px', borderRadius: '50%', marginRight: '10px' }}
-              />
-              <div>
-                <strong>{review.user.name}</strong> {/* İstifadəçi adı */}
-                <div style={{ fontSize: '12px', color: '#777' }}>
-                  {formatDistanceToNow(new Date(review.createdAt), { addSuffix: true })} {/* Rəyin yazılma müddəti */}
+        {/* Rəylər */}
+        <div>
+          {reviews.slice(0, visibleReviewsCount).map((review, index) => (
+            <div key={index} className={styles.review}>
+              <div className={styles.reviewHeader}>
+                <img
+                  src={review.user.profileImage}
+                  alt="Profil şəkli"
+                  className={styles.profileImage}
+                />
+                <div className={styles.userInfo}>
+                  <strong className={styles.userName}>
+                    {review.user.name}
+                  </strong>
+                  <div className={styles.reviewTime}>
+                    {formatDistanceToNow(new Date(review.createdAt), {
+                      addSuffix: true,
+                    })}
+                  </div>
                 </div>
               </div>
+
+              <p className={styles.reviewText}>{review.text}</p>
+              <div>{renderStars(review.rating)}</div>
             </div>
+          ))}
 
-            {/* Rəy məzmunu */}
-            <p>{review.text}</p>
-
-            {/* Backend-dən gələn Rating */}
-            <div>
-              {renderStars(review.rating)} {/* Rating ulduzları */}
-            </div>
-          </div>
-        ))}
-
-        {/* "Load More" düyməsi */}
-        {visibleReviewsCount < reviews.length && (
-          <button onClick={handleLoadMore}>Load More</button>
-        )}
+          {visibleReviewsCount < reviews.length && (
+            <button onClick={handleLoadMore} className={styles.loadMoreButton}>
+              Load More
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );

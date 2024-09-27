@@ -24,7 +24,7 @@ const Description = () => {
             </p>
 
             <div className={style.line}></div>
-            <div><p>Birkart taksitlə əldə et</p></div>
+            <div className={style.birKartP}><p>Birkart taksitlə əldə et</p></div>
             <div className={style.footer}>
                 <div className={style.option}>
                     <div className={style.optionImg}>

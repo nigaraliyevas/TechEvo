@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { filterProductsByName, resetProducts, sortProductsByPriceAscending, sortProductsByPriceDescending, sortProductsByNameAscending, sortProductsByNameDescending, sortProductsByRatingAscending, sortProductsByRatingDescending } from "../../redux/slices/filterSlice"; 
+import { filterProductsByName, resetProducts, sortProductsByPriceAscending, sortProductsByPriceDescending, sortProductsByNameAscending, sortProductsByNameDescending, sortProductsByRatingAscending, sortProductsByRatingDescending } from "../../redux/slices/FilterSlice"; 
 import { useEffect, useState } from "react";
 import styles from "./SearchBar.module.scss";
 import SearchIcon from "../../../public/assets/images/Search/search.svg"; // Make sure the asset path is correct

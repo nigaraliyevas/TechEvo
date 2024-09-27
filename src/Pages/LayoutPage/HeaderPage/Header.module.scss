@@ -7,10 +7,12 @@
   margin: 0;
   padding: 0;
 }
-ul{
+
+ul {
   margin-bottom: 0 !important;
   padding-left: 0 !important;
 }
+
 .container {
   max-width: 1440px;
   margin: 0 auto;
@@ -192,17 +194,23 @@ header {
     }
 
     .navbar_ideal {
+      width: 160px;
+      position: relative;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-        width: 160px;
-      //   height: 44px;
       text-align: center;
-      //   background: $linearGradient;
       gap: 10px;
-      position: relative;
-      //   clip-path: polygon(0 0, 100% 0, 85% 100%, 15% 100%);
+      font-size: 18px;
+      line-height: 28px;
+      font-weight: 700;
       cursor: pointer;
+      border-bottom: 2px solid rgba(208, 54, 214, 0.8);
+      border-bottom-left-radius: 16px;
+      border-bottom-right-radius: 16px;
     }
+
+
   }
 }

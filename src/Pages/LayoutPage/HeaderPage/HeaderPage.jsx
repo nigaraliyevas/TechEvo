@@ -42,7 +42,7 @@ const HeaderPage = () => {
                         <span>•</span> Ev üçün
                       </li>
                       <li>
-                        <span>•</span> İkisi birində
+                        <span>•</span> Hamısı birində
                       </li>
                     </ul>
                   </div>
@@ -65,7 +65,7 @@ const HeaderPage = () => {
                         <span>•</span> Ev üçün
                       </li>
                       <li>
-                        <span>•</span> Hamısı birində
+                        <span>•</span> İkisi birində
                       </li>
                     </ul>
                   </div>
@@ -93,7 +93,11 @@ const HeaderPage = () => {
                 </div>
               </li>
               <li className={styles.navbar_ideal}>
-                Ideal Pc <GoRocket size={24} />
+                <div>
+               Özün seç <GoRocket size={24} />
+
+                </div>
+               <span className={styles.border_line}></span>
               </li>
               <li className={styles.navbar_links}>Xidmətlər</li>
               <li className={styles.navbar_links}>Blog</li>

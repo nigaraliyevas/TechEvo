@@ -1,6 +1,23 @@
 import styles from "./Features.module.scss" 
 
 const Features = () => {
+
+    fetch('https://ff82f4df-f72b-4dec-84ca-487132aff620.mock.pstmn.io/api/v1/product/getAllProducts')
+    .then(response => {
+        if(!response.ok) {
+            throw new Error("Failed to fetch products");
+        }
+        return response.json();
+    })
+    .then(data => {
+        data.map((product) => {
+            console.log(product.specifications);
+        })
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+
   return (
     <div className={styles.ftContainer}>
       <div className={styles.headerText}>Xüsusiyyətlər</div>

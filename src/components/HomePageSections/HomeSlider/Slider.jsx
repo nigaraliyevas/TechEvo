@@ -6,7 +6,7 @@ import Slide3 from "/assets/images/HomePage/Slider/NeonSlide3.png";
 
 const SliderComponent = () => {
   const settings = {
-    dots: true,
+    dots:false,
     infinite: true,
     speed: 500,
     slidesToShow: 1,

@@ -1,0 +1,116 @@
+
+.totalBox{
+max-width: 1110px;
+margin: 0 auto;
+}
+
+.addReview {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 20px;
+}
+
+.textArea {
+  width: 920px;
+  border: none;
+  padding:16px 16px 0px ;
+  border-radius: 4px;
+  color: white;
+  resize: none;
+  font-size: 20px;
+  height: 60px;
+  background-color: #151719;
+
+}
+
+.addButton {
+//   align-self: flex-start;
+  padding: 10px 20px;
+  background-color: #151719;
+  width: 160px;
+  height: 60px;
+  color: white;
+  border: 1px solid #323437;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+
+
+/* Rəylər */
+.review {
+ border-radius: 4px;
+  padding: 20px ;
+  background-color: #161719;
+  min-height: 196px;
+  width: 100%;
+}
+
+.review:last-child {
+  border-bottom: none;
+}
+
+.reviewHeader {
+  display: flex;
+  align-items: center;
+}
+
+.profileImage {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  margin-right: 15px;
+ 
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.userName {
+  font-size: 18px;
+  font-weight: 500;
+  color: #fff;
+}
+
+.reviewTime {
+  font-size: 12px;
+  color: #777;
+}
+
+/* Rəy məzmunu */
+.reviewText {
+  font-size: 16px;
+  line-height: 1.6;
+  font-weight: 400;
+  color: #E6E6E6;
+  margin: 10px 0;
+}
+
+/* Ulduzlar */
+.stars {
+  font-size: 20px;
+  color: #ffc107;
+}
+
+/* "Load More" düyməsi */
+.loadMoreButton {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #323437;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.loadMoreButton:hover {
+  background-color: #218838;
+}

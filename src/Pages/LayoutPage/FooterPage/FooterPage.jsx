@@ -4,8 +4,13 @@ import { FiPhone } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import logo from "../../../../public/assets/images/HeaderPage/tech-evo-logo 1.png";
 const FooterPage = () => {
+
+
   return (
-    <footer className={`${style.container} ${style.footer}`}>
+    <footer className={style.footer}>
+      <div className={style.container}>
+
+     
       <div className={style.footer_top}>
         <div className={style.footer_title}>
           <Link className="text-white text-decoration-none" to="/">
@@ -42,6 +47,7 @@ const FooterPage = () => {
           </span>
           +994(70) 911 36 35
         </p>
+      </div>
       </div>
     </footer>
   );

@@ -1,0 +1,25 @@
+.detail_images{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    img{
+        width: 350px;
+        height: 350px;
+        border: 0.81px solid rgba(89, 89, 89, 1);
+        border-radius: 2.83px;
+        padding: 34.19px;
+    }
+    .detail_image_left{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        cursor: pointer;
+        img{
+            width: 65px;
+            height: 65px;
+            padding: 7.7px;
+            border: 0.71px solid rgba(89, 89, 89, 1);
+            border-radius: 2.83px;
+        }
+    }
+}

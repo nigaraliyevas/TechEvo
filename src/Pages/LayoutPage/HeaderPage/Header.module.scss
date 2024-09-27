@@ -206,9 +206,19 @@ header {
       line-height: 28px;
       font-weight: 700;
       cursor: pointer;
-      border-bottom: 2px solid rgba(208, 54, 214, 0.8);
-      border-bottom-left-radius: 16px;
-      border-bottom-right-radius: 16px;
+      background:$bgColor;
+      border-radius: 16px;
+      padding-bottom: 8px;
+      span{
+        position: absolute;
+        bottom: -2px;
+        width: 160px;
+        height: 30px;
+        background: linear-gradient(102.09deg, #fd393f 4.1%, #db35e2 55.43%, #4e3dee 94.96%);
+        -webkit-text-fill-color: transparent;
+        border-radius: 16px;
+        z-index: -1;
+      }
     }
 
 

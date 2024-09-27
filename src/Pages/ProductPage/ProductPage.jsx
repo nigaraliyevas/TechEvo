@@ -1,6 +1,7 @@
 import styles from "./ProductPage.module.scss";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Reviews from "../../components/Reviews/Reviews";
 
 const ProductPage = () => {
   return (
@@ -24,7 +25,7 @@ const ProductPage = () => {
           <div className={styles.comments_side}>
             <Row>
               <Col>
-              İstifadəçi rəyləri
+              <Reviews/>
               </Col>
             </Row>
           </div>

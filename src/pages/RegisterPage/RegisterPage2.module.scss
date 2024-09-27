@@ -4,7 +4,7 @@
   background: #161a1e;
   max-width: 540px;
   margin: 0 auto;
-  margin-bottom: 0;
+  // margin-bottom: 0;
 }
 
 .topText {
@@ -25,6 +25,7 @@
   letter-spacing: 2%;
   text-align: center;
   margin-bottom: 56px;
+  white-space: nowrap;
 }
 
 .register2Container {

@@ -16,7 +16,9 @@ const CardPC = () => {
       {currentItems.length === 0 ? (
         <div className={styles.noProductsMessage}>There are no products.</div>
       ) : (
+        
         currentItems.map(card => (
+         
           <div key={card.id} className={styles.card}>
             <span></span>
             <span></span>
@@ -45,8 +47,10 @@ const CardPC = () => {
               </div>
             </div>
           </div>
+         
         ))
       )}
+       
     </>
   );
 };

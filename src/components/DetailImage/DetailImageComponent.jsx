@@ -32,6 +32,7 @@ const DetailImageComponent = () => {
 
       </div>
       <img src={mainImage.image} alt="" />
+
     </div>
   )
 }

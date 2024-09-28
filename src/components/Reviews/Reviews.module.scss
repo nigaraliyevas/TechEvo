@@ -10,7 +10,12 @@ margin: 0 auto;
   gap: 30px;
   margin-bottom: 20px;
 }
+.reviewBox{
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 
+}
 .textArea {
   width: 920px;
   border: none;
@@ -64,6 +69,11 @@ margin: 0 auto;
   margin-right: 15px;
  
 }
+.defaultProfileIcon{
+  font-size: 56px;
+  color: #4e4c4c;
+}
+
 
 .userInfo {
   display: flex;
@@ -71,7 +81,7 @@ margin: 0 auto;
 }
 
 .userName {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 500;
   color: #fff;
 }
@@ -83,17 +93,39 @@ margin: 0 auto;
 
 /* Rəy məzmunu */
 .reviewText {
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.6;
   font-weight: 400;
   color: #E6E6E6;
-  margin: 10px 0;
+  margin: 16px 0;
 }
 
-/* Ulduzlar */
-.stars {
-  font-size: 20px;
-  color: #ffc107;
+.starFilled {
+  color: gold; // Dolu ulduzların rəngi sarı
+  font-size: 17px;
+  margin-right: 2px;
+}
+
+.starHalf {
+  color: gold; // Yarım ulduzun rəngi
+  font-size: 17px;
+  margin-right: 2px;
+  position: relative;
+}
+
+.starHalf::after {
+  content: '★'; // Yarım ulduz üçün ikinci ulduz
+  color: lightgray; // Yarım ulduzun üstü boş olmalıdır
+  position: absolute;
+  left: 0;
+  width: 100%; 
+  overflow: hidden;
+}
+
+.starEmpty {
+  color: lightgray; // Boş ulduzlar üçün rəng
+  font-size: 17px;
+  margin-right: 2px;
 }
 
 /* "Load More" düyməsi */

@@ -100,6 +100,7 @@ const Reviews = () => {
   return (
     <div className="container">
       <div className={styles.totalBox}>
+        <h3 style={{fontSize:"24px",marginBottom:"40px",color:"#fff"}}>İstifadəçi rəyləri</h3>
         {/* Yeni şərh yazma bölməsi */}
         <div className={styles.addReview}>
           <textarea

@@ -9,13 +9,12 @@ const Reviews = () => {
   const [reviews, setReviews] = useState([]);
   const [visibleReviewsCount, setVisibleReviewsCount] = useState(2);
   const [newReview, setNewReview] = useState("");
+  const [newRating, setNewRating] = useState(0);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     axios
-      .get(
-        "https://ff82f4df-f72b-4dec-84ca-487132aff620.mock.pstmn.io/api/v1/product/comment"
-      )
+      .get("API_URL/reviews") 
       .then((response) => {
         setReviews(response.data);
       })
@@ -30,6 +29,8 @@ const Reviews = () => {
   }, []);
 
   const handleAddReview = () => {
+    const userToken = localStorage.getItem("TechEvoToken");
+    
     if (!isLoggedIn) {
       Swal.fire({
         title: "Xəbərdarlıq",
@@ -44,15 +45,24 @@ const Reviews = () => {
       return;
     }
 
-    if (newReview.trim()) {
+    if (newReview.trim() && newRating > 0) { 
       axios
         .post(
-          "https://ff82f4df-f72b-4dec-84ca-487132aff620.mock.pstmn.io/api/v1/product/comment",
-          { review: newReview }
+          "API_URL/reviews",
+          {
+            review: newReview,
+            rating: newRating,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${userToken}`, 
+            },
+          }
         )
         .then((response) => {
-          setReviews([response.data, ...reviews]);
+          setReviews([response.data, ...reviews]); 
           setNewReview("");
+          setNewRating(0); 
         })
         .catch((error) => {
           console.error("Rəy əlavə etmək mümkün olmadı:", error);
@@ -60,7 +70,7 @@ const Reviews = () => {
     } else {
       Swal.fire({
         title: "Xəbərdarlıq",
-        text: "Rəy boş ola bilməz!",
+        text: "Rəy və reytinq boş ola bilməz!",
         icon: "warning",
         confirmButtonText: "Bağla",
       });
@@ -80,7 +90,7 @@ const Reviews = () => {
             ★
           </span>
         );
-      } else if (i === Math.ceil(rating)) {
+      } else if (i === Math.ceil(rating) && rating % 1 !== 0) {
         stars.push(
           <span key={i} className={styles.starHalf}>
             ★
@@ -100,7 +110,9 @@ const Reviews = () => {
   return (
     <div className="container">
       <div className={styles.totalBox}>
-        <h3 style={{fontSize:"24px",marginBottom:"40px",color:"#fff"}}>İstifadəçi rəyləri</h3>
+        <h3 style={{ fontSize: "24px", marginBottom: "40px", color: "#fff" }}>
+          İstifadəçi rəyləri
+        </h3>
         {/* Yeni şərh yazma bölməsi */}
         <div className={styles.addReview}>
           <textarea
@@ -108,6 +120,16 @@ const Reviews = () => {
             onChange={(e) => setNewReview(e.target.value)}
             placeholder="Rəy yaz..."
             className={styles.textArea}
+          />
+          <input
+            type="number"
+            value={newRating}
+            onChange={(e) => setNewRating(Number(e.target.value))}
+            max="5"
+            min="0"
+            step="0.5"
+            className={styles.ratingInput}
+            placeholder="Reytinq ver (0-5)"
           />
           <button onClick={handleAddReview} className={styles.addButton}>
             Rəy yaz
@@ -131,7 +153,9 @@ const Reviews = () => {
                   )}
                 </div>
                 <div className={styles.userInfo}>
-                  <div style={{display:"flex", alignItems:"center",gap:"10px"}}>
+                  <div
+                    style={{ display: "flex", alignItems: "center", gap: "10px" }}
+                  >
                     <strong className={styles.userName}>
                       {review.commentOwner}
                     </strong>

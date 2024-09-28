@@ -32,11 +32,11 @@ margin: 0 auto;
 .addButton {
 //   align-self: flex-start;
   padding: 10px 20px;
-  background-color: #151719;
+  background-color: #090c11;
   width: 160px;
   height: 60px;
   color: white;
-  border: 1px solid #323437;
+  border: 2px solid #999999;
   border-radius: 4px;
   cursor: pointer;
   font-size: 20px;
@@ -131,18 +131,23 @@ margin: 0 auto;
 /* "Load More" düyməsi */
 .loadMoreButton {
   display: block;
-  width: 100%;
-  padding: 10px;
-  background-color: #323437;
-  color: white;
-  border: none;
+  width: 203px;
+  padding: 6px 20px 6px 20px;
+  background-color: #090c11;
+  color: #999999;
+  border: 1px solid #999999;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 18px;
   margin-top: 20px;
+  margin: auto;
   text-align: center;
+  font-weight: 500;
+  .chevron{
+    font-size: 25px;
+  }
 }
 
 .loadMoreButton:hover {
-  background-color: #218838;
+  background-color: #4e4c4c;
 }

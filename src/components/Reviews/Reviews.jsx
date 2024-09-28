@@ -4,17 +4,19 @@ import Swal from "sweetalert2";
 import { formatDistanceToNow } from "date-fns";
 import styles from "./Reviews.module.scss";
 import { FaUserCircle } from "react-icons/fa";
+import { RxChevronDown } from "react-icons/rx";
+
 
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
   const [visibleReviewsCount, setVisibleReviewsCount] = useState(2);
   const [newReview, setNewReview] = useState("");
-  const [newRating, setNewRating] = useState(0);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
+    // Backenddən rəylər və reytinqlər gəlir
     axios
-      .get("API_URL/reviews") 
+      .get("https://ff82f4df-f72b-4dec-84ca-487132aff620.mock.pstmn.io/api/v1/product/comment")
       .then((response) => {
         setReviews(response.data);
       })
@@ -30,7 +32,7 @@ const Reviews = () => {
 
   const handleAddReview = () => {
     const userToken = localStorage.getItem("TechEvoToken");
-    
+
     if (!isLoggedIn) {
       Swal.fire({
         title: "Xəbərdarlıq",
@@ -45,24 +47,22 @@ const Reviews = () => {
       return;
     }
 
-    if (newReview.trim() && newRating > 0) { 
+    if (newReview.trim()) { 
       axios
         .post(
-          "API_URL/reviews",
+          "https://ff82f4df-f72b-4dec-84ca-487132aff620.mock.pstmn.io/api/v1/product/comment",
           {
             review: newReview,
-            rating: newRating,
           },
           {
             headers: {
-              Authorization: `Bearer ${userToken}`, 
+              Authorization: `Bearer ${userToken}`,
             },
           }
         )
         .then((response) => {
           setReviews([response.data, ...reviews]); 
-          setNewReview("");
-          setNewRating(0); 
+          setNewReview(""); 
         })
         .catch((error) => {
           console.error("Rəy əlavə etmək mümkün olmadı:", error);
@@ -70,7 +70,7 @@ const Reviews = () => {
     } else {
       Swal.fire({
         title: "Xəbərdarlıq",
-        text: "Rəy və reytinq boş ola bilməz!",
+        text: "Rəy boş ola bilməz!",
         icon: "warning",
         confirmButtonText: "Bağla",
       });
@@ -81,6 +81,7 @@ const Reviews = () => {
     setVisibleReviewsCount((prevCount) => prevCount + 2);
   };
 
+  // Reytinqi backenddən alır və göstərir
   const renderStars = (rating) => {
     const stars = [];
     for (let i = 1; i <= 5; i++) {
@@ -121,16 +122,6 @@ const Reviews = () => {
             placeholder="Rəy yaz..."
             className={styles.textArea}
           />
-          <input
-            type="number"
-            value={newRating}
-            onChange={(e) => setNewRating(Number(e.target.value))}
-            max="5"
-            min="0"
-            step="0.5"
-            className={styles.ratingInput}
-            placeholder="Reytinq ver (0-5)"
-          />
           <button onClick={handleAddReview} className={styles.addButton}>
             Rəy yaz
           </button>
@@ -165,6 +156,7 @@ const Reviews = () => {
                       })}
                     </div>
                   </div>
+                  {/* Reytinq backenddən alınıb və göstərilir */}
                   <div>{renderStars(review.rating)}</div>
                 </div>
               </div>
@@ -174,7 +166,7 @@ const Reviews = () => {
 
           {visibleReviewsCount < reviews.length && (
             <button onClick={handleLoadMore} className={styles.loadMoreButton}>
-              Daha çox yüklə
+              Daha çox yüklə <RxChevronDown className={styles.chevron} />
             </button>
           )}
         </div>

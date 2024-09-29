@@ -3,6 +3,8 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import DetailImageComponent from "../../components/DetailImage/DetailImageComponent";
 import CommentSide from "../../components/CommnetSide/CommentSide";
+import Reviews from "../../components/CommentSide/Reviews";
+
 
 const ProductPage = () => {
   return (
@@ -26,7 +28,7 @@ const ProductPage = () => {
           <div className={styles.comments_side}>
             <Row>
               <Col>
-              <CommentSide/>
+              <Reviews/>
               </Col>
             </Row>
           </div>

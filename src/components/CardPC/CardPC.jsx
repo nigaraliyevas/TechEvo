@@ -1,11 +1,11 @@
 import { PiHeartBold } from "react-icons/pi";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Basket from '/assets/images/HomePage/Products/basket.png'
+import Basket from "/assets/images/HomePage/Products/basket.png";
 
 import styles from "./CardPC.module.scss";
 import { useSelector } from "react-redux";
 const CardPC = () => {
-  const { filteredProducts } = useSelector((state) => state.filter);
+  const { filteredProducts } = useSelector(state => state.filter);
   const { currentPage, itemsPerPage } = useSelector(state => state.pagination);
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage; //
@@ -22,8 +22,8 @@ const CardPC = () => {
             <span></span>
             <span></span>
             <span></span>
-            <div style={{ position: "relative" }}>
-              <div style={{ overflow: "hidden" }}>
+            <div>
+              <div style={{ position: "relative", overflow: "hidden" }}>
                 <img className={styles.cardImg} src={card.image} alt={card.name} />
               </div>
               <div className={styles.heartSpan}>
@@ -36,11 +36,12 @@ const CardPC = () => {
                   <p>{card.price}</p>
                 </div>
                 <div className={styles.ratingBasket}>
-
-                  <div><img src={card.rating} alt="rating" /></div>
-                  <div className={styles.basketBg}><img src={Basket} /></div>
-
-
+                  <div>
+                    <img src={card.rating} alt="rating" />
+                  </div>
+                  <div className={styles.basketBg}>
+                    <img src={Basket} />
+                  </div>
                 </div>
               </div>
             </div>

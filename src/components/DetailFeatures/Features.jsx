@@ -1,6 +1,6 @@
 import styles from "./Features.module.scss" 
 
-const Features = () => {
+const Features = ({id}) => {
 
     fetch('https://ff82f4df-f72b-4dec-84ca-487132aff620.mock.pstmn.io/api/v1/product/getAllProducts')
     .then(response => {
@@ -11,6 +11,7 @@ const Features = () => {
     })
     .then(data => {
         data.map((product) => {
+            if(id === product.id)
             console.log(product.specifications);
         })
     })

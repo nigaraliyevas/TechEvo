@@ -6,7 +6,6 @@ import styles from "./Reviews.module.scss";
 import { FaUserCircle } from "react-icons/fa";
 import { RxChevronDown } from "react-icons/rx";
 
-
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
   const [visibleReviewsCount, setVisibleReviewsCount] = useState(2);

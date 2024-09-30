@@ -66,6 +66,7 @@ const WelcomeRegisterPage = () => {
                   placeholder="Şifrəni daxil edin"
                   onChange={(e) => setPassword(e.target.value)}
                   required
+                  style={{ paddingRight: "2.5rem" }} 
                 />
                 <img
                   src={showPassword ? eyeIcon : openEye}
@@ -79,6 +80,7 @@ const WelcomeRegisterPage = () => {
                     width: "20px",
                     height: "20px",
                     cursor: "pointer",
+                   
                   }}
                 />
               </div>

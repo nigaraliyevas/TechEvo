@@ -1,7 +1,11 @@
+import { useEffect, useState } from "react";
 import styles from "./Features.module.scss" 
 
 const Features = ({id}) => {
 
+    const [productDetails, setProductDetails] = useState({});
+
+    useEffect(() => {
     fetch('https://ff82f4df-f72b-4dec-84ca-487132aff620.mock.pstmn.io/api/v1/product/getAllProducts')
     .then(response => {
         if(!response.ok) {
@@ -10,14 +14,27 @@ const Features = ({id}) => {
         return response.json();
     })
     .then(data => {
-        data.map((product) => {
-            if(id === product.id)
-            console.log(product.specifications);
+            data.map((product) => {
+                if(id === product.id) {
+                    setProductDetails(
+                        {
+                            ram: product.specifications[0].ram,
+                            weight: product.specifications[0].weight,
+                            storage: product.specifications[0].storage,
+                            processor: product.specifications[0].processor,
+                            dimensions: product.specifications[0].dimensions,
+                            screenSize: product.specifications[0].screenSize,
+                            graphicsCard: product.specifications[0].graphicsCard,
+                            operatingSystem: product.specifications[0].operatingSystem,
+                        }
+                    )
+                }           
+            })
         })
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }, [id])
 
   return (
     <div className={styles.ftContainer}>
@@ -26,37 +43,37 @@ const Features = ({id}) => {
         <div className={styles.leftBar}>
             <div className={styles.ftRows}>
                 <div className={styles.featName}>Prosessor</div>
-                <div className={styles.feats}>Exynos</div>
+                <div className={styles.feats}>{productDetails.processor}</div>
             </div>
             <div className={styles.ftRows}>
                 <div className={styles.featName}>Graphics Card</div>
-                <div className={styles.feats}>GPU</div>
+                <div className={styles.feats}>{productDetails.graphicsCard}</div>
             </div>
             <div className={styles.ftRows}>
                 <div className={styles.featName}>RAM</div>
-                <div className={styles.feats}>16 GB </div>
+                <div className={styles.feats}>{productDetails.ram}</div>
             </div>
             <div className={styles.ftRows}>
                 <div className={styles.featName}>Storage</div>
-                <div className={styles.feats}>512 GB NVMe SSD</div>
+                <div className={styles.feats}>{productDetails.storage}</div>
             </div>
         </div>
         <div className={styles.rightBar}>
             <div className={styles.ftRows}>
                 <div className={styles.featName}>Screen Size</div>
-                <div className={styles.feats}>13.3 inches</div>
+                <div className={styles.feats}>{productDetails.screenSize}</div>
             </div>
             <div className={styles.ftRows}>
                 <div className={styles.featName}>Operating System</div>
-                <div className={styles.feats}>macOS Ventura</div>
+                <div className={styles.feats}>{productDetails.operatingSystem}</div>
+            </div>
+            <div className={styles.ftRows}>
+                <div className={styles.featName}>Dimensions</div>
+                <div className={styles.feats}>{productDetails.dimensions}</div>
             </div>
             <div className={styles.ftRows}>
                 <div className={styles.featName}>Weight</div>
-                <div className={styles.feats}>12.2 x 8.4 x 0.6 inches</div>
-            </div>
-            <div className={styles.ftRows}>
-                <div className={styles.featName}>Weight</div>
-                <div className={styles.feats}>2.8 lbs (1.27 kg)</div>
+                <div className={styles.feats}>{productDetails.weight}</div>
             </div>
         </div>
       </div>

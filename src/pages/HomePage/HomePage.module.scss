@@ -1,3 +1,7 @@
+@import "../../../public/assets/variables/variables";
+
+
+
 * {
   padding: 0;
   margin: 0;
@@ -107,7 +111,7 @@ body {
       background-image: linear-gradient(to right bottom, #e1327d, #de1c8c, #d8009d, #cc00b0, #b900c5, #ab0ccf, #9918da, #8323e4, #7723e5, #6a24e7, #5b25e8, #4926e9);
       color: white;
       width: 185px;
-      padding: 15px ;
+      padding: 15px;
       font-size: 18px;
       border-radius: 2px;
       border: none;
@@ -190,6 +194,7 @@ body {
   border-radius: 5px;
   box-sizing: border-box;
   max-width: 350px;
+ 
   background-clip: border-box;
   position: relative;
   display: flex;
@@ -301,24 +306,29 @@ body {
 
 .mailTitle {
   .namePrice {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    padding-top: 16px;
-    padding-bottom: 8px;
+    // display: flex;
+    // justify-content: space-between;
+    // align-items: baseline;
+    // padding-top: 16px;
+    // padding-bottom: 8px;
+    font-family: $fontFamily;
   }
 
   h4 {
     max-width: 250px;
-    height: 56px;
+     height: 56px;
     color: white;
     font-weight: 500;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 28px;
+    margin-top: 16px;
   }
 
   p {
     color: white;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 20px;
   }
 
   .ratingBasket {

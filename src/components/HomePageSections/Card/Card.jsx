@@ -10,7 +10,7 @@ function Card({ card }) {
             <span></span>
             <span></span>
             <div style={{ position: "relative" }}>
-                <div style={{overflow:"hidden"}}>
+                <div style={{ overflow: "hidden" }}>
                     <img className={style.cardImg} src={image} />
                 </div>
                 <div className={style.heartSpan}><PiHeartBold /></div>

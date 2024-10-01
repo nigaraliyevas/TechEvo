@@ -8,6 +8,7 @@ import PasswordReset from "../PasswordResetPage/PasswordReset";
 import EnterPasswordPage from "../EnterPasswordPage/EnterPasswordPage";
 import PCPage from "../PCPage/PCPage";
 import ProductPage from "../ProductPage/ProductPage";
+import BasketPage from "../BasketPage/BasketPage";
 
 const RoutesPage = () => {
   return (
@@ -22,6 +23,7 @@ const RoutesPage = () => {
           <Route path="/enterpassword" element={<EnterPasswordPage />} />
           <Route path="/pc" element={<PCPage />} />
           <Route path="/product" element={<ProductPage />} />
+          <Route path="/basket" element={<BasketPage />} />
         </Routes>
       </LayoutPages>
     </div>

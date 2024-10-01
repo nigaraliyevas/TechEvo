@@ -109,7 +109,10 @@ const HeaderPage = () => {
                 <FiSearch size={24} />
               </div>
               <div className={styles.navbar_icon}>
+                <Link to={"/basket"} className={styles.navbar_icon}>
                 <SlBasket size={24} />
+                
+                </Link>
               </div>
               <div className={styles.navbar_users} style={{ padding: "32px 0px" }}>
                 <BiUser size={24} />

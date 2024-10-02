@@ -10,7 +10,7 @@ import Reviews from "../../components/Reviews/Reviews";
 const ProductPage = () => {
   return (
     <section id="product">
-      <div className="container">
+      <div className={styles.container}>
         <div className={styles.productpage_content}>
           <div className={styles.productDetail}>
             <Row>

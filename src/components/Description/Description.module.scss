@@ -1,3 +1,6 @@
+@import '../../../public/assets/variables/variables';
+
+
 .productCard {
     //background-color: #1c1c1c;
     color: #fff;
@@ -8,7 +11,8 @@
 
     .productTitle {
         font-size: 32px;
-        font-weight: bold;
+        font-weight: 700;
+        font-family: $fontFamily;
     }
 
     .rating {
@@ -77,13 +81,14 @@
 
     .footer {
         display: flex;
-        justify-content: space-between;
+        align-items: center;
         // margin-top: 20px;
+        gap: 22px;
 
         .option {
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            // display: flex;
+            // align-items: center;
+            // gap: 8px;
             font-size: 14px;
 
             .optionImg {
@@ -98,21 +103,47 @@
             }
 
             a {
-                color: #fff;
+                color:#E6E6E6;
                 // text-decoration: none;
                 transition: color 0.3s ease;
+                font-size: 14px;
+                font-weight: 500;
+                font-family: $fontFamily;
+                padding: 0 4px;
 
                 &:hover {
-                    color: #ff4081;
+                    color:  $firstColor;
+
+
                 }
+
+                // .span {
+
+                //     span {
+                //         font-size: 14px !important;
+                //         font-weight: 400 !important;
+                //         font-family: $fontFamily !important;
+                //     }
+                // }
+            }
+
+            span {
+                font-size: 12px;
+            }
+
+            .birKartImg {
+                display: flex;
+                gap: 8px;
             }
         }
     }
 
-    .birKartP{
-        p{
-            font-size:14px;
-            margin-bottom: 0px !important;
+    .birKartP {
+        p {
+            font-size: 14px;
+            //margin-bottom: 0px !important;
+            font-weight: 500;
+            font-family: $fontFamily;
         }
     }
 }

@@ -20,7 +20,7 @@ function Card({ card }) {
         <div className={style.mailTitle}>
           <div className={style.namePrice}>
             <h4>{name}</h4>
-            <p>{price}</p>
+            <p>{price} AZN</p>
           </div>
           <div className={style.ratingBasket}>
             <div>

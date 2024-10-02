@@ -6,13 +6,10 @@ import { GoRocket } from "react-icons/go";
 import { LiaUserPlusSolid } from "react-icons/lia";
 import { PiSignInFill } from "react-icons/pi";
 import { IoSettingsOutline } from "react-icons/io5";
-import { IoMdMenu } from "react-icons/io";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import navBarLogo from "../../../../public/assets/images/HeaderPage/tech-evo-logo 1.png";
 
 const HeaderPage = () => {
-  const navigate = useNavigate();
-
   return (
     <header>
       <div className={`${styles.container} ${styles.navbar_bg} `}>

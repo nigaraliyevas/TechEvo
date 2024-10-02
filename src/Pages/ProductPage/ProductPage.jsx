@@ -5,6 +5,7 @@ import DetailImageComponent from "../../components/DetailImage/DetailImageCompon
 // import CommentSide from "../../components/CommentSide/Reviews";
 import Reviews from "../../components/CommentSide/Reviews";
 import Description from "../../components/Description/Description";
+import Features from "../../components/DetailFeatures/Features";
 
 const ProductPage = () => {
   return (
@@ -13,30 +14,32 @@ const ProductPage = () => {
         <div className={styles.productpage_content}>
           <div className={styles.productDetail}>
             <Row>
-              <Col xs={6}><DetailImageComponent/></Col>
-              <Col><Description/></Col>
+              <Col xs={6}>
+                <DetailImageComponent />
+              </Col>
+              <Col>
+                <Description />
+              </Col>
             </Row>
           </div>
 
           <div className={styles.productDescription}>
             <Row>
               <Col>
-              Xüsusiyyətlər
+                <Features id={63} />
               </Col>
             </Row>
           </div>
           <div className={styles.comments_side}>
             <Row>
               <Col>
-              <Reviews/>
+                <Reviews />
               </Col>
             </Row>
           </div>
           <div className={styles.similiarProducts}>
             <Row>
-              <Col>
-              Oxşar məhsullar
-              </Col>
+              <Col>Oxşar məhsullar</Col>
             </Row>
           </div>
         </div>

@@ -8,7 +8,7 @@
 }
 
 .container {
-  max-width: 1300px;
+  max-width: 1414px;
   margin: 0 auto;
 }
 
@@ -29,7 +29,7 @@ header .navbar_bg {
   margin-left: auto;
   margin-left: auto;
   width: 100%;
-  padding: 24px 56px;
+  padding: 0px 56px;
 }
 header .navbar {
   position: relative;
@@ -37,31 +37,122 @@ header .navbar {
   align-items: center;
   justify-content: space-between;
   color: rgb(255, 255, 255);
-  gap: 80px;
+  gap: 100px;
   width: 100% !important;
 }
 header .navbar .navbar_right {
   display: flex;
   align-items: center;
-  gap: 58px;
+  gap: 106px;
 }
 header .navbar .navbar_pages {
   display: flex;
   align-items: center;
-  gap: 46px;
+  gap: 56px;
 }
 header .navbar .navbar_icons {
   display: flex;
+  align-items: center;
   cursor: pointer;
+  color: rgb(204, 204, 204);
   gap: 16px;
 }
-header .navbar .navbar_title {
+header .navbar .navbar_icons .navbar_users {
+  position: relative;
+  height: 100%;
+}
+header .navbar .navbar_icons .navbar_users .navbar_users_items {
+  position: absolute;
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  width: 177px;
+  top: 93px;
+  left: -95px;
+  text-align: start;
+  padding: 0;
+  background: rgb(22, 26, 30);
+  transition: height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  border-radius: 2px;
+}
+header .navbar .navbar_icons .navbar_users .navbar_users_items .navbar_users_item {
+  display: flex;
+  align-items: center;
   font-family: "SF Pro Display", sans-serif;
-  font-size: 32px;
-  font-weight: 500;
+  font-size: 20px;
+  font-weight: 400;
   line-height: 28px;
-  text-align: left;
+  letter-spacing: 0.02em;
+  text-align: center;
+  padding: 5px 0;
+}
+header .navbar .navbar_icons .navbar_users .navbar_users_items .navbar_users_item span {
+  margin: 0px 12px;
+  display: flex;
+  align-items: center;
+}
+header .navbar .navbar_icons .navbar_users:hover {
+  color: #b622dc;
+}
+header .navbar .navbar_icons .navbar_users:hover .navbar_users_items {
+  height: auto;
+  opacity: 1;
+  padding: 24px 24px 24px 16px;
+  color: rgb(204, 204, 204);
+}
+header .navbar .navbar_icons .navbar_icon:hover {
+  color: #b622dc;
+}
+header .navbar .navbar_logo {
+  width: 48px;
+  height: 40.3px;
   cursor: pointer;
+}
+header .navbar .navbar_links {
+  height: 96px;
+  min-height: 100%;
+  position: relative;
+  font-family: "SF Pro Display", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 28px;
+  letter-spacing: 0.02em;
+  text-align: center;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+}
+header .navbar .navbar_links:hover {
+  background: linear-gradient(102.09deg, #fd393f 4.1%, #db35e2 55.43%, #4e3dee 94.96%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+header .navbar .navbar_links .link_catagiries {
+  height: 0;
+  top: 97px;
+  opacity: 0;
+  padding: 0;
+  width: 177px;
+  overflow: hidden;
+  text-align: start;
+  border-radius: 2px;
+  position: absolute;
+  color: rgb(204, 204, 204);
+  -webkit-text-fill-color: rgb(204, 204, 204);
+  background: rgb(22, 26, 30);
+  transition: height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+header .navbar .navbar_links .link_catagiries ul {
+  gap: 8px;
+  display: flex;
+  flex-direction: column;
+}
+header .navbar .navbar_links:hover .link_catagiries {
+  opacity: 1;
+  height: auto;
+  padding: 24px 24px 24px 16px;
 }
 header .navbar .navbar_links {
   font-family: "SF Pro Display", sans-serif;
@@ -76,19 +167,8 @@ header .navbar .navbar_ideal {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 212px;
-  height: 44px;
   text-align: center;
-  background: linear-gradient(125.92deg, #fd3c43 -59.69%, #b622dc 41.4%, #3f27eb 124.93%);
   gap: 10px;
   position: relative;
-  -webkit-clip-path: polygon(0 0, 100% 0, 85% 100%, 15% 100%);
-          clip-path: polygon(0 0, 100% 0, 85% 100%, 15% 100%);
   cursor: pointer;
-}
-
-.navbar_line {
-  width: 100%;
-  height: 1px;
-  background-color: rgb(34, 37, 39);
 }/*# sourceMappingURL=Header.module.css.map */

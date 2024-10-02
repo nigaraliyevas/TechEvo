@@ -1,63 +1,35 @@
 import { useState } from "react";
-import styles from "./LoginPage.module.scss";
+import styles from "./LoginPage.module.scssq";
 import "../../components/css/Button.scss";
 import eyeIcon from "../../../public/assets/images/Welcome/Faeye.png";
 import openEye from "../../../public/assets/images/Welcome/OpenEye.png";
 import Button from "../../components/Button/Button";
 import "/public/assets//common/base.scss";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../../redux/slices/AuthSlice";
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [emailError, setEmailError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
-  const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = async event => {
+  const dispatch = useDispatch();
+  const { error, isLoading, accessToken } = useSelector(state => state.auth);
+
+  const handleSubmit = event => {
     event.preventDefault();
-    setEmailError("");
-    setPasswordError("");
-    setMessage("");
-
-    try {
-      const response = await fetch("https://c82b-5-133-233-247.ngrok-free.app/api/v1/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
-      console.log(response);
-      if (response.ok) {
-        const data = await response.json();
-        console.log(data);
-
-        console.log(data.accessToken);
-        console.log(data.refreshToken);
-
-        setMessage(data.message);
-        navigate("/");
-      } else {
-        const errorData = await response.json();
-        if (errorData.email) {
-          setEmailError(errorData.email);
-        }
-        if (errorData.password) {
-          setPasswordError(errorData.password);
-        }
-      }
-    } catch (err) {
-      console.error(err);
-      setPasswordError("İstifadəçi adı və ya şifrə yanlışdır");
-    }
+    dispatch(login({ email, password }));
   };
 
   const handleTogglePassword = () => {
     setShowPassword(prev => !prev);
   };
+
+  if (accessToken) {
+    navigate("/");
+  }
 
   return (
     <div className="container" id={styles.container_bg}>
@@ -73,13 +45,12 @@ const LoginPage = () => {
                 E-poçt
               </label>
               <input type="text" placeholder="E-poçt" id="email" value={email} className={styles.inp} onChange={e => setEmail(e.target.value)} required />
-              {emailError && <p className={styles.error}>{emailError}</p>}
 
               <label htmlFor="password" className={styles.labelContent}>
                 Şifrə
               </label>
               <div style={{ position: "relative", display: "inline-block" }}>
-                <input className={styles.inp} type={showPassword ? "text" : "password"} value={password} id="password" placeholder="Şifrəni daxil edin" onChange={e => setPassword(e.target.value)} required />
+                <input className={styles.inp} type={showPassword ? "text" : "password"} value={password} id="password" placeholder="Şifrəni daxil edin" onChange={e => setPassword(e.target.value)} required style={{ paddingRight: "2.5rem" }} />
                 <img
                   src={showPassword ? eyeIcon : openEye}
                   alt="Toggle visibility"
@@ -95,13 +66,13 @@ const LoginPage = () => {
                   }}
                 />
               </div>
-              {passwordError && <p className={styles.error}>{passwordError}</p>}
+
+              {error && <p className={styles.error}>{error}</p>}
 
               <div className={styles.forgetPassword}>
                 <Link to="/forget">şifrəni unutmusan?</Link>
               </div>
-              <Button buttonText={"Daxil ol"} type="submit" />
-              {message && <p className="success">{message}</p>}
+              <Button buttonText={isLoading ? "Gözləyin..." : "Daxil ol"} type="submit" disabled={isLoading} />
             </form>
           </div>
         </div>

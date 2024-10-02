@@ -1,0 +1,153 @@
+
+.totalBox{
+max-width: 1110px;
+margin: 0 auto;
+}
+
+.addReview {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 20px;
+}
+.reviewBox{
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+}
+.textArea {
+  width: 920px;
+  border: none;
+  padding:16px 16px 0px ;
+  border-radius: 4px;
+  color: white;
+  resize: none;
+  font-size: 20px;
+  height: 60px;
+  background-color: #151719;
+
+}
+
+.addButton {
+//   align-self: flex-start;
+  padding: 10px 20px;
+  background-color: #090c11;
+  width: 160px;
+  height: 60px;
+  color: white;
+  border: 2px solid #999999;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+
+
+/* Rəylər */
+.review {
+ border-radius: 4px;
+  padding: 20px ;
+  background-color: #161719;
+  min-height: 196px;
+  width: 100%;
+}
+
+.review:last-child {
+  border-bottom: none;
+}
+
+.reviewHeader {
+  display: flex;
+  align-items: center;
+}
+
+.profileImage {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  margin-right: 15px;
+ 
+}
+.defaultProfileIcon{
+  font-size: 56px;
+  color: #4e4c4c;
+}
+
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.userName {
+  font-size: 20px;
+  font-weight: 500;
+  color: #fff;
+}
+
+.reviewTime {
+  font-size: 12px;
+  color: #777;
+}
+
+/* Rəy məzmunu */
+.reviewText {
+  font-size: 18px;
+  line-height: 1.6;
+  font-weight: 400;
+  color: #E6E6E6;
+  margin: 16px 0;
+}
+
+.starFilled {
+  color: gold; // Dolu ulduzların rəngi sarı
+  font-size: 17px;
+  margin-right: 2px;
+}
+
+.starHalf {
+  color: gold; // Yarım ulduzun rəngi
+  font-size: 17px;
+  margin-right: 2px;
+  position: relative;
+}
+
+.starHalf::after {
+  content: '★'; // Yarım ulduz üçün ikinci ulduz
+  color: lightgray; // Yarım ulduzun üstü boş olmalıdır
+  position: absolute;
+  left: 0;
+  width: 100%; 
+  overflow: hidden;
+}
+
+.starEmpty {
+  color: lightgray; // Boş ulduzlar üçün rəng
+  font-size: 17px;
+  margin-right: 2px;
+}
+
+/* "Load More" düyməsi */
+.loadMoreButton {
+  display: block;
+  width: 203px;
+  padding: 6px 20px 6px 20px;
+  background-color: #090c11;
+  color: #999999;
+  border: 1px solid #999999;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 18px;
+  margin-top: 20px;
+  margin: auto;
+  text-align: center;
+  font-weight: 500;
+  .chevron{
+    font-size: 25px;
+  }
+}
+
+.loadMoreButton:hover {
+  background-color: #4e4c4c;
+}

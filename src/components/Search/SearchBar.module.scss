@@ -82,7 +82,7 @@
 }
 .orderMenu {
     position: absolute;
-    padding: 24px 20px 24px 16px; 
+    padding: 24px 20px 24px 24px; 
     color: #CCCCCC;
     background-color: #151719;
     border-radius: 4px;
@@ -119,6 +119,7 @@
     li {
         list-style-type: disc;
         cursor: pointer;
+        margin-left: 16px;
     }
 
     li:first-child {

@@ -8,8 +8,13 @@
   padding: 0;
 }
 
+ul {
+  margin-bottom: 0 !important;
+  padding-left: 0 !important;
+}
+
 .container {
-  max-width: 1414px;
+  max-width: 1440px;
   margin: 0 auto;
 }
 
@@ -31,7 +36,7 @@ header {
     margin-left: auto;
     margin-left: auto;
     width: 100%;
-    padding: 0px 56px;
+    padding: 0px 165px;
   }
 
   .navbar {
@@ -46,13 +51,13 @@ header {
     .navbar_right {
       display: flex;
       align-items: center;
-      gap: 106px;
+      gap: 51px;
     }
 
     .navbar_pages {
       display: flex;
       align-items: center;
-      gap: 56px;
+      gap: 36px;
     }
 
     .navbar_icons {
@@ -60,7 +65,7 @@ header {
       align-items: center;
       cursor: pointer;
       color: rgba(204, 204, 204, 1);
-      gap: 16px;
+      gap: 24px;
 
       .navbar_users {
         position: relative;
@@ -112,6 +117,7 @@ header {
       }
 
       .navbar_icon {
+        color: white;
         &:hover {
           color: #b622dc;
         }
@@ -180,7 +186,7 @@ header {
 
     .navbar_links {
       font-family: $fontFamily;
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 400;
       line-height: 28px;
       letter-spacing: 0.02em;
@@ -189,17 +195,33 @@ header {
     }
 
     .navbar_ideal {
+      width: 160px;
+      position: relative;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      //   width: 212px;
-      //   height: 44px;
       text-align: center;
-      //   background: $linearGradient;
       gap: 10px;
-      position: relative;
-      //   clip-path: polygon(0 0, 100% 0, 85% 100%, 15% 100%);
+      font-size: 18px;
+      line-height: 28px;
+      font-weight: 700;
       cursor: pointer;
+      background:$bgColor;
+      border-radius: 16px;
+      padding-bottom: 8px;
+      span{
+        position: absolute;
+        bottom: -2px;
+        width: 160px;
+        height: 30px;
+        background: linear-gradient(102.09deg, #fd393f 4.1%, #db35e2 55.43%, #4e3dee 94.96%);
+        -webkit-text-fill-color: transparent;
+        border-radius: 16px;
+        z-index: -1;
+      }
     }
+
+
   }
 }

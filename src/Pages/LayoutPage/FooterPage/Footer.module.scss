@@ -4,13 +4,14 @@ body {
   overflow-x: hidden;
 }
 
+
 .container {
   max-width: 1414px;
   margin: 0 auto;
 }
 
 .footer {
-  padding: 72px 56px;
+  padding:  56px 165px;
   gap: 10px;
   opacity: 1;
   position: relative;
@@ -61,7 +62,7 @@ body {
 
     li {
       font-family: $fontFamily;
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 400;
       line-height: 28px;
       letter-spacing: 0.02em;

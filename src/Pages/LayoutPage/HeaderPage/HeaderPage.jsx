@@ -6,8 +6,11 @@ import { GoRocket } from "react-icons/go";
 import { LiaUserPlusSolid } from "react-icons/lia";
 import { PiSignInFill } from "react-icons/pi";
 import { IoSettingsOutline } from "react-icons/io5";
-import { Link } from "react-router-dom";
+import { IoMdMenu } from "react-icons/io";
+import { Link, useNavigate } from "react-router-dom";
+import logo from "../../../../public/assets/images/HeaderPage/tech-evo-logo 1.png";
 import navBarLogo from "../../../../public/assets/images/HeaderPage/tech-evo-logo 1.png";
+
 
 const HeaderPage = () => {
   return (
@@ -16,13 +19,13 @@ const HeaderPage = () => {
         <nav className={styles.navbar}>
           <div className={styles.navbar_logo}>
             <Link to="/">
-              <img src={navBarLogo} alt="navBarLogo" />
+              <img src={logo} alt="navBarLogo" />
             </Link>
           </div>
           <div className={styles.navbar_right}>
             <ul className={styles.navbar_pages}>
               <Link to={"/pc"} style={{ padding: "0px 20px" }} className={`${styles.navbar_links}  text-decoration-none text-white`}>
-                Pc
+                PC
                 <div className={styles.link_catagiries}>
                   <div>
                     <ul>
@@ -39,13 +42,35 @@ const HeaderPage = () => {
                         <span>•</span> Ev üçün
                       </li>
                       <li>
-                        <span>•</span> Hamısı
+                        <span>•</span> Hamısı birində
                       </li>
                     </ul>
                   </div>
                 </div>
               </Link>
-              <li className={styles.navbar_links}>Laptop</li>
+              <li className={styles.navbar_links}>Laptop
+              <div className={styles.link_catagiries}>
+                  <div>
+                    <ul>
+                      <li>
+                        <span>•</span> Oyun üçün
+                      </li>
+                      <li>
+                        <span>•</span> Dizayn üçün
+                      </li>
+                      <li>
+                        <span>•</span> Ofis üçün
+                      </li>
+                      <li>
+                        <span>•</span> Ev üçün
+                      </li>
+                      <li>
+                        <span>•</span> İkisi birində
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </li>
               <li className={styles.navbar_links}>
                 Aksesuarlar
                 <div className={styles.link_catagiries}>
@@ -68,7 +93,11 @@ const HeaderPage = () => {
                 </div>
               </li>
               <li className={styles.navbar_ideal}>
-                Ideal Pc <GoRocket size={24} />
+                <div>
+               Özün seç <GoRocket size={24} />
+
+                </div>
+               <span className={styles.border_line}></span>
               </li>
               <li className={styles.navbar_links}>Xidmətlər</li>
               <li className={styles.navbar_links}>Blog</li>
@@ -80,7 +109,10 @@ const HeaderPage = () => {
                 <FiSearch size={24} />
               </div>
               <div className={styles.navbar_icon}>
+                <Link to={"/basket"} className={styles.navbar_icon}>
                 <SlBasket size={24} />
+                
+                </Link>
               </div>
               <div className={styles.navbar_users} style={{ padding: "32px 0px" }}>
                 <BiUser size={24} />

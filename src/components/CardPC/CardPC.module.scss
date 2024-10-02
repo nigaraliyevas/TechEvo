@@ -1,3 +1,13 @@
+// .container_bottom {
+//   width: 100%;
+//   max-width: 1440px;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   background-color: #090d11;
+//   margin: 0 auto;
+//   padding: 0 160px;
+
 .card {
   padding: 12px !important;
   border: 1px solid transparent;
@@ -14,6 +24,10 @@
   z-index: 2;
   margin-bottom: 20px;
   // padding-right: 0;
+  // <<<<<<< HEAD
+  // =======
+
+  // >>>>>>> 0f0ef9c1933842cd64ccd93521a86f45f3d99528
 
   span:not(:nth-child(5)) {
     position: absolute;
@@ -33,6 +47,7 @@
     0% {
       left: -100%;
     }
+
     50%,
     100% {
       left: 100%;
@@ -53,6 +68,7 @@
     0% {
       top: -100%;
     }
+
     50%,
     100% {
       top: 100%;
@@ -73,6 +89,7 @@
     0% {
       right: -100%;
     }
+
     50%,
     100% {
       right: 100%;
@@ -93,6 +110,7 @@
     0% {
       bottom: -100%;
     }
+
     50%,
     100% {
       bottom: 100%;
@@ -109,10 +127,12 @@
       transform: scale(1.1);
     }
   }
+
   // .mr-0 {
   //   margin-right: 0 !important;
   // }
 }
+
 .mailTitle {
   .namePrice {
     display: block;
@@ -126,7 +146,7 @@
     height: 56px;
     color: white;
     font-weight: 500;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 28px;
   }
 
@@ -139,6 +159,7 @@
     justify-content: space-between;
     align-items: center;
     padding-bottom: 28px;
+    font-size: 12px;
 
     .basketBg {
       width: 36px;
@@ -164,4 +185,10 @@
   right: 20px;
   top: 12px;
   font-size: x-large;
+}
+
+.noProductsMessage {
+  font-size: 30px;
+  margin: 100px auto;
+  color: #fff;
 }

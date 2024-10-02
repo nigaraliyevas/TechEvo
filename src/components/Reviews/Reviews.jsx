@@ -10,12 +10,15 @@ const Reviews = () => {
   const [reviews, setReviews] = useState([]);
   const [visibleReviewsCount, setVisibleReviewsCount] = useState(2);
   const [newReview, setNewReview] = useState("");
+  const [rating, setRating] = useState(0);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     // Backenddən rəylər və reytinqlər gəlir
     axios
-      .get("https://ff82f4df-f72b-4dec-84ca-487132aff620.mock.pstmn.io/api/v1/product/comment")
+      .get(
+        "https://ff82f4df-f72b-4dec-84ca-487132aff620.mock.pstmn.io/api/v1/product/comment"
+      )
       .then((response) => {
         setReviews(response.data);
       })
@@ -46,12 +49,13 @@ const Reviews = () => {
       return;
     }
 
-    if (newReview.trim()) { 
+    if (newReview.trim() && rating > 0) {
       axios
         .post(
           "https://ff82f4df-f72b-4dec-84ca-487132aff620.mock.pstmn.io/api/v1/product/comment",
           {
             review: newReview,
+            rating,
           },
           {
             headers: {
@@ -60,8 +64,9 @@ const Reviews = () => {
           }
         )
         .then((response) => {
-          setReviews([response.data, ...reviews]); 
-          setNewReview(""); 
+          setReviews([response.data, ...reviews]);
+          setNewReview("");
+          setRating(0);
         })
         .catch((error) => {
           console.error("Rəy əlavə etmək mümkün olmadı:", error);
@@ -69,7 +74,7 @@ const Reviews = () => {
     } else {
       Swal.fire({
         title: "Xəbərdarlıq",
-        text: "Rəy boş ola bilməz!",
+        text: "Rəy və reytinq boş ola bilməz!",
         icon: "warning",
         confirmButtonText: "Bağla",
       });
@@ -80,7 +85,23 @@ const Reviews = () => {
     setVisibleReviewsCount((prevCount) => prevCount + 2);
   };
 
-  // Reytinqi backenddən alır və göstərir
+  // Rating selection
+  const renderRatingSelector = () => {
+    return (
+      <div className={styles.ratingSelector}>
+        {[1, 2, 3, 4, 5].map((star) => (
+          <span
+            key={star}
+            className={rating >= star ? styles.starFilled : styles.starEmpty}
+            onClick={() => setRating(star)}
+          >
+            ★
+          </span>
+        ))}
+      </div>
+    );
+  };
+
   const renderStars = (rating) => {
     const stars = [];
     for (let i = 1; i <= 5; i++) {
@@ -115,12 +136,18 @@ const Reviews = () => {
         </h3>
         {/* Yeni şərh yazma bölməsi */}
         <div className={styles.addReview}>
-          <textarea
-            value={newReview}
-            onChange={(e) => setNewReview(e.target.value)}
-            placeholder="Rəy yaz..."
-            className={styles.textArea}
-          />
+          <div className={styles.textAreaContainer}>
+            <textarea
+              value={newReview}
+              onChange={(e) => setNewReview(e.target.value)}
+              placeholder="Rəy yaz..."
+              className={styles.textArea}
+            />
+            {/* Rating selector inside textarea container */}
+            <div className={styles.overlayRating}>
+              {renderRatingSelector()}
+            </div>
+          </div>
           <button onClick={handleAddReview} className={styles.addButton}>
             Rəy yaz
           </button>
@@ -155,7 +182,6 @@ const Reviews = () => {
                       })}
                     </div>
                   </div>
-                  {/* Reytinq backenddən alınıb və göstərilir */}
                   <div>{renderStars(review.rating)}</div>
                 </div>
               </div>

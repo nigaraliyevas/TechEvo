@@ -2,9 +2,9 @@ import styles from "./ProductPage.module.scss";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import DetailImageComponent from "../../components/DetailImage/DetailImageComponent";
-import CommentSide from "../../components/CommentSide/Reviews";
+// import CommentSide from "../../components/CommentSide/Reviews";
 import Reviews from "../../components/CommentSide/Reviews";
-
+import Description from "../../components/Description/Description";
 
 const ProductPage = () => {
   return (
@@ -14,7 +14,7 @@ const ProductPage = () => {
           <div className={styles.productDetail}>
             <Row>
               <Col xs={6}><DetailImageComponent/></Col>
-              <Col></Col>
+              <Col><Description/></Col>
             </Row>
           </div>
 

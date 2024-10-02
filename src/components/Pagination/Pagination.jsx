@@ -9,7 +9,11 @@ const Pagination = () => {
   const { filteredProducts } = useSelector(state => state.filter);
   const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
 
-  const handlePageClick = data => {
+  const handlePageClick = (data) => {
+    // Scroll to the top of the page
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    
+    // Dispatch action to update the current page
     dispatch(setPage(data.selected + 1));
   };
 

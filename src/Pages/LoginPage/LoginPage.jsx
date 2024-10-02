@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styles from "./LoginPage.module.scssq";
+import styles from "./LoginPage.module.scss";
 import "../../components/css/Button.scss";
 import eyeIcon from "../../../public/assets/images/Welcome/Faeye.png";
 import openEye from "../../../public/assets/images/Welcome/OpenEye.png";

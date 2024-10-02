@@ -1,13 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from './RegisterPage2.module.scss';
 import passwordIcon from "../../../public/assets/images/Register/PasswordIcon.svg";
 import passwordIcon2 from "../../../public/assets/images/Register/PasswordIcon2.svg";
 import { useNavigate } from "react-router-dom";
 import "../../components/css/Button.scss";
+import UserAgreement from "../../components/TermsBox/UserAgreement";
 
 export default function RegisterPage2() {
   const navigate = useNavigate();
   const [isChecked, setIsChecked] = useState(false);
+  const [showTerms, setShowTerms] = useState(false);
 
   const [errors, setErrors] = useState({
     firstName: "",
@@ -27,6 +29,28 @@ export default function RegisterPage2() {
 
   const [showPassword, setShowPassword] = useState(false);
   const [showRepeatedPassword, setShowRepeatedPassword] = useState(false);
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (showTerms) {
+        setShowTerms(false);
+      }
+    };
+
+    if (showTerms) {
+      document.addEventListener("click", handleClickOutside);
+    }
+
+    // Cleanup the event listener when component unmounts or showTerms changes
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, [showTerms]);
+
+  const handleTerms = (e) => {
+    e.stopPropagation(); // Prevent closing when clicking on the terms menu itself
+    setShowTerms(!showTerms);
+  };
 
   const handleChangeChecked = (event) => {
     const isChecked = event.target.checked;
@@ -99,7 +123,7 @@ export default function RegisterPage2() {
 
     try {
       const response = await fetch(
-        "https://0c5e-5-133-233-247.ngrok-free.app/api/v1/auth/register",
+        "https://ff82f4df-f72b-4dec-84ca-487132aff620.mock.pstmn.io/api/v1/auth/register",
         {
           method: "POST",
           headers: {
@@ -140,15 +164,20 @@ export default function RegisterPage2() {
     setShowRepeatedPassword(!showRepeatedPassword);
   };
 
+  // const handleTerms = () => {
+  //   setShowTerms(true);
+  // }
+
   return (
-    <div className={styles.innerCont}>
+    <>
+      <div className={styles.innerCont}>
       <div className={styles.topText}>Qeydiyyat</div>
       <div className={styles.infoText}>
         Daxil olmaq üçün aşağıdakı xanaları doldurun.
       </div>
       <form onSubmit={handleSubmit}>
-        {/* First Name Field */}
         <div className={styles.register2Container}>
+          {/* First Name Field */}
           <div>
             <div className={styles.subHeader}>Ad</div>
             <div className={styles.inputContainer}>
@@ -250,9 +279,13 @@ export default function RegisterPage2() {
             />
             <span className={styles.customCheckmark}></span>
           </div>
-          <div>İstifadəçi şərtləri ilə razıyam</div>
+          <div
+            className={styles.termsText}
+            onClick={handleTerms}>
+            İstifadəçi şərtləri ilə razıyam
+          </div>
         </div>
-        {errors.terms && <p className={styles.errorMessage}>{errors.terms}</p>}
+        {errors.acceptTerms && <p className={styles.errorMessage}>{errors.acceptTerms}</p>}
 
         {/* Submit Button */}
         <button type="submit" className={`${styles.btnResponsive} Btn`}>
@@ -260,5 +293,7 @@ export default function RegisterPage2() {
         </button>
       </form>
     </div>
+    {showTerms ? <UserAgreement /> : null} 
+    </>
   );
 }

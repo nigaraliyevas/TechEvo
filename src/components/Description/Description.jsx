@@ -20,31 +20,34 @@ const Description = () => {
             <div className={style.line}></div>
 
             <p className={style.description}>
-            Apple MacBook Air M3 (MRXT3RU) təqdim edir həm keyfiyyət, həm də mobiliteyi. Bu yüngül və incə apple notebook, gücü və effektivliyi hər yerdə sizinlə aparır. M3 çipinə malik olan bu apple laptop, yüksək sürət və işləmə gücü təmin edir, iş və əyləncə üçün ideal bir cihazdır. Parlaq Retina ekranı və uzunömürlü batareyası ilə, Apple MacBook Air, gözlənilən təcrübədən daha çoxunu verir. Apple macbook qiymeti də, təklif etdiyi üstün xüsusiyyətlərə nəzərən münasibdir.
+                Apple MacBook Air M3 (MRXT3RU) təqdim edir həm keyfiyyət, həm də mobiliteyi. Bu yüngül və incə apple notebook, gücü və effektivliyi hər yerdə sizinlə aparır. M3 çipinə malik olan bu apple laptop, yüksək sürət və işləmə gücü təmin edir, iş və əyləncə üçün ideal bir cihazdır. Parlaq Retina ekranı və uzunömürlü batareyası ilə, Apple MacBook Air, gözlənilən təcrübədən daha çoxunu verir. Apple macbook qiymeti də, təklif etdiyi üstün xüsusiyyətlərə nəzərən münasibdir.
             </p>
 
             <div className={style.line}></div>
-            <div className={style.birKartP}><p>Birkart taksitlə əldə et</p></div>
+
             <div className={style.footer}>
                 <div className={style.option}>
-                    <div className={style.optionImg}>
-                    <img src={Birkart} alt="Birkart" />
+                    <div className={style.birKartP}><p>Birkart taksitlə əldə et</p></div>
+                    <div className={style.birKartImg}>
+                        <div className={style.optionImg}>
+                            <img src={Birkart} alt="Birkart" />
+                        </div>
+
+                        <span>12 ay 150 Azn</span>
                     </div>
-                    
-                    <span>12 ay 150 Azn</span>
                 </div>
-                    <div className={style.verticalLine}></div>
+                <div className={style.verticalLine}></div>
                 <div className={style.option}>
-                    <span>Daxili kredit üçün </span><a href="#">müraciət et</a>
+                    <span style={{color:'#E6E6E6'}}> Daxili kredit üçün<a href="#"> müraciət et </a> </span>
                 </div>
-                    <div className={style.verticalLine}></div>
+                <div className={style.verticalLine}></div>
 
                 <div className={style.option}>
-                    <RiShieldCheckLine  size={22}/><span>1 il zəmanət</span>
+                    <RiShieldCheckLine size={22} style={{paddingRight: '8px'}}/><span>1 il zəmanət</span>
                 </div>
-                    <div className={style.verticalLine}></div>
+                <div className={style.verticalLine}></div>
                 <div className={style.option}>
-                    <LuBox  size={22}/><span>Çatdırılma</span>
+                    <LuBox size={22} style={{paddingRight: '8px'}}/><span>Çatdırılma</span>
                 </div>
             </div>
         </div>

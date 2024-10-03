@@ -27,7 +27,7 @@ const ProductPage = () => {
 
           <div className={styles.productDescription}>
             <Row>
-              <Col>
+              <Col style={{paddingLeft: "0px",paddingRight: "0px"}}>
                 <Features id={63} />
               </Col>
             </Row>

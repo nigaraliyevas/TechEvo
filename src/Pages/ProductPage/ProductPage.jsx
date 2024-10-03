@@ -11,14 +11,15 @@ import Reviews from "../../components/Reviews/Reviews";
 const ProductPage = () => {
   return (
     <section id="product">
-      <div className="container">
+      <div className={styles.container}>
         <div className={styles.productpage_content}>
           <div className={styles.productDetail}>
             <Row>
-              <Col xs={6}>
+              <Col xs={5}  style={{paddingLeft: "0px",paddingRight: "0px"}}>
                 <DetailImageComponent />
               </Col>
-              <Col>
+              {/* <Col style={{paddingLeft: "0px",paddingRight: "0px"}}> */}
+              <Col xs={7} >
                 <Description />
               </Col>
             </Row>

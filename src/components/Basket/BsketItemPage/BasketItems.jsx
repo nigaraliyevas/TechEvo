@@ -14,7 +14,7 @@ const BasketItems = () => {
     }
   }
   return (
-    <div>
+    <div className={style.basket_items}>
         <div className={style.basket_item}>
           <div className={style.basket_image}> 
             <img src="" alt="" />

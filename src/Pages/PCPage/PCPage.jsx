@@ -25,7 +25,7 @@ const PCPage = () => {
     <section className="pc">
       <div className="container">
         <div className={styles.pc_content}>
-          <div className="row mb-4">
+          <div className="row mb-4"  style={{marginLeft: "0px",marginRight: "0px"}}>
             <SearchBar />
           </div>
           <div className={`row ${styles.pc__bottom}`}>

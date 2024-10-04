@@ -7,10 +7,8 @@ const FooterPage = () => {
 
 
   return (
-    <footer className={style.footer}>
+    <footer className={style.footer}> 
       <div className={style.container}>
-
-     
       <div className={style.footer_top}>
         <div className={style.footer_title}>
           <Link className="text-white text-decoration-none" to="/">

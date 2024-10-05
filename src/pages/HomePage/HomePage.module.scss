@@ -8,37 +8,7 @@
   box-sizing: border-box;
 }
 
-::-webkit-scrollbar {
-  width: 4px;
-}
 
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: #214440;
-  border: 3px solid gray;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background-color: #555;
-}
-
-/* Target horizontal scrollbar specifically */
-::-webkit-scrollbar:horizontal {
-  height: 4px;
-}
-
-::-webkit-scrollbar-thumb:horizontal {
-  background-color: transparent;
-  border: transparent;
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:horizontal:hover {
-  background-color: #555;
-}
 
 body {
   background-color: #090d11;
@@ -82,7 +52,8 @@ body {
   width: 100%;
   max-width: 1300px;
   margin: 0 auto;
-  padding: 0  57px;;
+  padding: 0 57px;
+
 
   .mainTitle {
     color: white;
@@ -142,6 +113,7 @@ body {
 .cardMain,
 .cardMs,
 .cardKb {
+
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
@@ -150,6 +122,7 @@ body {
 }
 
 .swiperSlide {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -159,24 +132,53 @@ body {
 
 .swiperNav {
 
-  color: purple !important;
-  position: absolute !important;
-  //   right: -100px;
+  //color: purple !important;
+  //font-family: swiper-icons;
+  /* font-size: var(--swiper-navigation-size); */
+  text-transform: none !important;
+  letter-spacing: 0;
+  font-variant: initial;
+  /* line-height: 1; */
+  color: white !important;
+  border: 2px solid white !important;
+  border-radius: 50% !important;
+  width: 26px !important;
+  height: 26px  !important;
+  display: flex   !important;
+  justify-content: center !important;
+  align-items: center !important;
+   
 
+
+  .swiper-button-next{     //islemir bu kod :(
+  font-size: 10px !important;
+  }
 }
 
-// .swiper-button-next {
-//   right: -100px;
-// }
+  //right: -20px !important;
 
-// .swiper-button-prev {
-//   left: -60px;
-// }
 
-.swiper-button-next:hover,
-.swiper-button-prev:hover {
-  background-color: rgba(235, 8, 8, 0.3);
-}
+
+  // .swiper-button-next {
+  //  position:absolute !important;
+   
+  //   font-size: 10px !important;
+  // }
+
+  .swiper-button-prev {
+    left: -60px;
+  }
+
+
+
+
+
+
+
+
+
+
+
 
 
 .card {
@@ -194,7 +196,7 @@ body {
   border-radius: 5px;
   box-sizing: border-box;
   max-width: 350px;
- 
+
   background-clip: border-box;
   position: relative;
   display: flex;
@@ -316,7 +318,7 @@ body {
 
   h4 {
     max-width: 250px;
-     height: 56px;
+    height: 56px;
     color: white;
     font-weight: 500;
     font-size: 16px;

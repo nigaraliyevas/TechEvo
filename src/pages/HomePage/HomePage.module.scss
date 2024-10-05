@@ -133,7 +133,7 @@ body {
   gap: 20px;
 }
 
-.swiper{
+.swiper {
   padding: 0 30px !important;
 }
 
@@ -145,32 +145,29 @@ body {
   height: auto;
 }
 
-
 .swiperNav:after {
   text-transform: none !important;
   letter-spacing: 0;
   font-size: 15px !important;
+  font-weight: 600;
   font-variant: initial;
   color: white !important;
   border: 2px solid white !important;
   border-radius: 50% !important;
-  width: 33px !important;
+  width: 30px !important;
   height: 30px !important;
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
 }
 
-.swiperNavPrev{
+.swiperNavPrev {
   left: 0px !important;
 }
 
-.swiperNavNext{
+.swiperNavNext {
   right: 0px !important;
 }
-
-
-
 
 .card {
   padding: 12px !important;
@@ -373,8 +370,7 @@ body {
 
 .services {
   color: white;
-  padding-top: 56px;
-  padding-bottom: 20px;
+  padding: 56px 30px 20px 30px;
   font-size: 40px;
   font-weight: 700;
 }
@@ -388,6 +384,8 @@ body {
   margin-right: auto;
   gap: 30px;
   padding-bottom: 120px;
+  padding-left: 30px;
+  padding-right: 30px;
 
   @media (min-width: 1170px) {
     grid-template-columns: repeat(4, 1fr);

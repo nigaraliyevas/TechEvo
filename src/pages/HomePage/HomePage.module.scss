@@ -1,14 +1,10 @@
 @import "../../../public/assets/variables/variables";
 
-
-
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
-
-
 
 body {
   background-color: #090d11;
@@ -45,7 +41,7 @@ body {
   justify-content: center;
   background-color: #090d11;
   margin: 0 auto;
-  padding: 0 160px;
+  padding: 0 130px;
 }
 
 .container_top {
@@ -53,7 +49,6 @@ body {
   max-width: 1300px;
   margin: 0 auto;
   padding: 0 57px;
-
 
   .mainTitle {
     color: white;
@@ -79,7 +74,21 @@ body {
     }
 
     .moreButton {
-      background-image: linear-gradient(to right bottom, #e1327d, #de1c8c, #d8009d, #cc00b0, #b900c5, #ab0ccf, #9918da, #8323e4, #7723e5, #6a24e7, #5b25e8, #4926e9);
+      background-image: linear-gradient(
+        to right bottom,
+        #e1327d,
+        #de1c8c,
+        #d8009d,
+        #cc00b0,
+        #b900c5,
+        #ab0ccf,
+        #9918da,
+        #8323e4,
+        #7723e5,
+        #6a24e7,
+        #5b25e8,
+        #4926e9
+      );
       color: white;
       width: 185px;
       padding: 15px;
@@ -97,6 +106,8 @@ body {
     padding-top: 56px;
     font-size: 40px;
     font-weight: 700;
+    padding-left: 30px;
+    padding-right: 30px;
   }
 }
 
@@ -106,6 +117,8 @@ body {
   color: white;
   padding-top: 56px;
   padding-bottom: 20px;
+  padding-left: 30px;
+  padding-right: 30px;
   font-size: 28px;
   font-weight: 500;
 }
@@ -113,12 +126,15 @@ body {
 .cardMain,
 .cardMs,
 .cardKb {
-
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
   width: 100%;
   gap: 20px;
+}
+
+.swiper{
+  padding: 0 30px !important;
 }
 
 .swiperSlide {
@@ -127,56 +143,31 @@ body {
   justify-content: center;
   align-items: center;
   height: auto;
-
 }
 
-.swiperNav {
 
-  //color: purple !important;
-  //font-family: swiper-icons;
-  /* font-size: var(--swiper-navigation-size); */
+.swiperNav:after {
   text-transform: none !important;
   letter-spacing: 0;
+  font-size: 15px !important;
   font-variant: initial;
-  /* line-height: 1; */
   color: white !important;
   border: 2px solid white !important;
   border-radius: 50% !important;
-  width: 26px !important;
-  height: 26px  !important;
-  display: flex   !important;
+  width: 33px !important;
+  height: 30px !important;
+  display: flex !important;
   justify-content: center !important;
   align-items: center !important;
-   
-
-
-  .swiper-button-next{     //islemir bu kod :(
-  font-size: 10px !important;
-  }
 }
 
-  //right: -20px !important;
+.swiperNavPrev{
+  left: 0px !important;
+}
 
-
-
-  // .swiper-button-next {
-  //  position:absolute !important;
-   
-  //   font-size: 10px !important;
-  // }
-
-  .swiper-button-prev {
-    left: -60px;
-  }
-
-
-
-
-
-
-
-
-
+.swiperNavNext{
+  right: 0px !important;
+}
 
 
 
@@ -185,13 +176,23 @@ body {
   padding: 12px !important;
   border: 1px solid transparent;
   cursor: pointer;
-  background:
-    radial-gradient(circle at 100% 100%, #000000 0, #000000 2px, transparent 2px) 0% 0% / 3px 3px no-repeat,
-    radial-gradient(circle at 0 100%, #000000 0, #000000 2px, transparent 2px) 100% 0% / 3px 3px no-repeat,
-    radial-gradient(circle at 100% 0, #000000 0, #000000 2px, transparent 2px) 0% 100% / 3px 3px no-repeat,
-    radial-gradient(circle at 0 0, #000000 0, #000000 2px, transparent 2px) 100% 100% / 3px 3px no-repeat,
-    linear-gradient(#000000, #000000) 50% 50% / calc(100% - 1px) calc(100% - 6px) no-repeat,
-    linear-gradient(#000000, #000000) 50% 50% / calc(100% - 6px) calc(100% - 1px) no-repeat,
+  background: radial-gradient(
+        circle at 100% 100%,
+        #000000 0,
+        #000000 2px,
+        transparent 2px
+      )
+      0% 0% / 3px 3px no-repeat,
+    radial-gradient(circle at 0 100%, #000000 0, #000000 2px, transparent 2px)
+      100% 0% / 3px 3px no-repeat,
+    radial-gradient(circle at 100% 0, #000000 0, #000000 2px, transparent 2px)
+      0% 100% / 3px 3px no-repeat,
+    radial-gradient(circle at 0 0, #000000 0, #000000 2px, transparent 2px) 100%
+      100% / 3px 3px no-repeat,
+    linear-gradient(#000000, #000000) 50% 50% / calc(100% - 1px)
+      calc(100% - 6px) no-repeat,
+    linear-gradient(#000000, #000000) 50% 50% / calc(100% - 6px)
+      calc(100% - 1px) no-repeat,
     linear-gradient(to top left, #0b0b4b, #49146e);
   border-radius: 5px;
   box-sizing: border-box;
@@ -343,7 +344,12 @@ body {
       width: 36px;
       height: 28px;
       border: 1px solid transparent;
-      background: linear-gradient(125.92deg, #fd3c43 -59.69%, #b622dc 41.4%, #3f27eb 124.93%);
+      background: linear-gradient(
+        125.92deg,
+        #fd3c43 -59.69%,
+        #b622dc 41.4%,
+        #3f27eb 124.93%
+      );
       border-radius: 3px;
       display: flex;
       justify-content: center;

@@ -1,4 +1,3 @@
-import React from 'react'
 import Card from '../../HomePageSections/Card/Card'
 // import { cards } from '../../../../src/DataHome'
 import styles from '../../../pages/HomePage/HomePage.module.scss'
@@ -45,8 +44,8 @@ const MsSection = ({ count = null }) => {
               </div>
             </SwiperSlide>
           ))}
-          <div className={`${styles.swiperNav} swiper-button-prev`}></div> {/* Sol ox */}
-          <div className={`${styles.swiperNav} swiper-button-next`}></div>
+          <div className={`${styles.swiperNav} ${styles.swiperNavPrev} swiper-button-prev`}></div> {/* Sol ox */}
+          <div className={`${styles.swiperNav} ${styles.swiperNavNext} swiper-button-next`}></div>
         </Swiper>
       </div>
     </div>

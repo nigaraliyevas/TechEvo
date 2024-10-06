@@ -151,14 +151,15 @@ body {
 .swiperNavPrev {
   background-image: url("/public/assets/images/Arrows/arrow-left.png");
   background-repeat: no-repeat;
-  left: -3px !important;
+  left: -2px !important;
+  width: calc(var(--swiper-navigation-size) / 40 * 27) !important;
 }
 
 .swiperNavNext {
   background-image: url("/public/assets/images/Arrows/arrow-right.png");
   background-repeat: no-repeat;
-  right: -3px !important;
-  z-index: 111111;
+  right: -1px !important;
+  width: calc(var(--swiper-navigation-size) / 40 * 27) !important;
 }
 
 .card {

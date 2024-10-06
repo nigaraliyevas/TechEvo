@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import styles from './RegisterPage2.module.scss';
 import passwordIcon from "../../../public/assets/images/Register/PasswordIcon.svg";
 import passwordIcon2 from "../../../public/assets/images/Register/PasswordIcon2.svg";
+import noProfileImg from "../../../public/assets/images/Register/noProfileImg.svg";
 import { useNavigate } from "react-router-dom";
 import "../../components/css/Button.scss";
 import UserAgreement from "../../components/TermsBox/UserAgreement";
@@ -78,6 +79,14 @@ export default function RegisterPage2() {
     return passwordErrors;
   };
 
+  const validateName = (name) => {
+    const nameRegex = /^[A-Za-z]{2,}$/;
+    if(!nameRegex.test(name)) {
+      return "Ad və soyad yalnız hərflərdən ibarət olmalıdır və ən azı 2 simvol uzunluğunda olmalıdır."
+    }
+    return "";
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -89,6 +98,19 @@ export default function RegisterPage2() {
       confirmPassword: "",
       acceptTerms: ""
     });
+
+    const firstNameError = validateName(formData.firstName);
+    const lastNameError = validateName(formData.lastName);
+
+    if(firstNameError || lastNameError) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        firstName: firstNameError,
+        lastName: lastNameError
+      }))
+      return;
+    }
+
 
     // Password validation
     const passwordErrors = validatePassword(formData.password);
@@ -121,15 +143,57 @@ export default function RegisterPage2() {
     const email = localStorage.getItem("email");
     console.log(formData, email);
 
+    // const formDataToSend = new FormData();
+    // formDataToSend.append("firstName", formData.firstName);
+    // formDataToSend.append("lastName", formData.lastName);
+    // formDataToSend.append("email", email);
+    // formDataToSend.append("password", formData.password);
+    // formDataToSend.append("confirmPassword", formData.confirmPassword);
+    // formDataToSend.append("acceptTerms", formData.acceptTerms);
+
+
+    // try {
+    //   const imageResponse = await fetch(passwordIcon); // Get the image as a Blob
+    //   const imageBlob = await imageResponse.blob();
+    //   formDataToSend.append("passwordIcon", imageBlob, "passwordIcon.svg"); // Append with a filename
+    // } catch (error) {
+    //   console.error("Error fetching the image file:", error);
+    //   return;
+    // }
+
+    const queryParams = new URLSearchParams({
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      email: email,
+      password: formData.password,
+      confirmPassword: formData.confirmPassword,
+      acceptTerms: formData.acceptTerms
+    }).toString();
+  
+    const url = `https://67d4-5-133-233-247.ngrok-free.app/api/v1/auth/register?${queryParams}`;
+  
+    // Create formData for image
+    const formDataToSend = new FormData();
+    try {
+      const imageResponse = await fetch(noProfileImg); // Fetch the image as a Blob
+      const imageBlob = await imageResponse.blob();
+      formDataToSend.append("profileImg", imageBlob, "noProfileImg.svg"); // Append with a filename
+    } catch (error) {
+      console.error("Error fetching the image file:", error);
+      return;
+    }
+
+
     try {
       const response = await fetch(
-        "https://ff82f4df-f72b-4dec-84ca-487132aff620.mock.pstmn.io/api/v1/auth/register",
+        url,
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ ...formData, email }),
+          // headers: {
+          //   "Content-Type": "application/json",
+          // },
+          // body: JSON.stringify({ ...formData, email }),
+          body: formDataToSend,
         }
       );
 
@@ -137,6 +201,7 @@ export default function RegisterPage2() {
         navigate("/login");
         console.log('success');
       } else {
+        const errorData = await response.json();
         const { firstName, lastName, password, confirmPassword, acceptTerms } = errorData.errors || {};
         setErrors({
           firstName: firstName || "",
@@ -148,7 +213,7 @@ export default function RegisterPage2() {
         console.log(errorData);
       }
     } catch (error) {
-      console.error("An error occurred:", error);
+      console.error("Error baş verdi:", error);
     }
   };
 

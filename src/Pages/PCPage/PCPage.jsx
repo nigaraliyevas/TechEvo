@@ -45,7 +45,7 @@ const PCPage = () => {
           </div>
         </div>
       </div>
-      <button onClick={fetchProducts}>Test</button>
+      {/* <button onClick={fetchProducts}>Test</button> */}
     </section>
   );
 };

@@ -11,7 +11,7 @@ const POST_REVIEW_API = "https://example.com/api/reviews/new";
 
 const StarRating = ({ rating, setRating }) => {
   const handleStarClick = (index) => {
-    setRating(index + 1); // Ulduz 0-dan başlandığı üçün +1 edilir
+    setRating(index + 1); 
   };
 
   return (
@@ -22,7 +22,7 @@ const StarRating = ({ rating, setRating }) => {
           onClick={() => handleStarClick(index)}
           style={{
             fontSize: "24px",
-            color: index < rating ? "#ffc107" : "#e4e5e9", // Seçilmiş ulduzları sarı göstər
+            color: index < rating ? "#ffc107" : "#e4e5e9", 
             cursor: "pointer",
           }}
         >

@@ -1,21 +1,27 @@
-.totalBox {
-  max-width: 1110px;
-  margin: 0 auto;
-}
+
+
 
 .addReview {
   display: flex;
-  align-items: center;
-  gap: 30px;
+  justify-content: space-between;
+  align-items: center; 
   margin-bottom: 20px;
 }
 
 .textAreaContainer {
   position: relative;
-}
-
-.textArea {
+  display: flex;
+  align-items: center;
   width: 920px;
+}
+.star_rating {
+  position: absolute;
+  right:16px;
+
+}
+.textArea {
+ 
+  width: 100%;
   border: none;
   padding: 16px 16px 0px;
   border-radius: 4px;
@@ -24,19 +30,13 @@
   font-size: 20px;
   height: 60px;
   background-color: #151719;
-  padding-right: 100px;
+  // padding-right: 100px;
 }
 
-.overlayRating {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  pointer-events: auto;
-  display: flex;
-  gap: 5px;
-}
+
 
 .addButton {
+  margin-left: 20px;
   padding: 10px 20px;
   background-color: #090c11;
   width: 160px;
@@ -46,6 +46,7 @@
   border-radius: 4px;
   cursor: pointer;
   font-size: 20px;
+  align-self: flex-end;
 }
 
 .reviewBox {

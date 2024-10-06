@@ -1,6 +1,6 @@
 import { PiHeartBold } from "react-icons/pi";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Basket from "/assets/images/HomePage/Products/basket.png";
+import { SlBasket } from "react-icons/sl";
 
 import styles from "./CardPC.module.scss";
 import { useSelector } from "react-redux";
@@ -26,10 +26,14 @@ const CardPC = () => {
               <span></span>
               <div>
                 <div style={{ position: "relative", overflow: "hidden" }}>
-                  <img className={styles.cardImg} src={card.image} alt={card.name} />
+                  <div className={styles.cardImgContainer} style={{ overflow: "hidden" }}>
+                    <img className={styles.cardImg} src={card.image} alt={card.name} />
+                  </div>
                 </div>
+
+
                 <div className={styles.heartSpan}>
-                  <PiHeartBold />
+                  <PiHeartBold/>
                 </div>
 
                 <div className={styles.mailTitle}>
@@ -42,9 +46,9 @@ const CardPC = () => {
                       <img src={card.rating} alt="rating" />
                     </div>
                     <div className={styles.basketBg}>
-                      <Link to="/basket" className="text-decoration-cone">
-                        <img src={Basket} />
-                      </Link>
+                      {/* <Link to="/basket" className="text-decoration-cone"> */}
+                      <a href='#'><SlBasket style={{ width: "18px", height: "18px" }} /></a>
+                      {/* </Link> */}
                     </div>
                   </div>
                 </div>

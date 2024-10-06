@@ -7,7 +7,6 @@ import Pagination from "../../components/Pagination/Pagination";
 import SearchBar from "../../components/search/SearchBar";
 
 const PCPage = () => {
-
   const fetchProducts = async () => {
     try {
       const response = await fetch("https://ff82f4df-f72b-4dec-84ca-487132aff620.mock.pstmn.io/api/v1/product/getAllProducts");
@@ -45,7 +44,7 @@ const PCPage = () => {
           </div>
         </div>
       </div>
-      <button onClick={fetchProducts}>Test</button>
+      {/* <button onClick={fetchProducts}>Test</button> */}
     </section>
   );
 };

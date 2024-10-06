@@ -74,21 +74,7 @@ body {
     }
 
     .moreButton {
-      background-image: linear-gradient(
-        to right bottom,
-        #e1327d,
-        #de1c8c,
-        #d8009d,
-        #cc00b0,
-        #b900c5,
-        #ab0ccf,
-        #9918da,
-        #8323e4,
-        #7723e5,
-        #6a24e7,
-        #5b25e8,
-        #4926e9
-      );
+      background-image: linear-gradient(to right bottom, #e1327d, #de1c8c, #d8009d, #cc00b0, #b900c5, #ab0ccf, #9918da, #8323e4, #7723e5, #6a24e7, #5b25e8, #4926e9);
       color: white;
       width: 185px;
       padding: 15px;
@@ -153,46 +139,33 @@ body {
   font-size: 13px !important;
   font-weight: 600;
   font-variant: initial;
+  margin: 25px;
   color: white !important;
-  border: 2px solid white !important;
-  border-radius: 50% !important;
-  width: 30px !important;
-  height: 28px !important;
-  display: flex !important;
+  // border: 2px solid white !important;
+  // border-radius: 50% !important;
+  display: none !important;
   justify-content: center !important;
   align-items: center !important;
 }
 
 .swiperNavPrev {
-  left: 0px !important;
+  background-image: url("/public/assets/images/Arrows/arrow-left.png");
+  background-repeat: no-repeat;
+  left: -3px !important;
 }
 
 .swiperNavNext {
-  right: 0px !important;
+  background-image: url("/public/assets/images/Arrows/arrow-right.png");
+  background-repeat: no-repeat;
+  right: -3px !important;
+  z-index: 111111;
 }
 
 .card {
   padding: 12px !important;
   border: 1px solid transparent;
   cursor: pointer;
-  background: radial-gradient(
-        circle at 100% 100%,
-        #000000 0,
-        #000000 2px,
-        transparent 2px
-      )
-      0% 0% / 3px 3px no-repeat,
-    radial-gradient(circle at 0 100%, #000000 0, #000000 2px, transparent 2px)
-      100% 0% / 3px 3px no-repeat,
-    radial-gradient(circle at 100% 0, #000000 0, #000000 2px, transparent 2px)
-      0% 100% / 3px 3px no-repeat,
-    radial-gradient(circle at 0 0, #000000 0, #000000 2px, transparent 2px) 100%
-      100% / 3px 3px no-repeat,
-    linear-gradient(#000000, #000000) 50% 50% / calc(100% - 1px)
-      calc(100% - 6px) no-repeat,
-    linear-gradient(#000000, #000000) 50% 50% / calc(100% - 6px)
-      calc(100% - 1px) no-repeat,
-    linear-gradient(to top left, #0b0b4b, #49146e);
+  background: radial-gradient(circle at 100% 100%, #000000 0, #000000 2px, transparent 2px) 0% 0% / 3px 3px no-repeat, radial-gradient(circle at 0 100%, #000000 0, #000000 2px, transparent 2px) 100% 0% / 3px 3px no-repeat, radial-gradient(circle at 100% 0, #000000 0, #000000 2px, transparent 2px) 0% 100% / 3px 3px no-repeat, radial-gradient(circle at 0 0, #000000 0, #000000 2px, transparent 2px) 100% 100% / 3px 3px no-repeat, linear-gradient(#000000, #000000) 50% 50% / calc(100% - 1px) calc(100% - 6px) no-repeat, linear-gradient(#000000, #000000) 50% 50% / calc(100% - 6px) calc(100% - 1px) no-repeat, linear-gradient(to top left, #0b0b4b, #49146e);
   border-radius: 5px;
   box-sizing: border-box;
   max-width: 350px;
@@ -343,12 +316,7 @@ body {
       width: 36px;
       height: 28px;
       border: 1px solid transparent;
-      background: linear-gradient(
-        125.92deg,
-        #fd3c43 -59.69%,
-        #b622dc 41.4%,
-        #3f27eb 124.93%
-      );
+      background: linear-gradient(125.92deg, #fd3c43 -59.69%, #b622dc 41.4%, #3f27eb 124.93%);
       border-radius: 3px;
       display: flex;
       justify-content: center;

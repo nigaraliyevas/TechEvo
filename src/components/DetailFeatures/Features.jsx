@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import styles from "./Features.module.scss" 
+// import env from '../../../src/.env';
 
 const Features = ({id}) => {
 
     const [productDetails, setProductDetails] = useState({});
 
     useEffect(() => {
-    fetch('https://ff82f4df-f72b-4dec-84ca-487132aff620.mock.pstmn.io/api/v1/product/getAllProducts')
+    fetch(`https://67d4-5-133-233-247.ngrok-free.app/api/v1/product/getAllProducts`)
     .then(response => {
         if(!response.ok) {
             throw new Error("Failed to fetch products");

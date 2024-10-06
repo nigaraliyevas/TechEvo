@@ -1,36 +1,42 @@
 
-.totalBox{
-max-width: 1110px;
-margin: 0 auto;
-}
+
 
 .addReview {
   display: flex;
-  align-items: center;
-  gap: 30px;
+  justify-content: space-between;
+  align-items: center; 
   margin-bottom: 20px;
 }
-.reviewBox{
+
+.textAreaContainer {
+  position: relative;
   display: flex;
-  flex-direction: column;
-  gap: 24px;
+  align-items: center;
+  width: 920px;
+}
+.star_rating {
+  position: absolute;
+  right:16px;
 
 }
 .textArea {
-  width: 920px;
+ 
+  width: 100%;
   border: none;
-  padding:16px 16px 0px ;
+  padding: 16px 16px 0px;
   border-radius: 4px;
   color: white;
   resize: none;
   font-size: 20px;
   height: 60px;
   background-color: #151719;
-
+  // padding-right: 100px;
 }
 
+
+
 .addButton {
-//   align-self: flex-start;
+  margin-left: 20px;
   padding: 10px 20px;
   background-color: #090c11;
   width: 160px;
@@ -40,21 +46,21 @@ margin: 0 auto;
   border-radius: 4px;
   cursor: pointer;
   font-size: 20px;
+  align-self: flex-end;
 }
 
+.reviewBox {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
 
-
-/* Rəylər */
 .review {
- border-radius: 4px;
-  padding: 20px ;
+  border-radius: 4px;
+  padding: 20px;
   background-color: #161719;
   min-height: 196px;
   width: 100%;
-}
-
-.review:last-child {
-  border-bottom: none;
 }
 
 .reviewHeader {
@@ -67,13 +73,12 @@ margin: 0 auto;
   height: 56px;
   border-radius: 50%;
   margin-right: 15px;
- 
 }
-.defaultProfileIcon{
+
+.defaultProfileIcon {
   font-size: 56px;
   color: #4e4c4c;
 }
-
 
 .userInfo {
   display: flex;
@@ -91,7 +96,6 @@ margin: 0 auto;
   color: #777;
 }
 
-/* Rəy məzmunu */
 .reviewText {
   font-size: 18px;
   line-height: 1.6;
@@ -101,53 +105,50 @@ margin: 0 auto;
 }
 
 .starFilled {
-  color: gold; // Dolu ulduzların rəngi sarı
+  color: gold;
   font-size: 17px;
   margin-right: 2px;
 }
 
 .starHalf {
-  color: gold; // Yarım ulduzun rəngi
+  color: gold;
   font-size: 17px;
   margin-right: 2px;
   position: relative;
 }
 
 .starHalf::after {
-  content: '★'; // Yarım ulduz üçün ikinci ulduz
-  color: lightgray; // Yarım ulduzun üstü boş olmalıdır
+  content: '★';
+  color: rgba(255, 255, 255, 0.5);
   position: absolute;
+  top: 0;
   left: 0;
-  width: 100%; 
+  width: 50%;
   overflow: hidden;
 }
 
 .starEmpty {
-  color: lightgray; // Boş ulduzlar üçün rəng
+  color: #ccc;
   font-size: 17px;
   margin-right: 2px;
 }
 
-/* "Load More" düyməsi */
-.loadMoreButton {
-  display: block;
-  width: 203px;
-  padding: 6px 20px 6px 20px;
-  background-color: #090c11;
-  color: #999999;
-  border: 1px solid #999999;
-  border-radius: 4px;
+.ratingSelector span {
   cursor: pointer;
+}
+
+.loadMoreButton {
+  background: transparent;
+  color: #ccc;
+  border: none;
   font-size: 18px;
-  margin-top: 20px;
-  margin: auto;
-  text-align: center;
-  font-weight: 500;
-  .chevron{
-    font-size: 25px;
-  }
+  cursor: pointer;
 }
 
 .loadMoreButton:hover {
-  background-color: #4e4c4c;
+  color: white;
+}
+
+.chevron {
+  font-size: 20px;
 }

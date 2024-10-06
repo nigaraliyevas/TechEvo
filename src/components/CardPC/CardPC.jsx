@@ -19,7 +19,7 @@ const CardPC = () => {
       ) : (
         currentItems.map(card => (
           <div key={card.id} className={styles.card}>
-            <Link to="/product" style={{textDecoration:"none"}}>
+            <Link to="/product" style={{ textDecoration: "none" }}>
               <span></span>
               <span></span>
               <span></span>
@@ -42,7 +42,9 @@ const CardPC = () => {
                       <img src={card.rating} alt="rating" />
                     </div>
                     <div className={styles.basketBg}>
-                      <img src={Basket} />
+                      <Link to="/basket" className="text-decoration-cone">
+                        <img src={Basket} />
+                      </Link>
                     </div>
                   </div>
                 </div>

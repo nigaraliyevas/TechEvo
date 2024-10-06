@@ -24,6 +24,7 @@ const RoutesPage = () => {
           <Route path="/pc" element={<PCPage />} />
           <Route path="/product" element={<ProductPage />} />
           <Route path="/basket" element={<BasketPage />} />
+    
         </Routes>
       </LayoutPages>
     </div>

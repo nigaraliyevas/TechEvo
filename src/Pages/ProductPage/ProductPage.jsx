@@ -1,6 +1,7 @@
 import styles from "./ProductPage.module.scss";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+// import Reviews from "../../components/CommentSide/Reviews";
 import DetailImageComponent from "../../components/DetailImage/DetailImageComponent";
 // import CommentSide from "../../components/CommentSide/Reviews";
 import Description from "../../components/Description/Description";
@@ -26,7 +27,7 @@ const ProductPage = () => {
 
           <div className={styles.productDescription}>
             <Row>
-              <Col>
+              <Col style={{paddingLeft: "0px",paddingRight: "0px"}}>
                 <Features id={63} />
               </Col>
             </Row>

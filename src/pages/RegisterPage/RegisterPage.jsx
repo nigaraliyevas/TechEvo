@@ -44,7 +44,7 @@ export default function RegisterPage() {
         try {
             console.log(email);
             
-            const response = await fetch('https://ff82f4df-f72b-4dec-84ca-487132aff620.mock.pstmn.io/api/v1/auth/activate', {
+            const response = await fetch('https://67d4-5-133-233-247.ngrok-free.app/api/v1/auth/register-email', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

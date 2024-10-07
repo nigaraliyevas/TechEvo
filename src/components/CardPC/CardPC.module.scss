@@ -16,7 +16,7 @@
   border-radius: 5px;
   box-sizing: border-box;
   max-width: 255px;
-  max-height: 312px;
+  //max-height: 312px;
   background-clip: border-box;
   position: relative;
   overflow: hidden !important;
@@ -117,16 +117,21 @@
     }
   }
 
+  .cardImgContainer{
+    width: 231px;
+    height: 140px;
+
   .cardImg {
     height: 100%;
     width: 100%;
-    object-fit: contain;
-    transition: transform 0.5s ease;
+    //object-fit: contain;
+    transition: 0.5s ease all;
 
     &:hover {
       transform: scale(1.1);
     }
   }
+}
 
   // .mr-0 {
   //   margin-right: 0 !important;
@@ -152,13 +157,14 @@
 
   p {
     color: white;
+    margin: 8px 0;
   }
 
   .ratingBasket {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: 28px;
+    padding-bottom: 24px;
     font-size: 12px;
 
     .basketBg {
@@ -170,6 +176,13 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      a {
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+       
+      }
 
       img {
         max-width: 100%;
@@ -184,7 +197,7 @@
   position: absolute;
   right: 20px;
   top: 12px;
-  font-size: x-large;
+  font-size: larger;
 }
 
 .noProductsMessage {

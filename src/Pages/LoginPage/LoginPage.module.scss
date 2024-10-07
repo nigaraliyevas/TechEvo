@@ -1,11 +1,11 @@
 @use "/public/assets/variables/variables" as variables;
 
-#container_bg {
-  // background-color: #090c11;
-  padding-top: 88px;
-  padding-bottom: 120px;
-  padding: 150px 0px;
-}
+// #container_bg {
+//   // background-color: #090c11;
+//   padding-top: 88px;
+//   padding-bottom: 120px;
+//   padding: 150px 0px;
+// }
 
 .welcomeBox {
   width: 540px;
@@ -13,6 +13,10 @@
   background-color: #161a1e;
   margin: 0 auto;
   border-radius: 2px;
+  margin-top: 180px;
+  margin-bottom: 130px;
+
+ 
 }
 .welcomeBox_container {
   // width: 380px;

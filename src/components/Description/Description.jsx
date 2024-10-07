@@ -1,4 +1,3 @@
-import React from 'react'
 import style from './Description.module.scss'
 import Birkart from '../../../public/assets/images/Description/birbank.png'
 import { RiShieldCheckLine } from "react-icons/ri";

@@ -1,5 +1,5 @@
 import styles from "./Filter.module.scss";
-import filterImg from "../../../public/assets/images/FilterSide/filterImg.png";
+import filterImg from "../../../public/assets/images/FilterSide/filterImg.svg";
 import PriceRangeSlider from "./components/Slider/Slider";
 import Accordion from "./components/Accordion/Accordion";
 import CategoryFilter from "./components/FilteredProducts/CategoryFilter";
@@ -12,7 +12,7 @@ import MemoryTypeFilter from "./components/FilteredProducts/MemoryTypeFilter";
 const FilteredProducts = () => {
   const items = [
     { title: "Qiymət", content: <PriceRangeSlider /> },
-    { title: "Kategoriya", content: <CategoryFilter /> },
+    { title: "Kateqoriya", content: <CategoryFilter /> },
     { title: "Brend", content: <BrendFilter /> },
     { title: "Prosessor", content: <ProsessorFilter /> },
     { title: "Videokart", content: <VideoCardFilter /> },
@@ -26,7 +26,7 @@ const FilteredProducts = () => {
           <div>
             <div className={styles.head}>
               <div>
-                <p className={styles.text}>Filtr</p>
+                <p className={styles.text}>Filter</p>
               </div>
               <div className={styles.filterImg}>
                 <img src={filterImg} />

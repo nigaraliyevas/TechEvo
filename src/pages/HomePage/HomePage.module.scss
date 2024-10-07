@@ -74,7 +74,19 @@ body {
     }
 
     .moreButton {
-      background-image: linear-gradient(to right bottom, #e1327d, #de1c8c, #d8009d, #cc00b0, #b900c5, #ab0ccf, #9918da, #8323e4, #7723e5, #6a24e7, #5b25e8, #4926e9);
+      background-image: linear-gradient(to right bottom,
+          #e1327d,
+          #de1c8c,
+          #d8009d,
+          #cc00b0,
+          #b900c5,
+          #ab0ccf,
+          #9918da,
+          #8323e4,
+          #7723e5,
+          #6a24e7,
+          #5b25e8,
+          #4926e9);
       color: white;
       width: 185px;
       padding: 15px;
@@ -94,7 +106,6 @@ body {
     font-weight: 700;
     padding-left: 30px;
     padding-right: 30px;
-    font-family: $fontFamily;
   }
 }
 
@@ -108,7 +119,6 @@ body {
   padding-right: 30px;
   font-size: 28px;
   font-weight: 500;
-  font-family: $fontFamily;
 }
 
 .cardMain,
@@ -136,37 +146,41 @@ body {
 .swiperNav:after {
   text-transform: none !important;
   letter-spacing: 0;
-  font-size: 13px !important;
+  font-size: 15px !important;
   font-weight: 600;
   font-variant: initial;
-  margin: 25px;
   color: white !important;
   // border: 2px solid white !important;
   // border-radius: 50% !important;
-  display: none !important;
+  width: 30px !important;
+  height: 30px !important;
+  display: flex !important;
   justify-content: center !important;
   align-items: center !important;
 }
 
 .swiperNavPrev {
-  background-image: url("/public/assets/images/Arrows/arrow-left.png");
-  background-repeat: no-repeat;
-  left: -2px !important;
-  width: calc(var(--swiper-navigation-size) / 40 * 27) !important;
+  left: 0px !important;
 }
 
 .swiperNavNext {
-  background-image: url("/public/assets/images/Arrows/arrow-right.png");
-  background-repeat: no-repeat;
-  right: -1px !important;
-  width: calc(var(--swiper-navigation-size) / 40 * 27) !important;
+  right: 0px !important;
 }
 
 .card {
   padding: 12px !important;
   border: 1px solid transparent;
   cursor: pointer;
-  background: radial-gradient(circle at 100% 100%, #000000 0, #000000 2px, transparent 2px) 0% 0% / 3px 3px no-repeat, radial-gradient(circle at 0 100%, #000000 0, #000000 2px, transparent 2px) 100% 0% / 3px 3px no-repeat, radial-gradient(circle at 100% 0, #000000 0, #000000 2px, transparent 2px) 0% 100% / 3px 3px no-repeat, radial-gradient(circle at 0 0, #000000 0, #000000 2px, transparent 2px) 100% 100% / 3px 3px no-repeat, linear-gradient(#000000, #000000) 50% 50% / calc(100% - 1px) calc(100% - 6px) no-repeat, linear-gradient(#000000, #000000) 50% 50% / calc(100% - 6px) calc(100% - 1px) no-repeat, linear-gradient(to top left, #0b0b4b, #49146e);
+  background: radial-gradient(circle at 100% 100%,
+      #000000 0,
+      #000000 2px,
+      transparent 2px) 0% 0% / 3px 3px no-repeat,
+    radial-gradient(circle at 0 100%, #000000 0, #000000 2px, transparent 2px) 100% 0% / 3px 3px no-repeat,
+    radial-gradient(circle at 100% 0, #000000 0, #000000 2px, transparent 2px) 0% 100% / 3px 3px no-repeat,
+    radial-gradient(circle at 0 0, #000000 0, #000000 2px, transparent 2px) 100% 100% / 3px 3px no-repeat,
+    linear-gradient(#000000, #000000) 50% 50% / calc(100% - 1px) calc(100% - 6px) no-repeat,
+    linear-gradient(#000000, #000000) 50% 50% / calc(100% - 6px) calc(100% - 1px) no-repeat,
+    linear-gradient(to top left, #0b0b4b, #49146e);
   border-radius: 5px;
   box-sizing: border-box;
   max-width: 350px;
@@ -267,17 +281,21 @@ body {
       bottom: 100%;
     }
   }
+  .cardImgContainer{
+    width: 326px;
+    height: 180px;
 
   .cardImg {
     height: 100%;
     width: 100%;
-    object-fit: contain;
+   // object-fit: contain;
     transition: 0.5s ease all;
 
     &:hover {
       transform: scale(1.1);
     }
   }
+}
 }
 
 .mailTitle {
@@ -305,6 +323,9 @@ body {
     font-size: 18px;
     font-weight: 700;
     line-height: 20px;
+    margin-top: 12px;
+    margin-bottom: 8px;
+
   }
 
   .ratingBasket {
@@ -317,11 +338,19 @@ body {
       width: 36px;
       height: 28px;
       border: 1px solid transparent;
-      background: linear-gradient(125.92deg, #fd3c43 -59.69%, #b622dc 41.4%, #3f27eb 124.93%);
+      background: $linearGradient;
       border-radius: 3px;
       display: flex;
       justify-content: center;
       align-items: center;
+
+      a {
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
 
       img {
         max-width: 100%;
@@ -336,7 +365,7 @@ body {
   position: absolute;
   right: 3%;
   top: 0%;
-  font-size: x-large;
+  font-size: larger;
 }
 
 .services {
@@ -344,7 +373,6 @@ body {
   padding: 56px 30px 20px 30px;
   font-size: 40px;
   font-weight: 700;
-  font-family: $fontFamily;
 }
 
 .mainServices {

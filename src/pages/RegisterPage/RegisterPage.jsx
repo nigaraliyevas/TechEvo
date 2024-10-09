@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "./RegisterPage.module.scss"
 import RegisterPage2 from "./RegisterPage2";
 import "../../components/css/Button.scss";
+import { useNavigate } from "react-router-dom";
 // import axios from "axios";
 export default function RegisterPage() {
 
@@ -9,6 +10,7 @@ export default function RegisterPage() {
     const [submitted, setSubmitted] = useState(false);
     const [showPage2, setShowPage2] = useState(false)
     const [email, setEmail] = useState("");
+    const navigate = useNavigate();
 
     const validateEmail = (email) => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
@@ -44,7 +46,7 @@ export default function RegisterPage() {
         try {
             console.log(email);
             
-            const response = await fetch('https://67d4-5-133-233-247.ngrok-free.app/api/v1/auth/register-email', {
+            const response = await fetch('https://0605-5-133-233-247.ngrok-free.app/api/v1/auth/register-email', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -56,7 +58,9 @@ export default function RegisterPage() {
             if (response.ok) { 
                 localStorage.setItem('email', email);
                 // setError('');
-                setShowPage2(true);
+                // setShowPage2(true);
+                navigate("/verify-email");
+                alert('Please check your email for verification.');
             } else {
                 const errorText = await response.text(); // Read the response as text
                 setError(`Email saxlanıla bilmədi: ${errorText}`);

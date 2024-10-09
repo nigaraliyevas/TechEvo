@@ -9,6 +9,7 @@ import EnterPasswordPage from "../EnterPasswordPage/EnterPasswordPage";
 import PCPage from "../PCPage/PCPage";
 import ProductPage from "../ProductPage/ProductPage";
 import BasketPage from "../BasketPage/BasketPage";
+import EmailVerificationPage from "../RegisterPage/EmailVerificationPage";
 
 const RoutesPage = () => {
   return (
@@ -24,6 +25,7 @@ const RoutesPage = () => {
           <Route path="/pc" element={<PCPage />} />
           <Route path="/product" element={<ProductPage />} />
           <Route path="/basket" element={<BasketPage />} />
+          <Route path="/verify-email" element={<EmailVerificationPage />} />
         </Routes>
       </LayoutPages>
     </div>

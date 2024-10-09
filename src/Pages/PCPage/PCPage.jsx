@@ -12,7 +12,7 @@ const PCPage = () => {
       <div className="container">
         <div className={styles.pc_content}>
           <div className="row mb-4"  style={{marginLeft: "0px",marginRight: "0px"}}>
-            <SearchBar />
+            <SearchBar filteredProducts = {FilteredProducts} />
           </div>
           <div className={`row ${styles.pc__bottom}`}>
             <div className="filter-side col-lg-3">

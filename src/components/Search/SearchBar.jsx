@@ -6,9 +6,27 @@ import SearchIcon from "../../../public/assets/images/Search/search.svg"; // Mak
 import DropDownIcon from "../../../public/assets/images/Search/dropdownIcon.svg";
 import DropUpIcon from "../../../public/assets/images/Search/dropupIcon.svg";
 
-const SearchBar = () => {
+const SearchBar = ({ filteredProducts }) => {
   const dispatch = useDispatch();
   const [showOrder, setShowOrder] = useState(false);
+
+  
+  const [query, setQuery] = useState("");
+  const handleQuery = ({ target }) => { setQuery(target.value) };
+  const handleSearchItems = () => {
+    let searchItems = [];
+    searchItems = filteredProducts.map((prod) => {
+      prod.title.toLocaleLowerCase().trim().includes(query.toLocaleLowerCase().trim());
+    })
+  }
+
+  // if no products are found
+  if(searchItems.length === 0) {
+    return <div>Məhsul tapılmadı</div>
+  }
+  else {
+    // show found products
+  }
 
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -32,21 +50,22 @@ const SearchBar = () => {
     setShowOrder(!showOrder);
   };
 
-  const handleSearch = e => {
-    const searchValue = e.target.value.trim();
-    if (searchValue === "") {
-      dispatch(resetProducts());
-    } else {
-      dispatch(filterProductsByName(searchValue));
-    }
-  };
+  // const handleSearch = e => {
+  //   const searchValue = e.target.value.trim();
+  //   if (searchValue === "") {
+  //     dispatch(resetProducts());
+  //   } else {
+  //     dispatch(filterProductsByName(searchValue));
+  //   }
+  // };
 
   return (
     <div className={styles.searchBarContainer}>
       <section className={styles.section}>
         <div className={styles.pc}>PC</div>
         <div className={`${styles.searchContainer} ${showOrder && styles.pointerNone}`}>
-          <input onChange={handleSearch} className={styles.searchInput} type="text" placeholder="Axtarış" />
+          <input value={query} onInput={handleQuery} className={styles.searchInput} type="text" placeholder="Axtarış" />
+          {handleSearchItems()}
           <div className={styles.searchIconContainer}>
             <img className={styles.searchIcon} src={SearchIcon} alt="Search Icon" />
           </div>

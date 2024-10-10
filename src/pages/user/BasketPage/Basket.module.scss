@@ -1,0 +1,32 @@
+@import "../../../assets/variables/variables";
+
+.conatiner {
+    max-width: 1414px;
+    margin: 0 auto;
+    padding: 56px 165px 120px;
+    margin-top: 96px;
+
+    .basket_title {
+        font-family: $fontFamily;
+        font-size: 32px;
+        font-weight: 700;
+        line-height: 28px;
+        color: $thirdColor;
+        border-bottom: 1px solid rgba(50, 52, 55, 1);
+        padding-bottom: 20px;
+    }
+
+    .basket_items_container {
+        display: flex;
+       gap: 30px;
+       margin-top: 32px;
+    }
+
+    .basket_items {
+        flex-basis: 730px;
+    }
+
+    .basket_total {
+        flex-basis: 350px;
+    }
+}

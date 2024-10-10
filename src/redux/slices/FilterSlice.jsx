@@ -74,7 +74,7 @@ const filterSlice = createSlice({
     },
     filterProductsByName: (state, action) => {
       const searchValue = action.payload.toLowerCase();
-      state.filteredProducts = cards.filter(product => product.name.toLowerCase().includes(searchValue));
+      state.filteredProducts = state.filteredProducts.filter(product => product.name.toLowerCase().includes(searchValue));
     },
     resetProducts: state => {
       state.filteredProducts = cards;
@@ -130,7 +130,7 @@ const filterSlice = createSlice({
 });
 
 const updateFilteredProducts = state => {
-  let filtered = cards.filter(card => {
+  let filtered = state.filteredProducts.filter(card => {
     const withinPriceRange = card.price >= state.priceRange[0] && card.price <= state.priceRange[1];
     const matchesCategory = state.selectedCategories.length === 0 || state.selectedCategories.includes(card.category);
     const matchesBrand = state.selectedBrands.length === 0 || state.selectedBrands.includes(card.brend);

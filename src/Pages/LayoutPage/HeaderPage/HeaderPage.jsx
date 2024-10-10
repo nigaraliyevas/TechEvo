@@ -11,7 +11,6 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from "../../../../public/assets/images/HeaderPage/tech-evo-logo 1.png";
 import navBarLogo from "../../../../public/assets/images/HeaderPage/tech-evo-logo 1.png";
 
-
 const HeaderPage = () => {
   return (
     <header>
@@ -24,8 +23,11 @@ const HeaderPage = () => {
           </div>
           <div className={styles.navbar_right}>
             <ul className={styles.navbar_pages}>
-              <Link to={"/pc"} style={{ padding: "0px 20px" }} className={`${styles.navbar_links}  text-decoration-none text-white`}>
-                PC
+              <Link
+                style={{ padding: "0px 20px" }}
+                className={`${styles.navbar_links}  text-decoration-none text-white`}
+              >
+                <Link style={{color:"white",textDecoration:"none"}} to={"/pc"}>PC</Link>
                 <div className={styles.link_catagiries}>
                   <div>
                     <ul>
@@ -48,8 +50,9 @@ const HeaderPage = () => {
                   </div>
                 </div>
               </Link>
-              <li className={styles.navbar_links}>Laptop
-              <div className={styles.link_catagiries}>
+              <li className={styles.navbar_links}>
+                Laptop
+                <div className={styles.link_catagiries}>
                   <div>
                     <ul>
                       <li>
@@ -94,10 +97,9 @@ const HeaderPage = () => {
               </li>
               <li className={styles.navbar_ideal}>
                 <div>
-               Özün seç <GoRocket size={24} />
-
+                  Özün seç <GoRocket size={24} />
                 </div>
-               <span className={styles.border_line}></span>
+                <span className={styles.border_line}></span>
               </li>
               <li className={styles.navbar_links}>Xidmətlər</li>
               <li className={styles.navbar_links}>Blog</li>
@@ -110,18 +112,24 @@ const HeaderPage = () => {
               </div>
               <div className={styles.navbar_icon}>
                 <Link to={"/basket"} className={styles.navbar_icon}>
-                <SlBasket size={24} />
-                
+                  <SlBasket size={24} />
                 </Link>
               </div>
-              <div className={styles.navbar_users} style={{ padding: "32px 0px" }}>
+              <div
+                className={styles.navbar_users}
+                style={{ padding: "32px 0px" }}
+              >
                 <BiUser size={24} />
                 <div className={styles.navbar_users_items}>
                   <div className={styles.navbar_users_item}>
                     <span>
                       <LiaUserPlusSolid size={24} />
                     </span>
-                    <Link style={{ color: "rgb(204, 204, 204)" }} className="text-decoration-none " to="/register">
+                    <Link
+                      style={{ color: "rgb(204, 204, 204)" }}
+                      className="text-decoration-none "
+                      to="/register"
+                    >
                       Qeydiyyat
                     </Link>
                   </div>
@@ -129,7 +137,11 @@ const HeaderPage = () => {
                     <span>
                       <PiSignInFill size={24} />
                     </span>
-                    <Link style={{ color: "rgb(204, 204, 204)" }} className="text-decoration-none" to="/login">
+                    <Link
+                      style={{ color: "rgb(204, 204, 204)" }}
+                      className="text-decoration-none"
+                      to="/login"
+                    >
                       Daxil ol
                     </Link>
                   </div>

@@ -1,115 +1,118 @@
 @import "../../../../public/assets/variables/variables";
-
-
-.basket_item {
-    width: 100%;
-    height: 224px;
-    border: 1px solid rgba(50, 52, 55, 1);
-    border-radius: 8px;
-    padding: 20px;
-    display: flex;
-    margin-bottom: 20px;
-
-    .basket_image {
-        width: 235px;
-        height: 184px;
-        background-color: white;
-        border-radius: 4px;
-    }
-
-    .basket_item_average {
+.basket_items{
+            height: 712px;
+            overflow-y: auto;
+            padding-right: 20px;
+    .basket_item {
+        width: 100%;
+        height: 224px;
+        border: 1px solid rgba(50, 52, 55, 1);
+        border-radius: 8px;
+        padding: 20px;
         display: flex;
-        flex-direction: column;
-        margin-left: 30px;
-
-        .item_average_title {
-            font-family: $fontFamily;
-            font-size: 18px;
-            font-weight: 500;
-            line-height: 28px;
-            text-align: left;
-            color: $firstColor;
+        margin-bottom: 20px;
+    
+        .basket_image {
+            width: 235px;
+            height: 184px;
+            background-color: white;
+            border-radius: 4px;
         }
-
-        .item_average_rating {
-            margin: 4px 0px;
-
-            .raition_icon {
-                color: rgba(255, 219, 74, 1);
-                margin-left: 4px;
-            }
-
-            .icoun_count {
-                font-family: $fontFamily;
-                font-size: 14.11px;
-                font-weight: 400;
-                line-height: 28.23px;
-                letter-spacing: 0.02em;
-                margin-left: 4px;
-                color: $firstColor;
-            }
-        }
-
-        .amount_price {
-            font-family: $fontFamily;
-            font-size: 18px;
-            font-weight: 700;
-            line-height: 28.23px;
-            color: $firstColor;
-            margin-bottom: 25px;
-
-        }
-
-        .item_counts {
-            width: 99px;
-            height: 37px;
-            border: 1px solid rgba(50, 52, 55, 1);
-            border-radius: 2px;
-            border-left: none;
-
-            .count_button {
-                width: 32px;
-                height: 100%;
-                border: none;
-                background-color: transparent;
-                color: rgba(204, 204, 204, 1);
-                border-left: 1px solid rgba(50, 52, 55, 1);
-
-            }
-        }
-    }
-
-    .basket_item_left {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: flex-end;
-
-        .item_left_delete {
-            color: rgba(180, 42, 42, 1);
-            cursor: pointer;
-        }
-
-        .basket_amounts {
+    
+        .basket_item_average {
             display: flex;
             flex-direction: column;
-            align-items: flex-end;
-            width: 87px;
-            .amount_name {
+            margin-left: 30px;
+    
+            .item_average_title {
                 font-family: $fontFamily;
                 font-size: 18px;
                 font-weight: 500;
                 line-height: 28px;
+                text-align: left;
                 color: $firstColor;
             }
-
+    
+            .item_average_rating {
+                margin: 4px 0px;
+    
+                .raition_icon {
+                    color: rgba(255, 219, 74, 1);
+                    margin-left: 4px;
+                }
+    
+                .icoun_count {
+                    font-family: $fontFamily;
+                    font-size: 14.11px;
+                    font-weight: 400;
+                    line-height: 28.23px;
+                    letter-spacing: 0.02em;
+                    margin-left: 4px;
+                    color: $firstColor;
+                }
+            }
+    
             .amount_price {
                 font-family: $fontFamily;
                 font-size: 18px;
                 font-weight: 700;
-                line-height: 28px;
+                line-height: 28.23px;
                 color: $firstColor;
-
+                margin-bottom: 25px;
+    
+            }
+    
+            .item_counts {
+                width: 99px;
+                height: 37px;
+                border: 1px solid rgba(50, 52, 55, 1);
+                border-radius: 2px;
+                border-left: none;
+    
+                .count_button {
+                    width: 32px;
+                    height: 100%;
+                    border: none;
+                    background-color: transparent;
+                    color: rgba(204, 204, 204, 1);
+                    border-left: 1px solid rgba(50, 52, 55, 1);
+    
+                }
+            }
+        }
+    
+        .basket_item_left {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-end;
+    
+            .item_left_delete {
+                color: rgba(180, 42, 42, 1);
+                cursor: pointer;
+            }
+    
+            .basket_amounts {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                width: 87px;
+                .amount_name {
+                    font-family: $fontFamily;
+                    font-size: 18px;
+                    font-weight: 500;
+                    line-height: 28px;
+                    color: $firstColor;
+                }
+    
+                .amount_price {
+                    font-family: $fontFamily;
+                    font-size: 18px;
+                    font-weight: 700;
+                    line-height: 28px;
+                    color: $firstColor;
+    
+                }
             }
         }
     }

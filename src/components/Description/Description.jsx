@@ -1,5 +1,5 @@
 import style from './Description.module.scss'
-import Birkart from '../../../public/assets/images/Description/birbank.png'
+import Birkart from '../../assets/images/Description/birbank.png'
 import { RiShieldCheckLine } from "react-icons/ri";
 import { LuBox } from "react-icons/lu";
 import { Rating } from '@mui/material';

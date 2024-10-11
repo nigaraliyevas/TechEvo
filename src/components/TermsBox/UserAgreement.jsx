@@ -1,5 +1,5 @@
 import styles from './UserAgreement.module.scss'
-import tick from "../../../public/assets/images/Register/tick-circle.svg";
+import tick from "../../assets/images/Register/tick-circle.svg";
 const UserAgreement = () => {
 
 

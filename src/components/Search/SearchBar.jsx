@@ -1,13 +1,10 @@
-import { useDispatch } from "react-redux";
-import { filterProductsByName, resetProducts, sortProductsByPriceAscending, sortProductsByPriceDescending, sortProductsByNameAscending, sortProductsByNameDescending, sortProductsByRatingAscending, sortProductsByRatingDescending } from "../../redux/slices/FilterSlice"; 
 import { useEffect, useState } from "react";
 import styles from "./SearchBar.module.scss";
-import SearchIcon from "../../../public/assets/images/Search/search.svg"; // Make sure the asset path is correct
-import DropDownIcon from "../../../public/assets/images/Search/dropdownIcon.svg";
-import DropUpIcon from "../../../public/assets/images/Search/dropupIcon.svg";
+import SearchIcon from "../../assets/images/Search/search.svg"; // Make sure the asset path is correct
+import DropDownIcon from "../../assets/images/Search/dropdownIcon.svg";
+import DropUpIcon from "../../assets/images/Search/dropupIcon.svg";
 
-const SearchBar = () => {
-  const dispatch = useDispatch();
+const SearchBar = ({handleSearch}) => {
   const [showOrder, setShowOrder] = useState(false);
 
   
@@ -85,22 +82,22 @@ const SearchBar = () => {
                 <div>
                   <div className={styles.orderHeader}>Qiymət</div>
                   <ul className={styles.orderUl}>
-                    <li onClick={() => dispatch(sortProductsByPriceAscending())}>Azdan-çoxa</li>
-                    <li onClick={() => dispatch(sortProductsByPriceDescending())}>Çoxdan-aza</li>
+                    {/* <li onClick={() => dispatch(sortProductsByPriceAscending())}>Azdan-çoxa</li> */}
+                    {/* <li onClick={() => dispatch(sortProductsByPriceDescending())}>Çoxdan-aza</li> */}
                   </ul>
                 </div>
                 <div>
                   <div className={styles.orderHeader}>Reytinq</div>
                   <ul className={styles.orderUl}>
-                    <li onClick={() => dispatch(sortProductsByRatingAscending())}>Aşağıdan-yuxarı</li>
-                    <li onClick={() => dispatch(sortProductsByRatingDescending())}>Yuxarıdan-aşağı</li>
+                    {/* <li onClick={() => dispatch(sortProductsByRatingAscending())}>Aşağıdan-yuxarı</li> */}
+                    {/* <li onClick={() => dispatch(sortProductsByRatingDescending())}>Yuxarıdan-aşağı</li> */}
                   </ul>
                 </div>
                 <div>
                   <div className={styles.orderHeader}>Brend</div>
                   <ul className={styles.orderUl}>
-                    <li onClick={() => dispatch(sortProductsByNameAscending())}>Brend adı (A-Z)</li>
-                    <li onClick={() => dispatch(sortProductsByNameDescending())}>Brend adı (Z-A)</li>
+                    {/* <li onClick={() => dispatch(sortProductsByNameAscending())}>Brend adı (A-Z)</li> */}
+                    {/* <li onClick={() => dispatch(sortProductsByNameDescending())}>Brend adı (Z-A)</li> */}
                   </ul>
                 </div>
               </div>

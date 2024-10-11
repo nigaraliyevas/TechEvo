@@ -42,6 +42,7 @@ const CategoryPage = () => {
     setFilterQueries({ ...filterQueries, [key]: data });
   }
 
+
   const handlePrice = (data) => {
     setFilterQueries({ ...filterQueries, price: data });
   }
@@ -83,34 +84,34 @@ const CategoryPage = () => {
 
   return (
     <section className="pc">
-      <div className="container">
         <div className={styles.pc_content}>
           <div className="row mb-4" style={{ marginLeft: "0px", marginRight: "0px" }}>
             <SearchBar handleSearch={handleSearch} handleSorting = {handleSorting}/>
           </div>
-          <div className={`row ${styles.pc__bottom}`}>
-            <div className="filter-side col-lg-3">
-              <FilterSidebar data={queries} handleFilter={handleFilter} handlePrice={handlePrice} />
-            </div>
-            <div className="product-side col-lg-9">
-              <div className={styles.pc_section}>
-                <div className="d-flex flex-wrap" style={{ gap: "30px" }}>
-                  {sortedProducts.length === 0 ? (
-                    <div className={styles.noProductsMessage}>There are no products.</div>
-                  ) : (
-                    sortedProducts.map(card => (
-                      <ProductCard key={card.id} data={card} />
-                    ))
-                  )}
-                </div>
+          <div className="container">
+            <div className={`row ${styles.pc__bottom}`}>
+              <div className="filter-side col-lg-3">
+                <FilterSidebar data={queries} handleFilter={handleFilter} handlePrice={handlePrice} />
               </div>
-              <div className="pagination-side">
-                <Pagination products={sortedProducts} />
+              <div className="product-side col-lg-9">
+                <div className={styles.pc_section}>
+                  <div className="d-flex flex-wrap" style={{ gap: "30px" }}>
+                    {sortedProducts.length === 0 ? (
+                      <div className={styles.noProductsMessage}>There are no products.</div>
+                    ) : (
+                      sortedProducts.map(card => (
+                        <ProductCard key={card.id} data={card} />
+                      ))
+                    )}
+                  </div>
+                </div>
+                <div className="pagination-side">
+                  <Pagination products={sortedProducts} />
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
     </section>
   );
 };

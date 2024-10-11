@@ -705,6 +705,15 @@ export const queries = [
       { title: "SSD", key: "ssd" },
       { title: "HDD", key: "hdd" },
     ],
+  },
+  {
+    title: "Video Kart",
+    key: "videoCard",
+    options: [  
+      { title: "Nvidia", key: "nvidia"},
+      { title: "Intel Graphics", key: "intelGraphics"},
+      { title: "AMD", key: "amd"},
+    ]
   }
   
 ]

@@ -6,27 +6,28 @@ import SearchIcon from "../../../public/assets/images/Search/search.svg"; // Mak
 import DropDownIcon from "../../../public/assets/images/Search/dropdownIcon.svg";
 import DropUpIcon from "../../../public/assets/images/Search/dropupIcon.svg";
 
-const SearchBar = ({ filteredProducts }) => {
+const SearchBar = () => {
   const dispatch = useDispatch();
   const [showOrder, setShowOrder] = useState(false);
 
   
   const [query, setQuery] = useState("");
   const handleQuery = ({ target }) => { setQuery(target.value) };
-  const handleSearchItems = () => {
-    let searchItems = [];
-    searchItems = filteredProducts.map((prod) => {
-      prod.title.toLocaleLowerCase().trim().includes(query.toLocaleLowerCase().trim());
-    })
-  }
+  // const handleSearchItems = () => {
+  //   let searchItems = [];
+  //   searchItems = filteredProducts.map((prod) => {
+  //     prod.title.toLocaleLowerCase().trim().includes(query.toLocaleLowerCase().trim());
+  //   })
+  //   if(searchItems.length === 0) {
+  //   return <div>Məhsul tapılmadı</div>
+  // }
+  // else {
+  //   // show found products
+  // }
+  // }
 
   // if no products are found
-  if(searchItems.length === 0) {
-    return <div>Məhsul tapılmadı</div>
-  }
-  else {
-    // show found products
-  }
+  
 
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -65,7 +66,7 @@ const SearchBar = ({ filteredProducts }) => {
         <div className={styles.pc}>PC</div>
         <div className={`${styles.searchContainer} ${showOrder && styles.pointerNone}`}>
           <input value={query} onInput={handleQuery} className={styles.searchInput} type="text" placeholder="Axtarış" />
-          {handleSearchItems()}
+          
           <div className={styles.searchIconContainer}>
             <img className={styles.searchIcon} src={SearchIcon} alt="Search Icon" />
           </div>

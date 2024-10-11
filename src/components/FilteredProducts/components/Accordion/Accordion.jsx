@@ -5,7 +5,7 @@ import styles from "./Accordion.module.css";
 
 const AccordionItem = ({ data , handleFilter }) => {
   const [showContent, setShowContent] = useState(false);
-
+console.log(data)
   return (
     <div className={styles.accordion_item}>
       <div className={styles.accordion_title} onClick={() => setShowContent(!showContent)}>
@@ -23,7 +23,7 @@ const AccordionItem = ({ data , handleFilter }) => {
               <input
                 type="checkbox"
                 className={styles.checkbox}
-                onChange={() => handleFilter(item, data.key)}
+                onChange={() => handleFilter(item.key, data.key)}
               // checked={selectedBrands.includes(brand)}
               // onChange={() => handleCheckboxChange(brand)}
               />

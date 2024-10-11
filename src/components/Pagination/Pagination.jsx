@@ -1,28 +1,19 @@
 import ReactPaginate from "react-paginate";
-import { useDispatch, useSelector } from "react-redux";
-import { setPage } from "./../../redux/slices/PaginationSlice";
 import styles from "./Pagination.module.scss";
+import { products } from "../../products";
+
 
 const Pagination = () => {
-  const dispatch = useDispatch();
+  const itemsPerPage = 9
 
-
-  const { itemsPerPage } = useSelector(state => state.pagination);
-  const { filteredProducts } = useSelector(state => state.filter);
-
-
-  if (filteredProducts.length === 0) {
+  if (products.length === 0) {
     return null;
   }
 
-  const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
+  const totalPages = Math.ceil(products.length / itemsPerPage);
 
-  const handlePageClick = (data) => {
-
+  const handlePageClick = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-
-
-    dispatch(setPage(data.selected + 1));
   };
 
   return (

@@ -4,7 +4,7 @@ import CardPC from "../../components/CardPC/CardPC";
 import styles from "./PCPage.module.scss";
 import FilteredProducts from "../../components/FilteredProducts/FilteredProducts";
 import Pagination from "../../components/Pagination/Pagination";
-import SearchBar from "../../components/search/SearchBar";
+import SearchBar from "../../../components/search/SearchBar";
 
 const PCPage = () => {
   return (

@@ -4,26 +4,18 @@ import SearchIcon from "../../assets/images/Search/search.svg"; // Make sure the
 import DropDownIcon from "../../assets/images/Search/dropdownIcon.svg";
 import DropUpIcon from "../../assets/images/Search/dropupIcon.svg";
 
-const SearchBar = ({handleSearch}) => {
+const SearchBar = ({handleSearch, handleSorting}) => {
   const [showOrder, setShowOrder] = useState(false);
 
   
   const [query, setQuery] = useState("");
-  const handleQuery = ({ target }) => { setQuery(target.value) };
-  // const handleSearchItems = () => {
-  //   let searchItems = [];
-  //   searchItems = filteredProducts.map((prod) => {
-  //     prod.title.toLocaleLowerCase().trim().includes(query.toLocaleLowerCase().trim());
-  //   })
-  //   if(searchItems.length === 0) {
-  //   return <div>Məhsul tapılmadı</div>
-  // }
-  // else {
-  //   // show found products
-  // }
-  // }
+  const handleQuery = ({ target }) => { 
+    setQuery(target.value)
+    handleSearch(target.value);
+  };
 
-  // if no products are found
+
+
   
 
   useEffect(() => {
@@ -47,15 +39,6 @@ const SearchBar = ({handleSearch}) => {
     e.stopPropagation(); // Prevent closing when clicking on the order menu itself
     setShowOrder(!showOrder);
   };
-
-  // const handleSearch = e => {
-  //   const searchValue = e.target.value.trim();
-  //   if (searchValue === "") {
-  //     dispatch(resetProducts());
-  //   } else {
-  //     dispatch(filterProductsByName(searchValue));
-  //   }
-  // };
 
   return (
     <div className={styles.searchBarContainer}>
@@ -82,22 +65,22 @@ const SearchBar = ({handleSearch}) => {
                 <div>
                   <div className={styles.orderHeader}>Qiymət</div>
                   <ul className={styles.orderUl}>
-                    {/* <li onClick={() => dispatch(sortProductsByPriceAscending())}>Azdan-çoxa</li> */}
-                    {/* <li onClick={() => dispatch(sortProductsByPriceDescending())}>Çoxdan-aza</li> */}
+                    <li onClick={() => handleSorting("priceAsc")}>Azdan-çoxa</li>
+                    <li onClick={() => handleSorting("priceDesc")}>Çoxdan-aza</li>
                   </ul>
                 </div>
                 <div>
                   <div className={styles.orderHeader}>Reytinq</div>
                   <ul className={styles.orderUl}>
-                    {/* <li onClick={() => dispatch(sortProductsByRatingAscending())}>Aşağıdan-yuxarı</li> */}
-                    {/* <li onClick={() => dispatch(sortProductsByRatingDescending())}>Yuxarıdan-aşağı</li> */}
+                    <li onClick={() => handleSorting("ratingAsc")}>Aşağıdan-yuxarı</li>
+                    <li onClick={() => handleSorting("ratingDesc")}>Yuxarıdan-aşağı</li>
                   </ul>
                 </div>
                 <div>
                   <div className={styles.orderHeader}>Brend</div>
                   <ul className={styles.orderUl}>
-                    {/* <li onClick={() => dispatch(sortProductsByNameAscending())}>Brend adı (A-Z)</li> */}
-                    {/* <li onClick={() => dispatch(sortProductsByNameDescending())}>Brend adı (Z-A)</li> */}
+                    <li onClick={() => handleSorting("nameAsc")}>Brend adı (A-Z)</li>
+                    <li onClick={() => handleSorting("nameDesc")}>Brend adı (Z-A)</li>
                   </ul>
                 </div>
               </div>

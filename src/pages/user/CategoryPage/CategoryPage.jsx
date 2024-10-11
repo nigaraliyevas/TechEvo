@@ -27,9 +27,16 @@ const CategoryPage = () => {
     storage: []
   });
 
+
   const handleSearch = (data) => {
     setFilterQueries({ ...filterQueries, query: data });
   };
+
+  const handleSorting = (sortType) => {
+    setFilterQueries((prev) => ({ ...prev, sortType }));
+  }
+
+  
 
   const handleFilter = (data, key) => {
     setFilterQueries({ ...filterQueries, [key]: data });
@@ -39,12 +46,47 @@ const CategoryPage = () => {
     setFilterQueries({ ...filterQueries, price: data });
   }
 
+  const filteredProducts = products.filter((prod) => {
+    // Apply search query filter
+    const matchesQuery = prod.name.toLowerCase().includes(filterQueries.query.toLowerCase());
+  
+    // Apply price filter
+    const matchesPrice = prod.price >= filterQueries.price.min && prod.price <= filterQueries.price.max;
+  
+    // Apply other filters like category, brand, processor, etc.
+    const matchesCategory = filterQueries.category.length === 0 || filterQueries.category.includes(prod.category);
+    const matchesBrand = filterQueries.brand.length === 0 || filterQueries.brand.includes(prod.brand);
+    const matchesProcessor = filterQueries.processor.length === 0 || filterQueries.processor.includes(prod.processor);
+  
+    return matchesQuery && matchesPrice && matchesCategory && matchesBrand && matchesProcessor;
+  });
+
+  
+  const sortedProducts = (filteredProducts.length > 0 ? filteredProducts : products).sort((a, b) => {
+    switch (filterQueries.sortType) {
+      case "priceAsc":
+        return a.price - b.price;
+      case "priceDesc":
+        return b.price - a.price;
+      case "nameAsc":
+        return a.name.localeCompare(b.name);
+      case "nameDesc":
+        return b.name.localeCompare(a.name);
+      case "ratingAsc":
+        return a.rating - b.rating;
+      case "ratingDesc":
+        return b.rating - a.rating;
+      default:
+        return 0; // No sorting if sortType is not set
+    }
+  })
+
   return (
     <section className="pc">
       <div className="container">
         <div className={styles.pc_content}>
           <div className="row mb-4" style={{ marginLeft: "0px", marginRight: "0px" }}>
-            <SearchBar handleSearch={handleSearch} />
+            <SearchBar handleSearch={handleSearch} handleSorting = {handleSorting}/>
           </div>
           <div className={`row ${styles.pc__bottom}`}>
             <div className="filter-side col-lg-3">
@@ -53,17 +95,17 @@ const CategoryPage = () => {
             <div className="product-side col-lg-9">
               <div className={styles.pc_section}>
                 <div className="d-flex flex-wrap" style={{ gap: "30px" }}>
-                  {products.length === 0 ? (
+                  {sortedProducts.length === 0 ? (
                     <div className={styles.noProductsMessage}>There are no products.</div>
                   ) : (
-                    products.map(card => (
+                    sortedProducts.map(card => (
                       <ProductCard key={card.id} data={card} />
                     ))
                   )}
                 </div>
               </div>
               <div className="pagination-side">
-                <Pagination products={products} />
+                <Pagination products={sortedProducts} />
               </div>
             </div>
           </div>

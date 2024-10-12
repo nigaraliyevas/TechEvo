@@ -62,31 +62,35 @@ const CategoryPage = () => {
     return matchesQuery && matchesPrice && matchesCategory && matchesBrand && matchesProcessor;
   });
 
+  let sortedProducts = [];
+  if(filteredProducts.length > 0 || filterQueries.sortType) {
+    sortedProducts = (filteredProducts.length > 0) && filteredProducts.sort((a, b) => {
+      switch (filterQueries.sortType) {
+        case "priceAsc":
+          return a.price - b.price;
+        case "priceDesc":
+          return b.price - a.price;
+        case "nameAsc":
+          return a.name.localeCompare(b.name);
+        case "nameDesc":
+          return b.name.localeCompare(a.name);
+        case "ratingAsc":
+          return a.rating - b.rating;
+        case "ratingDesc":
+          return b.rating - a.rating;
+        default:
+          return 0; // No sorting if sortType is not set
+      }
+    })  
+  }
+  else sortedProducts = [];
   
-  const sortedProducts = (filteredProducts.length > 0 ? filteredProducts : products).sort((a, b) => {
-    switch (filterQueries.sortType) {
-      case "priceAsc":
-        return a.price - b.price;
-      case "priceDesc":
-        return b.price - a.price;
-      case "nameAsc":
-        return a.name.localeCompare(b.name);
-      case "nameDesc":
-        return b.name.localeCompare(a.name);
-      case "ratingAsc":
-        return a.rating - b.rating;
-      case "ratingDesc":
-        return b.rating - a.rating;
-      default:
-        return 0; // No sorting if sortType is not set
-    }
-  })
-
+  console.log(sortedProducts.length)
   return (
     <section className="pc">
         <div className={styles.pc_content}>
           <div className="row mb-4" style={{ marginLeft: "0px", marginRight: "0px" }}>
-            <SearchBar sortedProducts={sortedProducts} handleSearch={handleSearch} handleSorting = {handleSorting}/>
+            <SearchBar filteredProducts = {filteredProducts} sortedProducts={sortedProducts} handleSearch={handleSearch} handleSorting = {handleSorting}/>
           </div>
           <div className="container">
             <div className={`row ${styles.pc__bottom}`}>

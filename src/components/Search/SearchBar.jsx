@@ -4,19 +4,17 @@ import SearchIcon from "../../assets/images/Search/search.svg"; // Make sure the
 import DropDownIcon from "../../assets/images/Search/dropdownIcon.svg";
 import DropUpIcon from "../../assets/images/Search/dropupIcon.svg";
 
-const SearchBar = ({handleSearch, handleSorting, sortedProducts}) => {
+const SearchBar = ({handleSearch, handleSorting, sortedProducts, filteredProducts}) => {
   const [showOrder, setShowOrder] = useState(false);
-
-  
+  const [showSearchedProducts, setShowSearchedProducts] = useState(false);
   const [query, setQuery] = useState("");
+
+
   const handleQuery = ({ target }) => { 
     setQuery(target.value)
     handleSearch(target.value);
   };
 
-
-
-  
 
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -40,7 +38,16 @@ const SearchBar = ({handleSearch, handleSorting, sortedProducts}) => {
     setShowOrder(!showOrder);
   };
 
+  useEffect(() => {
+    if (query && sortedProducts.length !== 0) {
+      setShowSearchedProducts(true);
+    }
+  }, [query, sortedProducts]); // Runs only when query or sortedProducts changes
 
+  const handleShowSearchedProducts = () => {
+    setShowSearchedProducts(!showSearchedProducts);
+  }
+// console.log(sortedProducts.length)
   return (
     <div className={styles.searchBarContainer}>
       <section className={styles.section}>
@@ -53,36 +60,26 @@ const SearchBar = ({handleSearch, handleSorting, sortedProducts}) => {
 
 
 
-          <div className={styles.searchAbsContainer}>
-            <div className={styles.prodHeader}>Məhsullar</div>
-            <div className={styles.prodRecoms}>
-
-                {/* mapping sortedProducts here */}
-                <div className={styles.prodCont}>
-                  <div className={styles.imgAndTitle}>
-                    <div className={styles.prodImg}><img src="" alt="" /></div>
-                    <div className={styles.prodTitle}>Lenovo IdeaPad 1 15ALC7 82R400NYRK</div>
-                  </div>
-                  <div className={styles.price}>2500 AZN</div>
+          {(query && sortedProducts.length !== 0 && showSearchedProducts) ? (
+        <div className={styles.searchAbsContainer}>
+          <div className={styles.prodHeader}>Məhsullar</div>
+          <div className={styles.productsContainer}>
+            {/* Mapping sortedProducts here */}
+            {sortedProducts.slice(0, 5).map((prod, index) => (
+              <div key={index} className={styles.prodCont}>
+                <div className={styles.imgAndTitle}>
+                  <div className={styles.prodImg}><img src={prod.image} alt={prod.name} /></div>
+                  <div className={styles.prodTitle}>{prod.name}</div>
                 </div>
-                <div className={styles.prodCont}>
-                  <div className={styles.imgAndTitle}>
-                    <div className={styles.prodImg}><img src="" alt="" /></div>
-                    <div className={styles.prodTitle}>Lenovo IdeaPad 1 15ALC7 82R400NYRK</div>
-                  </div>
-                  <div className={styles.price}>2500 AZN</div>
-                </div>
-                <div className={styles.prodCont}>
-                  <div className={styles.imgAndTitle}>
-                    <div className={styles.prodImg}><img src="" alt="" /></div>
-                    <div className={styles.prodTitle}>Lenovo IdeaPad 1 15ALC7 82R400NYRK</div>
-                  </div>
-                  <div className={styles.price}>2500 AZN</div>
-                </div>
-
-            </div>
-            <div className={styles.showAllBtn}>Bütün axtarış nəticələri (150)</div>
+                <div className={styles.price}>{prod.price} AZN</div>
+              </div>
+            ))}
           </div>
+          <div onClick={handleShowSearchedProducts} className={styles.showAllBtn}>
+            Bütün axtarış nəticələri ({sortedProducts.length})
+          </div>
+        </div>
+      ) : null}
 
 
           

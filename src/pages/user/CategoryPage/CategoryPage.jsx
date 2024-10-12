@@ -1,23 +1,19 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-// import CardPC from "../../components/HomePageSections/CardPC/CardPC";
-// import CardPC from "../../components/CardPC/CardPC";
 import styles from "./CategoryPage.module.scss";
 import Pagination from "../../../components/Pagination/Pagination";
 import SearchBar from "../../../components/search/SearchBar";
 import { useState } from "react";
 import { products, queries } from "../../../products";
 import ProductCard from "../../../components/common/ProductCard/ProductCard";
-import FilterSidebar from "../../../components/FilteredProducts/FilterSideBar";
+// import Accordion from "../../../components/FilteredProducts/components/Accordion/Accordion"; 
+import FilterSidebar from "../../../components/FilteredProducts/FilterSidebar";
 
 const CategoryPage = () => {
-//* PcPage idi adi dinamik olmalidi deye CategoryPage qoydum adini
-//* Sectiyimiz sehifeye uygun ya pc ya laptop ve.s avtomatik islemelidir
-
   const [filterQueries, setFilterQueries] = useState({
     query: "",
     price: {
-      min: 0,
-      max: 2000,
+      min: 200,
+      max: 10000,
     },
     category: [],
     brand: [],
@@ -43,11 +39,11 @@ const CategoryPage = () => {
       };
     });
   };
-  
 
   const handlePrice = (data) => {
     setFilterQueries({ ...filterQueries, price: data });
-  }
+  };
+
   const filteredProducts = products.filter((product) => {
     const matchesQuery = product.name.toLowerCase().includes(filterQueries.query.toLowerCase());
     const matchesPrice = product.price >= filterQueries.price.min && product.price <= filterQueries.price.max;
@@ -69,10 +65,6 @@ const CategoryPage = () => {
       matchesStorage
     );
   });
-  
-  
-  console.log('Filter Queries:', filterQueries);
-  console.log('Filtered Products:', filteredProducts);
   
   return (
     <section className="pc">

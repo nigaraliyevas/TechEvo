@@ -1,7 +1,7 @@
-import image1 from '../../../public/assets/images/DetailImage/unsplash_Hin-rzhOdWs.png'
-import image2 from '../../../public/assets/images/DetailImage/unsplash_2.png'
-import image3 from '../../../public/assets/images/DetailImage/unsplash_3.png'
-import image4 from '../../../public/assets/images/DetailImage/unsplash_4.png'
+import image1 from '../../assets/images/DetailImage/unsplash_Hin-rzhOdWs.png'
+import image2 from '../../assets/images/DetailImage/unsplash_2.png'
+import image3 from '../../assets/images/DetailImage/unsplash_3.png'
+import image4 from '../../assets/images/DetailImage/unsplash_4.png'
 import { useState } from 'react'
 import style from './DetailImage.module.scss'
 const DetailImageComponent = () => {

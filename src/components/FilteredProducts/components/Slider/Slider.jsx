@@ -1,17 +1,14 @@
 import { useState } from "react";
 import ReactSlider from "react-slider";
-import { useDispatch, useSelector } from "react-redux";
+import {  useSelector } from "react-redux";
 import styles from "./PriceRangeSlider.module.css";
-import { setPriceRange } from "../../../../redux/slices/FilterSlice";
 
 const PriceRangeSlider = () => {
-  const dispatch = useDispatch();
   const { priceRange } = useSelector((state) => state.filter);
   const [range, setRange] = useState(priceRange);
 
   const handleSliderChange = (value) => {
     setRange(value);
-    dispatch(setPriceRange(value));
   };
 
   const handleInputChange = (index, value) => {
@@ -20,7 +17,6 @@ const PriceRangeSlider = () => {
       const newRange = [...range];
       newRange[index] = newValue;
       setRange(newRange);
-      dispatch(setPriceRange(newRange));
     }
   };
 

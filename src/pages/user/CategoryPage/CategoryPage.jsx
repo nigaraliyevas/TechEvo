@@ -96,7 +96,7 @@ const CategoryPage = () => {
               <div className="product-side col-lg-9">
                 <div className={styles.pc_section}>
                   <div className="d-flex flex-wrap" style={{ gap: "30px" }}>
-                    {sortedProducts.length === 0 ? (
+                    {(sortedProducts.length === 0 || filteredProducts.length === 0) ? (
                       <div className={styles.noProductsMessage}>There are no products.</div>
                     ) : (
                       sortedProducts.map(card => (

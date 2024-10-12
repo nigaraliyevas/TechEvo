@@ -3,6 +3,7 @@ import styles from "./SearchBar.module.scss";
 import SearchIcon from "../../assets/images/Search/search.svg"; // Make sure the asset path is correct
 import DropDownIcon from "../../assets/images/Search/dropdownIcon.svg";
 import DropUpIcon from "../../assets/images/Search/dropupIcon.svg";
+import { Link } from "react-router-dom";
 
 const SearchBar = ({handleSearch, handleSorting, sortedProducts, filteredProducts}) => {
   const [showOrder, setShowOrder] = useState(false);
@@ -62,6 +63,7 @@ const SearchBar = ({handleSearch, handleSorting, sortedProducts, filteredProduct
 
           {(query && sortedProducts.length !== 0 && showSearchedProducts) ? (
         <div className={styles.searchAbsContainer}>
+          <Link to="/product" style={{ textDecoration: "none", color: "inherit", all: "unset" }}>
           <div className={styles.prodHeader}>Məhsullar</div>
           <div className={styles.productsContainer}>
             {/* Mapping sortedProducts here */}
@@ -78,6 +80,7 @@ const SearchBar = ({handleSearch, handleSorting, sortedProducts, filteredProduct
           <div onClick={handleShowSearchedProducts} className={styles.showAllBtn}>
             Bütün axtarış nəticələri ({sortedProducts.length})
           </div>
+          </Link>
         </div>
       ) : null}
 

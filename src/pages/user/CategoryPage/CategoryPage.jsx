@@ -49,7 +49,7 @@ const CategoryPage = () => {
 
   const filteredProducts = products.filter((prod) => {
     // Apply search query filter
-    const matchesQuery = prod.name.toLowerCase().includes(filterQueries.query.toLowerCase());
+    const matchesQuery = prod.name.toLocaleLowerCase().includes(filterQueries.query.toLocaleLowerCase());
   
     // Apply price filter
     const matchesPrice = prod.price >= filterQueries.price.min && prod.price <= filterQueries.price.max;
@@ -86,7 +86,7 @@ const CategoryPage = () => {
     <section className="pc">
         <div className={styles.pc_content}>
           <div className="row mb-4" style={{ marginLeft: "0px", marginRight: "0px" }}>
-            <SearchBar handleSearch={handleSearch} handleSorting = {handleSorting}/>
+            <SearchBar sortedProducts={sortedProducts} handleSearch={handleSearch} handleSorting = {handleSorting}/>
           </div>
           <div className="container">
             <div className={`row ${styles.pc__bottom}`}>

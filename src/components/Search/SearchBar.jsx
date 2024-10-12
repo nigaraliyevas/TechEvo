@@ -4,7 +4,7 @@ import SearchIcon from "../../assets/images/Search/search.svg"; // Make sure the
 import DropDownIcon from "../../assets/images/Search/dropdownIcon.svg";
 import DropUpIcon from "../../assets/images/Search/dropupIcon.svg";
 
-const SearchBar = ({handleSearch, handleSorting}) => {
+const SearchBar = ({handleSearch, handleSorting, sortedProducts}) => {
   const [showOrder, setShowOrder] = useState(false);
 
   
@@ -40,16 +40,52 @@ const SearchBar = ({handleSearch, handleSorting}) => {
     setShowOrder(!showOrder);
   };
 
+
   return (
     <div className={styles.searchBarContainer}>
       <section className={styles.section}>
         <div className={styles.pc}>PC</div>
         <div className={`${styles.searchContainer} ${showOrder && styles.pointerNone}`}>
           <input value={query} onInput={handleQuery} className={styles.searchInput} type="text" placeholder="Axtarış" />
-          
           <div className={styles.searchIconContainer}>
             <img className={styles.searchIcon} src={SearchIcon} alt="Search Icon" />
           </div>
+
+
+
+          <div className={styles.searchAbsContainer}>
+            <div className={styles.prodHeader}>Məhsullar</div>
+            <div className={styles.prodRecoms}>
+
+                {/* mapping sortedProducts here */}
+                <div className={styles.prodCont}>
+                  <div className={styles.imgAndTitle}>
+                    <div className={styles.prodImg}><img src="" alt="" /></div>
+                    <div className={styles.prodTitle}>Lenovo IdeaPad 1 15ALC7 82R400NYRK</div>
+                  </div>
+                  <div className={styles.price}>2500 AZN</div>
+                </div>
+                <div className={styles.prodCont}>
+                  <div className={styles.imgAndTitle}>
+                    <div className={styles.prodImg}><img src="" alt="" /></div>
+                    <div className={styles.prodTitle}>Lenovo IdeaPad 1 15ALC7 82R400NYRK</div>
+                  </div>
+                  <div className={styles.price}>2500 AZN</div>
+                </div>
+                <div className={styles.prodCont}>
+                  <div className={styles.imgAndTitle}>
+                    <div className={styles.prodImg}><img src="" alt="" /></div>
+                    <div className={styles.prodTitle}>Lenovo IdeaPad 1 15ALC7 82R400NYRK</div>
+                  </div>
+                  <div className={styles.price}>2500 AZN</div>
+                </div>
+
+            </div>
+            <div className={styles.showAllBtn}>Bütün axtarış nəticələri (150)</div>
+          </div>
+
+
+          
         </div>
         <div className={styles.orderContainer}>
           <div onClick={handleOrder} className={styles.ordr}>

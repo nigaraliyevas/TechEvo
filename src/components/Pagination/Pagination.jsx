@@ -1,9 +1,8 @@
 import ReactPaginate from "react-paginate";
 import styles from "./Pagination.module.scss";
-import { products } from "../../products";
 
 
-const Pagination = () => {
+const Pagination = ({products}) => {
   const itemsPerPage = 9
 
   if (products.length === 0) {

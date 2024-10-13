@@ -27,7 +27,7 @@
   // background: rgb(110, 0, 70);
   // background: radial-gradient(circle, rgba(110, 0, 70, 1) 0%, rgba(255, 255, 255, 0) 51%);
   background: rgb(68, 29, 68);
-  background: radial-gradient(circle, rgba(68, 29, 68, 1) 0%, rgba(255, 255, 255, 0) 65%);
+  background: radial-gradient(circle, rgba(68, 29, 68, 1) 20%, rgba(5, 0, 103, 0) 65%);
 }
 .confirmation_form_box {
   margin-bottom: 24px;
@@ -69,8 +69,13 @@ select:hover option:hover {
   border-color: white;
 }
 .confirmation_input {
-  padding: 16px 14px !important;
+  padding: 28px 14px !important;
   background-color: rgba(22, 26, 30, 0.4);
+  width: 100%;
+  border-radius: 2px;
+  outline: none;
+  color: #999999;
+  border: 2px solid #161a1e66;
 }
 ::placeholder {
   color: #999999;

@@ -1,0 +1,114 @@
+@import "../../../assets/variables/variables";
+
+.confirmation {
+  font-family: $fontFamily;
+  padding-top: 184px;
+  margin-bottom: 120px;
+}
+.confirmation_box {
+  border: 1px solid #323437;
+  border-radius: 2px;
+  padding: 65px 94px;
+}
+.confirmation_header {
+  text-align: center;
+  color: white;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 40px;
+  letter-spacing: 2px;
+  margin-bottom: 56px;
+}
+.confirmation_area {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
+  // background: rgb(110, 0, 70);
+  // background: radial-gradient(circle, rgba(110, 0, 70, 1) 0%, rgba(255, 255, 255, 0) 51%);
+  background: rgb(68, 29, 68);
+  background: radial-gradient(circle, rgba(68, 29, 68, 1) 0%, rgba(255, 255, 255, 0) 65%);
+}
+.confirmation_form_box {
+  margin-bottom: 24px;
+}
+.confirmation_form {
+  width: 785px;
+}
+.confirmation_label {
+  color: white;
+  display: block;
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+.confirmation_option {
+  width: 350px;
+  display: block;
+  background-color: #090d11 !important;
+  padding: 10px 5px !important;
+}
+// .confirmation_select option:hover {
+//   background-color: #999999 !important;
+//   color: white;
+// }
+select:hover option:hover {
+  background-color: red !important;
+  color: white;
+}
+.confirmation_select {
+  width: 380px;
+  display: block;
+  padding: 16px 14px;
+  background-color: rgba(22, 26, 30, 0.4);
+  border-radius: 2px;
+  outline: none;
+  color: #999999;
+}
+.confirmation_select:focus {
+  border-color: white;
+}
+.confirmation_input {
+  padding: 16px 14px !important;
+  background-color: rgba(22, 26, 30, 0.4);
+}
+::placeholder {
+  color: #999999;
+}
+.placeholder_white::placeholder {
+  color: white !important;
+}
+.confirmation_textarea {
+  width: 782px;
+  min-width: 350px;
+  height: 150px;
+  padding: 10px;
+  background-color: rgba(22, 26, 30, 0.4);
+  color: white;
+  border-radius: 2px;
+  margin-bottom: 16px;
+}
+.confirmation_title {
+  color: white;
+  font-size: 18px;
+}
+.confirmation_btn_area {
+  text-align: center;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.confirmation_button {
+  padding: 15px 0;
+  width: 100%;
+  height: 52px;
+  border: none;
+  border-radius: 2px;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 28px;
+  text-align: center;
+  color: white;
+  margin-top: 28px;
+  background: linear-gradient(120.61deg, #fd3c43 -10.5%, #b622dc 38.25%, #3f27eb 80.92%);
+}

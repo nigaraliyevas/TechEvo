@@ -21,33 +21,37 @@ const Header = () => {
           </div>
           <div className={styles.navbar_right}>
             <ul className={styles.navbar_pages}>
-              <Link
-                style={{ padding: "0px 20px" }}
-                className={`${styles.navbar_links}  text-decoration-none text-white`}
-              >
-                <Link style={{color:"white",textDecoration:"none"}} to={"/pc"}>PC</Link>
+            <li className={styles.navbar_links}>
+                <Link
+                  to={"/pc"}
+                  style={{ color: "white", textDecoration: "none" }}
+                >
+                 PC
+                </Link>
                 <div className={styles.link_catagiries}>
-                  <div>
-                    <ul>
-                      <li>
-                        <span>•</span> Oyun üçün
-                      </li>
-                      <li>
-                        <span>•</span> Dizayn üçün
-                      </li>
-                      <li>
-                        <span>•</span> Ofis üçün
-                      </li>
-                      <li>
-                        <span>•</span> Ev üçün
-                      </li>
-                      <li>
-                        <span>•</span> Hamısı birində
-                      </li>
-                    </ul>
-                  </div>
+                <div>
+                  <ul>
+                    <li>
+                      <span>•</span> Oyun üçün
+                    </li>
+                    <li>
+                      <span>•</span> Dizayn üçün
+                    </li>
+                    <li>
+                      <span>•</span> Ofis üçün
+                    </li>
+                    <li>
+                      <span>•</span> Ev üçün
+                    </li>
+                    <li>
+                      <span>•</span> Hamısı birində
+                    </li>
+                  </ul>
                 </div>
-              </Link>
+              </div>
+              </li>
+
+
               <li className={styles.navbar_links}>
                 Laptop
                 <div className={styles.link_catagiries}>
@@ -73,7 +77,12 @@ const Header = () => {
                 </div>
               </li>
               <li className={styles.navbar_links}>
-                <Link to={"/product"} style={{color:"white",textDecoration:"none"}}>Aksesuarlar</Link>
+                <Link
+                  to={"/product"}
+                  style={{ color: "white", textDecoration: "none" }}
+                >
+                  Aksesuarlar
+                </Link>
                 <div className={styles.link_catagiries}>
                   <div>
                     <ul>

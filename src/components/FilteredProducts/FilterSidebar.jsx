@@ -4,7 +4,7 @@ import filterImg from "../../assets/images/FilterSide/filterImg.svg";
 import Accordion from "./components/Accordion/Accordion";
 
 
-const FilterSidebar = ({data , handleFilter}) => {
+const FilterSidebar = ({data , handleFilter , handlePrice}) => {
 
   return (
     <main>
@@ -19,7 +19,8 @@ const FilterSidebar = ({data , handleFilter}) => {
                 <img src={filterImg} />
               </div>
             </div>
-            <Accordion handleFilter={handleFilter} data={data} />
+
+            <Accordion handleFilter={handleFilter} handlePrice={handlePrice} data={data} />
           </div>
         </div>
       </section>

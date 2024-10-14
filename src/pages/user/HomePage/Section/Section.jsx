@@ -1,3 +1,4 @@
+import React, { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
 // Import Swiper styles
@@ -9,11 +10,9 @@ import Card from './Card/Card';
 import { products } from '../../../../products';
 import styles from '../HomePage.module.scss';
 
-
 const Section = ({ title }) => {
-    // Access the `cards` from the Redux store using useSelector
-
-    // Determine the cards to display based on the count prop
+    // Swiper instance-i referens vasitəsilə saxlayırıq
+    const swiperRef = useRef(null);
 
     return (
         <div>
@@ -21,7 +20,7 @@ const Section = ({ title }) => {
 
             <div className={styles.cardMain}>
                 <Swiper
-                    effect='fade'
+                    effect="fade"
                     className={styles.swiper}
                     spaceBetween={30}
                     slidesPerView={3}
@@ -31,14 +30,21 @@ const Section = ({ title }) => {
                     }}
                     loop={true}
                     navigation={{
-                        nextEl: '.swiper-button-next',
-                        prevEl: '.swiper-button-prev', // Sol ox
+                        nextEl: ".swiper-button-next",
+                        prevEl: ".swiper-button-prev", // Sol ox
                     }}
                     modules={[Autoplay, Navigation]}
+                    onSwiper={(swiper) => {
+                        swiperRef.current = swiper; // Swiper instance-in referensə əlavə edirik
+                    }}
                 >
                     {products.map((card) => (
                         <SwiperSlide className={styles.swiperSlide} key={card.id}>
-                            <div className={styles.cardContainer}>
+                            <div
+                                className={styles.cardContainer}
+                                onMouseEnter={() => swiperRef.current.autoplay.stop()} // Hover zamanı autoplay dayandırılır
+                                onMouseLeave={() => swiperRef.current.autoplay.start()} // Hover-dən çıxanda autoplay başlatılır
+                            >
                                 <Card card={card} />
                             </div>
                         </SwiperSlide>

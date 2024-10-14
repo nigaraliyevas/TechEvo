@@ -4,12 +4,12 @@ import SearchIcon from "../../assets/images/Search/search.svg"; // Make sure the
 import DropDownIcon from "../../assets/images/Search/dropdownIcon.svg";
 import DropUpIcon from "../../assets/images/Search/dropupIcon.svg";
 import { Link } from "react-router-dom";
+import { useRef } from "react";
 
 const SearchBar = ({handleSearch, handleSorting, sortedProducts, filteredProducts}) => {
   const [showOrder, setShowOrder] = useState(false);
   const [showSearchedProducts, setShowSearchedProducts] = useState(false);
   const [query, setQuery] = useState("");
-
 
   const handleQuery = ({ target }) => { 
     setQuery(target.value)
@@ -43,10 +43,11 @@ const SearchBar = ({handleSearch, handleSorting, sortedProducts, filteredProduct
     if (query && sortedProducts.length !== 0) {
       setShowSearchedProducts(true);
     }
+    else setShowSearchedProducts(false);
   }, [query, sortedProducts]); // Runs only when query or sortedProducts changes
 
   const handleShowSearchedProducts = () => {
-    setShowSearchedProducts(!showSearchedProducts);
+    setShowSearchedProducts(false);g
   }
 // console.log(sortedProducts.length)
   return (
@@ -62,26 +63,29 @@ const SearchBar = ({handleSearch, handleSorting, sortedProducts, filteredProduct
 
 
           {(query && sortedProducts.length !== 0 && showSearchedProducts) ? (
-        <div className={styles.searchAbsContainer}>
-          <Link to="/product" style={{ textDecoration: "none", color: "inherit", all: "unset" }}>
-          <div className={styles.prodHeader}>Məhsullar</div>
-          <div className={styles.productsContainer}>
-            {/* Mapping sortedProducts here */}
-            {sortedProducts.slice(0, 5).map((prod, index) => (
-              <div key={index} className={styles.prodCont}>
-                <div className={styles.imgAndTitle}>
-                  <div className={styles.prodImg}><img src={prod.image} alt={prod.name} /></div>
-                  <div className={styles.prodTitle}>{prod.name}</div>
-                </div>
-                <div className={styles.price}>{prod.price} AZN</div>
+          <>
+            {/* {setShowSearchedProducts(true)} */}
+            <div className={styles.searchAbsContainer}>
+              <Link to="/product" style={{ textDecoration: "none", color: "inherit", all: "unset" }}>
+              <div className={styles.prodHeader}>Məhsullar</div>
+              <div className={styles.productsContainer}>
+                {/* Mapping sortedProducts here */}
+                {sortedProducts.slice(0, 5).map((prod, index) => (
+                  <div key={index} className={styles.prodCont}>
+                    <div className={styles.imgAndTitle}>
+                      <div className={styles.prodImg}><img src={prod.image} alt={prod.name} /></div>
+                      <div className={styles.prodTitle}>{prod.name}</div>
+                    </div>
+                    <div className={styles.price}>{prod.price} AZN</div>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-          <div onClick={handleShowSearchedProducts} className={styles.showAllBtn}>
-            Bütün axtarış nəticələri ({sortedProducts.length})
-          </div>
-          </Link>
-        </div>
+              </Link>
+              <div onClick={handleShowSearchedProducts} className={styles.showAllBtn}>
+                Bütün axtarış nəticələri ({sortedProducts.length})
+              </div>
+            </div>
+          </>
       ) : null}
 
 

@@ -660,10 +660,10 @@ export const queries = [
     title: "Kateqoriya",
     key: "category",
     options: [
-      { title: "Home", key: "home" },
-      { title: "Office", key: "office" },
-      { title: "Game", key: "game" },
-      { title: "Design", key: "design" },
+      { title: "Ev", key: "home" },
+      { title: "Ofis", key: "office" },
+      { title: "Oyun", key: "game" },
+      { title: "Dizayn", key: "design" },
     ],
   },
   {
@@ -684,22 +684,33 @@ export const queries = [
     key: "processor",
     options: [
       { title: "Intel Core i3", key: "i3" },
-      { title: "Intel Core i5", key: "i5" },
-      { title: "Intel Core i7", key: "i7" },
-      { title: "Intel Core i9", key: "i9" },
+      { title: "AMD Ryzen 5", key: "i5" },
+      { title: "AMD Ryzen 5", key: "i5" },
+      { title: "Apple Silicon", key: "applesilicon" },
     ],
   },
   {
-    title: "Operativ Yaddaş",
+    title: "VideoKart",
+    key: "videoCard",
+    options: [  
+      { title: "Nvidia", key: "nvidia"},
+      { title: "AMD", key: "amd"},
+      { title: "Intel Graphics", key: "intelGraphics"},
+
+    ]
+  },
+  {
+    title: "Operativ yaddaş",
     key: "ram",
     options: [
+      { title: "4 GB", key: "4gb" },
       { title: "8 GB", key: "8gb" },
       { title: "16 GB", key: "16gb" },
       { title: "32 GB", key: "32gb" },
     ],
   },
   {
-    title: "Yaddaş Növü",
+    title: "Yaddaş növü",
     key: "memoryType",
     options: [
       { title: "SSD", key: "ssd" },
@@ -707,13 +718,37 @@ export const queries = [
     ],
   },
   {
-    title: "Video Kart",
-    key: "videoCard",
-    options: [  
-      { title: "Nvidia", key: "nvidia"},
-      { title: "Intel Graphics", key: "intelGraphics"},
-      { title: "AMD", key: "amd"},
-    ]
-  }
+    title: "Əməliyyat sistemləri",
+    key: "operatingSystem",
+    options: [
+      { title: "Windows", key: "windows" },
+      { title: "macOS", key: "macos" },
+      { title: "Linux", key: "linux" },
+
+    ],
+  },
+  {
+    title: "Ekran ölçüsü",
+    key: "screenSize",
+    options: [
+      { title: "13-inch", key: "13inch" },
+      { title: "15-inch", key: "15inch" },
+    
+
+    ],
+  },
+  {
+    title: "Əlavə funksiyalar",
+    key: "extraFunctions",
+    options: [
+      { title: "Touch screen", key: "touchScreen" },
+      { title: "Webcam", key: "webcam" },
+      { title: "Backlit keyboard", key: "backlitKeyboard" },
+
+    
+
+    ],
+  },
+ 
   
 ]

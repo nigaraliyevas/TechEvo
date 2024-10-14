@@ -12,7 +12,7 @@ const BasketTotalAmount = () => {
           </div>
           <div className={style.total_texts}>
             <p>Çatdırılma: </p>
-            <p>5 AZN</p>
+            <p>Pulsuz</p>
           </div>
           <div className={style.line}>
 

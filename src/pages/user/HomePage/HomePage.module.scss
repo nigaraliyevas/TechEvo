@@ -109,7 +109,7 @@ body {
   }
 }
 
-.title{
+.title {
   color: white;
   padding-top: 56px;
   padding-bottom: 20px;
@@ -279,21 +279,22 @@ body {
       bottom: 100%;
     }
   }
-  .cardImgContainer{
+
+  .cardImgContainer {
     width: 326px;
     height: 180px;
 
-  .cardImg {
-    height: 100%;
-    width: 100%;
-   // object-fit: contain;
-    transition: 0.5s ease all;
+    .cardImg {
+      height: 100%;
+      width: 100%;
+      // object-fit: contain;
+      transition: 0.5s ease all;
 
-    &:hover {
-      transform: scale(1.1);
+      &:hover {
+        transform: scale(1.1);
+      }
     }
   }
-}
 }
 
 .mailTitle {
@@ -413,7 +414,7 @@ body {
 
     img {
       // width: 80px;
-      height: 53px;
+      height: 63px;
     }
   }
 

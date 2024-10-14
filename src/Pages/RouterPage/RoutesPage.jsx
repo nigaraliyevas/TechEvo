@@ -13,9 +13,10 @@ import BasketPage from "../BasketPage/BasketPage";
 const RoutesPage = () => {
   return (
     <div>
+
       <LayoutPages>
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<HomePage />} /> 
           <Route path="/login" element={<Login />} />
           <Route path="/forget" element={<ForgetPassPage />} />
           <Route path="/register" element={<RegisterPage />} />

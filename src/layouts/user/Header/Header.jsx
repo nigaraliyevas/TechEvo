@@ -8,8 +8,16 @@ import { PiSignInFill } from "react-icons/pi";
 import { IoSettingsOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import logo from "../../../assets/images/HeaderPage/tech-evo-logo 1.png";
-
+import { IoIosMenu } from "react-icons/io";
+import { IoIosArrowForward } from "react-icons/io";
+import { useState } from "react";
+import { IoMdClose } from "react-icons/io";
 const Header = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => {
+      setIsOpen(!isOpen);
+  };
   return (
     <header>
       <div className={`${styles.container} ${styles.navbar_bg} `}>
@@ -21,36 +29,35 @@ const Header = () => {
           </div>
           <div className={styles.navbar_right}>
             <ul className={styles.navbar_pages}>
-            <li className={styles.navbar_links}>
+              <li className={styles.navbar_links}>
                 <Link
                   to={"/pc"}
                   style={{ color: "white", textDecoration: "none" }}
                 >
-                 PC
+                  PC
                 </Link>
                 <div className={styles.link_catagiries}>
-                <div>
-                  <ul>
-                    <li>
-                      <span>•</span> Oyun üçün
-                    </li>
-                    <li>
-                      <span>•</span> Dizayn üçün
-                    </li>
-                    <li>
-                      <span>•</span> Ofis üçün
-                    </li>
-                    <li>
-                      <span>•</span> Ev üçün
-                    </li>
-                    <li>
-                      <span>•</span> Hamısı birində
-                    </li>
-                  </ul>
+                  <div>
+                    <ul>
+                      <li>
+                        <span>•</span> Oyun üçün
+                      </li>
+                      <li>
+                        <span>•</span> Dizayn üçün
+                      </li>
+                      <li>
+                        <span>•</span> Ofis üçün
+                      </li>
+                      <li>
+                        <span>•</span> Ev üçün
+                      </li>
+                      <li>
+                        <span>•</span> Hamısı birində
+                      </li>
+                    </ul>
+                  </div>
                 </div>
-              </div>
               </li>
-
 
               <li className={styles.navbar_links}>
                 Laptop
@@ -168,6 +175,95 @@ const Header = () => {
               </div>
             </div>
           </div>
+          <div className={styles.display_none}>
+            <li className={styles.navbar_ideal}>
+              <div>
+                Özün seç <GoRocket size={24} />
+              </div>
+              <span className={styles.border_line}></span>
+            </li>
+          </div>
+
+          <div className={styles.display_none}>
+            <div className={styles.navbar_icon}>
+              <FiSearch size={24} />
+            </div>
+            <div className={styles.navbar_icon}>
+              <div  onClick={toggleMenu} className={styles.navbar_icon}>
+                {
+                  isOpen?
+                   <IoMdClose size={24} />:<IoIosMenu size={24} />
+                
+                }
+
+              </div>
+            </div>
+          </div>
+            <div className={isOpen ? styles.responsive_navbar : styles.menu__open}>
+              <div className={styles.responsive_navbar_items}>
+                <div className={styles.responsive_navbar_item}>
+                  <div>
+                    <Link className={styles.responsive_navbar_item_link}>PC</Link>
+                    <div>
+                      <IoIosArrowForward />
+                    </div>
+                  </div>
+                </div>
+                <div className={styles.responsive_navbar_item}>
+                  <div>
+                    <Link className={styles.responsive_navbar_item_link}>PC</Link>
+                    <div>
+                      <IoIosArrowForward />
+                    </div>
+                  </div>
+                </div>
+                <div className={styles.responsive_navbar_item}>
+                  <div>
+                    <Link className={styles.responsive_navbar_item_link}>Laptop</Link>
+                    <div>
+                      <IoIosArrowForward  size={20}/>
+                    </div>
+                  </div>
+                </div>
+                <div className={styles.responsive_navbar_item}>
+                  <div>
+                    <Link className={styles.responsive_navbar_item_link}>Aksesuar</Link>
+                    <div>
+                      <IoIosArrowForward  size={20}/>
+                    </div>
+                  </div>
+                </div>
+                <div className={styles.responsive_navbar_item}>
+                  <div>
+                    <Link className={styles.responsive_navbar_item_link}>Xidmətlər</Link>
+                  </div>
+                </div>
+                <div className={styles.responsive_navbar_item}>
+                  <div>
+                    <Link className={styles.responsive_navbar_item_link}>Blog</Link>
+                  </div>
+                </div>
+                <div className={styles.responsive_navbar_item}>
+                  <div>
+                    <Link className={styles.responsive_navbar_item_link}>Dəstək</Link>
+                  </div>
+                </div>
+              </div>
+              <div className={styles.responsive_navbar_icons}>
+              <Link className={styles.responsive_navbar_item_link}>
+                Səbət
+                <div className={styles.responsive_navbar_icon}>
+              <SlBasket size={28}/>
+                </div>
+              </Link>
+              <Link className={styles.responsive_navbar_item_link}>
+                Hesab
+                <div className={styles.responsive_navbar_icon}>
+              <BiUser size={28}/>
+                </div>
+              </Link>
+              </div>
+            </div>
         </nav>
       </div>
     </header>

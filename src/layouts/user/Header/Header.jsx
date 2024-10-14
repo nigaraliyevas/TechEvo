@@ -73,7 +73,7 @@ const Header = () => {
                 </div>
               </li>
               <li className={styles.navbar_links}>
-                Aksesuarlar
+                <Link to={"/product"} style={{color:"white",textDecoration:"none"}}>Aksesuarlar</Link>
                 <div className={styles.link_catagiries}>
                   <div>
                     <ul>

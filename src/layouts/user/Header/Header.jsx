@@ -23,7 +23,7 @@ const Header = () => {
             <ul className={styles.navbar_pages}>
             <li className={styles.navbar_links}>
                 <Link
-                  to={"/product"}
+                  to={"/pc"}
                   style={{ color: "white", textDecoration: "none" }}
                 >
                  PC

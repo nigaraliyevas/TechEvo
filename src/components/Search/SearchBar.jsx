@@ -4,9 +4,8 @@ import SearchIcon from "../../assets/images/Search/search.svg"; // Make sure the
 import DropDownIcon from "../../assets/images/Search/dropdownIcon.svg";
 import DropUpIcon from "../../assets/images/Search/dropupIcon.svg";
 import { Link } from "react-router-dom";
-import { useRef } from "react";
 
-const SearchBar = ({handleSearch, handleSorting, sortedProducts, filteredProducts}) => {
+const SearchBar = ({handleSearch, handleSorting, sortedProducts}) => {
   const [showOrder, setShowOrder] = useState(false);
   const [showSearchedProducts, setShowSearchedProducts] = useState(false);
   const [query, setQuery] = useState("");
@@ -18,7 +17,7 @@ const SearchBar = ({handleSearch, handleSorting, sortedProducts, filteredProduct
 
 
   useEffect(() => {
-    const handleClickOutside = (e) => {
+    const handleClickOutside = () => {
       if (showOrder) {
         setShowOrder(false);
       }

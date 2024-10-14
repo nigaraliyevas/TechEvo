@@ -37,6 +37,7 @@ const SearchBar = ({handleSearch, handleSorting, sortedProducts, filteredProduct
   const handleOrder = (e) => {
     e.stopPropagation(); // Prevent closing when clicking on the order menu itself
     setShowOrder(!showOrder);
+    setShowSearchedProducts(false);
   };
 
   useEffect(() => {
@@ -47,7 +48,7 @@ const SearchBar = ({handleSearch, handleSorting, sortedProducts, filteredProduct
   }, [query, sortedProducts]); // Runs only when query or sortedProducts changes
 
   const handleShowSearchedProducts = () => {
-    setShowSearchedProducts(false);g
+    setShowSearchedProducts(false);
   }
 // console.log(sortedProducts.length)
   return (

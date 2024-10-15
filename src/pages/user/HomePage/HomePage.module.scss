@@ -299,59 +299,40 @@ body {
     }
   }
   
-    .radioButtons {
-      position: absolute; // Şəkilin üstündə görünməsi üçün
-      top: 49%; // Yuxarıdan məsafə
-      left: 50%; // Sol kənardan mərkəzləşdirmək üçün
-      transform: translateX(-50%); // Mərkəzləşdirmək
+  .radioButtons {
+    position: absolute; // Şəkilin üstündə görünməsi üçün
+    top: 42%; // Yuxarıdan məsafə
+    left: 50%; // Sol kənardan mərkəzləşdirmək üçün
+    transform: translate(-50%, -50%); // Mərkəzləşdirmək
+    display: flex;
+    background-color: rgba(128, 128, 128, 0.384); 
+    padding: 4px 8px;
+    border-radius: .5rem;
+    gap: 8px; // Radio button-lar arasında məsafə
   
-      display: flex;
-      gap: 3px; // Radio button-lar arasında məsafə
+    .radioDiv {
+      width: 8px; // Radio button ölçüsü
+      height: 8px;
+      border-radius: 50%; // Dairəvi forma
+      background-color: #DFDFDF; // Default rəngi
+      cursor: pointer; // Kursoru pointer edərək kliklənə biləcəyini göstər
+      transition: background-color 0.3s ease, border-color 0.3s ease; // Keçidlər
   
-      label {
-        display: flex;
-        align-items: center; // Radio button və etiketi mərkəzləşdir
-        cursor: pointer; // Kursoru pointer edərək kliklənə biləcəyini göstər
+      &.selected {
+        background-color: #2E2E2E; // Seçilmiş halda arxa fon
+        border: 2px solid #2E2E2E; // Seçilmiş halda çərçivə rəngi
+      }
   
-        input[type="radio"] {
-          //appearance: none; // Default görünüşü sil
-          width: 10px; // Radio button ölçüsü
-          height: 10px;
-          //border: 2px solid #ccc; // Boş vəziyyətdə çərçivə
-          border-radius: 50%; // Dairəvi forma
-          margin-right: 8px; // Radio button ilə etiketi arasında məsafə
-          outline: none; // Fokusda xətləri sil
-          cursor: pointer; // Kursoru pointer edərək kliklənə biləcəyini göstər
-          background-color: #DFDFDF;
-  
-          // Hover zamanı
-          // &:hover {
-          //  // border-color: #888; // Hover zamanı çərçivə rəngini dəyiş
-          //   background-color: #2E2E2E;
-          // }
-  
-          // Seçilmiş vəziyyət
-          &:checked {
-            border-color:#2E2E2E;// Seçilmiş halda çərçivə rəngi
-            background-color: #2E2E2E;// Seçilmiş halda arxa fon
-            position: relative; // Daxili elementi düzəltmək üçün
-  
-            &:after {
-              content: ""; // Daxili elementi yarat
-              position: absolute;
-              top: 50%; // Mərkəzləşdir
-              left: 50%;
-              width: 10px; // Daxili dairənin ölçüsü
-              height: 10px;
-              background-color:#2E2E2E;// Daxili dairənin rəngi
-              border-radius: 50%; // Dairəvi forma
-              transform: translate(-50%, -50%); // Düzgün mərkəzləşdirmək
-            }
-          }
-        }
+      // Hover zamanı
+      &:hover {
+        background-color: #ccc; // Hover zamanı arxa fon
       }
     }
   }
+  
+  }
+  
+
   
   
 

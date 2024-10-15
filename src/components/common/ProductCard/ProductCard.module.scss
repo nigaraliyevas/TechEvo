@@ -113,12 +113,12 @@
 
   .cardImgContainer {
     width: 231px;
-    height: 140px;
+    height: 114px;
 
     .cardImg {
       height: 100%;
       width: 100%;
-      // object-fit: cover;
+      object-fit: contain;
       transition: 0.5s ease all;
 
       &:hover {
@@ -205,4 +205,36 @@
   font-size: 30px;
   margin: 100px auto;
   color: #fff;
+}
+
+
+.radioButtons {
+  position: absolute; // Şəkilin üstündə görünməsi üçün
+  top: 38%; // Yuxarıdan məsafə
+  left: 50%; // Sol kənardan mərkəzləşdirmək üçün
+  transform: translate(-50%, -50%); // Mərkəzləşdirmək
+  display: flex;
+  background-color: rgba(128, 128, 128, 0.384); 
+  padding: 3px 6px;
+  border-radius: .5rem;
+  gap: 8px; // Radio button-lar arasında məsafə
+
+  .radioDiv {
+    width: 5px; // Radio button ölçüsü
+    height: 5px;
+    border-radius: 50%; // Dairəvi forma
+    background-color: #DFDFDF; // Default rəngi
+    cursor: pointer; // Kursoru pointer edərək kliklənə biləcəyini göstər
+    transition: background-color 0.3s ease, border-color 0.3s ease; // Keçidlər
+
+    &.selected {
+      background-color: #2E2E2E; // Seçilmiş halda arxa fon
+      border: 2px solid #2E2E2E; // Seçilmiş halda çərçivə rəngi
+    }
+
+    // Hover zamanı
+    &:hover {
+      background-color: #ccc; // Hover zamanı arxa fon
+    }
+  }
 }

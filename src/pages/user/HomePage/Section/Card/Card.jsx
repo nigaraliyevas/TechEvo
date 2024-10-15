@@ -2,49 +2,36 @@ import React, { useState, useEffect } from "react";
 import { Rating } from "@mui/material";
 import { PiHeartBold } from "react-icons/pi";
 import { SlBasket } from "react-icons/sl";
-import style from "../../HomePage.module.scss"; // Style idxalını yoxlayın, fayl mövcud olmalıdır
+import style from "../../HomePage.module.scss";
 
 function Card({ card }) {
-  const { name, price, image, rating } = card; // images -> image
+  const { name, price, image, rating } = card;
   const [selectedImage, setSelectedImage] = useState(0);
-  const [mouseMoving, setMouseMoving] = useState(false);
-  const [timeoutId, setTimeoutId] = useState(null);
+  const [lastMouseX, setLastMouseX] = useState(null);
 
-  // Mouse hərəkətini izləyir
   const handleMouseMove = (e) => {
-    if (mouseMoving) return; // Əgər artıq mouse hərəkəti varsa, yeni hərəkətləri qəbul etmə
+    const { clientX } = e;
 
-    const { clientX, target } = e;
-    const { left, right } = target.getBoundingClientRect();
-    const center = (left + right) / 2;
+    if (lastMouseX === null) {
+      setLastMouseX(clientX); // Initialize lastMouseX when the mouse first moves
+      return;
+    }
 
-    const newIndex = clientX < center 
-      ? (selectedImage - 1 + image.length) % image.length // Sola doğru sürükləyin
-      : (selectedImage + 1) % image.length; // Sağa doğru sürükləyin
+    const deltaX = clientX - lastMouseX;
 
-    setMouseMoving(true); // Mouse hərəkətinin başladığını bildirin
+    if (Math.abs(deltaX) > 50) { // Change image every 50px movement
+      const newIndex = deltaX < 0
+        ? (selectedImage - 1 + image.length) % image.length // Move left
+        : (selectedImage + 1) % image.length; // Move right
 
-    const id = setTimeout(() => {
-      setSelectedImage(newIndex);
-      setMouseMoving(false); // Mouse hərəkətinin bitdiyini bildirin
-    }, 300); // 300 millisekund gözləyin
-
-    setTimeoutId(id); // Timeout ID-ni saxlayın
+      setSelectedImage(newIndex); // Update the displayed image
+      setLastMouseX(clientX); // Reset the reference point for mouse movement
+    }
   };
 
-  // Seçilmiş şəkli dəyişmək üçün radio button
-  const handleRadioChange = (index) => {
+  const handleDivClick = (index) => {
     setSelectedImage(index);
-    setMouseMoving(false); // Seçimdə mouse hərəkətini dayandırın
-    clearTimeout(timeoutId); // Timeout-u təmizləyin
   };
-
-  // Component unmounted olduğu zaman timeout-u təmizləyin
-  useEffect(() => {
-    return () => {
-      clearTimeout(timeoutId);
-    };
-  }, [timeoutId]);
 
   return (
     <div className={style.card}>
@@ -54,40 +41,43 @@ function Card({ card }) {
       <span className={style.cardAnimationSpan}></span>
 
       <div style={{ position: "relative" }}>
-        {/* Mouse hərəkəti ilə şəkil dəyişir */}
+        {/* Mouse movement changes the image */}
         <div
           className={style.cardImgContainer}
           onMouseMove={handleMouseMove}
           style={{ overflow: "hidden" }}
         >
-          <img
-            className={style.cardImg}
-            src={
-              Array.isArray(image) && selectedImage < image.length 
-                ? image[selectedImage] 
-                : "defaultImageUrl.jpg" // Boş olduqda göstəriləcək şəkil
-            }
-            alt={name}
-          />
+          <div
+            className={style.imageSlider}
+            style={{
+              transform: `translateX(-${selectedImage * 25}%)`,
+              width: `${image.length * 100}%`,
+            }}
+          >
+            {image.map((imgSrc, index) => (
+              <img
+                key={index}
+                className={style.cardImg}
+                src={imgSrc}
+                alt={name}
+                style={{ width: `${100 / image.length}%` }}
+              />
+            ))}
+          </div>
         </div>
 
-        {/* Radio Button-lar */}
+        {/* Image selector dots */}
         <div className={style.radioButtons}>
           {image.map((_, index) => (
-            <label key={index}>
-              <input
-                type="radio"
-                name={`imageSelector-${name}`}
-                checked={selectedImage === index}
-                onChange={() => handleRadioChange(index)} // Seçilmiş şəkli dəyiş
-              />
-              {/* Radio buttonun içinin rəngi seçilmiş olduğunda dəyişir */}
-              <span className={`${style.radioCircle} ${selectedImage === index ? style.selected : ''}`}></span>
-            </label>
+            <div
+              key={index}
+              className={`${style.radioDiv} ${selectedImage === index ? style.selected : ''}`}
+              onClick={() => handleDivClick(index)}
+            />
           ))}
         </div>
 
-        {/* Ürək ikonu */}
+        {/* Heart icon */}
         <div className={style.heartSpan}>
           <PiHeartBold />
         </div>
@@ -98,7 +88,7 @@ function Card({ card }) {
             <p>{price} AZN</p>
           </div>
 
-          {/* Reytinq və Səbət ikonu */}
+          {/* Rating and basket icon */}
           <div className={style.ratingBasket}>
             <Rating
               size="small"

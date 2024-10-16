@@ -8,6 +8,9 @@ import ProductCard from "../../../components/common/ProductCard/ProductCard";
 import FilterSidebar from "../../../components/FilteredProducts/FilterSideBar";
 
 const CategoryPage = () => {
+  //* PcPage idi adi dinamik olmalidi deye CategoryPage qoydum adini
+  //* Sectiyimiz sehifeye uygun ya pc ya laptop ve.s avtomatik islemelidir
+
   const [filterQueries, setFilterQueries] = useState({
     query: "",
     price: {
@@ -32,26 +35,42 @@ const CategoryPage = () => {
   const handleSorting = (sortType) => {
     setFilterQueries((prev) => ({ ...prev, sortType }));
   }
+  const handleFilter = (itemKey, filterKey) => {
+    setFilterQueries(prev => {
+      const currentFilter = prev[filterKey];
+      // Əgər filtr artıq seçilibsə, onu çıxarırıq, yoxsa əlavə edirik
+      if (currentFilter.includes(itemKey)) {
+        return { ...prev, [filterKey]: currentFilter.filter(key => key !== itemKey) };
+      } else {
+        return { ...prev, [filterKey]: [...currentFilter, itemKey] };
+      }
+    });
+  };
 
-  const handleFilter = (data, key) => {
-    setFilterQueries({ ...filterQueries, [key]: data });
+  // const offset=currentPage*itemPerPage;
+  const handlePageClick=(event)=>{
+    setCurrentPage(event.selected);
+    window.scrollTo({top:0, behavior:"smooth"});
   }
-
   const handlePrice = (data) => {
     setFilterQueries({ ...filterQueries, price: data });
   }
 
   const filteredProducts = products.filter((prod) => {
     const matchesQuery = prod.name.toLocaleLowerCase().includes(filterQueries.query.toLocaleLowerCase());
+    // Apply price filter
     const matchesPrice = prod.price >= filterQueries.price.min && prod.price <= filterQueries.price.max;
+
+    // Apply other filters like category, brand, processor, etc.
     const matchesCategory = filterQueries.category.length === 0 || filterQueries.category.includes(prod.category);
     const matchesBrand = filterQueries.brand.length === 0 || filterQueries.brand.includes(prod.brand);
     const matchesProcessor = filterQueries.processor.length === 0 || filterQueries.processor.includes(prod.processor);
+
     return matchesQuery && matchesPrice && matchesCategory && matchesBrand && matchesProcessor;
   });
 
   let sortedProducts = [];
-  if(filteredProducts.length > 0 || filterQueries.sortType) {
+  if (filteredProducts.length > 0 || filterQueries.sortType) {
     sortedProducts = (filteredProducts.length > 0) && filteredProducts.sort((a, b) => {
       switch (filterQueries.sortType) {
         case "priceAsc":
@@ -70,19 +89,10 @@ const CategoryPage = () => {
           return 0;
       }
     })
-  } else {
-    sortedProducts = [];
   }
+  else sortedProducts = [];
 
-  // Hər səhifədə göstərilən məhsulları əldə edək
-  const offset = currentPage * itemsPerPage;
-  const currentProducts = sortedProducts.slice(offset, offset + itemsPerPage);
-
-  const handlePageClick = (event) => {
-    setCurrentPage(event.selected); // Səhifə nömrəsini yeniləyirik
-    window.scrollTo({ top: 0, behavior: "smooth" }); // Səhifə dəyişəndə yuxarıya keç
-  };
-
+  console.log(sortedProducts.length)
   return (
     <section className="pc">
       <div className={styles.pc_content}>
@@ -97,10 +107,10 @@ const CategoryPage = () => {
             <div className="product-side col-lg-9">
               <div className={styles.pc_section}>
                 <div className="d-flex flex-wrap" style={{ gap: "30px" }}>
-                  {currentProducts.length === 0 ? (
+                  {(sortedProducts.length === 0 || filteredProducts.length === 0) ? (
                     <div className={styles.noProductsMessage}>There are no products.</div>
                   ) : (
-                    currentProducts.map(card => (
+                    sortedProducts.map(card => (
                       <ProductCard key={card.id} data={card} />
                     ))
                   )}

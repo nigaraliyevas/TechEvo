@@ -15,7 +15,7 @@ const ProductCard = ({data}) => {
       <div>
         <div style={{ position: "relative", overflow: "hidden" }}>
           <div className={styles.cardImgContainer} style={{ overflow: "hidden" }}>
-            <img className={styles.cardImg} src={data.image} alt={data.name} />
+            <img className={styles.cardImg} src={data.imageUrl} alt={data.name} />
           </div>
         </div>
 

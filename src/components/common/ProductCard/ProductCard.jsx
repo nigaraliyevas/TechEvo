@@ -1,5 +1,5 @@
 import { PiHeartBold } from "react-icons/pi"
-import { Link } from "react-router-dom"
+// import { Link } from "react-router-dom"
 import style from "./ProductCard.module.scss";
 import { SlBasket } from "react-icons/sl";
 import { Rating } from "@mui/material";

@@ -6,10 +6,14 @@ import { useState } from "react";
 import { products, queries } from "../../../products";
 import ProductCard from "../../../components/common/ProductCard/ProductCard";
 import FilterSidebar from "../../../components/FilteredProducts/FilterSideBar";
+import { useGetProductsQuery } from "../../../redux/sercives/productApi";
 
 const CategoryPage = () => {
-  //* PcPage idi adi dinamik olmalidi deye CategoryPage qoydum adini
-  //* Sectiyimiz sehifeye uygun ya pc ya laptop ve.s avtomatik islemelidir
+  const { data, isLoading, isError, isSuccess, error } = useGetProductsQuery(undefined, {
+    pollingInterval: 10000, // Re-fetch every 10 seconds
+  });
+
+  console.log(data);
 
   const [filterQueries, setFilterQueries] = useState({
     query: "",
@@ -22,19 +26,19 @@ const CategoryPage = () => {
     processor: [],
     videoCard: [],
     ram: [],
-    storage: []
+    storage: [],
   });
 
   const [currentPage, setCurrentPage] = useState(0); // Səhifə nömrəsi
   const itemsPerPage = 21; // Hər səhifədə göstərilən məhsul sayı
 
-  const handleSearch = (data) => {
+  const handleSearch = data => {
     setFilterQueries({ ...filterQueries, query: data });
   };
 
-  const handleSorting = (sortType) => {
-    setFilterQueries((prev) => ({ ...prev, sortType }));
-  }
+  const handleSorting = sortType => {
+    setFilterQueries(prev => ({ ...prev, sortType }));
+  };
   const handleFilter = (itemKey, filterKey) => {
     setFilterQueries(prev => {
       const currentFilter = prev[filterKey];
@@ -48,15 +52,16 @@ const CategoryPage = () => {
   };
 
   // const offset=currentPage*itemPerPage;
-  const handlePageClick=(event)=>{
+  const handlePageClick = event => {
     setCurrentPage(event.selected);
-    window.scrollTo({top:0, behavior:"smooth"});
-  }
-  const handlePrice = (data) => {
-    setFilterQueries({ ...filterQueries, price: data });
-  }
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
-  const filteredProducts = products.filter((prod) => {
+  const handlePrice = data => {
+    setFilterQueries({ ...filterQueries, price: data });
+  };
+
+  const filteredProducts = products.filter(prod => {
     const matchesQuery = prod.name.toLocaleLowerCase().includes(filterQueries.query.toLocaleLowerCase());
     // Apply price filter
     const matchesPrice = prod.price >= filterQueries.price.min && prod.price <= filterQueries.price.max;
@@ -71,28 +76,29 @@ const CategoryPage = () => {
 
   let sortedProducts = [];
   if (filteredProducts.length > 0 || filterQueries.sortType) {
-    sortedProducts = (filteredProducts.length > 0) && filteredProducts.sort((a, b) => {
-      switch (filterQueries.sortType) {
-        case "priceAsc":
-          return a.price - b.price;
-        case "priceDesc":
-          return b.price - a.price;
-        case "nameAsc":
-          return a.name.localeCompare(b.name);
-        case "nameDesc":
-          return b.name.localeCompare(a.name);
-        case "ratingAsc":
-          return a.rating - b.rating;
-        case "ratingDesc":
-          return b.rating - a.rating;
-        default:
-          return 0;
-      }
-    })
-  }
-  else sortedProducts = [];
+    sortedProducts =
+      filteredProducts.length > 0 &&
+      filteredProducts.sort((a, b) => {
+        switch (filterQueries.sortType) {
+          case "priceAsc":
+            return a.price - b.price;
+          case "priceDesc":
+            return b.price - a.price;
+          case "nameAsc":
+            return a.name.localeCompare(b.name);
+          case "nameDesc":
+            return b.name.localeCompare(a.name);
+          case "ratingAsc":
+            return a.rating - b.rating;
+          case "ratingDesc":
+            return b.rating - a.rating;
+          default:
+            return 0;
+        }
+      });
+  } else sortedProducts = [];
 
-  console.log(sortedProducts.length)
+  console.log(sortedProducts.length);
   return (
     <section className="pc">
       <div className={styles.pc_content}>
@@ -107,22 +113,11 @@ const CategoryPage = () => {
             <div className="product-side col-lg-9">
               <div className={styles.pc_section}>
                 <div className="d-flex flex-wrap" style={{ gap: "30px" }}>
-                  {(sortedProducts.length === 0 || filteredProducts.length === 0) ? (
-                    <div className={styles.noProductsMessage}>There are no products.</div>
-                  ) : (
-                    sortedProducts.map(card => (
-                      <ProductCard key={card.id} data={card} />
-                    ))
-                  )}
+                  {sortedProducts.length === 0 || filteredProducts.length === 0 ? <div className={styles.noProductsMessage}>There are no products.</div> : sortedProducts.map(card => <ProductCard key={card.id} data={card} />)}
                 </div>
               </div>
               <div className="pagination-side">
-                <Pagination
-                  products={sortedProducts}
-                  itemsPerPage={itemsPerPage}
-                  handlePageClick={handlePageClick}
-                  currentPage={currentPage}
-                />
+                <Pagination products={sortedProducts} itemsPerPage={itemsPerPage} handlePageClick={handlePageClick} currentPage={currentPage} />
               </div>
             </div>
           </div>

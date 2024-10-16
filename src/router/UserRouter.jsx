@@ -12,6 +12,7 @@ import CategoryPage from "../pages/user/CategoryPage/CategoryPage";
 import ProductPage from "../pages/user/ProductPage/ProductPage";
 import BasketPage from "../pages/user/BasketPage/BasketPage";
 import ConfirmBasket from "../pages/user/ConfirmBasketPage/ConfirmBasketPage";
+import EmailVerificationPage from "../pages/user/Register/EmailVerificationPage";
 
 const UserRouter = () => {
   return (
@@ -27,6 +28,7 @@ const UserRouter = () => {
         <Route path="/product" element={<ProductPage />} />
         <Route path="/basket" element={<BasketPage />} />
         <Route path="/confirm" element={<ConfirmBasket />} />
+        <Route path="/verify-email" element={<EmailVerificationPage />} />
       </Route>
     </Routes>
   );

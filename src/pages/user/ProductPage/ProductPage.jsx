@@ -28,14 +28,14 @@ const ProductPage = () => {
           <div className={styles.productDescription}>
             <Row>
               <Col style={{paddingLeft: "0px",paddingRight: "0px"}}>
-                <Features id={63} />
+                <Features id={2} />
               </Col>
             </Row>
           </div>
           <div className={styles.comments_side}>
             <Row>
               <Col style={{paddingLeft: "0px",paddingRight: "0px"}}>
-                <Reviews />
+                {/* <Reviews /> */}
               </Col>
             </Row>
           </div>

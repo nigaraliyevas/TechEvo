@@ -49,7 +49,7 @@ export default function RegisterPage() {
         try {
             console.log(email);
             
-            const response = await fetch('https://0605-5-133-233-247.ngrok-free.app/api/v1/auth/register-email', {
+            const response = await fetch('http://ec2-54-146-26-87.compute-1.amazonaws.com:8081/api/v1/auth/register-email', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -62,8 +62,8 @@ export default function RegisterPage() {
                 localStorage.setItem('email', email);
                 // setError('');
                 // setShowPage2(true);
-                navigate("/verify-email");
                 alert('Please check your email for verification.');
+                navigate("/verify-email");
             } else {
                 const errorText = await response.text(); // Read the response as text
                 setError(`Email saxlanıla bilmədi: ${errorText}`);

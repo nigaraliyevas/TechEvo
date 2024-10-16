@@ -170,7 +170,7 @@ export default function RegisterPage2() {
       acceptTerms: formData.acceptTerms
     }).toString();
   
-    const url = `https://0605-5-133-233-247.ngrok-free.app/api/v1/auth/register?${queryParams}`;
+    const url = `http://ec2-54-146-26-87.compute-1.amazonaws.com:8081/api/v1/auth/register?${queryParams}`;
   
     // Create formData for image
     const formDataToSend = new FormData();

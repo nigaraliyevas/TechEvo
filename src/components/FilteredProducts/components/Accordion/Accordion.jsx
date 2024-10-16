@@ -29,12 +29,12 @@ const AccordionItem = ({ data, handleFilter }) => {
 };
 
 const PriceRangeSlider = ({ min, max, onPriceChange }) => {
-  const [showContent, setShowContent] = useState(false);
+  const [showContent, setShowContent] = useState(true);
 
   const [range, setRange] = useState([min, max]);
 
   const handleSliderChange = (newRange) => {
-    if (newRange[0] < newRange[1]) { // Min qiymətin max-dan kiçik olmasına nəzarət
+    if (newRange[0] < newRange[1]) {
       setRange(newRange);
       onPriceChange({ min: newRange[0], max: newRange[1] });
     }
@@ -45,7 +45,7 @@ const PriceRangeSlider = ({ min, max, onPriceChange }) => {
     const newRange = [...range];
     newRange[index] = newValue;
 
-    // Ensure min is less than max
+
     if (newRange[0] < newRange[1] && newValue >= min && newValue <= max) {
       handleSliderChange(newRange);
     }

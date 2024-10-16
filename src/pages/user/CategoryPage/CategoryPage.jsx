@@ -8,10 +8,16 @@ import { useState } from "react";
 import { products, queries } from "../../../products";
 import ProductCard from "../../../components/common/ProductCard/ProductCard";
 import FilterSidebar from "../../../components/FilteredProducts/FilterSideBar";
+import { useGetProductsQuery } from "../../../redux/sercives/productApi";
 
 const CategoryPage = () => {
 //* PcPage idi adi dinamik olmalidi deye CategoryPage qoydum adini
 //* Sectiyimiz sehifeye uygun ya pc ya laptop ve.s avtomatik islemelidir
+const { data, isLoading, isError, isSuccess, error } = useGetProductsQuery(undefined, {
+  pollingInterval: 10000, // Re-fetch every 10 seconds
+});
+
+console.log(data)
 
   const [filterQueries, setFilterQueries] = useState({
     query: "",
@@ -41,7 +47,6 @@ const CategoryPage = () => {
   const handleFilter = (data, key) => {
     setFilterQueries({ ...filterQueries, [key]: data });
   }
-
 
   const handlePrice = (data) => {
     setFilterQueries({ ...filterQueries, price: data });

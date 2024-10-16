@@ -1,9 +1,8 @@
 import ReactPaginate from "react-paginate";
 import styles from "./Pagination.module.scss";
 
-
-const Pagination = ({products}) => {
-  const itemsPerPage = 9
+const Pagination = ({ products }) => {
+  const itemsPerPage = 21; // Hər səhifədə 21 məhsul göstər
 
   if (products.length === 0) {
     return null;

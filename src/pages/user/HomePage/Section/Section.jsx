@@ -25,7 +25,7 @@ const Section = ({ title }) => {
                     spaceBetween={30}
                     slidesPerView={3}
                     autoplay={{
-                        delay: 4000,
+                        delay: 40000,
                         disableOnInteraction: false,
                     }}
                     loop={true}

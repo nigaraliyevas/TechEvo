@@ -113,12 +113,12 @@
 
   .cardImgContainer {
     width: 231px;
-    height: 114px;
+    height: 140px;
 
     .cardImg {
       height: 100%;
       width: 100%;
-      object-fit: contain;
+      object-fit: cover;
       transition: 0.5s ease all;
 
       &:hover {
@@ -210,7 +210,7 @@
 
 .radioButtons {
   position: absolute; // Şəkilin üstündə görünməsi üçün
-  top: 38%; // Yuxarıdan məsafə
+  top: 39%; // Yuxarıdan məsafə
   left: 50%; // Sol kənardan mərkəzləşdirmək üçün
   transform: translate(-50%, -50%); // Mərkəzləşdirmək
   display: flex;

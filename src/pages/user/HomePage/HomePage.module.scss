@@ -1,4 +1,5 @@
 @import "../../../assets/variables/variables";
+@import "../../../assets/common/base.scss";
 
 * {
   padding: 0;
@@ -7,11 +8,11 @@
 }
 
 body {
-  background-color: #090d11;
+  font-family: $fontFamily;
+  background-color: $bgColor !important;
 }
 
 .sliderContainer {
-  // max-width: 1300px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -182,7 +183,7 @@ body {
   border-radius: 5px;
   box-sizing: border-box;
   max-width: 350px;
-  
+
 
   background-clip: border-box;
   position: relative;
@@ -282,14 +283,14 @@ body {
   }
 
   .cardImgContainer {
-    width: 326px;
-    height: 180px;
-  
+    width: 326px !important;
+    height: 180px !important;
+
 
     .cardImg {
       height: 100%;
       width: 100%;
-      // object-fit: contain;
+      object-fit: cover;
       transition: 0.5s ease all;
 
       &:hover {
@@ -298,18 +299,18 @@ body {
       }
     }
   }
-  
+
   .radioButtons {
     position: absolute; // Şəkilin üstündə görünməsi üçün
-    top: 42%; // Yuxarıdan məsafə
+    top: 46%; // Yuxarıdan məsafə
     left: 50%; // Sol kənardan mərkəzləşdirmək üçün
     transform: translate(-50%, -50%); // Mərkəzləşdirmək
     display: flex;
-    background-color: rgba(128, 128, 128, 0.384); 
+    background-color: rgba(128, 128, 128, 0.384);
     padding: 4px 8px;
     border-radius: .5rem;
     gap: 8px; // Radio button-lar arasında məsafə
-  
+
     .radioDiv {
       width: 8px; // Radio button ölçüsü
       height: 8px;
@@ -317,24 +318,24 @@ body {
       background-color: #DFDFDF; // Default rəngi
       cursor: pointer; // Kursoru pointer edərək kliklənə biləcəyini göstər
       transition: background-color 0.3s ease, border-color 0.3s ease; // Keçidlər
-  
+
       &.selected {
         background-color: #2E2E2E; // Seçilmiş halda arxa fon
         border: 2px solid #2E2E2E; // Seçilmiş halda çərçivə rəngi
       }
-  
+
       // Hover zamanı
       &:hover {
         background-color: #ccc; // Hover zamanı arxa fon
       }
     }
   }
-  
-  }
-  
 
-  
-  
+}
+
+
+
+
 
 
 

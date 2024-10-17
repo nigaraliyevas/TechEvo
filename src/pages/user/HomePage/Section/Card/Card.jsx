@@ -52,6 +52,8 @@ function Card({ card }) {
             style={{
               transform: `translateX(-${selectedImage * 25}%)`,
               width: `${image.length * 100}%`,
+              height: "100%"
+            
             }}
           >
             {image.map((imgSrc, index) => (

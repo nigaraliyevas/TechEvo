@@ -1,14 +1,19 @@
-import { useState } from "react";
+// styles
 import styles from "./RegisterPage.module.scss"
+// hooks
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+// navigating page
 import RegisterPage2 from "./RegisterPage2";
+// common button
 import "../../../components/css/Button.scss";
-// import axios from "axios";
 export default function RegisterPage() {
 
     const [error, setError] = useState('');
     const [submitted, setSubmitted] = useState(false);
     const [showPage2, setShowPage2] = useState(false)
     const [email, setEmail] = useState("");
+    const navigate = useNavigate();
 
     const validateEmail = (email) => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
@@ -44,7 +49,7 @@ export default function RegisterPage() {
         try {
             console.log(email);
             
-            const response = await fetch('https://67d4-5-133-233-247.ngrok-free.app/api/v1/auth/register-email', {
+            const response = await fetch('http://ec2-54-146-26-87.compute-1.amazonaws.com:8081/api/v1/auth/register-email', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -56,7 +61,9 @@ export default function RegisterPage() {
             if (response.ok) { 
                 localStorage.setItem('email', email);
                 // setError('');
-                setShowPage2(true);
+                // setShowPage2(true);
+                alert('Please check your email for verification.');
+                navigate("/verify-email");
             } else {
                 const errorText = await response.text(); // Read the response as text
                 setError(`Email saxlanıla bilmədi: ${errorText}`);

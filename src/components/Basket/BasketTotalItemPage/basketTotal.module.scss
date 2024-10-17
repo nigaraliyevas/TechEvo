@@ -1,60 +1,60 @@
-@import '../../../assets/variables/variables';
+@import "../../../assets/variables/variables";
 
 .BasketTotalAmount {
+  width: 100%;
+  padding: 20px;
+  gap: 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(50, 52, 55, 1);
+  position: sticky;
+  top: 110px;
+  .amount_title {
+    font-family: $fontFamily;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 40px;
+    letter-spacing: 0.02em;
+    color: $thirdColor;
+    margin-bottom: 20px;
+  }
+
+  .line {
     width: 100%;
-    padding: 20px;
-    gap: 10px;
-    border-radius: 8px;
-    border: 1px solid rgba(50, 52, 55, 1);
-    position: sticky;
-    top: 130px;
-    .amount_title {
-        font-family: $fontFamily;
-        font-size: 28px;
-        font-weight: 700;
-        line-height: 40px;
-        letter-spacing: 0.02em;
-        color: $thirdColor;
-        margin-bottom: 20px;
+    height: 1px;
+    background-color: rgba(50, 52, 55, 1);
+    margin: 16px 0;
+  }
 
+  .total_texts {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    p {
+      font-family: $fontFamily;
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 28px;
+      color: $thirdColor;
+      margin: 6px 0;
     }
+  }
 
-    .line {
-        width: 100%;
-        height: 1px;
-        background-color: rgba(50, 52, 55, 1);
-        margin: 16px 0;
-    }
-
-    .total_texts {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-
-        p {
-            font-family: $fontFamily;
-            font-size: 18px;
-            font-weight: 500;
-            line-height: 28px;
-            color: $thirdColor;
-            margin: 6px 0;
-
-        }
-    }
-
-    .basket_btn {
-        width: 100%;
-        height: 52px;
-        border: none;
-        border-radius: 2px;
-        font-family: $fontFamily;
-        font-size: 18px;
-        font-weight: 500;
-        line-height: 28px;
-        text-align: center;
-        color: $firstColor;
-        margin-top: 28px;
-        background: linear-gradient(120.61deg, #FD3C43 -10.5%, #B622DC 38.25%, #3F27EB 80.92%);
-
-    }
+  .basket_btn {
+    display: inline-block;
+    padding: 15px 5px;
+    text-decoration: none;
+    width: 100%;
+    height: 52px;
+    border: none;
+    border-radius: 2px;
+    font-family: $fontFamily;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 28px;
+    text-align: center;
+    color: $firstColor;
+    margin-top: 28px;
+    background: linear-gradient(120.61deg, #fd3c43 -10.5%, #b622dc 38.25%, #3f27eb 80.92%);
+  }
 }

@@ -13,10 +13,15 @@ import { IoIosArrowForward } from "react-icons/io";
 import { useState } from "react";
 import { IoMdClose } from "react-icons/io";
 const Header = () => {
+  const [sliderState2, setSliderState2] = useState([true, false, false, false, false,false]);
+  const setSliderOnclick2 = (sliderIndex2) => {
+      const newSliderState2 = sliderState2.map((_, idx) => idx === sliderIndex2);
+      setSliderState2(newSliderState2);
+    };
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
-      setIsOpen(!isOpen);
+    setIsOpen(!isOpen);
   };
   return (
     <header>
@@ -39,20 +44,61 @@ const Header = () => {
                 <div className={styles.link_catagiries}>
                   <div>
                     <ul>
-                      <li>
-                        <span>•</span> Oyun üçün
+                    <li className={styles.link_relative}>
+                         PC hissələri
+                        <div className={styles.link_catagirie_dropdown}>
+                          <ul>
+                            <li>
+                              Monitorlar
+                            </li>
+                            <li>
+                              Prosessorlar
+                            </li>
+                            <li>
+                              Qida bloku
+                            </li>
+                            <li>
+                              Ana plata
+                            </li>
+                            <li>
+                              Video kart
+                            </li>
+                            <li>
+                              Operativ yaddaş
+                            </li>
+                            <li>
+                              HDD / SSD
+                            </li>
+                            <li>
+                              Soyutma sistemləri
+                            </li>
+                            <li>
+                              Şəbəkə kartları
+                            </li>
+                            <li>
+                              Səs kartları
+                            </li>
+                            <li>
+                              Keyslər
+                            </li>
+
+                          </ul>
+                        </div>
                       </li>
                       <li>
-                        <span>•</span> Dizayn üçün
+                         Oyun üçün
                       </li>
                       <li>
-                        <span>•</span> Ofis üçün
+                         Dizayn üçün
                       </li>
                       <li>
-                        <span>•</span> Ev üçün
+                         Ofis üçün
                       </li>
                       <li>
-                        <span>•</span> Hamısı birində
+                         Ev üçün
+                      </li>
+                      <li>
+                         Hamısı birində
                       </li>
                     </ul>
                   </div>
@@ -65,19 +111,20 @@ const Header = () => {
                   <div>
                     <ul>
                       <li>
-                        <span>•</span> Oyun üçün
+                         Oyun üçün
                       </li>
                       <li>
-                        <span>•</span> Dizayn üçün
+                         Dizayn üçün
                       </li>
                       <li>
-                        <span>•</span> Ofis üçün
+                         Ofis üçün
                       </li>
                       <li>
-                        <span>•</span> Ev üçün
+                         Ev üçün
                       </li>
+
                       <li>
-                        <span>•</span> İkisi birində
+                         İkisi birində
                       </li>
                     </ul>
                   </div>
@@ -93,17 +140,72 @@ const Header = () => {
                 <div className={styles.link_catagiries}>
                   <div>
                     <ul>
-                      <li>
-                        <span>•</span> Aksesuarlar
+                      <li className={styles.link_relative}>
+                         Aksesuarlar
+                        <div className={styles.link_catagirie_dropdown}>
+                          <ul>
+                            <li>
+                              Klaviatura
+                            </li>
+                            <li>
+                              Siçan
+                            </li>
+                            <li>
+                              Qulaqlıq
+                            </li>
+                            <li>
+                              Kontrollerlər
+                            </li>
+                            <li>
+                              Veb-kamera
+                            </li>
+                            <li>
+                              Mikrofonlar
+                            </li>
+                            <li>
+                              Digər
+                            </li>
+                          </ul>
+                        </div>
                       </li>
-                      <li>
-                        <span>•</span> PC hissələri
+                      <li  className={styles.link_relative}>
+                         Avadanlıqlar
+                        <div className={styles.link_catagirie_dropdown}>
+                          <ul>
+                            <li>
+                              Printerlər
+                            </li>
+                            <li>
+                              Skannerlər
+                            </li>
+                            <li>
+                              Proyektorlar
+                            </li>
+                            <li>
+                              Kabel və Adaptorlar
+                            </li>
+                            <li>
+                              Digər
+                            </li>
+                          </ul>
+                        </div>
                       </li>
-                      <li>
-                        <span>•</span> Avadanlıqlar
-                      </li>
-                      <li>
-                        <span>•</span> Mebel
+                      <li className={styles.link_relative}>
+                         Mebel
+                        <div   className={styles.link_catagirie_dropdown}>
+                          <ul>
+                            <li>
+                              Kreslo
+                            </li>
+                            <li>
+                              Masa
+                            </li>
+                            <li>
+                              Digər
+                            </li>
+              
+                          </ul>
+                        </div>
                       </li>
                     </ul>
                   </div>
@@ -175,6 +277,10 @@ const Header = () => {
               </div>
             </div>
           </div>
+
+          {/* MOBILE NAVBAR start*/}
+
+        
           <div className={styles.display_none}>
             <li className={styles.navbar_ideal}>
               <div>
@@ -189,81 +295,89 @@ const Header = () => {
               <FiSearch size={24} />
             </div>
             <div className={styles.navbar_icon}>
-              <div  onClick={toggleMenu} className={styles.navbar_icon}>
-                {
-                  isOpen?
-                   <IoMdClose size={24} />:<IoIosMenu size={24} />
-                
-                }
-
+              <div onClick={toggleMenu} className={styles.navbar_icon}>
+                {isOpen ? <IoMdClose size={24} /> : <IoIosMenu size={24} />}
               </div>
             </div>
           </div>
-            <div className={isOpen ? styles.responsive_navbar : styles.menu__open}>
-              <div className={styles.responsive_navbar_items}>
-                <div className={styles.responsive_navbar_item}>
+          <div
+            className={isOpen ? styles.responsive_navbar : styles.menu__open}
+          >
+            <div className={styles.responsive_navbar_items}>
+              <div className={styles.responsive_navbar_item}>
+                <div>
+                  <Link className={styles.responsive_navbar_item_link}>PC</Link>
                   <div>
-                    <Link className={styles.responsive_navbar_item_link}>PC</Link>
-                    <div>
-                      <IoIosArrowForward />
-                    </div>
-                  </div>
-                </div>
-                <div className={styles.responsive_navbar_item}>
-                  <div>
-                    <Link className={styles.responsive_navbar_item_link}>PC</Link>
-                    <div>
-                      <IoIosArrowForward />
-                    </div>
-                  </div>
-                </div>
-                <div className={styles.responsive_navbar_item}>
-                  <div>
-                    <Link className={styles.responsive_navbar_item_link}>Laptop</Link>
-                    <div>
-                      <IoIosArrowForward  size={20}/>
-                    </div>
-                  </div>
-                </div>
-                <div className={styles.responsive_navbar_item}>
-                  <div>
-                    <Link className={styles.responsive_navbar_item_link}>Aksesuar</Link>
-                    <div>
-                      <IoIosArrowForward  size={20}/>
-                    </div>
-                  </div>
-                </div>
-                <div className={styles.responsive_navbar_item}>
-                  <div>
-                    <Link className={styles.responsive_navbar_item_link}>Xidmətlər</Link>
-                  </div>
-                </div>
-                <div className={styles.responsive_navbar_item}>
-                  <div>
-                    <Link className={styles.responsive_navbar_item_link}>Blog</Link>
-                  </div>
-                </div>
-                <div className={styles.responsive_navbar_item}>
-                  <div>
-                    <Link className={styles.responsive_navbar_item_link}>Dəstək</Link>
+                    <IoIosArrowForward />
                   </div>
                 </div>
               </div>
-              <div className={styles.responsive_navbar_icons}>
+              <div className={styles.responsive_navbar_item}>
+                <div>
+                  <Link className={styles.responsive_navbar_item_link}>PC</Link>
+                  <div>
+                    <IoIosArrowForward />
+                  </div>
+                </div>
+              </div>
+              <div className={styles.responsive_navbar_item}>
+                <div>
+                  <Link className={styles.responsive_navbar_item_link}>
+                    Laptop
+                  </Link>
+                  <div>
+                    <IoIosArrowForward size={20} />
+                  </div>
+                </div>
+              </div>
+              <div className={styles.responsive_navbar_item}>
+                <div>
+                  <Link className={styles.responsive_navbar_item_link}>
+                    Aksesuar
+                  </Link>
+                  <div>
+                    <IoIosArrowForward size={20} />
+                  </div>
+                </div>
+              </div>
+              <div className={styles.responsive_navbar_item}>
+                <div>
+                  <Link className={styles.responsive_navbar_item_link}>
+                    Xidmətlər
+                  </Link>
+                </div>
+              </div>
+              <div className={styles.responsive_navbar_item}>
+                <div>
+                  <Link className={styles.responsive_navbar_item_link}>
+                    Blog
+                  </Link>
+                </div>
+              </div>
+              <div className={styles.responsive_navbar_item}>
+                <div>
+                  <Link className={styles.responsive_navbar_item_link}>
+                    Dəstək
+                  </Link>
+                </div>
+              </div>
+            </div>
+            <div className={styles.responsive_navbar_icons}>
               <Link className={styles.responsive_navbar_item_link}>
                 Səbət
                 <div className={styles.responsive_navbar_icon}>
-              <SlBasket size={28}/>
+                  <SlBasket size={28} />
                 </div>
               </Link>
               <Link className={styles.responsive_navbar_item_link}>
                 Hesab
                 <div className={styles.responsive_navbar_icon}>
-              <BiUser size={28}/>
+                  <BiUser size={28} />
                 </div>
               </Link>
-              </div>
             </div>
+          </div>
+              {/* MOBILE NAVBAR END*/}
         </nav>
       </div>
     </header>

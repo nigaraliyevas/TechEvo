@@ -2,28 +2,20 @@
   padding: 12px !important;
   border: 1px solid transparent;
   cursor: pointer;
-  background: radial-gradient(
-        circle at 100% 100%,
-        #000000 0,
-        #000000 2px,
-        transparent 2px
-      )
-      0% 0% / 3px 3px no-repeat,
-    radial-gradient(circle at 0 100%, #000000 0, #000000 2px, transparent 2px)
-      100% 0% / 3px 3px no-repeat,
-    radial-gradient(circle at 100% 0, #000000 0, #000000 2px, transparent 2px)
-      0% 100% / 3px 3px no-repeat,
-    radial-gradient(circle at 0 0, #000000 0, #000000 2px, transparent 2px) 100%
-      100% / 3px 3px no-repeat,
-    linear-gradient(#000000, #000000) 50% 50% / calc(100% - 1px)
-      calc(100% - 6px) no-repeat,
-    linear-gradient(#000000, #000000) 50% 50% / calc(100% - 6px)
-      calc(100% - 1px) no-repeat,
+  background: radial-gradient(circle at 100% 100%,
+      #000000 0,
+      #000000 2px,
+      transparent 2px) 0% 0% / 3px 3px no-repeat,
+    radial-gradient(circle at 0 100%, #000000 0, #000000 2px, transparent 2px) 100% 0% / 3px 3px no-repeat,
+    radial-gradient(circle at 100% 0, #000000 0, #000000 2px, transparent 2px) 0% 100% / 3px 3px no-repeat,
+    radial-gradient(circle at 0 0, #000000 0, #000000 2px, transparent 2px) 100% 100% / 3px 3px no-repeat,
+    linear-gradient(#000000, #000000) 50% 50% / calc(100% - 1px) calc(100% - 6px) no-repeat,
+    linear-gradient(#000000, #000000) 50% 50% / calc(100% - 6px) calc(100% - 1px) no-repeat,
     linear-gradient(to top left, #0b0b4b, #49146e);
   border-radius: 5px;
   box-sizing: border-box;
   max-width: 255px;
-  //max-height: 312px;
+  max-height: 320px;
   background-clip: border-box;
   position: relative;
   overflow: hidden !important;
@@ -121,12 +113,12 @@
 
   .cardImgContainer {
     width: 231px;
-    height: 140px;
+    height: 114px;
 
     .cardImg {
       height: 100%;
       width: 100%;
-        // object-fit: cover;
+      object-fit: contain;
       transition: 0.5s ease all;
 
       &:hover {
@@ -173,16 +165,15 @@
       width: 36px;
       height: 28px;
       border: 1px solid transparent;
-      background: linear-gradient(
-        125.92deg,
-        #fd3c43 -59.69%,
-        #b622dc 41.4%,
-        #3f27eb 124.93%
-      );
+      background: linear-gradient(125.92deg,
+          #fd3c43 -59.69%,
+          #b622dc 41.4%,
+          #3f27eb 124.93%);
       border-radius: 3px;
       display: flex;
       justify-content: center;
       align-items: center;
+
       a {
         color: white;
         display: flex;
@@ -214,4 +205,36 @@
   font-size: 30px;
   margin: 100px auto;
   color: #fff;
+}
+
+
+.radioButtons {
+  position: absolute; // Şəkilin üstündə görünməsi üçün
+  top: 38%; // Yuxarıdan məsafə
+  left: 50%; // Sol kənardan mərkəzləşdirmək üçün
+  transform: translate(-50%, -50%); // Mərkəzləşdirmək
+  display: flex;
+  background-color: rgba(128, 128, 128, 0.384); 
+  padding: 3px 6px;
+  border-radius: .5rem;
+  gap: 8px; // Radio button-lar arasında məsafə
+
+  .radioDiv {
+    width: 5px; // Radio button ölçüsü
+    height: 5px;
+    border-radius: 50%; // Dairəvi forma
+    background-color: #DFDFDF; // Default rəngi
+    cursor: pointer; // Kursoru pointer edərək kliklənə biləcəyini göstər
+    transition: background-color 0.3s ease, border-color 0.3s ease; // Keçidlər
+
+    &.selected {
+      background-color: #2E2E2E; // Seçilmiş halda arxa fon
+      border: 2px solid #2E2E2E; // Seçilmiş halda çərçivə rəngi
+    }
+
+    // Hover zamanı
+    &:hover {
+      background-color: #ccc; // Hover zamanı arxa fon
+    }
+  }
 }

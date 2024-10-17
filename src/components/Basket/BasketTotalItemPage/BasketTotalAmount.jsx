@@ -1,6 +1,10 @@
 import React from 'react'
 import style from "./basketTotal.module.scss"
 const BasketTotalAmount = () => {
+  fetch("http://ec2-54-146-26-87.compute-1.amazonaws.com:8081/api/v1/product/getAllProducts")
+  .then((response) => response.json())
+  .then((data) => console.log(data))
+  .catch((error) => console.error("Error fetching data:", error));
   return (
     <div className={style.BasketTotalAmount}>
           <h2 className={style.amount_title}>

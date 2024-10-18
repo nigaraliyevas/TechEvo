@@ -6,8 +6,8 @@ import styles from "./Reviews.module.scss";
 import { FaUserCircle } from "react-icons/fa";
 import { RxChevronDown } from "react-icons/rx";
 
-const REVIEWS_API = "http://ec2-54-146-26-87.compute-1.amazonaws.com:8081/api/v1/product/comment";
-const POST_REVIEW_API = "http://ec2-54-146-26-87.compute-1.amazonaws.com:8081/api/v1/product/comment";
+const REVIEWS_API = "http://ec2-54-146-26-87.compute-1.amazonaws.com:8081/api/v1/product/comment/";
+const POST_REVIEW_API = "http://ec2-54-146-26-87.compute-1.amazonaws.com:8081/api/v1/product/comment/";
 
 const StarRating = ({ rating, setRating }) => {
   const handleStarClick = (index) => {
@@ -40,10 +40,12 @@ const Reviews = ({ productId }) => {
   const [newReview, setNewReview] = useState({ rating: 0, comment: "" });
   const [visibleCount, setVisibleCount] = useState(2);
 
+
+
   useEffect(() => {
     const token = localStorage.getItem("TechEvoToken");
     if (token) {
-      setIsLoggedIn(true);
+      setIsLoggedIn(false);
     }
     fetchReviews();
   }, []);
@@ -56,7 +58,7 @@ const Reviews = ({ productId }) => {
       setAllReviews(fetchedReviews);
       setVisibleReviews(fetchedReviews.slice(0, visibleCount));
     } catch (error) {
-      console.error("Error fetching reviews:", error);
+      console.log("Error fetching reviews:", error);
     }
   };
 
@@ -107,6 +109,7 @@ const Reviews = ({ productId }) => {
 
   return (
     <div >
+      
       <div className={styles.totalBox}>
         <h3 style={{ fontSize: "24px", marginBottom: "40px", color: "#fff" }}>
           İstifadəçi rəyləri

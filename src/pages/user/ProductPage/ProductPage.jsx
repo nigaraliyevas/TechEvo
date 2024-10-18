@@ -35,7 +35,7 @@ const ProductPage = () => {
           <div className={styles.comments_side}>
             <Row>
               <Col style={{paddingLeft: "0px",paddingRight: "0px"}}>
-                <Reviews productId={1}/>
+                <Reviews productId={2}/>
               </Col>
             </Row>
           </div>

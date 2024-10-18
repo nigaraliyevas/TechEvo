@@ -1,4 +1,5 @@
 @import "../../../assets/variables/variables";
+@import "../../../assets/common/base.scss";
 
 * {
   padding: 0;
@@ -7,11 +8,11 @@
 }
 
 body {
-  background-color: #090d11;
+  font-family: $fontFamily;
+  background-color: $bgColor !important;
 }
 
 .sliderContainer {
-  // max-width: 1300px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -182,7 +183,7 @@ body {
   border-radius: 5px;
   box-sizing: border-box;
   max-width: 350px;
-  
+
 
   background-clip: border-box;
   position: relative;
@@ -282,14 +283,14 @@ body {
   }
 
   .cardImgContainer {
-    width: 326px;
-    height: 180px;
-  
+    width: 326px !important;
+    height: 180px !important;
+
 
     .cardImg {
       height: 100%;
       width: 100%;
-      // object-fit: contain;
+      object-fit: cover;
       transition: 0.5s ease all;
 
       &:hover {
@@ -298,18 +299,18 @@ body {
       }
     }
   }
-  
+
   .radioButtons {
     position: absolute; // Şəkilin üstündə görünməsi üçün
-    top: 42%; // Yuxarıdan məsafə
+    top: 46%; // Yuxarıdan məsafə
     left: 50%; // Sol kənardan mərkəzləşdirmək üçün
     transform: translate(-50%, -50%); // Mərkəzləşdirmək
     display: flex;
-    background-color: rgba(128, 128, 128, 0.384); 
+    background-color: rgba(128, 128, 128, 0.384);
     padding: 4px 8px;
     border-radius: .5rem;
     gap: 8px; // Radio button-lar arasında məsafə
-  
+
     .radioDiv {
       width: 8px; // Radio button ölçüsü
       height: 8px;
@@ -317,24 +318,24 @@ body {
       background-color: #DFDFDF; // Default rəngi
       cursor: pointer; // Kursoru pointer edərək kliklənə biləcəyini göstər
       transition: background-color 0.3s ease, border-color 0.3s ease; // Keçidlər
-  
+
       &.selected {
         background-color: #2E2E2E; // Seçilmiş halda arxa fon
         border: 2px solid #2E2E2E; // Seçilmiş halda çərçivə rəngi
       }
-  
+
       // Hover zamanı
       &:hover {
         background-color: #ccc; // Hover zamanı arxa fon
       }
     }
   }
-  
-  }
-  
 
-  
-  
+}
+
+
+
+
 
 
 
@@ -418,7 +419,7 @@ body {
 .mainServices {
   overflow: hidden;
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(4, 1fr);
   width: 100%;
   margin-left: auto;
   margin-right: auto;
@@ -427,17 +428,6 @@ body {
   padding-left: 30px;
   padding-right: 30px;
 
-  @media (min-width: 1170px) {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  @media (min-width: 750px) and (max-width: 1169px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @media (max-width: 749px) {
-    grid-template-columns: 1fr;
-  }
 
   .border {
     padding: 40px 10px 30px 10px;
@@ -483,3 +473,77 @@ body {
     }
   }
 }
+
+
+
+  @media (min-width: 375px) {
+    .mainServices {
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      gap: 30px;
+      padding-bottom: 120px;
+      padding-left: 30px;
+      padding-right: 30px;
+    
+    
+      .border {
+        padding: 40px 10px 30px 10px;
+        border: 1px solid rgba(89, 89, 89, 1);
+        border-radius: 5px;
+        transition: 0.3s ease all;
+        max-width: 255px;
+        height: 244px;
+    
+        &:hover {
+          border-color: #999999;
+          cursor: pointer;
+          transition: 0.3s ease all;
+        }
+    
+        img {
+          // width: 80px;
+          height: 63px;
+        }
+      }
+    
+      .iconsCenter {
+        display: flex;
+        padding-top: 32px;
+        flex-direction: column;
+        align-items: center;
+      }
+    
+      .text {
+        text-align: center;
+    
+        h3 {
+          color: #e6e6e6;
+          margin-bottom: 12px;
+          margin-top: 16px;
+          font-size: 18px;
+        }
+    
+        p {
+          color: #989da2;
+          width: 249px;
+          font-size: 14px;
+        }
+      }
+    }
+   
+  }
+
+
+
+
+  // @media (min-width: 750px) and (max-width: 1169px) {
+  //   grid-template-columns: repeat(2, 1fr);
+  // }
+
+  // @media (max-width: 749px) {
+  //   grid-template-columns: 1fr;
+  // }

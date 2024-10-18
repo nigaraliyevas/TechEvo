@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { Rating } from "@mui/material";
+import React, { useState } from "react";
 import { PiHeartBold } from "react-icons/pi";
 import { SlBasket } from "react-icons/sl";
+import StarRating from  '../../../../../components/Rating/StarRating' // Yeni komponenti daxil edin
 import style from "../../HomePage.module.scss";
 
 function Card({ card }) {
@@ -9,23 +9,24 @@ function Card({ card }) {
   const [selectedImage, setSelectedImage] = useState(0);
   const [lastMouseX, setLastMouseX] = useState(null);
 
+
   const handleMouseMove = (e) => {
     const { clientX } = e;
 
     if (lastMouseX === null) {
-      setLastMouseX(clientX); // Initialize lastMouseX when the mouse first moves
+      setLastMouseX(clientX);
       return;
     }
 
     const deltaX = clientX - lastMouseX;
 
-    if (Math.abs(deltaX) > 50) { // Change image every 50px movement
+    if (Math.abs(deltaX) > 50) {
       const newIndex = deltaX < 0
-        ? (selectedImage - 1 + image.length) % image.length // Move left
-        : (selectedImage + 1) % image.length; // Move right
+        ? (selectedImage - 1 + image.length) % image.length
+        : (selectedImage + 1) % image.length;
 
-      setSelectedImage(newIndex); // Update the displayed image
-      setLastMouseX(clientX); // Reset the reference point for mouse movement
+      setSelectedImage(newIndex);
+      setLastMouseX(clientX);
     }
   };
 
@@ -41,7 +42,6 @@ function Card({ card }) {
       <span className={style.cardAnimationSpan}></span>
 
       <div style={{ position: "relative" }}>
-        {/* Mouse movement changes the image */}
         <div
           className={style.cardImgContainer}
           onMouseMove={handleMouseMove}
@@ -52,6 +52,7 @@ function Card({ card }) {
             style={{
               transform: `translateX(-${selectedImage * 25}%)`,
               width: `${image.length * 100}%`,
+              height: "100%"
             }}
           >
             {image.map((imgSrc, index) => (
@@ -66,7 +67,6 @@ function Card({ card }) {
           </div>
         </div>
 
-        {/* Image selector dots */}
         <div className={style.radioButtons}>
           {image.map((_, index) => (
             <div
@@ -77,7 +77,6 @@ function Card({ card }) {
           ))}
         </div>
 
-        {/* Heart icon */}
         <div className={style.heartSpan}>
           <PiHeartBold />
         </div>
@@ -88,15 +87,8 @@ function Card({ card }) {
             <p>{price} AZN</p>
           </div>
 
-          {/* Rating and basket icon */}
           <div className={style.ratingBasket}>
-            <Rating
-              size="small"
-              precision={0.5}
-              name="read-only"
-              value={rating}
-              readOnly
-            />
+            <StarRating value={rating}/> {/* StarRating komponentini istifadə edin */}
             <div className={style.basketBg}>
               <a href="#">
                 <SlBasket style={{ width: "18px", height: "18px" }} />

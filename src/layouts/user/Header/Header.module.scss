@@ -255,12 +255,11 @@ header {
             font-size: 18px;
             font-weight: 500;
             line-height: 28px;
-            padding-left: 24px;
-            border-bottom: 1px solid grey;
-            padding-bottom: 8px;
+            border-bottom: 1px solid #323437;
+            padding: 8px 14px;
 
             &:hover {
-              background-color: grey;
+              background-color: #323437;
               border-bottom-left-radius: 2px;
               border-bottom-right-radius: 2px;
             }

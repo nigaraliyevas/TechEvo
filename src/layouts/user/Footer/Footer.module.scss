@@ -7,7 +7,7 @@ body {
 
 
 .footer {
- 
+
   gap: 10px;
   opacity: 1;
   position: relative;
@@ -18,11 +18,12 @@ body {
     margin: 0 auto;
     max-width: 1440px;
     padding: 56px 165px;
+
     .footer_top {
       display: flex;
       align-items: center;
       justify-content: space-between;
-  
+
       .footer_title {
         font-family: $fontFamily;
         color: $firstColor;
@@ -31,11 +32,11 @@ body {
         line-height: 28px;
         text-align: left;
       }
-  
+
       .footer_icons {
         display: flex;
         gap: 24px;
-  
+
         .footer_icon {
           display: inline-block;
           width: 24px;
@@ -47,7 +48,7 @@ body {
         }
       }
     }
-  
+
     .footer_text {
       font-family: $fontFamily;
       font-size: 16px;
@@ -57,12 +58,35 @@ body {
       color: $thirdColor;
       margin: 32px 0;
     }
-  
+
     .footer_links {
       display: flex;
       align-items: center;
       gap: 28px;
-  
+      @media (max-width: 1360px) {
+        gap: 56px;
+        align-items: start;
+      }
+      .footer_link_left {
+        display: flex;
+        gap: 28px;
+
+        @media (max-width: 1360px) {
+          flex-direction: column;
+          align-items: start;
+        }
+      }
+
+      .footer_link_right {
+        display: flex;
+        gap: 28px;
+
+        @media (max-width: 1360px) {
+          flex-direction: column;
+          align-items: start;
+        }
+      }
+
       li {
         font-family: $fontFamily;
         font-size: 18px;
@@ -72,9 +96,13 @@ body {
         text-align: center;
         color: $firstColor;
         margin-bottom: 32px;
+        @media (max-width: 1360px) {
+          margin-bottom: 0px;
+        }
       }
+
     }
-  
+
     .footer_bottom {
       display: flex;
       align-items: center;
@@ -82,7 +110,7 @@ body {
       border-top: 1px solid rgba(29, 34, 39, 1);
       margin-top: 32px;
       padding-top: 33px;
-  
+
       p {
         font-family: $fontFamilyInter;
         font-size: 16px;
@@ -90,7 +118,7 @@ body {
         line-height: 24px;
         text-align: left;
         color: $secondColor;
-  
+
         span {
           margin-right: 12px;
         }

@@ -15,21 +15,22 @@
         font-family: $fontFamily;
     }
 
-    .rating {
-        display: flex;
-        align-items: center;
-        margin: 10px 0;
+    // .rating {
+    //     display: flex;
+    //     align-items: center;
+    //     margin: 10px 0;
 
-        .stars {
-            color: #f5a623;
-            font-size: 20px;
-        }
 
-        .ratingNumber {
-            margin-left: 5px;
-            font-size: 16px;
-        }
-    }
+    //     .stars {
+    //         color: #f5a623;
+    //         font-size: 20px;
+    //     }
+
+    //     .ratingNumber {
+    //         margin-left: 5px;
+    //         font-size: 16px;
+    //     }
+    // }
 
     .price {
         font-size: 24px;

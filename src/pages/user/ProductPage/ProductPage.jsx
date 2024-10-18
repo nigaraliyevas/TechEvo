@@ -18,9 +18,8 @@ const ProductPage = () => {
               <Col xs={5}  style={{paddingLeft: "0px",paddingRight: "0px"}}>
                 <DetailImageComponent />
               </Col>
-              {/* <Col style={{paddingLeft: "0px",paddingRight: "0px"}}> */}
               <Col xs={7} >
-                <Description />
+                <Description/>
               </Col>
             </Row>
           </div>

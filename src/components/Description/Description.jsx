@@ -2,23 +2,21 @@ import style from './Description.module.scss'
 import Birkart from '../../assets/images/Description/birbank.png'
 import { RiShieldCheckLine } from "react-icons/ri";
 import { LuBox } from "react-icons/lu";
-import { Rating } from '@mui/material';
 import { SlBasket } from "react-icons/sl";
-/*jhgjhgjhgj*/
+//import StarRating from '../../components/Rating/StarRating';
+
 
 const Description = () => {
     return (
         <div className={style.productCard}>
             <h1 className={style.productTitle}>Apple MacBook Pro M3 (MRW63RU)</h1>
             <div className={style.rating}>
-                {/* <span className={style.stars}>⭐⭐⭐⭐⭐</span> */}
-                <Rating name="read-only" precision={0.5} value={4.5} readOnly />
-                <span className={style.ratingNumber}>4.5</span>
+               {/* <StarRating style={{color: "gold"}} value={rating}/> */}
+                {/* <span className={style.ratingNumber}>4.5</span> */}
             </div>
             <p className={style.price}>1500.00 AZN</p>
             <button className={style.addToCartButton}><span style={{paddingRight:"13px"}}>
                 <a href='#'><SlBasket style={{width:"22px",height:"21px",color:"white"}} /></a></span>Səbətə at</button>
-                {/* <SlBasket style={{width:"22px",height:"21px"}} /></span>Səbətə at</button> */}
             <div className={style.line}></div>
 
             <p className={style.description}>

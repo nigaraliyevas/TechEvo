@@ -79,7 +79,7 @@
   font-size: 12px;
 }
 
-@media (min-width: 320px) and (max-width: 425px) {
+@media (max-width: 600px) {
   .container {
     margin: 0 auto;
     padding: 128px 0 16px;
@@ -139,8 +139,11 @@
       font-weight: 400;
       font-size: 14px;
       line-height: 20px;
-      outline: none;
       margin-top: 0;
+    }
+    .innerInput:focus {
+      outline-style: solid;
+      outline-color: white;
     }
   
     .innerInput::placeholder {
@@ -152,7 +155,10 @@
   }
 
   .errorMessage {
-    font-size: 14px;
+    font-size: 12px;
+    line-height: 20px;
+    color: #DB3549;
+    margin-top: 4px;
   }
 
   .btnResponsive {

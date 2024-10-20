@@ -2,18 +2,18 @@
 import styles from "./RegisterPage.module.scss"
 // hooks
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 // navigating page
-import RegisterPage2 from "./RegisterPage2";
+// import RegisterPage2 from "./RegisterPage2";
 // common button
 import "../../../components/css/Button.scss";
 export default function RegisterPage() {
 
     const [error, setError] = useState('');
     const [submitted, setSubmitted] = useState(false);
-    const [showPage2, setShowPage2] = useState(false)
+    // const [showPage2, setShowPage2] = useState(false)
     const [email, setEmail] = useState("");
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     const validateEmail = (email) => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
@@ -63,7 +63,7 @@ export default function RegisterPage() {
                 // setError('');
                 // setShowPage2(true);
                 alert('Please check your email for verification.');
-                navigate("/verify-email");
+                // navigate("/verify-email");
             } else {
                 const errorText = await response.text(); // Read the response as text
                 setError(`Email saxlanıla bilmədi: ${errorText}`);
@@ -77,7 +77,8 @@ export default function RegisterPage() {
     
     return (
             <div className={styles.container}>
-                {showPage2 ? (<RegisterPage2/>) : (
+                {/* {showPage2 ? (<RegisterPage2/>) : */}
+                 (
                     <div className={styles.innerCont}>
                         <div className={styles.topText}>Qeydiyyat</div>
                         <div className={styles.infoText}>Daxil olmaq üçün aşağıdakı xanaları doldurun.</div>
@@ -102,7 +103,8 @@ export default function RegisterPage() {
                             </button>
                         </form>
                     </div>
-                )}
+                )
+                {/* } */}
             </div>
     )
 }

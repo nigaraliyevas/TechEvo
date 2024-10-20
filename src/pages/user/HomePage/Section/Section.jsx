@@ -13,7 +13,8 @@ import styles from '../HomePage.module.scss';
 const Section = ({ title }) => {
     // Swiper instance-i referens vasitəsilə saxlayırıq
     const swiperRef = useRef(null);
-
+  
+    
     return (
         <div>
             <div className={styles.title}>{title}</div>

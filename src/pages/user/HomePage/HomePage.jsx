@@ -7,9 +7,12 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Section from "./Section/Section";
 import SliderComponent from "./Section/Slider/Slider";
+import { useGetProductsQuery } from "../../../redux/sercives/productApi";
 
 
 const HomePage = () => {
+
+
   return (
     <>
       <section>
@@ -21,7 +24,7 @@ const HomePage = () => {
       <section id={styles.specialselected}>
         <div className={styles.container_bottom}>
           <h3 className={styles.specialH3}>Xüsusi Seçimlər</h3>
-          <Section title="Pc"/>
+          <Section  title="Pc"/>
 
           <Section title="Mouse"/>
 

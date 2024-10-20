@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import "../../../components/css/Button.scss";
 import UserAgreement from "../../../components/TermsBox/UserAgreement";
 
-export default function RegisterPage2() {
+export default function RegisterPage2( ) {
   const navigate = useNavigate();
   const [isChecked, setIsChecked] = useState(false);
   const [showTerms, setShowTerms] = useState(false);
@@ -67,6 +67,10 @@ export default function RegisterPage2() {
     }));
     setErrors((prevErrors) => ({...prevErrors, acceptTerms: ""}));
   };
+
+  const handleChildData = (data) => {
+    setIsChecked(data);
+  }
 
   const validatePassword = (password) => {
     const passwordErrors = [];
@@ -237,130 +241,132 @@ export default function RegisterPage2() {
 
   return (
     <>
-      <div className={styles.innerCont}>
-      <div className={styles.topText}>Qeydiyyat</div>
-      <div className={styles.infoText}>
-        Daxil olmaq üçün aşağıdakı xanaları doldurun.
+      <div className={styles.container}>
+        <div className={styles.innerCont}>
+          <div className={styles.topText}>Qeydiyyat</div>
+          <div className={styles.infoText}>
+            Daxil olmaq üçün aşağıdakı xanaları doldurun.
+          </div>
+          <form onSubmit={handleSubmit}>
+            <div className={styles.register2Container}>
+              {/* First Name Field */}
+              <div>
+                <div className={styles.subHeader}>Ad</div>
+                <div className={styles.inputContainer}>
+                  <input
+                    name="firstName"
+                    value={formData.firstName}
+                    onChange={handleChange}
+                    required
+                    className={styles.innerInput}
+                    type="text"
+                    placeholder="Ad"
+                  />
+                </div>
+                {errors.firstName && <p className={styles.errorMessage}>{errors.firstName}</p>}
+              </div>
+
+              {/* Last Name Field */}
+              <div>
+                <div className={styles.subHeader}>Soyad</div>
+                <div className={styles.inputContainer}>
+                  <input
+                    name="lastName"
+                    value={formData.lastName}
+                    onChange={handleChange}
+                    required
+                    className={styles.innerInput}
+                    type="text"
+                    placeholder="Soyad"
+                  />
+                </div>
+                {errors.lastName && (
+                  <p className={styles.errorMessage}>{errors.lastName}</p>
+                )}
+              </div>
+
+              {/* Password Field */}
+              <div>
+                <div className={styles.subHeader}>Şifrə</div>
+                <div className={styles.inputContainer}>
+                  <input
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    required
+                    className={styles.innerInput}
+                    type={showPassword ? "text" : "password"}
+                    placeholder="Şifrənizi daxil edin"
+                  />
+                  <div className={styles.icon}>
+                    <img
+                      onClick={handlePassword}
+                      className={styles.iconImage}
+                      src={showPassword ? passwordIcon2 : passwordIcon}
+                      alt="ClosedEyeIcon"
+                    />
+                  </div>
+                </div>
+                {errors.password && (
+                  <p className={styles.errorMessage}>{errors.password}</p>
+                )}
+              </div>
+
+              {/* Confirm Password Field */}
+              <div>
+                <div className={styles.subHeader}>Şifrəni təkrarla</div>
+                <div className={styles.inputContainer}>
+                  <input
+                    name="confirmPassword"
+                    value={formData.confirmPassword}
+                    onChange={handleChange}
+                    required
+                    className={styles.innerInput}
+                    type={showRepeatedPassword ? "text" : "password"}
+                    placeholder="Şifrənizi daxil edin"
+                  />
+                  <div className={styles.icon}>
+                    <img
+                      onClick={handleRepeatedPassword}
+                      className={styles.iconImage}
+                      src={showRepeatedPassword ? passwordIcon2 : passwordIcon}
+                      alt="ClosedEyeIcon"
+                    />
+                  </div>
+                </div>
+                {errors.confirmPassword && (
+                  <p className={styles.errorMessage}>{errors.confirmPassword}</p>
+                )}
+              </div>
+            </div>
+
+            {/* Agreement Field */}
+            <div className={styles.agreementBox}>
+              <div className={styles.checkBoxContainer}>
+                <input
+                  onChange={handleChangeChecked}
+                  className={styles.checkBoxInput}
+                  type="checkbox"
+                  checked={isChecked}
+                />
+                <span className={styles.customCheckmark}></span>
+              </div>
+              <div
+                className={styles.termsText}
+                onClick={handleTerms}>
+                İstifadəçi şərtləri ilə razıyam
+              </div>
+            </div>
+            {errors.acceptTerms && <p className={styles.errorMessage}>{errors.acceptTerms}</p>}
+
+            {/* Submit Button */}
+            <button type="submit" className={`${styles.btnResponsive} Btn`}>
+              Qeydiyyatdan keç
+            </button>
+          </form>
+        </div>
       </div>
-      <form onSubmit={handleSubmit}>
-        <div className={styles.register2Container}>
-          {/* First Name Field */}
-          <div>
-            <div className={styles.subHeader}>Ad</div>
-            <div className={styles.inputContainer}>
-              <input
-                name="firstName"
-                value={formData.firstName}
-                onChange={handleChange}
-                required
-                className={styles.innerInput}
-                type="text"
-                placeholder="Ad"
-              />
-            </div>
-            {errors.firstName && <p className={styles.errorMessage}>{errors.firstName}</p>}
-          </div>
-
-          {/* Last Name Field */}
-          <div>
-            <div className={styles.subHeader}>Soyad</div>
-            <div className={styles.inputContainer}>
-              <input
-                name="lastName"
-                value={formData.lastName}
-                onChange={handleChange}
-                required
-                className={styles.innerInput}
-                type="text"
-                placeholder="Soyad"
-              />
-            </div>
-            {errors.lastName && (
-              <p className={styles.errorMessage}>{errors.lastName}</p>
-            )}
-          </div>
-
-          {/* Password Field */}
-          <div>
-            <div className={styles.subHeader}>Şifrə</div>
-            <div className={styles.inputContainer}>
-              <input
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-                required
-                className={styles.innerInput}
-                type={showPassword ? "text" : "password"}
-                placeholder="Şifrənizi daxil edin"
-              />
-              <div className={styles.icon}>
-                <img
-                  onClick={handlePassword}
-                  className={styles.iconImage}
-                  src={showPassword ? passwordIcon2 : passwordIcon}
-                  alt="ClosedEyeIcon"
-                />
-              </div>
-            </div>
-            {errors.password && (
-              <p className={styles.errorMessage}>{errors.password}</p>
-            )}
-          </div>
-
-          {/* Confirm Password Field */}
-          <div>
-            <div className={styles.subHeader}>Şifrəni təkrarla</div>
-            <div className={styles.inputContainer}>
-              <input
-                name="confirmPassword"
-                value={formData.confirmPassword}
-                onChange={handleChange}
-                required
-                className={styles.innerInput}
-                type={showRepeatedPassword ? "text" : "password"}
-                placeholder="Şifrənizi daxil edin"
-              />
-              <div className={styles.icon}>
-                <img
-                  onClick={handleRepeatedPassword}
-                  className={styles.iconImage}
-                  src={showRepeatedPassword ? passwordIcon2 : passwordIcon}
-                  alt="ClosedEyeIcon"
-                />
-              </div>
-            </div>
-            {errors.confirmPassword && (
-              <p className={styles.errorMessage}>{errors.confirmPassword}</p>
-            )}
-          </div>
-        </div>
-
-        {/* Agreement Field */}
-        <div className={styles.agreementBox}>
-          <div className={styles.checkBoxContainer}>
-            <input
-              onChange={handleChangeChecked}
-              className={styles.checkBoxInput}
-              type="checkbox"
-              checked={isChecked}
-            />
-            <span className={styles.customCheckmark}></span>
-          </div>
-          <div
-            className={styles.termsText}
-            onClick={handleTerms}>
-            İstifadəçi şərtləri ilə razıyam
-          </div>
-        </div>
-        {errors.acceptTerms && <p className={styles.errorMessage}>{errors.acceptTerms}</p>}
-
-        {/* Submit Button */}
-        <button type="submit" className={`${styles.btnResponsive} Btn`}>
-          Qeydiyyatdan keç
-        </button>
-      </form>
-    </div>
-    {showTerms ? <UserAgreement /> : null} 
+    {showTerms ? <UserAgreement sendDataToParent = {handleChildData} /> : null} 
     </>
   );
 }

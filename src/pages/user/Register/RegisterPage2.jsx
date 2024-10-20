@@ -48,6 +48,11 @@ export default function RegisterPage2() {
     };
   }, [showTerms]);
 
+  useEffect(() => {
+    const isVerified = localStorage.getItem('isVerified');
+    if(!isVerified) navigate('/register');
+  }, [navigate])
+
   const handleTerms = (e) => {
     e.stopPropagation(); // Prevent closing when clicking on the terms menu itself
     setShowTerms(!showTerms);
@@ -229,9 +234,6 @@ export default function RegisterPage2() {
     setShowRepeatedPassword(!showRepeatedPassword);
   };
 
-  // const handleTerms = () => {
-  //   setShowTerms(true);
-  // }
 
   return (
     <>

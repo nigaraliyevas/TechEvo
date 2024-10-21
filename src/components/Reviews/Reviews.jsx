@@ -6,12 +6,10 @@ import styles from "./Reviews.module.scss";
 import { FaUserCircle } from "react-icons/fa";
 import { RxChevronDown } from "react-icons/rx";
 
-const REVIEWS_API = "http://ec2-54-146-26-87.compute-1.amazonaws.com:8081/api/v1/product/comment/";
-const POST_REVIEW_API = "http://ec2-54-146-26-87.compute-1.amazonaws.com:8081/api/v1/product/comment/";
 
 const StarRating = ({ rating, setRating }) => {
   const handleStarClick = (index) => {
-    setRating(index + 1); 
+    setRating(index + 1);
   };
 
   return (
@@ -22,7 +20,7 @@ const StarRating = ({ rating, setRating }) => {
           onClick={() => handleStarClick(index)}
           style={{
             fontSize: "24px",
-            color: index < rating ? "#ffc107" : "#e4e5e9", 
+            color: index < rating ? "#ffc107" : "#e4e5e9",
             cursor: "pointer",
           }}
         >
@@ -33,28 +31,26 @@ const StarRating = ({ rating, setRating }) => {
   );
 };
 
-const Reviews = ({ productId }) => {
+const Reviews = ( {productId} ) => {
   const [allReviews, setAllReviews] = useState([]);
   const [visibleReviews, setVisibleReviews] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [newReview, setNewReview] = useState({ rating: 0, comment: "" });
   const [visibleCount, setVisibleCount] = useState(2);
 
-
-
   useEffect(() => {
     const token = localStorage.getItem("TechEvoToken");
     if (token) {
-      setIsLoggedIn(false);
+      setIsLoggedIn(true); // Kullanıcı giriş yaptıysa true olmalı
     }
     fetchReviews();
   }, []);
 
   const fetchReviews = async () => {
     try {
-      const response = await axios.get(`${REVIEWS_API}/${productId}`);
-      const fetchedReviews = response.data.reviews;
-
+      const response = await axios.get(`http://ec2-54-146-26-87.compute-1.amazonaws.com:8081/api/v1/product/comment/${productId}`);
+  
+      const fetchedReviews = Array.isArray(response.data.reviews) ? response.data.reviews : []; 
       setAllReviews(fetchedReviews);
       setVisibleReviews(fetchedReviews.slice(0, visibleCount));
     } catch (error) {
@@ -62,10 +58,12 @@ const Reviews = ({ productId }) => {
     }
   };
 
+  useEffect(() => {
+    setVisibleReviews(allReviews.slice(0, visibleCount)); // Yorum sayısı değişince görünür yorumları güncelle
+  }, [visibleCount, allReviews]);
+
   const loadMoreReviews = () => {
-    const newVisibleCount = visibleCount + 2;
-    setVisibleCount(newVisibleCount);
-    setVisibleReviews(allReviews.slice(0, newVisibleCount));
+    setVisibleCount((prevCount) => prevCount + 2); // Yorumları 2'şer artır
   };
 
   const handleAddReview = async () => {
@@ -81,11 +79,11 @@ const Reviews = ({ productId }) => {
     if (newReview.comment.trim() && newReview.rating > 0) {
       try {
         const response = await axios.post(
-          POST_REVIEW_API,
+          `http://ec2-54-146-26-87.compute-1.amazonaws.com:8081/api/v1/product/comment`,
           { ...newReview, productId },
           {
             headers: {
-              Authorization: `Bearer ${localStorage.getItem("TechEvoToken")}`,
+              Authorization: `Bearer ${localStorage.getItem("TechEvoTojken")}`,
             },
           }
         );
@@ -108,8 +106,7 @@ const Reviews = ({ productId }) => {
   };
 
   return (
-    <div >
-      
+    <div>
       <div className={styles.totalBox}>
         <h3 style={{ fontSize: "24px", marginBottom: "40px", color: "#fff" }}>
           İstifadəçi rəyləri
@@ -127,15 +124,12 @@ const Reviews = ({ productId }) => {
             />
             <StarRating
               rating={newReview.rating}
-              setRating={(rating) =>
-                setNewReview({ ...newReview, rating })
-              }
+              setRating={(rating) => setNewReview({ ...newReview, rating })}
             />
-          
           </div>
           <button onClick={handleAddReview} className={styles.addButton}>
-              Rəy yaz
-            </button>
+            Rəy yaz
+          </button>
         </div>
 
         {/* Şərhlərin siyahısı */}

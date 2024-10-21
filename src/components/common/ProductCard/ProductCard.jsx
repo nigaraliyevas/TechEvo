@@ -7,7 +7,7 @@ import { useState } from "react";
 
 const ProductCard = ({data}) => {
   const { name, price, image, rating } = data;
-  console.log(data)
+  // console.log(data)
   const [selectedImage, setSelectedImage] = useState(0);
   const [lastMouseX, setLastMouseX] = useState(null);
 

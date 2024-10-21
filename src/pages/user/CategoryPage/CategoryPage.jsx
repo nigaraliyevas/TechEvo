@@ -12,8 +12,7 @@ const CategoryPage = () => {
   const { data, isLoading, isError, isSuccess, error } = useGetProductsQuery(undefined, {
     pollingInterval: 10000, // Re-fetch every 10 seconds
   });
-
-  console.log(data);
+  // console.log(data);
 
   const [filterQueries, setFilterQueries] = useState({
     query: "",
@@ -39,7 +38,7 @@ const CategoryPage = () => {
   const handleSorting = sortType => {
     setFilterQueries(prev => ({ ...prev, sortType }));
   };
-  
+
   const handleFilter = (itemKey, filterKey) => {
     setFilterQueries(prev => {
       const currentFilter = prev[filterKey];

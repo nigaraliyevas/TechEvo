@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { PiHeartBold } from "react-icons/pi";
 import { SlBasket } from "react-icons/sl";
 import StarRating from  '../../../../../components/Rating/StarRating' // Yeni komponenti daxil edin

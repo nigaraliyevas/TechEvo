@@ -10,9 +10,12 @@ import Card from './Card/Card';
 import { products } from '../../../../products';
 import styles from '../HomePage.module.scss';
 
+
 const Section = ({ title }) => {
+ 
     // Swiper instance-i referens vasitəsilə saxlayırıq
     const swiperRef = useRef(null);
+
 
     return (
         <div>
@@ -38,9 +41,10 @@ const Section = ({ title }) => {
                         swiperRef.current = swiper; // Swiper instance-in referensə əlavə edirik
                     }}
                 >
-                    {products.map((card) => (
+                    {products?.map((card) => (
                         <SwiperSlide className={styles.swiperSlide} key={card.id}>
                             <div
+                           
                                 className={styles.cardContainer}
                                 onMouseEnter={() => swiperRef.current.autoplay.stop()} // Hover zamanı autoplay dayandırılır
                                 onMouseLeave={() => swiperRef.current.autoplay.start()} // Hover-dən çıxanda autoplay başlatılır

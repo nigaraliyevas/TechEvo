@@ -6,9 +6,9 @@ import RegisterPage from "../RegisterPage/RegisterPage";
 import HomePage from "../HomePage/HomePage";
 import PasswordReset from "../PasswordResetPage/PasswordReset";
 import EnterPasswordPage from "../EnterPasswordPage/EnterPasswordPage";
-import PCPage from "../PCPage/PCPage";
 import ProductPage from "../ProductPage/ProductPage";
 import BasketPage from "../BasketPage/BasketPage";
+import CategoryPage from "../user/CategoryPage/CategoryPage";
 
 const RoutesPage = () => {
   return (
@@ -22,8 +22,8 @@ const RoutesPage = () => {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/newpassword" element={<PasswordReset />} />
           <Route path="/enterpassword" element={<EnterPasswordPage />} />
-          <Route path="/pc" element={<PCPage />} />
-          <Route path="/product" element={<ProductPage />} />
+          <Route path="/pc" element={<CategoryPage />} />
+          <Route path="/product/:productId" element={<ProductPage />} />
           <Route path="/basket" element={<BasketPage />} />
     
         </Routes>

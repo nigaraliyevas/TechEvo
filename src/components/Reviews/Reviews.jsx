@@ -6,12 +6,12 @@ import styles from "./Reviews.module.scss";
 import { FaUserCircle } from "react-icons/fa";
 import { RxChevronDown } from "react-icons/rx";
 
-const REVIEWS_API = "https://example.com/api/reviews";
-const POST_REVIEW_API = "https://example.com/api/reviews/new";
+const REVIEWS_API = "http://ec2-54-146-26-87.compute-1.amazonaws.com:8081/api/v1/product/comment/";
+const POST_REVIEW_API = "http://ec2-54-146-26-87.compute-1.amazonaws.com:8081/api/v1/product/comment/";
 
 const StarRating = ({ rating, setRating }) => {
   const handleStarClick = (index) => {
-    setRating(index + 1); // Ulduz 0-dan başlandığı üçün +1 edilir
+    setRating(index + 1); 
   };
 
   return (
@@ -22,7 +22,7 @@ const StarRating = ({ rating, setRating }) => {
           onClick={() => handleStarClick(index)}
           style={{
             fontSize: "24px",
-            color: index < rating ? "#ffc107" : "#e4e5e9", // Seçilmiş ulduzları sarı göstər
+            color: index < rating ? "#ffc107" : "#e4e5e9", 
             cursor: "pointer",
           }}
         >
@@ -40,23 +40,25 @@ const Reviews = ({ productId }) => {
   const [newReview, setNewReview] = useState({ rating: 0, comment: "" });
   const [visibleCount, setVisibleCount] = useState(2);
 
+
+
   useEffect(() => {
     const token = localStorage.getItem("TechEvoToken");
     if (token) {
-      setIsLoggedIn(true);
+      setIsLoggedIn(false);
     }
     fetchReviews();
   }, []);
 
   const fetchReviews = async () => {
     try {
-      const response = await axios.get(`${REVIEWS_API}?productId=${productId}`);
+      const response = await axios.get(`${REVIEWS_API}/${productId}`);
       const fetchedReviews = response.data.reviews;
 
       setAllReviews(fetchedReviews);
       setVisibleReviews(fetchedReviews.slice(0, visibleCount));
     } catch (error) {
-      console.error("Error fetching reviews:", error);
+      console.log("Error fetching reviews:", error);
     }
   };
 
@@ -107,6 +109,7 @@ const Reviews = ({ productId }) => {
 
   return (
     <div >
+      
       <div className={styles.totalBox}>
         <h3 style={{ fontSize: "24px", marginBottom: "40px", color: "#fff" }}>
           İstifadəçi rəyləri

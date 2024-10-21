@@ -58,10 +58,14 @@ const ProductPage = () => {
           <div className={styles.comments_side}>
             <Row>
               <Col style={{paddingLeft: "0px",paddingRight: "0px"}}>
+<<<<<<< HEAD
 
                 <Reviews /> 
 
                 {/* <Reviews /> */}
+=======
+                <Reviews productId={2}/>
+>>>>>>> d8c509d0cf11e7816bde50722f8cff99c1a77ea8
               </Col>
             </Row>
           </div>

@@ -8,13 +8,10 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Section from "./Section/Section";
 import SliderComponent from "./Section/Slider/Slider";
-import { useGetProductsQuery } from "../../../redux/sercives/productApi";
 
 
 
 const HomePage = () => {
-
-
   return (
     <>
       <section>
@@ -25,7 +22,6 @@ const HomePage = () => {
       <section id={styles.specialselected}>
         <div className={styles.container_bottom}>
           <h3 className={styles.specialH3}>Xüsusi Seçimlər</h3>
-<<<<<<< HEAD
           <Section title="PC" />
           <Section title="Mouse" />
           <Section title="Keyboard" />
@@ -38,23 +34,6 @@ const HomePage = () => {
                   <h3>Daxili kredit</h3>
                   <p>Bizim kredit təkliflərimizlə Tech məhsulları sizin büdcənizə uyğun olacaq.</p>
                 </div>
-=======
-          <Section  title="Pc"/>
-
-          <Section title="Mouse"/>
-
-          <Section title="Keyboard"/>
-
-
-          <div className={styles.services}>Xidmətlərimiz</div>
-
-          <div className={styles.mainServices}>
-            <div className={` ${styles.border} ${styles.iconsCenter}`}>
-              <img src={InternCr} />
-              <div className={styles.text}>
-                <h3>Daxili kredit</h3>
-                <p>Bizim kredit təkliflərimizlə Tech məhsulları sizin büdcənizə uyğun olacaq.</p>
->>>>>>> 8f95a1b0a40dc8e99e11c8dd8b03ceb08b707d0c
               </div>
               <div className={`${styles.border} ${styles.iconsCenter}`}>
                 <img src={Delivery} />

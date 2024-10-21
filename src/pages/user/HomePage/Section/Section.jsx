@@ -25,7 +25,7 @@ const Section = ({ title }) => {
                     spaceBetween={30}
                     slidesPerView={3}
                     autoplay={{
-                        delay: 40000,
+                        delay: 400000,
                         disableOnInteraction: false,
                     }}
                     loop={true}
@@ -36,6 +36,7 @@ const Section = ({ title }) => {
                     modules={[Autoplay, Navigation]}
                     onSwiper={(swiper) => {
                         swiperRef.current = swiper; // Swiper instance-in referensə əlavə edirik
+                        
                     }}
                 >
                     {products.map((card) => (

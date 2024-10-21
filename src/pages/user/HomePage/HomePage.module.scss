@@ -125,15 +125,26 @@ body {
   font-weight: 500;
 }
 
-.cardMain,
-.cardMs,
-.cardKb {
+.cardMain {
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
   width: 100%;
   gap: 20px;
 }
+
+.mobileCards {
+  display: flex;
+  overflow-x: scroll; /* Yatay sürüşmə */
+  gap: 10px;
+  padding-left: 8px;
+}
+
+
+
+
+
+
 
 .swiper {
   padding: 0 30px !important;
@@ -522,7 +533,7 @@ body {
     .mainTitle {
       color: white;
       width: 180px;
-      height: 30vh;
+      height: 60vh;
       display: flex;
       justify-content: center;
       flex-direction: column;
@@ -594,16 +605,15 @@ body {
 
   .title {
     color: white;
-    padding-top: 56px;
-    padding-bottom: 20px;
+    padding-top: 20px;
+    padding-bottom: 10px;
     padding-left: 8px;
-    font-size: 28px;
+    font-size: 14px;
     font-weight: 500;
+    line-height: 28px;
   }
 
-  .cardMain,
-  .cardMs,
-  .cardKb {
+  .cardMain {
     // display: grid;
     // grid-template-columns: repeat(2, 1fr) !important;;
     // gap: 20px;
@@ -617,23 +627,29 @@ body {
 
   //SWIPER
 
-  .swiper {
-    padding: 0 8px !important;
-  }
+  // .swiper {
+  //   padding: 0 8px !important;
+  // }
 
-  .swiperSlide {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: auto;
-  }
+  // .swiperSlide {
+  //   position: relative;
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+  //   height: auto;
+  // }
 
   .swiperNav:after {
     display: none !important;
   }
 
+  .cardContainer {
+    flex: 1; /* Desktopda kartlar tam enli olsun */
+}
 
+.radioButtons {
+ display: none !important;
+}
 
 
   //CARD
@@ -653,8 +669,8 @@ body {
       linear-gradient(to top left, #0b0b4b, #49146e);
     border-radius: 5px;
     box-sizing: border-box;
-    max-width: 198px;
-    height: 284px;
+    max-width: 198px !important;
+   
     background-clip: border-box;
     position: relative;
     display: flex;
@@ -753,8 +769,8 @@ body {
     }
 
     .cardImgContainer {
-      width: 326px !important;
-      height: 180px !important;
+      width: 174px !important;
+      height: 132px !important;
 
 
       .cardImg {
@@ -766,37 +782,6 @@ body {
         &:hover {
           transform: scale(1.1);
           transition: 0.5s ease all;
-        }
-      }
-    }
-
-    .radioButtons {
-      position: absolute; // Şəkilin üstündə görünməsi üçün
-      top: 46%; // Yuxarıdan məsafə
-      left: 50%; // Sol kənardan mərkəzləşdirmək üçün
-      transform: translate(-50%, -50%); // Mərkəzləşdirmək
-      display: flex;
-      background-color: rgba(128, 128, 128, 0.384);
-      padding: 4px 8px;
-      border-radius: .5rem;
-      gap: 8px; // Radio button-lar arasında məsafə
-
-      .radioDiv {
-        width: 8px; // Radio button ölçüsü
-        height: 8px;
-        border-radius: 50%; // Dairəvi forma
-        background-color: #DFDFDF; // Default rəngi
-        cursor: pointer; // Kursoru pointer edərək kliklənə biləcəyini göstər
-        transition: background-color 0.3s ease, border-color 0.3s ease; // Keçidlər
-
-        &.selected {
-          background-color: #2E2E2E; // Seçilmiş halda arxa fon
-          border: 2px solid #2E2E2E; // Seçilmiş halda çərçivə rəngi
-        }
-
-        // Hover zamanı
-        &:hover {
-          background-color: #ccc; // Hover zamanı arxa fon
         }
       }
     }
@@ -820,9 +805,9 @@ body {
 
     p {
       color: white;
-      font-size: 18px;
+      font-size: 14px;
       font-weight: 700;
-      line-height: 20px;
+      line-height: 16px;
       margin-top: 12px;
       margin-bottom: 8px;
 
@@ -832,11 +817,11 @@ body {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding-bottom: 28px;
+      padding-bottom: 14px;
 
       .basketBg {
         width: 36px;
-        height: 28px;
+        height: 24px;
         border: 1px solid transparent;
         background: $linearGradient;
         border-radius: 3px;

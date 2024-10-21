@@ -5,9 +5,11 @@ import Slide2 from "../../../../../assets/images/HomePage/Slider/NeonSlide2.png"
 import Slide3 from "../../../../../assets/images/HomePage/Slider/NeonSlide3.png";
 
 
+
 // import Button from "./../Button/Button";
 
 const SliderComponent = () => {
+
   const settings = {
     dots: false,
     infinite: true,

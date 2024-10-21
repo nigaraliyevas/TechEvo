@@ -15,9 +15,11 @@ const HomePage = () => {
   return (
     <>
       <section>
-        <div className="" style={{ paddingTop: "93px" }}>
+        <div>
           <SliderComponent />
         </div>
+
+
       </section>
       <section id={styles.specialselected}>
         <div className={styles.container_bottom}>

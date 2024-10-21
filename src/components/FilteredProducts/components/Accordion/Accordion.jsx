@@ -77,8 +77,8 @@ const Accordion = ({ data, handleFilter, handlePrice }) => {
   return (
     <div className={styles.accordion}>
       <PriceRangeSlider min={200} max={10000} onPriceChange={handlePrice} />{" "}
-      {data.map(item => (
-        <AccordionItem handleFilter={handleFilter} key={item.id} data={item} />
+      {data.map((item, index) => (
+        <AccordionItem key={index} handleFilter={handleFilter} data={item} />
       ))}
     </div>
   );

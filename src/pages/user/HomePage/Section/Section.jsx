@@ -15,13 +15,10 @@ const Section = ({ title }) => {
  
     // Swiper instance-i referens vasitəsilə saxlayırıq
     const swiperRef = useRef(null);
-<<<<<<< HEAD
 
 
-=======
   
     
->>>>>>> 31b8236f99d44a5d9db5df709ae3ef833186db74
     return (
         <div>
             <div className={styles.title}>{title}</div>

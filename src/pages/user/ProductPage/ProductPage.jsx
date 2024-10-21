@@ -10,6 +10,7 @@ import Reviews from "../../../components/Reviews/Reviews";
 import { IoIosArrowForward } from "react-icons/io";
 import { IoIosArrowBack } from "react-icons/io";
 import { useRef, useState } from "react";
+import { IoMdClose } from "react-icons/io";
 const ProductPage = () => {
   const [modalShow,setModalShow] = useState(false)
   const caruselRef = useRef(null);
@@ -79,7 +80,7 @@ const ProductPage = () => {
  {
   modalShow &&        <div  className={styles.detail_modal_image}>
   <h2  className={styles.modal_image_title}>
-    Apple MacBook Pro M3 (MRW63RU)   <div onClick={()=>setModalShow(false)}  >X</div>
+    Apple MacBook Pro M3 (MRW63RU)   <div onClick={()=>setModalShow(false)}  ><span><IoMdClose size={36}/></span></div>
   </h2>
   <div className={styles.modal_image_carusel_container}>
     <div className={styles.modal_images}>

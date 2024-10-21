@@ -37,6 +37,11 @@ header {
     margin-left: auto;
     width: 100%;
     padding: 0px 165px;
+
+    @media (max-width: 375px) {
+      padding: 0px 16px;
+
+    }
   }
 
   .navbar {
@@ -51,6 +56,11 @@ header {
     @media (max-width: 1360px) {
       height: 80px;
 
+
+    }
+    @media (max-width: 375px) {
+      gap: 55px;
+      max-width: 343px !important;
 
     }
 
@@ -255,12 +265,11 @@ header {
             font-size: 18px;
             font-weight: 500;
             line-height: 28px;
-            padding-left: 24px;
-            border-bottom: 1px solid grey;
-            padding-bottom: 8px;
+            border-bottom: 1px solid #323437;
+            padding: 8px 14px;
 
             &:hover {
-              background-color: grey;
+              background-color: #323437;
               border-bottom-left-radius: 2px;
               border-bottom-right-radius: 2px;
             }
@@ -357,6 +366,10 @@ header {
       background: $bgColor;
       border-radius: 16px;
       padding-bottom: 8px;
+      @media (max-width: 375px) {
+        width: 140px;
+  
+      }
 
       span {
         position: absolute;
@@ -367,6 +380,10 @@ header {
         -webkit-text-fill-color: transparent;
         border-radius: 16px;
         z-index: -1;
+        @media (max-width: 375px) {
+          width: 140px;
+    
+        }
       }
     }
 

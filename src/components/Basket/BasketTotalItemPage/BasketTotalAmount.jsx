@@ -1,11 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import style from "./basketTotal.module.scss";
 import { Link } from "react-router-dom";
 const BasketTotalAmount = () => {
-  fetch("http://ec2-54-146-26-87.compute-1.amazonaws.com:8081/api/v1/product/getAllProducts")
-  .then((response) => response.json())
-  .then((data) => console.log(data))
-  .catch((error) => console.error("Error fetching data:", error));
+ 
+
   return (
     <div className={style.BasketTotalAmount}>
 
@@ -46,6 +44,11 @@ const BasketTotalAmount = () => {
       <Link to={"/confirm"} className={style.basket_btn}>
         Səbəti təsdiqlə
       </Link>
+
+
+
+
+
     </div>
   );
 };

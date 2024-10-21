@@ -56,5 +56,9 @@
     color: $firstColor;
     margin-top: 28px;
     background: linear-gradient(120.61deg, #fd3c43 -10.5%, #b622dc 38.25%, #3f27eb 80.92%);
+    
+    &:hover{
+      background: linear-gradient(120.61deg,  #3f27eb -10.5% , #b622dc 38.25%,#fd3c43 80.92%);
+    }
   }
 }

@@ -25,35 +25,37 @@ const HomePage = () => {
           <Section title="PC" />
           <Section title="Mouse" />
           <Section title="Keyboard" />
-          <div className={styles.services}>Xidmətlərimiz</div>
-          <div className={styles.mainServices}>
-            <div className={` ${styles.border} ${styles.iconsCenter}`}>
-              <img src={InternCr} />
-              <div className={styles.text}>
-                <h3>Daxili kredit</h3>
-                <p>Bizim kredit təkliflərimizlə Tech məhsulları sizin büdcənizə uyğun olacaq.</p>
+          <div className={styles.servicesDiv}>
+            <div className={styles.services}>Xidmətlərimiz</div>
+            <div className={styles.mainServices}>
+              <div className={` ${styles.border} ${styles.iconsCenter}`}>
+                <img src={InternCr} />
+                <div className={styles.text}>
+                  <h3>Daxili kredit</h3>
+                  <p>Bizim kredit təkliflərimizlə Tech məhsulları sizin büdcənizə uyğun olacaq.</p>
+                </div>
               </div>
-            </div>
-            <div className={`${styles.border} ${styles.iconsCenter}`}>
-              <img src={Delivery} />
+              <div className={`${styles.border} ${styles.iconsCenter}`}>
+                <img src={Delivery} />
 
-              <div className={styles.text}>
-                <h3>Çatdırılma</h3>
-                <p>Bizim kredit təkliflərimizlə Tech məhsulları sizin büdcənizə uyğun olacaq.</p>
+                <div className={styles.text}>
+                  <h3>Çatdırılma</h3>
+                  <p>Bizim kredit təkliflərimizlə Tech məhsulları sizin büdcənizə uyğun olacaq.</p>
+                </div>
               </div>
-            </div>
-            <div className={`${styles.border} ${styles.iconsCenter}`}>
-              <img src={Repair} />
-              <div className={styles.text}>
-                <h3>Təmir</h3>
-                <p>Bizim kredit təkliflərimizlə Tech məhsulları sizin büdcənizə uyğun olacaq.</p>
+              <div className={`${styles.border} ${styles.iconsCenter}`}>
+                <img src={Repair} />
+                <div className={styles.text}>
+                  <h3>Təmir</h3>
+                  <p>Bizim kredit təkliflərimizlə Tech məhsulları sizin büdcənizə uyğun olacaq.</p>
+                </div>
               </div>
-            </div>
-            <div className={`${styles.border} ${styles.iconsCenter}`}>
-              <img src={SecondHand} />
-              <div className={styles.text}>
-                <h3>İkinci əl satış</h3>
-                <p>Bizim kredit təkliflərimizlə Tech məhsulları sizin büdcənizə uyğun olacaq.</p>
+              <div className={`${styles.border} ${styles.iconsCenter}`}>
+                <img src={SecondHand} />
+                <div className={styles.text}>
+                  <h3>İkinci əl satış</h3>
+                  <p>Bizim kredit təkliflərimizlə Tech məhsulları sizin büdcənizə uyğun olacaq.</p>
+                </div>
               </div>
             </div>
           </div>

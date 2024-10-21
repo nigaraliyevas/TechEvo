@@ -1,3 +1,8 @@
+.container {
+  margin: 0 auto;
+  padding: 184px 0 120px;
+}
+
 .innerCont {
   padding: 64px 91.5px;
   border-radius: 2px;
@@ -56,7 +61,6 @@
     font-weight: 400;
     font-size: 16px;
     line-height: 20px;
-    outline: none;
     // margin-top: 0;
     height: 100%;
   }
@@ -123,16 +127,16 @@
   pointer-events: none;
 }
 .checkBoxInput:checked + .customCheckmark {
-  background-color: #00a56b;
-  border-color: #00a56b;
+  background-color: #00A16B;
+  border-color: #00A16B;
 }
 .checkBoxInput:checked + .customCheckmark::after {
   content: "";
   position: absolute;
   top: 3px;
-  left: 8px;
-  width: 5px;
-  height: 10px;
+  left: 7px;
+  width: 5.4px;
+  height: 9.3px;
   border: solid #ffffff;
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
@@ -142,7 +146,8 @@
 }
 
 .errorMessage {
-  color: #db3549;
+  color: #F03838;
+  font-size: 16px;
   line-height: 20px;
   margin-top: 6px;
   white-space: pre-line;

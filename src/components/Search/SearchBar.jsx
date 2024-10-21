@@ -20,11 +20,13 @@ const SearchBar = ({handleSearch, handleSorting, sortedProducts}) => {
     const handleClickOutside = () => {
       if (showOrder) {
         setShowOrder(false);
+        setShowSearchedProducts(false);
       }
     };
 
     if (showOrder) {
       document.addEventListener("click", handleClickOutside);
+      setShowSearchedProducts(false);
     }
 
     // Cleanup the event listener when component unmounts or showOrder changes

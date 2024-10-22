@@ -9,7 +9,7 @@ import Card from './Card/Card';
 import { products } from '../../../../products';
 import styles from '../HomePage.module.scss';
 
-const Section = ({ title }) => {
+const Section = ({ title, data = products }) => {
     const swiperRef = useRef(null);
 
     // Ekran ölçüsünü saxlamaq üçün state
@@ -64,7 +64,7 @@ const Section = ({ title }) => {
                             swiperRef.current = swiper;
                         }}
                     >
-                        {products.map((card) => (
+                        {data.map((card) => (
                             <SwiperSlide className={styles.swiperSlide} key={card.id}>
                                 <div
                                     className={styles.cardContainer}

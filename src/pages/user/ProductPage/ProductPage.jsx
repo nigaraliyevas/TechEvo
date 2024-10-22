@@ -13,11 +13,18 @@ import { useRef, useState, useEffect } from "react";
 import { IoMdClose } from "react-icons/io";
 import { useSearchParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useGetProductByIdQuery } from "../../../redux/sercives/productApi";
 
 const ProductPage = () => {
+  
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const id = searchParams.get("id");
+  
+  const { data: product, error, isLoading } = useGetProductByIdQuery(id);
+  console.log(product, "detailData");
+  
+  
 
   useEffect(() => {
     if (!id) {
@@ -56,10 +63,10 @@ const ProductPage = () => {
             <div className={styles.productDetail}>
               <Row>
                 <Col xs={5} style={{ paddingLeft: "0px", paddingRight: "0px" }}>
-                  <DetailImageComponent setModalShow={setModalShow} />
+                  <DetailImageComponent product={product} setModalShow={setModalShow} />
                 </Col>
                 <Col xs={7}>
-                  <Description />
+                  <Description product={product} />
                 </Col>
               </Row>
             </div>
@@ -67,7 +74,7 @@ const ProductPage = () => {
             <div className={styles.productDescription}>
               <Row>
                 <Col style={{ paddingLeft: "0px", paddingRight: "0px" }}>
-                  <Features id={2} />
+                  <Features id={2}  />
                 </Col>
               </Row>
             </div>
@@ -85,6 +92,9 @@ const ProductPage = () => {
             </div>
           </div>
         )}
+
+<div>
+</div>
 
         {modalShow && (
           <div className={styles.detail_modal_image}>

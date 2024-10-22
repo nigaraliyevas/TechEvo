@@ -59,7 +59,7 @@ export default function RegisterPage() {
             console.log(response);
             
             if (response.ok) { 
-                localStorage.setItem('email', email);
+                sessionStorage.setItem('email', email);
                 // setError('');
                 // setShowPage2(true);
                 alert('Please check your email for verification.');

@@ -49,7 +49,8 @@ export default function RegisterPage2( ) {
   }, [showTerms]);
 
   useEffect(() => {
-    const isVerified = localStorage.getItem('isVerified');
+    const isVerified = sessionStorage.getItem('isVerified');
+    console.log(isVerified);
     if(!isVerified) navigate('/register');
   }, [navigate])
 
@@ -149,7 +150,7 @@ export default function RegisterPage2( ) {
       return;
     }
 
-    const email = localStorage.getItem("email");
+    const email = sessionStorage.getItem("email");
 
 
     const dataToSend = {

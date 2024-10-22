@@ -1,0 +1,20 @@
+@use "../variables/variables" as variables;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: variables.$fontFamily;
+  background-color: variables.$bgColor !important;
+}
+
+.container {
+
+  width: 100%;
+  max-width: 1440px !important;
+  margin: 0 auto;
+  padding: 0 160px !important;
+}

@@ -1,29 +1,12 @@
 import ReactPaginate from "react-paginate";
-import { useDispatch, useSelector } from "react-redux";
-import { setPage } from "./../../redux/slices/PaginationSlice";
 import styles from "./Pagination.module.scss";
 
-const Pagination = () => {
-  const dispatch = useDispatch();
-
-
-  const { itemsPerPage } = useSelector(state => state.pagination);
-  const { filteredProducts } = useSelector(state => state.filter);
-
-
-  if (filteredProducts.length === 0) {
+const Pagination = ({ products, itemsPerPage, handlePageClick, currentPage }) => {
+  if (products.length === 0) {
     return null;
   }
 
-  const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
-
-  const handlePageClick = (data) => {
-
-    window.scrollTo({ top: 0, behavior: "smooth" });
-
-
-    dispatch(setPage(data.selected + 1));
-  };
+  const totalPages = Math.ceil(products.length / itemsPerPage); // Ümumi səhifə sayını hesablamaq
 
   return (
     <ReactPaginate
@@ -34,7 +17,7 @@ const Pagination = () => {
       pageCount={totalPages}
       marginPagesDisplayed={1}
       pageRangeDisplayed={5}
-      onPageChange={handlePageClick}
+      onPageChange={handlePageClick} // Səhifə dəyişərkən funksiya çağırılacaq
       containerClassName={styles.pagination}
       pageClassName={styles.pageItem}
       pageLinkClassName={styles.pageLink}
@@ -42,6 +25,7 @@ const Pagination = () => {
       previousClassName={styles.prevButton}
       nextClassName={styles.nextButton}
       disabledClassName={styles.disabled}
+      forcePage={currentPage} // Hazırda aktiv olan səhifə
     />
   );
 };

@@ -9,15 +9,31 @@ import Features from "../../../components/DetailFeatures/Features";
 import Reviews from "../../../components/Reviews/Reviews";
 import { IoIosArrowForward } from "react-icons/io";
 import { IoIosArrowBack } from "react-icons/io";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { IoMdClose } from "react-icons/io";
+import { useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 const ProductPage = () => {
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const id = searchParams.get("id");
+
+  useEffect(() => {
+    if (!id) {
+      navigate("/");
+    }
+  }, [id, navigate]);
+
+  if (!id) return null;
+
   const [modalShow, setModalShow] = useState(false);
   const caruselRef = useRef(null);
 
   const scrollNext = () => {
     if (caruselRef.current) {
-      const maxScrollWidth = caruselRef.current.scrollWidth - caruselRef.current.clientWidth;
+      const maxScrollWidth =
+        caruselRef.current.scrollWidth - caruselRef.current.clientWidth;
 
       if (caruselRef.current.scrollLeft < maxScrollWidth) {
         caruselRef.current.scrollLeft += 580;
@@ -91,19 +107,42 @@ const ProductPage = () => {
                   </div>
                 </div>
 
-                <div className={styles.modal_image_carusel_wrap} ref={caruselRef}>
+                <div
+                  className={styles.modal_image_carusel_wrap}
+                  ref={caruselRef}
+                >
                   <div className={styles.modal_image_carusel}>
                     <div className={styles.carusel_image}>
-                      <img style={{ width: "580px", height: "480px" }} className={styles.module_image} src="https://www.bakuelectronics.az/assets/images/products/158475/notbuk-asus-156-fhd-ipsi3-1215uram-8gbssd-512gbintel-uhd-90nb1021-m01jr0-1.jpg" alt="" />
+                      <img
+                        style={{ width: "580px", height: "480px" }}
+                        className={styles.module_image}
+                        src="https://www.bakuelectronics.az/assets/images/products/158475/notbuk-asus-156-fhd-ipsi3-1215uram-8gbssd-512gbintel-uhd-90nb1021-m01jr0-1.jpg"
+                        alt=""
+                      />
                     </div>
                     <div className={styles.carusel_image}>
-                      <img style={{ width: "580px", height: "480px" }} className={styles.module_image} src="https://www.bakuelectronics.az/assets/images/products/158475/notbuk-asus-156-fhd-ipsi3-1215uram-8gbssd-512gbintel-uhd-90nb1021-m01jr0-1.jpg" alt="" />
+                      <img
+                        style={{ width: "580px", height: "480px" }}
+                        className={styles.module_image}
+                        src="https://www.bakuelectronics.az/assets/images/products/158475/notbuk-asus-156-fhd-ipsi3-1215uram-8gbssd-512gbintel-uhd-90nb1021-m01jr0-1.jpg"
+                        alt=""
+                      />
                     </div>
                     <div className={styles.carusel_image}>
-                      <img style={{ width: "580px", height: "480px" }} className={styles.module_image} src="https://www.bakuelectronics.az/assets/images/products/158475/notbuk-asus-156-fhd-ipsi3-1215uram-8gbssd-512gbintel-uhd-90nb1021-m01jr0-1.jpg" alt="" />
+                      <img
+                        style={{ width: "580px", height: "480px" }}
+                        className={styles.module_image}
+                        src="https://www.bakuelectronics.az/assets/images/products/158475/notbuk-asus-156-fhd-ipsi3-1215uram-8gbssd-512gbintel-uhd-90nb1021-m01jr0-1.jpg"
+                        alt=""
+                      />
                     </div>
                     <div className={styles.carusel_image}>
-                      <img style={{ width: "580px", height: "480px" }} className={styles.module_image} src="https://www.bakuelectronics.az/assets/images/products/158475/notbuk-asus-156-fhd-ipsi3-1215uram-8gbssd-512gbintel-uhd-90nb1021-m01jr0-1.jpg" alt="" />
+                      <img
+                        style={{ width: "580px", height: "480px" }}
+                        className={styles.module_image}
+                        src="https://www.bakuelectronics.az/assets/images/products/158475/notbuk-asus-156-fhd-ipsi3-1215uram-8gbssd-512gbintel-uhd-90nb1021-m01jr0-1.jpg"
+                        alt=""
+                      />
                     </div>
                   </div>
                 </div>

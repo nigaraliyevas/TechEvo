@@ -211,7 +211,8 @@ header {
       height: 40.3px;
       cursor: pointer;
     }
-
+        
+    
     .navbar_links {
       height: 96px;
       min-height: 100%;
@@ -235,7 +236,6 @@ header {
         -webkit-text-fill-color: transparent;
       }
 
-
       .link_catagiries {
         display: none;
         height: 0;
@@ -254,7 +254,7 @@ header {
         :last-child {
           border: none;
         }
-
+    
         ul {
           // gap: 8px;
           display: flex;

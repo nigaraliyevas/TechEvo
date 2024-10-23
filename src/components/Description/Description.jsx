@@ -14,7 +14,6 @@ const Description = ({ product }) => {
   const { name, price, description, rating } = product;
   const count = rating
   console.log(product, "product detal");
-  
 
   return (
     <div className={style.productCard}>

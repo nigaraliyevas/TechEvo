@@ -15,6 +15,7 @@ import ConfirmBasket from "../pages/user/ConfirmBasketPage/ConfirmBasketPage";
 import EmailVerificationPage from "../pages/user/Register/EmailVerificationPage";
 import RegisterPage2 from "../pages/user/Register/RegisterPage2";
 
+
 const UserRouter = () => {
   return (
     <Routes>

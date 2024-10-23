@@ -10,6 +10,7 @@ import PCPage from "../PCPage/PCPage";
 import ProductPage from "../ProductPage/ProductPage";
 import BasketPage from "../BasketPage/BasketPage";
 
+
 const RoutesPage = () => {
   return (
     <div>

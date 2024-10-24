@@ -5,9 +5,6 @@ import Slide2 from "../../../../../assets/images/HomePage/Slider/NeonSlide2.png"
 import Slide3 from "../../../../../assets/images/HomePage/Slider/NeonSlide3.png";
 
 
-
-// import Button from "./../Button/Button";
-
 const SliderComponent = () => {
 
   const settings = {
@@ -17,7 +14,7 @@ const SliderComponent = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 300000,
+    autoplaySpeed: 4000,
     fade: true,
   };
 
@@ -29,14 +26,17 @@ const SliderComponent = () => {
             <div className={styles.mainTitle}>
               <h1>Empower Your Digital World</h1>
               <p>Find the perfect computer, PC, or laptop for unbeatable performance</p>
-              <button className={styles.moreButton}>Daha ətraflı</button>
+              <button className={styles.moreButton}>
+                <span>Daha </span>
+                <span>ətraflı</span>
+              </button>
 
             </div>
           </div>
-          <img style={{ width: "100%", height: "100%" }} src={Slide1} alt="Slide 1" />
+          <img src={Slide1} alt="Slide 1" />
         </div>
         <div className={styles.slide}>
-          <div className={styles.container_top}>
+          <div style={{ position: "absolute", left: "10%" }} className={styles.container_top}>
             <div className={styles.mainTitle}>
               <h1>Laptops and PCs Built for You</h1>
               <p>Upgrade with our top-tier computers, PCs, and laptops</p>
@@ -46,7 +46,7 @@ const SliderComponent = () => {
           <img src={Slide2} alt="Slide 2" />
         </div>
         <div className={styles.slide}>
-          <div className={styles.container_top}>
+          <div style={{ position: "absolute", left: "10%" }} className={styles.container_top}>
             <div className={styles.mainTitle}>
               <h1>Discover Your Perfect PC</h1>
               <p>Upgrade with our top-tier computers,PCs, and laptops.</p>

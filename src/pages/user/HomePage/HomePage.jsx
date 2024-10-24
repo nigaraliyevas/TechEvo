@@ -12,6 +12,8 @@ import { useGetProductsByCategoryNameQuery } from "../../../redux/sercives/produ
 const HomePage = () => {
   const { data: notebooksData, isLoading: isNotebookLoading } =
     useGetProductsByCategoryNameQuery("Notbuk");
+    useGetProductsByCategoryNameQuery("");
+
 
   return (
     <>

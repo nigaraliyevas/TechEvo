@@ -6,7 +6,7 @@ import { styled } from '@mui/system';
 
 const StyledStarIcon = styled(StarIcon)(({ theme }) => ({
   color: 'gold',
-  fontSize: '2rem', // Default size
+  fontSize: '1.5rem', // Default size
   [theme.breakpoints.down('sm')]: {
     fontSize: '0.9rem', // Size for mobile screens
   },

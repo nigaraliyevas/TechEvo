@@ -10,6 +10,7 @@ function Card({ card }) {
 
   const [selectedImage, setSelectedImage] = useState(0);
   const [lastMouseX, setLastMouseX] = useState(null);
+  const [lastTouchX, setLastTouchX] = useState(null); // Toxunma hadisəsi üçün
 
   const handleMouseMove = (e) => {
     const { clientX } = e;
@@ -32,12 +33,34 @@ function Card({ card }) {
     }
   };
 
+  // Mobil toxunma hadisəsi
+  const handleTouchMove = (e) => {
+    const touchX = e.touches[0].clientX;
+
+    if (lastTouchX === null) {
+      setLastTouchX(touchX);
+      return;
+    }
+
+    const deltaX = touchX - lastTouchX;
+
+    if (Math.abs(deltaX) > 50) {
+      const newIndex =
+        deltaX < 0
+          ? (selectedImage - 1 + imageUrl.length) % imageUrl.length
+          : (selectedImage + 1) % imageUrl.length;
+
+      setSelectedImage(newIndex);
+      setLastTouchX(touchX);
+    }
+  };
+
   const handleDivClick = (index) => {
     setSelectedImage(index);
   };
 
   return (
-    <Link to={`/product?id=${id}`} className={style.card}>
+    <Link style={({ textDecoration: "none" })} to={`/product?id=${id}`} className={style.card}>
       <span className={style.cardAnimationSpan}></span>
       <span className={style.cardAnimationSpan}></span>
       <span className={style.cardAnimationSpan}></span>
@@ -46,7 +69,8 @@ function Card({ card }) {
       <div style={{ position: "relative" }}>
         <div
           className={style.cardImgContainer}
-          onMouseMove={handleMouseMove}
+          onMouseMove={handleMouseMove} // Mouse üçün
+          onTouchMove={handleTouchMove} // Mobil üçün toxunma hadisəsi
           style={{ overflow: "hidden" }}
         >
           <div
@@ -76,7 +100,8 @@ function Card({ card }) {
               className={`${style.radioDiv} ${
                 selectedImage === index ? style.selected : ""
               }`}
-              onClick={() => handleDivClick(index)}
+              onClick={() => handleDivClick(index)} // Mouse üçün klik
+              onTouchStart={() => handleDivClick(index)} // Mobil üçün toxunma
             />
           ))}
         </div>
@@ -85,7 +110,7 @@ function Card({ card }) {
           <PiHeartBold />
         </div>
 
-        <div className={style.mailTitle}>
+        <div className={style.cardBottomTitles}>
           <div className={style.namePrice}>
             <h4>{name}</h4>
             <p>{price} AZN</p>
@@ -93,7 +118,6 @@ function Card({ card }) {
 
           <div className={style.ratingBasket}>
             <StarRating value={rating} />{" "}
-            {/* StarRating komponentini istifadə edin */}
             <div className={style.basketBg}>
               <a href="#">
                 <SlBasket style={{ width: "18px", height: "18px" }} />

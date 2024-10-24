@@ -3,7 +3,7 @@ import Birkart from "../../assets/images/Description/birbank.png";
 import { RiShieldCheckLine } from "react-icons/ri";
 import { LuBox } from "react-icons/lu";
 import { SlBasket } from "react-icons/sl";
-//import StarRating from '../../components/Rating/StarRating';
+import StarRating from '../../components/Rating/StarRating';
 
 const Description = ({ product }) => {
   // İlk olaraq product mövcudluğunu yoxlayırıq
@@ -20,8 +20,8 @@ const Description = ({ product }) => {
     <div className={style.productCard}>
       <h1 className={style.productTitle}>{name}</h1>
       <div className={style.rating}>
-        {/* <StarRating style={{color: "gold"}} value={rating}/> */}
-        {/* <span className={style.ratingNumber}>4.5</span> */}
+        <StarRating style={{color: "gold"}} value={rating}/>
+       
       </div>
       <p className={style.price}>{price} AZN</p>
       <button className={style.addToCartButton}>

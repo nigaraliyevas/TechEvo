@@ -1,13 +1,18 @@
-import { useRef, useState, useEffect } from "react";
+
+import { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
 // Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/autoplay';
-import 'swiper/css/navigation';
-import Card from './Card/Card';
-import { products } from '../../../../products';
-import styles from '../HomePage.module.scss';
+
+import "swiper/css";
+import "swiper/css/autoplay";
+import "swiper/css/controller";
+import "swiper/css/navigation";
+import Card from "./Card/Card";
+import { products } from "../../../../products";
+import styles from "../HomePage.module.scss";
+
+
 
 const Section = ({ title, data = products }) => {
   const swiperRef = useRef(null);

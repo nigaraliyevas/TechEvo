@@ -22,8 +22,13 @@ export const productApi = createApi({
   keepUnusedDataFor: 60,
 });
 
-export const { 
-  useGetProductsQuery, 
-  useGetProductsByCategoryNameQuery, 
-  useGetProductByIdQuery 
-} = productApi;
+// <<<<<<< HEAD
+// export const { 
+//   useGetProductsQuery, 
+//   useGetProductsByCategoryNameQuery, 
+//   useGetProductByIdQuery 
+// } = productApi;
+// =======
+export const { useGetProductsQuery, useGetProductsByCategoryNameQuery, useGetProductByIdQuery } =
+  productApi;
+// >>>>>>> e91688c9762b92cad390d9d2e4b8af67dc512482

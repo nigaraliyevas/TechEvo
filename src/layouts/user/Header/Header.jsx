@@ -193,12 +193,12 @@ const Header = () => {
                       Daxil ol
                     </NavLink>
                   </div>
-                  <div className={styles.navbar_users_item}>
+                  <NavLink style={{textDecoration:"none",color:"rgba(204, 204, 204, 1)"}} to={"/accountpage"} className={styles.navbar_users_item}>
                     <span>
                       <BiUser size={24} />
                     </span>
                     Hesabım
-                  </div>
+                  </NavLink>
                   <div className={styles.navbar_users_item}>
                     <span>
                       <IoSettingsOutline size={24} />

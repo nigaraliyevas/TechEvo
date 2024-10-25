@@ -10,7 +10,7 @@ function Card({ card }) {
 
   const [selectedImage, setSelectedImage] = useState(0);
   const [lastMouseX, setLastMouseX] = useState(null);
-  const [lastTouchX, setLastTouchX] = useState(null); // Toxunma hadisəsi üçün
+
 
   const handleMouseMove = (e) => {
     const { clientX } = e;
@@ -33,27 +33,6 @@ function Card({ card }) {
     }
   };
 
-  // Mobil toxunma hadisəsi
-  const handleTouchMove = (e) => {
-    const touchX = e.touches[0].clientX;
-
-    if (lastTouchX === null) {
-      setLastTouchX(touchX);
-      return;
-    }
-
-    const deltaX = touchX - lastTouchX;
-
-    if (Math.abs(deltaX) > 50) {
-      const newIndex =
-        deltaX < 0
-          ? (selectedImage - 1 + imageUrl.length) % imageUrl.length
-          : (selectedImage + 1) % imageUrl.length;
-
-      setSelectedImage(newIndex);
-      setLastTouchX(touchX);
-    }
-  };
 
   const handleDivClick = (index) => {
     setSelectedImage(index);
@@ -70,7 +49,7 @@ function Card({ card }) {
         <div
           className={style.cardImgContainer}
           onMouseMove={handleMouseMove} // Mouse üçün
-          onTouchMove={handleTouchMove} // Mobil üçün toxunma hadisəsi
+          // Mobil üçün toxunma hadisəsi
           style={{ overflow: "hidden" }}
         >
           <div
@@ -97,11 +76,10 @@ function Card({ card }) {
           {imageUrl.map((_, index) => (
             <div
               key={index}
-              className={`${style.radioDiv} ${
-                selectedImage === index ? style.selected : ""
-              }`}
+              className={`${style.radioDiv} ${selectedImage === index ? style.selected : ""
+                }`}
               onClick={() => handleDivClick(index)} // Mouse üçün klik
-              onTouchStart={() => handleDivClick(index)} // Mobil üçün toxunma
+            // Mobil üçün toxunma
             />
           ))}
         </div>

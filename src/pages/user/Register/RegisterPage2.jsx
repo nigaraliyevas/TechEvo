@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import styles from './RegisterPage2.module.scss';
 import passwordIcon from "../../../assets/images/Register/PasswordIcon.svg";
 import passwordIcon2 from "../../../assets/images/Register/PasswordIcon2.svg";
-import noProfileImg from "../../../assets/images/Register/noProfileImg.svg";
 import { useNavigate } from "react-router-dom";
 import "../../../components/css/Button.scss";
 import UserAgreement from "../../../components/TermsBox/UserAgreement";
@@ -48,11 +47,11 @@ export default function RegisterPage2( ) {
     };
   }, [showTerms]);
 
-  // useEffect(() => {
-  //   const isVerified = sessionStorage.getItem('isVerified');
-  //   console.log(isVerified);
-  //   if(!isVerified) navigate('/register');
-  // }, [navigate])
+  useEffect(() => {
+    const isVerified = sessionStorage.getItem('isVerified');
+    console.log(isVerified);
+    if(!isVerified) navigate('/register');
+  }, [navigate])
 
   const handleTerms = (e) => {
     e.stopPropagation(); // Prevent closing when clicking on the terms menu itself

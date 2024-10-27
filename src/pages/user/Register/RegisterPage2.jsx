@@ -48,26 +48,36 @@ export default function RegisterPage2( ) {
     };
   }, [showTerms]);
 
-  useEffect(() => {
-    const isVerified = sessionStorage.getItem('isVerified');
-    console.log(isVerified);
-    if(!isVerified) navigate('/register');
-  }, [navigate])
+  // useEffect(() => {
+  //   const isVerified = sessionStorage.getItem('isVerified');
+  //   console.log(isVerified);
+  //   if(!isVerified) navigate('/register');
+  // }, [navigate])
 
   const handleTerms = (e) => {
     e.stopPropagation(); // Prevent closing when clicking on the terms menu itself
-    setShowTerms(!showTerms);
+    setShowTerms((prevShowTerms) => !prevShowTerms);
+    console.log(isChecked)
   };
 
+
+
   const handleChangeChecked = (event) => {
-    const isChecked = event.target.checked;
-    setIsChecked(isChecked);
-    setFormData((prevFormData) =>({
-      ...prevFormData,
-      acceptTerms: isChecked
-    }));
-    setErrors((prevErrors) => ({...prevErrors, acceptTerms: ""}));
-  };
+      const isChecked = event.target.checked;
+      setIsChecked(isChecked);
+      setFormData((prevFormData) =>({
+        ...prevFormData,
+        acceptTerms: isChecked
+      }));
+      setErrors((prevErrors) => ({...prevErrors, acceptTerms: ""}));
+    }
+
+    const updateFormData = (acceptTerms) => {
+      setFormData((prevData) => ({
+        ...prevData,
+        acceptTerms
+      }));
+    };
 
   const handleChildData = (data) => {
     setIsChecked(data);
@@ -315,7 +325,7 @@ export default function RegisterPage2( ) {
                   onChange={handleChangeChecked}
                   className={styles.checkBoxInput}
                   type="checkbox"
-                  checked={isChecked}
+                  checked={formData.acceptTerms}
                 />
                 <span className={styles.customCheckmark}></span>
               </div>
@@ -334,7 +344,7 @@ export default function RegisterPage2( ) {
           </form>
         </div>
       </div>
-    {showTerms ? <UserAgreement sendDataToParent = {handleChildData} /> : null} 
+    {showTerms ? <UserAgreement sendDataToParent = {handleChildData} updateFormData = {updateFormData} /> : null} 
     </>
   );
 }

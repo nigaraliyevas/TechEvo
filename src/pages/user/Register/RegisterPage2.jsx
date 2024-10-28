@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import styles from './RegisterPage2.module.scss';
 import passwordIcon from "../../../assets/images/Register/PasswordIcon.svg";
 import passwordIcon2 from "../../../assets/images/Register/PasswordIcon2.svg";
-import noProfileImg from "../../../assets/images/Register/noProfileImg.svg";
 import { useNavigate } from "react-router-dom";
 import "../../../components/css/Button.scss";
 import UserAgreement from "../../../components/TermsBox/UserAgreement";
@@ -56,18 +55,28 @@ export default function RegisterPage2( ) {
 
   const handleTerms = (e) => {
     e.stopPropagation(); // Prevent closing when clicking on the terms menu itself
-    setShowTerms(!showTerms);
+    setShowTerms((prevShowTerms) => !prevShowTerms);
+    console.log(isChecked)
   };
 
+
+
   const handleChangeChecked = (event) => {
-    const isChecked = event.target.checked;
-    setIsChecked(isChecked);
-    setFormData((prevFormData) =>({
-      ...prevFormData,
-      acceptTerms: isChecked
-    }));
-    setErrors((prevErrors) => ({...prevErrors, acceptTerms: ""}));
-  };
+      const isChecked = event.target.checked;
+      setIsChecked(isChecked);
+      setFormData((prevFormData) =>({
+        ...prevFormData,
+        acceptTerms: isChecked
+      }));
+      setErrors((prevErrors) => ({...prevErrors, acceptTerms: ""}));
+    }
+
+    const updateFormData = (acceptTerms) => {
+      setFormData((prevData) => ({
+        ...prevData,
+        acceptTerms
+      }));
+    };
 
   const handleChildData = (data) => {
     setIsChecked(data);
@@ -315,7 +324,7 @@ export default function RegisterPage2( ) {
                   onChange={handleChangeChecked}
                   className={styles.checkBoxInput}
                   type="checkbox"
-                  checked={isChecked}
+                  checked={formData.acceptTerms}
                 />
                 <span className={styles.customCheckmark}></span>
               </div>
@@ -334,7 +343,7 @@ export default function RegisterPage2( ) {
           </form>
         </div>
       </div>
-    {showTerms ? <UserAgreement sendDataToParent = {handleChildData} /> : null} 
+    {showTerms ? <UserAgreement sendDataToParent = {handleChildData} updateFormData = {updateFormData} /> : null} 
     </>
   );
 }

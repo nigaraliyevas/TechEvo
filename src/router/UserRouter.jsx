@@ -14,6 +14,8 @@ import BasketPage from "../pages/user/BasketPage/BasketPage";
 import ConfirmBasket from "../pages/user/ConfirmBasketPage/ConfirmBasketPage";
 import EmailVerificationPage from "../pages/user/Register/EmailVerificationPage";
 import RegisterPage2 from "../pages/user/Register/RegisterPage2";
+import AccountPage from "../Pages/user/AccounPage/AccountPage";
+
 
 const UserRouter = () => {
   return (
@@ -31,6 +33,7 @@ const UserRouter = () => {
         <Route path="/basket" element={<BasketPage />} />
         <Route path="/confirm" element={<ConfirmBasket />} />
         <Route path="/activate" element={<EmailVerificationPage />} />
+        <Route path="/accountpage" element={<AccountPage />} />
       </Route>
     </Routes>
   );

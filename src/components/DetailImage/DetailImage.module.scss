@@ -17,10 +17,12 @@
     }
     .detail_image_left{
         display: flex;
+        height: 350px;
         flex-direction: column;
         justify-content: space-between;
         gap: 30px;
         cursor: pointer;
+        overflow: hidden;
       
         .detail_small_image{
             width: 65px;

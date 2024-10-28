@@ -38,7 +38,7 @@ header {
     width: 100%;
     padding: 0px 165px;
 
-    @media (max-width: 375px) {
+    @media (max-width: 480px) {
       padding: 0px 16px;
 
     }
@@ -58,7 +58,7 @@ header {
 
 
     }
-    @media (max-width: 375px) {
+    @media (max-width: 480px) {
       gap: 55px;
       max-width: 343px !important;
 
@@ -367,7 +367,7 @@ header {
       background: $bgColor;
       border-radius: 16px;
       padding-bottom: 8px;
-      @media (max-width: 375px) {
+      @media (max-width: 480px) {
         width: 140px;
   
       }
@@ -381,7 +381,7 @@ header {
         -webkit-text-fill-color: transparent;
         border-radius: 16px;
         z-index: -1;
-        @media (max-width: 375px) {
+        @media (max-width: 480px) {
           width: 140px;
     
         }

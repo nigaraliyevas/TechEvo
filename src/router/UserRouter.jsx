@@ -14,6 +14,7 @@ import BasketPage from "../pages/user/BasketPage/BasketPage";
 import ConfirmBasket from "../pages/user/ConfirmBasketPage/ConfirmBasketPage";
 import EmailVerificationPage from "../pages/user/Register/EmailVerificationPage";
 import RegisterPage2 from "../pages/user/Register/RegisterPage2";
+import AllOrders from "../components/Orders/AllOrders";
 
 const UserRouter = () => {
   return (
@@ -24,13 +25,14 @@ const UserRouter = () => {
         <Route path="/forget" element={<ForgetPassPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/registerpage2" element={<RegisterPage2 />} />
+        <Route path="/activate" element={<EmailVerificationPage />} />
         <Route path="/newpassword" element={<PasswordReset />} />
         <Route path="/enterpassword" element={<EnterPasswordPage />} />
         <Route path="/pc" element={<CategoryPage />} />
         <Route path="/product" element={<ProductPage />} />
         <Route path="/basket" element={<BasketPage />} />
         <Route path="/confirm" element={<ConfirmBasket />} />
-        <Route path="/activate" element={<EmailVerificationPage />} />
+        <Route path="/orders" element={<AllOrders />} />
       </Route>
     </Routes>
   );

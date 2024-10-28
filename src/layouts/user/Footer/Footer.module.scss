@@ -18,7 +18,8 @@ body {
     margin: 0 auto;
     max-width: 1440px;
     padding: 56px 165px;
-    @media (max-width: 375px) {
+
+    @media (max-width: 480px) {
       padding: 28px 16px;
 
     }
@@ -67,10 +68,12 @@ body {
       display: flex;
       align-items: center;
       gap: 28px;
+
       @media (max-width: 1360px) {
         gap: 56px;
         align-items: start;
       }
+
       .footer_link_left {
         display: flex;
         gap: 28px;
@@ -100,6 +103,7 @@ body {
         text-align: center;
         color: $firstColor;
         margin-bottom: 32px;
+
         @media (max-width: 1360px) {
           margin-bottom: 0px;
         }
@@ -114,10 +118,11 @@ body {
       border-top: 1px solid rgba(29, 34, 39, 1);
       margin-top: 32px;
       padding-top: 33px;
-      @media (max-width: 375px) {
-       flex-direction: column;
-       align-items: start;
-  
+
+      @media (max-width: 480px) {
+        flex-direction: column;
+        align-items: start;
+
       }
 
       p {

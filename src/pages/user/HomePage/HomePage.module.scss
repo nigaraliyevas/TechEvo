@@ -404,7 +404,7 @@ body {
 
 
     .heartSpan {
-      color: white;
+      //color: white;
       position: absolute;
       right: 3%;
       top: 0%;
@@ -561,6 +561,7 @@ body {
     // max-width: 375px;
     margin-left: auto !important;
     margin-right: auto !important;
+    margin-top: 43px !important;
 
     .slick-arrow {
       display: none !important;
@@ -594,6 +595,8 @@ body {
           gap: 14px !important;
           width: 180px !important;
           height: 160px !important;
+          // padding-top: 48px !important;
+          // padding-bottom: 48px !important;
 
 
           h1 {
@@ -622,11 +625,11 @@ body {
             height: 34px !important; // Padding mobil üçün kiçildilir
             font-size: 12px !important;
             padding: 10px 24px !important;
-            top:95% !important;
+            top: 95% !important;
 
 
 
-            
+
 
             span {
               margin: 0 2px !important;

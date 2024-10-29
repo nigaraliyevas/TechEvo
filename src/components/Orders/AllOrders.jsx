@@ -7,6 +7,7 @@ import truckIcon from "../../assets/images/Orders/truck.svg";
 import NoOrder from "./NoOrder";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import OrderDetails from "./OrderDetails";
 
 const AllOrders = () => {
   const [showDetails, setShowDetails] = useState(false);
@@ -17,11 +18,9 @@ const AllOrders = () => {
 
   return (
     <div className={styles.allOrders}>
-      
-
       {/* Deatils of the clicked product */}
       {showDetails ? (
-        <div>Salam</div>
+        <OrderDetails setShowDetails={setShowDetails} />
       ) : (
         <div>
           <div className={styles.heading}>Sifarişlər</div>
@@ -103,7 +102,7 @@ const AllOrders = () => {
                     <div>Göndərilib</div>
                   </div>
                 </div>
-                <div className={styles.orderDetails}>
+                <div onClick={handleDetails} className={styles.orderDetails}>
                   <div>Təfərrüatlar</div>
                   <div className={styles.deatilsIconCont}>
                     <img

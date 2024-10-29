@@ -15,6 +15,7 @@
             .account_left {
                 padding: 32px 24px;
                 width: 32%;
+                height: 460px;
                 background: rgba(22, 26, 30, 1);
                 border-radius: 8px;
 
@@ -30,13 +31,14 @@
                 }
 
                 .user_info {
-                    padding: 20px 0;
+                    padding: 20px 0 0;
                     border-bottom: 1px solid rgba(50, 52, 55, 1);
 
                     .uer_info_item {
                         display: flex;
                         align-items: center;
                         gap: 12px;
+                        height: 52px;
                         margin-bottom: 12px;
                         color: $firstColor;
                         font-family: $fontFamily;
@@ -58,6 +60,7 @@
                 }
 
                 .user_out {
+                    height: 52px;
                     margin-top: 26px;
                     display: flex;
                     align-items: center;
@@ -84,6 +87,7 @@
             .account_right {
                 background: rgba(22, 26, 30, 1);
                 width: 68%;
+                height: 636px;
                 border-radius: 8px;
                 padding: 40px 24px;
 
@@ -94,6 +98,7 @@
                     line-height: 40px;
                     letter-spacing: 0.02em;
                     text-align: left;
+                    padding-bottom: 28px;
 
                 }
 
@@ -101,11 +106,11 @@
                     display: flex;
                     gap: 30px;
                     align-items: center;
-
+                    margin-bottom: 24px;
                     .user_name {
                         width: 326px;
                         color: $firstColor;
-
+                        height: 90px;
                         .user_input {
                             border: 1px solid rgba(89, 89, 89, 1);
                             margin-top: 6px;
@@ -136,6 +141,7 @@
                     display: flex;
                     align-items: center;
                     justify-content: center;
+                    padding-top: 40px;
                     button{
                         padding: 12px 48px;
                         border: none;

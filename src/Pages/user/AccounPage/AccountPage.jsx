@@ -68,7 +68,7 @@ const AccountPage = () => {
                     </div>
                 </div>
                 <div className={style.user_input}>
-                    <div className={style.user_name}>
+                    <div style={{marginTop:"8px"}} className={style.user_name}>
                       <label htmlFor="">Şifrə</label>
                       <div className={style.user_input}>
                         <input type="password" placeholder="Şifrə" />

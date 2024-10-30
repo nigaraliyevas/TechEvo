@@ -415,11 +415,12 @@ body {
     .cardBottomTitles {
       .namePrice {
         font-family: $fontFamily;
+        
 
 
         h4 {
-          max-width: 250px;
-          height: 56px;
+          // max-width: 250px;
+          // height: 56px;
           color: white;
           font-weight: 500;
           font-size: 16px;
@@ -736,8 +737,8 @@ body {
 
 
           h4 {
-            max-width: 250px !important;
-            height: 56px !important;
+            // max-width: 250px !important;
+            // height: 56px !important;
             color: white;
             font-weight: 500 !important;
             font-size: 16px !important;

@@ -37,6 +37,7 @@ const AccountPage = () => {
             </div>
           </div>
           {/* <div className={style.account_right}>
+
             <div className={style.account_info}>
             Hesab məlumatları
             </div>

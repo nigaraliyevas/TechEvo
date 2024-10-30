@@ -7,10 +7,18 @@
     .account {
         margin-top: 100px;
         padding: 56px 165px;
-
+        @media (max-width: 600px) {
+        padding: 56px 16px;
+            
+           }
         .account_container {
             display: flex;
             gap: 30px;
+
+            @media (max-width: 600px) {
+                flex-direction: column;
+                gap: 40px;
+            }
 
             .account_left {
                 padding: 32px 24px;
@@ -18,7 +26,10 @@
                 height: 460px;
                 background: rgba(22, 26, 30, 1);
                 border-radius: 8px;
-
+                
+            @media (max-width: 600px) {
+             width: 100%;
+            }
                 .user_image {
                     display: flex;
                     flex-direction: column;
@@ -90,7 +101,10 @@
                 height: 636px;
                 border-radius: 8px;
                 padding: 40px 24px;
-
+                @media (max-width: 600px) {
+                    width: 100%;
+                    height: auto;
+                   }
                 .account_info {
                     color: $firstColor;
                     font-size: 24px;
@@ -107,10 +121,16 @@
                     gap: 30px;
                     align-items: center;
                     margin-bottom: 24px;
+                    @media (max-width: 600px) {
+                       flex-direction: column;
+                       align-items: start;
+                       }
+
                     .user_name {
                         width: 326px;
                         color: $firstColor;
                         height: 90px;
+
                         .user_input {
                             border: 1px solid rgba(89, 89, 89, 1);
                             margin-top: 6px;
@@ -125,32 +145,37 @@
                                 padding: 14px 18px;
                             }
                         }
-                        .user_password{
+
+                        .user_password {
                             width: 172px;
                             padding: 6px 20px;
                             border: 1px solid rgba(89, 89, 89, 1);
                             color: rgba(153, 153, 153, 1);
                             cursor: pointer;
-                            img{
+
+                            img {
                                 margin-left: 12px;
                             }
                         }
                     }
                 }
-                .user_btn{
+
+                .user_btn {
                     display: flex;
                     align-items: center;
                     justify-content: center;
                     padding-top: 40px;
-                    button{
+
+                    button {
                         padding: 12px 48px;
                         border: none;
                         border-radius: 2px;
                         background: linear-gradient(120.61deg, #FD3C43 -10.5%, #B622DC 38.25%, #3F27EB 80.92%);
                         color: $firstColor;
                         margin-top: 40px;
-                        &:hover{
-                            background: linear-gradient(120.61deg,  #3f27eb -10.5% , #b622dc 38.25%,#fd3c43 80.92%);
+
+                        &:hover {
+                            background: linear-gradient(120.61deg, #3f27eb -10.5%, #b622dc 38.25%, #fd3c43 80.92%);
                         }
 
                     }

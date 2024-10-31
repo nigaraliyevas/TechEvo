@@ -1,74 +1,112 @@
+@import '../../assets/variables/variables';
 
 // Desktop üslubları
 .favoritesContainer {
     background-color: #161A1E;
     border-radius: 4px;
     padding: 20px;
-  
+
     h2 {
-      color: white;
-      font-size: 24px;
-      padding-bottom: 28px;
+        color: white;
+        font-size: 24px;
+        padding-bottom: 28px;
     }
-  
-  
-  
-.containerFavoriteCards {
-    margin-bottom: 20px;
-
-    .favoriteCard {
-        display: flex;
-        border: 1px solid rgba(89, 89, 89, 1);
-        border-radius: 5px;
-        // max-width: 682px ;
-        // height: 182px;
-        padding: 20px;
-        //gap: 20px;
 
 
-        .cardContent {
+
+    .containerFavoriteCards {
+        margin-bottom: 20px;
+
+        .favoriteCard {
             display: flex;
+            border: 1px solid rgba(89, 89, 89, 1);
+            border-radius: 5px;
+            width: 682px;
+            height: 206px;
+            padding: 20px;
+            justify-content: space-between;
+            //gap: 20px;
 
 
-
-            .cardFavoriteImg {
-                width: 155px;
-                height: 122px;
-
-
-                .cardImg {
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-
-                }
-            }
-
-            .cardInfo {
+            .cardContent {
                 display: flex;
-                flex-direction: column;
-                gap: 4px;
-                width: 363px;
-                height: 122px;
-                //margin-right: 93px;
-                margin-left: 30px;
+                //width: 422px;
 
-                h4 {
-                    font-weight: 500;
-                    font-size: 18px;
-                    color: white;
+
+
+                .cardFavoriteImg {
+                    width: 190px;
+                    height: 166px;
+
+
+                    .cardImg {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+
+                    }
                 }
 
-                p {
-                    font-weight: 700;
-                    font-size: 18px;
-                    color: white;
+                .cardInfo {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 4px;
+                    width: 368px;
+                    height: 166px;
+                    //margin-right: 93px;
+                    margin-left: 30px;
+
+                    h4 {
+                        font-weight: 500;
+                        font-size: 18px;
+                        color: white;
+                    }
+
+                    p {
+                        font-weight: 700;
+                        font-size: 18px;
+                        color: white;
+                    }
+
+
+                    .addToCartButton {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        background: $linearGradient;
+                        color: white;
+                        border: none;
+                        padding: 7px 12px;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        width: 151px;
+                        height: 32px;
+                        font-weight: 700;
+                        font-size: 14px;
+                        font-family: $fontFamily;
+
+                        transition: background-color 0.3s ease;
+
+                        &:hover {
+                            background-color: #6f21b0;
+                        }
+
+                        
+                            .boldBasketIcon {
+                                color: white;
+                                font-weight: bold;
+                                width: 20px;
+                                height: 20px;
+                                
+                            }
+                        
+
+                    }
                 }
             }
-        }
 
+        }
     }
-}
 }
 
 
@@ -76,61 +114,62 @@
 //MEDIA QUERIES//
 //Mobil cihazlar üçün
 @media (max-width: 480px) {
- 
+
     .favoritesContainer {
-      padding: 16px;
-  
-      h2 {
-        font-size: 18px;
-        padding-bottom: 16px;
-      }
-    
-  
-    .containerFavoriteCards {
-        margin-bottom: 12px;
+        padding: 16px;
 
-       
-        .mobileFavoriteCard{
-
-            position: relative;
-            border: 1px solid rgba(89, 89, 89, 1);
-            border-radius: 5px;
-            padding: 14px;
-            width: 311px;
-            //height: 128px;
-            
-            .mobileNameHeart{
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                width: 287px;
-            }
+        h2 {
+            font-size: 18px;
+            padding-bottom: 16px;
+        }
 
 
-                .mobileCardName{
+        .containerFavoriteCards {
+            margin-bottom: 12px;
+
+
+            .mobileFavoriteCard {
+
+                position: relative;
+                border: 1px solid rgba(89, 89, 89, 1);
+                border-radius: 5px;
+                padding: 14px;
+                width: 311px;
+                //height: 128px;
+
+                .mobileNameHeart {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    width: 287px;
+                }
+
+
+                .mobileCardName {
                     width: 250px;
                     font-size: 14px;
                     font-weight: 500;
                     color: white !important;
+                    line-height: 22px;
                 }
 
-                .mobileCardContent{
+                .mobileCardContent {
                     display: flex;
                     align-items: center;
                     gap: 12px;
 
-                    .mobilCardImg{
+                    .mobilCardImg {
                         width: 61px;
                         height: 48px;
 
-                        .cardImg{
+                        .cardImg {
                             width: 100%;
                             height: 100%;
                             object-fit: cover;
                         }
                     }
 
-                    p{
+                    p {
                         font-size: 14px;
                         font-weight: 700;
                         color: white;

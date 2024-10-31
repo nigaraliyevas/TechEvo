@@ -6,7 +6,7 @@ import ms1 from "./assets/images/products/Ms2.png"
 export const products = [
   {
     id: 1,
-    name: "Lenovo Legion T5 261AB790SV00BWKZ 261AB790SV00BWKZ",
+    name: "Lenovo Legion T5 261AB790SV00BWKZ 00BWKZ00BWK",
     price: 500,
     imageUrl: [pcImage3,pcImage2,ms1,pcImage,],
     rating: 4.5,
@@ -19,7 +19,7 @@ export const products = [
   },
   {
     id: 2,
-    name: "Lenovo Legion T5 261AB790SV00BWKZ 261 AB790S V00BWKZ",
+    name: "Lenovo Legion T5 261AB790SV00BWKZ 00BWKZ00BWK",
     price: 400,
     imageUrl: [pcImage,pcImage2,pcImage3,ms1],
     rating: 4.5,
@@ -32,7 +32,7 @@ export const products = [
   },
   {
     id: 3,
-    name: "Lenovo Legion T5 261AB790SV00BWKZ 261A B790S V00B",
+    name: "Lenovo Legion T5 261AB790SV00BWKZ 00BWKZ",
     price: 400,
     imageUrl: [pcImage,pcImage2,pcImage3,ms1],
     rating: 5,

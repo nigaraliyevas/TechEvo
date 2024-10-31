@@ -30,7 +30,7 @@ const StarRating = ({ value, fontSize }) => {
       {Array.from({ length: 5 - fullStars - (hasHalfStar ? 1 : 0) }, (_, index) => (
         <StyledStarIcon key={`empty-${index}`} sx={{ display: 'none' }} fontSize={fontSize} /> // Boş ulduzlar
       ))}
-      <span style={{ marginLeft: '8px', fontSize: fontSize || '16px', color: 'white', fontWeight: '400'}}>
+      <span style={{ marginLeft: '8px', fontSize: fontSize || '13px', color: 'white', fontWeight: '400'}}>
         {value.toFixed(1)}
       </span>
     </div>

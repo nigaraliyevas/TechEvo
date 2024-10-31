@@ -419,8 +419,8 @@ body {
 
 
         h4 {
-          // max-width: 250px;
-          // height: 56px;
+          //max-width: 250px;
+          height: 56px;
           color: white;
           font-weight: 500;
           font-size: 16px;
@@ -734,6 +734,7 @@ body {
       .cardBottomTitles {
         .namePrice {
           font-family: $fontFamily;
+       
 
 
           h4 {
@@ -741,9 +742,10 @@ body {
             // height: 56px !important;
             color: white;
             font-weight: 500 !important;
-            font-size: 16px !important;
-            line-height: 28px !important;
+            font-size: 12px !important;
+            line-height: 16px !important;
             margin-top: 16px !important;
+            font-family: $fontFamily;
           }
 
           p {
@@ -751,7 +753,7 @@ body {
             font-size: 14px !important;
             font-weight: 700 !important;
             line-height: 16px !important;
-            margin-top: 12px !important;
+            margin-top: 0px !important;
             margin-bottom: 8px !important;
 
           }

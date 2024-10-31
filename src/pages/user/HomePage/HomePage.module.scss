@@ -448,7 +448,6 @@ body {
         .basketBg {
           width: 36px;
           height: 28px;
-          border: 1px solid transparent;
           background: $linearGradient;
           border-radius: 3px;
           display: flex;
@@ -741,11 +740,12 @@ body {
             // max-width: 250px !important;
             // height: 56px !important;
             color: white;
-            font-weight: 500 !important;
+            font-weight: 400 !important;
             font-size: 12px !important;
-            line-height: 16px !important;
+            line-height: 18px !important;
             margin-top: 16px !important;
-            font-family: $fontFamily;
+            font-family: $fontFamily !important;
+            margin-bottom: 0px !important;
           }
 
           p {
@@ -768,7 +768,6 @@ body {
           .basketBg {
             width: 36px;
             height: 24px;
-            border: 1px solid transparent;
             background: $linearGradient;
             border-radius: 3px;
             display: flex;

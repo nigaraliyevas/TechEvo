@@ -38,7 +38,7 @@ function FavoriteCard({ card }) {
                     </div>
                     <div className={style.mobileCardContent}>
                         <div className={style.mobilCardImg}>
-                            <img src={imageUrl[2]} alt={name} className={style.cardImg} />
+                            <img src={imageUrl[0]} alt={name} className={style.cardImg} />
                         </div>
                         <div className={style.rating}>
                             <StarRating value={rating} />
@@ -56,7 +56,7 @@ function FavoriteCard({ card }) {
                 <div className={style.favoriteCard}>
                     <div className={style.cardContent}>
                         <div className={style.cardFavoriteImg}>
-                            <img src={imageUrl[2]} alt={name} className={style.cardImg} />
+                            <img src={imageUrl[0]} alt={name} className={style.cardImg} />
                         </div>
                         <div className={style.cardInfo}>
                             <h4>{name}</h4>

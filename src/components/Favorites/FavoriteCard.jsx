@@ -5,6 +5,8 @@ import StarRating from "../../components/Rating/StarRating";
 import style from "./Favorites.module.scss";
 import { useDispatch } from "react-redux";
 import { removeFromFavorites } from "../../redux/slices/favoritesSlice";
+import { SlBasket } from "react-icons/sl";
+
 
 function FavoriteCard({ card }) {
     const { name, price, imageUrl, rating, id } = card;
@@ -30,7 +32,7 @@ function FavoriteCard({ card }) {
                                 top: "14px",
                                 right: "12px",
                                 bottom: "14px"
-                            
+
                             }} />
                         </div>
                     </div>
@@ -57,11 +59,21 @@ function FavoriteCard({ card }) {
                                 <StarRating fontSize="1em" value={rating} />
                             </div>
                             <p>{price} AZN</p>
+                            <button className={style.addToCartButton}>
+                                <span style={{ paddingRight: "8px" }}>
+                                    <a href="#">
+                                    <SlBasket className={style.boldBasketIcon} />
+                                    </a>
+                                </span>
+                                Səbətə əlavə et
+                            </button>
                         </div>
+
                     </div>
                     <div className={style.cardActions} onClick={handleRemoveFavorite} aria-label="Favoritlərdən çıxar">
                         <TiHeartFullOutline style={{ color: "white", cursor: "pointer" }} />
                     </div>
+
                 </div>
             )}
         </div>

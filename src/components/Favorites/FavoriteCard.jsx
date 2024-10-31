@@ -41,8 +41,13 @@ function FavoriteCard({ card }) {
                             <img src={imageUrl[2]} alt={name} className={style.cardImg} />
                         </div>
                         <div className={style.rating}>
-                            <StarRating fontSize="1em" value={rating} />
+                            <StarRating value={rating} />
                             <p>{price} AZN</p>
+                        </div>
+                        <div className={style.basketBg}>
+                            <a href="#">
+                                <SlBasket style={{ width: "18px", height: "18px" }} />
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -62,7 +67,7 @@ function FavoriteCard({ card }) {
                             <button className={style.addToCartButton}>
                                 <span style={{ paddingRight: "8px" }}>
                                     <a href="#">
-                                    <SlBasket className={style.boldBasketIcon} />
+                                        <SlBasket className={style.boldBasketIcon} />
                                     </a>
                                 </span>
                                 Səbətə əlavə et
@@ -71,7 +76,7 @@ function FavoriteCard({ card }) {
 
                     </div>
                     <div className={style.cardActions} onClick={handleRemoveFavorite} aria-label="Favoritlərdən çıxar">
-                        <TiHeartFullOutline style={{ color: "white", cursor: "pointer" }} />
+                        <TiHeartFullOutline style={{ color: "white", cursor: "pointer", width: "24px", height: "24px" }} />
                     </div>
 
                 </div>

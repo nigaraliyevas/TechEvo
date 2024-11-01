@@ -121,3 +121,15 @@
     object-fit: cover;
     vertical-align: baseline !important;
 }
+
+// mobile view
+.container {
+    margin: 0!important;
+    padding: 0!important;
+}
+.mobileCont {
+    background-color: #161A1E;
+    border-radius: 8px;
+    margin: 16px 16px 72px !important;
+    padding: 0px !important;
+}

@@ -18,7 +18,7 @@ body {
     margin: 0 auto;
     max-width: 1440px;
     padding: 56px 165px;
-    @media (max-width: 375px) {
+    @media (max-width: 600px) {
       padding: 28px 16px;
 
     }
@@ -114,7 +114,7 @@ body {
       border-top: 1px solid rgba(29, 34, 39, 1);
       margin-top: 32px;
       padding-top: 33px;
-      @media (max-width: 375px) {
+      @media (max-width: 600px) {
        flex-direction: column;
        align-items: start;
   

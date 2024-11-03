@@ -10,9 +10,11 @@ import SliderComponent from "./Section/Slider/Slider";
 import { useGetProductsByCategoryNameQuery } from "../../../redux/sercives/productApi";
 
 const HomePage = () => {
-  const { data: notebooksData, isLoading: isNotebookLoading } =
-    useGetProductsByCategoryNameQuery("Notbuk");
-    useGetProductsByCategoryNameQuery("");
+  const { data: laptopsData, isLoading: isLaptopsLoading } = useGetProductsByCategoryNameQuery("Laptop");
+  const { data: mousesData, isLoading: isMousesLoading } = useGetProductsByCategoryNameQuery("Mouse");
+  const { data: klaviaturasData, isLoading: isKlaviaturasLoading } = useGetProductsByCategoryNameQuery("Klaviatura");
+
+    // useGetProductsByCategoryNameQuery("");
 
 
   return (
@@ -27,9 +29,9 @@ const HomePage = () => {
       <section id={styles.specialselected}>
         <div className={styles.container_bottom}>
           <h3 className={styles.specialH3}>Xüsusi Seçimlər</h3>
-          <Section title="PC" data={notebooksData} />
-          {/* <Section title="Mouse" />
-          <Section title="Keyboard" /> */}
+          <Section title="PC" data={laptopsData} />
+          <Section title="Mouse" data={mousesData} />
+          <Section title="Keyboard" data={klaviaturasData}/> 
           <div className={styles.servicesDiv}>
             <div className={styles.services}>Xidmətlərimiz</div>
             <div className={styles.mainServices}>

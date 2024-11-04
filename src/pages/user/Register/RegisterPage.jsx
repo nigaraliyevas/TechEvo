@@ -49,7 +49,7 @@ export default function RegisterPage() {
         try {
             console.log(email);
             
-            const response = await fetch('http://ec2-54-146-26-87.compute-1.amazonaws.com:8081/api/v1/auth/register-email', {
+            const response = await fetch('http://ec2-51-20-32-195.eu-north-1.compute.amazonaws.com:8081/api/v1/auth/register-email', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -59,7 +59,7 @@ export default function RegisterPage() {
             console.log(response);
             
             if (response.ok) { 
-                localStorage.setItem('email', email);
+                sessionStorage.setItem('email', email);
                 // setError('');
                 // setShowPage2(true);
                 alert('Please check your email for verification.');
@@ -74,6 +74,7 @@ export default function RegisterPage() {
         }
         
     };
+    console.log(error);
     
     return (
             <div className={styles.container}>
@@ -84,7 +85,7 @@ export default function RegisterPage() {
                         <div className={styles.infoText}>Daxil olmaq üçün aşağıdakı xanaları doldurun.</div>
                         <form onSubmit={handleSubmit}>
                             <div className={styles.emailText}>E-poçt</div>
-                            <div className={styles.inputContainer}>
+                            <div className={error ? styles.inputContainerErrorCase : styles.inputContainer}>
                                 <input 
                                     className={styles.innerInput}
                                     placeholder="E-poçt" 

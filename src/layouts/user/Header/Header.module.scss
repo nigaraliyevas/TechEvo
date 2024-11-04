@@ -38,7 +38,7 @@ header {
     width: 100%;
     padding: 0px 165px;
 
-    @media (max-width: 375px) {
+    @media (max-width: 480px) {
       padding: 0px 16px;
 
     }
@@ -58,7 +58,7 @@ header {
 
 
     }
-    @media (max-width: 375px) {
+    @media (max-width: 480px) {
       gap: 55px;
       max-width: 343px !important;
 
@@ -166,6 +166,7 @@ header {
           transition: height 0.3s ease-in-out, opacity 0.3s ease-in-out;
           border-radius: 2px;
 
+
           .navbar_users_item {
             display: flex;
             align-items: center;
@@ -211,7 +212,8 @@ header {
       height: 40.3px;
       cursor: pointer;
     }
-
+        
+    
     .navbar_links {
       height: 96px;
       min-height: 100%;
@@ -235,7 +237,6 @@ header {
         -webkit-text-fill-color: transparent;
       }
 
-
       .link_catagiries {
         display: none;
         height: 0;
@@ -254,7 +255,7 @@ header {
         :last-child {
           border: none;
         }
-
+    
         ul {
           // gap: 8px;
           display: flex;
@@ -366,7 +367,7 @@ header {
       background: $bgColor;
       border-radius: 16px;
       padding-bottom: 8px;
-      @media (max-width: 375px) {
+      @media (max-width: 480px) {
         width: 140px;
   
       }
@@ -380,7 +381,7 @@ header {
         -webkit-text-fill-color: transparent;
         border-radius: 16px;
         z-index: -1;
-        @media (max-width: 375px) {
+        @media (max-width: 480px) {
           width: 140px;
     
         }

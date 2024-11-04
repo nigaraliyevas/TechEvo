@@ -12,11 +12,11 @@ export default function EmailVerificationPage() {
       const token = urlParams.get("token");
       
       console.log(token);
-      const email = localStorage.getItem("email");
+      const email = sessionStorage.getItem("email");
       
       if (token && email) {
         try {
-          const response = await fetch('http://ec2-54-146-26-87.compute-1.amazonaws.com:8081/api/v1/auth/activate', {
+          const response = await fetch('http://ec2-51-20-32-195.eu-north-1.compute.amazonaws.com:8081/api/v1/auth/activate', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -28,7 +28,7 @@ export default function EmailVerificationPage() {
           });
 
           if(response.status === 200) {
-            localStorage.setItem('isVerified', 'true');
+            sessionStorage.setItem('isVerified', 'true');
             navigate("/registerpage2");
           }
           else {

@@ -6,10 +6,12 @@ import styles from "./Reviews.module.scss";
 import { FaUserCircle } from "react-icons/fa";
 import { RxChevronDown } from "react-icons/rx";
 
-const REVIEWS_API = "http://ec2-54-146-26-87.compute-1.amazonaws.com:8081/api/v1/product/comment/";
-const POST_REVIEW_API = "http://ec2-54-146-26-87.compute-1.amazonaws.com:8081/api/v1/product/comment/";
+const REVIEWS_API = "http://ec2-51-20-32-195.eu-north-1.compute.amazonaws.com:8081/api/v1/product/comment";
+const POST_REVIEW_API = "http://ec2-51-20-32-195.eu-north-1.compute.amazonaws.com:8081/api/v1/product/comment";
 
 const StarRating = ({ rating, setRating }) => {
+
+  
   const handleStarClick = (index) => {
     setRating(index + 1); 
   };
@@ -33,7 +35,11 @@ const StarRating = ({ rating, setRating }) => {
   );
 };
 
-const Reviews = ({ productId }) => {
+const Reviews = ({ data }) => {
+  const {id} = data;
+  console.log(id);
+  
+  
   const [allReviews, setAllReviews] = useState([]);
   const [visibleReviews, setVisibleReviews] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -52,7 +58,7 @@ const Reviews = ({ productId }) => {
 
   const fetchReviews = async () => {
     try {
-      const response = await axios.get(`${REVIEWS_API}/${productId}`);
+      const response = await axios.get(`${REVIEWS_API}/${id}`);
       const fetchedReviews = response.data.reviews;
 
       setAllReviews(fetchedReviews);
@@ -82,7 +88,7 @@ const Reviews = ({ productId }) => {
       try {
         const response = await axios.post(
           POST_REVIEW_API,
-          { ...newReview, productId },
+          { ...newReview, id },
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("TechEvoToken")}`,

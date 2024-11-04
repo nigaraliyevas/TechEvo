@@ -37,8 +37,8 @@ header {
     margin-left: auto;
     width: 100%;
     padding: 0px 165px;
-
     @media (max-width: 600px) {
+
       padding: 0px 16px;
 
     }
@@ -58,16 +58,15 @@ header {
 
 
     }
+
     @media (max-width: 600px) {
       gap: 55px;
      
 
     }
-    @media (max-width: 375px) {
-      gap: 55px;
-      max-width: 343px !important;
+ 
 
-    }
+    
 
     .display_none {
       display: none;

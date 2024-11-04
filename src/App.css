@@ -36,3 +36,12 @@
 ::-webkit-scrollbar-thumb:horizontal:hover { 
   background-color: #555; 
 }
+.active{
+   /* background: linear-gradient(102.09deg, #fd393f 4.1%, #db35e2 55.43%, #4e3dee 94.96%);
+   -webkit-background-clip: text !important;
+   background-clip: text !important;
+   /* -webkit-text-fill-color: transparent !important; */ 
+   color: #b622dc !important;
+
+
+ }

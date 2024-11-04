@@ -12,7 +12,7 @@ export default function EmailVerificationPage() {
       const token = urlParams.get("token");
       
       console.log(token);
-      const email = localStorage.getItem("email");
+      const email = sessionStorage.getItem("email");
       
       if (token && email) {
         try {
@@ -28,7 +28,7 @@ export default function EmailVerificationPage() {
           });
 
           if(response.status === 200) {
-            localStorage.setItem('isVerified', 'true');
+            sessionStorage.setItem('isVerified', 'true');
             navigate("/registerpage2");
           }
           else {

@@ -1,21 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const fetchLocalStorage = () => {
-  let cart = localStorage.getItem("cart");
-  if (cart) {
-    return JSON.parse(localStorage.getItem("cart"));
+  let basket = localStorage.getItem("basket");
+  if (basket) {
+    return JSON.parse(basket);
   } else {
     return [];
   }
 };
 
 const storeLocalStorage = (data) => {
-  return localStorage.setItem("cart", JSON.stringify(data));
+  return localStorage.setItem("basket", JSON.stringify(data));
 };
 
 const initialState = {
-  cart: fetchLocalStorage(), 
+  basket: fetchLocalStorage(),
   count: 0,
+  totalPrice:0,
 };
 
 const basketSlice = createSlice({
@@ -23,22 +24,48 @@ const basketSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action) => {
-      const existsItem = state.cart.find((item) => item.id === action.payload.id);
+      const existsItem = state.basket.find(
+        (item) => item.id === action.payload.id
+      );
       if (existsItem) {
-        existsItem.count++; 
+        existsItem.count++;
       } else {
-        state.cart.push({ ...action.payload, count: 1 });
+        state.basket.push({ ...action.payload, count: 1 });
       }
-      state.count += 1; 
-      storeLocalStorage(state.cart); 
+      storeLocalStorage(state.basket);
     },
     removeCart: (state, action) => {
-      state.cart = state.cart.filter((item) => item.id !== action.payload);
-      storeLocalStorage(state.cart); 
-      state.count -= 1; 
+      state.basket = state.basket.filter((item) => item.id !== action.payload);
+      storeLocalStorage(state.basket);
+    },
+    decrimentCount: (state, action) => {
+      const existsItem = state.basket.find(
+        (item) => item.id === action.payload
+      );
+
+      if (existsItem) {
+        existsItem.count++;
+        storeLocalStorage(state.basket);
+      }
+    },
+    incrementCount: (state, action) => {
+      const existsItem = state.basket.find(
+        (item) => item.id === action.payload
+      );
+      if (existsItem) {
+        if (existsItem.count > 1) {
+          existsItem.count--;
+        } else if(existsItem.count > 1) {
+          state.basket = state.basket.filter(
+            (item) => item.id !== action.payload
+          );
+        }
+        storeLocalStorage(state.basket);
+      }
     },
   },
 });
 
-export const { addToCart, removeCart } = basketSlice.actions;
+export const { addToCart, removeCart, incrementCount, decrimentCount } =
+  basketSlice.actions;
 export default basketSlice.reducer;

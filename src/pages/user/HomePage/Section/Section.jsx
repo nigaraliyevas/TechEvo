@@ -11,11 +11,15 @@ import "swiper/css/navigation";
 import Card from "./Card/Card";
 import { products } from "../../../../products";
 import styles from "../HomePage.module.scss";
+import { useDispatch } from "react-redux";
+
 
 
 
 const Section = ({ title, data = products }) => {
   const swiperRef = useRef(null);
+
+
 
   // Ekran ölçüsünü saxlamaq üçün state
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 480);

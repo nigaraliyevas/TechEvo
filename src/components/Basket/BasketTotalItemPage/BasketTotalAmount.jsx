@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import style from "./basketTotal.module.scss";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 const BasketTotalAmount = () => {
- 
+   const {totalPrice} = useSelector((state)=>state.basket)
+
 
   return (
     <div className={style.BasketTotalAmount}>
@@ -39,7 +41,7 @@ const BasketTotalAmount = () => {
       <div className={style.line}></div>
       <div className={style.total_texts}>
         <p>Toplam: </p>
-        <p>20.005 AZN</p> 
+        <p>{totalPrice} AZN</p> 
       </div>
       <Link to={"/confirm"} className={style.basket_btn}>
         Səbəti təsdiqlə

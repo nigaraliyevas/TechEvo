@@ -21,7 +21,7 @@ const ProductPage = () => {
   const id = searchParams.get("id");
 
   const { data: product, error, isLoading } = useGetProductByIdQuery(id);
-  console.log(product, "detailData");
+ 
 
   useEffect(() => {
     if (!id) {

@@ -13,10 +13,12 @@ const storeLocalStorage = (data) => {
   return localStorage.setItem("basket", JSON.stringify(data));
 };
 
+const calculateTotalPrice = (basket) => {
+  return basket.reduce((total, item) => total + item.price * item.count, 0);
+};
 const initialState = {
   basket: fetchLocalStorage(),
-  count: 0,
-  totalPrice:0,
+  totalPrice: calculateTotalPrice(fetchLocalStorage()),
 };
 
 const basketSlice = createSlice({
@@ -32,11 +34,13 @@ const basketSlice = createSlice({
       } else {
         state.basket.push({ ...action.payload, count: 1 });
       }
+      state.totalPrice = calculateTotalPrice(state.basket);
       storeLocalStorage(state.basket);
     },
     removeCart: (state, action) => {
       state.basket = state.basket.filter((item) => item.id !== action.payload);
       storeLocalStorage(state.basket);
+      state.totalPrice = calculateTotalPrice(state.basket);
     },
     decrimentCount: (state, action) => {
       const existsItem = state.basket.find(
@@ -45,6 +49,7 @@ const basketSlice = createSlice({
 
       if (existsItem) {
         existsItem.count++;
+        state.totalPrice = calculateTotalPrice(state.basket);
         storeLocalStorage(state.basket);
       }
     },
@@ -60,6 +65,7 @@ const basketSlice = createSlice({
             (item) => item.id !== action.payload
           );
         }
+        state.totalPrice = calculateTotalPrice(state.basket);
         storeLocalStorage(state.basket);
       }
     },

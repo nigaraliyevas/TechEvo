@@ -64,8 +64,6 @@ function Card({ card }) {
 
 ///Basket-e elave etmek
 const {basket} = useSelector((state)=>state.basket)
-console.log(basket,"cart");
-
   const addbasket = () => {
     dispatch(addToCart(card));
   };

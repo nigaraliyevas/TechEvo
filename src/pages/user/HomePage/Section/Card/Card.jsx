@@ -6,8 +6,11 @@ import StarRating from "../../../../../components/Rating/StarRating";
 import style from "../../HomePage.module.scss";
 import { Link, useNavigate } from "react-router-dom"; // useNavigate-i idxal et
 import { useDispatch, useSelector } from "react-redux";
-import { addToFavorites, removeFromFavorites } from "../../../../../redux/slices/favoritesSlice";
-
+import {
+  addToFavorites,
+  removeFromFavorites,
+} from "../../../../../redux/slices/favoritesSlice";
+import { addToCart } from "../../../../../redux/slices/BasketSlice";
 function Card({ card }) {
   const { name, price, imageUrl, rating, id } = card;
   const dispatch = useDispatch();
@@ -59,8 +62,18 @@ function Card({ card }) {
     setSelectedImage(index);
   };
 
+///Basket-e elave etmek
+const {basket} = useSelector((state)=>state.basket)
+console.log(basket,"cart");
+
+  const addbasket = () => {
+    dispatch(addToCart(card));
+  };
   return (
-    <Link style={({ textDecoration: "none" })} to={`/product?id=${id}`} className={style.card}>
+    <div
+      style={{ textDecoration: "none" }}
+      className={style.card}
+    >
       <span className={style.cardAnimationSpan}></span>
       <span className={style.cardAnimationSpan}></span>
       <span className={style.cardAnimationSpan}></span>
@@ -80,6 +93,7 @@ function Card({ card }) {
               height: "100%",
             }}
           >
+            <Link  to={`/product?id=${id}`}>
             {imageUrl.map((imgSrc, index) => (
               <img
                 key={index}
@@ -89,6 +103,7 @@ function Card({ card }) {
                 style={{ width: `${100 / imageUrl.length}%` }}
               />
             ))}
+            </Link>
           </div>
         </div>
 
@@ -96,7 +111,9 @@ function Card({ card }) {
           {imageUrl.map((_, index) => (
             <div
               key={index}
-              className={`${style.radioDiv} ${selectedImage === index ? style.selected : ""}`}
+              className={`${style.radioDiv} ${
+                selectedImage === index ? style.selected : ""
+              }`}
               onClick={() => handleDivClick(index)} // Siçan üçün klik
             />
           ))}
@@ -120,13 +137,13 @@ function Card({ card }) {
             <StarRating value={rating} />
             <div className={style.basketBg}>
               <a href="#">
-                <SlBasket style={{ width: "18px", height: "18px" }} />
+                <SlBasket onClick={addbasket} style={{ width: "18px", height: "18px" }} />
               </a>
             </div>
           </div>
         </div>
       </div>
-    </Link>
+    </div>
   );
 }
 

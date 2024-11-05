@@ -6,7 +6,7 @@ import favoritesReducer from "./slices/favoritesSlice"; // favoritesSlice faylı
 
 const store = configureStore({
   reducer: {
-    token: TokenReducer,
+    auth: TokenReducer,
     favorites: favoritesReducer, // favorites slice əlavə edildi
     [productApi.reducerPath]: productApi.reducer,
   },

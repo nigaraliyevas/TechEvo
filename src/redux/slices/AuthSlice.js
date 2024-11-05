@@ -4,7 +4,7 @@ import { clearTokens, setTokens } from "../slices/TokenSlice";
 
 export const baseQueryWithReauth = async (args, api, extraOptions) => {
     let result = await fetchBaseQuery({
-        baseUrl: `${import.meta.env.server_domain}`,
+        baseUrl: `http://ec2-51-20-32-195.eu-north-1.compute.amazonaws.com:8081`,
         prepareHeaders: (headers, { getState }) => {
             const { accessToken } = getState().auth;
             if (accessToken) {

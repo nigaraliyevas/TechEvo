@@ -1,21 +1,20 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createApi } from "@reduxjs/toolkit/query/react";
+import { baseQueryWithReauth } from "../slices/AuthSlice2";
 
 // Create the API
 export const productApi = createApi({
   reducerPath: "productApi",
-  baseQuery: fetchBaseQuery({
-    baseUrl: "http://ec2-51-20-32-195.eu-north-1.compute.amazonaws.com:8081/api/v1/",
-  }),
+  baseQuery: baseQueryWithReauth,
   endpoints: (builder) => ({
     getProducts: builder.query({
-      query: () => "product/getAllProducts",
+      query: () => "api/v1/product/getAllProducts",
       providesTags: ["Products"],
     }),
     getProductsByCategoryName: builder.query({
-      query: (categoryName) => `product/getAllByCategoryName?categoryName=${categoryName}`,
+      query: (categoryName) => `api/v1/product/getAllByCategoryName?categoryName=${categoryName}`,
     }),
     getProductById: builder.query({
-      query: (id) => `product/${id}`,
+      query: (id) => `api/v1/product/${id}`,
       providesTags: ["Product"],
     }),
   }),

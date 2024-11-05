@@ -54,10 +54,12 @@ const Reviews = ({ data }) => {
       setIsLoggedIn(false);
     }
     fetchReviews();
+    //bu ne demekdi
   }, []);
 
   const fetchReviews = async () => {
     try {
+      //burdada cekiirem datalari
       const response = await axios.get(`${REVIEWS_API}/${id}`);
       const fetchedReviews = response.data.reviews;
 
@@ -86,6 +88,7 @@ const Reviews = ({ data }) => {
 
     if (newReview.comment.trim() && newReview.rating > 0) {
       try {
+        //post burdadi
         const response = await axios.post(
           POST_REVIEW_API,
           { ...newReview, id },

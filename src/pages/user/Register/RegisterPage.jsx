@@ -1,3 +1,4 @@
+
 // styles
 import styles from "./RegisterPage.module.scss"
 // hooks

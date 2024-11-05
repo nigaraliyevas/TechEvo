@@ -4,9 +4,8 @@ import "../../../components/css/Button.scss";
 import eyeIcon from "../../../assets/images/Welcome/Faeye.png";
 import openEye from "../../../assets/images/Welcome/OpenEye.png";
 import "../../../assets/common/base.scss";
-import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { login } from "../../../redux/slices/AuthSlice";
+import { Link } from "react-router-dom";
+// import { login } from "../../../redux/slices/AuthSlice";
 import Button from "../../../components/Button/Button";
 import useLogin from "../../../hooks/useLogin";
 

@@ -7,10 +7,14 @@ import { setTokens } from "../redux/slices/TokenSlice";
 const useLogin = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const login = async (email, password) => {
+
     try {
+        const url = import.meta.env.API_URL
+        console.log(url);
       const response = await fetch(
-        `${import.meta.env.VITE_API_GLOBAL_URL}/api/v1/auth/login`,
+        `http://ec2-51-20-32-195.eu-north-1.compute.amazonaws.com:8081/api/v1/auth/login`,
         {
           method: "POST",
           headers: {
@@ -34,6 +38,7 @@ const useLogin = () => {
       localStorage.setItem("email", email);
 
       toast.success(`${email} logged in.`);
+      console.log(localStorage.getItem('refreshToken'))
       navigate("/");
     } catch (error) {
       toast.error("Login failed");

@@ -170,7 +170,6 @@ header {
           transition: height 0.3s ease-in-out, opacity 0.3s ease-in-out;
           border-radius: 2px;
 
-
           .navbar_users_item {
             display: flex;
             align-items: center;
@@ -204,7 +203,6 @@ header {
 
       .navbar_icon {
         color: white;
-
         &:hover {
           color: #b622dc;
         }
@@ -216,8 +214,6 @@ header {
       height: 40.3px;
       cursor: pointer;
     }
-        
-    
     .navbar_links {
       height: 96px;
       min-height: 100%;
@@ -340,7 +336,6 @@ header {
           display: block;
           opacity: 1;
           height: auto;
-          // padding: 24px 0px 24px 0px;
         }
       }
     }

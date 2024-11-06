@@ -179,11 +179,11 @@ const Reviews = ({ data }) => {
             </div>
           ))}
 
-          {visibleReviews.length < allReviews.length && (
+          {/* {visibleReviews.length < allReviews.length && (
             <button onClick={loadMoreReviews} className={styles.loadMoreButton}>
               Daha çox yüklə <RxChevronDown className={styles.chevron} />
             </button>
-          )}
+          )} */}
         </div>
       </div>
     </div>

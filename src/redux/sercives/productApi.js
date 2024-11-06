@@ -18,11 +18,25 @@ export const productApi = createApi({
       query: (id) => `product/${id}`,
       providesTags: ["Product"],
     }),
+    getFavorites: builder.query({ // Favoritləri çəkmək üçün
+      query: () => "favorites",
+    }),
+    addFavorite: builder.mutation({ // Yeni favorit əlavə etmək üçün
+      query: (productId) => ({
+        url: `favorites/${productId}`,
+        method: "POST",
+      }),
+    }),
+    removeFavorite: builder.mutation({ // Favoritdən silmək üçün
+      query: (productId) => ({
+        url: `favorites/${productId}`,
+        method: "DELETE",
+      }),
+    }),
   }),
   keepUnusedDataFor: 60,// Istifade olunmayan datalari 60saniye saxlayir
 });
 
 
-export const { useGetProductsQuery, useGetProductsByCategoryNameQuery, useGetProductByIdQuery } =
-  productApi;
+export const { useGetProductsQuery, useGetProductsByCategoryNameQuery, useGetProductByIdQuery, useGetFavoritesQuery, useAddFavoriteMutation, useRemoveFavoriteMutation } = productApi;
 

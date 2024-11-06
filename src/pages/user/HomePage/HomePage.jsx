@@ -14,7 +14,7 @@ const HomePage = () => {
   const { data: mousesData, isLoading: isMousesLoading } = useGetProductsByCategoryNameQuery("Mouse");
   const { data: klaviaturasData, isLoading: isKlaviaturasLoading } = useGetProductsByCategoryNameQuery("Klaviatura");
 
-    // useGetProductsByCategoryNameQuery("");
+  useGetProductsByCategoryNameQuery("");
 
 
   return (
@@ -31,7 +31,7 @@ const HomePage = () => {
           <h3 className={styles.specialH3}>Xüsusi Seçimlər</h3>
           <Section title="PC" data={laptopsData} />
           <Section title="Mouse" data={mousesData} />
-          <Section title="Keyboard" data={klaviaturasData}/> 
+          <Section title="Keyboard" data={klaviaturasData} />
           <div className={styles.servicesDiv}>
             <div className={styles.services}>Xidmətlərimiz</div>
             <div className={styles.mainServices}>

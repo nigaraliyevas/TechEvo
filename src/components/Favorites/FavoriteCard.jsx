@@ -4,18 +4,20 @@ import { TiHeartFullOutline } from "react-icons/ti";
 import StarRating from "../../components/Rating/StarRating";
 import style from "./Favorites.module.scss";
 import { useDispatch } from "react-redux";
-import { removeFromFavorites } from "../../redux/slices/favoritesSlice";
+import { useAddFavoriteMutation } from "../../redux/sercives/productApi";
+import { removeFavoriteLocally } from "../../redux/slices/favoritesSlice";
 import { SlBasket } from "react-icons/sl";
-
 
 function FavoriteCard({ card }) {
     const { name, price, imageUrl, rating, id } = card;
     const dispatch = useDispatch();
     const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
+    const [addFavorite] = useAddFavoriteMutation();
 
     const handleRemoveFavorite = (event) => {
         event.stopPropagation();
-        dispatch(removeFromFavorites(id));
+        dispatch(removeFavoriteLocally(id)); // Lokal olaraq favoritdən çıxarır
+        addFavorite(id); // Serverdə favoritdən çıxarma əməliyyatı
     };
 
     return (

@@ -5,17 +5,18 @@ import { SlBasket } from "react-icons/sl";
 import StarRating from "../../../../../components/Rating/StarRating";
 import style from "../../HomePage.module.scss";
 import { Link, useNavigate } from "react-router-dom"; // useNavigate-i idxal et
-import { useDispatch, useSelector } from "react-redux";
-import { addToFavorites, removeFromFavorites } from "../../../../../redux/slices/favoritesSlice";
+// import { useDispatch, useSelector } from "react-redux";
+
+
 
 function Card({ card }) {
   const { name, price, imageUrl, rating, id } = card;
-  const dispatch = useDispatch();
-  const favorites = useSelector((state) => state.favorites);
+  // const dispatch = useDispatch();
+  // const favorites = useSelector((state) => state.favorites);
   const navigate = useNavigate(); // useNavigate-i yaradın
 
   // Kartın sevilənlərdə olub-olmadığını yoxlayın
-  const isFavorite = favorites.some((fav) => fav.id === id);
+  //  const isFavorite = favorites.some((fav) => fav.id === id);
 
   const [selectedImage, setSelectedImage] = useState(0);
   const [lastMouseX, setLastMouseX] = useState(null);
@@ -24,14 +25,14 @@ function Card({ card }) {
     event.stopPropagation();
     event.preventDefault();
 
-    // Ürək ikonuna klik edərkən AccountPage-ə keçid
+    //   // Ürək ikonuna klik edərkən AccountPage-ə keçid
     navigate("/accountpage"); // Bu yolu öz hesab səhifənizin yoluna uyğunlaşdırın
 
-    if (isFavorite) {
-      dispatch(removeFromFavorites(id));
-    } else {
-      dispatch(addToFavorites(card));
-    }
+    // if (isFavorite) {
+    //   dispatch(removeFromFavorites(id));
+    // } else {
+    //   dispatch(addToFavorites(card));
+    // }
   };
 
   const handleMouseMove = (e) => {
@@ -102,13 +103,13 @@ function Card({ card }) {
           ))}
         </div>
 
-        <div className={style.heartSpan} onClick={handleToggleFavorite}>
+        {/* <div className={style.heartSpan} onClick={handleToggleFavorite}>
           {isFavorite ? (
             <TiHeartFullOutline style={{ color: "white" }} />
           ) : (
             <PiHeartBold style={{ fill: "white" }} />
           )}
-        </div>
+        </div> */}
 
         <div className={style.cardBottomTitles}>
           <div className={style.namePrice}>

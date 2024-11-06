@@ -2,12 +2,10 @@ import { configureStore } from "@reduxjs/toolkit";
 import authReducer from './slices/AuthSlice';
 import { productApi } from "./sercives/productApi";
 import { setupListeners } from "@reduxjs/toolkit/query";
-import favoritesReducer from "./slices/favoritesSlice"; // favoritesSlice faylını əlavə edin
 
 const store = configureStore({
   reducer: {
     auth: authReducer,
-    favorites: favoritesReducer, // favorites slice əlavə edildi
     [productApi.reducerPath]: productApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>

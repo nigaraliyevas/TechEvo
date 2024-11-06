@@ -35,14 +35,14 @@ const ProductPage = () => {
   const [carouselImages, setCarouselImages] = useState([]);
 
   console.log(carouselImages, "detailImage");
-const caruselRef = useRef()
-  const [currentIndex, setCurrentIndex] = useState(1); 
+  const caruselRef = useRef()
+  const [currentIndex, setCurrentIndex] = useState(1);
 
-  const extendedCarouselImages = [...carouselImages, ...carouselImages]; 
+  const extendedCarouselImages = [...carouselImages, ...carouselImages];
 
   const scrollNext = () => {
     if (currentIndex === extendedCarouselImages.length - 1) {
-      setCurrentIndex(1); 
+      setCurrentIndex(1);
     } else {
       setCurrentIndex(currentIndex + 1);
     }
@@ -50,7 +50,7 @@ const caruselRef = useRef()
 
   const scrollPrev = () => {
     if (currentIndex === 0) {
-      setCurrentIndex(extendedCarouselImages.length - 2); 
+      setCurrentIndex(extendedCarouselImages.length - 2);
     } else {
       setCurrentIndex(currentIndex - 1);
     }
@@ -126,23 +126,23 @@ const caruselRef = useRef()
                   ref={caruselRef}
                 >
                   <div className={styles.modal_image_carusel_wrap}>
-                  <div
-      className={styles.modal_image_carusel}
-      style={{
-        transform: `translateX(-${currentIndex * 580}px)`,
-      }}
-    >
-      {extendedCarouselImages.map((img, index) => (
-        <div className={styles.carusel_image} key={index}>
-          <img
-            style={{ width: "580px", height: "480px" }}
-            className={styles.module_image}
-            src={img}
-            alt={`Product image ${index + 1}`}
-          />
-        </div>
-      ))}
-    </div>
+                    <div
+                      className={styles.modal_image_carusel}
+                      style={{
+                        transform: `translateX(-${currentIndex * 580}px)`,
+                      }}
+                    >
+                      {extendedCarouselImages.map((img, index) => (
+                        <div className={styles.carusel_image} key={index}>
+                          <img
+                            style={{ width: "580px", height: "480px" }}
+                            className={styles.module_image}
+                            src={img}
+                            alt={`Product image ${index + 1}`}
+                          />
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>

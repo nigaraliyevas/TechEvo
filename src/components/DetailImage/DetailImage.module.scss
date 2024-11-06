@@ -1,8 +1,10 @@
 .detail_images{
+    max-width: 1440px;
     display: flex;
     align-items: center;
     gap: 20px;
-    img{
+    // position: relative;
+    .detail_big_image{
         width: 350px;
         height: 350px;
         border: 0.81px solid rgba(89, 89, 89, 1);
@@ -15,12 +17,14 @@
     }
     .detail_image_left{
         display: flex;
+        height: 350px;
         flex-direction: column;
         justify-content: space-between;
         gap: 30px;
         cursor: pointer;
+        overflow: hidden;
       
-        img{
+        .detail_small_image{
             width: 65px;
             height: 65px;
             padding: 7.7px;

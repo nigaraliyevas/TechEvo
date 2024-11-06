@@ -1,19 +1,11 @@
 import ReactPaginate from "react-paginate";
 import styles from "./Pagination.module.scss";
 
-
-const Pagination = ({products}) => {
-  const itemsPerPage = 9
-
+const Pagination = ({ products, itemsPerPage, handlePageClick, currentPage }) => {
   if (products.length === 0) {
     return null;
   }
-
-  const totalPages = Math.ceil(products.length / itemsPerPage);
-
-  const handlePageClick = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+  const totalPages = Math.ceil(products.length / itemsPerPage); 
 
   return (
     <ReactPaginate
@@ -32,6 +24,7 @@ const Pagination = ({products}) => {
       previousClassName={styles.prevButton}
       nextClassName={styles.nextButton}
       disabledClassName={styles.disabled}
+      forcePage={currentPage} 
     />
   );
 };

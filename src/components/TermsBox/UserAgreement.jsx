@@ -1,10 +1,21 @@
 import styles from './UserAgreement.module.scss'
 import tick from "../../assets/images/Register/tick-circle.svg";
-const UserAgreement = () => {
+import { useState, useEffect } from 'react';
+const UserAgreement = ( { sendDataToParent, updateFormData } ) => {
+  let [isCheckedFromBox, setIsCheckedFromBox] = useState(false);
 
+  const handleAccept = () => {
+    setIsCheckedFromBox(true);
+    updateFormData(true);
+  }
 
+  const handleReject = () => {
+    setIsCheckedFromBox(false);
+  }
 
-
+  useEffect(() => {
+    sendDataToParent(isCheckedFromBox);
+  }, [isCheckedFromBox, sendDataToParent])
 
 
   return (
@@ -53,8 +64,8 @@ const UserAgreement = () => {
           </div>
         </div>
         <div className={styles.btnCont}>
-          <button className={styles.btnCustom}>Customize</button>
-          <button className={styles.btnAccept}>Accept</button>
+          <button onClick={handleReject} className={styles.btnClose}>Bağla</button>
+          <button onClick={handleAccept} className={styles.btnAccept}>Razıyam</button>
         </div>
       </div>
     </>

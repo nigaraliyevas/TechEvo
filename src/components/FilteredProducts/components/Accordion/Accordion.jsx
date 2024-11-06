@@ -29,13 +29,15 @@ const AccordionItem = ({ data, handleFilter }) => {
 };
 
 const PriceRangeSlider = ({ min, max, onPriceChange }) => {
-  const [showContent, setShowContent] = useState(false);
+  const [showContent, setShowContent] = useState(true);
 
   const [range, setRange] = useState([min, max]);
 
-  const handleSliderChange = newRange => {
-    setRange(newRange);
-    onPriceChange({ min: newRange[0], max: newRange[1] });
+  const handleSliderChange = (newRange) => {
+    if (newRange[0] < newRange[1]) {
+      setRange(newRange);
+      onPriceChange({ min: newRange[0], max: newRange[1] });
+    }
   };
 
   const handleInputChange = (index, value) => {
@@ -43,7 +45,6 @@ const PriceRangeSlider = ({ min, max, onPriceChange }) => {
     const newRange = [...range];
     newRange[index] = newValue;
 
-    // Ensure min is less than max
     if (newRange[0] < newRange[1] && newValue >= min && newValue <= max) {
       handleSliderChange(newRange);
     }
@@ -75,8 +76,8 @@ const Accordion = ({ data, handleFilter, handlePrice }) => {
   return (
     <div className={styles.accordion}>
       <PriceRangeSlider min={200} max={10000} onPriceChange={handlePrice} />{" "}
-      {data.map(item => (
-        <AccordionItem handleFilter={handleFilter} key={item.id} data={item} />
+      {data.map((item, index) => (
+        <AccordionItem key={index} handleFilter={handleFilter} data={item} />
       ))}
     </div>
   );

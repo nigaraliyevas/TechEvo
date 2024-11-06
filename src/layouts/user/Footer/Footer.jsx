@@ -29,13 +29,20 @@ const Footer = () => {
       </div>
       <p className={style.footer_text}>Design amazing digital experiences that create more happy in the world.</p>
       <ul className={style.footer_links}>
+
+        <div className={style.footer_link_left}>
         <li>Haqqımızda</li>
         <li>Şərtlər və Qaydalar</li>
         <li>Ödəniş</li>
         <li>Əlaqə</li>
+
+        </div>
+        <div className={style.footer_link_right}>
         <li>Yeniliklər</li>
         <li>Blog</li>
         <li>Karyera</li>
+
+        </div>
       </ul>
       <div className={style.footer_bottom}>
         <p>© 2077 Untitled UI. All rights reserved.</p>

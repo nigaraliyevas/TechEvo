@@ -14,7 +14,11 @@ const storeLocalStorage = (data) => {
 };
 
 const initialState = {
+<<<<<<< HEAD
   cart: fetchLocalStorage(), // Düzgün çağırmaq üçün () əlavə etdik
+=======
+  cart: fetchLocalStorage(), 
+>>>>>>> upstream/murad
   count: 0,
 };
 
@@ -25,6 +29,7 @@ const basketSlice = createSlice({
     addToCart: (state, action) => {
       const existsItem = state.cart.find((item) => item.id === action.payload.id);
       if (existsItem) {
+<<<<<<< HEAD
         existsItem.count++; // Sayğacı artırırıq
       } else {
         state.cart.push({ ...action.payload, count: 1 });
@@ -36,6 +41,19 @@ const basketSlice = createSlice({
       state.cart = state.cart.filter((item) => item.id !== action.payload); // Düzgün filtr
       storeLocalStorage(state.cart); // LocalStorage-də saxlayırıq
       state.count -= 1; // Düzgün azaltma
+=======
+        existsItem.count++; 
+      } else {
+        state.cart.push({ ...action.payload, count: 1 });
+      }
+      state.count += 1; 
+      storeLocalStorage(state.cart); 
+    },
+    removeCart: (state, action) => {
+      state.cart = state.cart.filter((item) => item.id !== action.payload);
+      storeLocalStorage(state.cart); 
+      state.count -= 1; 
+>>>>>>> upstream/murad
     },
   },
 });

@@ -5,8 +5,7 @@ const Pagination = ({ products, itemsPerPage, handlePageClick, currentPage }) =>
   if (products.length === 0) {
     return null;
   }
-
-  const totalPages = Math.ceil(products.length / itemsPerPage); // Ümumi səhifə sayını hesablamaq
+  const totalPages = Math.ceil(products.length / itemsPerPage); 
 
   return (
     <ReactPaginate
@@ -17,7 +16,7 @@ const Pagination = ({ products, itemsPerPage, handlePageClick, currentPage }) =>
       pageCount={totalPages}
       marginPagesDisplayed={1}
       pageRangeDisplayed={5}
-      onPageChange={handlePageClick} // Səhifə dəyişərkən funksiya çağırılacaq
+      onPageChange={handlePageClick}
       containerClassName={styles.pagination}
       pageClassName={styles.pageItem}
       pageLinkClassName={styles.pageLink}
@@ -25,7 +24,7 @@ const Pagination = ({ products, itemsPerPage, handlePageClick, currentPage }) =>
       previousClassName={styles.prevButton}
       nextClassName={styles.nextButton}
       disabledClassName={styles.disabled}
-      forcePage={currentPage} // Hazırda aktiv olan səhifə
+      forcePage={currentPage} 
     />
   );
 };

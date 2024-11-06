@@ -26,7 +26,6 @@ const BasketTotalAmount = () => {
             <p>20.005 AZN</p>
           </div>
           <button className={style.basket_btn}>Səbəti təsdiqlə</button> */}
-
       <h2 className={style.amount_title}>Ümumi</h2>
       <div className={style.total_texts}>
         <p>Məhsulların qiyməti: </p>

@@ -167,7 +167,6 @@ const Header = () => {
                 style={{ padding: "32px 0px" }}
               >
                 <BiUser size={24} />
-
                 <div className={styles.navbar_users_items}>
                   <div className={styles.navbar_users_item}>
                     <span>

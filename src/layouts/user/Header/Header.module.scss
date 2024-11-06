@@ -37,6 +37,7 @@ header {
     margin-left: auto;
     width: 100%;
     padding: 0px 165px;
+
     @media (max-width: 600px) {
 
       padding: 0px 16px;
@@ -61,12 +62,12 @@ header {
 
     @media (max-width: 600px) {
       gap: 55px;
-     
+
 
     }
- 
 
-    
+
+
 
     .display_none {
       display: none;
@@ -216,8 +217,8 @@ header {
       height: 40.3px;
       cursor: pointer;
     }
-        
-    
+
+
     .navbar_links {
       height: 96px;
       min-height: 100%;
@@ -259,7 +260,7 @@ header {
         :last-child {
           border: none;
         }
-    
+
         ul {
           // gap: 8px;
           display: flex;
@@ -368,12 +369,17 @@ header {
       line-height: 28px;
       font-weight: 700;
       cursor: pointer;
-      background: $bgColor;
+      background-color: $bgColor;
       border-radius: 16px;
       padding-bottom: 8px;
+    
+     
+    
+    
+
       @media (max-width: 600px) {
         width: 140px;
-  
+
       }
 
       span {
@@ -385,9 +391,10 @@ header {
         -webkit-text-fill-color: transparent;
         border-radius: 16px;
         z-index: -1;
+
         @media (max-width: 600px) {
           width: 140px;
-    
+
         }
       }
     }

@@ -1,23 +1,12 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 // Create the API
-export const productApi = createApi({
+export const favoriteApi = createApi({
   reducerPath: "productApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://ec2-51-20-32-195.eu-north-1.compute.amazonaws.com:8081/api/v1/",
+    baseUrl: "http://ec2-51-20-32-195.eu-north-1.compute.amazonaws.com:8081/api/v1/product",
   }),
   endpoints: (builder) => ({
-    getProducts: builder.query({
-      query: () => "product/getAllProducts",
-      providesTags: ["Products"],
-    }),
-    getProductsByCategoryName: builder.query({
-      query: (categoryName) => `product/getAllByCategoryName?categoryName=${categoryName}`,
-    }),
-    getProductById: builder.query({
-      query: (id) => `product/${id}`,
-      providesTags: ["Product"],
-    }),
     getFavorites: builder.query({ // Favoritləri çəkmək üçün
       query: () => "favorites",
     }),
@@ -26,6 +15,9 @@ export const productApi = createApi({
         url: `favorites/${productId}`,
         method: "POST",
         body: productId,
+        headers: {
+        
+        }
       }),
     }),
     removeFavorite: builder.mutation({ // Favoritdən silmək üçün
@@ -39,5 +31,5 @@ export const productApi = createApi({
 });
 
 
-export const { useGetProductsQuery, useGetProductsByCategoryNameQuery, useGetProductByIdQuery, useGetFavoritesQuery, useAddFavoriteMutation, useRemoveFavoriteMutation } = productApi;
+export const {useGetFavoritesQuery, useAddFavoriteMutation, useRemoveFavoriteMutation } = favoriteApi;
 

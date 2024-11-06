@@ -4,11 +4,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 export const login = createAsyncThunk('auth/login', async ({ email, password }, { rejectWithValue }) => {
   try {
     const response = await fetch(
-<<<<<<< HEAD
-      'https://ff82f4df-f72b-4dec-84ca-487132aff620.mock.pstmn.io/api/v1/auth/login',
-=======
       'http://ec2-54-146-26-87.compute-1.amazonaws.com:8081/api/v1/auth/login',
->>>>>>> upstream/murad
       {
         method: 'POST',
         headers: {

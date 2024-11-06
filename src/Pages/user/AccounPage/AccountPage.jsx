@@ -36,7 +36,7 @@ const AccountPage = () => {
               <img src={out} alt="" />  Çıxış
             </div>
           </div>
-          {/* <div className={style.account_right}>
+          <div className={style.account_right}>
 
             <div className={style.account_info}>
             Hesab məlumatları
@@ -90,8 +90,8 @@ const AccountPage = () => {
               </div>
             </form>
 
-        </div> */}
-          <Favorites />
+        </div>
+          {/* <Favorites /> */}
         </div>
 
       </div>

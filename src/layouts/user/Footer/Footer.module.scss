@@ -18,9 +18,11 @@ body {
     margin: 0 auto;
     max-width: 1440px;
     padding: 56px 165px;
-
-    @media (max-width: 480px) {
+    @media (max-width: 600px) {
       padding: 28px 16px;
+
+
+    
 
     }
 
@@ -119,11 +121,12 @@ body {
       margin-top: 32px;
       padding-top: 33px;
 
-      @media (max-width: 480px) {
-        flex-direction: column;
-        align-items: start;
-
+      @media (max-width: 600px) {
+       flex-direction: column;
+       align-items: start;
+  
       }
+
 
       p {
         font-family: $fontFamilyInter;

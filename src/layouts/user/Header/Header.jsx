@@ -13,21 +13,11 @@ import { IoIosArrowForward } from "react-icons/io";
 import { useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import "../../../App.css";
+import { useSelector } from "react-redux";
 const Header = () => {
-  const [sliderState2, setSliderState2] = useState([
-    true,
-    false,
-    false,
-    false,
-    false,
-    false,
-  ]);
-  const setSliderOnclick2 = (sliderIndex2) => {
-    const newSliderState2 = sliderState2.map((_, idx) => idx === sliderIndex2);
-    setSliderState2(newSliderState2);
-  };
+  const {basket,count} = useSelector((state)=>state.basket)
   const [isOpen, setIsOpen] = useState(false);
-
+  console.log(basket,"count");
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -160,7 +150,10 @@ const Header = () => {
               <div className={styles.navbar_icon}>
                 <NavLink to={"/basket"} className={styles.navbar_icon}>
                   <SlBasket size={24} />
-                </NavLink>
+                </NavLink>{
+                  count>0 &&
+                <span>{count}</span>
+                }
               </div>
               <div
                 className={styles.navbar_users}

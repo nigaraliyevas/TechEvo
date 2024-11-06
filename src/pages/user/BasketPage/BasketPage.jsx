@@ -5,9 +5,9 @@ import empty from '../../../assets/images/Basket/empty.svg'
 import { useDispatch, useSelector } from "react-redux"
 
 const BasketPage = () => {
-  const {basket} = useSelector((state)=>state.basket)
+  const {basket,count} = useSelector((state)=>state.basket)
   
-console.log(basket,"basket");
+
 
  
   

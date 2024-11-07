@@ -3,9 +3,11 @@ import React from "react";
 import { TiHeartFullOutline } from "react-icons/ti";
 import StarRating from "../../components/Rating/StarRating";
 import style from "./Favorites.module.scss";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { removeFromFavorites } from "../../redux/slices/favoritesSlice";
 import { SlBasket } from "react-icons/sl";
+import { useMediaQuery } from "react-responsive";
+import { addToCart } from "../../redux/slices/BasketSlice";
 
 
 function FavoriteCard({ card }) {
@@ -17,6 +19,9 @@ function FavoriteCard({ card }) {
         event.stopPropagation();
         dispatch(removeFromFavorites(id));
     };
+  const addbasket = () => {
+    dispatch(addToCart(card));
+  };
 
     return (
         <div className={style.containerFavoriteCards}>
@@ -44,7 +49,7 @@ function FavoriteCard({ card }) {
                             <StarRating value={rating} />
                             <p>{price} AZN</p>
                         </div>
-                        <div className={style.basketBg}>
+                        <div onClick={addbasket} className={style.basketBg}>
                             <a href="#">
                                 <SlBasket style={{ width: "18px", height: "18px" }} />
                             </a>
@@ -64,7 +69,7 @@ function FavoriteCard({ card }) {
                                 <StarRating fontSize="1em" value={rating} />
                             </div>
                             <p>{price} AZN</p>
-                            <button className={style.addToCartButton}>
+                            <button onClick={addbasket} className={style.addToCartButton}>
                                 <span style={{ paddingRight: "8px" }}>
                                     <a href="#">
                                         <SlBasket className={style.boldBasketIcon} />

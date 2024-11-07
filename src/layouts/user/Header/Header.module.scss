@@ -205,19 +205,25 @@ header {
 
       .navbar_icon {
         color: white;
-         position: relative;
-         span{
+        position: relative;
+
+        span {
           display: flex;
           align-items: center;
           justify-content: center;
           position: absolute;
-          top: -11px;
-          left: 23px;
-          width: 25px;
-          height: 25px;
-          background-color: red;
+          top: 0px;
+          left: 15px;
+          width: 14px;
+          height: 14px;
+          font-size: 10px;
+          font-weight: 500;
+          line-height: 11.93;
+          background: linear-gradient(102.09deg, #FD393F 4.1%, #DB35E2 55.43%, #4E3DEE 94.96%);
           border-radius: 50px;
-         }
+          color: #FFFFFF;
+        }
+
         &:hover {
           color: #b622dc;
         }
@@ -384,10 +390,10 @@ header {
       background-color: $bgColor;
       border-radius: 16px;
       padding-bottom: 8px;
-    
-     
-    
-    
+
+
+
+
 
       @media (max-width: 600px) {
         width: 140px;

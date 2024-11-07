@@ -133,9 +133,9 @@ const {basket} = useSelector((state)=>state.basket)
 
           <div className={style.ratingBasket}>
             <StarRating value={rating} />
-            <div className={style.basketBg}>
+            <div onClick={addbasket} className={style.basketBg}>
               <a href="#">
-                <SlBasket onClick={addbasket} style={{ width: "18px", height: "18px" }} />
+                <SlBasket  style={{ width: "18px", height: "18px" }} />
               </a>
             </div>
           </div>

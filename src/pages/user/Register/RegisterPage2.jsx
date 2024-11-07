@@ -173,7 +173,7 @@ export default function RegisterPage2( ) {
 
 
     try {
-      const response = await fetch('http://ec2-54-146-26-87.compute-1.amazonaws.com:8081/api/v1/auth/register',
+      const response = await fetch('http://ec2-51-20-32-195.eu-north-1.compute.amazonaws.com:8081/api/v1/auth/register',
         {
           method: "POST",
           headers: {

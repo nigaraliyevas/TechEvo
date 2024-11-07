@@ -10,27 +10,30 @@ const Features = ({ id }) => {
 
   useEffect(() => {
     fetch(
-      `http://ec2-54-146-26-87.compute-1.amazonaws.com:8081/api/v1/product/getAllProducts`
+      `http://ec2-51-20-32-195.eu-north-1.compute.amazonaws.com:8081/api/v1/product/getAll`
     )
       .then((response) => {
-        console.log(response);
+        console.log('response is',response);
         if (!response.ok) {
           throw new Error("Failed to fetch products");
         }
         return response.json();
       })
       .then((data) => {
+        console.log("Fetched datra: ", data);
+        
         data.map((product) => {
           if (id === product.id) {
+            console.log(product.id)
             setProductDetails({
-              ram: product.specifications[0].ram,
-              weight: product.specifications[0].weight,
-              storage: product.specifications[0].storage,
-              processor: product.specifications[0].processor,
-              dimensions: product.specifications[0].dimensions,
-              screenSize: product.specifications[0].screenSize,
-              graphicsCard: product.specifications[0].graphicsCard,
-              operatingSystem: product.specifications[0].operatingSystem,
+              ram: product.specifications.ram,
+              weight: product.specifications.weight,
+              storage: product.specifications.storage,
+              processor: product.specifications.processor,
+              dimensions: product.specifications.dimensions,
+              screenSize: product.specifications.screenSize,
+              graphicsCard: product.specifications.graphicsCard,
+              operatingSystem: product.specifications.operatingSystem,
             });
           }
         });

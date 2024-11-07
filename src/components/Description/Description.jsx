@@ -38,7 +38,7 @@ const Description = ({ product }) => {
             />
           </a>
         </span>
-        Səbətə at 222
+        Səbətə at
       </button>
       <div className={style.line}></div>
 

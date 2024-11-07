@@ -63,7 +63,7 @@ function Card({ card }) {
   };
 
 ///Basket-e elave etmek
-const {basket} = useSelector((state)=>state.basket)
+// const {basket} = useSelector((state)=>state.basket)
   const addbasket = () => {
     dispatch(addToCart(card));
   };

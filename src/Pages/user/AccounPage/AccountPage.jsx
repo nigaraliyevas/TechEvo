@@ -6,6 +6,7 @@ import heart from "../../../assets/images/account/accountIcon/heartIcon.svg"
 import out from "../../../assets/images/account/accountIcon/logout.svg"
 import password from '../../../assets/images/account/accountIcon/password.svg'
 import Favorites from "../../../components/Favorites/Favorites";
+import camre from '../../../assets/images/account/accountIcon/camere.svg'
 const AccountPage = () => {
 
   return (
@@ -15,7 +16,8 @@ const AccountPage = () => {
         <div className={style.account_container}>
           <div className={style.account_left}>
             <div className={style.user_image}>
-              <img src={userprofile} alt="" />
+              <img src={userprofile} alt="userprofile" />
+              <div><img src={camre} alt="camre" /></div>
             </div>
             <div className={style.user_info}>
               <div className={style.uer_info_item}>

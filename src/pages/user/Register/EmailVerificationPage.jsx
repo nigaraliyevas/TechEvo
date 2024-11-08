@@ -16,7 +16,7 @@ export default function EmailVerificationPage() {
       
       if (token && email) {
         try {
-          const response = await fetch('http://ec2-54-146-26-87.compute-1.amazonaws.com:8081/api/v1/auth/activate', {
+          const response = await fetch('http://ec2-51-20-32-195.eu-north-1.compute.amazonaws.com:8081/api/v1/auth/activate', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

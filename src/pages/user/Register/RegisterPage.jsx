@@ -49,7 +49,7 @@ export default function RegisterPage() {
         try {
             console.log(email);
             
-            const response = await fetch('http://ec2-54-146-26-87.compute-1.amazonaws.com:8081/api/v1/auth/register-email', {
+            const response = await fetch('http://ec2-51-20-32-195.eu-north-1.compute.amazonaws.com:8081/api/v1/auth/register-email', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

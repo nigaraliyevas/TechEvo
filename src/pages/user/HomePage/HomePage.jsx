@@ -10,11 +10,10 @@ import SliderComponent from "./Section/Slider/Slider";
 import { useGetProductsByCategoryNameQuery } from "../../../redux/sercives/productApi";
 
 const HomePage = () => {
-  const { data: laptopsData, isLoading: isLaptopsLoading } = useGetProductsByCategoryNameQuery("Laptop");
+  const { data: laptopsData, isLoading: isLaptopsLoading, error } = useGetProductsByCategoryNameQuery("Laptop");
   const { data: mousesData, isLoading: isMousesLoading } = useGetProductsByCategoryNameQuery("Mouse");
   const { data: klaviaturasData, isLoading: isKlaviaturasLoading } = useGetProductsByCategoryNameQuery("Klaviatura");
 
-  useGetProductsByCategoryNameQuery("");
 
 
   return (

@@ -1,49 +1,49 @@
 import { fetchBaseQuery } from "@reduxjs/toolkit/query";
-import { clearTokens, setTokens } from "../slices/TokenSlice";
-// import { clearUser } from "./slice/userSlice";
+import { setTokens, clearTokens } from "../slices/TokenSlice"; // TokenSlice importu
 
 export const baseQueryWithReauth = async (args, api, extraOptions) => {
-    let result = await fetchBaseQuery({
-        baseUrl: `http://ec2-51-20-32-195.eu-north-1.compute.amazonaws.com:8081`,
-        prepareHeaders: (headers, { getState }) => {
-            const { accessToken } = getState().auth;
-            if (accessToken) {
-                headers.set('Authorization', `Bearer ${accessToken}`);
-            }
-            return headers;
-        },
-    })(args, api, extraOptions);
+  // İlk olaraq fetchBaseQuery istifadə edirik
+  const baseQuery = fetchBaseQuery({
+    baseUrl: "http://ec2-51-20-32-195.eu-north-1.compute.amazonaws.com:8081",
+    prepareHeaders: (headers, { getState }) => {
+      const { accessToken } = getState().auth; // Redux-dan access token almaq
+      if (accessToken) {
+        headers.set("Authorization", `Bearer ${accessToken}`);
+      }
+      return headers;
+    },
+  });
 
-    if (result?.error?.status === 401) {
-        const refreshToken = api.getState().auth.refreshToken;
+  // İlk sorğunu icra et
+  let result = await baseQuery(args, api, extraOptions);
 
-        if (refreshToken) {
-            const refreshResponse = await fetch(`${import.meta.env.VITE_API_GLOBAL_URL}/api/auth/refresh`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ token: refreshToken }),
-            });
+  // Əgər 401 (Unauthorized) xətası alınarsa
+  if (result?.error?.status === 401) {
+    const refreshToken = api.getState().auth.refreshToken; // refreshToken-ı alırıq
 
-            if (refreshResponse.ok) {
-                const { accessToken: newAccessToken } = await refreshResponse.json();
-                api.dispatch(setTokens({ accessToken: newAccessToken }));
+    // refreshToken varsa, yeni accessToken əldə etməyə cəhd edirik
+    if (refreshToken) {
+      const refreshResponse = await fetch(`${import.meta.env.VITE_API_GLOBAL_URL}/api/auth/refresh`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token: refreshToken }),
+      });
 
-                result = await fetchBaseQuery({
-                    baseUrl: `${import.meta.env.VITE_API_GLOBAL_URL}`,
-                    prepareHeaders: (headers) => {
-                        headers.set('Authorization', `Bearer ${newAccessToken}`);
-                        return headers;
-                    },
-                })(args, api, extraOptions);
-            } else {
-                api.dispatch(clearTokens());
-                // api.dispatch(clearUser());
-                // Optionally redirect to login page
-            }
-        } else {
-            api.dispatch(clearTokens());
-        }
+      if (refreshResponse.ok) {
+        const { accessToken: newAccessToken } = await refreshResponse.json();
+        api.dispatch(setTokens({ accessToken: newAccessToken })); // Yeni token ilə redux store-u yeniləyirik
+
+        // Yeni token ilə sorğunu təkrarlayırıq
+        result = await baseQuery(args, api, extraOptions);
+      } else {
+        // Əgər refresh token ilə yenilənmə alınmırsa, token-ləri sıfırlayırıq
+        api.dispatch(clearTokens());
+        // Burada istifadəçini login səhifəsinə yönləndirmək ola bilər
+      }
+    } else {
+      api.dispatch(clearTokens()); // refreshToken yoxdursa da token-ləri sıfırlayırıq
     }
+  }
 
-    return result;
+  return result; // Nəticəni geri qaytarırıq
 };

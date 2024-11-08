@@ -3,21 +3,23 @@ import { useMediaQuery } from "react-responsive";
 import { TiHeartFullOutline } from "react-icons/ti";
 import StarRating from "../../components/Rating/StarRating";
 import style from "./Favorites.module.scss";
-import { useDispatch } from "react-redux";
-import { useAddFavoriteMutation } from "../../redux/sercives/productApi";
-import { removeFavoriteLocally } from "../../redux/slices/favoritesSlice";
+//import { useDispatch } from "react-redux";
+import { useRemoveFavoriteMutation } from "../../redux/sercives/favoriteApi";
 import { SlBasket } from "react-icons/sl";
 
 function FavoriteCard({ card }) {
     const { name, price, imageUrl, rating, id } = card;
-    const dispatch = useDispatch();
+   // const dispatch = useDispatch();
     const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
-    const [addFavorite] = useAddFavoriteMutation();
+    const [removeFavorite] = useRemoveFavoriteMutation();
 
-    const handleRemoveFavorite = (event) => {
+    const handleRemoveFavorite = async (event) => {
         event.stopPropagation();
-        dispatch(removeFavoriteLocally(id)); // Lokal olaraq favoritdən çıxarır
-        addFavorite(id); // Serverdə favoritdən çıxarma əməliyyatı
+        try {
+            await removeFavorite(id).unwrap(); // Favoritdən silir
+        } catch (error) {
+            console.error("Favoritdən çıxarılarkən xəta baş verdi:", error);
+        }
     };
 
     return (
@@ -34,7 +36,6 @@ function FavoriteCard({ card }) {
                                 top: "14px",
                                 right: "12px",
                                 bottom: "14px"
-
                             }} />
                         </div>
                     </div>
@@ -75,12 +76,10 @@ function FavoriteCard({ card }) {
                                 Səbətə əlavə et
                             </button>
                         </div>
-
                     </div>
                     <div className={style.cardActions} onClick={handleRemoveFavorite} aria-label="Favoritlərdən çıxar">
                         <TiHeartFullOutline style={{ color: "white", cursor: "pointer", width: "24px", height: "24px" }} />
                     </div>
-
                 </div>
             )}
         </div>

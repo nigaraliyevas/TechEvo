@@ -39,7 +39,13 @@
                     width: 100%;
                     cursor: pointer;
                     padding-bottom: 24px;
-                    border-bottom: 1px solid rgba(50, 52, 55, 1)
+                    border-bottom: 1px solid rgba(50, 52, 55, 1);
+                    position: relative;
+                    div{
+                        position: absolute;
+                        bottom: 19px;
+                        right: 36%;
+                    }
                 }
 
                 .user_info {
@@ -68,6 +74,9 @@
                             background-color: rgba(50, 52, 55, 1);
                         }
 
+                    }
+                    .active{
+                        background-color: rgba(50, 52, 55, 1);
                     }
                 }
 

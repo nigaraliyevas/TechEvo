@@ -1,6 +1,7 @@
 import { fetchBaseQuery } from "@reduxjs/toolkit/query";
 import { setTokens, clearTokens } from "../slices/TokenSlice"; // TokenSlice importu
 
+
 export const baseQueryWithReauth = async (args, api, extraOptions) => {
   // İlk olaraq fetchBaseQuery istifadə edirik
   const baseQuery = fetchBaseQuery({
@@ -9,6 +10,9 @@ export const baseQueryWithReauth = async (args, api, extraOptions) => {
       const { accessToken } = getState().auth; // Redux-dan access token almaq
       if (accessToken) {
         headers.set("Authorization", `Bearer ${accessToken}`);
+
+// Giriş funksiyası - burada API çağırışı edilir
+
       }
       return headers;
     },

@@ -8,6 +8,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useAddFavoriteMutation, useRemoveFavoriteMutation, useGetFavoritesQuery } from "../../../../../redux/sercives/favoriteApi";
 
+
+
 function Card({ card }) {
   const { name, price, imageUrl, rating, id } = card;
   const navigate = useNavigate();
@@ -75,8 +77,16 @@ function Card({ card }) {
     setSelectedImage(index);
   };
 
+///Basket-e elave etmek
+// const {basket} = useSelector((state)=>state.basket)
+  const addbasket = () => {
+    dispatch(addToCart(card));
+  };
   return (
-    <Link style={({ textDecoration: "none" })} to={`/product?id=${id}`} className={style.card}>
+    <div
+      style={{ textDecoration: "none" }}
+      className={style.card}
+    >
       <span className={style.cardAnimationSpan}></span>
       <span className={style.cardAnimationSpan}></span>
       <span className={style.cardAnimationSpan}></span>
@@ -96,6 +106,7 @@ function Card({ card }) {
               height: "100%",
             }}
           >
+            <Link  to={`/product?id=${id}`}>
             {imageUrl.map((imgSrc, index) => (
               <img
                 key={index}
@@ -105,6 +116,7 @@ function Card({ card }) {
                 style={{ width: `${100 / imageUrl.length}%` }}
               />
             ))}
+            </Link>
           </div>
         </div>
 
@@ -112,7 +124,9 @@ function Card({ card }) {
           {imageUrl.map((_, index) => (
             <div
               key={index}
-              className={`${style.radioDiv} ${selectedImage === index ? style.selected : ""}`}
+              className={`${style.radioDiv} ${
+                selectedImage === index ? style.selected : ""
+              }`}
               onClick={() => handleDivClick(index)} // Siçan üçün klik
             />
           ))}
@@ -134,15 +148,18 @@ function Card({ card }) {
 
           <div className={style.ratingBasket}>
             <StarRating value={rating} />
+
             <div className={style.basketBg}>
               <button>
                 <SlBasket style={{ width: "18px", height: "18px" }} />
               </button>
+
+     
             </div>
           </div>
         </div>
       </div>
-    </Link>
+    </div>
   );
 }
 

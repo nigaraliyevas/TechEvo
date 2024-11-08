@@ -415,7 +415,7 @@ body {
     .cardBottomTitles {
       .namePrice {
         font-family: $fontFamily;
-        
+
 
 
         h4 {
@@ -453,12 +453,15 @@ body {
           display: flex;
           justify-content: center;
           align-items: center;
+         
 
-          a {
+          button {
             color: white;
             display: flex;
             justify-content: center;
             align-items: center;
+            border: none;
+            background-color: unset;
           }
 
 
@@ -733,7 +736,7 @@ body {
       .cardBottomTitles {
         .namePrice {
           font-family: $fontFamily;
-       
+
 
 
           h4 {
@@ -774,11 +777,13 @@ body {
             justify-content: center;
             align-items: center;
 
-            a {
+            button {
               color: white;
               display: flex;
               justify-content: center;
               align-items: center;
+              border: none;
+              background-color: unset
             }
 
 

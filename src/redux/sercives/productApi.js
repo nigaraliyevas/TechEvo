@@ -10,15 +10,14 @@ export const productApi = createApi({
   endpoints: (builder) => ({
     getProducts: builder.query({
       query: () => "product/getAllProducts",
-      providesTags: ["Products"],
     }),
     getProductsByCategoryName: builder.query({
+
       query: (categoryName) =>
         `product/getAllByCategoryName?categoryName=${categoryName}`,
     }),
     getProductById: builder.query({
       query: (id) => `product/${id}`,
-      providesTags: ["Product"],
     }),
   }),
   keepUnusedDataFor: 60, // Istifade olunmayan datalari 60saniye saxlayir

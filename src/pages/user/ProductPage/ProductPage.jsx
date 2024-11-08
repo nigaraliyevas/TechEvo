@@ -21,7 +21,6 @@ const ProductPage = () => {
   const id = searchParams.get("id");
 
   const { data: product, error, isLoading } = useGetProductByIdQuery(id);
-  console.log(product, "detailData");
 
   useEffect(() => {
     if (!id) {
@@ -34,7 +33,6 @@ const ProductPage = () => {
   const [modalShow, setModalShow] = useState(false);
   const [carouselImages, setCarouselImages] = useState([]);
 
-  console.log(carouselImages, "detailImage");
   const caruselRef = useRef()
   const [currentIndex, setCurrentIndex] = useState(1);
 
@@ -86,7 +84,7 @@ const ProductPage = () => {
             <div className={styles.comments_side}>
               <Row>
                 <Col style={{ paddingLeft: "0px", paddingRight: "0px" }}>
-                  <Reviews data={{id}} />
+                  <Reviews data={{ id }} />
                 </Col>
               </Row>
             </div>

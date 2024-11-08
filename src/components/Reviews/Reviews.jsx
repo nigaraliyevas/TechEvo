@@ -11,9 +11,9 @@ const POST_REVIEW_API = "http://ec2-51-20-32-195.eu-north-1.compute.amazonaws.co
 
 const StarRating = ({ rating, setRating }) => {
 
-  
+
   const handleStarClick = (index) => {
-    setRating(index + 1); 
+    setRating(index + 1);
   };
 
   return (
@@ -24,7 +24,7 @@ const StarRating = ({ rating, setRating }) => {
           onClick={() => handleStarClick(index)}
           style={{
             fontSize: "24px",
-            color: index < rating ? "#ffc107" : "#e4e5e9", 
+            color: index < rating ? "#ffc107" : "#e4e5e9",
             cursor: "pointer",
           }}
         >
@@ -36,10 +36,8 @@ const StarRating = ({ rating, setRating }) => {
 };
 
 const Reviews = ({ data }) => {
-  const {id} = data;
-  console.log(id);
-  
-  
+  const { id } = data;
+
   const [allReviews, setAllReviews] = useState([]);
   const [visibleReviews, setVisibleReviews] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -59,12 +57,13 @@ const Reviews = ({ data }) => {
 
   const fetchReviews = async () => {
     try {
-      //burdada cekiirem datalari
-      const response = await axios.get(`${REVIEWS_API}/${id}`);
-      const fetchedReviews = response.data.reviews;
+      // //burdada cekiirem datalari
+      // const response = await axios.get(`${REVIEWS_API}/${id}`);
+      // const fetchedReviews = response.data.reviews;
+      // console.log(fetchedReviews);
 
-      setAllReviews(fetchedReviews);
-      setVisibleReviews(fetchedReviews.slice(0, visibleCount));
+      // setAllReviews(fetchedReviews);
+      // // setVisibleReviews(fetchedReviews.slice(0, visibleCount));
     } catch (error) {
       console.log("Error fetching reviews:", error);
     }
@@ -118,7 +117,7 @@ const Reviews = ({ data }) => {
 
   return (
     <div >
-      
+
       <div className={styles.totalBox}>
         <h3 style={{ fontSize: "24px", marginBottom: "40px", color: "#fff" }}>
           İstifadəçi rəyləri
@@ -140,11 +139,11 @@ const Reviews = ({ data }) => {
                 setNewReview({ ...newReview, rating })
               }
             />
-          
+
           </div>
           <button onClick={handleAddReview} className={styles.addButton}>
-              Rəy yaz
-            </button>
+            Rəy yaz
+          </button>
         </div>
 
         {/* Şərhlərin siyahısı */}

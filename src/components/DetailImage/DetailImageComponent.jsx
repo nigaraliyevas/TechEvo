@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import style from "./DetailImage.module.scss";
 
-const DetailImageComponent = ({ setModalShow, product,setCarouselImages }) => {
+const DetailImageComponent = ({ setModalShow, product, setCarouselImages }) => {
   const [detailImage, setDetailImage] = useState([]);
   const [mainImage, setMainImage] = useState(null);
 
@@ -9,11 +9,10 @@ const DetailImageComponent = ({ setModalShow, product,setCarouselImages }) => {
   useEffect(() => {
     if (product?.imageUrl) {
       setDetailImage(product.imageUrl);
-      setMainImage(product.imageUrl[0]); 
+      setMainImage(product.imageUrl[0]);
     }
   }, [product]);
 
-  console.log(mainImage, "mainImage");
 
 
   if (!detailImage || detailImage.length === 0) {
@@ -34,7 +33,8 @@ const DetailImageComponent = ({ setModalShow, product,setCarouselImages }) => {
         ))}
       </div>
       <img
-        onClick={() => {setModalShow(true)
+        onClick={() => {
+          setModalShow(true)
           setCarouselImages(product.imageUrl)
         }}
         className={style.detail_big_image}

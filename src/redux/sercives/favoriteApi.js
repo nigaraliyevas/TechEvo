@@ -1,35 +1,33 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createApi } from "@reduxjs/toolkit/query/react";
+import { baseQueryWithReauth } from "../slices/AuthSlice"; // Yenilənmiş baseQuery
 
-// Create the API
 export const favoriteApi = createApi({
-  reducerPath: "productApi",
-  baseQuery: fetchBaseQuery({
-    baseUrl: "http://ec2-51-20-32-195.eu-north-1.compute.amazonaws.com:8081/api/v1/product",
-  }),
+  reducerPath: "favoriteApi",
+  baseQuery: baseQueryWithReauth, // Yenilənmiş baseQuery
   endpoints: (builder) => ({
-    getFavorites: builder.query({ // Favoritləri çəkmək üçün
-      query: () => "favorites",
+    // Favoritləri çəkmək üçün GET əməliyyatı
+    getFavorites: builder.query({
+      query: () => "product/favorites", // Favoritləri almaq üçün sorğu
     }),
-    addFavorite: builder.mutation({ // Yeni favorit əlavə etmək üçün
+
+    // Favoritə yeni məhsul əlavə etmək üçün POST əməliyyatı
+    addFavorite: builder.mutation({
       query: (productId) => ({
-        url: `favorites/${productId}`,
-        method: "POST",
-        body: productId,
-        headers: {
-        
-        }
+        url: `product/favorites/${productId}`, // Məhsul id ilə URL
+        method: "POST", // POST metodu ilə
+        body: { productId }, // POST sorğusunda göndərilən bədən
       }),
     }),
-    removeFavorite: builder.mutation({ // Favoritdən silmək üçün
+
+    // Favoritdən məhsul silmək üçün DELETE əməliyyatı
+    removeFavorite: builder.mutation({
       query: (productId) => ({
-        url: `favorites/${productId}`,
-        method: "DELETE",
+        url: `product/favorites/${productId}`, // Məhsul id ilə URL
+        method: "DELETE", // DELETE metodu ilə
       }),
     }),
   }),
-  keepUnusedDataFor: 60,// Istifade olunmayan datalari 60saniye saxlayir
+  keepUnusedDataFor: 60, // Istifadə olunmayan dataları 60 saniyə saxlayır
 });
 
-
-export const {useGetFavoritesQuery, useAddFavoriteMutation, useRemoveFavoriteMutation } = favoriteApi;
-
+export const { useGetFavoritesQuery, useAddFavoriteMutation, useRemoveFavoriteMutation } = favoriteApi;

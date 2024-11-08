@@ -9,12 +9,11 @@ import "swiper/css/autoplay";
 import "swiper/css/controller";
 import "swiper/css/navigation";
 import Card from "./Card/Card";
-import { products } from "../../../../products";
 import styles from "../HomePage.module.scss";
 
 
 
-const Section = ({ title, data = products }) => {
+const Section = ({ title, data = [] }) => {
   const swiperRef = useRef(null);
 
   // Ekran ölçüsünü saxlamaq üçün state

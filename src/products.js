@@ -6,9 +6,9 @@ import ms1 from "./assets/images/products/Ms2.png"
 export const products = [
   {
     id: 1,
-    name: "Lenovo Legion T5 261AB790SV00BWKZ",
+    name: "Lenovo Legion T5 261AB790SV00BWKZ 00BWKZ00BWK",
     price: 500,
-    image: [pcImage,pcImage2,pcImage3,ms1],
+    imageUrl: [pcImage3,pcImage2,ms1,pcImage,],
     rating: 4.5,
     category: "game",
     brand: "hp",
@@ -19,10 +19,10 @@ export const products = [
   },
   {
     id: 2,
-    name: "Lenovo Legion T5 261AB790SV00BWKZ",
+    name: "Lenovo Legion T5 261AB790SV00BWKZ 00BWKZ00BWK",
     price: 400,
-    image: [pcImage,pcImage2,pcImage3,ms1],
-    rating: 3,
+    imageUrl: [pcImage,pcImage2,pcImage3,ms1],
+    rating: 4.5,
     category: "home",
     brand: "acer",
     processor: "AMD Ryzen 5",
@@ -32,10 +32,10 @@ export const products = [
   },
   {
     id: 3,
-    name: "Lenovo Legion T5 261AB790SV00BWKZ",
+    name: "Lenovo Legion T5 261AB790SV00BWKZ 00BWKZ",
     price: 400,
-    image: [pcImage,pcImage2,pcImage3,ms1],
-    rating: 2.5,
+    imageUrl: [pcImage,pcImage2,pcImage3,ms1],
+    rating: 5,
     category: "game",
     brand: "acer",
     processor: "i5",
@@ -47,8 +47,8 @@ export const products = [
     id: 4,
     name: "Microsoft Surface Precision Mouse",
     price: 400,
-    image: [pcImage,pcImage2,pcImage3,ms1],
-    rating: 4,
+    imageUrl: [pcImage,pcImage2,pcImage3,ms1],
+    rating: 3.5,
     category: "home",
     brand: "lenovo",
     processor: "Apple Silicon",
@@ -60,7 +60,7 @@ export const products = [
     id: 5,
     name: "Microsoft Surface Precision Mouse",
     price: 90,
-    image: [pcImage,pcImage2,pcImage3,ms1],
+    imageUrl: [pcImage,pcImage2,pcImage3,ms1],
     rating: 5,
     category: "game",
     brand: "toshiba",
@@ -73,7 +73,7 @@ export const products = [
     id: 6,
     name: "Microsoft Surface Precision Mouse",
     price: 110,
-    image: [pcImage,pcImage2,pcImage3,ms1],
+    imageUrl: [pcImage,pcImage2,pcImage3,ms1],
     rating: 5,
     category: "office",
     brand: "toshiba",
@@ -86,7 +86,7 @@ export const products = [
     id: 7,
     name: "Corsair K95 RGB Platinum XT",
     price: 300,
-   image: [pcImage,pcImage2,pcImage3,ms1],
+   imageUrl: [pcImage,pcImage2,pcImage3,ms1],
     rating: 5,
     category: "design",
     brand: "asus",
@@ -99,7 +99,8 @@ export const products = [
     id: 8,
     name: "Microsoft Surface Keyboard",
     price: 250,
-   image: [pcImage,pcImage2,pcImage3,ms1],
+
+   imageUrl: [pcImage,pcImage2,pcImage3,ms1],
     rating: 5,
     category: "office",
     brand: "asus",
@@ -112,7 +113,7 @@ export const products = [
     id: 9,
     name: "Logitech G915 TKL Wireless Mechanical",
     price: 350,
-    image: [pcImage,pcImage2,pcImage3,ms1],
+    imageUrl: [pcImage,pcImage2,pcImage3,ms1],
     rating: 5,
     category: "design",
     brand: "hp",
@@ -125,7 +126,7 @@ export const products = [
     id: 10,
     name: "Razer Blade 15 Gaming Laptop",
     price: 2800,
-    image: [pcImage,pcImage2,pcImage3,ms1],
+    imageUrl: [pcImage,pcImage2,pcImage3,ms1],
     rating: 5,
     category: "game",
     brand: "razer",
@@ -138,7 +139,7 @@ export const products = [
     id: 11,
     name: "Apple MacBook Pro 16-inch",
     price: 3200,
-    image: [pcImage,pcImage2,pcImage3,ms1],
+    imageUrl: [pcImage,pcImage2,pcImage3,ms1],
     rating: 5,
     category: "design",
     brand: "apple",
@@ -151,7 +152,7 @@ export const products = [
     id: 12,
     name: "Dell XPS 13",
     price: 1800,
-    image: [pcImage,pcImage2,pcImage3,ms1],
+    imageUrl: [pcImage,pcImage2,pcImage3,ms1],
     rating: 5,
     category: "office",
     brand: "dell",
@@ -164,7 +165,9 @@ export const products = [
     id: 13,
     name: "HP Pavilion 15",
     price: 900,
-    image: [pcImage,pcImage2,pcImage3,ms1],
+
+    imageUrl: [pcImage,pcImage2,pcImage3,ms1],
+
     rating: 5,
     category: "home",
     brand: "hp",
@@ -177,7 +180,9 @@ export const products = [
     id: 14,
     name: "Lenovo IdeaPad Gaming 3",
     price: 1200,
-    image: [pcImage,pcImage2,pcImage3,ms1],
+
+    imageUrl: [pcImage,pcImage2,pcImage3,ms1],
+
     rating: 5,
     category: "game",
     brand: "lenovo",
@@ -190,7 +195,9 @@ export const products = [
     id: 15,
     name: "Acer Aspire 5",
     price: 600,
-    image: [pcImage,pcImage2,pcImage3,ms1],
+
+    imageUrl: [pcImage,pcImage2,pcImage3,ms1],
+
     rating: 5,
     category: "home",
     brand: "acer",
@@ -204,7 +211,9 @@ export const products = [
     id: 16,
     name: "Gigabyte AORUS 15P",
     price: 2500,
-    image: [pcImage,pcImage2,pcImage3,ms1],
+
+    imageUrl: [pcImage,pcImage2,pcImage3,ms1],
+
     rating: 5,
     category: "game",
     brand: "gigabyte",
@@ -217,7 +226,9 @@ export const products = [
     id: 17,
     name: "MSI GE76 Raider",
     price: 2800,
-   image: [pcImage,pcImage2,pcImage3,ms1],
+
+   imageUrl: [pcImage,pcImage2,pcImage3,ms1],
+
     rating: 5,
     category: "game",
     brand: "msi",
@@ -230,7 +241,9 @@ export const products = [
     id: 18,
     name: "Asus ROG Zephyrus G14",
     price: 2200,
-    image: [pcImage,pcImage2,pcImage3,ms1],
+
+    imageUrl: [pcImage,pcImage2,pcImage3,ms1],
+
     rating: 5,
     category: "game",
     brand: "asus",
@@ -243,7 +256,9 @@ export const products = [
     id: 19,
     name: "Dell Inspiron 15 3000",
     price: 600,
-    image: [pcImage,pcImage2,pcImage3,ms1],
+
+    imageUrl: [pcImage,pcImage2,pcImage3,ms1],
+
     rating: 5,
     category: "office",
     brand: "dell",
@@ -256,7 +271,9 @@ export const products = [
     id: 20,
     name: "Microsoft Surface Laptop 4",
     price: 1600,
-    image: [pcImage,pcImage2,pcImage3,ms1],
+
+    imageUrl: [pcImage,pcImage2,pcImage3,ms1],
+
     rating: 5,
     category: "design",
     brand: "microsoft",
@@ -269,7 +286,9 @@ export const products = [
     id: 21,
     name: "Acer Predator Helios 300",
     price: 1900,
-    image: [pcImage,pcImage2,pcImage3,ms1],
+
+    imageUrl: [pcImage,pcImage2,pcImage3,ms1],
+
     rating: 5,
     category: "game",
     brand: "acer",
@@ -282,7 +301,9 @@ export const products = [
     id: 22,
     name: "HP Omen 15",
     price: 2100,
-    image: [pcImage,pcImage2,pcImage3,ms1],
+
+    imageUrl: [pcImage,pcImage2,pcImage3,ms1],
+
     rating: 5,
     category: "game",
     brand: "hp",
@@ -295,7 +316,9 @@ export const products = [
     id: 23,
     name: "Razer Blade Stealth 13",
     price: 1800,
-    image: [pcImage,pcImage2,pcImage3,ms1],
+
+    imageUrl: [pcImage,pcImage2,pcImage3,ms1],
+
     rating: 5,
     category: "design",
     brand: "razer",
@@ -308,7 +331,9 @@ export const products = [
     id: 24,
     name: "Lenovo ThinkPad X1 Carbon",
     price: 2400,
-    image: [pcImage,pcImage2,pcImage3,ms1],
+
+    imageUrl: [pcImage,pcImage2,pcImage3,ms1],
+
     rating: 5,
     category: "office",
     brand: "lenovo",
@@ -321,7 +346,9 @@ export const products = [
     id: 25,
     name: "Alienware m15 R6",
     price: 2700,
-    image: [pcImage,pcImage2,pcImage3,ms1],
+
+    imageUrl: [pcImage,pcImage2,pcImage3,ms1],
+
     rating: 5,
     category: "game",
     brand: "alienware",
@@ -334,7 +361,9 @@ export const products = [
     id: 26,
     name: "Samsung Galaxy Book Pro 360",
     price: 1900,
-    image: [pcImage,pcImage2,pcImage3,ms1],
+
+    imageUrl: [pcImage,pcImage2,pcImage3,ms1],
+
     rating: 5,
     category: "design",
     brand: "samsung",
@@ -347,7 +376,9 @@ export const products = [
     id: 27,
     name: "Acer Swift 3",
     price: 700,
-    image: [pcImage,pcImage2,pcImage3,ms1],
+
+    imageUrl: [pcImage,pcImage2,pcImage3,ms1],
+
     rating: 5,
     category: "home",
     brand: "acer",
@@ -360,7 +391,9 @@ export const products = [
     id: 28,
     name: "MSI Prestige 14 Evo",
     price: 1600,
-    image: [pcImage,pcImage2,pcImage3,ms1],
+
+    imageUrl: [pcImage,pcImage2,pcImage3,ms1],
+
     rating: 5,
     category: "office",
     brand: "msi",
@@ -373,7 +406,9 @@ export const products = [
     id: 29,
     name: "Asus VivoBook 15",
     price: 600,
-    image: [pcImage,pcImage2,pcImage3,ms1],
+
+    imageUrl: [pcImage,pcImage2,pcImage3,ms1],
+
     rating: 5,
     category: "home",
     brand: "asus",
@@ -386,7 +421,9 @@ export const products = [
     id: 30,
     name: "HP Spectre x360",
     price: 2000,
-    image: [pcImage,pcImage2,pcImage3,ms1],
+
+    imageUrl: [pcImage,pcImage2,pcImage3,ms1],
+
     rating: 5,
     category: "design",
     brand: "hp",
@@ -399,7 +436,9 @@ export const products = [
     id: 31,
     name: "Dell G5 15",
     price: 1200,
-    image: [pcImage,pcImage2,pcImage3,ms1],
+
+    imageUrl: [pcImage,pcImage2,pcImage3,ms1],
+
     rating: 5,
     category: "game",
     brand: "dell",
@@ -412,7 +451,9 @@ export const products = [
     id: 32,
     name: "LG Gram 17",
     price: 1800,
-    image: [pcImage,pcImage2,pcImage3,ms1],
+
+    imageUrl: [pcImage,pcImage2,pcImage3,ms1],
+
     rating: 5,
     category: "office",
     brand: "lg",
@@ -425,7 +466,9 @@ export const products = [
     id: 33,
     name: "Razer Book 13",
     price: 1600,
-    image: [pcImage,pcImage2,pcImage3,ms1],
+
+    imageUrl: [pcImage,pcImage2,pcImage3,ms1],
+
     rating: 5,
     category: "office",
     brand: "razer",
@@ -438,7 +481,9 @@ export const products = [
     id: 34,
     name: "Asus ZenBook Flip 13",
     price: 1300,
-    image: [pcImage,pcImage2,pcImage3,ms1],
+
+    imageUrl: [pcImage,pcImage2,pcImage3,ms1],
+
     rating: 5,
     category: "design",
     brand: "asus",
@@ -451,7 +496,9 @@ export const products = [
     id: 35,
     name: "Microsoft Surface Pro 7",
     price: 1500,
-    image: [pcImage,pcImage2,pcImage3,ms1],
+
+    imageUrl: [pcImage,pcImage2,pcImage3,ms1],
+
     rating: 5,
     category: "design",
     brand: "microsoft",
@@ -464,7 +511,9 @@ export const products = [
     id: 36,
     name: "HP Envy 13",
     price: 1400,
-    image: [pcImage,pcImage2,pcImage3,ms1],
+
+    imageUrl: [pcImage,pcImage2,pcImage3,ms1],
+
     rating: 5,
     category: "design",
     brand: "hp",
@@ -477,7 +526,9 @@ export const products = [
     id: 37,
     name: "Lenovo Yoga C940",
     price: 1700,
-    image: [pcImage,pcImage2,pcImage3,ms1],
+
+    imageUrl: [pcImage,pcImage2,pcImage3,ms1],
+
     rating: 5,
     category: "design",
     brand: "lenovo",
@@ -490,7 +541,9 @@ export const products = [
     id: 38,
     name: "Dell Latitude 7320",
     price: 1600,
-    image: [pcImage,pcImage2,pcImage3,ms1],
+
+    imageUrl: [pcImage,pcImage2,pcImage3,ms1],
+
     rating: 5,
     category: "office",
     brand: "dell",
@@ -503,7 +556,9 @@ export const products = [
     id: 39,
     name: "Acer Nitro 5",
     price: 1300,
-    image: [pcImage,pcImage2,pcImage3,ms1],
+
+    imageUrl: [pcImage,pcImage2,pcImage3,ms1],
+
     rating: 5,
     category: "game",
     brand: "acer",
@@ -516,7 +571,9 @@ export const products = [
     id: 40,
     name: "HP Elite Dragonfly",
     price: 1900,
-    image: [pcImage,pcImage2,pcImage3,ms1],
+
+    imageUrl: [pcImage,pcImage2,pcImage3,ms1],
+
     rating: 5,
     category: "office",
     brand: "hp",
@@ -529,7 +586,9 @@ export const products = [
     id: 41,
     name: "Samsung Galaxy Chromebook 2",
     price: 1200,
-    image: [pcImage,pcImage2,pcImage3,ms1],
+
+    imageUrl: [pcImage,pcImage2,pcImage3,ms1],
+
     rating: 5,
     category: "home",
     brand: "samsung",
@@ -542,7 +601,9 @@ export const products = [
     id: 42,
     name: "Apple iMac 24-inch",
     price: 2300,
-    image: [pcImage,pcImage2,pcImage3,ms1],
+
+    imageUrl: [pcImage,pcImage2,pcImage3,ms1],
+
     rating: 5,
     category: "design",
     brand: "apple",
@@ -555,7 +616,9 @@ export const products = [
     id: 43,
     name: "Dell Precision 5550",
     price: 3200,
-    image: [pcImage,pcImage2,pcImage3,ms1],
+
+    imageUrl: [pcImage,pcImage2,pcImage3,ms1],
+
     rating: 5,
     category: "design",
     brand: "dell",
@@ -568,7 +631,9 @@ export const products = [
     id: 44,
     name: "HP ZBook Studio G7",
     price: 2900,
-    image: [pcImage,pcImage2,pcImage3,ms1],
+
+    imageUrl: [pcImage,pcImage2,pcImage3,ms1],
+
     rating: 5,
     category: "design",
     brand: "hp",
@@ -581,7 +646,9 @@ export const products = [
     id: 45,
     name: "MSI Creator Z16",
     price: 3500,
-    image: [pcImage,pcImage2,pcImage3,ms1],
+
+    imageUrl: [pcImage,pcImage2,pcImage3,ms1],
+
     rating: 5,
     category: "design",
     brand: "msi",
@@ -594,7 +661,9 @@ export const products = [
     id: 46,
     name: "Asus ProArt StudioBook 15",
     price: 2800,
-    image: [pcImage,pcImage2,pcImage3,ms1],
+
+    imageUrl: [pcImage,pcImage2,pcImage3,ms1],
+
     rating: 5,
     category: "design",
     brand: "asus",
@@ -607,7 +676,9 @@ export const products = [
     id: 47,
     name: "Lenovo Legion 5 Pro",
     price: 2200,
-    image: [pcImage,pcImage2,pcImage3,ms1],
+
+    imageUrl: [pcImage,pcImage2,pcImage3,ms1],
+
     rating: 5,
     category: "game",
     brand: "lenovo",
@@ -620,7 +691,9 @@ export const products = [
     id: 48,
     name: "Apple MacBook Air M1",
     price: 1400,
-    image: [pcImage,pcImage2,pcImage3,ms1],
+
+    imageUrl: [pcImage,pcImage2,pcImage3,ms1],
+
     rating: 5,
     category: "office",
     brand: "apple",
@@ -633,7 +706,9 @@ export const products = [
     id: 49,
     name: "HP Chromebook x360",
     price: 500,
-    image: [pcImage,pcImage2,pcImage3,ms1],
+
+    imageUrl: [pcImage,pcImage2,pcImage3,ms1],
+
     rating: 5,
     category: "home",
     brand: "hp",
@@ -646,7 +721,9 @@ export const products = [
     id: 50,
     name: "Dell Vostro 5502",
     price: 1000,
-    image: [pcImage,pcImage2,pcImage3,ms1],
+
+    imageUrl: [pcImage,pcImage2,pcImage3,ms1],
+
     rating: 5,
     category: "office",
     brand: "dell",

@@ -1,22 +1,42 @@
 // StarRating.js
 import React from 'react';
-import StarIcon from '@mui/icons-material/Star'; // Tam ulduz ikonu
-import StarHalfIcon from '@mui/icons-material/StarHalf'; // Yarım ulduz ikonu
+import StarIcon from '@mui/icons-material/Star';
+import StarHalfIcon from '@mui/icons-material/StarHalf';
+import { styled } from '@mui/system';
 
-const StarRating = ({ value }) => {
+
+
+const StyledStarIcon = styled(StarIcon)(({ theme, fontSize }) => ({
+  color: 'gold',
+  fontSize: fontSize || '1.5rem', // Default size or prop-based size
+  [theme.breakpoints.down('sm')]: {
+    fontSize: fontSize ? `calc(${fontSize} * 0.6)` : '0.9rem', // Responsive size
+  },
+}));
+
+const StarRating = ({ value, fontSize }) => {
+  const fullStars = Math.floor(value); // Tam ulduzların sayı
+  const hasHalfStar = value % 1 !== 0; // Yarım ulduzun olub-olmaması
+
   return (
     <div style={{ display: "flex", alignItems: "center" }}>
-      {Array.from({ length: 5 }, (_, index) => {
-        if (index < Math.floor(value)) {
-          return <StarIcon key={index} sx={{ color: 'gold' }} />; // Tam ulduz
-        } else if (index === Math.floor(value) && value % 1 !== 0) {
-          return <StarHalfIcon key={index} sx={{ color: 'gold' }} />; // Yarım ulduz
-        } else {
-          return <StarIcon key={index} sx={{ color: 'transparent' }} />; // Boş ulduz
-        }
-      })}
+      {Array.from({ length: fullStars }, (_, index) => (
+        <StyledStarIcon key={index} fontSize={fontSize} /> // Tam ulduzlar
+      ))}
+      {hasHalfStar && (
+        <StyledStarIcon component={StarHalfIcon} fontSize={fontSize} key="half" /> // Yarım ulduz
+      )}
+      {/* Burada boş ulduzları gizlədirik */}
+      {Array.from({ length: 5 - fullStars - (hasHalfStar ? 1 : 0) }, (_, index) => (
+        <StyledStarIcon key={`empty-${index}`} sx={{ display: 'none' }} fontSize={fontSize} /> // Boş ulduzlar
+      ))}
+      <span style={{ marginLeft: '8px', fontSize: fontSize || '13px', color: 'white', fontWeight: '400'}}>
+        {value.toFixed(1)}
+      </span>
     </div>
   );
 };
+
+
 
 export default StarRating;

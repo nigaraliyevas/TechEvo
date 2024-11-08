@@ -1,3 +1,4 @@
+
 // styles
 import styles from "./RegisterPage.module.scss"
 // hooks
@@ -74,6 +75,7 @@ export default function RegisterPage() {
         }
         
     };
+    console.log(error);
     
     return (
             <div className={styles.container}>
@@ -84,7 +86,7 @@ export default function RegisterPage() {
                         <div className={styles.infoText}>Daxil olmaq üçün aşağıdakı xanaları doldurun.</div>
                         <form onSubmit={handleSubmit}>
                             <div className={styles.emailText}>E-poçt</div>
-                            <div className={styles.inputContainer}>
+                            <div className={error ? styles.inputContainerErrorCase : styles.inputContainer}>
                                 <input 
                                     className={styles.innerInput}
                                     placeholder="E-poçt" 

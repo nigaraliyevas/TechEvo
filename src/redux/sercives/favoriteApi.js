@@ -62,7 +62,7 @@ export const favoriteApi = createApi({
     }),
     addFavorite: builder.mutation({
       query: (productId) => ({
-        url: `/api/v1/product/favorites`,
+        url: "/api/v1/product/favorites",
         method: "POST",
         body: { productId },
       }),

@@ -15,7 +15,7 @@ const useLogin = () => {
       console.log(url);
       const response = await fetch(
         `http://ec2-51-20-32-195.eu-north-1.compute.amazonaws.com:8081/api/v1/auth/login`,
-   
+
         {
           method: "POST",
           headers: {
@@ -36,6 +36,7 @@ const useLogin = () => {
       // dispatch(setUser(email));
 
       localStorage.setItem("refreshToken", refreshToken);
+      localStorage.setItem("accessToken", accessToken);
       localStorage.setItem("email", email);
 
       toast.success(`${email} logged in.`);

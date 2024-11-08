@@ -11,10 +11,12 @@ import { useAddFavoriteMutation, useRemoveFavoriteMutation, useGetFavoritesQuery
 function Card({ card }) {
   const { name, price, imageUrl, rating, id } = card;
   const navigate = useNavigate();
-  
+
   // API-dən favoritləri alırıq
   const { data: favoriteData = [] } = useGetFavoritesQuery();
-  const { accessToken } = useSelector((state) => state.auth); // Access tokeni yoxlayırıq
+  const accessToken = localStorage.getItem("accessToken") ? localStorage.getItem("accessToken")
+    : null;
+
 
   const [addFavorite] = useAddFavoriteMutation();
   const [removeFavorite] = useRemoveFavoriteMutation();
@@ -115,7 +117,7 @@ function Card({ card }) {
 
         <div className={style.heartSpan} onClick={handleToggleFavorite}>
           {isFavorite ? (
-            <TiHeartFullOutline style={{ color: "white" }} />
+            <TiHeartFullOutline style={{ color: "black" }} />
           ) : (
             <PiHeartBold style={{ fill: "white" }} />
           )}

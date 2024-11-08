@@ -26,6 +26,7 @@ function Card({ card }) {
 
   const [selectedImage, setSelectedImage] = useState(0);
   const [lastMouseX, setLastMouseX] = useState(null);
+  const [isFavorited, setIsFavorite] = useState(false);
 
   const handleToggleFavorite = async (event) => {
     event.stopPropagation();
@@ -38,8 +39,10 @@ function Card({ card }) {
 
     try {
       if (isFavorite) {
+        setIsFavorite(false);
         await removeFavorite(id).unwrap(); // API-dən favoriti sil
       } else {
+        setIsFavorite(true);
         await addFavorite(id).unwrap(); // API-yə favoriti əlavə et
       }
     } catch (error) {
@@ -116,7 +119,7 @@ function Card({ card }) {
         </div>
 
         <div className={style.heartSpan} onClick={handleToggleFavorite}>
-          {isFavorite ? (
+          {isFavorited ? (
             <TiHeartFullOutline style={{ color: "black" }} />
           ) : (
             <PiHeartBold style={{ fill: "white" }} />

@@ -30,8 +30,11 @@ const StyledStarBorderIcon = styled(StarBorderIcon)(({ theme, fontSize }) => ({
 }));
 
 const StarRating = ({ value, fontSize }) => {
-  const fullStars = Math.floor(value); // Full star count
-  const hasHalfStar = value % 1 !== 0; // Checks if half-star is needed
+  // Dəyəri yoxlayaq və əgər düzgün bir ədəd deyilsə, default olaraq 0 təyin edək
+  const rating = typeof value === 'number' && !isNaN(value) ? value : 0;
+
+  const fullStars = Math.floor(rating); // Full star count
+  const hasHalfStar = rating % 1 !== 0; // Checks if half-star is needed
   const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0); // Empty star count
 
   return (
@@ -51,7 +54,7 @@ const StarRating = ({ value, fontSize }) => {
           fontWeight: '400',
         }}
       >
-        {value.toFixed(1)}
+        {rating.toFixed(1)} {/* Rating-in düzgün bir dəyər olduğunu yoxladıqdan sonra toFixed tətbiq edirik */}
       </span>
     </div>
   );

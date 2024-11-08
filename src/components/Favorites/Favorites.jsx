@@ -7,9 +7,7 @@ import style from "./Favorites.module.scss";
 
 function Favorites() {
   const navigate = useNavigate();
-  // const { accessToken } = useSelector((state) => state.auth); // Access token yoxlayırıq
-  const accessToken = localStorage.getItem("accessToken");
-  console.log(accessToken);
+  const { accessToken } = useSelector((state) => state.auth); // Access token yoxlayırıq
 
   // Favoritləri API-dən çəkmək
   const { data: favoriteData = [], isLoading, isError } = useGetFavoritesQuery();
@@ -37,11 +35,10 @@ function Favorites() {
       <h2>Sevimlilər</h2>
       <div className={style.favoritesList}>
         {favoriteData && favoriteData.length > 0 ? (
-          favoriteData.map((item) => (
-            <FavoriteCard
-              key={item.id}
-              card={item}
-              onRemoveFavorite={() => handleRemoveFromFavorites(item.id)} // Remove funksiyasını göndəririk
+          favoriteData.map((card) => (
+            <FavoriteCard key={card.id} card={card} 
+
+              onRemoveFavorite={() => handleRemoveFromFavorites(card.id)} // Remove funksiyasını göndəririk
             />
           ))
         ) : (

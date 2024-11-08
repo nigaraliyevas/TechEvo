@@ -129,7 +129,7 @@ const AccountPage = () => {
     setAccount(false);
   };
 
-  detailImage
+
   return (
     <div className={style.container}>
       <div className={style.account}>

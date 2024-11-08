@@ -9,29 +9,53 @@ import Features from "../../../components/DetailFeatures/Features";
 import Reviews from "../../../components/Reviews/Reviews";
 import { IoIosArrowForward } from "react-icons/io";
 import { IoIosArrowBack } from "react-icons/io";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { IoMdClose } from "react-icons/io";
+import { useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useGetProductByIdQuery } from "../../../redux/sercives/productApi";
+
 const ProductPage = () => {
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const id = searchParams.get("id");
+
+  const { data: product, error, isLoading } = useGetProductByIdQuery(id);
+  console.log(product, "detailData");
+
+  useEffect(() => {
+    if (!id) {
+      navigate("/");
+    }
+  }, [id, navigate]);
+
+  if (!id) return null;
+
   const [modalShow, setModalShow] = useState(false);
-  const caruselRef = useRef(null);
+  const [carouselImages, setCarouselImages] = useState([]);
+
+  console.log(carouselImages, "detailImage");
+const caruselRef = useRef()
+  const [currentIndex, setCurrentIndex] = useState(1); 
+
+  const extendedCarouselImages = [...carouselImages, ...carouselImages]; 
 
   const scrollNext = () => {
-    if (caruselRef.current) {
-      const maxScrollWidth = caruselRef.current.scrollWidth - caruselRef.current.clientWidth;
-
-      if (caruselRef.current.scrollLeft < maxScrollWidth) {
-        caruselRef.current.scrollLeft += 580;
-      }
+    if (currentIndex === extendedCarouselImages.length - 1) {
+      setCurrentIndex(1); 
+    } else {
+      setCurrentIndex(currentIndex + 1);
     }
   };
 
   const scrollPrev = () => {
-    if (caruselRef.current) {
-      if (caruselRef.current.scrollLeft > 0) {
-        caruselRef.current.scrollLeft -= 580;
-      }
+    if (currentIndex === 0) {
+      setCurrentIndex(extendedCarouselImages.length - 2); 
+    } else {
+      setCurrentIndex(currentIndex - 1);
     }
   };
+
   return (
     <section id="product">
       <div className={styles.container}>
@@ -40,10 +64,14 @@ const ProductPage = () => {
             <div className={styles.productDetail}>
               <Row>
                 <Col xs={5} style={{ paddingLeft: "0px", paddingRight: "0px" }}>
-                  <DetailImageComponent setModalShow={setModalShow} />
+                  <DetailImageComponent
+                    product={product}
+                    setModalShow={setModalShow}
+                    setCarouselImages={setCarouselImages} // Modalda carousele göndəriləcək şəkillər
+                  />
                 </Col>
                 <Col xs={7}>
-                  <Description />
+                  <Description product={product} />
                 </Col>
               </Row>
             </div>
@@ -70,10 +98,12 @@ const ProductPage = () => {
           </div>
         )}
 
+        <div></div>
+
         {modalShow && (
           <div className={styles.detail_modal_image}>
             <h2 className={styles.modal_image_title}>
-              Apple MacBook Pro M3 (MRW63RU){" "}
+              {product?.name} {/* Məhsul adını dinamik göstərək */}
               <div onClick={() => setModalShow(false)}>
                 <span>
                   <IoMdClose size={36} />
@@ -91,20 +121,28 @@ const ProductPage = () => {
                   </div>
                 </div>
 
-                <div className={styles.modal_image_carusel_wrap} ref={caruselRef}>
-                  <div className={styles.modal_image_carusel}>
-                    <div className={styles.carusel_image}>
-                      <img style={{ width: "580px", height: "480px" }} className={styles.module_image} src="https://www.bakuelectronics.az/assets/images/products/158475/notbuk-asus-156-fhd-ipsi3-1215uram-8gbssd-512gbintel-uhd-90nb1021-m01jr0-1.jpg" alt="" />
-                    </div>
-                    <div className={styles.carusel_image}>
-                      <img style={{ width: "580px", height: "480px" }} className={styles.module_image} src="https://www.bakuelectronics.az/assets/images/products/158475/notbuk-asus-156-fhd-ipsi3-1215uram-8gbssd-512gbintel-uhd-90nb1021-m01jr0-1.jpg" alt="" />
-                    </div>
-                    <div className={styles.carusel_image}>
-                      <img style={{ width: "580px", height: "480px" }} className={styles.module_image} src="https://www.bakuelectronics.az/assets/images/products/158475/notbuk-asus-156-fhd-ipsi3-1215uram-8gbssd-512gbintel-uhd-90nb1021-m01jr0-1.jpg" alt="" />
-                    </div>
-                    <div className={styles.carusel_image}>
-                      <img style={{ width: "580px", height: "480px" }} className={styles.module_image} src="https://www.bakuelectronics.az/assets/images/products/158475/notbuk-asus-156-fhd-ipsi3-1215uram-8gbssd-512gbintel-uhd-90nb1021-m01jr0-1.jpg" alt="" />
-                    </div>
+                <div
+                  className={styles.modal_image_carusel_wrap}
+                  ref={caruselRef}
+                >
+                  <div className={styles.modal_image_carusel_wrap}>
+                  <div
+      className={styles.modal_image_carusel}
+      style={{
+        transform: `translateX(-${currentIndex * 580}px)`,
+      }}
+    >
+      {extendedCarouselImages.map((img, index) => (
+        <div className={styles.carusel_image} key={index}>
+          <img
+            style={{ width: "580px", height: "480px" }}
+            className={styles.module_image}
+            src={img}
+            alt={`Product image ${index + 1}`}
+          />
+        </div>
+      ))}
+    </div>
                   </div>
                 </div>
               </div>

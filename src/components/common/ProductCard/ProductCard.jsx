@@ -1,5 +1,4 @@
 import { PiHeartBold } from "react-icons/pi"
-// import { Link } from "react-router-dom"
 import style from "./ProductCard.module.scss";
 import { SlBasket } from "react-icons/sl";
 import { Rating } from "@mui/material";
@@ -7,7 +6,7 @@ import { useState } from "react";
 
 const ProductCard = ({data}) => {
   const { name, price, image, rating } = data;
-  console.log(data)
+  // console.log(data)
   const [selectedImage, setSelectedImage] = useState(0);
   const [lastMouseX, setLastMouseX] = useState(null);
 
@@ -108,6 +107,7 @@ const ProductCard = ({data}) => {
           </div>
         </div>
       </div>
+
     </div>
   );
 }

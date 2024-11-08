@@ -45,10 +45,11 @@
                 .modal_image_carusel_wrap {
                     overflow-x: hidden;
                     width: 600px;
-                    scroll-behavior: smooth;
+                   
 
                     .modal_image_carusel {
                         display: flex;
+                        transition: transform 0.3s ease; 
                     }
                 }
 

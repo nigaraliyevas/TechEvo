@@ -6,18 +6,26 @@ import { GoRocket } from "react-icons/go";
 import { LiaUserPlusSolid } from "react-icons/lia";
 import { PiSignInFill } from "react-icons/pi";
 import { IoSettingsOutline } from "react-icons/io5";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import logo from "../../../assets/images/HeaderPage/tech-evo-logo 1.png";
 import { IoIosMenu } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
 import { useState } from "react";
 import { IoMdClose } from "react-icons/io";
+import "../../../App.css";
 const Header = () => {
-  const [sliderState2, setSliderState2] = useState([true, false, false, false, false,false]);
+  const [sliderState2, setSliderState2] = useState([
+    true,
+    false,
+    false,
+    false,
+    false,
+    false,
+  ]);
   const setSliderOnclick2 = (sliderIndex2) => {
-      const newSliderState2 = sliderState2.map((_, idx) => idx === sliderIndex2);
-      setSliderState2(newSliderState2);
-    };
+    const newSliderState2 = sliderState2.map((_, idx) => idx === sliderIndex2);
+    setSliderState2(newSliderState2);
+  };
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -28,78 +36,45 @@ const Header = () => {
       <div className={`${styles.container} ${styles.navbar_bg} `}>
         <nav className={styles.navbar}>
           <div className={styles.navbar_logo}>
-            <Link to="/">
+            <NavLink to="/">
               <img src={logo} alt="navBarLogo" />
-            </Link>
+            </NavLink>
           </div>
           <div className={styles.navbar_right}>
             <ul className={styles.navbar_pages}>
               <li className={styles.navbar_links}>
-                <Link
+                <NavLink
                   to={"/pc"}
                   style={{ color: "white", textDecoration: "none" }}
                 >
                   PC
-                </Link>
+                </NavLink>
                 <div className={styles.link_catagiries}>
                   <div>
                     <ul>
-                    <li className={styles.link_relative}>
-                         PC hissələri
+                      <li className={styles.link_relative}>
+                        PC hissələri
                         <div className={styles.link_catagirie_dropdown}>
                           <ul>
-                            <li>
-                              Monitorlar
-                            </li>
-                            <li>
-                              Prosessorlar
-                            </li>
-                            <li>
-                              Qida bloku
-                            </li>
-                            <li>
-                              Ana plata
-                            </li>
-                            <li>
-                              Video kart
-                            </li>
-                            <li>
-                              Operativ yaddaş
-                            </li>
-                            <li>
-                              HDD / SSD
-                            </li>
-                            <li>
-                              Soyutma sistemləri
-                            </li>
-                            <li>
-                              Şəbəkə kartları
-                            </li>
-                            <li>
-                              Səs kartları
-                            </li>
-                            <li>
-                              Keyslər
-                            </li>
-
+                            <li>Monitorlar</li>
+                            <li>Prosessorlar</li>
+                            <li>Qida bloku</li>
+                            <li>Ana plata</li>
+                            <li>Video kart</li>
+                            <li>Operativ yaddaş</li>
+                            <li>HDD / SSD</li>
+                            <li>Soyutma sistemləri</li>
+                            <li>Şəbəkə kartları</li>
+                            <li>Səs kartları</li>
+                            <li>Keyslər</li>
                           </ul>
                         </div>
                       </li>
-                      <li>
-                         Oyun üçün
-                      </li>
-                      <li>
-                         Dizayn üçün
-                      </li>
-                      <li>
-                         Ofis üçün
-                      </li>
-                      <li>
-                         Ev üçün
-                      </li>
-                      <li>
-                         Hamısı birində
-                      </li>
+                      <li>Oyun üçün</li>
+                      <li>Dizayn üçün</li>
+                      <li>Ofis üçün</li>
+                      <li>Ev üçün</li>
+                      <li>Hamısı birində</li>
                     </ul>
                   </div>
                 </div>
@@ -110,100 +85,56 @@ const Header = () => {
                 <div className={styles.link_catagiries}>
                   <div>
                     <ul>
-                      <li>
-                         Oyun üçün
-                      </li>
-                      <li>
-                         Dizayn üçün
-                      </li>
-                      <li>
-                         Ofis üçün
-                      </li>
-                      <li>
-                         Ev üçün
-                      </li>
+                      <li>Oyun üçün</li>
+                      <li>Dizayn üçün</li>
+                      <li>Ofis üçün</li>
+                      <li>Ev üçün</li>
 
-                      <li>
-                         İkisi birində
-                      </li>
+                      <li>İkisi birində</li>
                     </ul>
                   </div>
                 </div>
               </li>
               <li className={styles.navbar_links}>
-                <Link
-                  to={"/product"}
-                  style={{ color: "white", textDecoration: "none" }}
-                >
+                <Link style={{ color: "white", textDecoration: "none" }}>
                   Aksesuarlar
                 </Link>
                 <div className={styles.link_catagiries}>
                   <div>
                     <ul>
                       <li className={styles.link_relative}>
-                         Aksesuarlar
+                        Aksesuarlar
                         <div className={styles.link_catagirie_dropdown}>
                           <ul>
-                            <li>
-                              Klaviatura
-                            </li>
-                            <li>
-                              Siçan
-                            </li>
-                            <li>
-                              Qulaqlıq
-                            </li>
-                            <li>
-                              Kontrollerlər
-                            </li>
-                            <li>
-                              Veb-kamera
-                            </li>
-                            <li>
-                              Mikrofonlar
-                            </li>
-                            <li>
-                              Digər
-                            </li>
-                          </ul>
-                        </div>
-                      </li>
-                      <li  className={styles.link_relative}>
-                         Avadanlıqlar
-                        <div className={styles.link_catagirie_dropdown}>
-                          <ul>
-                            <li>
-                              Printerlər
-                            </li>
-                            <li>
-                              Skannerlər
-                            </li>
-                            <li>
-                              Proyektorlar
-                            </li>
-                            <li>
-                              Kabel və Adaptorlar
-                            </li>
-                            <li>
-                              Digər
-                            </li>
+                            <li>Klaviatura</li>
+                            <li>Siçan</li>
+                            <li>Qulaqlıq</li>
+                            <li>Kontrollerlər</li>
+                            <li>Veb-kamera</li>
+                            <li>Mikrofonlar</li>
+                            <li>Digər</li>
                           </ul>
                         </div>
                       </li>
                       <li className={styles.link_relative}>
-                         Mebel
-                        <div   className={styles.link_catagirie_dropdown}>
+                        Avadanlıqlar
+                        <div className={styles.link_catagirie_dropdown}>
                           <ul>
-                            <li>
-                              Kreslo
-                            </li>
-                            <li>
-                              Masa
-                            </li>
-                            <li>
-                              Digər
-                            </li>
-              
+                            <li>Printerlər</li>
+                            <li>Skannerlər</li>
+                            <li>Proyektorlar</li>
+                            <li>Kabel və Adaptorlar</li>
+                            <li>Digər</li>
+                          </ul>
+                        </div>
+                      </li>
+                      <li className={styles.link_relative}>
+                        Mebel
+                        <div className={styles.link_catagirie_dropdown}>
+                          <ul>
+                            <li>Kreslo</li>
+                            <li>Masa</li>
+                            <li>Digər</li>
                           </ul>
                         </div>
                       </li>
@@ -227,9 +158,9 @@ const Header = () => {
                 <FiSearch size={24} />
               </div>
               <div className={styles.navbar_icon}>
-                <Link to={"/basket"} className={styles.navbar_icon}>
+                <NavLink to={"/basket"} className={styles.navbar_icon}>
                   <SlBasket size={24} />
-                </Link>
+                </NavLink>
               </div>
               <div
                 className={styles.navbar_users}
@@ -241,32 +172,32 @@ const Header = () => {
                     <span>
                       <LiaUserPlusSolid size={24} />
                     </span>
-                    <Link
+                    <NavLink
                       style={{ color: "rgb(204, 204, 204)" }}
                       className="text-decoration-none "
                       to="/register"
                     >
                       Qeydiyyat
-                    </Link>
+                    </NavLink>
                   </div>
                   <div className={styles.navbar_users_item}>
                     <span>
                       <PiSignInFill size={24} />
                     </span>
-                    <Link
+                    <NavLink
                       style={{ color: "rgb(204, 204, 204)" }}
                       className="text-decoration-none"
                       to="/login"
                     >
                       Daxil ol
-                    </Link>
+                    </NavLink>
                   </div>
-                  <div className={styles.navbar_users_item}>
+                  <NavLink style={{textDecoration:"none",color:"rgba(204, 204, 204, 1)"}} to={"/accountpage"} className={styles.navbar_users_item}>
                     <span>
                       <BiUser size={24} />
                     </span>
                     Hesabım
-                  </div>
+                  </NavLink>
                   <div className={styles.navbar_users_item}>
                     <span>
                       <IoSettingsOutline size={24} />
@@ -280,7 +211,6 @@ const Header = () => {
 
           {/* MOBILE NAVBAR start*/}
 
-        
           <div className={styles.display_none}>
             <li className={styles.navbar_ideal}>
               <div>
@@ -377,7 +307,7 @@ const Header = () => {
               </Link>
             </div>
           </div>
-              {/* MOBILE NAVBAR END*/}
+          {/* MOBILE NAVBAR END*/}
         </nav>
       </div>
     </header>

@@ -7,7 +7,9 @@ import style from "./Favorites.module.scss";
 
 function Favorites() {
   const navigate = useNavigate();
-  const { accessToken } = useSelector((state) => state.auth); // Access token yoxlayırıq
+  // const { accessToken } = useSelector((state) => state.auth); // Access token yoxlayırıq
+  const accessToken = localStorage.getItem("accessToken");
+  console.log(accessToken);
 
   // Favoritləri API-dən çəkmək
   const { data: favoriteData = [], isLoading, isError } = useGetFavoritesQuery();

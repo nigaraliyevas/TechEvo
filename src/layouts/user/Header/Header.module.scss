@@ -37,6 +37,7 @@ header {
     margin-left: auto;
     width: 100%;
     padding: 0px 165px;
+
     @media (max-width: 600px) {
 
       padding: 0px 16px;
@@ -61,12 +62,12 @@ header {
 
     @media (max-width: 600px) {
       gap: 55px;
-     
+
 
     }
- 
 
-    
+
+
 
     .display_none {
       display: none;
@@ -204,6 +205,24 @@ header {
 
       .navbar_icon {
         color: white;
+        position: relative;
+
+        span {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: absolute;
+          top: 0px;
+          left: 15px;
+          width: 14px;
+          height: 14px;
+          font-size: 10px;
+          font-weight: 500;
+          line-height: 11.93;
+          background: linear-gradient(102.09deg, #FD393F 4.1%, #DB35E2 55.43%, #4E3DEE 94.96%);
+          border-radius: 50px;
+          color: #FFFFFF;
+        }
 
         &:hover {
           color: #b622dc;
@@ -216,8 +235,8 @@ header {
       height: 40.3px;
       cursor: pointer;
     }
-        
-    
+
+
     .navbar_links {
       height: 96px;
       min-height: 100%;
@@ -259,7 +278,7 @@ header {
         :last-child {
           border: none;
         }
-    
+
         ul {
           // gap: 8px;
           display: flex;
@@ -368,12 +387,17 @@ header {
       line-height: 28px;
       font-weight: 700;
       cursor: pointer;
-      background: $bgColor;
+      background-color: $bgColor;
       border-radius: 16px;
       padding-bottom: 8px;
+
+
+
+
+
       @media (max-width: 600px) {
         width: 140px;
-  
+
       }
 
       span {
@@ -385,9 +409,10 @@ header {
         -webkit-text-fill-color: transparent;
         border-radius: 16px;
         z-index: -1;
+
         @media (max-width: 600px) {
           width: 140px;
-    
+
         }
       }
     }

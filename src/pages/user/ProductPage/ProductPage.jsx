@@ -1,18 +1,13 @@
+import { useState, useEffect } from "react";
 import styles from "./ProductPage.module.scss";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-// import Reviews from "../../components/CommentSide/Reviews";
 import DetailImageComponent from "../../../components/DetailImage/DetailImageComponent";
-// import CommentSide from "../../components/CommentSide/Reviews";
 import Description from "../../../components/Description/Description";
 import Features from "../../../components/DetailFeatures/Features";
 import Reviews from "../../../components/Reviews/Reviews";
-import { IoIosArrowForward } from "react-icons/io";
-import { IoIosArrowBack } from "react-icons/io";
-import { useRef, useState, useEffect } from "react";
-import { IoMdClose } from "react-icons/io";
-import { useSearchParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { IoIosArrowForward, IoIosArrowBack, IoMdClose } from "react-icons/io";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import { useGetProductByIdQuery } from "../../../redux/sercives/productApi";
 
 const ProductPage = () => {
@@ -32,9 +27,12 @@ const ProductPage = () => {
 
   const [modalShow, setModalShow] = useState(false);
   const [carouselImages, setCarouselImages] = useState([]);
+  const [imageIndex, setImageIndex] = useState(0);
+  //const [currentIndex, setCurrentIndex] = useState();
+
 
   const caruselRef = useRef()
-  const [currentIndex, setCurrentIndex] = useState(1);
+  //const [currentIndex, setCurrentIndex] = useState(1);
 
   const extendedCarouselImages = [...carouselImages, ...carouselImages];
 
@@ -52,6 +50,7 @@ const ProductPage = () => {
     } else {
       setCurrentIndex(currentIndex - 1);
     }
+
   };
 
   return (
@@ -65,7 +64,8 @@ const ProductPage = () => {
                   <DetailImageComponent
                     product={product}
                     setModalShow={setModalShow}
-                    setCarouselImages={setCarouselImages} // Modalda carousele göndəriləcək şəkillər
+                    setCarouselImages={(images) => setCarouselImages(images || [])}
+                    setImageIndex={setImageIndex} // Başlanğıc şəkil indeksini təyin etmək üçün
                   />
                 </Col>
                 <Col xs={7}>
@@ -96,13 +96,14 @@ const ProductPage = () => {
           </div>
         )}
 
-        <div></div>
-
         {modalShow && (
           <div className={styles.detail_modal_image}>
             <h2 className={styles.modal_image_title}>
-              {product?.name} {/* Məhsul adını dinamik göstərək */}
-              <div onClick={() => setModalShow(false)}>
+              {product?.name}
+              <div onClick={() =>{
+                 setModalShow(false)
+                 setCurrentIndex(null)
+                 }}>
                 <span>
                   <IoMdClose size={36} />
                 </span>
@@ -141,6 +142,7 @@ const ProductPage = () => {
                         </div>
                       ))}
                     </div>
+
                   </div>
                 </div>
               </div>

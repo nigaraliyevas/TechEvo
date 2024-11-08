@@ -1,11 +1,14 @@
 import React from "react";
-import { useMediaQuery } from "react-responsive";
+// import { useMediaQuery } from "react-responsive";
 import { TiHeartFullOutline } from "react-icons/ti";
 import StarRating from "../../components/Rating/StarRating";
 import style from "./Favorites.module.scss";
 //import { useDispatch } from "react-redux";
 import { useRemoveFavoriteMutation } from "../../redux/sercives/favoriteApi";
+
 import { SlBasket } from "react-icons/sl";
+import { useMediaQuery } from "react-responsive";
+import { addToCart } from "../../redux/slices/BasketSlice";
 
 function FavoriteCard({ card }) {
     const { name, price, imageUrl, rating, id } = card;
@@ -21,6 +24,9 @@ function FavoriteCard({ card }) {
             console.error("Favoritdən çıxarılarkən xəta baş verdi:", error);
         }
     };
+  const addbasket = () => {
+    dispatch(addToCart(card));
+  };
 
     return (
         <div className={style.containerFavoriteCards}>
@@ -47,7 +53,7 @@ function FavoriteCard({ card }) {
                             <StarRating value={rating} />
                             <p>{price} AZN</p>
                         </div>
-                        <div className={style.basketBg}>
+                        <div onClick={addbasket} className={style.basketBg}>
                             <a href="#">
                                 <SlBasket style={{ width: "18px", height: "18px" }} />
                             </a>
@@ -67,7 +73,7 @@ function FavoriteCard({ card }) {
                                 <StarRating fontSize="1em" value={rating} />
                             </div>
                             <p>{price} AZN</p>
-                            <button className={style.addToCartButton}>
+                            <button onClick={addbasket} className={style.addToCartButton}>
                                 <span style={{ paddingRight: "8px" }}>
                                     <a href="#">
                                         <SlBasket className={style.boldBasketIcon} />

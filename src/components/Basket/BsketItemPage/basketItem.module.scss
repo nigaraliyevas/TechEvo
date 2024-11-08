@@ -1,30 +1,39 @@
 @import '../../../assets/variables/variables';
-.basket_items{
-            height: 712px;
-            overflow-y: auto;
-            padding-right: 20px;
+
+.basket_items {
+    max-height: 712px;
+    overflow-y: auto;
+    padding-right: 20px;
+    overflow-x: hidden;
+
     .basket_item {
-        width: 100%;
+        width: 700px;
         height: 224px;
         border: 1px solid rgba(50, 52, 55, 1);
         border-radius: 8px;
         padding: 20px;
         display: flex;
         margin-bottom: 20px;
-    
+
         .basket_image {
             width: 235px;
             height: 184px;
-            background-color: white;
             border-radius: 4px;
+
+            img {
+                width: 100%;
+                height: 100%;
+            }
         }
-    
+
         .basket_item_average {
             display: flex;
             flex-direction: column;
-            margin-left: 30px;
-    
+            padding-left: 30px;
+            width: 363px;
+
             .item_average_title {
+                min-height: 56px;
                 font-family: $fontFamily;
                 font-size: 18px;
                 font-weight: 500;
@@ -32,15 +41,15 @@
                 text-align: left;
                 color: $firstColor;
             }
-    
+
             .item_average_rating {
                 margin: 4px 0px;
-    
+
                 .raition_icon {
                     color: rgba(255, 219, 74, 1);
                     margin-left: 4px;
                 }
-    
+
                 .icoun_count {
                     font-family: $fontFamily;
                     font-size: 14.11px;
@@ -51,7 +60,7 @@
                     color: $firstColor;
                 }
             }
-    
+
             .amount_price {
                 font-family: $fontFamily;
                 font-size: 18px;
@@ -59,16 +68,17 @@
                 line-height: 28.23px;
                 color: $firstColor;
                 margin-bottom: 25px;
-    
+
+
             }
-    
+
             .item_counts {
                 width: 99px;
                 height: 37px;
                 border: 1px solid rgba(50, 52, 55, 1);
                 border-radius: 2px;
                 border-left: none;
-    
+
                 .count_button {
                     width: 32px;
                     height: 100%;
@@ -76,27 +86,28 @@
                     background-color: transparent;
                     color: rgba(204, 204, 204, 1);
                     border-left: 1px solid rgba(50, 52, 55, 1);
-    
+
                 }
             }
         }
-    
+
         .basket_item_left {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             align-items: flex-end;
-    
+
             .item_left_delete {
                 color: rgba(180, 42, 42, 1);
                 cursor: pointer;
             }
-    
+
             .basket_amounts {
                 display: flex;
                 flex-direction: column;
                 align-items: flex-end;
                 width: 87px;
+
                 .amount_name {
                     font-family: $fontFamily;
                     font-size: 18px;
@@ -104,23 +115,28 @@
                     line-height: 28px;
                     color: $firstColor;
                 }
-    
+
                 .amount_price {
                     font-family: $fontFamily;
                     font-size: 18px;
                     font-weight: 700;
                     line-height: 28px;
                     color: $firstColor;
-    
+                    min-width: 200px;
+                    text-align: end;
+
                 }
             }
         }
     }
 }
+
 /* Scrollbar'ın genel genişliği */
 ::-webkit-scrollbar {
-    width: 12px; /* Dikey scroll için genişlik */
-    height: 12px; /* Yatay scroll için yükseklik */
+    width: 12px;
+    /* Dikey scroll için genişlik */
+    height: 12px;
+    /* Yatay scroll için yükseklik */
 }
 
 /* Scrollbar arkaplan rengi */
@@ -132,7 +148,7 @@
 ::-webkit-scrollbar-thumb {
     background-color: #888;
     border-radius: 6px;
-    
+
 }
 
 /* Scrollbar'ın üstüne gelindiğinde değişen stil */

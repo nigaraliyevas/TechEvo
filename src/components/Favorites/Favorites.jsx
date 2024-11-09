@@ -36,7 +36,7 @@ function Favorites() {
       <div className={style.favoritesList}>
         {favoriteData && favoriteData.length > 0 ? (
           favoriteData.map((card) => (
-            <FavoriteCard key={card.id} card={card} 
+            <FavoriteCard key={card.productId} card={card} 
 
               onRemoveFavorite={() => handleRemoveFromFavorites(card.id)} // Remove funksiyasını göndəririk
             />

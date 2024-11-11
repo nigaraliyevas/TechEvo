@@ -1,4 +1,4 @@
-import styles from "./HomePage.module.scss";
+import styles from "./HomePage";
 import InternCr from "../../../assets/images/products/InternCr.png";
 import Delivery from "../../../assets/images/products/Delivery.png";
 import Repair from "../../../assets/images/products/Repair.png";

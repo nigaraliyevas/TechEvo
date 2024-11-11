@@ -1,6 +1,6 @@
 
 // styles
-import styles from "./RegisterPage.module.scss"
+import styles from "./RegisterPage"
 // hooks
 import { useState } from "react";
 // import { useNavigate } from "react-router-dom";

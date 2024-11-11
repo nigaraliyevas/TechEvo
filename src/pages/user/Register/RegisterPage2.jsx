@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import styles from './RegisterPage2.module.scss';
+import styles from './RegisterPage2';
 import passwordIcon from "../../../assets/images/Register/PasswordIcon.svg";
 import passwordIcon2 from "../../../assets/images/Register/PasswordIcon2.svg";
 import { useNavigate } from "react-router-dom";
-import "../../../components/css/Button.scss";
+import "../../../components/css/Button";
 import UserAgreement from "../../../components/TermsBox/UserAgreement";
 
 export default function RegisterPage2( ) {

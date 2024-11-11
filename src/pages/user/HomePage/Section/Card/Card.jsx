@@ -3,7 +3,7 @@ import { PiHeartBold } from "react-icons/pi";
 import { TiHeartFullOutline } from "react-icons/ti";
 import { SlBasket } from "react-icons/sl";
 import StarRating from "../../../../../components/Rating/StarRating";
-import style from "../../HomePage.module.scss";
+import style from "../../HomePage";
 import { Link, useNavigate } from "react-router-dom"; // useNavigate-i idxal et
 import { useDispatch, useSelector } from "react-redux";
 import { addToFavorites, removeFromFavorites } from "../../../../../redux/slices/favoritesSlice";

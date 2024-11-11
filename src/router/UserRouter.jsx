@@ -1,20 +1,20 @@
 //React Router
 import { Route, Routes } from "react-router-dom";
 //Routes
-import HomePage from "../pages/user/HomePage/HomePage";
+import HomePage from "../tempPages/user/HomePage/HomePage";
 import UserLayout from "../layouts/user/UserLayout";
-import LoginPage from "../pages/user/Login/LoginPage";
-import ForgetPassPage from "../pages/user/ForgetPasswordPage/ForgetPassPage";
-import RegisterPage from "../pages/user/Register/RegisterPage";
-import PasswordReset from "../pages/user/PasswordResetPage/PasswordReset";
-import EnterPasswordPage from "../pages/user/EnterPasswordPage/EnterPasswordPage";
-import CategoryPage from "../pages/user/CategoryPage/CategoryPage";
-import ProductPage from "../pages/user/ProductPage/ProductPage";
-import BasketPage from "../pages/user/BasketPage/BasketPage";
-import ConfirmBasket from "../pages/user/ConfirmBasketPage/ConfirmBasketPage";
-import EmailVerificationPage from "../pages/user/Register/EmailVerificationPage";
-import RegisterPage2 from "../pages/user/Register/RegisterPage2";
-import AccountPage from "../pages/user/AccounPage/AccountPage";
+import LoginPage from "../tempPages/user/Login/LoginPage";
+import ForgetPassPage from "../tempPages/user/ForgetPasswordPage/ForgetPassPage";
+import RegisterPage from "../tempPages/user/Register/RegisterPage";
+import PasswordReset from "../tempPages/user/PasswordResetPage/PasswordReset";
+import EnterPasswordPage from "../tempPages/user/EnterPasswordPage/EnterPasswordPage";
+import CategoryPage from "../tempPages/user/CategoryPage/CategoryPage";
+import ProductPage from "../tempPages/user/ProductPage/ProductPage";
+import BasketPage from "../tempPages/user/BasketPage/BasketPage";
+import ConfirmBasket from "../tempPages/user/ConfirmBasketPage/ConfirmBasketPage";
+import EmailVerificationPage from "../tempPages/user/Register/EmailVerificationPage";
+import RegisterPage2 from "../tempPages/user/Register/RegisterPage2";
+import AccountPage from "../tempPages/user/AccounPage/AccountPage";
 import AllOrders from "../components/Orders/AllOrders";
 const UserRouter = () => {
   return (

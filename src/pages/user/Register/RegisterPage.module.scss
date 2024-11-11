@@ -6,16 +6,16 @@
 
 .container {
   margin: 0 auto;
-  padding: 184px 0 120px;
+  padding: 180px 0 120px;
   background-color: #090d11;
 }
 
-
 .innerCont {
-  padding: 64px 91.5px;
+  max-width: 1300px;
+  padding: 56px 50px;
   border-radius: 2px;
   background: #161a1e;
-  max-width: 540px;
+  max-width: 480px;
   margin: 0 auto;
 }
 
@@ -37,7 +37,6 @@
   letter-spacing: 2%;
   text-align: center;
   margin-bottom: 56px;
-  white-space: nowrap;
 }
 
 .emailText {
@@ -63,40 +62,13 @@
     font-weight: 400;
     font-size: 16px;
     line-height: 20px;
+    outline: none;
     margin-top: 0;
-  }
-  .inputContainer .innerInput:focus {
-    outline: 1px solid white; /* White outline when there is no error */
   }
 
   &::placeholder {
     color: 999999;
-    font-size: 16px;
-    line-height: 20px;
-  }
-}
-.inputContainerErrorCase {
-  width: 100%;
-  border: 1px solid #db3549;
-  border-radius: 4px;
-  height: 56px;
-  
-  .innerInput {
-    width: 100%;
-    height: 100%!important;
-    border: none;
-    background: transparent;
-    color: white;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 20px;
-    margin-top: 0;
-  }
-  .inputContainerErrorCase .innerInput:focus {
-    outline: none; /* Removes white outline on error */
-  }
-  &::placeholder {
-    color: 999999;
+    opacity: 1;
     font-size: 16px;
     line-height: 20px;
   }
@@ -105,18 +77,18 @@
 .errorMessage {
   color: #db3549;
   line-height: 20px;
-  margin-top: 4px;
-  font-size: 12px;
+  margin-top: 6px;
+  font-size: 16px;
 }
 
-@media (max-width: 600px) {
+@media (min-width: 393px) and (max-width: 600px) {
   .container {
     margin: 0 auto;
-    padding: 128px 0 16px;
+    padding: 128px 0 72px;
   }
 
   .innerCont {
-    padding: 48px 23px;
+    padding: 48px 32px;
     border-radius: 2px;
     background: #161a1e;
     max-width: 361px;
@@ -151,15 +123,6 @@
     margin-bottom: 4px;
   }
 
-  .inputContainerErrorCase {
-    width: 100%;
-    border: 1px solid #DB3549;
-    border-radius: 4px;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
   .inputContainer {
     width: 100%;
     border: 1px solid #595959;
@@ -168,7 +131,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-  }
   
     .innerInput {
       width: 100%;
@@ -179,25 +141,20 @@
       font-weight: 400;
       font-size: 14px;
       line-height: 20px;
+      outline: none;
       margin-top: 0;
-    }
-    .innerInput:focus {
-      outline:1px solid white;
     }
   
     .innerInput::placeholder {
-      color: #999999;
+      color: 999999;
       opacity: 1;
       font-size: 14px;
       line-height: 20px;
     }
-
+  }
 
   .errorMessage {
-    font-size: 12px;
-    line-height: 20px;
-    color: #DB3549;
-    margin-top: 4px;
+    font-size: 14px;
   }
 
   .btnResponsive {

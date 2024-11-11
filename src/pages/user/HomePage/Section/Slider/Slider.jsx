@@ -1,5 +1,5 @@
 import Slider from "react-slick";
-import styles from "../../HomePage.module.scss";
+import styles from "../../HomePage";
 import Slide1 from "../../../../../assets/images/HomePage/Slider/NeonSlide1.png";
 import Slide2 from "../../../../../assets/images/HomePage/Slider/NeonSlide2.png";
 import Slide3 from "../../../../../assets/images/HomePage/Slider/NeonSlide3.png";

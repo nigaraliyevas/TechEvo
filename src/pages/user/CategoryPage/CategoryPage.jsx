@@ -1,5 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import styles from "./CategoryPage.module.scss";
+import styles from "./CategoryPage";
 import Pagination from "../../../components/Pagination/Pagination";
 import SearchBar from "../../../components/Search/SearchBar";
 import { useState } from "react";

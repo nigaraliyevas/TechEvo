@@ -10,7 +10,7 @@ import "swiper/css/controller";
 import "swiper/css/navigation";
 import Card from "./Card/Card";
 import { products } from "../../../../products";
-import styles from "../HomePage.module.scss";
+import styles from "../HomePage";
 
 
 

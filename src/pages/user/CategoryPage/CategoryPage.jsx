@@ -70,6 +70,7 @@ const CategoryPage = () => {
     return matchesQuery && matchesPrice && matchesCategory && matchesBrand && matchesProcessor;
   });
 
+  
   let sortedProducts = [];
   if (filteredProducts.length > 0 || filterQueries.sortType) {
     sortedProducts = filteredProducts.sort((a, b) => {

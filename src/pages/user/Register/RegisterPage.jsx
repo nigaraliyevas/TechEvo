@@ -2,18 +2,18 @@
 import styles from "./RegisterPage.module.scss"
 // hooks
 import { useState } from "react";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 // navigating page
-// import RegisterPage2 from "./RegisterPage2";
+import RegisterPage2 from "./RegisterPage2";
 // common button
 import "../../../components/css/Button.scss";
 export default function RegisterPage() {
 
     const [error, setError] = useState('');
     const [submitted, setSubmitted] = useState(false);
-    // const [showPage2, setShowPage2] = useState(false)
+    const [showPage2, setShowPage2] = useState(false)
     const [email, setEmail] = useState("");
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const validateEmail = (email) => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
@@ -34,7 +34,7 @@ export default function RegisterPage() {
         e.preventDefault();
 
         setSubmitted(true);
-
+        
         if (!validateEmail(email)) {
             setError('Düzgün E-poçt Ünvanından istifadə edilməyib');
             return;
@@ -44,12 +44,12 @@ export default function RegisterPage() {
         setError('');
         // localStorage.setItem('email', email);
         // setShowPage2(true);
-
-
+        
+        
         try {
             console.log(email);
-
-            const response = await fetch('http://ec2-51-20-32-195.eu-north-1.compute.amazonaws.com:8081/api/v1/auth/register-email', {
+            
+            const response = await fetch('https://0605-5-133-233-247.ngrok-free.app/api/v1/auth/register-email', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -57,13 +57,13 @@ export default function RegisterPage() {
                 body: JSON.stringify({ email: email }),
             });
             console.log(response);
-
+            
             if (response.ok) { 
-                sessionStorage.setItem('email', email);
+                localStorage.setItem('email', email);
                 // setError('');
                 // setShowPage2(true);
+                navigate("/verify-email");
                 alert('Please check your email for verification.');
-                // navigate("/verify-email");
             } else {
                 const errorText = await response.text(); // Read the response as text
                 setError(`Email saxlanıla bilmədi: ${errorText}`);
@@ -72,13 +72,12 @@ export default function RegisterPage() {
             setError('Xəta baş verdi.');
             console.error(err);
         }
-
+        
     };
-
+    
     return (
             <div className={styles.container}>
-                {/* {showPage2 ? (<RegisterPage2/>) : */}
-                 (
+                {showPage2 ? (<RegisterPage2/>) : (
                     <div className={styles.innerCont}>
                         <div className={styles.topText}>Qeydiyyat</div>
                         <div className={styles.infoText}>Daxil olmaq üçün aşağıdakı xanaları doldurun.</div>
@@ -103,8 +102,7 @@ export default function RegisterPage() {
                             </button>
                         </form>
                     </div>
-                )
-                {/* } */}
+                )}
             </div>
     )
 }

@@ -15,7 +15,7 @@ function Card({ card }) {
   const navigate = useNavigate();
 
   // API-dən favoritləri alırıq
-  const { data: favoriteData = [] } = useGetFavoritesQuery();
+  const { data: favoriteData = [], isLoading, isError, refetch } = useGetFavoritesQuery();
   const accessToken = localStorage.getItem("accessToken") ? localStorage.getItem("accessToken")
     : null;
 
@@ -47,6 +47,8 @@ function Card({ card }) {
         setIsFavorite(true);
         await addFavorite(id).unwrap(); // API-yə favoriti əlavə et
       }
+
+      refetch();
     } catch (error) {
       console.error("Favorit əməliyyatı zamanı xəta baş verdi:", error);
     }
@@ -77,8 +79,8 @@ function Card({ card }) {
     setSelectedImage(index);
   };
 
-///Basket-e elave etmek
-// const {basket} = useSelector((state)=>state.basket)
+  ///Basket-e elave etmek
+  // const {basket} = useSelector((state)=>state.basket)
   const addbasket = () => {
     dispatch(addToCart(card));
   };
@@ -106,16 +108,16 @@ function Card({ card }) {
               height: "100%",
             }}
           >
-            <Link  to={`/product?id=${id}`}>
-            {imageUrl.map((imgSrc, index) => (
-              <img
-                key={index}
-                className={style.cardImg}
-                src={imgSrc}
-                alt={name}
-                style={{ width: `${100 / imageUrl.length}%` }}
-              />
-            ))}
+            <Link to={`/product?id=${id}`}>
+              {imageUrl.map((imgSrc, index) => (
+                <img
+                  key={index}
+                  className={style.cardImg}
+                  src={imgSrc}
+                  alt={name}
+                  style={{ width: `${100 / imageUrl.length}%` }}
+                />
+              ))}
             </Link>
           </div>
         </div>
@@ -124,9 +126,8 @@ function Card({ card }) {
           {imageUrl.map((_, index) => (
             <div
               key={index}
-              className={`${style.radioDiv} ${
-                selectedImage === index ? style.selected : ""
-              }`}
+              className={`${style.radioDiv} ${selectedImage === index ? style.selected : ""
+                }`}
               onClick={() => handleDivClick(index)} // Siçan üçün klik
             />
           ))}
@@ -134,9 +135,9 @@ function Card({ card }) {
 
         <div className={style.heartSpan} onClick={handleToggleFavorite}>
           {isFavorited ? (
-            <TiHeartFullOutline style={{ color: "black" }} />
+            <TiHeartFullOutline style={{ color: "red" }} />
           ) : (
-            <PiHeartBold style={{ fill: "white" }} />
+            <PiHeartBold style={{ fill: "red" }} />
           )}
         </div>
 
@@ -154,7 +155,7 @@ function Card({ card }) {
                 <SlBasket style={{ width: "18px", height: "18px" }} />
               </button>
 
-     
+
             </div>
           </div>
         </div>

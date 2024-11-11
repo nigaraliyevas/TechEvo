@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
-import { formatDistanceToNow } from 'date-fns';
-import { FaUserCircle } from 'react-icons/fa';
-import { RxChevronDown } from 'react-icons/rx';
+import { parseISO, formatDistanceToNowStrict } from 'date-fns';
+import { tr } from 'date-fns/locale';
 import { useGetReviewsQuery, usePostReviewMutation } from '../../redux/sercives/reviewsApi';
 import styles from './Reviews.module.scss';
+import { FaUserCircle } from 'react-icons/fa';
+import { RxChevronDown } from 'react-icons/rx';
+import { AiFillStar } from 'react-icons/ai';
 
 const StarRating = ({ rating, setRating }) => {
   const handleStarClick = (index) => {
@@ -36,20 +38,27 @@ const Reviews = ({ data }) => {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.auth.refreshToken);
   const [newReview, setNewReview] = useState({ rating: 0, comment: '' });
-  // const [visibleCount, setVisibleCount] = useState(2);
-  const { data: reviewsData, error, isLoading } = useGetReviewsQuery({productId: Number(id)});
+  const [visibleCount, setVisibleCount] = useState(2);
+
+  const { data: reviewsData, error, isLoading } = useGetReviewsQuery({ productId: Number(id) });
   const [postReview] = usePostReviewMutation();
   const user = localStorage.getItem('email');
+  const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    if (!user) {
-      Swal.fire({
-        icon: 'warning',
-        title: 'Giriş Tələb olunur',
-        text: 'Rəy yazmaq üçün xahiş olunur, giriş edin.',
-      });
+    if (reviewsData) {
+      setReviews(reviewsData);
     }
-  }, [user]);
+  }, [reviewsData]);
+
+  const calculateTimeAgo = (timestamp) => {
+    try {
+      const date = parseISO(timestamp);
+      return formatDistanceToNowStrict(date, { addSuffix: true, locale: tr });
+    } catch (error) {
+      return 'Bilinməyən vaxt';
+    }
+  };
 
   const handleAddReview = async () => {
     if (!user) {
@@ -67,6 +76,15 @@ const Reviews = ({ data }) => {
 
         if (response?.data?.status === 201) {
           Swal.fire('Uğur', 'Rəyiniz əlavə edildi!', 'success');
+
+          // Yeni rəy state-ə əlavə olunur
+          setReviews([{ 
+            ...newReview, 
+            commentOwner: user, 
+            createdAt: new Date().toISOString() 
+          }, ...reviews]);
+
+          setNewReview({ rating: 0, comment: '' });
         }
       } catch (error) {
         Swal.fire('Xəta', 'Rəy göndərilərkən xəta baş verdi.', error.message);
@@ -80,7 +98,27 @@ const Reviews = ({ data }) => {
     }
   };
 
-  // const visibleReviews = reviewsData?.reviews?.slice(0, visibleCount);
+  const visibleReviews = reviews.slice(0, visibleCount);
+
+  const handleLoadMore = () => {
+    setVisibleCount((prevCount) => prevCount + 2);
+  };
+
+  const renderStars = (rating) => {
+    return (
+      <div className={styles.star_container}>
+        {[...Array(5)].map((_, index) => (
+          <AiFillStar
+            key={index}
+            style={{
+              fontSize: '15px',
+              color: index < rating ? '#ffc107' : '#e4e5e9',
+            }}
+          />
+        ))}
+      </div>
+    );
+  };
 
   return (
     <div className={styles.totalBox}>
@@ -92,9 +130,7 @@ const Reviews = ({ data }) => {
         <div className={styles.textAreaContainer}>
           <textarea
             value={newReview.comment}
-            onChange={(e) =>
-              setNewReview({ ...newReview, comment: e.target.value })
-            }
+            onChange={(e) => setNewReview({ ...newReview, comment: e.target.value })}
             placeholder="Rəy yaz..."
             className={styles.textArea}
           />
@@ -110,36 +146,38 @@ const Reviews = ({ data }) => {
 
       <div className={styles.reviewBox}>
         {isLoading && <div>Yüklənir...</div>}
-        {reviewsData &&
-          reviewsData?.map((review, index) => (
-            <div key={index} className={styles.review}>
-              <div className={styles.reviewHeader}>
-                <div className={styles.profileImage}>
-                  {review?.profileImg ? (
-                    <img
-                      src={review?.profileImg}
-                      alt="Profil şəkli"
-                      className={styles.profileImage}
-                    />
-                  ) : (
-                    <FaUserCircle className={styles.defaultProfileIcon} />
-                  )}
-                </div>
-                <div className={styles.userInfo}>
-                  <strong className={styles.userName}>
-                    {review?.commentOwner}
-                  </strong>
-                  <div className={styles.reviewTime}>
-                    {formatDistanceToNow(new Date(review.createdAt), {
-                      addSuffix: true,
-                    })}
-                  </div>
-                  <div>{review?.rating} ulduz</div>
-                </div>
+        {error && <div>Xəta baş verdi. Zəhmət olmasa yenidən cəhd edin.</div>}
+        {!isLoading && !reviews.length && <div>Hələ rəy yoxdur</div>}
+
+        {visibleReviews.map((review, index) => (
+          <div key={index} className={styles.review}>
+            <div className={styles.reviewHeader}>
+              <div className={styles.profileImage}>
+                {review?.profileImg ? (
+                  <img src={review?.profileImg} alt="Profil şəkli" className={styles.profileImage} />
+                ) : (
+                  <FaUserCircle className={styles.defaultProfileIcon} />
+                )}
               </div>
-              <p className={styles.reviewText}>{review?.comment}</p>
+              <div className={styles.userInfo}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                  <strong className={styles.userName}>{review?.commentOwner}</strong>
+                  <div className={styles.reviewTime}>
+                    {calculateTimeAgo(review?.createdAt)}
+                  </div>
+                </div>
+                <div>{renderStars(review?.rating)}</div>
+              </div>
             </div>
-          ))}
+            <p className={styles.reviewText}>{review?.comment}</p>
+          </div>
+        ))}
+
+        {reviews.length > visibleCount && (
+          <button onClick={handleLoadMore} className={styles.loadMoreButton}>
+            Daha çox göstər <RxChevronDown style={{ fontSize: '26px' }} />
+          </button>
+        )}
       </div>
     </div>
   );

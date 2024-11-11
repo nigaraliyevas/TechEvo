@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
-import styles from './RegisterPage2';
+import styles from './RegisterPage2.module.scss';
 import passwordIcon from "../../../assets/images/Register/PasswordIcon.svg";
 import passwordIcon2 from "../../../assets/images/Register/PasswordIcon2.svg";
+import noProfileImg from "../../../assets/images/Register/noProfileImg.svg";
 import { useNavigate } from "react-router-dom";
-import "../../../components/css/Button";
+import "../../../components/css/Button.scss";
 import UserAgreement from "../../../components/TermsBox/UserAgreement";
 
-export default function RegisterPage2( ) {
+export default function RegisterPage2() {
   const navigate = useNavigate();
   const [isChecked, setIsChecked] = useState(false);
   const [showTerms, setShowTerms] = useState(false);
@@ -47,40 +48,20 @@ export default function RegisterPage2( ) {
     };
   }, [showTerms]);
 
-  useEffect(() => {
-    const isVerified = sessionStorage.getItem('isVerified');
-    console.log(isVerified);
-    if(!isVerified) navigate('/register');
-  }, [navigate])
-
   const handleTerms = (e) => {
     e.stopPropagation(); // Prevent closing when clicking on the terms menu itself
-    setShowTerms((prevShowTerms) => !prevShowTerms);
-    console.log(isChecked)
+    setShowTerms(!showTerms);
   };
 
-
-
   const handleChangeChecked = (event) => {
-      const isChecked = event.target.checked;
-      setIsChecked(isChecked);
-      setFormData((prevFormData) =>({
-        ...prevFormData,
-        acceptTerms: isChecked
-      }));
-      setErrors((prevErrors) => ({...prevErrors, acceptTerms: ""}));
-    }
-
-    const updateFormData = (acceptTerms) => {
-      setFormData((prevData) => ({
-        ...prevData,
-        acceptTerms
-      }));
-    };
-
-  const handleChildData = (data) => {
-    setIsChecked(data);
-  }
+    const isChecked = event.target.checked;
+    setIsChecked(isChecked);
+    setFormData((prevFormData) =>({
+      ...prevFormData,
+      acceptTerms: isChecked
+    }));
+    setErrors((prevErrors) => ({...prevErrors, acceptTerms: ""}));
+  };
 
   const validatePassword = (password) => {
     const passwordErrors = [];
@@ -159,27 +140,60 @@ export default function RegisterPage2( ) {
       return;
     }
 
-    const email = sessionStorage.getItem("email");
+    const email = localStorage.getItem("email");
+    console.log(formData, email);
+
+    // const formDataToSend = new FormData();
+    // formDataToSend.append("firstName", formData.firstName);
+    // formDataToSend.append("lastName", formData.lastName);
+    // formDataToSend.append("email", email);
+    // formDataToSend.append("password", formData.password);
+    // formDataToSend.append("confirmPassword", formData.confirmPassword);
+    // formDataToSend.append("acceptTerms", formData.acceptTerms);
 
 
-    const dataToSend = {
+    // try {
+    //   const imageResponse = await fetch(passwordIcon); // Get the image as a Blob
+    //   const imageBlob = await imageResponse.blob();
+    //   formDataToSend.append("passwordIcon", imageBlob, "passwordIcon.svg"); // Append with a filename
+    // } catch (error) {
+    //   console.error("Error fetching the image file:", error);
+    //   return;
+    // }
+
+    const queryParams = new URLSearchParams({
       firstName: formData.firstName,
       lastName: formData.lastName,
       email: email,
       password: formData.password,
       confirmPassword: formData.confirmPassword,
       acceptTerms: formData.acceptTerms
-    };
+    }).toString();
+  
+    const url = `https://0605-5-133-233-247.ngrok-free.app/api/v1/auth/register?${queryParams}`;
+  
+    // Create formData for image
+    const formDataToSend = new FormData();
+    try {
+      const imageResponse = await fetch(noProfileImg); // Fetch the image as a Blob
+      const imageBlob = await imageResponse.blob();
+      formDataToSend.append("profileImg", imageBlob, "noProfileImg.svg"); // Append with a filename
+    } catch (error) {
+      console.error("Error fetching the image file:", error);
+      return;
+    }
 
 
     try {
-      const response = await fetch('http://ec2-51-20-32-195.eu-north-1.compute.amazonaws.com:8081/api/v1/auth/register',
+      const response = await fetch(
+        url,
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(dataToSend),
+          // headers: {
+          //   "Content-Type": "application/json",
+          // },
+          // body: JSON.stringify({ ...formData, email }),
+          body: formDataToSend,
         }
       );
 
@@ -215,135 +229,136 @@ export default function RegisterPage2( ) {
     setShowRepeatedPassword(!showRepeatedPassword);
   };
 
+  // const handleTerms = () => {
+  //   setShowTerms(true);
+  // }
 
   return (
     <>
-      <div className={styles.container}>
-        <div className={styles.innerCont}>
-          <div className={styles.topText}>Qeydiyyat</div>
-          <div className={styles.infoText}>
-            Daxil olmaq üçün aşağıdakı xanaları doldurun.
-          </div>
-          <form onSubmit={handleSubmit}>
-            <div className={styles.register2Container}>
-              {/* First Name Field */}
-              <div>
-                <div className={styles.subHeader}>Ad</div>
-                <div className={styles.inputContainer}>
-                  <input
-                    name="firstName"
-                    value={formData.firstName}
-                    onChange={handleChange}
-                    required
-                    className={styles.innerInput}
-                    type="text"
-                    placeholder="Ad"
-                  />
-                </div>
-                {errors.firstName && <p className={styles.errorMessage}>{errors.firstName}</p>}
-              </div>
-
-              {/* Last Name Field */}
-              <div>
-                <div className={styles.subHeader}>Soyad</div>
-                <div className={styles.inputContainer}>
-                  <input
-                    name="lastName"
-                    value={formData.lastName}
-                    onChange={handleChange}
-                    required
-                    className={styles.innerInput}
-                    type="text"
-                    placeholder="Soyad"
-                  />
-                </div>
-                {errors.lastName && (
-                  <p className={styles.errorMessage}>{errors.lastName}</p>
-                )}
-              </div>
-
-              {/* Password Field */}
-              <div>
-                <div className={styles.subHeader}>Şifrə</div>
-                <div className={styles.inputContainer}>
-                  <input
-                    name="password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    required
-                    className={styles.innerInput}
-                    type={showPassword ? "text" : "password"}
-                    placeholder="Şifrənizi daxil edin"
-                  />
-                  <div className={styles.icon}>
-                    <img
-                      onClick={handlePassword}
-                      className={styles.iconImage}
-                      src={showPassword ? passwordIcon2 : passwordIcon}
-                      alt="ClosedEyeIcon"
-                    />
-                  </div>
-                </div>
-                {errors.password && (
-                  <p className={styles.errorMessage}>{errors.password}</p>
-                )}
-              </div>
-
-              {/* Confirm Password Field */}
-              <div>
-                <div className={styles.subHeader}>Şifrəni təkrarla</div>
-                <div className={styles.inputContainer}>
-                  <input
-                    name="confirmPassword"
-                    value={formData.confirmPassword}
-                    onChange={handleChange}
-                    required
-                    className={styles.innerInput}
-                    type={showRepeatedPassword ? "text" : "password"}
-                    placeholder="Şifrənizi daxil edin"
-                  />
-                  <div className={styles.icon}>
-                    <img
-                      onClick={handleRepeatedPassword}
-                      className={styles.iconImage}
-                      src={showRepeatedPassword ? passwordIcon2 : passwordIcon}
-                      alt="ClosedEyeIcon"
-                    />
-                  </div>
-                </div>
-                {errors.confirmPassword && (
-                  <p className={styles.errorMessage}>{errors.confirmPassword}</p>
-                )}
-              </div>
-            </div>
-
-            {/* Agreement Field */}
-            <div className={styles.agreementBox}>
-              <div className={styles.checkBoxContainer}>
-                <input
-                  onChange={handleChangeChecked}
-                  className={styles.checkBoxInput}
-                  type="checkbox"
-                  checked={formData.acceptTerms}
-                />
-                <span className={styles.customCheckmark}></span>
-              </div>
-              <div
-                className={styles.termsText}
-                onClick={handleTerms}>
-                İstifadəçi şərtləri ilə razıyam
-              </div>
-            </div>
-            {errors.acceptTerms && <p className={styles.errorMessage}>{errors.acceptTerms}</p>}
-
-            {/* Submit Button */}
-            <button type="submit" className={`${styles.btnResponsive} Btn`}>
-              Qeydiyyatdan keç
-            </button>
-          </form>
-        </div>
+      <div className={styles.innerCont}>
+      <div className={styles.topText}>Qeydiyyat</div>
+      <div className={styles.infoText}>
+        Daxil olmaq üçün aşağıdakı xanaları doldurun.
       </div>
-    {showTerms ? <UserAgreement sendDataToParent = {handleChildData} updateFormData = {updateFormData} /> : null} 
+      <form onSubmit={handleSubmit}>
+        <div className={styles.register2Container}>
+          {/* First Name Field */}
+          <div>
+            <div className={styles.subHeader}>Ad</div>
+            <div className={styles.inputContainer}>
+              <input
+                name="firstName"
+                value={formData.firstName}
+                onChange={handleChange}
+                required
+                className={styles.innerInput}
+                type="text"
+                placeholder="Ad"
+              />
+            </div>
+            {errors.firstName && <p className={styles.errorMessage}>{errors.firstName}</p>}
+          </div>
+
+          {/* Last Name Field */}
+          <div>
+            <div className={styles.subHeader}>Soyad</div>
+            <div className={styles.inputContainer}>
+              <input
+                name="lastName"
+                value={formData.lastName}
+                onChange={handleChange}
+                required
+                className={styles.innerInput}
+                type="text"
+                placeholder="Soyad"
+              />
+            </div>
+            {errors.lastName && (
+              <p className={styles.errorMessage}>{errors.lastName}</p>
+            )}
+          </div>
+
+          {/* Password Field */}
+          <div>
+            <div className={styles.subHeader}>Şifrə</div>
+            <div className={styles.inputContainer}>
+              <input
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                required
+                className={styles.innerInput}
+                type={showPassword ? "text" : "password"}
+                placeholder="Şifrənizi daxil edin"
+              />
+              <div className={styles.icon}>
+                <img
+                  onClick={handlePassword}
+                  className={styles.iconImage}
+                  src={showPassword ? passwordIcon2 : passwordIcon}
+                  alt="ClosedEyeIcon"
+                />
+              </div>
+            </div>
+            {errors.password && (
+              <p className={styles.errorMessage}>{errors.password}</p>
+            )}
+          </div>
+
+          {/* Confirm Password Field */}
+          <div>
+            <div className={styles.subHeader}>Şifrəni təkrarla</div>
+            <div className={styles.inputContainer}>
+              <input
+                name="confirmPassword"
+                value={formData.confirmPassword}
+                onChange={handleChange}
+                required
+                className={styles.innerInput}
+                type={showRepeatedPassword ? "text" : "password"}
+                placeholder="Şifrənizi daxil edin"
+              />
+              <div className={styles.icon}>
+                <img
+                  onClick={handleRepeatedPassword}
+                  className={styles.iconImage}
+                  src={showRepeatedPassword ? passwordIcon2 : passwordIcon}
+                  alt="ClosedEyeIcon"
+                />
+              </div>
+            </div>
+            {errors.confirmPassword && (
+              <p className={styles.errorMessage}>{errors.confirmPassword}</p>
+            )}
+          </div>
+        </div>
+
+        {/* Agreement Field */}
+        <div className={styles.agreementBox}>
+          <div className={styles.checkBoxContainer}>
+            <input
+              onChange={handleChangeChecked}
+              className={styles.checkBoxInput}
+              type="checkbox"
+              checked={isChecked}
+            />
+            <span className={styles.customCheckmark}></span>
+          </div>
+          <div
+            className={styles.termsText}
+            onClick={handleTerms}>
+            İstifadəçi şərtləri ilə razıyam
+          </div>
+        </div>
+        {errors.acceptTerms && <p className={styles.errorMessage}>{errors.acceptTerms}</p>}
+
+        {/* Submit Button */}
+        <button type="submit" className={`${styles.btnResponsive} Btn`}>
+          Qeydiyyatdan keç
+        </button>
+      </form>
+    </div>
+    {showTerms ? <UserAgreement /> : null} 
     </>
   );
 }

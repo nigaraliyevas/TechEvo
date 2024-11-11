@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import "../../../components/css/Button.scss";
 import UserAgreement from "../../../components/TermsBox/UserAgreement";
 
-export default function RegisterPage2() {
+export default function RegisterPage2( ) {
   const navigate = useNavigate();
   const [isChecked, setIsChecked] = useState(false);
   const [showTerms, setShowTerms] = useState(false);
@@ -48,6 +48,12 @@ export default function RegisterPage2() {
     };
   }, [showTerms]);
 
+  useEffect(() => {
+    const isVerified = sessionStorage.getItem('isVerified');
+    console.log(isVerified);
+    if(!isVerified) navigate('/register');
+  }, [navigate])
+
   const handleTerms = (e) => {
     e.stopPropagation(); // Prevent closing when clicking on the terms menu itself
     setShowTerms(!showTerms);
@@ -62,6 +68,10 @@ export default function RegisterPage2() {
     }));
     setErrors((prevErrors) => ({...prevErrors, acceptTerms: ""}));
   };
+
+  const handleChildData = (data) => {
+    setIsChecked(data);
+  }
 
   const validatePassword = (password) => {
     const passwordErrors = [];
@@ -140,60 +150,27 @@ export default function RegisterPage2() {
       return;
     }
 
-    const email = localStorage.getItem("email");
-    console.log(formData, email);
-
-    // const formDataToSend = new FormData();
-    // formDataToSend.append("firstName", formData.firstName);
-    // formDataToSend.append("lastName", formData.lastName);
-    // formDataToSend.append("email", email);
-    // formDataToSend.append("password", formData.password);
-    // formDataToSend.append("confirmPassword", formData.confirmPassword);
-    // formDataToSend.append("acceptTerms", formData.acceptTerms);
+    const email = sessionStorage.getItem("email");
 
 
-    // try {
-    //   const imageResponse = await fetch(passwordIcon); // Get the image as a Blob
-    //   const imageBlob = await imageResponse.blob();
-    //   formDataToSend.append("passwordIcon", imageBlob, "passwordIcon.svg"); // Append with a filename
-    // } catch (error) {
-    //   console.error("Error fetching the image file:", error);
-    //   return;
-    // }
-
-    const queryParams = new URLSearchParams({
+    const dataToSend = {
       firstName: formData.firstName,
       lastName: formData.lastName,
       email: email,
       password: formData.password,
       confirmPassword: formData.confirmPassword,
       acceptTerms: formData.acceptTerms
-    }).toString();
-  
-    const url = `https://0605-5-133-233-247.ngrok-free.app/api/v1/auth/register?${queryParams}`;
-  
-    // Create formData for image
-    const formDataToSend = new FormData();
-    try {
-      const imageResponse = await fetch(noProfileImg); // Fetch the image as a Blob
-      const imageBlob = await imageResponse.blob();
-      formDataToSend.append("profileImg", imageBlob, "noProfileImg.svg"); // Append with a filename
-    } catch (error) {
-      console.error("Error fetching the image file:", error);
-      return;
-    }
+    };
 
 
     try {
-      const response = await fetch(
-        url,
+      const response = await fetch('http://ec2-51-20-32-195.eu-north-1.compute.amazonaws.com:8081/api/v1/auth/register',
         {
           method: "POST",
-          // headers: {
-          //   "Content-Type": "application/json",
-          // },
-          // body: JSON.stringify({ ...formData, email }),
-          body: formDataToSend,
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(dataToSend),
         }
       );
 
@@ -229,9 +206,6 @@ export default function RegisterPage2() {
     setShowRepeatedPassword(!showRepeatedPassword);
   };
 
-  // const handleTerms = () => {
-  //   setShowTerms(true);
-  // }
 
   return (
     <>

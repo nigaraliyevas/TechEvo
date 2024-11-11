@@ -8,8 +8,7 @@ const BasketItems = ({basket}) => {
   const [totalAmount,setTotalAmount] = useState(basket.count)
  
   const counts = basket.map(item => item.count);
-  console.log(counts,"counts");
-  
+    
 
 console.log(basket,"basket item");
   const dispatch = useDispatch()
@@ -70,7 +69,7 @@ console.log(basket,"basket item");
                 Toplam :
               </div>
               <div className={style.amount_price}>
-              {item.price*item.count} AZN
+              {((item.price * item.count).toFixed(2))} AZN
               </div>
 
             </div>

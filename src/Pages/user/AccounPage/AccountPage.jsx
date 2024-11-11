@@ -100,10 +100,10 @@ const AccountPage = () => {
 
                 <div className={style.user_input}>
                   <div style={{ marginTop: "8px" }} className={style.user_name}>
-                    <label htmlFor="">Şifrə</label>
+                    {/* <label htmlFor="">Şifrə</label>
                     <div className={style.user_input}>
                       <input type="password" placeholder="Şifrə" />
-                    </div>
+                    </div> */}
                         <div className={style.user_password}>
                           Şifrəni sıfırla <img src={password} alt="" />
                         </div>

@@ -10,6 +10,7 @@ import { useState } from "react";
 import OrderDetails from "./OrderDetails";
 // react responsive
 import { useMediaQuery } from "react-responsive";
+import { useGetOrderByOrderIdQuery } from "../../redux/sercives/productApi";
 
 const Desktop = ({ children }) => {
   const isDesktop = useMediaQuery({ minWidth: 992 });
@@ -21,8 +22,12 @@ const Mobile = ({ children }) => {
   return isMobile ? children : null;
 };
 
-const AllOrders = () => {
+const AllOrders = ({orders}) => {
   const [showDetails, setShowDetails] = useState(false);
+
+  const { data, error, isLoading } = useGetOrderByOrderIdQuery();
+
+  console.log(data);
 
   const handleDetails = () => {
     setShowDetails(true);

@@ -1,5 +1,5 @@
-import styles from "./HomePage.module.scss";
-import InternCr from "../../../assets/images/products/InternCr.png";
+import styles from "./HomePage";
+import InternCr from "../../../assets/images/products/InternCr";
 import Delivery from "../../../assets/images/products/Delivery.png";
 import Repair from "../../../assets/images/products/Repair.png";
 import SecondHand from "../../../assets/images/products/SecondHand.png";

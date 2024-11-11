@@ -18,7 +18,7 @@ export const baseQueryWithReauth = async (args, api, extraOptions) => {
         const refreshToken = api.getState().auth.refreshToken;
 
         if (refreshToken) {
-            const refreshResponse = await fetch(`${import.meta.env.VITE_API_GLOBAL_URL}/api/auth/refresh`, {
+            const refreshResponse = await fetch(`http://ec2-51-20-32-195.eu-north-1.compute.amazonaws.com:808/api/auth/refresh`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ token: refreshToken }),
@@ -29,7 +29,7 @@ export const baseQueryWithReauth = async (args, api, extraOptions) => {
                 api.dispatch(setTokens({ accessToken: newAccessToken }));
 
                 result = await fetchBaseQuery({
-                    baseUrl: `${import.meta.env.VITE_API_GLOBAL_URL}`,
+                    baseUrl: `http://ec2-51-20-32-195.eu-north-1.compute.amazonaws.com:8081`,
                     prepareHeaders: (headers) => {
                         headers.set('Authorization', `Bearer ${newAccessToken}`);
                         return headers;

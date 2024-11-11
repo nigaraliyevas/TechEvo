@@ -37,7 +37,7 @@ const Reviews = ({ data }) => {
   const token = useSelector((state) => state.auth.refreshToken);
   const [newReview, setNewReview] = useState({ rating: 0, comment: '' });
   // const [visibleCount, setVisibleCount] = useState(2);
-  const { data: reviewsData, error, isLoading } = useGetReviewsQuery({ productId: id });
+  const { data: reviewsData, error, isLoading } = useGetReviewsQuery({productId: Number(id)});
   const [postReview] = usePostReviewMutation();
   const user = localStorage.getItem('email');
 
@@ -111,7 +111,7 @@ const Reviews = ({ data }) => {
       <div className={styles.reviewBox}>
         {isLoading && <div>Yüklənir...</div>}
         {reviewsData &&
-          reviewsData?.comment?.map((review, index) => (
+          reviewsData?.map((review, index) => (
             <div key={index} className={styles.review}>
               <div className={styles.reviewHeader}>
                 <div className={styles.profileImage}>

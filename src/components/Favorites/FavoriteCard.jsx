@@ -1,41 +1,51 @@
+// FavoriteCard.jsx
 import React from "react";
 import { TiHeartFullOutline } from "react-icons/ti";
 import StarRating from "../../components/Rating/StarRating";
-import style from "./Favorites.module.scss";
 import { useDispatch } from "react-redux";
-import { useRemoveFavoriteMutation } from "../../redux/sercives/favoriteApi";
-import { useGetProductByIdQuery } from "../../redux/sercives/productApi"; // Yeni sorğunu import edin
+import { useGetProductByIdQuery } from "../../redux/sercives/productApi";
 import { SlBasket } from "react-icons/sl";
 import { useMediaQuery } from "react-responsive";
 import { addToCart } from "../../redux/slices/BasketSlice";
+import { useRemoveFavoriteMutation } from "../../redux/sercives/favoriteApi";
+import style from "./Favorites.module.scss";
 
-function FavoriteCard({ card }) {
-    const { productId } = card; // productId dəyərini card-dan alın
+function FavoriteCard({ card, refetchFavorites }) { // refetchFavorites prop-unu qəbul edirik
+    const { productId } = card;
     const dispatch = useDispatch();
     const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
+
+    const { data: productData, isLoading, isError } = useGetProductByIdQuery(productId);
     const [removeFavorite] = useRemoveFavoriteMutation();
 
-    // productId ilə məhsul məlumatlarını API-dən çəkin
-    const { data: productData, isLoading, isError } = useGetProductByIdQuery(productId);
+    const addBasket = (event) => {
+        event.preventDefault();
+        if (productData) dispatch(addToCart(productData));
+    };
 
     const handleRemoveFavorite = async (event) => {
         event.stopPropagation();
+        event.preventDefault();
+
         try {
-            await removeFavorite(productId).unwrap(); // Favoritdən silir
+            // Məhsulu favoritdən çıxarma əməliyyatı
+            console.log("Removing favorite with productId:", productId);
+            
+            // Asinxron əməliyyatı düzgün idarə etmək üçün `unwrap()` istifadə edin
+            await removeFavorite(productId).unwrap(); // serverə sorğu göndərir və cavabı qaytarır
+    
+            console.log("Məhsul favoritdən çıxarıldı");
+
+            // Favoritlər səhifəsini yeniləmək üçün refetch funksiyasını çağırırıq
+            refetchFavorites(); // Favoritlər yenilənir
         } catch (error) {
             console.error("Favoritdən çıxarılarkən xəta baş verdi:", error);
         }
     };
 
-    const addBasket = (event) => {
-        event.preventDefault(); // Default davranışın qarşısını alır
-        if (productData) dispatch(addToCart(productData));
-    };
-
     if (isLoading) return <p>Yüklənir...</p>;
     if (isError) return <p>Məhsul məlumatlarını çəkmək mümkün olmadı.</p>;
 
-    // Məhsul məlumatlarını productData-dan alın
     const { name, price, imageUrl, rating } = productData || {};
 
     return (
@@ -63,7 +73,7 @@ function FavoriteCard({ card }) {
                     </div>
                     <div className={style.mobileCardContent}>
                         <div className={style.mobilCardImg}>
-                           <img src={imageUrl && imageUrl[0] ? imageUrl[0] : "defaultImage.jpg"} alt={name} className={style.cardImg} />
+                            <img src={imageUrl && imageUrl[0] ? imageUrl[0] : "defaultImage.jpg"} alt={name} className={style.cardImg} />
                         </div>
                         <div className={style.rating}>
                             <StarRating value={rating} />
@@ -78,7 +88,7 @@ function FavoriteCard({ card }) {
                 <div className={style.favoriteCard}>
                     <div className={style.cardContent}>
                         <div className={style.cardFavoriteImg}>
-                        <img src={imageUrl && imageUrl[0] ? imageUrl[0] : "defaultImage.jpg"} alt={name} className={style.cardImg} />
+                            <img src={imageUrl && imageUrl[0] ? imageUrl[0] : "defaultImage.jpg"} alt={name} className={style.cardImg} />
                         </div>
                         <div className={style.cardInfo}>
                             <h4>{name}</h4>

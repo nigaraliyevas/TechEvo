@@ -1,19 +1,15 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
-import Swal from "sweetalert2";
-import { formatDistanceToNow } from "date-fns";
-import styles from "./Reviews.module.scss";
-import { FaUserCircle } from "react-icons/fa";
-import { RxChevronDown } from "react-icons/rx";
-
-const REVIEWS_API = "http://ec2-51-20-32-195.eu-north-1.compute.amazonaws.com:8081/api/v1/product/comment";
-const POST_REVIEW_API = "http://ec2-51-20-32-195.eu-north-1.compute.amazonaws.com:8081/api/v1/product/comment";
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import Swal from 'sweetalert2';
+import { formatDistanceToNow } from 'date-fns';
+import { FaUserCircle } from 'react-icons/fa';
+import { RxChevronDown } from 'react-icons/rx';
+import { useGetReviewsQuery, usePostReviewMutation } from '../../redux/sercives/reviewsApi';
+import styles from './Reviews.module.scss';
 
 const StarRating = ({ rating, setRating }) => {
-
-  
   const handleStarClick = (index) => {
-    setRating(index + 1); 
+    setRating(index + 1);
   };
 
   return (
@@ -23,9 +19,9 @@ const StarRating = ({ rating, setRating }) => {
           key={index}
           onClick={() => handleStarClick(index)}
           style={{
-            fontSize: "24px",
-            color: index < rating ? "#ffc107" : "#e4e5e9", 
-            cursor: "pointer",
+            fontSize: '24px',
+            color: index < rating ? '#ffc107' : '#e4e5e9',
+            cursor: 'pointer',
           }}
         >
           ★
@@ -36,126 +32,92 @@ const StarRating = ({ rating, setRating }) => {
 };
 
 const Reviews = ({ data }) => {
-  const {id} = data;
-  console.log(id);
-  
-  
-  const [allReviews, setAllReviews] = useState([]);
-  const [visibleReviews, setVisibleReviews] = useState([]);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [newReview, setNewReview] = useState({ rating: 0, comment: "" });
-  const [visibleCount, setVisibleCount] = useState(2);
-
-
+  const { id } = data;
+  const dispatch = useDispatch();
+  const token = useSelector((state) => state.auth.refreshToken);
+  const [newReview, setNewReview] = useState({ rating: 0, comment: '' });
+  // const [visibleCount, setVisibleCount] = useState(2);
+  const { data: reviewsData, error, isLoading } = useGetReviewsQuery({ productId: id });
+  const [postReview] = usePostReviewMutation();
+  const user = localStorage.getItem('email');
 
   useEffect(() => {
-    const token = localStorage.getItem("TechEvoToken");
-    if (token) {
-      setIsLoggedIn(false);
+    if (!user) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Giriş Tələb olunur',
+        text: 'Rəy yazmaq üçün xahiş olunur, giriş edin.',
+      });
     }
-    fetchReviews();
-    //bu ne demekdi
-  }, []);
-
-  const fetchReviews = async () => {
-    try {
-      //burdada cekiirem datalari
-      const response = await axios.get(`${REVIEWS_API}/${id}`);
-      const fetchedReviews = response.data.reviews;
-
-      setAllReviews(fetchedReviews);
-      setVisibleReviews(fetchedReviews.slice(0, visibleCount));
-    } catch (error) {
-      console.log("Error fetching reviews:", error);
-    }
-  };
-
-  const loadMoreReviews = () => {
-    const newVisibleCount = visibleCount + 2;
-    setVisibleCount(newVisibleCount);
-    setVisibleReviews(allReviews.slice(0, newVisibleCount));
-  };
+  }, [user]);
 
   const handleAddReview = async () => {
-    if (!isLoggedIn) {
+    if (!user) {
       Swal.fire({
-        icon: "warning",
-        title: "Login Required",
-        text: "Please login to leave a review.",
+        icon: 'warning',
+        title: 'Giriş Tələb olunur',
+        text: 'Rəy yazmaq üçün xahiş olunur, giriş edin.',
       });
       return;
     }
 
     if (newReview.comment.trim() && newReview.rating > 0) {
       try {
-        //post burdadi
-        const response = await axios.post(
-          POST_REVIEW_API,
-          { ...newReview, id },
-          {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("TechEvoToken")}`,
-            },
-          }
-        );
+        const response = await postReview({ productId: Number(id), comment: newReview });
 
-        if (response.status === 201) {
-          setAllReviews([response.data.review, ...allReviews]);
-          setVisibleReviews([response.data.review, ...visibleReviews]);
-          setNewReview({ rating: 0, comment: "" });
+        if (response?.data?.status === 201) {
+          Swal.fire('Uğur', 'Rəyiniz əlavə edildi!', 'success');
         }
       } catch (error) {
-        console.error("Error posting review:", error);
+        Swal.fire('Xəta', 'Rəy göndərilərkən xəta baş verdi.', error.message);
       }
     } else {
       Swal.fire({
-        icon: "warning",
-        title: "Invalid Review",
-        text: "Both rating and comment are required!",
+        icon: 'warning',
+        title: 'Rəy Yanlışdır',
+        text: 'Reytinq və şərh mütləq olmalıdır!',
       });
     }
   };
 
+  // const visibleReviews = reviewsData?.reviews?.slice(0, visibleCount);
+
   return (
-    <div >
-      
-      <div className={styles.totalBox}>
-        <h3 style={{ fontSize: "24px", marginBottom: "40px", color: "#fff" }}>
-          İstifadəçi rəyləri
-        </h3>
+    <div className={styles.totalBox}>
+      <h3 style={{ fontSize: '24px', marginBottom: '40px', color: '#fff' }}>
+        İstifadəçi rəyləri
+      </h3>
 
-        <div className={styles.addReview}>
-          <div className={styles.textAreaContainer}>
-            <textarea
-              value={newReview.comment}
-              onChange={(e) =>
-                setNewReview({ ...newReview, comment: e.target.value })
-              }
-              placeholder="Rəy yaz..."
-              className={styles.textArea}
-            />
-            <StarRating
-              rating={newReview.rating}
-              setRating={(rating) =>
-                setNewReview({ ...newReview, rating })
-              }
-            />
-          
-          </div>
-          <button onClick={handleAddReview} className={styles.addButton}>
-              Rəy yaz
-            </button>
+      <div className={styles.addReview}>
+        <div className={styles.textAreaContainer}>
+          <textarea
+            value={newReview.comment}
+            onChange={(e) =>
+              setNewReview({ ...newReview, comment: e.target.value })
+            }
+            placeholder="Rəy yaz..."
+            className={styles.textArea}
+          />
+          <StarRating
+            rating={newReview.rating}
+            setRating={(rating) => setNewReview({ ...newReview, rating })}
+          />
         </div>
+        <button onClick={handleAddReview} className={styles.addButton}>
+          Rəy yaz
+        </button>
+      </div>
 
-        {/* Şərhlərin siyahısı */}
-        <div className={styles.reviewBox}>
-          {visibleReviews.map((review, index) => (
+      <div className={styles.reviewBox}>
+        {isLoading && <div>Yüklənir...</div>}
+        {reviewsData &&
+          reviewsData?.comment?.map((review, index) => (
             <div key={index} className={styles.review}>
               <div className={styles.reviewHeader}>
                 <div className={styles.profileImage}>
-                  {review?.user?.profileImage ? (
+                  {review?.profileImg ? (
                     <img
-                      src={review?.user?.profileImage}
+                      src={review?.profileImg}
                       alt="Profil şəkli"
                       className={styles.profileImage}
                     />
@@ -165,26 +127,19 @@ const Reviews = ({ data }) => {
                 </div>
                 <div className={styles.userInfo}>
                   <strong className={styles.userName}>
-                    {review.user.name}
+                    {review?.commentOwner}
                   </strong>
                   <div className={styles.reviewTime}>
                     {formatDistanceToNow(new Date(review.createdAt), {
                       addSuffix: true,
                     })}
                   </div>
-                  <div>{review.rating} ulduz</div>
+                  <div>{review?.rating} ulduz</div>
                 </div>
               </div>
-              <p className={styles.reviewText}>{review.comment}</p>
+              <p className={styles.reviewText}>{review?.comment}</p>
             </div>
           ))}
-
-          {/* {visibleReviews.length < allReviews.length && (
-            <button onClick={loadMoreReviews} className={styles.loadMoreButton}>
-              Daha çox yüklə <RxChevronDown className={styles.chevron} />
-            </button>
-          )} */}
-        </div>
       </div>
     </div>
   );

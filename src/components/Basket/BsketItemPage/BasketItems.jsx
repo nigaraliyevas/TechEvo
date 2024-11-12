@@ -10,7 +10,7 @@ const BasketItems = ({basket}) => {
   const counts = basket.map(item => item.count);
     
 
-console.log(basket,"basket item");
+
   const dispatch = useDispatch()
   const deletProduct = (id) => {
     dispatch(removeCart(id));

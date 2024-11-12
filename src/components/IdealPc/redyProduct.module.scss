@@ -1,0 +1,110 @@
+@import "../../assets/variables/variables";
+
+
+.redy_product_container {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+
+    .redy_product_left {
+        width: 540px;
+        background: rgba(17, 23, 29, 0.4);
+        backdrop-filter: blur(100px);
+        padding: 36px 91px 36px;
+
+        .redy_product_title {
+            font-size: 18px;
+            font-weight: 500;
+            line-height: 28px;
+            text-align: left;
+            color: $firstColor;
+            margin-bottom: 8px;
+        }
+
+        div {
+            margin-bottom: 30px;
+
+            select {
+                width: 358px;
+                height: 52px;
+                background-color: transparent;
+                color: rgba(204, 204, 204, 1);
+                padding: 14px 16px;
+                border-radius: 4px;
+            }
+        }
+
+        .redy_product_left_bottom {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 116px;
+            margin-bottom: 0;
+
+            button {
+                color: $firstColor;
+                background: linear-gradient(120.61deg, #FD3C43 -10.5%, #B622DC 38.25%, #3F27EB 80.92%);
+                padding: 8px 36px;
+                border: none;
+                border-radius: 2px;
+                font-size: 20px;
+                font-weight: 500;
+                line-height: 28px;
+            }
+        }
+    }
+
+    .redy_product_right {
+        width: 540px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        background: rgba(17, 23, 29, 0.4);
+        padding: 30px 97px 71px;
+
+        .redy_product_right_title {
+            font-size: 20px;
+            font-weight: 600;
+            line-height: 28px;
+            color: $firstColor;
+            margin-bottom: 12px;
+
+
+        }
+        .redy_product_right_price{
+            font-size: 20px;
+            font-weight: 600;
+            line-height: 21px;
+            color: $firstColor;
+            margin-bottom: 12px;
+        }
+        .redy_product_right_bottom {
+            margin-top: 12px;
+
+            .redy_product_right_btn_more {
+                margin-right: 20px;
+                padding: 8px 16px;
+                color: $firstColor;
+                background-color: transparent;
+                position: relative;
+                &::after {
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    bottom: 0;
+                    width: 100%;
+                    height: 1px;
+                    background: linear-gradient(120.61deg, #FD3C43 -10.5%, #B622DC 38.25%, #3F27EB 80.92%)}
+            }
+            .redy_product_right_btn{
+                padding: 10px 16px;
+                color: $firstColor;
+                border: none;
+                background: linear-gradient(120.61deg, #FD3C43 -10.5%, #B622DC 38.25%, #3F27EB 80.92%);
+                border-radius: 2px;
+            }
+        }
+    }
+}

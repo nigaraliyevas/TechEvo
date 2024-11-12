@@ -16,6 +16,7 @@ import EmailVerificationPage from "../pages/user/Register/EmailVerificationPage"
 import RegisterPage2 from "../pages/user/Register/RegisterPage2";
 import AccountPage from "../pages/user/AccounPage/AccountPage";
 import AllOrders from "../components/Orders/AllOrders";
+import IdealPcPage from "../Pages/user/IdealPcPage/IdealPcPage";
 
 
 
@@ -36,6 +37,7 @@ const UserRouter = () => {
         <Route path="/basket" element={<BasketPage />} />
         <Route path="/confirm" element={<ConfirmBasket />} />
         <Route path="/accountpage" element={<AccountPage />} />
+        <Route path="/idealpc" element={<IdealPcPage />} />
 
         <Route path="/orders" element={<AllOrders />} />
       </Route>

@@ -1,58 +1,51 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { PiHeartBold } from "react-icons/pi";
 import { TiHeartFullOutline } from "react-icons/ti";
 import { SlBasket } from "react-icons/sl";
 import StarRating from "../../../../../components/Rating/StarRating";
+import { addToCart } from "../../../../../redux/slices/BasketSlice";
 import style from "../../HomePage.module.scss";
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
 import { useAddFavoriteMutation, useRemoveFavoriteMutation, useGetFavoritesQuery } from "../../../../../redux/sercives/favoriteApi";
 
-
-
 function Card({ card }) {
-  const { name, price, imageUrl, rating, id } = card;
+  const { name, price, imageUrl, rating, id,discountPrice } = card;
   const navigate = useNavigate();
-
-  // API-dən favoritləri alırıq
-  const { data: favoriteData = [], isLoading, isError, refetch } = useGetFavoritesQuery();
-  const accessToken = localStorage.getItem("accessToken") ? localStorage.getItem("accessToken")
-    : null;
-
+  const dispatch = useDispatch();
 
   const [addFavorite] = useAddFavoriteMutation();
   const [removeFavorite] = useRemoveFavoriteMutation();
+  const [isFavorite, setIsFavorite] = useState(false);
 
-  // API-dən alınan favoritlərdən isFavorite təyin edirik
-  const isFavorite = favoriteData.some((fav) => fav.id === id); // Favoritdə olub-olmadığını yoxlayırıq
+  useEffect(() => {
+    const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    setIsFavorite(storedFavorites.some((fav) => fav.id === id));
+  }, [id]);
 
-  const [selectedImage, setSelectedImage] = useState(0);
-  const [lastMouseX, setLastMouseX] = useState(null);
-  const [isFavorited, setIsFavorite] = useState(false);
-
-  const handleToggleFavorite = async (event) => {
+  const handleFavoriteToggle = async (event) => {
     event.stopPropagation();
-    event.preventDefault();
-
-    if (!accessToken) {
-      navigate("/login"); // Token yoxdursa, login səhifəsinə yönləndir
+    if (!localStorage.getItem("accessToken")) {
+      navigate("/login");
       return;
     }
 
-    try {
-      if (isFavorite) {
-        setIsFavorite(false);
-        await removeFavorite(id).unwrap(); // API-dən favoriti sil
-      } else {
-        setIsFavorite(true);
-        await addFavorite(id).unwrap(); // API-yə favoriti əlavə et
-      }
-
-      refetch();
-    } catch (error) {
-      console.error("Favorit əməliyyatı zamanı xəta baş verdi:", error);
+    if (isFavorite) {
+      // Remove from favorites
+      const updatedFavorites = JSON.parse(localStorage.getItem("favorites")).filter(fav => fav.id !== id);
+      localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+      setIsFavorite(false);
+      await removeFavorite(id).unwrap();
+    } else {
+      // Add to favorites
+      const updatedFavorites = [...JSON.parse(localStorage.getItem("favorites") || "[]"), card];
+      localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+      setIsFavorite(true);
+      await addFavorite({ productId: id }).unwrap();
     }
   };
+  const [selectedImage, setSelectedImage] = useState(0);
+  const [lastMouseX, setLastMouseX] = useState(null);
 
   const handleMouseMove = (e) => {
     const { clientX } = e;
@@ -79,9 +72,8 @@ function Card({ card }) {
     setSelectedImage(index);
   };
 
-  ///Basket-e elave etmek
-  // const {basket} = useSelector((state)=>state.basket)
-  const addbasket = () => {
+
+  const addBasket = () => {
     dispatch(addToCart(card));
   };
   return (
@@ -133,8 +125,8 @@ function Card({ card }) {
           ))}
         </div>
 
-        <div className={style.heartSpan} onClick={handleToggleFavorite}>
-          {isFavorited ? (
+        <div className={style.heartSpan} onClick={handleFavoriteToggle}>
+          {isFavorite ? (
             <TiHeartFullOutline style={{ color: "red" }} />
           ) : (
             <PiHeartBold style={{ fill: "red" }} />
@@ -144,14 +136,32 @@ function Card({ card }) {
         <div className={style.cardBottomTitles}>
           <div className={style.namePrice}>
             <h4>{name}</h4>
-            <p>{price} AZN</p>
+            <p>
+              {discountPrice ? (
+                <>
+                  <span style={{
+                    textDecoration: "line-through",
+                    marginRight: "10px",
+                    color: "#BFBFBF",
+                    fontWeight: "500",
+                    fontSize: "16px"
+                  }}>
+                    {price} AZN
+                  </span>
+                  <span>{discountPrice} AZN</span>
+                </>
+              ) : (
+                <span>{price} AZN</span>
+              )}
+            </p>
+
           </div>
 
           <div className={style.ratingBasket}>
             <StarRating value={rating} />
 
             <div className={style.basketBg}>
-              <button>
+              <button onClick={addBasket}>
                 <SlBasket style={{ width: "18px", height: "18px" }} />
               </button>
 

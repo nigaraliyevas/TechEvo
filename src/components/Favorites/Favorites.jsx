@@ -1,4 +1,3 @@
-// Favorites.jsx
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -11,11 +10,12 @@ function Favorites() {
   const { accessToken } = useSelector((state) => state.auth); // Access token yoxlayırıq
 
   // Favoritləri API-dən çəkmək
-  const { data: favoriteData = [], isLoading, isError, refetch } = useGetFavoritesQuery(); // refetch funksiyasını buradan alırıq
+  const { data: favoriteData = [], isLoading, isError, refetch } = useGetFavoritesQuery();
 
+  // Token yoxdursa, login səhifəsinə yönləndiririk
   useEffect(() => {
     if (!accessToken) {
-      navigate("/login"); // Token yoxdursa, login səhifəsinə yönləndiririk
+      navigate("/login");
     }
   }, [accessToken, navigate]);
 
@@ -30,7 +30,7 @@ function Favorites() {
           favoriteData.map((card) => (
             <FavoriteCard 
               key={card.productId} 
-              card={card}
+              card={card} 
               refetchFavorites={refetch} // refetch funksiyasını prop kimi göndəririk
             />
           ))

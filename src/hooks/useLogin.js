@@ -41,6 +41,7 @@ const useLogin = () => {
       toast.success(`${email} logged in.`);
       console.log(localStorage.getItem('refreshToken'))
       navigate("/");
+      console.log("After navigate call");
     } catch (error) {
       toast.error("Login failed");
       console.error(error);

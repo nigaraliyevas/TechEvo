@@ -35,7 +35,7 @@ const totalamount = Math.round(totalPrice * 100) / 100;
       <h2 className={style.amount_title}>Ümumi</h2>
       <div className={style.total_texts}>
         <p>Məhsulların qiyməti: </p>
-        <p>20.000 AZN</p>
+        <p>{totalamount} AZN</p>
       </div>
       <div className={style.total_texts}>
         <p>Çatdırılma: </p>

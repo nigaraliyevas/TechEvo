@@ -1,4 +1,3 @@
-// FavoriteCard.jsx
 import React from "react";
 import { TiHeartFullOutline } from "react-icons/ti";
 import StarRating from "../../components/Rating/StarRating";
@@ -10,10 +9,10 @@ import { addToCart } from "../../redux/slices/BasketSlice";
 import { useRemoveFavoriteMutation } from "../../redux/sercives/favoriteApi";
 import style from "./Favorites.module.scss";
 
-function FavoriteCard({ card, refetchFavorites }) { // refetchFavorites prop-unu qəbul edirik
-    const { productId } = card;
+function FavoriteCard({ card, refetchFavorites }) {
+    const { productId, name, price, imageUrl, rating } = card;
     const dispatch = useDispatch();
-    const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
+    const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
 
     const { data: productData, isLoading, isError } = useGetProductByIdQuery(productId);
     const [removeFavorite] = useRemoveFavoriteMutation();
@@ -29,15 +28,8 @@ function FavoriteCard({ card, refetchFavorites }) { // refetchFavorites prop-unu
 
         try {
             // Məhsulu favoritdən çıxarma əməliyyatı
-            console.log("Removing favorite with productId:", productId);
-            
-            // Asinxron əməliyyatı düzgün idarə etmək üçün `unwrap()` istifadə edin
-            await removeFavorite(productId).unwrap(); // serverə sorğu göndərir və cavabı qaytarır
-    
-            console.log("Məhsul favoritdən çıxarıldı");
-
-            // Favoritlər səhifəsini yeniləmək üçün refetch funksiyasını çağırırıq
-            refetchFavorites(); // Favoritlər yenilənir
+            await removeFavorite(productId).unwrap(); // Asinxron əməliyyat
+            refetchFavorites(); // Favoritləri yeniləyirik
         } catch (error) {
             console.error("Favoritdən çıxarılarkən xəta baş verdi:", error);
         }
@@ -46,14 +38,14 @@ function FavoriteCard({ card, refetchFavorites }) { // refetchFavorites prop-unu
     if (isLoading) return <p>Yüklənir...</p>;
     if (isError) return <p>Məhsul məlumatlarını çəkmək mümkün olmadı.</p>;
 
-    const { name, price, imageUrl, rating } = productData || {};
+    const { name: productName, price: productPrice, imageUrl: productImage, rating: productRating } = productData || {};
 
     return (
         <div className={style.containerFavoriteCards}>
             {isMobile ? (
                 <div className={style.mobileFavoriteCard}>
                     <div className={style.mobileNameHeart}>
-                        <h4 className={style.mobileCardName}>{name}</h4>
+                        <h4 className={style.mobileCardName}>{productName}</h4>
                         <button 
                             className={style.cardActions} 
                             onClick={handleRemoveFavorite} 
@@ -64,20 +56,18 @@ function FavoriteCard({ card, refetchFavorites }) { // refetchFavorites prop-unu
                                 style={{
                                     color: "white", cursor: "pointer",
                                     width: "20px", height: "20px", position: "absolute",
-                                    top: "14px",
-                                    right: "12px",
-                                    bottom: "14px"
+                                    top: "14px", right: "12px", bottom: "14px"
                                 }}
                             />
                         </button>
                     </div>
                     <div className={style.mobileCardContent}>
                         <div className={style.mobilCardImg}>
-                            <img src={imageUrl && imageUrl[0] ? imageUrl[0] : "defaultImage.jpg"} alt={name} className={style.cardImg} />
+                            <img src={productImage && productImage[0] ? productImage[0] : "defaultImage.jpg"} alt={productName} className={style.cardImg} />
                         </div>
                         <div className={style.rating}>
-                            <StarRating value={rating} />
-                            <p>{price} AZN</p>
+                            <StarRating value={productRating} />
+                            <p>{productPrice} AZN</p>
                         </div>
                         <button onClick={addBasket} className={style.basketBg}>
                             <SlBasket style={{ width: "18px", height: "18px" }} />
@@ -88,14 +78,14 @@ function FavoriteCard({ card, refetchFavorites }) { // refetchFavorites prop-unu
                 <div className={style.favoriteCard}>
                     <div className={style.cardContent}>
                         <div className={style.cardFavoriteImg}>
-                            <img src={imageUrl && imageUrl[0] ? imageUrl[0] : "defaultImage.jpg"} alt={name} className={style.cardImg} />
+                            <img src={productImage && productImage[0] ? productImage[0] : "defaultImage.jpg"} alt={productName} className={style.cardImg} />
                         </div>
                         <div className={style.cardInfo}>
-                            <h4>{name}</h4>
+                            <h4>{productName}</h4>
                             <div className={style.rating} style={{ marginBottom: "4px" }}>
-                                <StarRating fontSize="1em" value={rating} />
+                                <StarRating fontSize="1em" value={productRating} />
                             </div>
-                            <p>{price} AZN</p>
+                            <p>{productPrice} AZN</p>
                             <button onClick={addBasket} className={style.addToCartButton}>
                                 <span style={{ paddingRight: "8px" }}>
                                     <SlBasket className={style.boldBasketIcon} />

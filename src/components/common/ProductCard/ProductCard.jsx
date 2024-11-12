@@ -52,11 +52,11 @@ const ProductCard = ({data}) => {
             className={style.imageSlider}
             style={{
               transform: `translateX(-${selectedImage * 25}%)`,
-              width: `${image.length * 100}%`,
+              // width: `${image.length * 100}%`,
               height: "100%"
             }}
           >
-            {image.map((imgSrc, index) => (
+            {/* {image.map((imgSrc, index) => (
               <img
                 key={index}
                 className={style.cardImg}
@@ -64,19 +64,19 @@ const ProductCard = ({data}) => {
                 alt={name}
                 style={{ width: `${100 / image.length}%` }}
               />
-            ))}
+            ))} */}
           </div>
         </div>
 
         {/* Image selector dots */}
         <div className={style.radioButtons}>
-          {image.map((_, index) => (
+          {/* {image.map((_, index) => (
             <div
               key={index}
               className={`${style.radioDiv} ${selectedImage === index ? style.selected : ''}`}
               onClick={() => handleDivClick(index)}
             />
-          ))}
+          ))} */}
         </div>
 
         {/* Heart icon */}

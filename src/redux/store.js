@@ -1,17 +1,21 @@
 import { configureStore } from "@reduxjs/toolkit";
-import authReducer from './slices/AuthSlice';
 import { productApi } from "./sercives/productApi";
+import { reviewsApi } from "./sercives/reviewsApi";  // commentApi faylını import et
 import { setupListeners } from "@reduxjs/toolkit/query";
-import favoritesReducer from "./slices/favoritesSlice"; // favoritesSlice faylını əlavə edin
+import TokenReducer from './slices/TokenSlice';
+import favoritesReducer from "./slices/favoritesSlice";
 
 const store = configureStore({
   reducer: {
-    auth: authReducer,
-    favorites: favoritesReducer, // favorites slice əlavə edildi
+    auth: TokenReducer,
+    favorites: favoritesReducer,
     [productApi.reducerPath]: productApi.reducer,
+    [reviewsApi.reducerPath]: reviewsApi.reducer,  // commentApi reducer-i əlavə et
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(productApi.middleware),
+    getDefaultMiddleware()
+      .concat(productApi.middleware)
+      .concat(reviewsApi.middleware),  // commentApi middleware-i əlavə et
 });
 
 export default store;

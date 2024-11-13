@@ -4,7 +4,8 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const productApi = createApi({
   reducerPath: "productApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://ec2-51-20-32-195.eu-north-1.compute.amazonaws.com:8081/api/v1/",
+    baseUrl:
+      "http://ec2-51-20-32-195.eu-north-1.compute.amazonaws.com:8081/api/v1/",
   }),
   endpoints: (builder) => ({
     getProducts: builder.query({
@@ -12,17 +13,19 @@ export const productApi = createApi({
       providesTags: ["Products"],
     }),
     getProductsByCategoryName: builder.query({
-      query: (categoryName) => `product/getAllByCategoryName?categoryName=${categoryName}`,
+      query: (categoryName) =>
+        `product/getAllByCategoryName?categoryName=${categoryName}`,
     }),
     getProductById: builder.query({
       query: (id) => `product/${id}`,
       providesTags: ["Product"],
     }),
   }),
-  keepUnusedDataFor: 60,// Istifade olunmayan datalari 60saniye saxlayir
+  keepUnusedDataFor: 60, // Istifade olunmayan datalari 60saniye saxlayir
 });
 
-
-export const { useGetProductsQuery, useGetProductsByCategoryNameQuery, useGetProductByIdQuery } =
-  productApi;
-
+export const {
+  useGetProductsQuery,
+  useGetProductsByCategoryNameQuery,
+  useGetProductByIdQuery,
+} = productApi;

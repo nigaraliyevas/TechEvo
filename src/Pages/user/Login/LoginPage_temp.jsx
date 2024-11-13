@@ -4,32 +4,27 @@ import "../../../components/css/Button.scss";
 import eyeIcon from "../../../assets/images/Welcome/Faeye.png";
 import openEye from "../../../assets/images/Welcome/OpenEye.png";
 import "../../../assets/common/base.scss";
-import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { login } from "../../../redux/slices/AuthSlice";
+import { Link } from "react-router-dom";
+// import { login } from "../../../redux/slices/AuthSlice";
 import Button from "../../../components/Button/Button";
+import useLogin from "../../../hooks/useLogin";
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
-
-  const dispatch = useDispatch();
-  const { error, isLoading, accessToken } = useSelector(state => state.auth);
-
-  const handleSubmit = event => {
-    event.preventDefault();
-    dispatch(login({ email, password }));
-  };
 
   const handleTogglePassword = () => {
     setShowPassword(prev => !prev);
   };
 
-  if (accessToken) {
-    navigate("/");
-  }
+
+  const login = useLogin();
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    login(email, password);
+  };
 
   return (
     <div className="container" id={styles.container_bg}>
@@ -40,7 +35,7 @@ const LoginPage = () => {
             <p>Daxil olmaq üçün aşağıdakı xanaları doldurun.</p>
           </div>
           <div className={styles.welcomeBox_container_foot}>
-            <form className={styles.form_group} onSubmit={handleSubmit}>
+            <form className={styles.form_group} onSubmit={handleLogin}>
               <label htmlFor="email" className={styles.labelContent}>
                 E-poçt
               </label>
@@ -67,12 +62,13 @@ const LoginPage = () => {
                 />
               </div>
 
-              {error && <p className={styles.error}>{error}</p>}
+              {/* {error && <p className={styles.error}>{error}</p>} */}
 
               <div className={styles.forgetPassword}>
                 <Link to="/forget">şifrəni unutmusan?</Link>
               </div>
-              <Button buttonText={isLoading ? "Gözləyin..." : "Daxil ol"} type="submit" disabled={isLoading} />
+              {/* <Button buttonText={isLoading ? "Gözləyin..." : "Daxil ol"} type="submit" disabled={isLoading} /> */}
+              <Button buttonText="Daxil ol" type="submit"/>
             </form>
           </div>
         </div>

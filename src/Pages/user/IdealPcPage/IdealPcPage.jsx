@@ -1,3 +1,4 @@
+import IndividualPc from "../../../components/IdealPc/IndividualPc";
 import RedyProduct from "../../../components/IdealPc/RedyProduct";
 import style from "./idealpc.module.scss";
 
@@ -9,7 +10,8 @@ const IdealPcPage = () => {
           <div className={style.idealPage_title}>Hazır məhsul</div>
           <div className={style.idealPage_title}>Fərdiləşdirilmiş PC</div>
         </div>
-        <RedyProduct/>
+        {/* <RedyProduct/> */}
+        <IndividualPc/>
       </div>
     </div>
   );

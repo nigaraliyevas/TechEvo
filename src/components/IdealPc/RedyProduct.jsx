@@ -53,6 +53,7 @@ const RedyProduct = () => {
           <div className={style.redy_product_right_bottom}>
             <button className={style.redy_product_right_btn_more}>
             Ətraflı bax
+            <div className={style.border}></div>
             </button>
             <button className={style.redy_product_right_btn}>
               <span><SlBasket/></span>

@@ -14,15 +14,18 @@ import { useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import "../../../App.css";
 import { useSelector } from "react-redux";
-const Header = () => {
+const Header = ({qiute,confirm}) => {
   const {basket,count} = useSelector((state)=>state.basket)
   const [isOpen, setIsOpen] = useState(false);
-  console.log(basket,"count");
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
   return (
-    <header>
+    <header       style={{
+      position: qiute||confirm ?  "static" : "",
+     
+    }}
+>
       <div className={`${styles.container} ${styles.navbar_bg} `}>
         <nav className={styles.navbar}>
           <div className={styles.navbar_logo}>

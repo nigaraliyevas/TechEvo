@@ -29,7 +29,7 @@ const BasketItems = ({basket}) => {
         basket.map((item,index)=>(
         <div key={index} className={style.basket_item}>
           <div className={style.basket_image}> 
-            <img src={item.imageUrl[0]} alt="" />
+            <img src={item.imageUrl[0]} alt="" /> 
           </div>
           <div className={style.basket_item_average}>
             <div className={style.item_average_title}>

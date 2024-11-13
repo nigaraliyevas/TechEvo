@@ -7,10 +7,11 @@
     .account {
         margin-top: 100px;
         padding: 56px 165px;
+
         @media (max-width: 600px) {
-        padding: 56px 16px;
-            
-           }
+            padding: 56px 16px;
+
+        }
 
         .account_container {
             display: flex;
@@ -27,10 +28,11 @@
                 height: 460px;
                 background: rgba(22, 26, 30, 1);
                 border-radius: 8px;
-                
-            @media (max-width: 600px) {
-             width: 100%;
-            }
+
+                @media (max-width: 600px) {
+                    width: 100%;
+                }
+
                 .user_image {
                     display: flex;
                     flex-direction: column;
@@ -39,7 +41,14 @@
                     width: 100%;
                     cursor: pointer;
                     padding-bottom: 24px;
-                    border-bottom: 1px solid rgba(50, 52, 55, 1)
+                    border-bottom: 1px solid rgba(50, 52, 55, 1);
+                    position: relative;
+
+                    div {
+                        position: absolute;
+                        bottom: 19px;
+                        right: 36%;
+                    }
                 }
 
                 .user_info {
@@ -68,6 +77,10 @@
                             background-color: rgba(50, 52, 55, 1);
                         }
 
+                    }
+
+                    .active {
+                        background-color: rgba(50, 52, 55, 1);
                     }
                 }
 
@@ -99,13 +112,15 @@
             .account_right {
                 background: rgba(22, 26, 30, 1);
                 width: 68%;
-                height: 636px;
+                height: 516px;
                 border-radius: 8px;
                 padding: 40px 24px;
+
                 @media (max-width: 600px) {
                     width: 100%;
                     height: auto;
-                   }
+                }
+
                 .account_info {
                     color: $firstColor;
                     font-size: 24px;
@@ -122,10 +137,11 @@
                     gap: 30px;
                     align-items: center;
                     margin-bottom: 24px;
+
                     @media (max-width: 600px) {
-                       flex-direction: column;
-                       align-items: start;
-                       }
+                        flex-direction: column;
+                        align-items: start;
+                    }
 
                     .user_name {
                         width: 326px;
@@ -147,17 +163,18 @@
                             }
                         }
 
-                        .user_password {
-                            width: 172px;
-                            padding: 6px 20px;
-                            border: 1px solid rgba(89, 89, 89, 1);
-                            color: rgba(153, 153, 153, 1);
-                            cursor: pointer;
+                    }
+                }
 
-                            img {
-                                margin-left: 12px;
-                            }
-                        }
+                .user_password {
+                    width: 172px;
+                    padding: 6px 20px;
+                    border: 1px solid rgba(89, 89, 89, 1);
+                    color: rgba(153, 153, 153, 1);
+                    cursor: pointer;
+
+                    img {
+                        margin-left: 12px;
                     }
                 }
 
@@ -165,7 +182,6 @@
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    padding-top: 40px;
 
                     button {
                         padding: 12px 48px;

@@ -14,8 +14,12 @@ import styles from "../HomePage.module.scss";
 
 
 
+
+
 const Section = ({ title, data = products }) => {
   const swiperRef = useRef(null);
+
+
 
   // Ekran ölçüsünü saxlamaq üçün state
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 480);

@@ -16,10 +16,11 @@ import EmailVerificationPage from "../pages/user/Register/EmailVerificationPage"
 import RegisterPage2 from "../pages/user/Register/RegisterPage2";
 import AccountPage from "../pages/user/AccounPage/AccountPage";
 import AllOrders from "../components/Orders/AllOrders";
-const UserRouter = () => {
+
+const UserRouter = ({ setConfirm, confirm, setQuite, quite }) => {
   return (
     <Routes>
-      <Route element={<UserLayout />}>
+      <Route element={<UserLayout confirm={confirm} quite={quite} />}>
         <Route index path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/forget" element={<ForgetPassPage />} />
@@ -32,7 +33,7 @@ const UserRouter = () => {
         <Route path="/product" element={<ProductPage />} />
         <Route path="/basket" element={<BasketPage />} />
         <Route path="/confirm" element={<ConfirmBasket />} />
-        <Route path="/accountpage" element={<AccountPage />} />
+        <Route path="/accountpage" element={<AccountPage setConfirm={setConfirm} setQuite={setQuite} confirm={confirm} quite={quite} />} />
         <Route path="/orders" element={<AllOrders />} />
       </Route>
     </Routes>

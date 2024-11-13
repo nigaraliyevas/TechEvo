@@ -1,18 +1,13 @@
+import { useState, useEffect } from "react";
 import styles from "./ProductPage.module.scss";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-// import Reviews from "../../components/CommentSide/Reviews";
 import DetailImageComponent from "../../../components/DetailImage/DetailImageComponent";
-// import CommentSide from "../../components/CommentSide/Reviews";
 import Description from "../../../components/Description/Description";
 import Features from "../../../components/DetailFeatures/Features";
 import Reviews from "../../../components/Reviews/Reviews";
-import { IoIosArrowForward } from "react-icons/io";
-import { IoIosArrowBack } from "react-icons/io";
-import { useRef, useState, useEffect } from "react";
-import { IoMdClose } from "react-icons/io";
-import { useSearchParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { IoIosArrowForward, IoIosArrowBack, IoMdClose } from "react-icons/io";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import { useGetProductByIdQuery } from "../../../redux/sercives/productApi";
 
 const ProductPage = () => {
@@ -21,7 +16,6 @@ const ProductPage = () => {
   const id = searchParams.get("id");
 
   const { data: product, error, isLoading } = useGetProductByIdQuery(id);
-  console.log(product, "detailData");
 
   useEffect(() => {
     if (!id) {
@@ -33,27 +27,25 @@ const ProductPage = () => {
 
   const [modalShow, setModalShow] = useState(false);
   const [carouselImages, setCarouselImages] = useState([]);
+  const [imageIndex, setImageIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState();
 
-  console.log(carouselImages, "detailImage");
-const caruselRef = useRef()
-  const [currentIndex, setCurrentIndex] = useState(1); 
-
-  const extendedCarouselImages = [...carouselImages, ...carouselImages]; 
+  useEffect(() => {
+    if (modalShow) {
+      setCurrentIndex(imageIndex);
+    }else{
+      setCurrentIndex(null)
+    }
+  }, [modalShow, imageIndex]);
 
   const scrollNext = () => {
-    if (currentIndex === extendedCarouselImages.length - 1) {
-      setCurrentIndex(1); 
-    } else {
-      setCurrentIndex(currentIndex + 1);
-    }
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % carouselImages.length);
   };
 
   const scrollPrev = () => {
-    if (currentIndex === 0) {
-      setCurrentIndex(extendedCarouselImages.length - 2); 
-    } else {
-      setCurrentIndex(currentIndex - 1);
-    }
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? carouselImages.length - 1 : prevIndex - 1
+    );
   };
 
   return (
@@ -67,7 +59,8 @@ const caruselRef = useRef()
                   <DetailImageComponent
                     product={product}
                     setModalShow={setModalShow}
-                    setCarouselImages={setCarouselImages} // Modalda carousele göndəriləcək şəkillər
+                    setCarouselImages={(images) => setCarouselImages(images || [])}
+                    setImageIndex={setImageIndex} // Başlanğıc şəkil indeksini təyin etmək üçün
                   />
                 </Col>
                 <Col xs={7}>
@@ -98,13 +91,14 @@ const caruselRef = useRef()
           </div>
         )}
 
-        <div></div>
-
         {modalShow && (
           <div className={styles.detail_modal_image}>
             <h2 className={styles.modal_image_title}>
-              {product?.name} {/* Məhsul adını dinamik göstərək */}
-              <div onClick={() => setModalShow(false)}>
+              {product?.name}
+              <div onClick={() =>{
+                 setModalShow(false)
+                 setCurrentIndex(null)
+                 }}>
                 <span>
                   <IoMdClose size={36} />
                 </span>
@@ -121,28 +115,24 @@ const caruselRef = useRef()
                   </div>
                 </div>
 
-                <div
-                  className={styles.modal_image_carusel_wrap}
-                  ref={caruselRef}
-                >
-                  <div className={styles.modal_image_carusel_wrap}>
+                <div className={styles.modal_image_carusel_wrap}>
                   <div
-      className={styles.modal_image_carusel}
-      style={{
-        transform: `translateX(-${currentIndex * 580}px)`,
-      }}
-    >
-      {extendedCarouselImages.map((img, index) => (
-        <div className={styles.carusel_image} key={index}>
-          <img
-            style={{ width: "580px", height: "480px" }}
-            className={styles.module_image}
-            src={img}
-            alt={`Product image ${index + 1}`}
-          />
-        </div>
-      ))}
-    </div>
+                    className={styles.modal_image_carusel}
+                    style={{
+                      transform: `translateX(-${currentIndex *492}px)`,
+                     
+                    }}
+                  >
+                    {carouselImages.map((img, index) => (
+                      <div className={styles.carusel_image} key={index}>
+                        <img
+                          style={{ width: "492px", height: "400px" }}
+                          className={styles.module_image}
+                          src={img}
+                          alt={`Product image ${index + 1}`}
+                        />
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>

@@ -8,8 +8,8 @@ import NoOrder from "./NoOrder";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import OrderDetails from "./OrderDetails";
-// react responsive
 import { useMediaQuery } from "react-responsive";
+// react responsive
 
 const Desktop = ({ children }) => {
   const isDesktop = useMediaQuery({ minWidth: 992 });

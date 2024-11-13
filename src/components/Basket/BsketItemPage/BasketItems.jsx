@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react'
 import style from "./basketItem.module.scss"
 import { FaStar } from "react-icons/fa6";
@@ -8,9 +9,10 @@ const BasketItems = ({basket}) => {
   const [totalAmount,setTotalAmount] = useState(basket.count)
  
   const counts = basket.map(item => item.count);
-    
+  console.log(counts,"counts");
+  
 
-
+console.log(basket,"basket item");
   const dispatch = useDispatch()
   const deletProduct = (id) => {
     dispatch(removeCart(id));
@@ -29,7 +31,7 @@ const BasketItems = ({basket}) => {
         basket.map((item,index)=>(
         <div key={index} className={style.basket_item}>
           <div className={style.basket_image}> 
-            <img src={item.imageUrl[0]} alt="" /> 
+            <img src={item.imageUrl[0]} alt="" />
           </div>
           <div className={style.basket_item_average}>
             <div className={style.item_average_title}>
@@ -69,7 +71,7 @@ const BasketItems = ({basket}) => {
                 Toplam :
               </div>
               <div className={style.amount_price}>
-              {((item.price * item.count).toFixed(2))} AZN
+              {item.price*item.count} AZN
               </div>
 
             </div>

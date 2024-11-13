@@ -16,8 +16,26 @@ import EmailVerificationPage from "../pages/user/Register/EmailVerificationPage"
 import RegisterPage2 from "../pages/user/Register/RegisterPage2";
 import AccountPage from "../pages/user/AccounPage/AccountPage";
 import AllOrders from "../components/Orders/AllOrders";
+import { useEffect } from "react";
+import { setTokens } from "../redux/slices/TokenSlice";
+import { useDispatch } from "react-redux";
 
 const UserRouter = ({ setConfirm, confirm, setQuite, quite }) => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const loadTokensFromStorage = () => {
+      const accessToken = localStorage.getItem("accessToken");
+      const refreshToken = localStorage.getItem("refreshToken");
+
+      if (accessToken && refreshToken) {
+        
+        dispatch(setTokens({ accessToken, refreshToken }));
+      }
+    };
+
+    loadTokensFromStorage();
+  }, [dispatch]);
   return (
     <Routes>
       <Route element={<UserLayout confirm={confirm} quite={quite} />}>

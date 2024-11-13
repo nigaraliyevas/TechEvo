@@ -9,7 +9,8 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import OrderDetails from "./OrderDetails";
 import { useMediaQuery } from "react-responsive";
-// react responsive
+
+import { useGetOrderByOrderIdQuery } from "../../redux/sercives/productApi";
 
 const Desktop = ({ children }) => {
   const isDesktop = useMediaQuery({ minWidth: 992 });
@@ -21,8 +22,12 @@ const Mobile = ({ children }) => {
   return isMobile ? children : null;
 };
 
-const AllOrders = () => {
+const AllOrders = ({ orders }) => {
   const [showDetails, setShowDetails] = useState(false);
+
+  const { data, error, isLoading } = useGetOrderByOrderIdQuery();
+
+  console.log(data);
 
   const handleDetails = () => {
     setShowDetails(true);
@@ -44,11 +49,7 @@ const AllOrders = () => {
                 <div className={styles.orderCont}>
                   <div className={styles.leftSide}>
                     <div className={styles.ordersImgCont}>
-                      <img
-                        className={styles.ordersImg}
-                        src="https://tinyurl.com/54mef8ky"
-                        alt=""
-                      />
+                      <img className={styles.ordersImg} src="https://tinyurl.com/54mef8ky" alt="" />
                     </div>
                     <div className={styles.ordrDateAndPrice}>
                       <div className={styles.date}>11 oktyabr 2024</div>
@@ -60,31 +61,18 @@ const AllOrders = () => {
 
                   <div className={styles.rightSide}>
                     <div className={styles.orderNoAndStatus}>
-                      <div className={styles.orderNo}>
-                        Sifariş nömrəsi : 1234
-                      </div>
+                      <div className={styles.orderNo}>Sifariş nömrəsi : 1234</div>
                       <div className={styles.orderStatus}>
                         <div className={styles.statusIconCont}>
-                          <img
-                            className={styles.statusIcon}
-                            src={tickSquare}
-                            alt="tick square"
-                          />
+                          <img className={styles.statusIcon} src={tickSquare} alt="tick square" />
                         </div>
                         <div>Çatdırıldı</div>
                       </div>
                     </div>
-                    <div
-                      onClick={handleDetails}
-                      className={styles.orderDetails}
-                    >
+                    <div onClick={handleDetails} className={styles.orderDetails}>
                       <div>Təfərrüatlar</div>
                       <div className={styles.deatilsIconCont}>
-                        <img
-                          className={styles.detailsIcon}
-                          src={rightArrow}
-                          alt="right arrow"
-                        />
+                        <img className={styles.detailsIcon} src={rightArrow} alt="right arrow" />
                       </div>
                     </div>
                   </div>
@@ -93,11 +81,7 @@ const AllOrders = () => {
                 <div className={styles.orderCont}>
                   <div className={styles.leftSide}>
                     <div className={styles.ordersImgCont}>
-                      <img
-                        className={styles.ordersImg}
-                        src="https://tinyurl.com/54mef8ky"
-                        alt=""
-                      />
+                      <img className={styles.ordersImg} src="https://tinyurl.com/54mef8ky" alt="" />
                     </div>
                     <div className={styles.ordrDateAndPrice}>
                       <div className={styles.date}>11 oktyabr 2024</div>
@@ -109,31 +93,18 @@ const AllOrders = () => {
 
                   <div className={styles.rightSide}>
                     <div className={styles.orderNoAndStatus}>
-                      <div className={styles.orderNo}>
-                        Sifariş nömrəsi : 1234
-                      </div>
+                      <div className={styles.orderNo}>Sifariş nömrəsi : 1234</div>
                       <div className={styles.orderStatus}>
                         <div className={styles.statusIconCont}>
-                          <img
-                            className={styles.statusIcon}
-                            src={truckIcon}
-                            alt="tick square"
-                          />
+                          <img className={styles.statusIcon} src={truckIcon} alt="tick square" />
                         </div>
                         <div>Göndərilib</div>
                       </div>
                     </div>
-                    <div
-                      onClick={handleDetails}
-                      className={styles.orderDetails}
-                    >
+                    <div onClick={handleDetails} className={styles.orderDetails}>
                       <div>Təfərrüatlar</div>
                       <div className={styles.deatilsIconCont}>
-                        <img
-                          className={styles.detailsIcon}
-                          src={rightArrow}
-                          alt="right arrow"
-                        />
+                        <img className={styles.detailsIcon} src={rightArrow} alt="right arrow" />
                       </div>
                     </div>
                   </div>
@@ -166,9 +137,7 @@ const AllOrders = () => {
                 </div>
               </div>
               <div>
-                <div>
-                  {/* <img src="https://tinyurl.com/54mef8ky" alt="product image" /> */}
-                </div>
+                <div>{/* <img src="https://tinyurl.com/54mef8ky" alt="product image" /> */}</div>
                 <div>
                   <div>Sifariş nömrəsi : 1234</div>
                   <div>

@@ -11,16 +11,15 @@ import { addToFavorites, removeFromFavorites } from "../../../../../redux/slices
 function Card({ card }) {
   const { name, price, imageUrl, rating, id } = card;
   const dispatch = useDispatch();
-  const favorites = useSelector((state) => state.favorites);
+  const favorites = useSelector(state => state.favorites);
   const navigate = useNavigate(); // useNavigate-i yaradın
-
   // Kartın sevilənlərdə olub-olmadığını yoxlayın
-  const isFavorite = favorites.some((fav) => fav.id === id);
+  const isFavorite = favorites.some(fav => fav.id === id);
 
   const [selectedImage, setSelectedImage] = useState(0);
   const [lastMouseX, setLastMouseX] = useState(null);
 
-  const handleToggleFavorite = (event) => {
+  const handleToggleFavorite = event => {
     event.stopPropagation();
     event.preventDefault();
 
@@ -34,7 +33,7 @@ function Card({ card }) {
     }
   };
 
-  const handleMouseMove = (e) => {
+  const handleMouseMove = e => {
     const { clientX } = e;
 
     if (lastMouseX === null) {
@@ -45,22 +44,19 @@ function Card({ card }) {
     const deltaX = clientX - lastMouseX;
 
     if (Math.abs(deltaX) > 50) {
-      const newIndex =
-        deltaX < 0
-          ? (selectedImage - 1 + imageUrl.length) % imageUrl.length
-          : (selectedImage + 1) % imageUrl.length;
+      const newIndex = deltaX < 0 ? (selectedImage - 1 + imageUrl.length) % imageUrl.length : (selectedImage + 1) % imageUrl.length;
 
       setSelectedImage(newIndex);
       setLastMouseX(clientX);
     }
   };
 
-  const handleDivClick = (index) => {
+  const handleDivClick = index => {
     setSelectedImage(index);
   };
 
   return (
-    <Link style={({ textDecoration: "none" })} to={`/product?id=${id}`} className={style.card}>
+    <Link style={{ textDecoration: "none" }} to={`/product?id=${id}`} className={style.card}>
       <span className={style.cardAnimationSpan}></span>
       <span className={style.cardAnimationSpan}></span>
       <span className={style.cardAnimationSpan}></span>
@@ -81,13 +77,7 @@ function Card({ card }) {
             }}
           >
             {imageUrl.map((imgSrc, index) => (
-              <img
-                key={index}
-                className={style.cardImg}
-                src={imgSrc}
-                alt={name}
-                style={{ width: `${100 / imageUrl.length}%` }}
-              />
+              <img key={index} className={style.cardImg} src={imgSrc} alt={name} style={{ width: `${100 / imageUrl.length}%` }} />
             ))}
           </div>
         </div>
@@ -103,11 +93,7 @@ function Card({ card }) {
         </div>
 
         <div className={style.heartSpan} onClick={handleToggleFavorite}>
-          {isFavorite ? (
-            <TiHeartFullOutline style={{ color: "white" }} />
-          ) : (
-            <PiHeartBold style={{ fill: "white" }} />
-          )}
+          {isFavorite ? <TiHeartFullOutline style={{ color: "white" }} /> : <PiHeartBold style={{ fill: "white" }} />}
         </div>
 
         <div className={style.cardBottomTitles}>

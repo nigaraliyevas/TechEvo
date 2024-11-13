@@ -14,9 +14,6 @@ const HomePage = () => {
   const { data: mousesData, isLoading: isMousesLoading } = useGetProductsByCategoryNameQuery("Mouse");
   const { data: klaviaturasData, isLoading: isKlaviaturasLoading } = useGetProductsByCategoryNameQuery("Klaviatura");
 
-    // useGetProductsByCategoryNameQuery("");
-
-
   return (
     <>
       <section>

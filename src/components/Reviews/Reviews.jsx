@@ -109,7 +109,6 @@ const Reviews = ({ productId }) => {
 
   return (
     <div >
-      
       <div className={styles.totalBox}>
         <h3 style={{ fontSize: "24px", marginBottom: "40px", color: "#fff" }}>
           İstifadəçi rəyləri

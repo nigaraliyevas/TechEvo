@@ -45,7 +45,6 @@ const PriceRangeSlider = ({ min, max, onPriceChange }) => {
     const newRange = [...range];
     newRange[index] = newValue;
 
-
     if (newRange[0] < newRange[1] && newValue >= min && newValue <= max) {
       handleSliderChange(newRange);
     }

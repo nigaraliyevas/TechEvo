@@ -8,10 +8,9 @@ const BasketItems = ({basket}) => {
   const [totalAmount,setTotalAmount] = useState(basket.count)
  
   const counts = basket.map(item => item.count);
-  console.log(counts,"counts");
-  
+    
 
-console.log(basket,"basket item");
+
   const dispatch = useDispatch()
   const deletProduct = (id) => {
     dispatch(removeCart(id));
@@ -30,7 +29,7 @@ console.log(basket,"basket item");
         basket.map((item,index)=>(
         <div key={index} className={style.basket_item}>
           <div className={style.basket_image}> 
-            <img src={item.imageUrl[0]} alt="" />
+            <img src={item.imageUrl[0]} alt="" /> 
           </div>
           <div className={style.basket_item_average}>
             <div className={style.item_average_title}>
@@ -70,7 +69,7 @@ console.log(basket,"basket item");
                 Toplam :
               </div>
               <div className={style.amount_price}>
-              {item.price*item.count} AZN
+              {((item.price * item.count).toFixed(2))} AZN
               </div>
 
             </div>

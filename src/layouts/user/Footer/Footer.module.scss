@@ -7,7 +7,6 @@ body {
 
 
 .footer {
-
   gap: 10px;
   opacity: 1;
   position: relative;
@@ -30,7 +29,6 @@ body {
       display: flex;
       align-items: center;
       justify-content: space-between;
-
       .footer_title {
         font-family: $fontFamily;
         color: $firstColor;
@@ -55,7 +53,6 @@ body {
         }
       }
     }
-
     .footer_text {
       font-family: $fontFamily;
       font-size: 16px;
@@ -65,7 +62,6 @@ body {
       color: $thirdColor;
       margin: 32px 0;
     }
-
     .footer_links {
       display: flex;
       align-items: center;
@@ -127,7 +123,6 @@ body {
   
       }
 
-
       p {
         font-family: $fontFamilyInter;
         font-size: 16px;
@@ -135,7 +130,6 @@ body {
         line-height: 24px;
         text-align: left;
         color: $secondColor;
-
         span {
           margin-right: 12px;
         }

@@ -18,28 +18,8 @@
 
     .basket_items_container {
         display: flex;
-        gap: 30px;
-        margin-top: 32px;
-    }
-
-    .basket_empty_conatiner {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        gap: 48px;
-        padding-top: 48.55px;
-
-        .basket_empty_title {
-            font-family: $fontFamily;
-            font-size: 34.71px;
-            font-weight: 500;
-            line-height: 57.85px;
-            letter-spacing: 0.02em;
-            text-align: center;
-            color: rgba(204, 204, 204, 1);
-
-        }
+       gap: 30px;
+       margin-top: 32px;
     }
 
     .basket_items {

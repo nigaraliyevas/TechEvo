@@ -1,44 +1,47 @@
 @import "../../assets/variables/variables";
 
-
-.redy_product_container {
+.individual_container {
     display: flex;
     align-items: center;
     gap: 30px;
 
-    .redy_product_left {
+    .individual_left {
         width: 540px;
-        background: rgba(17, 23, 29, 0.4);
-        backdrop-filter: blur(100px);
-        padding: 36px 91px 36px;
+        background: rgba(17, 23, 29, 0.3);
+        padding: 36px 32px;
 
-        .redy_product_title {
-            font-size: 18px;
-            font-weight: 500;
-            line-height: 28px;
-            text-align: left;
-            color: $firstColor;
-            margin-bottom: 8px;
-        }
+        .individual_left_select {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 24px;
 
-        div {
-            margin-bottom: 30px;
+            .active_title {
+                color: $firstColor;
+                font-size: 16px;
+                font-weight: 500;
+                line-height: 28px;
+                text-align: left;
+                margin-bottom: 6px;
+            }
 
             select {
-                width: 358px;
-                height: 52px;
+                width: 232px;
+                height: 44px;
+                padding-left: 12px;
                 background-color: transparent;
-                color: rgba(204, 204, 204, 1);
-                padding: 14px 16px;
-                border-radius: 4px;
+                color: rgba(153, 153, 153, 1);
+                font-size: 16px;
+                font-weight: 400;
+                line-height: 20px;
+                text-align: left;
             }
         }
-
         .redy_product_left_bottom {
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-top: 116px;
+            margin-top: 32px;
             margin-bottom: 0;
 
             button {
@@ -52,6 +55,7 @@
                 line-height: 28px;
             }
         }
+
     }
 
     .redy_product_right {
@@ -88,7 +92,7 @@
                 margin-right: 20px;
                 padding: 8px 16px;
                 color: $firstColor;
-                background: rgba(17, 23, 29,);
+                background: rgba(17, 23, 29, );
 
                 position: relative;
                 border: none;
@@ -103,9 +107,9 @@
                     -webkit-text-fill-color: transparent;
                     /* border-radius: 16px; */
                     z-index: -1;
-                   
 
-                 
+
+
 
 
                 }

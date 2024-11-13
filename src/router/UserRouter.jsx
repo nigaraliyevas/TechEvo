@@ -29,7 +29,6 @@ const UserRouter = ({ setConfirm, confirm, setQuite, quite }) => {
       const refreshToken = localStorage.getItem("refreshToken");
 
       if (accessToken && refreshToken) {
-        
         dispatch(setTokens({ accessToken, refreshToken }));
       }
     };

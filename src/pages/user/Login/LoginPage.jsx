@@ -23,6 +23,7 @@ const LoginPage = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
+    console.log(email, password);
     login(email, password);
   };
 

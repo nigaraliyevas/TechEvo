@@ -20,12 +20,14 @@ export const productApi = createApi({
       query: (id) => `product/${id}`,
       providesTags: ["Product"],
     }),
+    getOrderByOrderId: builder.query({
+      query: (orderItemId) => `order/orderItem/${orderItemId}`,
+      providesTags: ["Order"],
+    }),
   }),
   keepUnusedDataFor: 60, // Istifade olunmayan datalari 60saniye saxlayir
 });
 
-export const {
-  useGetProductsQuery,
-  useGetProductsByCategoryNameQuery,
-  useGetProductByIdQuery,
-} = productApi;
+export const { useGetProductsQuery, useGetProductsByCategoryNameQuery, useGetProductByIdQuery, useGetOrderByOrderIdQuery } =
+  productApi;
+

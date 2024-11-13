@@ -9,12 +9,12 @@ const Input = ({ labelText, type = "text", placeholder, value, onChange }) => {
   };
 
   return (
-    <div className="input-group">
+    <div className="input-group d-block">
       {labelText && <label className="input-label">{labelText}</label>}
       <input className="password-reset__input" type={type === "password" && showPassword ? "text" : type} value={value} onChange={onChange} placeholder={placeholder} />
       {type === "password" && (
         <span className="toggle-password" onClick={togglePasswordVisibility}>
-          {showPassword ? <img src="/public/assets/images/Welcome/Faeye.png" alt="" /> : <img src="/public/assets/images/Welcome/OpenEye.png" alt="" />}
+          {showPassword ? <img src="/src/assets/images/Welcome/Faeye.png" alt="" /> : <img src="/src/assets/images/Welcome/OpenEye.png" alt="" />}
         </span>
       )}
     </div>

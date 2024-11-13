@@ -27,7 +27,8 @@ const UserRouter = () => {
         <Route path="/registerpage2" element={<RegisterPage2 />} />
         <Route path="/activate" element={<EmailVerificationPage />} />
         <Route path="/newpassword" element={<PasswordReset />} />
-        <Route path="/enterpassword" element={<EnterPasswordPage />} />
+        <Route path="/otp" element={<EnterPasswordPage />} /> 
+        {/* todo:newpassword */}
         <Route path="/pc" element={<CategoryPage />} />
         <Route path="/product" element={<ProductPage />} />
         <Route path="/basket" element={<BasketPage />} />

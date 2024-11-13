@@ -13,7 +13,8 @@ import { useRef, useState, useEffect } from "react";
 import { IoMdClose } from "react-icons/io";
 import { useSearchParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { useGetProductByIdQuery } from "../../../redux/sercives/productApi";
+import { useGetProductByIdQuery, useGetProductsByCategoryNameQuery } from "../../../redux/sercives/productApi";
+import Card from "../HomePage/Section/Card/Card";
 
 const ProductPage = () => {
   const [searchParams] = useSearchParams();
@@ -21,8 +22,29 @@ const ProductPage = () => {
   const id = searchParams.get("id");
 
   const { data: product, error, isLoading } = useGetProductByIdQuery(id);
-  console.log(product, "detailData");
+  const { data: categoryData, isLoading: isLaptopsLoading } = useGetProductsByCategoryNameQuery(product ? product.categoryName : undefined);
+  const filteredCategoryData = categoryData?.filter(item => item.id !== product?.id);
 
+  const [modalShow, setModalShow] = useState(false);
+  const [carouselImages, setCarouselImages] = useState([]);
+  const caruselRef = useRef();
+  const [currentIndex, setCurrentIndex] = useState(1);
+  const [itemsToShow, setItemsToShow] = useState(3);
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 768) {
+        setItemsToShow(2);
+      } else {
+        setItemsToShow(3);
+      }
+    };
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
   useEffect(() => {
     if (!id) {
       navigate("/");
@@ -31,18 +53,11 @@ const ProductPage = () => {
 
   if (!id) return null;
 
-  const [modalShow, setModalShow] = useState(false);
-  const [carouselImages, setCarouselImages] = useState([]);
-
-  console.log(carouselImages, "detailImage");
-const caruselRef = useRef()
-  const [currentIndex, setCurrentIndex] = useState(1); 
-
-  const extendedCarouselImages = [...carouselImages, ...carouselImages]; 
+  const extendedCarouselImages = [...carouselImages, ...carouselImages];
 
   const scrollNext = () => {
     if (currentIndex === extendedCarouselImages.length - 1) {
-      setCurrentIndex(1); 
+      setCurrentIndex(1);
     } else {
       setCurrentIndex(currentIndex + 1);
     }
@@ -50,7 +65,7 @@ const caruselRef = useRef()
 
   const scrollPrev = () => {
     if (currentIndex === 0) {
-      setCurrentIndex(extendedCarouselImages.length - 2); 
+      setCurrentIndex(extendedCarouselImages.length - 2);
     } else {
       setCurrentIndex(currentIndex - 1);
     }
@@ -92,7 +107,22 @@ const caruselRef = useRef()
             </div>
             <div className={styles.similiarProducts}>
               <Row>
-                <Col>Oxşar məhsullar</Col>
+                <Col style={{ paddingLeft: "0px", paddingRight: "0px" }}>
+                  <div>
+                    <h2 className={styles.similar_header}>Oxşar Məhsullar</h2>
+                    <div className={styles.similar_product_list}>
+                      <div className="row">
+                        {filteredCategoryData?.slice(0, itemsToShow).map(card => (
+                          <div className={`col-${itemsToShow}`} key={card.id} style={{ flex: "1" }}>
+                            <div className="cardContainer">
+                              <Card card={card} />
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </Col>
               </Row>
             </div>
           </div>
@@ -121,28 +151,20 @@ const caruselRef = useRef()
                   </div>
                 </div>
 
-                <div
-                  className={styles.modal_image_carusel_wrap}
-                  ref={caruselRef}
-                >
+                <div className={styles.modal_image_carusel_wrap} ref={caruselRef}>
                   <div className={styles.modal_image_carusel_wrap}>
-                  <div
-      className={styles.modal_image_carusel}
-      style={{
-        transform: `translateX(-${currentIndex * 580}px)`,
-      }}
-    >
-      {extendedCarouselImages.map((img, index) => (
-        <div className={styles.carusel_image} key={index}>
-          <img
-            style={{ width: "580px", height: "480px" }}
-            className={styles.module_image}
-            src={img}
-            alt={`Product image ${index + 1}`}
-          />
-        </div>
-      ))}
-    </div>
+                    <div
+                      className={styles.modal_image_carusel}
+                      style={{
+                        transform: `translateX(-${currentIndex * 580}px)`,
+                      }}
+                    >
+                      {extendedCarouselImages.map((img, index) => (
+                        <div className={styles.carusel_image} key={index}>
+                          <img style={{ width: "580px", height: "480px" }} className={styles.module_image} src={img} alt={`Product image ${index + 1}`} />
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>

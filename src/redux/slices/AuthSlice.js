@@ -1,18 +1,15 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 // Giriş funksiyası - burada API çağırışı edilir
-export const login = createAsyncThunk('auth/login', async ({ email, password }, { rejectWithValue }) => {
+export const login = createAsyncThunk("auth/login", async ({ email, password }, { rejectWithValue }) => {
   try {
-    const response = await fetch(
-      'http://ec2-54-146-26-87.compute-1.amazonaws.com:8081/api/v1/auth/login',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      }
-    );
+    const response = await fetch("http://ec2-51-20-32-195.eu-north-1.compute.amazonaws.com:8081/api/v1/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+    });
 
     const data = await response.json();
 
@@ -20,8 +17,8 @@ export const login = createAsyncThunk('auth/login', async ({ email, password }, 
       return rejectWithValue(data);
     }
 
-    localStorage.setItem('TechEvoToken', data.accessToken);
-    localStorage.setItem('refreshToken', data.refreshToken);
+    localStorage.setItem("TechEvoToken", data.accessToken);
+    localStorage.setItem("refreshToken", data.refreshToken);
 
     return data;
   } catch (err) {
@@ -30,26 +27,26 @@ export const login = createAsyncThunk('auth/login', async ({ email, password }, 
 });
 
 const authSlice = createSlice({
-  name: 'auth',
+  name: "auth",
   initialState: {
-    accessToken: localStorage.getItem('accessToken') || null,
-    refreshToken: localStorage.getItem('refreshToken') || null,
+    accessToken: localStorage.getItem("accessToken") || null,
+    refreshToken: localStorage.getItem("refreshToken") || null,
     user: null,
     isLoading: false,
     error: null,
   },
   reducers: {
-    logout: (state) => {
+    logout: state => {
       state.accessToken = null;
       state.refreshToken = null;
       state.user = null;
-      localStorage.removeItem('accessToken');
-      localStorage.removeItem('refreshToken');
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken");
     },
   },
-  extraReducers: (builder) => {
+  extraReducers: builder => {
     builder
-      .addCase(login.pending, (state) => {
+      .addCase(login.pending, state => {
         state.isLoading = true;
         state.error = null;
       })
@@ -61,7 +58,7 @@ const authSlice = createSlice({
       })
       .addCase(login.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.payload || 'Xəta baş verdi';
+        state.error = action.payload || "Xəta baş verdi";
       });
   },
 });

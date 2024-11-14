@@ -12,7 +12,7 @@ export default function EmailVerificationPage() {
 
     if (token && email) {
       // Send both token and email to the backend
-      fetch("https://0605-5-133-233-247.ngrok-free.app/api/v1/auth/activate", {
+      fetch("http://ec2-51-20-32-195.eu-north-1.compute.amazonaws.com:8081/api/v1/auth/activate", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

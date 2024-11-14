@@ -11,7 +11,9 @@ import { AiFillStar } from "react-icons/ai";
 import { setTokens } from "../../redux/slices/TokenSlice"; // TokenSlice-ə daxil et
 
 const StarRating = ({ rating, setRating }) => {
+
   const handleStarClick = index => {
+
     setRating(index + 1);
   };
 
@@ -36,8 +38,10 @@ const StarRating = ({ rating, setRating }) => {
 
 const Reviews = ({ data }) => {
   const { id } = data;
+
   const dispatch = useDispatch();
   const token = useSelector(state => state.auth.accessToken); // Redux-dan access token alırıq
+
   const [newReview, setNewReview] = useState({ rating: 0, comment: "" });
   const [visibleCount, setVisibleCount] = useState(2);
 
@@ -54,8 +58,10 @@ const Reviews = ({ data }) => {
 
   const calculateTimeAgo = timestamp => {
     try {
+
       const date = parseISO(timestamp);
       return formatDistanceToNowStrict(date, { addSuffix: true, locale: tr });
+
     } catch (error) {
       return "Bilinməyən vaxt";
     }
@@ -127,12 +133,14 @@ const Reviews = ({ data }) => {
   };
 
   return (
+
     <div className={styles.totalBox}>
       <h3 style={{ fontSize: "24px", marginBottom: "40px", color: "#fff" }}>İstifadəçi rəyləri</h3>
       <div className={styles.addReview}>
         <div className={styles.textAreaContainer}>
           <textarea value={newReview.comment} onChange={e => setNewReview({ ...newReview, comment: e.target.value })} placeholder="Rəy yaz..." className={styles.textArea} />
           <StarRating rating={newReview.rating} setRating={rating => setNewReview({ ...newReview, rating })} />
+
         </div>
         <button onClick={handleAddReview} className={styles.addButton}>
           Rəy yaz

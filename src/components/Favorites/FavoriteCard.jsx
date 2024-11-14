@@ -1,67 +1,85 @@
 import React from "react";
-// import { useMediaQuery } from "react-responsive";
 import { TiHeartFullOutline } from "react-icons/ti";
 import StarRating from "../../components/Rating/StarRating";
 import style from "./Favorites.module.scss";
-import { useDispatch, useSelector } from "react-redux";
-import { removeFromFavorites } from "../../redux/slices/favoritesSlice";
+import { useDispatch } from "react-redux";
+import { useRemoveFavoriteMutation } from "../../redux/sercives/favoriteApi";
+import { useGetProductByIdQuery } from "../../redux/sercives/productApi"; // Yeni sorğunu import edin
 import { SlBasket } from "react-icons/sl";
 import { useMediaQuery } from "react-responsive";
 import { addToCart } from "../../redux/slices/BasketSlice";
 
-
 function FavoriteCard({ card }) {
-    const { name, price, imageUrl, rating, id } = card;
+    const { productId } = card; // productId dəyərini card-dan alın
     const dispatch = useDispatch();
     const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
+    const [removeFavorite] = useRemoveFavoriteMutation();
 
-    const handleRemoveFavorite = (event) => {
+    // productId ilə məhsul məlumatlarını API-dən çəkin
+    const { data: productData, isLoading, isError } = useGetProductByIdQuery(productId);
+    console.log("datalarrrrrr", productData);
+
+    const handleRemoveFavorite = async (event) => {
         event.stopPropagation();
-        dispatch(removeFromFavorites(id));
+        try {
+            await removeFavorite(productId).unwrap(); // Favoritdən silir
+        } catch (error) {
+            console.error("Favoritdən çıxarılarkən xəta baş verdi:", error);
+        }
     };
-  const addbasket = () => {
-    dispatch(addToCart(card));
-  };
+
+    const addBasket = (event) => {
+        event.preventDefault(); // Default davranışın qarşısını alır
+        if (productData) dispatch(addToCart(productData));
+    };
+
+    if (isLoading) return <p>Yüklənir...</p>;
+    if (isError) return <p>Məhsul məlumatlarını çəkmək mümkün olmadı.</p>;
+
+    // Məhsul məlumatlarını productData-dan alın
+    const { name, price, imageUrl, rating } = productData || {};
 
     return (
         <div className={style.containerFavoriteCards}>
             {isMobile ? (
-                // Mobil üçün fərqli struktur
                 <div className={style.mobileFavoriteCard}>
                     <div className={style.mobileNameHeart}>
-                        <h4 className={style.mobileCardName}>{name} </h4>
-                        <div className={style.cardActions} onClick={handleRemoveFavorite} aria-label="Favoritlərdən çıxar">
-                            <TiHeartFullOutline style={{
-                                color: "white", cursor: "pointer",
-                                width: "20px", height: "20px", position: "absolute",
-                                top: "14px",
-                                right: "12px",
-                                bottom: "14px"
-
-                            }} />
-                        </div>
+                        <h4 className={style.mobileCardName}>{name}</h4>
+                        <button 
+                            className={style.cardActions} 
+                            onClick={handleRemoveFavorite} 
+                            aria-label="Favoritlərdən çıxar"
+                            style={{ background: "none", border: "none" }}
+                        >
+                            <TiHeartFullOutline
+                                style={{
+                                    color: "white", cursor: "pointer",
+                                    width: "20px", height: "20px", position: "absolute",
+                                    top: "14px",
+                                    right: "12px",
+                                    bottom: "14px"
+                                }}
+                            />
+                        </button>
                     </div>
                     <div className={style.mobileCardContent}>
                         <div className={style.mobilCardImg}>
-                            <img src={imageUrl[0]} alt={name} className={style.cardImg} />
+                           <img src={imageUrl && imageUrl[0] ? imageUrl[0] : "defaultImage.jpg"} alt={name} className={style.cardImg} />
                         </div>
                         <div className={style.rating}>
                             <StarRating value={rating} />
                             <p>{price} AZN</p>
                         </div>
-                        <div onClick={addbasket} className={style.basketBg}>
-                            <a href="#">
-                                <SlBasket style={{ width: "18px", height: "18px" }} />
-                            </a>
-                        </div>
+                        <button onClick={addBasket} className={style.basketBg}>
+                            <SlBasket style={{ width: "18px", height: "18px" }} />
+                        </button>
                     </div>
                 </div>
             ) : (
-                // Desktop üçün standart struktur
                 <div className={style.favoriteCard}>
                     <div className={style.cardContent}>
                         <div className={style.cardFavoriteImg}>
-                            <img src={imageUrl[0]} alt={name} className={style.cardImg} />
+                        <img src={imageUrl && imageUrl[0] ? imageUrl[0] : "defaultImage.jpg"} alt={name} className={style.cardImg} />
                         </div>
                         <div className={style.cardInfo}>
                             <h4>{name}</h4>
@@ -69,21 +87,24 @@ function FavoriteCard({ card }) {
                                 <StarRating fontSize="1em" value={rating} />
                             </div>
                             <p>{price} AZN</p>
-                            <button onClick={addbasket} className={style.addToCartButton}>
+                            <button onClick={addBasket} className={style.addToCartButton}>
                                 <span style={{ paddingRight: "8px" }}>
-                                    <a href="#">
-                                        <SlBasket className={style.boldBasketIcon} />
-                                    </a>
+                                    <SlBasket className={style.boldBasketIcon} />
                                 </span>
                                 Səbətə əlavə et
                             </button>
                         </div>
-
                     </div>
-                    <div className={style.cardActions} onClick={handleRemoveFavorite} aria-label="Favoritlərdən çıxar">
-                        <TiHeartFullOutline style={{ color: "white", cursor: "pointer", width: "24px", height: "24px" }} />
-                    </div>
-
+                    <button 
+                        className={style.cardActions} 
+                        onClick={handleRemoveFavorite} 
+                        aria-label="Favoritlərdən çıxar"
+                        style={{ background: "none", border: "none" }}
+                    >
+                        <TiHeartFullOutline
+                            style={{ color: "white", cursor: "pointer", width: "24px", height: "24px" }}
+                        />
+                    </button>
                 </div>
             )}
         </div>

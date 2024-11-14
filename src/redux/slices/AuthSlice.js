@@ -1,11 +1,11 @@
 import { fetchBaseQuery } from "@reduxjs/toolkit/query";
 import { setTokens, clearTokens } from "../slices/TokenSlice"; // TokenSlice daxil etmək
 
-const BASE_URL = import.meta.env.server_domain;
-
+const baseUrl = import.meta.env.VITE_SOME_KEY;
+console.log(baseUrl);
 export const baseQueryWithReauth = async (args, api, extraOptions) => {
   let result = await fetchBaseQuery({
-    baseUrl: import.meta.env.server_domain,
+    baseUrl: baseUrl,
     prepareHeaders: (headers, { getState }) => {
       const { accessToken } = getState().auth;
       if (accessToken) {
@@ -18,9 +18,9 @@ export const baseQueryWithReauth = async (args, api, extraOptions) => {
   if (result?.error?.status === 401) {
     // Token bitdiyi halda
     const refreshToken = api.getState().auth.refreshToken;
-
+    console.log(refreshToken);
     if (refreshToken) {
-      const refreshResponse = await fetch(`${BASE_URL}auth/refresh`, {
+      const refreshResponse = await fetch(`${baseUrl}auth/refresh`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ token: refreshToken }),
@@ -34,7 +34,7 @@ export const baseQueryWithReauth = async (args, api, extraOptions) => {
 
         // İndi yenidən request göndəririk yeni token ilə
         result = await fetchBaseQuery({
-          baseUrl: BASE_URL,
+          baseUrl: baseUrl,
           prepareHeaders: headers => {
             headers.set("Authorization", `Bearer ${newAccessToken}`);
             return headers;

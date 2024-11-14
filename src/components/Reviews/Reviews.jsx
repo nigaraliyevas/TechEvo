@@ -129,6 +129,7 @@ const Reviews = ({ data }) => {
   return (
     <div className={styles.totalBox}>
       <h3 style={{ fontSize: "24px", marginBottom: "40px", color: "#fff" }}>İstifadəçi rəyləri</h3>
+
       <div className={styles.addReview}>
         <div className={styles.textAreaContainer}>
           <textarea value={newReview.comment} onChange={e => setNewReview({ ...newReview, comment: e.target.value })} placeholder="Rəy yaz..." className={styles.textArea} />

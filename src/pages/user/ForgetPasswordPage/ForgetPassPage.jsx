@@ -1,4 +1,4 @@
-import styles from "../ForgetPasswordPage/ForgetPassPage.module.scss"
+import styles from "./ForgetPassPage.module.scss"
 
 function ForgetPassPage() {
     return (

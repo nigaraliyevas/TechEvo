@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import style from "./DetailImage.module.scss";
 
-const DetailImageComponent = ({ setModalShow, product, setCarouselImages, setCurrentIndex,setImageIndex }) => {
+
+const DetailImageComponent = ({ setModalShow, product, setCarouselImages }) => {
+
   const [detailImage, setDetailImage] = useState([]);
   const [mainImage, setMainImage] = useState(null);
 
@@ -11,6 +13,7 @@ const DetailImageComponent = ({ setModalShow, product, setCarouselImages, setCur
       setMainImage(product.imageUrl[0]);
     }
   }, [product]);
+
 
   if (!detailImage || detailImage.length === 0) {
     return <div>Loading images...</div>;
@@ -35,9 +38,10 @@ const DetailImageComponent = ({ setModalShow, product, setCarouselImages, setCur
       </div>
       <img
         onClick={() => {
-          setModalShow(true);
-          setCarouselImages(product.imageUrl);
-          // setCurrentIndex(1);
+
+          setModalShow(true)
+          setCarouselImages(product.imageUrl)
+
         }}
         className={style.detail_big_image}
         src={mainImage}

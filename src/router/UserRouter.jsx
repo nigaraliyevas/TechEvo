@@ -14,7 +14,7 @@ import BasketPage from "../pages/user/BasketPage/BasketPage";
 import ConfirmBasket from "../pages/user/ConfirmBasketPage/ConfirmBasketPage";
 import EmailVerificationPage from "../pages/user/Register/EmailVerificationPage";
 import RegisterPage2 from "../pages/user/Register/RegisterPage2";
-import AccountPage from "../pages/user/AccounPage/AccountPage";
+import AccountPage from "../pages/user/AccounPage/AccountPage_temp";
 import AllOrders from "../components/Orders/AllOrders";
 import { useEffect } from "react";
 import { setTokens } from "../redux/slices/TokenSlice";

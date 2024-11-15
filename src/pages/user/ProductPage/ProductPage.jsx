@@ -79,7 +79,7 @@ const ProductPage = () => {
             <div className={styles.productDescription}>
               <Row>
                 <Col style={{ paddingLeft: "0px", paddingRight: "0px" }}>
-                  <Features id={2} />
+                  <Features id={id} />
                 </Col>
               </Row>
             </div>

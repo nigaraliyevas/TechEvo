@@ -6,6 +6,7 @@ import { setupListeners } from "@reduxjs/toolkit/query";
 import basketSlice from "./slices/BasketSlice";
 import TokenReducer from "./slices/TokenSlice";
 import { favoriteApi } from "./sercives/favoriteApi";
+import { orderApi } from "./sercives/orders";
 const store = configureStore({
   reducer: {
     auth: TokenReducer,
@@ -14,9 +15,10 @@ const store = configureStore({
     [productApi.reducerPath]: productApi.reducer,
     [reviewsApi.reducerPath]: reviewsApi.reducer, // commentApi reducer-i əlavə et
     [favoriteApi.reducerPath]: favoriteApi.reducer,
+    [orderApi.reducerPath]: orderApi.reducer,
 
   },
-  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(productApi.middleware).concat(reviewsApi.middleware).concat(favoriteApi.middleware), // commentApi middleware-i əlavə et
+  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(productApi.middleware).concat(reviewsApi.middleware).concat(favoriteApi.middleware).concat(orderApi.middleware), // commentApi middleware-i əlavə et
 
 });
 

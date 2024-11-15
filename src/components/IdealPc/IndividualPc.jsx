@@ -20,7 +20,7 @@ const IndividualPc = () => {
           </div>
           <div>
             <p>SSD</p>
-            <select name="" id="">
+            <select  disabled name="" id="">
               <option value="">128 GB</option>
               <option value="">256 BG</option>
               <option value="">512 GB</option>
@@ -31,7 +31,7 @@ const IndividualPc = () => {
         <div  className={style.individual_left_select}>
           <div>
             <p>Videokart</p>
-            <select name="" id="">
+            <select  disabled name="" id="">
               <option value="">NVİDİA GeForce RTX 4090</option>
               <option value="">NVİDİA GeForce RTX 3080</option>
               <option value="">AMD Radeon RX 7900 XTX</option>
@@ -40,7 +40,7 @@ const IndividualPc = () => {
           </div>
           <div>
             <p>Prosesor</p>
-            <select name="" id="">
+            <select  disabled name="" id="">
               <option value="">Intel Core i3</option>
               <option value="">Intel Core i5</option>
               <option value="">Intel Core i7</option>
@@ -51,7 +51,7 @@ const IndividualPc = () => {
         <div  className={style.individual_left_select}>
           <div>
             <p>Operativ yaddaş</p>
-            <select name="" id="">
+            <select  disabled name="" id="">
               <option value="">ATX</option>
               <option value="">Micro-ATX</option>
               <option value="">Mini-ITX</option>
@@ -62,7 +62,7 @@ const IndividualPc = () => {
           </div>
           <div>
             <p>Qidalanma bloku</p>
-            <select name="" id="">
+            <select  disabled name="" id="">
               <option value="">128 GB</option>
               <option value="">256 BG</option>
               <option value="">512 GB</option>
@@ -73,7 +73,7 @@ const IndividualPc = () => {
         <div  className={style.individual_left_select}>
           <div>
             <p>HDD</p>
-            <select name="" id="">
+            <select disabled name="" id="">
             <option value="">128 GB</option>
               <option value="">256 BG</option>
               <option value="">512 GB</option>
@@ -83,7 +83,7 @@ const IndividualPc = () => {
           </div>
           <div>
             <p>keys</p>
-            <select name="" id="">
+            <select  disabled name="" id="">
             <option value="">ATX</option>
               <option value="">Micro-ATX</option>
               <option value="">Mini-ITX</option>

@@ -16,9 +16,13 @@ import EmailVerificationPage from "../pages/user/Register/EmailVerificationPage"
 import RegisterPage2 from "../pages/user/Register/RegisterPage2";
 import AccountPage from "../pages/user/AccounPage/AccountPage";
 import AllOrders from "../components/Orders/AllOrders";
+<<<<<<< HEAD
 import { useEffect } from "react";
 import { setTokens } from "../redux/slices/TokenSlice";
 import { useDispatch } from "react-redux";
+=======
+import IdealPcPage from "../Pages/user/IdealPcPage/IdealPcPage";
+>>>>>>> ideal-pc
 
 const UserRouter = ({ setConfirm, confirm, setExist, exist }) => {
   const dispatch = useDispatch();
@@ -50,7 +54,16 @@ const UserRouter = ({ setConfirm, confirm, setExist, exist }) => {
         <Route path="/product" element={<ProductPage />} />
         <Route path="/basket" element={<BasketPage />} />
         <Route path="/confirm" element={<ConfirmBasket />} />
+<<<<<<< HEAD
         <Route path="/accountpage" element={<AccountPage setConfirm={setConfirm} setExist={setExist} confirm={confirm} exist={exist} />} />
+=======
+
+        <Route path="/accountpage" element={<AccountPage />} />
+        <Route path="/idealpc" element={<IdealPcPage />} />
+
+        <Route path="/accountpage" element={<AccountPage setConfirm={setConfirm} setQuite={setQuite} confirm={confirm} qiute={qiute}/>} />
+
+>>>>>>> ideal-pc
         <Route path="/orders" element={<AllOrders />} />
       </Route>
     </Routes>

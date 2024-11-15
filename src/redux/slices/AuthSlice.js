@@ -1,5 +1,5 @@
 import { fetchBaseQuery } from "@reduxjs/toolkit/query";
-import { setTokens, clearTokens } from "../slices/TokenSlice";  // TokenSlice daxil etmək
+import { setTokens, clearTokens } from "../slices/TokenSlice"; // TokenSlice-ə daxil et
 
 const BASE_URL = `http://ec2-51-20-32-195.eu-north-1.compute.amazonaws.com:8081`;
 
@@ -19,7 +19,7 @@ export const baseQueryWithReauth = async (args, api, extraOptions) => {
         const refreshToken = api.getState().auth.refreshToken;
 
         if (refreshToken) {
-            const refreshResponse = await fetch(`${BASE_URL}/api/v1/auth/refresh`, {
+            const refreshResponse = await fetch(`${BASE_URL}/api/auth/refresh`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ token: refreshToken }),
@@ -41,7 +41,6 @@ export const baseQueryWithReauth = async (args, api, extraOptions) => {
                 })(args, api, extraOptions);
             } else {
                 api.dispatch(clearTokens());  // Refresh token etibarsızdırsa, tokenləri silirik
-                // Burada istifadəçini login səhifəsinə yönləndirmək olar
             }
         } else {
             api.dispatch(clearTokens());  // Refresh token yoxdursa, tokenləri silirik

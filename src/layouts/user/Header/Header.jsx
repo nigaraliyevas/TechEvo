@@ -136,12 +136,12 @@ const Header = ({exist,confirm}) => {
                   </div>
                 </div>
               </li>
-              <li className={styles.navbar_ideal}>
+              <NavLink to={"idealpc"} className={styles.navbar_ideal}>
                 <div>
                   Özün seç <GoRocket size={24} />
                 </div>
                 <span className={styles.border_line}></span>
-              </li>
+              </NavLink>
               <li className={styles.navbar_links}>Xidmətlər</li>
               <li className={styles.navbar_links}>Blog</li>
               <li className={styles.navbar_links}>Dəstək</li>

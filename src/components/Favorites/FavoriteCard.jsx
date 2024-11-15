@@ -17,7 +17,6 @@ function FavoriteCard({ card }) {
 
     // productId ilə məhsul məlumatlarını API-dən çəkin
     const { data: productData, isLoading, isError } = useGetProductByIdQuery(productId);
-    console.log("datalarrrrrr", productData);
 
     const handleRemoveFavorite = async (event) => {
         event.stopPropagation();

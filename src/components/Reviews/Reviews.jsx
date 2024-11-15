@@ -8,7 +8,6 @@ import styles from './Reviews.module.scss';
 import { FaUserCircle } from 'react-icons/fa';
 import { RxChevronDown } from 'react-icons/rx';
 import { AiFillStar } from 'react-icons/ai';
-import { setTokens } from '../../redux/slices/TokenSlice'; // TokenSlice-ə daxil et
 
 const StarRating = ({ rating, setRating }) => {
   const handleStarClick = (index) => {
@@ -37,7 +36,7 @@ const StarRating = ({ rating, setRating }) => {
 const Reviews = ({ data }) => {
   const { id } = data;
   const dispatch = useDispatch();
-  const token = useSelector((state) => state.auth.accessToken); // Redux-dan access token alırıq
+  const token = useSelector((state) => state.auth.refreshToken);
   const [newReview, setNewReview] = useState({ rating: 0, comment: '' });
   const [visibleCount, setVisibleCount] = useState(2);
 
@@ -62,7 +61,6 @@ const Reviews = ({ data }) => {
   };
 
   const handleAddReview = async () => {
-    // Əgər istifadəçi login olmayıbsa, xəbərdarlıq edilir
     if (!user) {
       Swal.fire({
         icon: 'warning',
@@ -72,7 +70,6 @@ const Reviews = ({ data }) => {
       return;
     }
 
-    // Rəyin düzgünlüyünü yoxlayırıq
     if (newReview.comment.trim() && newReview.rating > 0) {
       try {
         const response = await postReview({ productId: Number(id), comment: newReview });

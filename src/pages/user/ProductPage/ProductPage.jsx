@@ -35,7 +35,7 @@ const ProductPage = () => {
   const [carouselImages, setCarouselImages] = useState([]);
 
   console.log(carouselImages, "detailImage");
-  const caruselRef = useRef()
+  const caruselRef = useRef();
   const [currentIndex, setCurrentIndex] = useState(1);
 
   const extendedCarouselImages = [...carouselImages, ...carouselImages];
@@ -86,7 +86,7 @@ const ProductPage = () => {
             <div className={styles.comments_side}>
               <Row>
                 <Col style={{ paddingLeft: "0px", paddingRight: "0px" }}>
-                  <Reviews data={{id}} />
+                  <Reviews data={{ id }} />
                 </Col>
               </Row>
             </div>
@@ -121,10 +121,7 @@ const ProductPage = () => {
                   </div>
                 </div>
 
-                <div
-                  className={styles.modal_image_carusel_wrap}
-                  ref={caruselRef}
-                >
+                <div className={styles.modal_image_carusel_wrap} ref={caruselRef}>
                   <div className={styles.modal_image_carusel_wrap}>
                     <div
                       className={styles.modal_image_carusel}
@@ -134,12 +131,7 @@ const ProductPage = () => {
                     >
                       {extendedCarouselImages.map((img, index) => (
                         <div className={styles.carusel_image} key={index}>
-                          <img
-                            style={{ width: "580px", height: "480px" }}
-                            className={styles.module_image}
-                            src={img}
-                            alt={`Product image ${index + 1}`}
-                          />
+                          <img style={{ width: "580px", height: "480px" }} className={styles.module_image} src={img} alt={`Product image ${index + 1}`} />
                         </div>
                       ))}
                     </div>

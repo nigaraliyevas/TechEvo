@@ -13,26 +13,19 @@ import { IoIosArrowForward } from "react-icons/io";
 import { useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import "../../../App.css";
-const Header = () => {
-  const [sliderState2, setSliderState2] = useState([
-    true,
-    false,
-    false,
-    false,
-    false,
-    false,
-  ]);
-  const setSliderOnclick2 = (sliderIndex2) => {
-    const newSliderState2 = sliderState2.map((_, idx) => idx === sliderIndex2);
-    setSliderState2(newSliderState2);
-  };
+import { useSelector } from "react-redux";
+const Header = ({qiute,confirm}) => {
+  const {basket,count} = useSelector((state)=>state.basket)
   const [isOpen, setIsOpen] = useState(false);
-
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
   return (
-    <header>
+    <header       style={{
+      position: qiute||confirm ?  "static" : "",
+     
+    }}
+>
       <div className={`${styles.container} ${styles.navbar_bg} `}>
         <nav className={styles.navbar}>
           <div className={styles.navbar_logo}>
@@ -160,14 +153,16 @@ const Header = () => {
               <div className={styles.navbar_icon}>
                 <NavLink to={"/basket"} className={styles.navbar_icon}>
                   <SlBasket size={24} />
-                </NavLink>
+                </NavLink>{
+                  count>0 &&
+                <span>{count}</span>
+                }
               </div>
               <div
                 className={styles.navbar_users}
                 style={{ padding: "32px 0px" }}
               >
                 <BiUser size={24} />
-
                 <div className={styles.navbar_users_items}>
                   <div className={styles.navbar_users_item}>
                     <span>

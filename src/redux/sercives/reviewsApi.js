@@ -4,7 +4,7 @@ import { baseQueryWithReauth } from "../slices/AuthSlice";
 export const reviewsApi = createApi({
   reducerPath: "reviewsApi",
   baseQuery: baseQueryWithReauth,
-  endpoints: (builder) => ({
+  endpoints: builder => ({
     getReviews: builder.query({
       query: ({ productId }) => `/api/v1/product/comment/${productId}`,
     }),

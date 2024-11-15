@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { PiHeartBold } from "react-icons/pi";
 import { TiHeartFullOutline } from "react-icons/ti";
-import { useDispatch } from "react-redux";
+//import { useDispatch } from "react-redux";
 import { useAddFavoriteMutation, useRemoveFavoriteMutation } from "../../../../../redux/sercives/favoriteApi";
 import { addToCart } from "../../../../../redux/slices/BasketSlice";
 import StarRating from "../../../../../components/Rating/StarRating";
@@ -9,37 +9,43 @@ import style from "../../HomePage.module.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { SlBasket } from "react-icons/sl";
 
-function Card({ card }) {
-  const { name, price, imageUrl, rating, id, discountPrice, isFav } = card;
+
+function Card({ card, favoriteProductIds, refetchFavorites }) {
+  console.log("backd'di",favoriteProductIds)
+  const { name, price, imageUrl, rating, id, discountPrice } = card;
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+
+  // RTK Query mutations
   const [addFavorite] = useAddFavoriteMutation();
   const [removeFavorite] = useRemoveFavoriteMutation();
 
-  const accessToken = localStorage.getItem("accessToken") || null;
-
-  // Start with the initial `isFav` prop
-  const [isFavorite, setIsFavorite] = useState(isFav);
+  // Favorit olub-olmadığını yoxlamaq üçün favoriteProductIds istifadə olunur
+  const isFavorite = favoriteProductIds.includes(id);
 
   const handleToggleFavorite = async (event) => {
     event.stopPropagation();
     event.preventDefault();
 
-    if (!accessToken) {
+    const token = localStorage.getItem("accessToken");
+
+    if (!token) {
       navigate("/login");
       return;
     }
 
     try {
       if (isFavorite) {
+        // Favoritdən çıxar
         await removeFavorite(id).unwrap();
-        setIsFavorite(false);
       } else {
+        // Favoritə əlavə et
         await addFavorite(id).unwrap();
-        setIsFavorite(true);
       }
+
+      // Yeniləmək üçün refetch çağırılır
+      refetchFavorites();
     } catch (error) {
-      console.error("Favorit əməliyyatı zamanı xəta baş verdi:", error);
+      console.error("Favorit əməliyyatı zamanı xəta:", error);
     }
   };
 
@@ -125,7 +131,7 @@ function Card({ card }) {
 
         <div className={style.heartSpan} onClick={handleToggleFavorite}>
           {isFavorite ? (
-            <TiHeartFullOutline style={{ color: "black" }} />
+            <TiHeartFullOutline style={{ color: "red" }} />
           ) : (
             <PiHeartBold style={{ fill: "red" }} />
           )}

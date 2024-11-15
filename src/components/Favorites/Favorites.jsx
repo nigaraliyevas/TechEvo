@@ -8,41 +8,29 @@ import style from "./Favorites.module.scss";
 function Favorites() {
   const navigate = useNavigate();
   const { accessToken } = useSelector((state) => state.auth); // Access token yoxlayırıq
-
-  // Favoritləri API-dən çəkmək
-  const { data: favoriteData = [], isLoading, isError } = useGetFavoritesQuery();
-  const [removeFavorite] = useRemoveFavoriteMutation();
+  const { data: favoriteData = [], isLoading, isError, refetch } = useGetFavoritesQuery(); // Refetch əlavə edildi
 
   useEffect(() => {
-    if (!accessToken) {
-      navigate("/login"); // Token yoxdursa, login səhifəsinə yönləndiririk
-    }
+    if (!accessToken) navigate("/login"); // Token yoxdursa, login səhifəsinə yönləndiririk
   }, [accessToken, navigate]);
 
   if (isLoading) return <p>Yüklənir...</p>;
   if (isError) return <p>Favoritləri yükləmək mümkün olmadı.</p>;
 
-  const handleRemoveFromFavorites = async (productId) => {
-    try {
-      await removeFavorite(productId).unwrap(); // Favoriti silmək
-    } catch (error) {
-      console.error("Favoritdən silərkən xəta baş verdi:", error);
-    }
-  };
-
   return (
     <div className={style.favoritesContainer}>
       <h2>Sevimlilər</h2>
       <div className={style.favoritesList}>
-        {favoriteData && favoriteData.length > 0 ? (
+        {favoriteData.length > 0 ? (
           favoriteData.map((card) => (
-            <FavoriteCard key={card.productId} card={card} 
-
-              onRemoveFavorite={() => handleRemoveFromFavorites(card.id)} // Remove funksiyasını göndəririk
+            <FavoriteCard
+              key={card.id}
+              card={card}
+              onRefetch={refetch} // Sinxronizasiya üçün refetch funksiyasını ötürürük
             />
           ))
         ) : (
-          <p>Heç bir favorit yoxdur</p> // Əgər favoritlər boşdursa, bu mesajı göstəririk
+          <p>Heç bir favorit yoxdur</p>
         )}
       </div>
     </div>

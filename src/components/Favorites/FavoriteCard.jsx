@@ -4,27 +4,25 @@ import StarRating from "../../components/Rating/StarRating";
 import style from "./Favorites.module.scss";
 import { useDispatch } from "react-redux";
 import { useRemoveFavoriteMutation } from "../../redux/sercives/favoriteApi";
-import { useGetProductByIdQuery } from "../../redux/sercives/productApi"; // Yeni sorğunu import edin
+//import { useGetProductByIdQuery } from "../../redux/sercives/productApi"; // Yeni sorğunu import edin
 import { SlBasket } from "react-icons/sl";
 import { useMediaQuery } from "react-responsive";
 import { addToCart } from "../../redux/slices/BasketSlice";
 
-function FavoriteCard({ card }) {
-    const { productId } = card; // productId dəyərini card-dan alın
+function FavoriteCard({ card, onRefetch, }) {
+    const { name, price, imageUrl, rating } = card;
     const dispatch = useDispatch();
     const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
     const [removeFavorite] = useRemoveFavoriteMutation();
 
-    // productId ilə məhsul məlumatlarını API-dən çəkin
-    const { data: productData, isLoading, isError } = useGetProductByIdQuery(productId);
-
     const handleRemoveFavorite = async (event) => {
-        event.stopPropagation();
-        try {
-            await removeFavorite(productId).unwrap(); // Favoritdən silir
-        } catch (error) {
-            console.error("Favoritdən çıxarılarkən xəta baş verdi:", error);
-        }
+      event.stopPropagation();
+      try {
+        await removeFavorite(card.id).unwrap();
+        onRefetch(); // Favoritlər siyahısını yeniləyirik
+      } catch (error) {
+        console.error("Favoritdən çıxarılarkən xəta baş verdi:", error);
+      }
     };
 
     const addBasket = (event) => {
@@ -32,11 +30,10 @@ function FavoriteCard({ card }) {
         if (productData) dispatch(addToCart(productData));
     };
 
-    if (isLoading) return <p>Yüklənir...</p>;
-    if (isError) return <p>Məhsul məlumatlarını çəkmək mümkün olmadı.</p>;
+   
 
     // Məhsul məlumatlarını productData-dan alın
-    const { name, price, imageUrl, rating } = productData || {};
+    //const { name, price, imageUrl, rating } = productData || {};
 
     return (
         <div className={style.containerFavoriteCards}>

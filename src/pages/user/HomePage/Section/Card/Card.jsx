@@ -1,55 +1,50 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { PiHeartBold } from "react-icons/pi";
 import { TiHeartFullOutline } from "react-icons/ti";
-import { SlBasket } from "react-icons/sl";
-import StarRating from "../../../../../components/Rating/StarRating";
+import { useDispatch } from "react-redux";
+import { useAddFavoriteMutation, useRemoveFavoriteMutation } from "../../../../../redux/sercives/favoriteApi";
 import { addToCart } from "../../../../../redux/slices/BasketSlice";
+import StarRating from "../../../../../components/Rating/StarRating";
 import style from "../../HomePage.module.scss";
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { useAddFavoriteMutation, useRemoveFavoriteMutation, useGetFavoritesQuery } from "../../../../../redux/sercives/favoriteApi";
+import { SlBasket } from "react-icons/sl";
 
 function Card({ card }) {
-  const { name, price, imageUrl, rating, id, discountPrice } = card;
+  const { name, price, imageUrl, rating, id, discountPrice, isFav } = card;
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  // API-dən favoritləri alırıq
-  const { data: favoriteData = [] } = useGetFavoritesQuery();
-  const accessToken = localStorage.getItem("accessToken") || null;
-
   const [addFavorite] = useAddFavoriteMutation();
   const [removeFavorite] = useRemoveFavoriteMutation();
 
-  // API-dən alınan favoritlərdən isFavorite təyin edirik
-  const isFavorite = favoriteData.some((fav) => fav.id === id); // Favoritdə olub-olmadığını yoxlayırıq
+  const accessToken = localStorage.getItem("accessToken") || null;
 
-  const [selectedImage, setSelectedImage] = useState(0);
-  const [lastMouseX, setLastMouseX] = useState(null);
-  const [isFavorited, setIsFavorite] = useState(false);
+  // Start with the initial `isFav` prop
+  const [isFavorite, setIsFavorite] = useState(isFav);
 
   const handleToggleFavorite = async (event) => {
     event.stopPropagation();
     event.preventDefault();
 
     if (!accessToken) {
-      navigate("/login"); // Token yoxdursa, login səhifəsinə yönləndir
+      navigate("/login");
       return;
     }
 
     try {
       if (isFavorite) {
+        await removeFavorite(id).unwrap();
         setIsFavorite(false);
-        await removeFavorite(id).unwrap(); // API-dən favoriti sil
       } else {
+        await addFavorite(id).unwrap();
         setIsFavorite(true);
-        await addFavorite(id).unwrap(); // API-yə favoriti əlavə et
       }
     } catch (error) {
       console.error("Favorit əməliyyatı zamanı xəta baş verdi:", error);
     }
   };
 
+  const [selectedImage, setSelectedImage] = useState(0);
+  const [lastMouseX, setLastMouseX] = useState(null);
   const handleMouseMove = (e) => {
     const { clientX } = e;
 
@@ -121,16 +116,15 @@ function Card({ card }) {
           {imageUrl.map((_, index) => (
             <div
               key={index}
-              className={`${style.radioDiv} ${
-                selectedImage === index ? style.selected : ""
-              }`}
+              className={`${style.radioDiv} ${selectedImage === index ? style.selected : ""
+                }`}
               onClick={() => handleDivClick(index)}
             />
           ))}
         </div>
 
         <div className={style.heartSpan} onClick={handleToggleFavorite}>
-          {isFavorited ? (
+          {isFavorite ? (
             <TiHeartFullOutline style={{ color: "black" }} />
           ) : (
             <PiHeartBold style={{ fill: "red" }} />

@@ -21,7 +21,6 @@ const ProductPage = () => {
   const id = searchParams.get("id");
 
   const { data: product, error, isLoading } = useGetProductByIdQuery(id);
-  console.log(product, "detailData");
 
   useEffect(() => {
     if (!id) {
@@ -33,27 +32,25 @@ const ProductPage = () => {
 
   const [modalShow, setModalShow] = useState(false);
   const [carouselImages, setCarouselImages] = useState([]);
+  const [imageIndex, setImageIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState();
 
-  console.log(carouselImages, "detailImage");
-  const caruselRef = useRef()
-  const [currentIndex, setCurrentIndex] = useState(1);
-
-  const extendedCarouselImages = [...carouselImages, ...carouselImages];
+  useEffect(() => {
+    if (modalShow) {
+      setCurrentIndex(imageIndex);
+    }else{
+      setCurrentIndex(null)
+    }
+  }, [modalShow, imageIndex]);
 
   const scrollNext = () => {
-    if (currentIndex === extendedCarouselImages.length - 1) {
-      setCurrentIndex(1);
-    } else {
-      setCurrentIndex(currentIndex + 1);
-    }
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % carouselImages.length);
   };
 
   const scrollPrev = () => {
-    if (currentIndex === 0) {
-      setCurrentIndex(extendedCarouselImages.length - 2);
-    } else {
-      setCurrentIndex(currentIndex - 1);
-    }
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? carouselImages.length - 1 : prevIndex - 1
+    );
   };
 
   return (
@@ -99,12 +96,14 @@ const ProductPage = () => {
         )}
 
         <div></div>
-
         {modalShow && (
           <div className={styles.detail_modal_image}>
             <h2 className={styles.modal_image_title}>
-              {product?.name} {/* Məhsul adını dinamik göstərək */}
-              <div onClick={() => setModalShow(false)}>
+              {product?.name}
+              <div onClick={() =>{
+                 setModalShow(false)
+                 setCurrentIndex(null)
+                 }}>
                 <span>
                   <IoMdClose size={36} />
                 </span>
@@ -121,28 +120,24 @@ const ProductPage = () => {
                   </div>
                 </div>
 
-                <div
-                  className={styles.modal_image_carusel_wrap}
-                  ref={caruselRef}
-                >
-                  <div className={styles.modal_image_carusel_wrap}>
-                    <div
-                      className={styles.modal_image_carusel}
-                      style={{
-                        transform: `translateX(-${currentIndex * 580}px)`,
-                      }}
-                    >
-                      {extendedCarouselImages.map((img, index) => (
-                        <div className={styles.carusel_image} key={index}>
-                          <img
-                            style={{ width: "580px", height: "480px" }}
-                            className={styles.module_image}
-                            src={img}
-                            alt={`Product image ${index + 1}`}
-                          />
-                        </div>
-                      ))}
-                    </div>
+                <div className={styles.modal_image_carusel_wrap}>
+                  <div
+                    className={styles.modal_image_carusel}
+                    style={{
+                      transform: `translateX(-${currentIndex *492}px)`,
+                     
+                    }}
+                  >
+                    {carouselImages.map((img, index) => (
+                      <div className={styles.carusel_image} key={index}>
+                        <img
+                          style={{ width: "492px", height: "400px" }}
+                          className={styles.module_image}
+                          src={img}
+                          alt={`Product image ${index + 1}`}
+                        />
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>

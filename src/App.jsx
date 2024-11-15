@@ -5,13 +5,13 @@ import UserRouter from "./router/UserRouter";
 import { useState } from "react";
 // import RoutesPage from "./pages/user/RouterPage/RoutesPage";
 const App = () => {
-  const [qiute,setQuite]=useState(false)
+  const [exist,setExist]=useState(false)
   const [confirm,setConfirm] = useState(false)
   return (
     <Provider store={store}>
       <BrowserRouter>
         <Routes>
-          <Route path="/*" element={<UserRouter qiute={qiute} setQuite={setQuite} confirm={confirm} setConfirm={setConfirm}/>} />
+          <Route path="/*" element={<UserRouter exist={exist} setExist={setExist} confirm={confirm} setConfirm={setConfirm}/>} />
         </Routes>
       </BrowserRouter>
     </Provider>

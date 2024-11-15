@@ -14,7 +14,7 @@ import { useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import "../../../App.css";
 import { useSelector } from "react-redux";
-const Header = ({qiute,confirm}) => {
+const Header = ({exist,confirm}) => {
   const {basket,count} = useSelector((state)=>state.basket)
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => {
@@ -22,7 +22,7 @@ const Header = ({qiute,confirm}) => {
   };
   return (
     <header       style={{
-      position: qiute||confirm ?  "static" : "",
+      position: exist||confirm ?  "static" : "",
      
     }}
 >

@@ -20,7 +20,7 @@ import { useEffect } from "react";
 import { setTokens } from "../redux/slices/TokenSlice";
 import { useDispatch } from "react-redux";
 
-const UserRouter = ({ setConfirm, confirm, setQuite, quite }) => {
+const UserRouter = ({ setConfirm, confirm, setExist, exist }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -37,7 +37,7 @@ const UserRouter = ({ setConfirm, confirm, setQuite, quite }) => {
   }, [dispatch]);
   return (
     <Routes>
-      <Route element={<UserLayout confirm={confirm} quite={quite} />}>
+      <Route element={<UserLayout confirm={confirm} exist={exist} />}>
         <Route index path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/forget" element={<ForgetPassPage />} />
@@ -50,7 +50,7 @@ const UserRouter = ({ setConfirm, confirm, setQuite, quite }) => {
         <Route path="/product" element={<ProductPage />} />
         <Route path="/basket" element={<BasketPage />} />
         <Route path="/confirm" element={<ConfirmBasket />} />
-        <Route path="/accountpage" element={<AccountPage setConfirm={setConfirm} setQuite={setQuite} confirm={confirm} quite={quite} />} />
+        <Route path="/accountpage" element={<AccountPage setConfirm={setConfirm} setExist={setExist} confirm={confirm} exist={exist} />} />
         <Route path="/orders" element={<AllOrders />} />
       </Route>
     </Routes>

@@ -1,40 +1,53 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { PiHeartBold } from "react-icons/pi";
 import { TiHeartFullOutline } from "react-icons/ti";
 import { SlBasket } from "react-icons/sl";
 import StarRating from "../../../../../components/Rating/StarRating";
+import { addToCart } from "../../../../../redux/slices/BasketSlice";
 import style from "../../HomePage.module.scss";
-import { Link, useNavigate } from "react-router-dom"; // useNavigate-i idxal et
-import { useDispatch, useSelector } from "react-redux";
-import { addToFavorites, removeFromFavorites } from "../../../../../redux/slices/favoritesSlice";
+import { Link, useNavigate } from "react-router-dom";
+import { useAddFavoriteMutation, useRemoveFavoriteMutation, useGetFavoritesQuery } from "../../../../../redux/sercives/favoriteApi";
 
 function Card({ card }) {
-  const { name, price, imageUrl, rating, id } = card;
+  const { name, price, imageUrl, rating, id, discountPrice } = card;
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const favorites = useSelector((state) => state.favorites);
-  const navigate = useNavigate(); // useNavigate-i yaradın
 
-  // Kartın sevilənlərdə olub-olmadığını yoxlayın
-  const isFavorite = favorites.some((fav) => fav.id === id);
+  const [addFavorite] = useAddFavoriteMutation();
+  const [removeFavorite] = useRemoveFavoriteMutation();
+  const [isFavorite, setIsFavorite] = useState(false);
 
+  useEffect(() => {
+    const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    setIsFavorite(storedFavorites.some(fav => fav.id === id));
+  }, [id]);
+
+  const handleFavoriteToggle = async event => {
+    event.stopPropagation();
+    if (!localStorage.getItem("accessToken")) {
+      navigate("/login");
+      return;
+    }
+
+    if (isFavorite) {
+      // Remove from favorites
+      const updatedFavorites = JSON.parse(localStorage.getItem("favorites")).filter(fav => fav.id !== id);
+      localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+      setIsFavorite(false);
+      await removeFavorite(id).unwrap();
+    } else {
+      // Add to favorites
+      const updatedFavorites = [...JSON.parse(localStorage.getItem("favorites") || "[]"), card];
+      localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+      setIsFavorite(true);
+      await addFavorite({ productId: id }).unwrap();
+    }
+  };
   const [selectedImage, setSelectedImage] = useState(0);
   const [lastMouseX, setLastMouseX] = useState(null);
 
-  const handleToggleFavorite = (event) => {
-    event.stopPropagation();
-    event.preventDefault();
-
-    // Ürək ikonuna klik edərkən AccountPage-ə keçid
-    navigate("/accountpage"); // Bu yolu öz hesab səhifənizin yoluna uyğunlaşdırın
-
-    if (isFavorite) {
-      dispatch(removeFromFavorites(id));
-    } else {
-      dispatch(addToFavorites(card));
-    }
-  };
-
-  const handleMouseMove = (e) => {
+  const handleMouseMove = e => {
     const { clientX } = e;
 
     if (lastMouseX === null) {
@@ -45,22 +58,22 @@ function Card({ card }) {
     const deltaX = clientX - lastMouseX;
 
     if (Math.abs(deltaX) > 50) {
-      const newIndex =
-        deltaX < 0
-          ? (selectedImage - 1 + imageUrl.length) % imageUrl.length
-          : (selectedImage + 1) % imageUrl.length;
+      const newIndex = deltaX < 0 ? (selectedImage - 1 + imageUrl.length) % imageUrl.length : (selectedImage + 1) % imageUrl.length;
 
       setSelectedImage(newIndex);
       setLastMouseX(clientX);
     }
   };
 
-  const handleDivClick = (index) => {
+  const handleDivClick = index => {
     setSelectedImage(index);
   };
 
+  const addBasket = () => {
+    dispatch(addToCart(card));
+  };
   return (
-    <Link style={({ textDecoration: "none" })} to={`/product?id=${id}`} className={style.card}>
+    <div style={{ textDecoration: "none" }} className={style.card}>
       <span className={style.cardAnimationSpan}></span>
       <span className={style.cardAnimationSpan}></span>
       <span className={style.cardAnimationSpan}></span>
@@ -80,15 +93,11 @@ function Card({ card }) {
               height: "100%",
             }}
           >
-            {imageUrl.map((imgSrc, index) => (
-              <img
-                key={index}
-                className={style.cardImg}
-                src={imgSrc}
-                alt={name}
-                style={{ width: `${100 / imageUrl.length}%` }}
-              />
-            ))}
+            <Link to={`/product?id=${id}`}>
+              {imageUrl.map((imgSrc, index) => (
+                <img key={index} className={style.cardImg} src={imgSrc} alt={name} style={{ width: `${100 / imageUrl.length}%` }} />
+              ))}
+            </Link>
           </div>
         </div>
 
@@ -102,31 +111,47 @@ function Card({ card }) {
           ))}
         </div>
 
-        <div className={style.heartSpan} onClick={handleToggleFavorite}>
-          {isFavorite ? (
-            <TiHeartFullOutline style={{ color: "white" }} />
-          ) : (
-            <PiHeartBold style={{ fill: "white" }} />
-          )}
+        <div className={style.heartSpan} onClick={handleFavoriteToggle}>
+          {isFavorite ? <TiHeartFullOutline style={{ color: "red" }} /> : <PiHeartBold style={{ fill: "red" }} />}
         </div>
 
         <div className={style.cardBottomTitles}>
           <div className={style.namePrice}>
             <h4>{name}</h4>
-            <p>{price} AZN</p>
+            <p>
+              {discountPrice ? (
+                <>
+                  <span
+                    style={{
+                      textDecoration: "line-through",
+                      marginRight: "10px",
+                      color: "#BFBFBF",
+                      fontWeight: "500",
+                      fontSize: "16px",
+                    }}
+                  >
+                    {price} AZN
+                  </span>
+                  <span>{discountPrice} AZN</span>
+                </>
+              ) : (
+                <span>{price} AZN</span>
+              )}
+            </p>
           </div>
 
           <div className={style.ratingBasket}>
             <StarRating value={rating} />
+
             <div className={style.basketBg}>
-              <a href="#">
+              <button onClick={addBasket}>
                 <SlBasket style={{ width: "18px", height: "18px" }} />
-              </a>
+              </button>
             </div>
           </div>
         </div>
       </div>
-    </Link>
+    </div>
   );
 }
 

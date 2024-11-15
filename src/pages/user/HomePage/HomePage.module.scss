@@ -9,15 +9,12 @@
 
 body {
   font-family: "SF Pro Display", sans-serif;
-  ;
   background-color: $bgColor !important;
-
 
   //TOP SLIDER
   .sliderContainer {
     margin-left: auto;
     margin-right: auto;
-
 
     .slick-arrow {
       display: none !important;
@@ -30,7 +27,6 @@ body {
         width: 100%;
         height: auto;
       }
-
 
       .slick-slider div {
         padding-top: 93px !important;
@@ -52,8 +48,6 @@ body {
           flex-direction: column;
           gap: 36px;
           font-family: "SF Pro Display", sans-serif;
-          ;
-
           h1 {
             font-size: 70px;
             font-weight: 700;
@@ -105,28 +99,18 @@ body {
               /* Hover zamanı gradient görünür */
             }
           }
-
-
         }
 
         span {
           margin: 0 5px;
           /* Sözlər arasında boşluq yaratmaq üçün */
         }
-
-
       }
-
-
-
     }
   }
 }
 
-
-
 //END TOP SLIDER
-
 
 //XUSUSI SECIMLER
 #specialselected {
@@ -162,8 +146,6 @@ body {
 }
 
 //END XUSUSI SECIMLER
-
-
 
 //CARDS
 .cardMain {
@@ -230,16 +212,7 @@ body {
     padding: 12px !important;
     border: 1px solid transparent;
     cursor: pointer;
-    background: radial-gradient(circle at 100% 100%,
-        #000000 0,
-        #000000 2px,
-        transparent 2px) 0% 0% / 3px 3px no-repeat,
-      radial-gradient(circle at 0 100%, #000000 0, #000000 2px, transparent 2px) 100% 0% / 3px 3px no-repeat,
-      radial-gradient(circle at 100% 0, #000000 0, #000000 2px, transparent 2px) 0% 100% / 3px 3px no-repeat,
-      radial-gradient(circle at 0 0, #000000 0, #000000 2px, transparent 2px) 100% 100% / 3px 3px no-repeat,
-      linear-gradient(#000000, #000000) 50% 50% / calc(100% - 1px) calc(100% - 6px) no-repeat,
-      linear-gradient(#000000, #000000) 50% 50% / calc(100% - 6px) calc(100% - 1px) no-repeat,
-      linear-gradient(to top left, #0b0b4b, #49146e);
+    background: radial-gradient(circle at 100% 100%, #000000 0, #000000 2px, transparent 2px) 0% 0% / 3px 3px no-repeat, radial-gradient(circle at 0 100%, #000000 0, #000000 2px, transparent 2px) 100% 0% / 3px 3px no-repeat, radial-gradient(circle at 100% 0, #000000 0, #000000 2px, transparent 2px) 0% 100% / 3px 3px no-repeat, radial-gradient(circle at 0 0, #000000 0, #000000 2px, transparent 2px) 100% 100% / 3px 3px no-repeat, linear-gradient(#000000, #000000) 50% 50% / calc(100% - 1px) calc(100% - 6px) no-repeat, linear-gradient(#000000, #000000) 50% 50% / calc(100% - 6px) calc(100% - 1px) no-repeat, linear-gradient(to top left, #0b0b4b, #49146e);
     border-radius: 5px;
     box-sizing: border-box;
     max-width: 350px;
@@ -251,7 +224,6 @@ body {
     overflow: hidden;
     transition: 0.3s ease all;
     z-index: 2;
-
 
     //ANIMATION SPAN
     .cardAnimationSpan {
@@ -344,13 +316,10 @@ body {
 
     //END ANIMATION SPAN
 
-
     //INCLUDE CARD IMAGE
     .cardImgContainer {
-
       width: 326px;
       height: 180px;
-
 
       .cardImg {
         height: 100%;
@@ -367,7 +336,6 @@ body {
 
     //END INCLUDE CARD IMAGE
 
-
     //RADIO BUTTONS
     .radioButtons {
       position: absolute; // Şəkilin üstündə görünməsi üçün
@@ -377,20 +345,20 @@ body {
       display: flex;
       background-color: rgba(128, 128, 128, 0.384);
       padding: 4px 8px;
-      border-radius: .5rem;
+      border-radius: 0.5rem;
       gap: 8px; // Radio button-lar arasında məsafə
 
       .radioDiv {
         width: 8px; // Radio button ölçüsü
         height: 8px;
         border-radius: 50%; // Dairəvi forma
-        background-color: #DFDFDF; // Default rəngi
+        background-color: #dfdfdf; // Default rəngi
         cursor: pointer; // Kursoru pointer edərək kliklənə biləcəyini göstər
         transition: background-color 0.3s ease, border-color 0.3s ease; // Keçidlər
 
         &.selected {
-          background-color: #2E2E2E; // Seçilmiş halda arxa fon
-          border: 2px solid #2E2E2E; // Seçilmiş halda çərçivə rəngi
+          background-color: #2e2e2e; // Seçilmiş halda arxa fon
+          border: 2px solid #2e2e2e; // Seçilmiş halda çərçivə rəngi
         }
 
         // Hover zamanı
@@ -401,7 +369,6 @@ body {
     }
 
     //  END RADIO BUTTONS
-
 
     .heartSpan {
       //color: white;
@@ -415,8 +382,6 @@ body {
     .cardBottomTitles {
       .namePrice {
         font-family: $fontFamily;
-        
-
 
         h4 {
           //max-width: 250px;
@@ -435,7 +400,6 @@ body {
           line-height: 20px;
           margin-top: 12px;
           margin-bottom: 8px;
-
         }
       }
 
@@ -454,13 +418,14 @@ body {
           justify-content: center;
           align-items: center;
 
-          a {
+          button {
             color: white;
             display: flex;
             justify-content: center;
             align-items: center;
+            border: none;
+            background-color: unset;
           }
-
 
           img {
             max-width: 100%;
@@ -468,13 +433,11 @@ body {
           }
         }
       }
-
     }
-
   }
 }
 
-//END CARDS  
+//END CARDS
 
 //SERVICES
 .servicesDiv {
@@ -496,7 +459,6 @@ body {
     padding-bottom: 120px;
     padding-left: 30px;
     padding-right: 30px;
-
 
     .border {
       padding: 40px 10px 30px 10px;
@@ -544,17 +506,11 @@ body {
   }
 }
 
-
 //END SERVICES
-
-
-
-
 
 //MEDIA QUERIES//
 //Mobil cihazlar üçün
 @media (max-width: 480px) {
-
   //TOP SLIDER
   .sliderContainer {
     // max-height: 300px;
@@ -598,7 +554,6 @@ body {
           // padding-top: 48px !important;
           // padding-bottom: 48px !important;
 
-
           h1 {
             font-size: 24px !important;
             font-weight: 700 !important;
@@ -627,15 +582,10 @@ body {
             padding: 10px 24px !important;
             top: 95% !important;
 
-
-
-
-
             span {
               margin: 0 2px !important;
               /* Sözlər arasında boşluq yaratmaq üçün */
             }
-
           }
         }
       }
@@ -689,9 +639,6 @@ body {
       max-width: 198px !important;
       //max-height: 284px !important;
 
-
-
-
       //INCLUDE CARD IMAGE
       .cardImgContainer {
         width: 174px !important;
@@ -709,9 +656,7 @@ body {
         }
       }
 
-
       //END INCLUDE CARD IMAGE
-
 
       //RADIO BUTTONS
       .radioButtons {
@@ -719,7 +664,6 @@ body {
       }
 
       //  END RADIO BUTTONS
-
 
       .heartSpan {
         color: white;
@@ -733,8 +677,6 @@ body {
       .cardBottomTitles {
         .namePrice {
           font-family: $fontFamily;
-       
-
 
           h4 {
             // max-width: 250px !important;
@@ -755,7 +697,6 @@ body {
             line-height: 16px !important;
             margin-top: 0px !important;
             margin-bottom: 8px !important;
-
           }
         }
 
@@ -774,13 +715,14 @@ body {
             justify-content: center;
             align-items: center;
 
-            a {
+            button {
               color: white;
               display: flex;
               justify-content: center;
               align-items: center;
+              border: none;
+              background-color: unset;
             }
-
 
             img {
               max-width: 100% !important;
@@ -788,13 +730,11 @@ body {
             }
           }
         }
-
       }
     }
   }
 
-  //END CARDS 
-
+  //END CARDS
 
   //SERVICES
   .servicesDiv {
@@ -815,7 +755,6 @@ body {
       padding: 0 8px !important;
       gap: 20px !important;
       padding-bottom: 72px !important;
-
 
       .border {
         border: 1px solid rgba(89, 89, 89, 1);
@@ -839,7 +778,6 @@ body {
         display: flex !important;
         flex-direction: column !important;
         justify-content: center !important;
-
       }
 
       .text {
@@ -860,16 +798,9 @@ body {
       }
     }
   }
-
 }
 
 //END SERVICES
-
-
-
-
-
-
 
 /* Orta mobil cihazlar üçün */
 @media only screen and (min-width: 481px) and (max-width: 768px) {

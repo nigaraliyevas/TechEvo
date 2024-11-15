@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
@@ -9,12 +8,9 @@ import "swiper/css/autoplay";
 import "swiper/css/controller";
 import "swiper/css/navigation";
 import Card from "./Card/Card";
-import { products } from "../../../../products";
 import styles from "../HomePage.module.scss";
 
-
-
-const Section = ({ title, data = products }) => {
+const Section = ({ title, data = [] }) => {
   const swiperRef = useRef(null);
 
   // Ekran ölçüsünü saxlamaq üçün state
@@ -26,11 +22,11 @@ const Section = ({ title, data = products }) => {
       setIsMobile(window.innerWidth <= 480);
     };
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     // Cleanup
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
@@ -42,7 +38,7 @@ const Section = ({ title, data = products }) => {
         {isMobile ? (
           // Mobil cihazlarda kartları 1.5 card göstərəcək sadə düzən
           <div className={styles.mobileCards}>
-            {data.map((card) => (
+            {data.map(card => (
               <div className={styles.cardContainer} key={card.id}>
                 <Card card={card} />
               </div>
@@ -65,17 +61,13 @@ const Section = ({ title, data = products }) => {
               prevEl: ".swiper-button-prev",
             }}
             modules={[Autoplay, Navigation]}
-            onSwiper={(swiper) => {
+            onSwiper={swiper => {
               swiperRef.current = swiper;
             }}
           >
-            {data.map((card) => (
+            {data.map(card => (
               <SwiperSlide className={styles.swiperSlide} key={card.id}>
-                <div
-                  className={styles.cardContainer}
-                  onMouseEnter={() => swiperRef.current.autoplay.stop()}
-                  onMouseLeave={() => swiperRef.current.autoplay.start()}
-                >
+                <div className={styles.cardContainer} onMouseEnter={() => swiperRef.current.autoplay.stop()} onMouseLeave={() => swiperRef.current.autoplay.start()}>
                   <Card card={card} />
                 </div>
               </SwiperSlide>

@@ -39,7 +39,7 @@ const CategoryPage = () => {
   const handleSorting = sortType => {
     setFilterQueries(prev => ({ ...prev, sortType }));
   };
-  
+
   const handleFilter = (itemKey, filterKey) => {
     setFilterQueries(prev => {
       const currentFilter = prev[filterKey];
@@ -114,12 +114,7 @@ const CategoryPage = () => {
                 </div>
               </div>
               <div className="pagination-side">
-                <Pagination
-                  products={sortedProducts}
-                  itemsPerPage={itemsPerPage}
-                  handlePageClick={handlePageClick}
-                  currentPage={currentPage}
-                />
+                <Pagination products={sortedProducts} itemsPerPage={itemsPerPage} handlePageClick={handlePageClick} currentPage={currentPage} />
               </div>
             </div>
           </div>

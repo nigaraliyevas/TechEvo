@@ -8,6 +8,7 @@ import { PiSignInFill } from "react-icons/pi";
 import { IoSettingsOutline } from "react-icons/io5";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../../assets/images/HeaderPage/tech-evo-logo 1.png";
+import rightIcon from "../../../assets/images/HeaderPage/rigtIcon.svg";
 import { IoIosMenu } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
 import { useState } from "react";
@@ -222,7 +223,11 @@ const Header = ({exist,confirm}) => {
             </div>
             <div className={styles.navbar_icon}>
               <div onClick={toggleMenu} className={styles.navbar_icon}>
-                {isOpen ? <IoMdClose size={24} /> : <IoIosMenu size={24} />}
+                <span className={isOpen?styles.close_button:styles.open_button}>
+                <IoIosMenu size={24} />
+                </span>
+                <span className={!isOpen?styles.close_button:styles.open_button}>
+                <IoMdClose size={24} /> </span>
               </div>
             </div>
           </div>
@@ -236,13 +241,8 @@ const Header = ({exist,confirm}) => {
                   <div>
                     <IoIosArrowForward />
                   </div>
-                </div>
-              </div>
-              <div className={styles.responsive_navbar_item}>
-                <div>
-                  <Link className={styles.responsive_navbar_item_link}>PC</Link>
                   <div>
-                    <IoIosArrowForward />
+                    <img src={rightIcon} alt="" />
                   </div>
                 </div>
               </div>
@@ -290,16 +290,16 @@ const Header = ({exist,confirm}) => {
             </div>
             <div className={styles.responsive_navbar_icons}>
               <Link className={styles.responsive_navbar_item_link}>
-                Səbət
                 <div className={styles.responsive_navbar_icon}>
                   <SlBasket size={28} />
                 </div>
+                Səbət
               </Link>
               <Link className={styles.responsive_navbar_item_link}>
-                Hesab
                 <div className={styles.responsive_navbar_icon}>
                   <BiUser size={28} />
                 </div>
+                Hesab
               </Link>
             </div>
           </div>

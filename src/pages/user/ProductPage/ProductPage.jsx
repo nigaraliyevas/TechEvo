@@ -79,7 +79,7 @@ const ProductPage = () => {
             <div className={styles.comments_side}>
               <Row>
                 <Col style={{ paddingLeft: "0px", paddingRight: "0px" }}>
-                  <Reviews productId={2} />
+                <Reviews data={{id}} />
                 </Col>
               </Row>
             </div>

@@ -1,28 +1,21 @@
-
 import { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
-// Import Swiper styles
 
+// Import Swiper styles
 import "swiper/css";
 import "swiper/css/autoplay";
 import "swiper/css/controller";
 import "swiper/css/navigation";
+
 import Card from "./Card/Card";
 import styles from "../HomePage.module.scss";
 
-
-
-
-const Section = ({ title, data = [] }) => {
-
+const Section = ({ title, data = [], favoriteProductIds, refetchFavorites }) => {
   const swiperRef = useRef(null);
-
-
 
   // Ekran ölçüsünü saxlamaq üçün state
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 480);
-  console.log(data);
 
   // Ekran ölçüsünü izləmək üçün useEffect
   useEffect(() => {
@@ -30,11 +23,11 @@ const Section = ({ title, data = [] }) => {
       setIsMobile(window.innerWidth <= 480);
     };
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     // Cleanup
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
@@ -44,11 +37,15 @@ const Section = ({ title, data = [] }) => {
 
       <div className={styles.cardMain}>
         {isMobile ? (
-          // Mobil cihazlarda kartları 1.5 card göstərəcək sadə düzən
+          // Mobil cihazlarda kartları sadə düzənlə göstərmək
           <div className={styles.mobileCards}>
             {data.map((card) => (
               <div className={styles.cardContainer} key={card.id}>
-                <Card card={card} />
+                <Card
+                  card={card}
+                  favoriteProductIds={favoriteProductIds}
+                  refetchFavorites={refetchFavorites}
+                />
               </div>
             ))}
           </div>
@@ -80,11 +77,15 @@ const Section = ({ title, data = [] }) => {
                   onMouseEnter={() => swiperRef.current.autoplay.stop()}
                   onMouseLeave={() => swiperRef.current.autoplay.start()}
                 >
-                  <Card card={card} />
+                  <Card
+                    card={card}
+                    favoriteProductIds={favoriteProductIds}
+                    refetchFavorites={refetchFavorites}
+                  />
                 </div>
               </SwiperSlide>
             ))}
-            {/* Kənar oxlar */}
+            {/* Navigation arrows */}
             <div className={`${styles.swiperNav} ${styles.swiperNavPrev} swiper-button-prev`}></div>
             <div className={`${styles.swiperNav} ${styles.swiperNavNext} swiper-button-next`}></div>
           </Swiper>

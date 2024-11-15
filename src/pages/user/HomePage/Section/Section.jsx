@@ -14,7 +14,7 @@ import styles from "../HomePage.module.scss";
 
 
 
-const Section = ({ title, data = [] }) => {
+const Section = ({ title, data=[] }) => {
 
   const swiperRef = useRef(null);
 

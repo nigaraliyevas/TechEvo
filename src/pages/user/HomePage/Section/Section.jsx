@@ -22,6 +22,7 @@ const Section = ({ title, data=[] }) => {
 
   // Ekran ölçüsünü saxlamaq üçün state
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 480);
+  console.log(data);
 
   // Ekran ölçüsünü izləmək üçün useEffect
   useEffect(() => {

@@ -1,53 +1,79 @@
 // import toast from "react-hot-toast";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { setTokens } from "../redux/slices/TokenSlice";
-// import { setUser } from "../redux/slice/userSlice";
+// import { useDispatch } from "react-redux";
+// import { useNavigate } from "react-router-dom";
+// import { setTokens } from "../redux/slices/TokenSlice";
 
-const useLogin = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+// const useLogin = () => {
+//   const navigate = useNavigate();
+//   const dispatch = useDispatch();
+//   const url = import.meta.env.VITE_SOME_KEY;
 
-  const login = async (email, password) => {
+//   const login = async (email, password) => {
+//     try {
+//       const response = await fetch(${url}auth/login, {
+//         method: "POST",
+//         headers: {
+//           "Content-Type": "application/json",
+//         },
+//         body: JSON.stringify({ email, password }),
+//       });
 
-    try {
-      const url = import.meta.env.API_URL
-      console.log(url);
-      const response = await fetch(
-        `http://ec2-51-20-32-195.eu-north-1.compute.amazonaws.com:8081/api/v1/auth/login`,
+//       if (!response.ok) {
+//         throw new Error("Login failed");
+//       }
 
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email, password }),
-        }
-      );
+//       const data = await response.json();
+//       const { refreshToken, accessToken } = data;
 
-      if (!response.ok) {
-        throw new Error("Login failed");
-      }
+//       // Set tokens in Redux and localStorage
+//       dispatch(setTokens({ accessToken, refreshToken }));
+//       localStorage.setItem("refreshToken", refreshToken);
+//       localStorage.setItem("accessToken", accessToken);
+//       localStorage.setItem("email", email);
 
-      const data = await response.json();
-      const { refreshToken, accessToken } = data;
+//       toast.success(${email} logged in.);
+//       navigate("/");
 
-      dispatch(setTokens({ accessToken, refreshToken }));
-      // dispatch(setUser(email));
+//       // Set interval for token refresh every 10 minutes
+//       setInterval(async () => {
+//         try {
+//           const storedRefreshToken = localStorage.getItem("refreshToken");
+//           if (!storedRefreshToken) {
+//             throw new Error("No refresh token found");
+//           }
 
-      localStorage.setItem("refreshToken", refreshToken);
-      localStorage.setItem("accessToken", accessToken);
-      localStorage.setItem("email", email);
+//           const refreshResponse = await fetch(${url}auth/refresh, {
+//             method: "POST",
+//             headers: {
+//               Authorization: Bearer ${storedRefreshToken},
+//               "Content-Type": "application/json",
+//             },
+//           });
 
-      toast.success(`${email} logged in.`);
-      console.log(localStorage.getItem('refreshToken'))
-      navigate("/");
-    } catch (error) {
-      toast.error("Login failed");
-      console.error(error);
-    }
-  };
-  return login;
-};
+//           if (!refreshResponse.ok) {
+//             throw new Error("Token refresh failed");
+//           }
 
-export default useLogin;
+//           const refreshData = await refreshResponse.json();
+//           const { newAccessToken, newRefreshToken } = refreshData;
+
+//           // Update tokens in Redux and localStorage
+//           dispatch(setTokens({ accessToken: newAccessToken, refreshToken: newRefreshToken }));
+//           localStorage.setItem("accessToken", newAccessToken);
+//           localStorage.setItem("refreshToken", newRefreshToken);
+//         } catch (refreshError) {
+//           console.error("Token refresh error:", refreshError);
+//           toast.error("Session expired. Please log in again.");
+//           // Handle token refresh failure (e.g., log out the user)
+//         }
+//       }, 10 * 60 * 1000); // 10 minutes in milliseconds
+//     } catch (error) {
+//       toast.error("Login failed");
+//       console.error(error);
+//     }
+//   };
+
+//   return login;
+// };
+
+// export default useLogin;

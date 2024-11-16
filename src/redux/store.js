@@ -6,7 +6,7 @@ import { setupListeners } from "@reduxjs/toolkit/query";
 import basketSlice from "./slices/BasketSlice";
 import TokenReducer from "./slices/TokenSlice";
 import { favoriteApi } from "./sercives/favoriteApi";
-import { orderApi } from "./sercives/orders";
+import { orderApi } from "./sercives/orderApi";
 const store = configureStore({
   reducer: {
     auth: TokenReducer,

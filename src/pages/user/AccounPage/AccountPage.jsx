@@ -17,12 +17,12 @@ const AccountPage = ({ setExist, setConfirm, exist, confirm }) => {
   const [account, setAccount] = useState(true);
   const [orders, setOrders] = useState(false);
   const [like, setLike] = useState(false);
-  // const [userData, setUserData] = useState({
-  //   firstName: "",
-  //   lastName: "",
-  //   email: "",
-  //   address: "",
-  // });
+  const [userData, setUserData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    address: "",
+  });
   const navigate = useNavigate();
   useEffect(() => {
     if (exist || confirm) {
@@ -53,61 +53,61 @@ const AccountPage = ({ setExist, setConfirm, exist, confirm }) => {
     setAccount(false);
   };
 
-  /// ISTIFADECI MELUMATLARIN CEKMEK
+  // / ISTIFADECI MELUMATLARIN CEKMEK
 
-//   useEffect(() => {
-//     const fetchUserData = async () => {
-//       try {
-//         const token = localStorage.getItem("TechEvoToken");
-//         const response = await fetch("/api/v1/user/allUsers", {
-//           method: "GET",
-//           headers: {
-//             Authorization: `Bearer ${token}`,
-//           },
-//         });
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const token = localStorage.getItem("TechEvoToken");
+        const response = await fetch("/api/v1/user/allUsers", {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
-//         if (response.ok) {
-//           const data = await response.json();
-//           setUserData({
-//             firstName: data.firstName,
-//             lastName: data.lastName,
-//             email: data.email,
-//             address: data.address,
-//           });
-//         } else {
-//           console.error("Məlumatları çəkmək alınmadı");
-//         }
-//       } catch (err) {
-//         console.error("Xəta:", err);
-//       }
-//     };
+        if (response.ok) {
+          const data = await response.json();
+          setUserData({
+            firstName: data.firstName,
+            lastName: data.lastName,
+            email: data.email,
+            address: data.address,
+          });
+        } else {
+          console.error("Məlumatları çəkmək alınmadı");
+        }
+      } catch (err) {
+        console.error("Xəta:", err);
+      }
+    };
 
-//     fetchUserData();
-//   }, []);
-//  ///MELUMATLARI YENILEMEK
-//  const saveChanges = async () => {
-//     try {
-//       const token = localStorage.getItem("TechEvoToken");
-//       const response = await fetch("API_URL_HERE", {
-//         method: "PUT", // Yaxud `PATCH`
-//         headers: {
-//           "Content-Type": "application/json",
-//           Authorization: `Bearer ${token}`,
-//         },
-//         body: JSON.stringify(userData),
-//       });
+    fetchUserData();
+  }, []);
+ ///MELUMATLARI YENILEMEK
+ const saveChanges = async () => {
+    try {
+      const token = localStorage.getItem("TechEvoToken");
+      const response = await fetch("API_URL_HERE", {
+        method: "PUT", // Yaxud `PATCH`
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(userData),
+      });
   
-//       if (response.ok) {
-//         alert("Məlumatlar uğurla yeniləndi!");
-//         setConfirm(true)
-//       } else {
-//         alert("Məlumatlar yenilənmədi. Xəta baş verdi.");
-//       }
-//     } catch (err) {
-//       console.error("Xəta:", err);
-//       alert("Məlumatları göndərərkən xəta baş verdi.");
-//     }
-//   };
+      if (response.ok) {
+        alert("Məlumatlar uğurla yeniləndi!");
+        setConfirm(true)
+      } else {
+        alert("Məlumatlar yenilənmədi. Xəta baş verdi.");
+      }
+    } catch (err) {
+      console.error("Xəta:", err);
+      alert("Məlumatları göndərərkən xəta baş verdi.");
+    }
+  };
   
   return (
     <div className={style.container}>
@@ -188,6 +188,7 @@ const AccountPage = ({ setExist, setConfirm, exist, confirm }) => {
                         <input
                           type="email"
                           placeholder="E-mail"
+
                         />
                       </div>
                     </div>
@@ -197,6 +198,8 @@ const AccountPage = ({ setExist, setConfirm, exist, confirm }) => {
                         <input
                           type="text"
                           placeholder="Ünvan"
+                          // value={email}
+                          onChange={(e)=>setUserData(e.target.value)}
                         />
                       </div>
                     </div>
@@ -212,7 +215,7 @@ const AccountPage = ({ setExist, setConfirm, exist, confirm }) => {
                       </div>
                     </div>
                   </div>
-                  <div className={style.user_btn}>
+                  <div onClick={saveChanges} className={style.user_btn}>
                     <button >
                       Yadda saxla
                     </button>

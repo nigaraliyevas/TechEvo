@@ -8,7 +8,7 @@ import styles from './Reviews.module.scss';
 import { FaUserCircle } from 'react-icons/fa';
 import { RxChevronDown } from 'react-icons/rx';
 import { AiFillStar } from 'react-icons/ai';
-import { setTokens } from "../../redux/slices/TokenSlice"; // TokenSlice-ə daxil et
+// import { setTokens } from "../../redux/slices/TokenSlice"; // TokenSlice-ə daxil et
 
 const StarRating = ({ rating, setRating }) => {
   const handleStarClick = index => {
@@ -38,14 +38,16 @@ const Reviews = ({ data }) => {
   const { id } = data;
   const dispatch = useDispatch();
 
-  const token = useSelector(state => state.auth.accessToken); // Redux-dan access token alırıq
+  const token = localStorage.getItem("accessToken") // Redux-dan access token alırıq
   const [newReview, setNewReview] = useState({ rating: 0, comment: "" });
   const [visibleCount, setVisibleCount] = useState(2);
 
   const { data: reviewsData, error, isLoading } = useGetReviewsQuery({ productId: Number(id) });
   const [postReview] = usePostReviewMutation();
-  const user = localStorage.getItem("email");
+  // const user = localStorage.getItem("email");
   const [reviews, setReviews] = useState([]);
+
+  console.log(token)
 
   useEffect(() => {
     if (reviewsData) {
@@ -63,7 +65,7 @@ const Reviews = ({ data }) => {
   };
 
   const handleAddReview = async () => {
-    if (!user) {
+    if (!token) {
       Swal.fire({
         icon: "warning",
         title: "Giriş Tələb olunur",

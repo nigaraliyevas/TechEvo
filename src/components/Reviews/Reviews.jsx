@@ -11,7 +11,13 @@ import { AiFillStar } from "react-icons/ai";
 import { setTokens } from "../../redux/slices/TokenSlice"; // TokenSlice-ə daxil et
 
 const StarRating = ({ rating, setRating }) => {
+<<<<<<< HEAD
   const handleStarClick = index => {
+=======
+
+  const handleStarClick = index => {
+
+>>>>>>> 6046be295a24d25be23c106e6cdf5895361aa348
     setRating(index + 1);
   };
 
@@ -38,6 +44,7 @@ const Reviews = ({ data }) => {
   const { id } = data;
   const dispatch = useDispatch();
   const token = useSelector(state => state.auth.accessToken); // Redux-dan access token alırıq
+
   const [newReview, setNewReview] = useState({ rating: 0, comment: "" });
   const [visibleCount, setVisibleCount] = useState(2);
 

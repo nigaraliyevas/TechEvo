@@ -9,15 +9,12 @@ const store = configureStore({
   reducer: {
     auth: TokenReducer,
     basket: basketSlice,
+
     [productApi.reducerPath]: productApi.reducer,
     [reviewsApi.reducerPath]: reviewsApi.reducer, // commentApi reducer-i əlavə et
     [favoriteApi.reducerPath]: favoriteApi.reducer,
   },
-  middleware: getDefaultMiddleware =>
-    getDefaultMiddleware()
-      .concat(productApi.middleware)
-      .concat(reviewsApi.middleware) // commentApi middleware-i əlavə et
-      .concat(favoriteApi.middleware),
+  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(productApi.middleware).concat(reviewsApi.middleware).concat(favoriteApi.middleware), // commentApi middleware-i əlavə et
 });
 
 export default store;

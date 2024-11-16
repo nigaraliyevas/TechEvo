@@ -1,52 +1,55 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
 import { PiHeartBold } from "react-icons/pi";
 import { TiHeartFullOutline } from "react-icons/ti";
-import { SlBasket } from "react-icons/sl";
-import StarRating from "../../../../../components/Rating/StarRating";
+//import { useDispatch } from "react-redux";
+import { useAddFavoriteMutation, useRemoveFavoriteMutation } from "../../../../../redux/sercives/favoriteApi";
 import { addToCart } from "../../../../../redux/slices/BasketSlice";
+import StarRating from "../../../../../components/Rating/StarRating";
 import style from "../../HomePage.module.scss";
 import { Link, useNavigate } from "react-router-dom";
-import { useAddFavoriteMutation, useRemoveFavoriteMutation, useGetFavoritesQuery } from "../../../../../redux/sercives/favoriteApi";
+import { SlBasket } from "react-icons/sl";
 
-function Card({ card }) {
+function Card({ card, favoriteProductIds, refetchFavorites }) {
+  console.log("backd'di", favoriteProductIds);
   const { name, price, imageUrl, rating, id, discountPrice } = card;
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
+  // RTK Query mutations
   const [addFavorite] = useAddFavoriteMutation();
   const [removeFavorite] = useRemoveFavoriteMutation();
-  const [isFavorite, setIsFavorite] = useState(false);
 
-  useEffect(() => {
-    const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
-    setIsFavorite(storedFavorites.some(fav => fav.id === id));
-  }, [id]);
+  // Favorit olub-olmadığını yoxlamaq üçün favoriteProductIds istifadə olunur
+  const isFavorite = favoriteProductIds.includes(id);
 
-  const handleFavoriteToggle = async event => {
+  const handleToggleFavorite = async event => {
     event.stopPropagation();
-    if (!localStorage.getItem("accessToken")) {
+    event.preventDefault();
+
+    const token = localStorage.getItem("accessToken");
+
+    if (!token) {
       navigate("/login");
       return;
     }
 
-    if (isFavorite) {
-      // Remove from favorites
-      const updatedFavorites = JSON.parse(localStorage.getItem("favorites")).filter(fav => fav.id !== id);
-      localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
-      setIsFavorite(false);
-      await removeFavorite(id).unwrap();
-    } else {
-      // Add to favorites
-      const updatedFavorites = [...JSON.parse(localStorage.getItem("favorites") || "[]"), card];
-      localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
-      setIsFavorite(true);
-      await addFavorite({ productId: id }).unwrap();
+    try {
+      if (isFavorite) {
+        // Favoritdən çıxar
+        await removeFavorite(id).unwrap();
+      } else {
+        // Favoritə əlavə et
+        await addFavorite(id).unwrap();
+      }
+
+      // Yeniləmək üçün refetch çağırılır
+      refetchFavorites();
+    } catch (error) {
+      console.error("Favorit əməliyyatı zamanı xəta:", error);
     }
   };
+
   const [selectedImage, setSelectedImage] = useState(0);
   const [lastMouseX, setLastMouseX] = useState(null);
-
   const handleMouseMove = e => {
     const { clientX } = e;
 
@@ -72,6 +75,7 @@ function Card({ card }) {
   const addBasket = () => {
     dispatch(addToCart(card));
   };
+
   return (
     <div style={{ textDecoration: "none" }} className={style.card}>
       <span className={style.cardAnimationSpan}></span>
@@ -80,11 +84,7 @@ function Card({ card }) {
       <span className={style.cardAnimationSpan}></span>
 
       <div style={{ position: "relative" }}>
-        <div
-          className={style.cardImgContainer}
-          onMouseMove={handleMouseMove} // Siçan hərəkəti üçün
-          style={{ overflow: "hidden" }}
-        >
+        <div className={style.cardImgContainer} onMouseMove={handleMouseMove} style={{ overflow: "hidden" }}>
           <div
             className={style.imageSlider}
             style={{
@@ -103,15 +103,11 @@ function Card({ card }) {
 
         <div className={style.radioButtons}>
           {imageUrl.map((_, index) => (
-            <div
-              key={index}
-              className={`${style.radioDiv} ${selectedImage === index ? style.selected : ""}`}
-              onClick={() => handleDivClick(index)} // Siçan üçün klik
-            />
+            <div key={index} className={`${style.radioDiv} ${selectedImage === index ? style.selected : ""}`} onClick={() => handleDivClick(index)} />
           ))}
         </div>
 
-        <div className={style.heartSpan} onClick={handleFavoriteToggle}>
+        <div className={style.heartSpan} onClick={handleToggleFavorite}>
           {isFavorite ? <TiHeartFullOutline style={{ color: "red" }} /> : <PiHeartBold style={{ fill: "red" }} />}
         </div>
 

@@ -6,10 +6,11 @@ import rightArrow from "../../assets/images/Orders/arrow-right.svg";
 import truckIcon from "../../assets/images/Orders/truck.svg";
 import NoOrder from "./NoOrder";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import OrderDetails from "./OrderDetails";
 import { useMediaQuery } from "react-responsive";
 import { useGetOrdersQuery } from "../../redux/sercives/orderApi";
+import { useGetProductByIdQuery } from "../../redux/sercives/productApi";
 
 const Desktop = ({ children }) => {
   const isDesktop = useMediaQuery({ minWidth: 992 });
@@ -27,13 +28,24 @@ const AllOrders = () => {
   const [selectedOrderId, setSelectedOrderId] = useState(null);
 
   const { data, error, isLoading } = useGetOrdersQuery();
-  if (isLoading) return "Loading...";
-  else if (error) console.log(error);
+  // get data from useGetProductByIdQuery
+  // const { data: prods, error: errorProds, isLoading: isLoadingProds } = useGetProductByIdQuery(selectedItemId);
+  
+  const [productLoading, setProductLoading] = useState(false);
+
+  if (isLoading) return "Sifarişləriniz yüklənir...";
+  else if (error) {
+    console.log(error);
+    return "Sifarişlərinizi yüklənmək mümkun olmadı.";
+  }
+
   const handleDetails = (itemId, orderId) => {
     setSelectedItemId(itemId);
-    setSelectedOrderId(orderId)
+    setSelectedOrderId(orderId);
     setShowDetails(true);
   };
+
+  if(productLoading) return "Məhsullar yüklənir..."
 
   return (
     <div>
@@ -41,76 +53,85 @@ const AllOrders = () => {
         <div className={styles.allOrders}>
           {/* Deatils of the clicked product */}
           {showDetails ? (
-            <OrderDetails selectedOrderId = {selectedOrderId} selectedItemId = {selectedItemId} setShowDetails={setShowDetails} />
+            <OrderDetails
+              prods = {data}
+              selectedOrderId={selectedOrderId}
+              selectedItemId={selectedItemId}
+              setShowDetails={setShowDetails}
+            />
           ) : (
             <div>
               <div className={styles.heading}>Sifarişlər</div>
 
               {/* OrderContainers will be mapped here */}
-             <div className={styles.orderContainers}>
-             {!isLoading &&
-                !error &&
-                data.map((order) => {
-                  return (
-                    <div key = {order.orderId} className={styles.orderHistory}>
-                      {order.orderItems.map((item) => {
-                        return (
-                          <div key={item.id} className={styles.orderCont}>
-                            <div className={styles.leftSide}>
-                              <div className={styles.ordersImgCont}>
-                                <img
-                                  className={styles.ordersImg}
-                                  src="https://tinyurl.com/54mef8ky"
-                                  alt=""
-                                />
-                              </div>
-                              <div className={styles.ordrDateAndPrice}>
-                                <div className={styles.date}>
-                                  {`${order.day} ${order.month} ${order.year}`}
-                                </div>
-                                <div className={styles.date}>
-                                  Ümumi :{" "}
-                                  <span>{item.quantity * item.price} azn</span>
-                                </div>
-                              </div>
-                            </div>
-                            <div className={styles.rightSide}>
-                              <div className={styles.orderNoAndStatus}>
-                                <div className={styles.orderNo}>
-                                  Sifariş nömrəsi : {order.orderId}
-                                </div>
-                                <div className={styles.orderStatus}>
-                                  <div className={styles.statusIconCont}>
-                                    <img
-                                      className={styles.statusIcon}
-                                      src={tickSquare}
-                                      alt="tick square"
-                                    />
-                                  </div>
-                                  <div>{order.orderStatus}</div>
-                                </div>
-                              </div>
-                              <div
-                                onClick={() => handleDetails(item.id, order.orderId)}
-                                className={styles.orderDetails}
-                              >
-                                <div>Təfərrüatlar</div>
-                                <div className={styles.deatilsIconCont}>
+              <div className={styles.orderContainers}>
+                {!isLoading &&
+                  !error &&
+                  data.map((order) => {
+                    return (
+                      <div key={order.orderId} className={styles.orderHistory}>
+                        {order.orderItems.map((item) => {
+                          return (
+                            <div key={item.id} className={styles.orderCont}>
+                              <div className={styles.leftSide}>
+                                <div className={styles.ordersImgCont}>
                                   <img
-                                    className={styles.detailsIcon}
-                                    src={rightArrow}
-                                    alt="right arrow"
+                                    className={styles.ordersImg}
+                                    src="https://tinyurl.com/54mef8ky"
+                                    alt=""
                                   />
                                 </div>
+                                <div className={styles.ordrDateAndPrice}>
+                                  <div className={styles.date}>
+                                    {`${order.day} ${order.month} ${order.year}`}
+                                  </div>
+                                  <div className={styles.date}>
+                                    Ümumi :{" "}
+                                    <span>
+                                      {item.quantity * item.price} azn
+                                    </span>
+                                  </div>
+                                </div>
+                              </div>
+                              <div className={styles.rightSide}>
+                                <div className={styles.orderNoAndStatus}>
+                                  <div className={styles.orderNo}>
+                                    Sifariş nömrəsi : {order.orderId}
+                                  </div>
+                                  <div className={styles.orderStatus}>
+                                    <div className={styles.statusIconCont}>
+                                      <img
+                                        className={styles.statusIcon}
+                                        src={tickSquare}
+                                        alt="tick square"
+                                      />
+                                    </div>
+                                    <div>{order.orderStatus}</div>
+                                  </div>
+                                </div>
+                                <div
+                                  onClick={() =>
+                                    handleDetails(item.productId, order.orderId)
+                                  }
+                                  className={styles.orderDetails}
+                                >
+                                  <div>Təfərrüatlar</div>
+                                  <div className={styles.deatilsIconCont}>
+                                    <img
+                                      className={styles.detailsIcon}
+                                      src={rightArrow}
+                                      alt="right arrow"
+                                    />
+                                  </div>
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  );
-                })}
-             </div>
+                          );
+                        })}
+                      </div>
+                    );
+                  })}
+              </div>
 
               {/* If no orders are there */}
               {/* <NoOrder /> */}

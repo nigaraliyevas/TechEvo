@@ -2,14 +2,36 @@
 import styles from "./OrderDetails.module.scss";
 // icons
 import leftArrow from "../../assets/images/Orders/arrow-left.svg";
-import { Card } from "@mui/material";
+// import { Card } from "@mui/material";
 import StarRating from "../Rating/StarRating";
+import { useGetOrdersQuery } from "../../redux/sercives/orderApi";
+import { useEffect, useState } from "react";
 
-const OrderDetails = ( { setShowDetails }) => {
-  
+const OrderDetails = ( { setShowDetails , selectedItemId, selectedOrderId}) => {
+  const [product, setProduct] = useState({});
+  const [item, setItem] = useState({});
+
+
+  const { data, error, isLoading } = useGetOrdersQuery();
+  if (isLoading) return "Loading...";
+  else if (error) console.log(error);
+  else console.log(selectedOrderId , selectedItemId, data);
   const handleSendBack = () => {
     setShowDetails(false);
   };
+
+  useEffect(() => {
+    data.map((order) => {
+      if(order.orderId === selectedOrderId) {
+        setProduct(order)
+        order.orderItems.map((itm) => {
+          if(itm.id === selectedItemId) {
+            setItem(itm)
+          }
+        })
+      }
+    })
+  })
 
   return (
     <div className={styles.detailsCont}>
@@ -26,23 +48,23 @@ const OrderDetails = ( { setShowDetails }) => {
 
       <div className={styles.infoCont}>
         <div className={styles.infoLeft}>
-          <div>Sifariş nömrəsi : 1234</div>
-          <div>Sifariş tarixi : 11 okytabr 2024</div>
-          <div>Sifariş xülasəsi : 1 məhsul</div>
+          <div>Sifariş nömrəsi : {product.orderId}</div>
+          <div>Sifariş tarixi : {`${product.day} ${product.month} ${product.year}`}</div>
+          <div>{`Sifariş xülasəsi : ${item.quantity} məhsul`}</div>
           <div>
             Sifariş statusu :{" "}
-            <span className={styles.statusSpan}>göndərilib</span>
+            <span className={styles.statusSpan}>{product.orderStatus}</span>
           </div>
           <div>
-            Ümumi : <span className={styles.priceSpan}>2500 azn</span>
+            Ümumi : <span className={styles.priceSpan}>{`${item.quantity * item.price} azn`}</span>
           </div>
         </div>
         <div className={styles.infoRight}>
           <div>Alıcı : Fidan Salayeva</div>
-          <div>Şəhər : Bakı</div>
-          <div>Məntəqə : Yasamal</div>
-          <div>Küçə : Dadaş Bünyadzadə 11 D</div>
-          <div>Mənzil : 15</div>
+          <div>{`Şəhər : ${product.address?.city || "N/A"}`}</div>
+          <div>{`Məntəqə : ${product.address?.area || "N/A"}`}</div>
+          <div>{`Küçə : ${product.address?.street || "N/A"}`}</div>
+          <div>{`Mənzil : ${product.address?.building || "N/A"}`}</div>
         </div>
       </div>
 
@@ -63,11 +85,10 @@ const OrderDetails = ( { setShowDetails }) => {
           {/* for displaying stars use mui */}
           <div className={styles.ratingCont}>
             <div>
-              <StarRating value = {5} />
+              <StarRating value = {3} />
             </div>
-            <span className={styles.ratingSpan}>5.0</span>
           </div>
-          <span className={styles.priceSpan}>2500 AZN</span>
+          <span className={styles.priceSpan}>{`${item.price} AZN`}</span>
         </div>
       </div>
     </div>

@@ -23,12 +23,15 @@ const Mobile = ({ children }) => {
 
 const AllOrders = () => {
   const [showDetails, setShowDetails] = useState(false);
+  const [selectedItemId, setSelectedItemId] = useState(null);
+  const [selectedOrderId, setSelectedOrderId] = useState(null);
 
   const { data, error, isLoading } = useGetOrdersQuery();
   if (isLoading) return "Loading...";
   else if (error) console.log(error);
-  else console.log(data);
-  const handleDetails = () => {
+  const handleDetails = (itemId, orderId) => {
+    setSelectedItemId(itemId);
+    setSelectedOrderId(orderId)
     setShowDetails(true);
   };
 
@@ -38,7 +41,7 @@ const AllOrders = () => {
         <div className={styles.allOrders}>
           {/* Deatils of the clicked product */}
           {showDetails ? (
-            <OrderDetails setShowDetails={setShowDetails} />
+            <OrderDetails selectedOrderId = {selectedOrderId} selectedItemId = {selectedItemId} setShowDetails={setShowDetails} />
           ) : (
             <div>
               <div className={styles.heading}>Sifarişlər</div>
@@ -88,7 +91,7 @@ const AllOrders = () => {
                                 </div>
                               </div>
                               <div
-                                onClick={handleDetails}
+                                onClick={() => handleDetails(item.id, order.orderId)}
                                 className={styles.orderDetails}
                               >
                                 <div>Təfərrüatlar</div>

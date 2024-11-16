@@ -74,14 +74,11 @@ select:hover option:hover {
   width: 100%;
   border-radius: 2px;
   outline: none;
-  color: #999999;
+  color: white;
   border: 2px solid #161a1e66;
 }
 ::placeholder {
   color: #999999;
-}
-.placeholder_white::placeholder {
-  color: white !important;
 }
 .confirmation_textarea {
   width: 782px;
@@ -116,4 +113,20 @@ select:hover option:hover {
   color: white;
   margin-top: 28px;
   background: linear-gradient(120.61deg, #fd3c43 -10.5%, #b622dc 38.25%, #3f27eb 80.92%);
+}
+
+modal-content {
+  .btn-close {
+    color: #ffffff !important; // Set the close button to white
+    opacity: 1; // Ensure full opacity
+    font-size: 18px; // Optional: Adjust the size of the close button
+
+    &:hover {
+      color: #6a11cb; // Optional: Change color on hover
+    }
+
+    &:focus {
+      box-shadow: none; // Remove the focus outline
+    }
+  }
 }

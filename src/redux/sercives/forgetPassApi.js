@@ -1,8 +1,8 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-
+const url = import.meta.env.VITE_SOME_KEY;
 export const forgetPassApi = createApi({
   reducerPath: "forgetPassApi",
-  baseQuery: fetchBaseQuery(import.meta.env.server_domain),
+  baseQuery: fetchBaseQuery({ baseUrl: url }),
   endpoints: builder => ({
     sendVerificationCode: builder.mutation({
       query: email => ({
@@ -20,11 +20,13 @@ export const forgetPassApi = createApi({
       }),
     }),
     changePassword: builder.mutation({
-      query: (newPassword, confirmPassword) => ({
+      query: (newPassword, confirmPassword, email, verificationCode) => ({
         url: "/auth/changePassword",
         method: "POST",
         body: newPassword,
         confirmPassword,
+        email,
+        verificationCode,
       }),
     }),
   }),

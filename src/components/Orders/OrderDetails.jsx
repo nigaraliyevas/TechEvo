@@ -4,34 +4,47 @@ import styles from "./OrderDetails.module.scss";
 import leftArrow from "../../assets/images/Orders/arrow-left.svg";
 // import { Card } from "@mui/material";
 import StarRating from "../Rating/StarRating";
-import { useGetOrdersQuery } from "../../redux/sercives/orderApi";
 import { useEffect, useState } from "react";
+import { useGetProductByIdQuery } from "../../redux/sercives/productApi";
 
-const OrderDetails = ( { setShowDetails , selectedItemId, selectedOrderId}) => {
+const OrderDetails = ( { prods , setShowDetails , selectedItemId, selectedOrderId}) => {
   const [product, setProduct] = useState({});
   const [item, setItem] = useState({});
 
-
-  const { data, error, isLoading } = useGetOrdersQuery();
-  if (isLoading) return "Loading...";
-  else if (error) console.log(error);
-  else console.log(selectedOrderId , selectedItemId, data);
-  const handleSendBack = () => {
-    setShowDetails(false);
-  };
+  const {data, error, isLoading} = useGetProductByIdQuery(selectedItemId);
 
   useEffect(() => {
-    data.map((order) => {
+    prods.map((order) => {
       if(order.orderId === selectedOrderId) {
         setProduct(order)
         order.orderItems.map((itm) => {
-          if(itm.id === selectedItemId) {
+          if(itm.productId === selectedItemId) {
             setItem(itm)
           }
         })
       }
     })
   })
+
+  // get user name surname based on user email(token)
+  
+  if (isLoading) return "Yüklənir...";
+  else if (error) {
+    console.log(error)
+    if (error.originalStatus === 404) {
+      return <div style={{ color: "red", paddingLeft: "12px" }}>Məhsul tapılmadı.</div>;
+    } else {
+      return <div style={{ color: "red", paddingLeft: "12px" }}>Xəta bas verdi.</div>;
+    }
+  }
+  else console.log(selectedOrderId , selectedItemId , data);
+
+
+  const handleSendBack = () => {
+    setShowDetails(false);
+  };
+
+ 
 
   return (
     <div className={styles.detailsCont}>
@@ -56,7 +69,7 @@ const OrderDetails = ( { setShowDetails , selectedItemId, selectedOrderId}) => {
             <span className={styles.statusSpan}>{product.orderStatus}</span>
           </div>
           <div>
-            Ümumi : <span className={styles.priceSpan}>{`${item.quantity * item.price} azn`}</span>
+            Ümumi : <span className={styles.priceSpan}>{`${data.discountPrice ? data.discountPrice * item.quantity : data.price * item.quantity} azn`}</span>
           </div>
         </div>
         <div className={styles.infoRight}>
@@ -73,22 +86,22 @@ const OrderDetails = ( { setShowDetails , selectedItemId, selectedOrderId}) => {
         <div className={styles.productImgCont}>
           <img
             className={styles.productImg}
-            src="https://tinyurl.com/54mef8ky"
+            src={data.imageUrl[0]}
             alt=""
           />
         </div>
         {/* right div */}
         <div>
           <div className={styles.productName}>
-            Notbuk Asus ROG Strix Scar 18 G834JY-N6038 90NR0CG1-M00300
+            {data.name}
           </div>
           {/* for displaying stars use mui */}
           <div className={styles.ratingCont}>
             <div>
-              <StarRating value = {3} />
+              <StarRating value = {data.rating} />
             </div>
           </div>
-          <span className={styles.priceSpan}>{`${item.price} AZN`}</span>
+          <span className={styles.priceSpan}>{`${data.discountPrice ? data.discountPrice : data.price} AZN`}</span>
         </div>
       </div>
     </div>

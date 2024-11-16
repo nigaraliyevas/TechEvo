@@ -17,7 +17,7 @@ export const login = createAsyncThunk("auth/login", async ({ email, password }, 
       return rejectWithValue(data);
     }
 
-    localStorage.setItem("TechEvoToken", data.accessToken);
+    localStorage.setItem("accessToken", data.accessToken);
     localStorage.setItem("refreshToken", data.refreshToken);
 
     return data;

@@ -26,13 +26,14 @@ const EnterPasswordPage = () => {
         setResponseMessage("OTP uğurla təsdiqləndi, zəhmət olmasa gözləyin...");
         if (data == true) {
           setTimeout(() => {
-            localStorage.removeItem("changePasswordEmail");
+            localStorage.setItem("otp", verificationCode);
+            // localStorage.removeItem("changePasswordEmail");
             nav("/newpassword");
           }, 2000);
         }
       }
     }
-  }, [isSuccess, data, nav]);
+  }, [isSuccess, data, nav, verificationCode]);
 
   const handleSubmit = async e => {
     e.preventDefault();

@@ -9,13 +9,17 @@ export const productApi = createApi({
   endpoints: (builder) => ({
     getProducts: builder.query({
       query: () => "product/getAllProducts",
+      providesTags: ["Products"],
     }),
     getProductsByCategoryName: builder.query({
-      query: (categoryName) =>
+      query: ({ categoryName }) =>
         `product/getAllByCategoryName?categoryName=${categoryName}`,
+      invalidatesTags: ["Products"],
     }),
+
     getProductById: builder.query({
       query: (id) => `product/${id}`,
+      invalidatesTags: ["Products"],
     }),
     getOrderByOrderId: builder.query({
       query: (orderItemId) => `order/orderItem/${orderItemId}`,
@@ -27,7 +31,8 @@ export const productApi = createApi({
     filterProductsBySpecs: builder.query({
       query: ({ categoryName, filters }) => {
         let url = `product/filterByPriceAndSpecs?categoryName=${categoryName}`;
-    
+        
+
         // if (filters) {
         //   Object.keys(filters).forEach((key) => {
         //     if (filters[key] && filters[key].length > 0) {
@@ -37,7 +42,7 @@ export const productApi = createApi({
         //     }
         //   });
         // }
-    
+
         return url;
       },
     }),
@@ -49,8 +54,8 @@ export const productApi = createApi({
       query: (categoryName) =>
         `product/category/getFilters?categoryName=${categoryName}`,
     }),
-    getFilterNameWithValues:builder.query({
-      query:(categoryName) =>
+    getFilterNameWithValues: builder.query({
+      query: (categoryName) =>
         `product/category/getFilters?categoryName=${categoryName}`,
     }),
   }),

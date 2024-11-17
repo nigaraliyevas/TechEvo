@@ -6,13 +6,16 @@ import { useState } from "react";
 // import { products, queries } from "../../../products";
 import ProductCard from "../../../components/common/ProductCard/ProductCard";
 import FilterSidebar from "../../../components/FilteredProducts/FilterSideBar";
-import { useFilterProductsBySpecsQuery, useGetProductsQuery } from "../../../redux/sercives/productApi";
+import { useFilterProductsBySpecsQuery, useGetProductsByCategoryNameQuery, useGetProductsQuery } from "../../../redux/sercives/productApi";
+import { useParams } from "react-router-dom";
 
 const CategoryPage = () => {
+  const { category } = useParams();
+  console.log(category)
   const { data, error, isLoading } = useFilterProductsBySpecsQuery({
-    categoryName: "Laptop",
-    filters: {}, // Boş filtr
+    categoryName: category
   });
+
   
 console.log(data)
   const [filterQueries, setFilterQueries] = useState({

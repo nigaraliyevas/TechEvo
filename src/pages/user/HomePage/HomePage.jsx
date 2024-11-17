@@ -15,9 +15,9 @@ import SliderComponent from "./Section/Slider/Slider";
 import styles from "./HomePage.module.scss";
 
 const HomePage = () => {
-  const { data: laptopsData } = useGetProductsByCategoryNameQuery("Laptop");
-  const { data: mousesData } = useGetProductsByCategoryNameQuery("Mouse");
-  const { data: klaviaturasData } = useGetProductsByCategoryNameQuery("Klaviatura");
+  const { data: laptopsData } = useGetProductsByCategoryNameQuery({categoryName: "Laptop"});
+  const { data: mousesData } = useGetProductsByCategoryNameQuery({categoryName: "Mouse"});
+  const { data: klaviaturasData } = useGetProductsByCategoryNameQuery({categoryName: "Klaviatura"});
 
   const [addFavorite] = useAddFavoriteMutation();
   const [removeFavorite] = useRemoveFavoriteMutation();

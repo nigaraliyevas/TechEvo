@@ -9,7 +9,15 @@ const AccordionItem = ({ data, handleFilter, values }) => {
   const [showContent, setShowContent] = useState(true);
   console.log(data);
   console.log(values);
+  const [filterValue, setFilterValue] = useState('');
 
+  const handleFilterValueChange = (value) => {
+    setFilterValue((prevValues) =>
+      prevValues.includes(value)
+        ? prevValues.filter((v) => v !== value) // Əgər seçilibsə, çıxar
+        : [...prevValues, value] // Əgər seçilməyibsə, əlavə et
+    );
+  };
 
   return (
     <div className={styles.accordion_item}>
@@ -18,16 +26,24 @@ const AccordionItem = ({ data, handleFilter, values }) => {
         {showContent ? <FaChevronUp className={styles.icon} /> : <FaChevronDown className={styles.icon} />}
       </div>
       {showContent && (
-         <div className={styles.accordion_content}>
-         <div id={styles.FilteredProductsSide}>
-           <div className={styles.filterItem} >
-             <input type="checkbox" className={styles.checkbox} />
-             <p>{values}</p>
-           </div>
-         </div>
-       </div>
+        <div className={styles.accordion_content}>
+          <div id={styles.FilteredProductsSide}>
+            <div className={styles.filterItem} style={{ display: "flex", flexDirection: "column" }}  >
+
+              {values.map((v, i) =>
+                <div key={i}  style={{ display: "flex" ,alignItems:"center",gap:"10px" ,height:"45px"}} >
+                  <input type="checkbox" className={styles.checkbox}
+                    onChange={() => handleFilterValueChange(v)}
+                  />
+                  <span style={{fontSize:"20px"}}>{v}</span>
+                </div>
+              )
+              }
+            </div>
+          </div>
+        </div>
       )}
-     
+
 
     </div>
   );

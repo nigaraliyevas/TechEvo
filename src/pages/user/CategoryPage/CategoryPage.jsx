@@ -3,7 +3,7 @@ import styles from "./CategoryPage.module.scss";
 import Pagination from "../../../components/Pagination/Pagination";
 import SearchBar from "../../../components/Search/SearchBar";
 import { useState } from "react";
-import { products, queries } from "../../../products";
+// import { products, queries } from "../../../products";
 import ProductCard from "../../../components/common/ProductCard/ProductCard";
 import FilterSidebar from "../../../components/FilteredProducts/FilterSideBar";
 import { useFilterProductsBySpecsQuery, useGetProductsQuery } from "../../../redux/sercives/productApi";

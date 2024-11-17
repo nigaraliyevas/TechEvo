@@ -4,26 +4,31 @@ import ReactSlider from "react-slider";
 import styles from "./Accordion.module.css";
 import { useGetFilterNameWithValuesQuery } from "../../../../redux/sercives/productApi";
 
-const AccordionItem = ({ data, handleFilter,values }) => {
+const AccordionItem = ({ data, handleFilter, values }) => {
 
   const [showContent, setShowContent] = useState(true);
   console.log(data);
-  
+  console.log(values);
+
+
   return (
     <div className={styles.accordion_item}>
       <div className={styles.accordion_title} onClick={() => setShowContent(!showContent)}>
         {data}
         {showContent ? <FaChevronUp className={styles.icon} /> : <FaChevronDown className={styles.icon} />}
       </div>
-        <div className={styles.accordion_content}>
-          <div id={styles.FilteredProductsSide}>
-              <div className={styles.filterItem} >
-                <input type="checkbox" className={styles.checkbox}  />
-                <p>{values}</p>
-              </div>
-          </div>
-        </div>
-       
+      {showContent && (
+         <div className={styles.accordion_content}>
+         <div id={styles.FilteredProductsSide}>
+           <div className={styles.filterItem} >
+             <input type="checkbox" className={styles.checkbox} />
+             <p>{values}</p>
+           </div>
+         </div>
+       </div>
+      )}
+     
+
     </div>
   );
 };

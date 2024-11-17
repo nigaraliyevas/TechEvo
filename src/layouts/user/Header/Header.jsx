@@ -73,7 +73,7 @@ const Header = ({qiute,confirm}) => {
                 </div>
               </li>
 
-              <li className={styles.navbar_links}>
+              <NavLink to={'/Laptop'} className={styles.navbar_links}>
                 Laptop
                 <div className={styles.link_catagiries}>
                   <div>
@@ -87,7 +87,7 @@ const Header = ({qiute,confirm}) => {
                     </ul>
                   </div>
                 </div>
-              </li>
+              </NavLink>
               <li className={styles.navbar_links}>
                 <Link style={{ color: "white", textDecoration: "none" }}>
                   Aksesuarlar

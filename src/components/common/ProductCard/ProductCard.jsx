@@ -94,11 +94,11 @@ const ProductCard = ({ data }) => {
           <div className={style.namePrice}>
             <h4>{name}</h4>
             <p>
-              <span style={{ textDecoration: discountPrice ? "line-through" : "none" }}>
+              <span style={{color: "#bebebe", textDecoration: discountPrice ? "line-through" : "none" }}>
                 {price} AZN
               </span>
               {discountPrice && (
-                <span style={{ color: "red", marginLeft: "8px" }}>
+                <span style={{  marginLeft: "8px" }}>
                   {discountPrice} AZN
                 </span>
               )}

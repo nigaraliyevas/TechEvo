@@ -8,7 +8,6 @@ import styles from './Reviews.module.scss';
 import { FaUserCircle } from 'react-icons/fa';
 import { RxChevronDown } from 'react-icons/rx';
 import { AiFillStar } from 'react-icons/ai';
-// import { setTokens } from "../../redux/slices/TokenSlice"; // TokenSlice-ə daxil et
 
 const StarRating = ({ rating, setRating }) => {
   const handleStarClick = index => {
@@ -41,10 +40,11 @@ const Reviews = ({ data }) => {
   const token = localStorage.getItem("accessToken") // Redux-dan access token alırıq
   const [newReview, setNewReview] = useState({ rating: 0, comment: "" });
   const [visibleCount, setVisibleCount] = useState(2);
-
   const { data: reviewsData, error, isLoading } = useGetReviewsQuery({ productId: Number(id) });
   const [postReview] = usePostReviewMutation();
-  // const user = localStorage.getItem("email");
+  console.log(reviewsData);
+  
+  const user = localStorage.getItem("email");
   const [reviews, setReviews] = useState([]);
 
   console.log(token)
@@ -65,7 +65,7 @@ const Reviews = ({ data }) => {
   };
 
   const handleAddReview = async () => {
-    if (!token) {
+    if (!user) {
       Swal.fire({
         icon: "warning",
         title: "Giriş Tələb olunur",
@@ -105,7 +105,7 @@ const Reviews = ({ data }) => {
     }
   };
 
-  const visibleReviews = reviews.slice(0, visibleCount);
+  const visibleReviews = reviews?.slice(0, visibleCount);
 
   const handleLoadMore = () => {
     setVisibleCount(prevCount => prevCount + 2);

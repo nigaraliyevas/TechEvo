@@ -10,7 +10,7 @@ const store = configureStore({
     auth: TokenReducer,
     basket: basketSlice,
     [productApi.reducerPath]: productApi.reducer,
-    [reviewsApi.reducerPath]: reviewsApi.reducer, // commentApi reducer-i əlavə et
+    [reviewsApi.reducerPath]: reviewsApi.reducer,
     [favoriteApi.reducerPath]: favoriteApi.reducer,
   },
   middleware: getDefaultMiddleware =>

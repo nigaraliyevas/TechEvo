@@ -1,29 +1,29 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import ReactSlider from "react-slider";
 import styles from "./Accordion.module.css";
+import { useGetFilterNameWithValuesQuery } from "../../../../redux/sercives/productApi";
 
-const AccordionItem = ({ data, handleFilter }) => {
+const AccordionItem = ({ data, handleFilter,values }) => {
+
   const [showContent, setShowContent] = useState(true);
-
+  console.log(data);
+  
   return (
     <div className={styles.accordion_item}>
       <div className={styles.accordion_title} onClick={() => setShowContent(!showContent)}>
-        {data.title}
+        {data}
         {showContent ? <FaChevronUp className={styles.icon} /> : <FaChevronDown className={styles.icon} />}
       </div>
-      {showContent && (
         <div className={styles.accordion_content}>
           <div id={styles.FilteredProductsSide}>
-            {data.options.map((item, index) => (
-              <div className={styles.filterItem} key={index}>
-                <input type="checkbox" className={styles.checkbox} onChange={() => handleFilter(item.key, data.key)} />
-                <p>{item.title}</p>
+              <div className={styles.filterItem} >
+                <input type="checkbox" className={styles.checkbox}  />
+                <p>{values}</p>
               </div>
-            ))}
           </div>
         </div>
-      )}
+       
     </div>
   );
 };
@@ -72,15 +72,62 @@ const PriceRangeSlider = ({ min, max, onPriceChange }) => {
   );
 };
 
-const Accordion = ({ data, handleFilter, handlePrice }) => {
+// const Accordion = ({ queries, handleFilter, handlePrice }) => {
+//   const [headers, setHeaders] = useState([]);
+//   const { data, error, isLoading } = useGetFilterNameWithValuesQuery("Laptop"); // Use the query hook
+//   console.log(data);
+
+//   // If the data is successfully fetched, get the keys (headers)
+//   useEffect(() => {
+//     if (data) {
+//       const keys = Object.keys(data); // Extract keys from the data object
+//       setHeaders(keys);
+//     }
+//   }, [data]);
+
+//   if (isLoading) return <div>Yüklənir...</div>; // Loading state
+//   if (error) return <div>Xəta baş verdi</div>; // Error state
+//   return (
+//     <div className={styles.accordion}>
+//       <PriceRangeSlider min={200} max={10000} onPriceChange={handlePrice} />{" "}
+//       {headers?.map((item, index) => (
+//         <AccordionItem key={index} handleFilter={handleFilter} data={item} />
+//       ))}
+//     </div>
+//   );
+// };
+const Accordion = ({ queries, handleFilter, handlePrice }) => {
+  const [headers, setHeaders] = useState([]);
+  const { data, error, isLoading } = useGetFilterNameWithValuesQuery("Laptop"); // Use the query hook
+
+  useEffect(() => {
+    if (data) {
+      const keys = Object.keys(data); // Extract keys (headers) from the data object
+      setHeaders(keys);
+    }
+  }, [data]);
+
+  if (isLoading) return <div>Yüklənir...</div>; // Loading state
+  if (error) return <div>Xəta baş verdi</div>; // Error state
+
   return (
     <div className={styles.accordion}>
-      <PriceRangeSlider min={200} max={10000} onPriceChange={handlePrice} />{" "}
-      {data.map((item, index) => (
-        <AccordionItem key={index} handleFilter={handleFilter} data={item} />
-      ))}
+      <PriceRangeSlider min={200} max={10000} onPriceChange={handlePrice} />
+      {headers?.map((item, index) => {
+        const values = data[item]; // Get the values for each header (e.g., "Ölçülər", "Əməliyyat Sistemi")
+        return (
+          <AccordionItem
+            key={index}
+            data={item} // Pass header name
+            handleFilter={handleFilter} // Pass the filter handler
+            values={values} // Pass the filter values
+            queryKey={item} // Pass the key as query key (e.g., "Əməliyyat Sistemi")
+          />
+        );
+      })}
     </div>
   );
 };
 
 export default Accordion;
+// onChange={() => handleFilter(item.key, queries.key)}

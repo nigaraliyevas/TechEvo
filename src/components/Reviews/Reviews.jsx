@@ -41,18 +41,21 @@ const Reviews = ({ data }) => {
   const [newReview, setNewReview] = useState({ rating: 0, comment: "" });
   const [visibleCount, setVisibleCount] = useState(2);
   const { data: reviewsData, error, isLoading } = useGetReviewsQuery(Number(id));
-  console.log( Number(id) )
+  console.log(Number(id))
   const [postReview] = usePostReviewMutation();
   console.log(reviewsData);
-  
+
   const user = localStorage.getItem("email");
   const [reviews, setReviews] = useState([]);
 
-  console.log(token)
+  console.log(token);
 
   useEffect(() => {
     if (reviewsData) {
-      setReviews(reviewsData);
+      const sortedReviews = [...reviewsData].sort(
+        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+      );
+      setReviews(sortedReviews);
     }
   }, [reviewsData]);
 
@@ -78,9 +81,10 @@ const Reviews = ({ data }) => {
     if (newReview.comment.trim() && newReview.rating > 0) {
       try {
         const response = await postReview({ productId: Number(id), comment: newReview });
+        console.log(response.data);
 
-        if (response) {
-          Swal.fire("Success", "Rəyiniz əlavə edildi!","success");
+        if (response.data) {
+          Swal.fire("Success", "Rəyiniz əlavə edildi!", "success");
 
           setReviews([
             {
@@ -92,9 +96,12 @@ const Reviews = ({ data }) => {
           ]);
 
           setNewReview({ rating: 0, comment: "" });
+        }else{
+          Swal.fire("Xəta", "Rəy göndərilərkən xəta baş verdi.");
+
         }
       } catch (error) {
-        Swal.fire("Xəta", "Rəy göndərilərkən xəta baş verdi.", error.message);
+        Swal.fire("Xəta", "Rəy göndərilərkən xəta baş verdi.");
       }
     } else {
       Swal.fire({

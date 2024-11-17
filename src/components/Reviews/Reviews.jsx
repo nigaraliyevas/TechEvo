@@ -40,7 +40,8 @@ const Reviews = ({ data }) => {
   const token = localStorage.getItem("accessToken") // Redux-dan access token alırıq
   const [newReview, setNewReview] = useState({ rating: 0, comment: "" });
   const [visibleCount, setVisibleCount] = useState(2);
-  const { data: reviewsData, error, isLoading } = useGetReviewsQuery({ productId: Number(id) });
+  const { data: reviewsData, error, isLoading } = useGetReviewsQuery(Number(id));
+  console.log( Number(id) )
   const [postReview] = usePostReviewMutation();
   console.log(reviewsData);
   
@@ -78,10 +79,9 @@ const Reviews = ({ data }) => {
       try {
         const response = await postReview({ productId: Number(id), comment: newReview });
 
-        if (response?.data?.status === 201) {
-          Swal.fire("Uğur", "Rəyiniz əlavə edildi!", "success");
+        if (response) {
+          Swal.fire("Success", "Rəyiniz əlavə edildi!","success");
 
-          // Yeni rəy state-ə əlavə olunur
           setReviews([
             {
               ...newReview,
@@ -144,9 +144,8 @@ const Reviews = ({ data }) => {
       <div className={styles.reviewBox}>
         {isLoading && <div>Yüklənir...</div>}
         {error && <div>Xəta baş verdi. Zəhmət olmasa yenidən cəhd edin.</div>}
-        {!isLoading && !reviews.length && <div>Hələ rəy yoxdur</div>}
 
-        {visibleReviews.map((review, index) => (
+        {visibleReviews?.map((review, index) => (
           <div key={index} className={styles.review}>
             <div className={styles.reviewHeader}>
               <div className={styles.profileImage}>{review?.profileImg ? <img src={review?.profileImg} alt="Profil şəkli" className={styles.profileImage} /> : <FaUserCircle className={styles.defaultProfileIcon} />}</div>

@@ -1,9 +1,7 @@
 import styles from "./ProductPage.module.scss";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-// import Reviews from "../../components/CommentSide/Reviews";
 import DetailImageComponent from "../../../components/DetailImage/DetailImageComponent";
-// import CommentSide from "../../components/CommentSide/Reviews";
 import Description from "../../../components/Description/Description";
 import Features from "../../../components/DetailFeatures/Features";
 import Reviews from "../../../components/Reviews/Reviews";

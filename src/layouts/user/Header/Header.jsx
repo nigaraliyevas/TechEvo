@@ -44,7 +44,7 @@ const Header = ({ exist, confirm }) => {
             <ul className={styles.navbar_pages}>
               <li className={styles.navbar_links}>
                 <NavLink
-                  to={"/pc"}
+                  to={"/GetAll"}
                   style={{ color: "white", textDecoration: "none" }}
                 >
                   PC
@@ -56,17 +56,18 @@ const Header = ({ exist, confirm }) => {
                         PC hissələri
                         <div className={styles.link_catagirie_dropdown}>
                           <ul>
-                            <li>Monitorlar</li>
-                            <li>Prosessorlar</li>
-                            <li>Qida bloku</li>
-                            <li>Ana plata</li>
-                            <li>Video kart</li>
-                            <li>Operativ yaddaş</li>
-                            <li>HDD / SSD</li>
-                            <li>Soyutma sistemləri</li>
-                            <li>Şəbəkə kartları</li>
-                            <li>Səs kartları</li>
-                            <li>Keyslər</li>
+                            <NavLink to={"/Motherboard"}>Monitorlar</NavLink>
+                            <NavLink to={"/Motherboard"}>Prosessorlar</NavLink>
+                            <NavLink to={"/Psu"}>Qida bloku</NavLink>
+                            <NavLink to={"/Motherboard"}>Ana plata</NavLink>
+                            <NavLink to={"/Motherboard"}>Video kart</NavLink>
+                            <NavLink to={"/Ram"}>Operativ yaddaş</NavLink>
+                            <NavLink to={"/Hdd"}>HDD </NavLink>
+                            <NavLink to={"/Ssd"}>SSD </NavLink>
+                            <NavLink to={"/Motherboard"}>Soyutma sistemləri</NavLink>
+                            <NavLink to={"/Motherboard"}>Şəbəkə kartları</NavLink>
+                            <NavLink to={"/Motherboard"}>Səs kartları</NavLink>
+                            <NavLink to={"/Motherboard"}>Keyslər</NavLink>
                           </ul>
                         </div>
                       </li>

@@ -12,7 +12,7 @@ import { useState, useEffect } from "react";
 import Logout from "../../../components/Account/Logout";
 import AccountConfirme from "../../../components/Account/AccountConfirme";
 import { useNavigate } from "react-router-dom";
-
+import axios from "axios";
 const AccountPage = ({ setExist, setConfirm, exist, confirm }) => {
   const [account, setAccount] = useState(true);
   const [orders, setOrders] = useState(false);
@@ -23,6 +23,27 @@ const AccountPage = ({ setExist, setConfirm, exist, confirm }) => {
     email: "",
     address: "",
   });
+  useEffect(()=>{
+    axios.get("http://ec2-51-20-32-195.eu-north-1.compute.amazonaws.com:8081/api/v1/user")
+    .then((response)=>{
+      setUserData({...userData,firstName:response.data.firstName,lastName:response.data.lastName,email:response.data.email,address:response.data.cityName})
+    })
+    .catch((error)=>console.log(error)
+  )
+},[])
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  axios.put("http://ec2-51-20-32-195.eu-north-1.compute.amazonaws.com:8081/api/v1/user",userData)
+  .then((response)=>{
+    setConfirm(true)
+  })
+  .catch((error)=>alert("Melumatlar sehvdir")
+  )
+
+  }
+
   const navigate = useNavigate();
   useEffect(() => {
     if (exist || confirm) {
@@ -53,61 +74,8 @@ const AccountPage = ({ setExist, setConfirm, exist, confirm }) => {
     setAccount(false);
   };
 
-  // / ISTIFADECI MELUMATLARIN CEKMEK
 
-  useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const token = localStorage.getItem("TechEvoToken");
-        const response = await fetch("/api/v1/user/allUsers", {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
 
-        if (response.ok) {
-          const data = await response.json();
-          setUserData({
-            firstName: data.firstName,
-            lastName: data.lastName,
-            email: data.email,
-            address: data.address,
-          });
-        } else {
-          console.error("Məlumatları çəkmək alınmadı");
-        }
-      } catch (err) {
-        console.error("Xəta:", err);
-      }
-    };
-
-    fetchUserData();
-  }, []);
- ///MELUMATLARI YENILEMEK
- const saveChanges = async () => {
-    try {
-      const token = localStorage.getItem("TechEvoToken");
-      const response = await fetch("API_URL_HERE", {
-        method: "PUT", // Yaxud `PATCH`
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(userData),
-      });
-  
-      if (response.ok) {
-        alert("Məlumatlar uğurla yeniləndi!");
-        setConfirm(true)
-      } else {
-        alert("Məlumatlar yenilənmədi. Xəta baş verdi.");
-      }
-    } catch (err) {
-      console.error("Xəta:", err);
-      alert("Məlumatları göndərərkən xəta baş verdi.");
-    }
-  };
   
   return (
     <div className={style.container}>
@@ -157,7 +125,7 @@ const AccountPage = ({ setExist, setConfirm, exist, confirm }) => {
             </div>
           </div>
           {account && (
-            <div className={style.account_right}>
+            <form onSubmit={handleSubmit} className={style.account_right}>
               <div className={style.account_info}>Hesab məlumatları</div>
               <div>
                 <div className={style.user_inputs}>
@@ -168,6 +136,8 @@ const AccountPage = ({ setExist, setConfirm, exist, confirm }) => {
                         <input
                           type="text"
                           placeholder="Ad"
+                          value={userData.firstName}
+                          onChange={(e) => setUser({ ...userData, firstName: e.target.value })}
                         />
                       </div>
                     </div>
@@ -177,6 +147,8 @@ const AccountPage = ({ setExist, setConfirm, exist, confirm }) => {
                         <input
                           type="text"
                           placeholder="Soyad"
+                          value={userData.lastName}
+                          onChange={(e) => setUser({ ...userData, lastName: e.target.value })}
                         />
                       </div>
                     </div>
@@ -188,7 +160,8 @@ const AccountPage = ({ setExist, setConfirm, exist, confirm }) => {
                         <input
                           type="email"
                           placeholder="E-mail"
-
+                          value={userData.email}
+                          onChange={(e) => setUser({ ...userData, email: e.target.value })}
                         />
                       </div>
                     </div>
@@ -197,9 +170,9 @@ const AccountPage = ({ setExist, setConfirm, exist, confirm }) => {
                       <div className={style.user_input}>
                         <input
                           type="text"
-                          placeholder="Ünvan"
-                          // value={email}
-                          onChange={(e)=>setUserData(e.target.value)}
+                          placeholder="Ünvan" 
+                          value={userData.address}
+                          onChange={(e) => setUser({ ...userData, address: e.target.value })}
                         />
                       </div>
                     </div>
@@ -215,14 +188,14 @@ const AccountPage = ({ setExist, setConfirm, exist, confirm }) => {
                       </div>
                     </div>
                   </div>
-                  <div onClick={saveChanges} className={style.user_btn}>
-                    <button >
+                  <div  className={style.user_btn}>
+                    <button type="submit" >
                       Yadda saxla
                     </button>
                   </div>
                 </div>
               </div>
-            </div>
+            </form>
           )}
           {orders && <AllOrders />}
           {like && <Favorites />}

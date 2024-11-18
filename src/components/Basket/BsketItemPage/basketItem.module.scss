@@ -5,7 +5,10 @@
     overflow-y: auto;
     padding-right: 20px;
     overflow-x: hidden;
-
+    @media (max-width: 1360px) {
+       height: auto;
+       padding-right: 0;
+    }
     .basket_item {
         width: 700px;
         height: 224px;
@@ -14,6 +17,10 @@
         padding: 20px;
         display: flex;
         margin-bottom: 20px;
+
+        @media (max-width: 1360px) {
+            width: 100%;
+        }
 
         .basket_image {
             width: 235px;
@@ -30,7 +37,7 @@
             display: flex;
             flex-direction: column;
             padding-left: 30px;
-            width: 363px;
+            width:calc(100% - 80px);
 
             .item_average_title {
                 min-height: 56px;
@@ -40,6 +47,10 @@
                 line-height: 28px;
                 text-align: left;
                 color: $firstColor;
+                
+        @media (max-width: 984px) {
+            min-height: auto;
+        }
             }
 
             .item_average_rating {

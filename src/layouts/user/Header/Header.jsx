@@ -242,7 +242,7 @@ const Header = ({ exist, confirm }) => {
                 <span
                   className={!isOpen ? styles.close_button : styles.open_button}
                 >
-                  <IoMdClose size={24} />{" "}
+                  <IoMdClose size={24} />
                 </span>
               </div>
             </div>
@@ -415,6 +415,7 @@ const Header = ({ exist, confirm }) => {
                       transform: openAccessory
                         ? "translateX(0px)"
                         : "",
+                    
                     }}
                     className={styles.responsive_navbar_item_link_catagories}
                   >
@@ -475,7 +476,7 @@ const Header = ({ exist, confirm }) => {
               </div>
             </div>
             <div className={styles.responsive_navbar_icons}>
-              <Link className={styles.responsive_navbar_item_link}>
+              <Link to={"/basket"} className={styles.responsive_navbar_item_link}>
                 <div className={styles.responsive_navbar_icon}>
                   <SlBasket size={28} />
                 </div>

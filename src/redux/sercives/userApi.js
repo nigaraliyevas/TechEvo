@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-const url = "http://ec2-51-20-32-195.eu-north-1.compute.amazonaws.com:8081/api/v1/";
+
+const url = import.meta.env.VITE_SOME_KEY;
 export const userApi = createApi({
   reducerPath: "userApi",
   baseQuery: fetchBaseQuery({
@@ -18,4 +19,5 @@ export const userApi = createApi({
     }),
   }),
 });
+
 export const { useGetUserQuery } = userApi;

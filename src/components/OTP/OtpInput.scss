@@ -5,19 +5,19 @@
   text-align: center;
   font-size: 24px;
   margin-right: 5px;
+  background-color: transparent;
+  border-radius: 4px;
+  border: 1px solid #595959;
   &::-webkit-outer-spin-button,
   &::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
   }
 }
-@media (max-width: 393px) {
+@media (max-width: 480px) {
   .otp-input {
     width: 64px !important;
     height: 64px !important;
     margin-right: 2px !important;
-  }
-  .password-reset-box {
-    padding: 48px 32px !important;
   }
 }

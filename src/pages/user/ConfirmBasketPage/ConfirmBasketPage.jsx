@@ -1,12 +1,39 @@
-import { Col, Row } from "react-bootstrap";
-import Input from "../../../components/Input/Input";
+import { Col, Row, Modal, Button } from "react-bootstrap";
 import styles from "./ConfirmBasketPage.module.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useGetUserQuery } from "../../../redux/sercives/userApi";
+import { useSelector } from "react-redux";
 
 const ConfirmBasketPage = () => {
-  const [showPassword, setShowPassword] = useState(false);
+  // const [showPassword, setShowPassword] = useState(false);
+  const [user, setUser] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+
   const regions = [{ name: "Nəsimi rayonu" }, { name: "Nizami rayonu" }, { name: "Pirallahı rayonu" }, { name: "Xəzər rayonu" }, { name: "Nərimanov rayonu" }, { name: "Xəzər rayonu" }, { name: "Binəqədi rayonu" }, { name: "Yasamal rayonu" }, { name: "Suraxanı rayonu" }];
+
+  const { accessToken } = useSelector(state => state.auth); // Access tokens from Redux
+  console.log("access" + accessToken);
+  const { data, isError, isLoading } = useGetUserQuery(undefined, {
+    skip: !localStorage.getItem("accessToken"),
+  });
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+  useEffect(() => {
+    if (data) {
+      setUser(data);
+    }
+  }, [data]);
+
+  if (isLoading) return <p>Loading...</p>;
+  if (isError) return <p>Failed to load user data</p>;
 
   return (
     <div>
@@ -15,13 +42,13 @@ const ConfirmBasketPage = () => {
           <div className={styles.confirmation_area}>
             <div className={styles.confirmation_box}>
               <div className={styles.confirmation_content}>
-                <form action="" className={styles.confirmation_form} method="post">
+                <form onSubmit={handleSubmit} action="" className={styles.confirmation_form} method="post">
                   <h2 className={styles.confirmation_header}>Səbəti təsdiqlə</h2>
                   <Row>
                     <Col lg={6}>
                       <div className={styles.confirmation_form_box}>
                         <label className={styles.confirmation_label}>Ad</label>
-                        <input placeholder="Fidan" type="text" className={`${styles.confirmation_input} ${styles.placeholder_white}`} />{" "}
+                        <input placeholder="Ad" value={user ? user.firstName : ""} type="text" className={`${styles.confirmation_input} ${styles.placeholder_white}`} />
                       </div>
                       <div className={styles.confirmation_form_box}>
                         <label className={styles.confirmation_label}>Şəhər</label>
@@ -39,7 +66,7 @@ const ConfirmBasketPage = () => {
                     <Col lg={6}>
                       <div className={styles.confirmation_form_box}>
                         <label className={styles.confirmation_label}>Soyad</label>
-                        <input placeholder="Salayeva" type="text" className={`${styles.confirmation_input} ${styles.placeholder_white}`} />
+                        <input placeholder="Soyad" value={user ? user.lastName : ""} type="text" className={`${styles.confirmation_input} ${styles.placeholder_white}`} />
                       </div>
                       <div className={styles.confirmation_form_box}>
                         <label className={styles.confirmation_label}>Şəhər</label>
@@ -82,6 +109,26 @@ const ConfirmBasketPage = () => {
           </div>
         </div>
       </section>
+      {/* Modal */}
+      <Modal show={showModal} onHide={handleCloseModal} centered>
+        <Modal.Header style={{ border: "none", padding: "16px 16px 0", background: "#161A1E", color: "white" }} closeButton></Modal.Header>
+        <Modal.Body style={{ textAlign: "center", padding: "64px 54px", background: "#161A1E", color: "white" }}>
+          <Modal.Title style={{ marginBottom: "8px", fontSize: "20px" }}>Sifariş üçün təşəkkür edirik!</Modal.Title>
+          <p style={{ margin: "36px 0", fontSize: "20px" }}>Sizə yenidən xidmət etməyi səbirsizliklə gözləyirik!</p>
+          <p
+            style={{
+              padding: "10px 20px",
+              border: "1px solid transparent", // Base border
+              borderImageSource: "linear-gradient(120.61deg, #FD3C43 -10.5%, #B622DC 38.25%, #3F27EB 80.92%)",
+              borderImageSlice: 1, // Ensures the gradient is applied to the border
+            }}
+          >
+            <strong style={{ fontSize: "20px" }}>Sizin sifariş nömrəniz:</strong> XXXX
+          </p>
+
+          <p style={{ fontSize: "18px" }}>Operatorumuz qısa müddətdə sizinlə əlaqə saxlayacaq.</p>
+        </Modal.Body>
+      </Modal>
     </div>
   );
 };

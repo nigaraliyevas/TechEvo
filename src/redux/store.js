@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
+// import authReducer from "./slices/AuthSlice";
 import { productApi } from "./sercives/productApi";
 import { reviewsApi } from "./sercives/reviewsApi"; // commentApi faylını import et
 import { setupListeners } from "@reduxjs/toolkit/query";
@@ -7,6 +8,8 @@ import TokenReducer from "./slices/TokenSlice";
 import { favoriteApi } from "./sercives/favoriteApi";
 import { orderApi } from "./sercives/orderApi";
 import { userApi } from "./sercives/userApi";
+import { forgetPassApi } from "./sercives/forgetPassApi";
+import apiMiddleware from "./sercives/middleware/apiMiddleware";
 const store = configureStore({
   reducer: {
     auth: TokenReducer,
@@ -17,8 +20,9 @@ const store = configureStore({
     [favoriteApi.reducerPath]: favoriteApi.reducer,
     [orderApi.reducerPath]: orderApi.reducer,
     [userApi.reducerPath]: userApi.reducer,
+    [forgetPassApi.reducerPath]: forgetPassApi.reducer,
   },
-  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(productApi.middleware).concat(reviewsApi.middleware).concat(favoriteApi.middleware).concat(orderApi.middleware).concat(userApi.middleware), // commentApi middleware-i əlavə et
+  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(productApi.middleware).concat(reviewsApi.middleware).concat(favoriteApi.middleware).concat(orderApi.middleware).concat(userApi.middleware).concat(forgetPassApi.middleware).concat(userApi.middleware).concat(apiMiddleware), // commentApi middleware-i əlavə et
 });
 
 export default store;

@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import { useSendVerificationCodeMutation } from "../../../redux/sercives/forgetPassApi"; // adjust the path if necessary
 import Button from "../../../components/Button/Button";
 import styles from "../ForgetPasswordPage/ForgetPassPage.module.scss";
-import { Navigate, useNavigate } from "react-router-dom";
->>>>>>> 50cc7d35e012f3cda46d23041f246ecfa25d6166
+import { useNavigate } from "react-router-dom";
 
 function ForgetPassPage() {
   const [email, setEmail] = useState("");

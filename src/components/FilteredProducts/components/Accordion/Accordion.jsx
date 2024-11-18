@@ -4,7 +4,7 @@ import ReactSlider from "react-slider";
 import styles from "./Accordion.module.css";
 import { useGetFilterNameWithValuesQuery } from "../../../../redux/sercives/productApi";
 
-const AccordionItem = ({ queries, handleFilter, values,handleFilterItem }) => {
+const AccordionItem = ({ queries, handleFilter, values, handleFilterItem }) => {
 
   const [showContent, setShowContent] = useState(true);
   // console.log(queries);
@@ -31,14 +31,20 @@ const AccordionItem = ({ queries, handleFilter, values,handleFilterItem }) => {
             <div className={styles.filterItem} style={{ display: "flex", flexDirection: "column" }}  >
 
               {values.map((v, i) =>
-                <div key={i} style={{ display: "flex", alignItems: "center", gap: "10px", height: "45px" }} >
-                  <input type="checkbox" className={styles.checkbox}
-                    onChange={() => {
-                      handleFilterValueChange(v)
-                      handleFilterItem(v);
-                    }}
-                  />
-                  <span style={{ fontSize: "20px" }}>{v}</span>
+                <div key={i} style={{ height: "65px" }} >
+                  <div style={{display:"flex"}}>
+                    <div>
+                      <input type="checkbox" className={styles.checkbox}
+                        onChange={() => {
+                          handleFilterValueChange(v)
+                          handleFilterItem(v);
+                        }}
+                      />
+                    </div>
+                    <div>
+                      <p style={{ marginLeft: "10px", fontSize: "17px" }}>{v}</p>
+                    </div>
+                  </div>
                 </div>
               )
               }
@@ -98,7 +104,7 @@ const PriceRangeSlider = ({ min, max, onPriceChange }) => {
 
 
 
-const Accordion = ({ queries, handleFilter, handlePrice,handleFilterItem }) => {
+const Accordion = ({ queries, handleFilter, handlePrice, handleFilterItem }) => {
   const [headers, setHeaders] = useState([]);
 
   useEffect(() => {
@@ -113,10 +119,10 @@ const Accordion = ({ queries, handleFilter, handlePrice,handleFilterItem }) => {
       <PriceRangeSlider min={200} max={10000} onPriceChange={handlePrice} />
       {headers?.map((item, index) => {
         const values = queries[item]; // Get the values for each header (e.g., "Ölçülər", "Əməliyyat Sistemi")
-        
+
         return (
           <AccordionItem
-          handleFilterItem = {(value) => handleFilterItem(item,value)}
+            handleFilterItem={(value) => handleFilterItem(item, value)}
             key={index}
             queries={item} // Pass header name
             handleFilter={handleFilter} // Pass the filter handler

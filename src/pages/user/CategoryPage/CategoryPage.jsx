@@ -74,16 +74,7 @@ const CategoryPage = () => {
     setFilterQueries(prev => ({ ...prev, sortType }));
   };
 
-  // const handleFilter = (itemKey, filterKey) => {
-  //   setFilterQueries(prev => {
-  //     const currentFilter = prev[filterKey];
-  //     if (currentFilter.includes(itemKey)) {
-  //       return { ...prev, [filterKey]: currentFilter.filter(key => key !== itemKey) };
-  //     } else {
-  //       return { ...prev, [filterKey]: [...currentFilter, itemKey] };
-  //     }
-  //   });
-  // };
+
   const [filters, setFilters] = useState({});
 
   const handleFilter = (key, value) => {
@@ -129,15 +120,6 @@ const CategoryPage = () => {
  // Break early if any filter doesn't match
     }
 
-    // console.log({matchFilter});
-    
-    
-    
-    // const matchFilter = prod.specifications
-    // const matchesPrice = prod.price >= filterQueries.price.min && prod.price <= filterQueries.price.max;
-    // const matchesCategory = filterQueries.category.length === 0 || filterQueries.category.includes(prod.category);
-    // const matchesBrand = filterQueries.brand.length === 0 || filterQueries.brand.includes(prod.brand);
-    // const matchesProcessor = filterQueries.processor.length === 0 || filterQueries.processor.includes(prod.processor);
 
     return matchesQuery && matchFilter && priceRangeQuery;
   });

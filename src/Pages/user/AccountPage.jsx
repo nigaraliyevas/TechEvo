@@ -11,141 +11,200 @@ import AllOrders from "../../../components/Orders/AllOrders";
 import { useState, useEffect } from "react";
 import Logout from "../../../components/Account/Logout";
 import AccountConfirme from "../../../components/Account/AccountConfirme";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+const AccountPage = ({ setExist, setConfirm, exist, confirm }) => {
+  const [account, setAccount] = useState(true);
+  const [orders, setOrders] = useState(false);
+  const [like, setLike] = useState(false);
+  const [userData, setUserData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    address: "",
+  });
+  useEffect(()=>{
+    axios.get("http://ec2-51-20-32-195.eu-north-1.compute.amazonaws.com:8081/api/v1/user")
+    .then((response)=>{
+      setUserData({...userData,firstName:response.data.firstName,lastName:response.data.lastName,email:response.data.email,address:response.data.cityName})
+    })
+    .catch((error)=>console.log(error)
+  )
+},[])
 
-const AccountPage = ({ setQuite, setConfirm, qiute, confirm }) => {
-    const [account, setAccount] = useState(true);
-    const [orders, setOrders] = useState(false);
-    const [like, setLike] = useState(false);
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    useEffect(() => {
-        if (qiute || confirm) {
-            document.body.style.overflow = "hidden";
-        } else {
-            document.body.style.overflow = "auto";
-        }
-        return () => {
-            document.body.style.overflow = "auto";
-        };
-    }, [qiute, confirm]);
+  axios.put("http://ec2-51-20-32-195.eu-north-1.compute.amazonaws.com:8081/api/v1/user",userData)
+  .then((response)=>{
+    setConfirm(true)
+  })
+  .catch((error)=>alert("Melumatlar sehvdir")
+  )
 
-    const accountOpen = () => {
-        setAccount(true);
-        setOrders(false);
-        setLike(false);
+  }
+
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (exist || confirm) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+    return () => {
+      document.body.style.overflow = "auto";
     };
+  }, [exist, confirm]);
 
-    const orderOpen = () => {
-        setOrders(true);
-        setAccount(false);
-        setLike(false);
-    };
+  const accountOpen = () => {
+    setAccount(true);
+    setOrders(false);
+    setLike(false);
+  };
 
-    const likeOpen = () => {
-        setLike(true);
-        setOrders(false);
-        setAccount(false);
-    };
+  const orderOpen = () => {
+    setOrders(true);
+    setAccount(false);
+    setLike(false);
+  };
 
-    return (
-        <div className={style.container}>
-            <div
-                style={{
-                    marginTop: qiute || confirm ? "0" : "",
-                }}
-                className={style.account}
-            >
-                <div className={style.account_container}>
-                    <div className={style.account_left}>
-                        <div className={style.user_image}>
-                            <img src={userprofile} alt="userprofile" />
-                            <div>
-                                <img src={camre} alt="camre" />
-                            </div>
-                        </div>
-                        <div className={style.user_info}>
-                            <div
-                                onClick={accountOpen}
-                                className={`${style.uer_info_item} ${account ? style.active : ""}`}
-                            >
-                                <img src={userIcon} alt="" />
-                                <div>Hesab</div>
-                            </div>
-                            <div
-                                onClick={orderOpen}
-                                className={`${style.uer_info_item} ${orders ? style.active : ""}`}
-                            >
-                                <img src={order} alt="" />
-                                <div>Sifarişlər</div>
-                            </div>
-                            <div
-                                onClick={likeOpen}
-                                className={`${style.uer_info_item} ${like ? style.active : ""}`}
-                            >
-                                <img src={heart} alt="" />
-                                <div>Sevimlilər</div>
-                            </div>
-                        </div>
-                        <div onClick={() => setQuite(true)} className={style.user_out}>
-                            <img src={out} alt="" /> Çıxış
-                        </div>
-                    </div>
-                    {account && (
-                        <div className={style.account_right}>
-                            <div className={style.account_info}>Hesab məlumatları</div>
-                            <div >
-                                <div className={style.user_inputs}>
-                                    <div className={style.user_input}>
-                                        <div className={style.user_name}>
-                                            <label htmlFor="">Ad</label>
-                                            <div className={style.user_input}>
-                                                <input type="text" placeholder="Ad" />
-                                            </div>
-                                        </div>
-                                        <div className={style.user_name}>
-                                            <label htmlFor="">Soyad</label>
-                                            <div className={style.user_input}>
-                                                <input type="text" placeholder="Soyad" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className={style.user_input}>
-                                        <div className={style.user_name}>
-                                            <label htmlFor="">E-mail</label>
-                                            <div className={style.user_input}>
-                                                <input type="email" placeholder="E-mail" />
-                                            </div>
-                                        </div>
-                                        <div className={style.user_name}>
-                                            <label htmlFor="">Ünvan</label>
-                                            <div className={style.user_input}>
-                                                <input type="text" placeholder="Ünvan" />
-                                            </div>
-                                        </div>
-                                    </div>
+  const likeOpen = () => {
+    setLike(true);
+    setOrders(false);
+    setAccount(false);
+  };
 
-                                    <div>
-                                        <div style={{ marginTop: "32px" }}>
-                                            <div className={style.user_password}>
-                                                Şifrəni sıfırla <img src={password} alt="" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className={style.user_btn}>
-                                        <button onClick={() => setConfirm(true)}>Yadda saxla</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    )}
-                    {orders && <AllOrders />}
-                    {like && <Favorites />}
-                </div>
+
+
+  
+  return (
+    <div className={style.container}>
+      <div
+        style={{
+          marginTop: exist || confirm ? "0" : "",
+        }}
+        className={style.account}
+      >
+        <div className={style.account_container}>
+          <div className={style.account_left}>
+            <div className={style.user_image}>
+              <img src={userprofile} alt="userprofile" />
+              <div>
+                <img src={camre} alt="camre" />
+              </div>
             </div>
-            {qiute && <Logout setConfirm={setConfirm} setQuite={setQuite} />}
-            {confirm && <AccountConfirme setConfirm={setConfirm} />}
+            <div className={style.user_info}>
+              <div
+                onClick={accountOpen}
+                className={`${style.uer_info_item} ${
+                  account ? style.active : ""
+                }`}
+              >
+                <img src={userIcon} alt="" />
+                <div>Hesab</div>
+              </div>
+              <div
+                onClick={orderOpen}
+                className={`${style.uer_info_item} ${
+                  orders ? style.active : ""
+                }`}
+              >
+                <img src={order} alt="" />
+                <div>Sifarişlər</div>
+              </div>
+              <div
+                onClick={likeOpen}
+                className={`${style.uer_info_item} ${like ? style.active : ""}`}
+              >
+                <img src={heart} alt="" />
+                <div>Sevimlilər</div>
+              </div>
+            </div>
+            <div onClick={() => setExist(true)} className={style.user_out}>
+              <img src={out} alt="" /> Çıxış
+            </div>
+          </div>
+          {account && (
+            <form onSubmit={handleSubmit} className={style.account_right}>
+              <div className={style.account_info}>Hesab məlumatları</div>
+              <div>
+                <div className={style.user_inputs}>
+                  <div className={style.user_input}>
+                    <div className={style.user_name}>
+                      <label htmlFor="firstName">Ad</label>
+                      <div className={style.user_input}>
+                        <input
+                          type="text"
+                          placeholder="Ad"
+                          value={userData.firstName}
+                          onChange={(e) => setUser({ ...userData, firstName: e.target.value })}
+                        />
+                      </div>
+                    </div>
+                    <div className={style.user_name}>
+                      <label htmlFor="">Soyad</label>
+                      <div className={style.user_input}>
+                        <input
+                          type="text"
+                          placeholder="Soyad"
+                          value={userData.lastName}
+                          onChange={(e) => setUser({ ...userData, lastName: e.target.value })}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className={style.user_input}>
+                    <div className={style.user_name}>
+                      <label htmlFor="">E-mail</label>
+                      <div className={style.user_input}>
+                        <input
+                          type="email"
+                          placeholder="E-mail"
+                          value={userData.email}
+                          onChange={(e) => setUser({ ...userData, email: e.target.value })}
+                        />
+                      </div>
+                    </div>
+                    <div className={style.user_name}>
+                      <label htmlFor="">Ünvan</label>
+                      <div className={style.user_input}>
+                        <input
+                          type="text"
+                          placeholder="Ünvan" 
+                          value={userData.address}
+                          onChange={(e) => setUser({ ...userData, address: e.target.value })}
+                        />
+                      </div>
+                    </div>
+                  </div>
 
+                  <div>
+                    <div style={{ marginTop: "32px" }}>
+                      <div
+                        onClick={() => navigate("/newpassword")}
+                        className={style.user_password}
+                      >
+                        Şifrəni sıfırla <img src={password} alt="" />
+                      </div>
+                    </div>
+                  </div>
+                  <div  className={style.user_btn}>
+                    <button type="submit" >
+                      Yadda saxla
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          )}
+          {orders && <AllOrders />}
+          {like && <Favorites />}
         </div>
-    );
+      </div>
+      {exist && <Logout setConfirm={setConfirm} setExist={setExist} />}
+      {confirm && <AccountConfirme setConfirm={setConfirm} />}
+    </div>
+  );
 };
 
 export default AccountPage;

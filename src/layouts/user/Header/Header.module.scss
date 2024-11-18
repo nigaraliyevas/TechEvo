@@ -73,6 +73,21 @@ header {
     .display_none {
       display: none;
 
+      .navbar_icon {
+        position: relative;
+
+        .close_button {
+          position: absolute;
+          top: -100%;
+          left: 0;
+          opacity: 0;
+        }
+
+        .open_button {
+          opacity: 1;
+        }
+      }
+
       @media (max-width: 1360px) {
         display: flex;
         gap: 10px;
@@ -80,14 +95,103 @@ header {
     }
 
     .menu__open {
-      display: none;
+      opacity: 1;
       position: absolute;
-      top: 80px;
+      top: 92px;
       background-color: rgba(22, 26, 30, 1);
       width: 100%;
-      transition: all 0.3s ease-in-out;
-      padding: 24px;
-      height: 100vh;
+      transition: height 0.5s ease-in-out;
+      overflow: hidden;
+      height: 0;
+      padding: 0 24px;
+
+
+
+      .responsive_navbar_items {
+        border-bottom: 1px solid rgba(50, 52, 55, 1);
+        margin-bottom: 20px;
+
+        .responsive_navbar_item {
+          div {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .responsive_navbar_item_link {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              gap: 12px;
+              text-decoration: none;
+              font-size: 18px;
+              font-weight: 400;
+              line-height: 28px;
+              letter-spacing: 0.02em;
+              color: $firstColor;
+              margin-bottom: 16px;
+
+            }
+
+            .responsive_navbar_item_link_catagories {
+              position: absolute;
+              width: 100%;
+              height: 100%;
+              background-color: rgba(22, 26, 30, 1);
+              display: flex;
+              flex-direction: column;
+              align-items: start;
+              justify-content: start;
+              gap: 20px;
+              top: 0px;
+              right: 0;
+              z-index: 1;
+              padding: 24px;
+              transform: translateX(-200%);
+              .responsive_navbar_catagories_items {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+
+                .responsive_navbar_catagories_item {
+                  display: flex;
+                  align-items: center;
+                  justify-content: start;
+
+                  .responsive_navbar_catagories_item_dot {
+                    width: 7px;
+                    height: 7px;
+                    background: rgba(204, 204, 204, 1);
+                    margin: 0 7px;
+                    border-radius: 50px;
+                  }
+
+                  p {
+                    margin-bottom: 0;
+                    font-size: 20px;
+                    font-weight: 500;
+                    line-height: 28px;
+                    text-align: center;
+                    color: rgba(204, 204, 204, 1);
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      .responsive_navbar_item_link {
+        display: flex;
+        gap: 12px;
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 28px;
+        letter-spacing: 0.02em;
+        color: $firstColor;
+        margin-bottom: 16px;
+        position: relative;
+      }
 
     }
 
@@ -101,6 +205,7 @@ header {
       height: 100vh;
       transition: all .5s ease-in-out;
       padding: 24px;
+      overflow: hidden;
 
       .responsive_navbar_items {
         border-bottom: 1px solid rgba(50, 52, 55, 1);
@@ -111,6 +216,70 @@ header {
             display: flex;
             align-items: center;
             justify-content: space-between;
+
+            .responsive_navbar_item_link {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              gap: 12px;
+              text-decoration: none;
+              font-size: 18px;
+              font-weight: 400;
+              line-height: 28px;
+              letter-spacing: 0.02em;
+              color: $firstColor;
+              margin-bottom: 16px;
+
+            }
+
+            .responsive_navbar_item_link_catagories {
+              position: absolute;
+              width: 100%;
+              height: 100%;
+              background-color: rgba(22, 26, 30, 1);
+              display: flex;
+              flex-direction: column;
+              align-items: start;
+              justify-content: start;
+              gap: 20px;
+              top: 0px;
+              right: 0;
+              z-index: 1;
+              padding: 24px;
+              transform: translateX(200%);
+              transition: all .5s ;
+             
+
+              .responsive_navbar_catagories_items {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+
+                .responsive_navbar_catagories_item {
+                  display: flex;
+                  align-items: center;
+                  justify-content: start;
+
+                  .responsive_navbar_catagories_item_dot {
+                    width: 7px;
+                    height: 7px;
+                    background: rgba(204, 204, 204, 1);
+                    margin: 0 7px;
+                    border-radius: 50px;
+                  }
+
+                  p {
+                    margin-bottom: 0;
+                    font-size: 20px;
+                    font-weight: 500;
+                    line-height: 28px;
+                    text-align: center;
+                    color: rgba(204, 204, 204, 1);
+                  }
+                }
+              }
+            }
           }
         }
 
@@ -126,6 +295,8 @@ header {
         letter-spacing: 0.02em;
         color: $firstColor;
         margin-bottom: 16px;
+        position: relative;
+
 
       }
     }
@@ -169,7 +340,7 @@ header {
           text-align: start;
           padding: 0;
           background: rgba(22, 26, 30, 1);
-          transition: height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+          transition: height 0.5s ease-in-out, opacity 0.5s ease-in-out;
           border-radius: 2px;
 
 
@@ -227,6 +398,12 @@ header {
 
         &:hover {
           color: #b622dc;
+        }
+
+        .close_button {
+          position: absolute;
+          top: 0;
+          background-color: red;
         }
       }
     }
@@ -391,6 +568,8 @@ header {
       background-color: $bgColor;
       border-radius: 16px;
       padding-bottom: 8px;
+      text-decoration: none;
+      color: $firstColor;
 
 
 

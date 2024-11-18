@@ -8,24 +8,31 @@ import { PiSignInFill } from "react-icons/pi";
 import { IoSettingsOutline } from "react-icons/io5";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../../assets/images/HeaderPage/tech-evo-logo 1.png";
+import rightIcon from "../../../assets/images/HeaderPage/rigtIcon.svg";
 import { IoIosMenu } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
 import { useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import "../../../App.css";
 import { useSelector } from "react-redux";
-const Header = ({qiute,confirm}) => {
-  const {basket,count} = useSelector((state)=>state.basket)
+const Header = ({ exist, confirm }) => {
+  const { count } = useSelector((state) => state.basket);
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+    setOpenPc(false)
+    setOpenLaptop(false)
+    setOpenAccessory(false)
   };
+  const [openPc, setOpenPc] = useState(false);
+  const [openLaptop,setOpenLaptop] = useState(false)
+  const [openAccessory,setOpenAccessory]= useState(false)
   return (
-    <header       style={{
-      position: qiute||confirm ?  "static" : "",
-     
-    }}
->
+    <header
+      style={{
+        position: exist || confirm ? "static" : "",
+      }}
+    >
       <div className={`${styles.container} ${styles.navbar_bg} `}>
         <nav className={styles.navbar}>
           <div className={styles.navbar_logo}>
@@ -135,12 +142,12 @@ const Header = ({qiute,confirm}) => {
                   </div>
                 </div>
               </li>
-              <li className={styles.navbar_ideal}>
+              <NavLink to={"idealpc"} className={styles.navbar_ideal}>
                 <div>
                   Özün seç <GoRocket size={24} />
                 </div>
                 <span className={styles.border_line}></span>
-              </li>
+              </NavLink>
               <li className={styles.navbar_links}>Xidmətlər</li>
               <li className={styles.navbar_links}>Blog</li>
               <li className={styles.navbar_links}>Dəstək</li>
@@ -153,10 +160,8 @@ const Header = ({qiute,confirm}) => {
               <div className={styles.navbar_icon}>
                 <NavLink to={"/basket"} className={styles.navbar_icon}>
                   <SlBasket size={24} />
-                </NavLink>{
-                  count>0 &&
-                <span>{count}</span>
-                }
+                </NavLink>
+                {count > 0 && <span>{count}</span>}
               </div>
               <div
                 className={styles.navbar_users}
@@ -188,7 +193,14 @@ const Header = ({qiute,confirm}) => {
                       Daxil ol
                     </NavLink>
                   </div>
-                  <NavLink style={{textDecoration:"none",color:"rgba(204, 204, 204, 1)"}} to={"/accountpage"} className={styles.navbar_users_item}>
+                  <NavLink
+                    style={{
+                      textDecoration: "none",
+                      color: "rgba(204, 204, 204, 1)",
+                    }}
+                    to={"/accountpage"}
+                    className={styles.navbar_users_item}
+                  >
                     <span>
                       <BiUser size={24} />
                     </span>
@@ -222,7 +234,16 @@ const Header = ({qiute,confirm}) => {
             </div>
             <div className={styles.navbar_icon}>
               <div onClick={toggleMenu} className={styles.navbar_icon}>
-                {isOpen ? <IoMdClose size={24} /> : <IoIosMenu size={24} />}
+                <span
+                  className={isOpen ? styles.close_button : styles.open_button}
+                >
+                  <IoIosMenu size={24} />
+                </span>
+                <span
+                  className={!isOpen ? styles.close_button : styles.open_button}
+                >
+                  <IoMdClose size={24} />
+                </span>
               </div>
             </div>
           </div>
@@ -231,18 +252,83 @@ const Header = ({qiute,confirm}) => {
           >
             <div className={styles.responsive_navbar_items}>
               <div className={styles.responsive_navbar_item}>
-                <div>
-                  <Link className={styles.responsive_navbar_item_link}>PC</Link>
-                  <div>
+                <div className={styles.responsive_navbar_item_div}>
+                  <Link className={styles.responsive_navbar_item_link}>
+                    <div>PC</div>
+                  </Link>
+                  <div onClick={()=>setOpenPc(true)}>
                     <IoIosArrowForward />
                   </div>
-                </div>
-              </div>
-              <div className={styles.responsive_navbar_item}>
-                <div>
-                  <Link className={styles.responsive_navbar_item_link}>PC</Link>
-                  <div>
-                    <IoIosArrowForward />
+
+                  <div
+                    style={{
+                      transform: openPc
+                        ? "translateX(0px)"
+                        : "",
+                    }}
+                    className={styles.responsive_navbar_item_link_catagories}
+                  >
+                    <img onClick={()=>setOpenPc(false)} src={rightIcon} alt="" />
+                    <div className={styles.responsive_navbar_catagories_items}>
+                      <div className={styles.responsive_navbar_catagories_item}>
+                        <span
+                          className={
+                            styles.responsive_navbar_catagories_item_dot
+                          }
+                        ></span>
+                        <p className={styles.responsive_navbar_catagories_text}>
+                          Oyun üçün
+                        </p>
+                      </div>
+                      <div className={styles.responsive_navbar_catagories_item}>
+                        <span
+                          className={
+                            styles.responsive_navbar_catagories_item_dot
+                          }
+                        ></span>
+                        <p className={styles.responsive_navbar_catagories_text}>
+                          Dizayn üçün
+                        </p>
+                      </div>
+                      <div className={styles.responsive_navbar_catagories_item}>
+                        <span
+                          className={
+                            styles.responsive_navbar_catagories_item_dot
+                          }
+                        ></span>
+                        <p>Ofis üçün</p>
+                      </div>
+                      <div className={styles.responsive_navbar_catagories_item}>
+                        <span
+                          className={
+                            styles.responsive_navbar_catagories_item_dot
+                          }
+                        ></span>
+                        <p className={styles.responsive_navbar_catagories_text}>
+                          Ev üçün
+                        </p>
+                      </div>
+                      <div className={styles.responsive_navbar_catagories_item}>
+                        <span
+                          className={
+                            styles.responsive_navbar_catagories_item_dot
+                          }
+                        ></span>
+                        <p className={styles.responsive_navbar_catagories_text}>
+                          PC hissələri
+                        </p>
+                      </div>
+                      <div className={styles.responsive_navbar_catagories_item}>
+                        <span
+                          className={
+                            styles.responsive_navbar_catagories_item_dot
+                          }
+                        ></span>
+                        <p className={styles.responsive_navbar_catagories_text}>
+                          Hamısı birində
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -251,8 +337,68 @@ const Header = ({qiute,confirm}) => {
                   <Link className={styles.responsive_navbar_item_link}>
                     Laptop
                   </Link>
-                  <div>
+                  <div onClick={()=>setOpenLaptop(true)}>
                     <IoIosArrowForward size={20} />
+                  </div>
+                  <div
+                    style={{
+                      transform: openLaptop
+                        ? "translateX(0px)"
+                        : "",
+                    }}
+                    className={styles.responsive_navbar_item_link_catagories}
+                  >
+                    <img onClick={()=>setOpenLaptop(false)} src={rightIcon} alt="" />
+                    <div className={styles.responsive_navbar_catagories_items}>
+                      <div className={styles.responsive_navbar_catagories_item}>
+                        <span
+                          className={
+                            styles.responsive_navbar_catagories_item_dot
+                          }
+                        ></span>
+                        <p className={styles.responsive_navbar_catagories_text}>
+                          Oyun üçün
+                        </p>
+                      </div>
+                      <div className={styles.responsive_navbar_catagories_item}>
+                        <span
+                          className={
+                            styles.responsive_navbar_catagories_item_dot
+                          }
+                        ></span>
+                        <p className={styles.responsive_navbar_catagories_text}>
+                          Dizayn üçün
+                        </p>
+                      </div>
+                      <div className={styles.responsive_navbar_catagories_item}>
+                        <span
+                          className={
+                            styles.responsive_navbar_catagories_item_dot
+                          }
+                        ></span>
+                        <p>Ofis üçün</p>
+                      </div>
+                      <div className={styles.responsive_navbar_catagories_item}>
+                        <span
+                          className={
+                            styles.responsive_navbar_catagories_item_dot
+                          }
+                        ></span>
+                        <p className={styles.responsive_navbar_catagories_text}>
+                          Ev üçün
+                        </p>
+                      </div>
+                      <div className={styles.responsive_navbar_catagories_item}>
+                        <span
+                          className={
+                            styles.responsive_navbar_catagories_item_dot
+                          }
+                        ></span>
+                        <p className={styles.responsive_navbar_catagories_text}>
+                        İkisi birində
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -261,8 +407,49 @@ const Header = ({qiute,confirm}) => {
                   <Link className={styles.responsive_navbar_item_link}>
                     Aksesuar
                   </Link>
-                  <div>
-                    <IoIosArrowForward size={20} />
+                  <div onClick={()=>setOpenAccessory(true)}>
+                    <IoIosArrowForward  size={20} />
+                  </div>
+                  <div
+                    style={{
+                      transform: openAccessory
+                        ? "translateX(0px)"
+                        : "",
+                    
+                    }}
+                    className={styles.responsive_navbar_item_link_catagories}
+                  >
+                    <img onClick={()=>setOpenAccessory(false)} src={rightIcon} alt="" />
+                    <div className={styles.responsive_navbar_catagories_items}>
+                      <div className={styles.responsive_navbar_catagories_item}>
+                        <span
+                          className={
+                            styles.responsive_navbar_catagories_item_dot
+                          }
+                        ></span>
+                        <p className={styles.responsive_navbar_catagories_text}>
+                        Aksesuarlar
+                        </p>
+                      </div>
+                      <div className={styles.responsive_navbar_catagories_item}>
+                        <span
+                          className={
+                            styles.responsive_navbar_catagories_item_dot
+                          }
+                        ></span>
+                        <p className={styles.responsive_navbar_catagories_text}>
+                        Avadanlıqlar
+                        </p>
+                      </div>
+                      <div className={styles.responsive_navbar_catagories_item}>
+                        <span
+                          className={
+                            styles.responsive_navbar_catagories_item_dot
+                          }
+                        ></span>
+                        <p>Mebel</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -289,17 +476,17 @@ const Header = ({qiute,confirm}) => {
               </div>
             </div>
             <div className={styles.responsive_navbar_icons}>
-              <Link className={styles.responsive_navbar_item_link}>
-                Səbət
+              <Link to={"/basket"} className={styles.responsive_navbar_item_link}>
                 <div className={styles.responsive_navbar_icon}>
                   <SlBasket size={28} />
                 </div>
+                Səbət
               </Link>
               <Link className={styles.responsive_navbar_item_link}>
-                Hesab
                 <div className={styles.responsive_navbar_icon}>
                   <BiUser size={28} />
                 </div>
+                Hesab
               </Link>
             </div>
           </div>

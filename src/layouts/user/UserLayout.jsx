@@ -5,10 +5,10 @@ import Header from "./Header/Header"
 //React Router
 import { Outlet } from "react-router-dom"
 
-const UserLayout = ({qiute,confirm}) => {
+const UserLayout = ({exist,confirm}) => {
     return (
         <>
-            <Header confirm={confirm} qiute={qiute} />
+            <Header confirm={confirm} exist={exist} />
             <Outlet />
             <Footer />
         </>

@@ -1,12 +1,12 @@
 import React from 'react'
 import style from './logout.module.scss'
 import { useNavigate } from 'react-router-dom'
-const Logout = ({setQuite,setConfirm}) => {
+const Logout = ({setExist,setConfirm}) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
     navigate("/");
-    setQuite(false)
+    setExist(false)
   };
   return (
     <div>
@@ -17,7 +17,7 @@ const Logout = ({setQuite,setConfirm}) => {
         </div>
         <div>
           <button onClick={handleClick} className={style.account_out_yes}>Bəli</button>
-          <button onClick={()=>setQuite(false)} className={style.account_out_no}>Xeyr</button>
+          <button onClick={()=>setExist(false)} className={style.account_out_no}>Xeyr</button>
         </div>
       </div>
 

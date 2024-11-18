@@ -39,13 +39,9 @@ const Section = ({ title, data = [], favoriteProductIds, refetchFavorites }) => 
         {isMobile ? (
           // Mobil cihazlarda kartları sadə düzənlə göstərmək
           <div className={styles.mobileCards}>
-            {data.map((card) => (
+            {data.map(card => (
               <div className={styles.cardContainer} key={card.id}>
-                <Card
-                  card={card}
-                  favoriteProductIds={favoriteProductIds}
-                  refetchFavorites={refetchFavorites}
-                />
+                <Card card={card} favoriteProductIds={favoriteProductIds} refetchFavorites={refetchFavorites} />
               </div>
             ))}
           </div>
@@ -66,22 +62,14 @@ const Section = ({ title, data = [], favoriteProductIds, refetchFavorites }) => 
               prevEl: ".swiper-button-prev",
             }}
             modules={[Autoplay, Navigation]}
-            onSwiper={(swiper) => {
+            onSwiper={swiper => {
               swiperRef.current = swiper;
             }}
           >
-            {data.map((card) => (
+            {data.map(card => (
               <SwiperSlide className={styles.swiperSlide} key={card.id}>
-                <div
-                  className={styles.cardContainer}
-                  onMouseEnter={() => swiperRef.current.autoplay.stop()}
-                  onMouseLeave={() => swiperRef.current.autoplay.start()}
-                >
-                  <Card
-                    card={card}
-                    favoriteProductIds={favoriteProductIds}
-                    refetchFavorites={refetchFavorites}
-                  />
+                <div className={styles.cardContainer} onMouseEnter={() => swiperRef.current.autoplay.stop()} onMouseLeave={() => swiperRef.current.autoplay.start()}>
+                  <Card card={card} favoriteProductIds={favoriteProductIds} refetchFavorites={refetchFavorites} />
                 </div>
               </SwiperSlide>
             ))}

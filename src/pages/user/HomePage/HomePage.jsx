@@ -1,4 +1,3 @@
-
 import styles from "./HomePage.module.scss";
 import InternCr from "../../../assets/images/products/InternCr.png";
 import Delivery from "../../../assets/images/products/Delivery.png";
@@ -12,14 +11,14 @@ import { useGetProductsByCategoryNameQuery } from "../../../redux/sercives/produ
 import { useGetFavoritesQuery } from "../../../redux/sercives/favoriteApi";
 
 const HomePage = () => {
-  // Məhsul məlumatlarını sorğulamaq
-  const { data: laptopsData, isLoading: isLaptopsLoading } = useGetProductsByCategoryNameQuery("Laptop");
-  const { data: mousesData, isLoading: isMousesLoading } = useGetProductsByCategoryNameQuery("Mouse");
-  const { data: klaviaturasData, isLoading: isKlaviaturasLoading } = useGetProductsByCategoryNameQuery("Klaviatura");
+ 
+  const { data: laptopsData } = useGetProductsByCategoryNameQuery({ categoryName: "Laptop" });
+  const { data: mousesData } = useGetProductsByCategoryNameQuery({ categoryName: "Mouse" });
+  const { data: klaviaturasData } = useGetProductsByCategoryNameQuery({ categoryName: "Klaviatura" });
 
   // Favorit məhsulları sorğulamaq
   const { data: favoriteData, refetch: refetchFavorites } = useGetFavoritesQuery();
-  const favoriteProductIds = favoriteData ? favoriteData.map((fav) => fav.id) : [];
+  const favoriteProductIds = favoriteData ? favoriteData.map(fav => fav.id) : [];
 
   return (
     <>
@@ -33,24 +32,9 @@ const HomePage = () => {
           <h3 className={styles.specialH3}>Xüsusi Seçimlər</h3>
 
           {/* Favorit məlumatları və yenidən yükləmə funksiyası ilə Section komponentlərinə məlumat göndərilir */}
-          <Section
-            title="PC"
-            data={laptopsData}
-            favoriteProductIds={favoriteProductIds}
-            refetchFavorites={refetchFavorites}
-          />
-          <Section
-            title="Mouse"
-            data={mousesData}
-            favoriteProductIds={favoriteProductIds}
-            refetchFavorites={refetchFavorites}
-          />
-          <Section
-            title="Keyboard"
-            data={klaviaturasData}
-            favoriteProductIds={favoriteProductIds}
-            refetchFavorites={refetchFavorites}
-          />
+          <Section title="PC" data={laptopsData} favoriteProductIds={favoriteProductIds} refetchFavorites={refetchFavorites} />
+          <Section title="Mouse" data={mousesData} favoriteProductIds={favoriteProductIds} refetchFavorites={refetchFavorites} />
+          <Section title="Keyboard" data={klaviaturasData} favoriteProductIds={favoriteProductIds} refetchFavorites={refetchFavorites} />
 
           <div className={styles.servicesDiv}>
             <div className={styles.services}>Xidmətlərimiz</div>
@@ -59,36 +43,28 @@ const HomePage = () => {
                 <img src={InternCr} />
                 <div className={styles.text}>
                   <h3>Daxili kredit</h3>
-                  <p>
-                    Bizim kredit təkliflərimizlə Tech məhsulları sizin büdcənizə uyğun olacaq.
-                  </p>
+                  <p>Bizim kredit təkliflərimizlə Tech məhsulları sizin büdcənizə uyğun olacaq.</p>
                 </div>
               </div>
               <div className={`${styles.border} ${styles.iconsCenter}`}>
                 <img src={Delivery} />
                 <div className={styles.text}>
                   <h3>Çatdırılma</h3>
-                  <p>
-                    Bizim kredit təkliflərimizlə Tech məhsulları sizin büdcənizə uyğun olacaq.
-                  </p>
+                  <p>Bizim kredit təkliflərimizlə Tech məhsulları sizin büdcənizə uyğun olacaq.</p>
                 </div>
               </div>
               <div className={`${styles.border} ${styles.iconsCenter}`}>
                 <img src={Repair} />
                 <div className={styles.text}>
                   <h3>Təmir</h3>
-                  <p>
-                    Bizim kredit təkliflərimizlə Tech məhsulları sizin büdcənizə uyğun olacaq.
-                  </p>
+                  <p>Bizim kredit təkliflərimizlə Tech məhsulları sizin büdcənizə uyğun olacaq.</p>
                 </div>
               </div>
               <div className={`${styles.border} ${styles.iconsCenter}`}>
                 <img src={SecondHand} />
                 <div className={styles.text}>
                   <h3>İkinci əl satış</h3>
-                  <p>
-                    Bizim kredit təkliflərimizlə Tech məhsulları sizin büdcənizə uyğun olacaq.
-                  </p>
+                  <p>Bizim kredit təkliflərimizlə Tech məhsulları sizin büdcənizə uyğun olacaq.</p>
                 </div>
               </div>
             </div>

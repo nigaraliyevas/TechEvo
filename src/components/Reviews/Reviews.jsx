@@ -8,12 +8,9 @@ import styles from "./Reviews.module.scss";
 import { FaUserCircle } from "react-icons/fa";
 import { RxChevronDown } from "react-icons/rx";
 import { AiFillStar } from "react-icons/ai";
-import { setTokens } from "../../redux/slices/TokenSlice"; // TokenSlice-ə daxil et
 
 const StarRating = ({ rating, setRating }) => {
-
   const handleStarClick = index => {
-
     setRating(index + 1);
   };
 
@@ -38,37 +35,38 @@ const StarRating = ({ rating, setRating }) => {
 
 const Reviews = ({ data }) => {
   const { id } = data;
-
   const dispatch = useDispatch();
-  const token = useSelector(state => state.auth.accessToken); // Redux-dan access token alırıq
 
+  const token = localStorage.getItem("accessToken"); // Redux-dan access token alırıq
   const [newReview, setNewReview] = useState({ rating: 0, comment: "" });
   const [visibleCount, setVisibleCount] = useState(2);
-
-  const { data: reviewsData, error, isLoading } = useGetReviewsQuery({ productId: Number(id) });
+  const { data: reviewsData, error, isLoading } = useGetReviewsQuery(Number(id));
+  console.log(Number(id));
   const [postReview] = usePostReviewMutation();
+  console.log(reviewsData);
+
   const user = localStorage.getItem("email");
   const [reviews, setReviews] = useState([]);
 
+  console.log(token);
+
   useEffect(() => {
     if (reviewsData) {
-      setReviews(reviewsData);
+      const sortedReviews = [...reviewsData].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+      setReviews(sortedReviews);
     }
   }, [reviewsData]);
 
   const calculateTimeAgo = timestamp => {
     try {
-
       const date = parseISO(timestamp);
       return formatDistanceToNowStrict(date, { addSuffix: true, locale: tr });
-
     } catch (error) {
       return "Bilinməyən vaxt";
     }
   };
 
   const handleAddReview = async () => {
-    // Əgər istifadəçi login olmayıbsa, xəbərdarlıq edilir
     if (!user) {
       Swal.fire({
         icon: "warning",
@@ -78,15 +76,14 @@ const Reviews = ({ data }) => {
       return;
     }
 
-    // Rəyin düzgünlüyünü yoxlayırıq
     if (newReview.comment.trim() && newReview.rating > 0) {
       try {
         const response = await postReview({ productId: Number(id), comment: newReview });
+        console.log(response.data);
 
-        if (response?.data?.status === 201) {
-          Swal.fire("Uğur", "Rəyiniz əlavə edildi!", "success");
+        if (response.data) {
+          Swal.fire("Success", "Rəyiniz əlavə edildi!", "success");
 
-          // Yeni rəy state-ə əlavə olunur
           setReviews([
             {
               ...newReview,
@@ -97,9 +94,11 @@ const Reviews = ({ data }) => {
           ]);
 
           setNewReview({ rating: 0, comment: "" });
+        } else {
+          Swal.fire("Xəta", "Rəy göndərilərkən xəta baş verdi.");
         }
       } catch (error) {
-        Swal.fire("Xəta", "Rəy göndərilərkən xəta baş verdi.", error.message);
+        Swal.fire("Xəta", "Rəy göndərilərkən xəta baş verdi.");
       }
     } else {
       Swal.fire({
@@ -110,7 +109,7 @@ const Reviews = ({ data }) => {
     }
   };
 
-  const visibleReviews = reviews.slice(0, visibleCount);
+  const visibleReviews = reviews?.slice(0, visibleCount);
 
   const handleLoadMore = () => {
     setVisibleCount(prevCount => prevCount + 2);
@@ -133,14 +132,13 @@ const Reviews = ({ data }) => {
   };
 
   return (
-
     <div className={styles.totalBox}>
       <h3 style={{ fontSize: "24px", marginBottom: "40px", color: "#fff" }}>İstifadəçi rəyləri</h3>
+
       <div className={styles.addReview}>
         <div className={styles.textAreaContainer}>
           <textarea value={newReview.comment} onChange={e => setNewReview({ ...newReview, comment: e.target.value })} placeholder="Rəy yaz..." className={styles.textArea} />
           <StarRating rating={newReview.rating} setRating={rating => setNewReview({ ...newReview, rating })} />
-
         </div>
         <button onClick={handleAddReview} className={styles.addButton}>
           Rəy yaz
@@ -150,9 +148,8 @@ const Reviews = ({ data }) => {
       <div className={styles.reviewBox}>
         {isLoading && <div>Yüklənir...</div>}
         {error && <div>Xəta baş verdi. Zəhmət olmasa yenidən cəhd edin.</div>}
-        {!isLoading && !reviews.length && <div>Hələ rəy yoxdur</div>}
 
-        {visibleReviews.map((review, index) => (
+        {visibleReviews?.map((review, index) => (
           <div key={index} className={styles.review}>
             <div className={styles.reviewHeader}>
               <div className={styles.profileImage}>{review?.profileImg ? <img src={review?.profileImg} alt="Profil şəkli" className={styles.profileImage} /> : <FaUserCircle className={styles.defaultProfileIcon} />}</div>

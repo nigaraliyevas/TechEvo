@@ -2,17 +2,16 @@ import { useState } from "react";
 import "./PasswordReset.scss";
 import Button from "../../../components/Button/Button";
 import Input from "../../../components/Input/Input";
+import { useChangePasswordMutation } from "../../../redux/sercives/forgetPassApi";
+import { useNavigate } from "react-router-dom";
 
 const PasswordReset = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const [passwordErrors, setPasswordErrors] = useState([]);
-
-  const fetchWithTimeout = (url, options, timeout = 300000) => {
-    return Promise.race([fetch(url, options), new Promise((_, reject) => setTimeout(() => reject(new Error("Request timed out")), timeout))]);
-  };
-  const serverDomain = import.meta.env.server_domain;
+  const [changePassword, { data, isLoading, isSuccess, isError }] = useChangePasswordMutation();
+  const nav = useNavigate();
 
   const validatePassword = (password, confirmPassword) => {
     const errors = [];
@@ -31,7 +30,6 @@ const PasswordReset = () => {
     }
     return errors;
   };
-  console.log(password == confirmPassword);
 
   const handleSubmit = async ev => {
     ev.preventDefault();
@@ -41,31 +39,21 @@ const PasswordReset = () => {
       setPasswordErrors(errors);
       return;
     }
+    const email = localStorage.getItem("changePasswordEmail");
+    const verificationCode = localStorage.getItem("otp");
     try {
-      const response = await fetchWithTimeout(
-        `${serverDomain}/api/v1/auth/changePassword`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ password }),
-        },
-        300000
-      );
+      await changePassword({ newPassword: password, confirmPassword, email, verificationCode }).unwrap();
+    } catch (error) {
+      if (error.originalStatus == 200) {
+        localStorage.removeItem("changePasswordEmail");
+        localStorage.removeItem("otp");
 
-      const data = await response.json();
-
-      if (response.ok) {
-        console.log("Success:", data);
+        nav("/login");
         setError("");
       } else {
-        console.log("Error:", data);
+        console.error("Error:", error);
         setError("Şifrə dəyişdirilərkən xəta baş verdi.");
       }
-    } catch (error) {
-      console.error("Error:", error.message);
-      setError("Xəta baş verdi. Zəhmət olmasa yenidən cəhd edin.");
     }
   };
 
@@ -83,8 +71,10 @@ const PasswordReset = () => {
                 <p key={index} className="error-message text-danger text-start">
                   {error}
                 </p>
-              ))}{" "}
-            <Button buttonText={"Yadda saxla"} />
+              ))}
+            {error && <p className="error-message text-danger text-start">{error}</p>}
+            {isSuccess && <p className="success-message text-success text-start">Şifrə uğurla dəyişdirildi!</p>}
+            <Button buttonText={isLoading ? "Yüklənir..." : "Yadda saxla"} disabled={isLoading} />
           </form>
         </div>
       </div>

@@ -1,29 +1,59 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import ReactSlider from "react-slider";
 import styles from "./Accordion.module.css";
+import { useGetFilterNameWithValuesQuery } from "../../../../redux/sercives/productApi";
 
-const AccordionItem = ({ data, handleFilter }) => {
+const AccordionItem = ({ queries, handleFilter, values, handleFilterItem }) => {
+
   const [showContent, setShowContent] = useState(true);
+  // console.log(queries);
+  // console.log(values);
+  const [filterValue, setFilterValue] = useState('');
+
+  const handleFilterValueChange = (value) => {
+    setFilterValue((prevValues) =>
+      prevValues.includes(value)
+        ? prevValues.filter((v) => v !== value) // Əgər seçilibsə, çıxar
+        : [...prevValues, value] // Əgər seçilməyibsə, əlavə et
+    );
+  };
 
   return (
     <div className={styles.accordion_item}>
       <div className={styles.accordion_title} onClick={() => setShowContent(!showContent)}>
-        {data.title}
+        {queries}
         {showContent ? <FaChevronUp className={styles.icon} /> : <FaChevronDown className={styles.icon} />}
       </div>
       {showContent && (
         <div className={styles.accordion_content}>
           <div id={styles.FilteredProductsSide}>
-            {data.options.map((item, index) => (
-              <div className={styles.filterItem} key={index}>
-                <input type="checkbox" className={styles.checkbox} onChange={() => handleFilter(item.key, data.key)} />
-                <p>{item.title}</p>
-              </div>
-            ))}
+            <div className={styles.filterItem} style={{ display: "flex", flexDirection: "column" }}  >
+
+              {values.map((v, i) =>
+                <div key={i} style={{ height: "65px" }} >
+                  <div style={{display:"flex"}}>
+                    <div>
+                      <input type="checkbox" className={styles.checkbox}
+                        onChange={() => {
+                          handleFilterValueChange(v)
+                          handleFilterItem(v);
+                        }}
+                      />
+                    </div>
+                    <div>
+                      <p style={{ marginLeft: "10px", fontSize: "17px" }}>{v}</p>
+                    </div>
+                  </div>
+                </div>
+              )
+              }
+            </div>
           </div>
         </div>
       )}
+
+
     </div>
   );
 };
@@ -72,13 +102,35 @@ const PriceRangeSlider = ({ min, max, onPriceChange }) => {
   );
 };
 
-const Accordion = ({ data, handleFilter, handlePrice }) => {
+
+
+const Accordion = ({ queries, handleFilter, handlePrice, handleFilterItem }) => {
+  const [headers, setHeaders] = useState([]);
+
+  useEffect(() => {
+    if (queries) {
+      const keys = Object.keys(queries); // Extract keys (headers) from the queries object
+      setHeaders(keys);
+    }
+  }, [queries]);
+
   return (
     <div className={styles.accordion}>
-      <PriceRangeSlider min={200} max={10000} onPriceChange={handlePrice} />{" "}
-      {data.map((item, index) => (
-        <AccordionItem key={index} handleFilter={handleFilter} data={item} />
-      ))}
+      <PriceRangeSlider min={200} max={10000} onPriceChange={handlePrice} />
+      {headers?.map((item, index) => {
+        const values = queries[item]; // Get the values for each header (e.g., "Ölçülər", "Əməliyyat Sistemi")
+
+        return (
+          <AccordionItem
+            handleFilterItem={(value) => handleFilterItem(item, value)}
+            key={index}
+            queries={item} // Pass header name
+            handleFilter={handleFilter} // Pass the filter handler
+            values={values} // Pass the filter values
+            queryKey={item} // Pass the key as query key (e.g., "Əməliyyat Sistemi")
+          />
+        );
+      })}
     </div>
   );
 };

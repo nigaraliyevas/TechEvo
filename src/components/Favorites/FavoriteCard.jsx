@@ -98,7 +98,13 @@ function FavoriteCard({ card, onRefetch, }) {
                         style={{ background: "none", border: "none" }}
                     >
                         <TiHeartFullOutline
-                            style={{ color: "white", cursor: "pointer", width: "24px", height: "24px" }}
+                            style={{
+                                color: "white", cursor: "pointer",
+                                width: "20px", height: "20px", position: "absolute",
+                                top: "14px",
+                                right: "12px",
+                                bottom: "14px"
+                            }}
                         />
                     </button>
                 </div>

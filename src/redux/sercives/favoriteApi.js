@@ -19,7 +19,7 @@ export const favoriteApi = createApi({
       // Add the token to the headers if available
       if (token) {
         headers.set("Authorization", `${token}`);
-        console.log("Authorization başlıqı:", headers.get("Authorization"));
+        
       }
       return headers;
     },

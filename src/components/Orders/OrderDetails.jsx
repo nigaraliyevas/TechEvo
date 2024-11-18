@@ -6,13 +6,16 @@ import leftArrow from "../../assets/images/Orders/arrow-left.svg";
 import StarRating from "../Rating/StarRating";
 import { useEffect, useState } from "react";
 import { useGetProductByIdQuery } from "../../redux/sercives/productApi";
+import { useGetUserQuery } from "../../redux/sercives/userApi";
 
 const OrderDetails = ( { prods , setShowDetails , selectedItemId, selectedOrderId}) => {
   const [product, setProduct] = useState({});
   const [item, setItem] = useState({});
 
   const {data, error, isLoading} = useGetProductByIdQuery(selectedItemId);
-
+  const { data: user, error: userError, isLoading: userLoading} = useGetUserQuery(undefined, {
+    skip: !localStorage.getItem("accessToken"),
+  });
   useEffect(() => {
     prods.map((order) => {
       if(order.orderId === selectedOrderId) {
@@ -26,7 +29,7 @@ const OrderDetails = ( { prods , setShowDetails , selectedItemId, selectedOrderI
     })
   })
 
-  // get user name surname based on user email(token)
+
   
   if (isLoading) return "Yüklənir...";
   else if (error) {
@@ -37,7 +40,6 @@ const OrderDetails = ( { prods , setShowDetails , selectedItemId, selectedOrderI
       return <div style={{ color: "red", paddingLeft: "12px" }}>Xəta bas verdi.</div>;
     }
   }
-  else console.log(selectedOrderId , selectedItemId , data);
 
 
   const handleSendBack = () => {
@@ -69,11 +71,11 @@ const OrderDetails = ( { prods , setShowDetails , selectedItemId, selectedOrderI
             <span className={styles.statusSpan}>{product.orderStatus}</span>
           </div>
           <div>
-            Ümumi : <span className={styles.priceSpan}>{`${data.discountPrice ? data.discountPrice * item.quantity : data.price * item.quantity} azn`}</span>
+            Ümumi : <span className={styles.priceSpan}>{`${data.discountPrice ? item.quantity * Math.floor(data.discountPrice * 100) / 100 : item.quantity * Math.floor(data.price * 100) / 100 } azn`}</span>
           </div>
         </div>
         <div className={styles.infoRight}>
-          <div>Alıcı : Fidan Salayeva</div>
+          <div>{`Alıcı : ${user?.firstName} ${user?.lastName }`}</div>
           <div>{`Şəhər : ${product.address?.city || "N/A"}`}</div>
           <div>{`Məntəqə : ${product.address?.area || "N/A"}`}</div>
           <div>{`Küçə : ${product.address?.street || "N/A"}`}</div>

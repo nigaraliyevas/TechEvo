@@ -107,7 +107,7 @@ const AllOrders = () => {
                         {order.orderItems.map((item) => {
                            const product = productsData.find((prod) => prod.id === item.productId);
                           // console.log(item.productId)
-                          console.log(productsData)
+                          // console.log(productsData)
                           return (
                             <div key={item.id} className={styles.orderCont}>
                               <div className={styles.leftSide}>

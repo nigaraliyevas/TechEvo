@@ -7,7 +7,7 @@ import "../../../assets/common/base.scss";
 import { Link } from "react-router-dom";
 // import { login } from "../../../redux/slices/AuthSlice";
 import Button from "../../../components/Button/Button";
-// import useLogin from "../../../hooks/useLogin";
+import useLogin from "../../../hooks/useLogin";
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -18,7 +18,7 @@ const LoginPage = () => {
     setShowPassword(prev => !prev);
   };
 
-  // const login = useLogin();
+  const login = useLogin();
 
   const handleLogin = e => {
     e.preventDefault();

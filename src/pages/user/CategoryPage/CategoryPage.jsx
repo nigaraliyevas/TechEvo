@@ -3,18 +3,20 @@ import styles from "./CategoryPage.module.scss";
 import Pagination from "../../../components/Pagination/Pagination";
 import SearchBar from "../../../components/Search/SearchBar";
 import { useState } from "react";
-import { products, queries } from "../../../products";
+// import { products, queries } from "../../../products";
 import ProductCard from "../../../components/common/ProductCard/ProductCard";
 import FilterSidebar from "../../../components/FilteredProducts/FilterSideBar";
-import { useGetProductsQuery } from "../../../redux/sercives/productApi";
+import { useFilterProductsBySpecsQuery, useGetProductsByCategoryNameQuery, useGetProductsQuery } from "../../../redux/sercives/productApi";
+import { useParams } from "react-router-dom";
 
 const CategoryPage = () => {
-  const { data, isLoading, isError, isSuccess, error } = useGetProductsQuery(undefined, {
-    pollingInterval: 10000, // Re-fetch every 10 seconds
+  const { category } = useParams();
+  console.log(category);
+  const { data, error, isLoading } = useFilterProductsBySpecsQuery({
+    categoryName: category,
   });
 
   console.log(data);
-
   const [filterQueries, setFilterQueries] = useState({
     query: "",
     price: {
@@ -40,14 +42,30 @@ const CategoryPage = () => {
     setFilterQueries(prev => ({ ...prev, sortType }));
   };
 
-  const handleFilter = (itemKey, filterKey) => {
-    setFilterQueries(prev => {
-      const currentFilter = prev[filterKey];
-      if (currentFilter.includes(itemKey)) {
-        return { ...prev, [filterKey]: currentFilter.filter(key => key !== itemKey) };
+  // const handleFilter = (itemKey, filterKey) => {
+  //   setFilterQueries(prev => {
+  //     const currentFilter = prev[filterKey];
+  //     if (currentFilter.includes(itemKey)) {
+  //       return { ...prev, [filterKey]: currentFilter.filter(key => key !== itemKey) };
+  //     } else {
+  //       return { ...prev, [filterKey]: [...currentFilter, itemKey] };
+  //     }
+  //   });
+  // };
+  const [filters, setFilters] = useState({});
+
+  const handleFilter = (key, value) => {
+    setFilters(prevFilters => {
+      const updatedFilters = { ...prevFilters };
+
+      // If the filter already exists for this key, toggle its selection.
+      if (updatedFilters[key]?.includes(value)) {
+        updatedFilters[key] = updatedFilters[key].filter(item => item !== value);
       } else {
-        return { ...prev, [filterKey]: [...currentFilter, itemKey] };
+        updatedFilters[key] = [...(updatedFilters[key] || []), value];
       }
+
+      return updatedFilters;
     });
   };
 
@@ -60,7 +78,7 @@ const CategoryPage = () => {
     setFilterQueries({ ...filterQueries, price: data });
   };
 
-  const filteredProducts = products.filter(prod => {
+  const filteredProducts = data?.filter(prod => {
     const matchesQuery = prod.name.toLocaleLowerCase().includes(filterQueries.query.toLocaleLowerCase());
     const matchesPrice = prod.price >= filterQueries.price.min && prod.price <= filterQueries.price.max;
     const matchesCategory = filterQueries.category.length === 0 || filterQueries.category.includes(prod.category);
@@ -71,7 +89,7 @@ const CategoryPage = () => {
   });
 
   let sortedProducts = [];
-  if (filteredProducts.length > 0 || filterQueries.sortType) {
+  if (filteredProducts?.length > 0 || filterQueries?.sortType) {
     sortedProducts = filteredProducts.sort((a, b) => {
       switch (filterQueries.sortType) {
         case "priceAsc":
@@ -105,7 +123,7 @@ const CategoryPage = () => {
         <div className="container">
           <div className={`row ${styles.pc__bottom}`}>
             <div className="filter-side col-lg-3">
-              <FilterSidebar data={queries} handleFilter={handleFilter} handlePrice={handlePrice} />
+              <FilterSidebar queries={data} handleFilter={handleFilter} handlePrice={handlePrice} />
             </div>
             <div className="product-side col-lg-9">
               <div className={styles.pc_section}>

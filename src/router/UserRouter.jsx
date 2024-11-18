@@ -47,7 +47,8 @@ const UserRouter = ({ setConfirm, confirm, setExist, exist }) => {
         <Route path="/activate" element={<EmailVerificationPage />} />
         <Route path="/newpassword" element={<PasswordReset />} />
         <Route path="/enterpassword" element={<EnterPasswordPage />} />
-        <Route path="/pc" element={<CategoryPage />} />
+        <Route path="/:category" element={<CategoryPage />} />
+        <Route path="/:category&filterByPrice/:price" element={<CategoryPage />} />
         <Route path="/product" element={<ProductPage />} />
         <Route path="/basket" element={<BasketPage />} />
         <Route path="/confirm" element={<ConfirmBasket />} />

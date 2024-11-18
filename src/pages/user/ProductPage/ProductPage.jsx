@@ -18,11 +18,11 @@ const ProductPage = () => {
   const { data: product, error, isLoading } = useGetProductByIdQuery(id);
   // console.log(product, "detailData");
 
-  const extendedCarouselImages = [...carouselImages, ...carouselImages];
   const [modalShow, setModalShow] = useState(false);
   const [carouselImages, setCarouselImages] = useState([]);
   const [imageIndex, setImageIndex] = useState(0);
   const [currentIndex, setCurrentIndex] = useState();
+  const extendedCarouselImages = [...carouselImages, ...carouselImages];
 
   useEffect(() => {
     if (!id) {
@@ -73,7 +73,7 @@ const ProductPage = () => {
             <div className={styles.productDescription}>
               <Row>
                 <Col style={{ paddingLeft: "0px", paddingRight: "0px" }}>
-                  <Features id={2} />
+                  <Features id={id} />
                 </Col>
               </Row>
             </div>

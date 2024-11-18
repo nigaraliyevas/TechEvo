@@ -5,7 +5,7 @@ import { useGetProductByIdQuery } from "../../redux/sercives/productApi";
 const Features = ({ id }) => {
   const [features, setFeatures] = useState([]);
   const [expandedIndex, setExpandedIndex] = useState(null);
-  const [overflowIndexes, setOverflowIndexes] = useState([]);
+  // const [overflowIndexes, setOverflowIndexes] = useState([]);
   const refs = useRef([]);
 
   const { data, error, isLoading } = useGetProductByIdQuery(id);
@@ -13,7 +13,7 @@ const Features = ({ id }) => {
   console.log(data);
 
   useEffect(() => {
-    if (data) {
+    if (data && data.specifications) {
       const specifications = data.specifications;
       const featureArray = Object.entries(specifications).map(([key, value]) => ({
         name: key,
@@ -21,6 +21,7 @@ const Features = ({ id }) => {
       }));
 
       setFeatures(featureArray);
+      console.log(data.specifications);
     }
   }, [data]);
   console.log(features);

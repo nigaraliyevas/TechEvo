@@ -74,7 +74,7 @@ const AllOrders = () => {
     return <div> Xəta bas verdi</div>;
   } else if (ordersLoading) {
     return <div> Yüklənir...</div>;
-  }
+  } else console.log(ordersData);
   const handleDetails = (itemId, orderId) => {
     setSelectedItemId(itemId);
     setSelectedOrderId(orderId);
@@ -93,11 +93,11 @@ const AllOrders = () => {
               selectedItemId={selectedItemId}
               setShowDetails={setShowDetails}
             />
-          ) : (
+          ) : 
             <div>
               <div className={styles.heading}>Sifarişlər</div>
+                {ordersData && ordersData.length > 0 ? (
 
-              {/* OrderContainers will be mapped here */}
               <div className={styles.orderContainers}>
                 {!ordersLoading &&
                   !ordersError &&
@@ -173,10 +173,11 @@ const AllOrders = () => {
                   })}
               </div>
 
-              {/* If no orders are there */}
-              {/* <NoOrder /> */}
+              
+              ) : <NoOrder />}
             </div>
-          )}
+           }
+          
         </div>
       </Desktop>
 

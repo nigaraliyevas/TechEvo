@@ -8,7 +8,7 @@ export default function EmailVerificationPage() {
     // Get the token from the URL
     const urlParams = new URLSearchParams(window.location.search);
     const token = urlParams.get("token");
-    const email = localStorage.getItem("email");
+    const email = sessionStorage.getItem("email");
 
     if (token && email) {
       // Send both token and email to the backend

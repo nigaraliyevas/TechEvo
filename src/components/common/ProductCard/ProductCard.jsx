@@ -1,48 +1,98 @@
-import { PiHeartBold } from "react-icons/pi"
-import style from "./ProductCard.module.scss";
+import React, { useState, useEffect } from "react";
+import { PiHeartBold } from "react-icons/pi";
+import { TiHeartFullOutline } from "react-icons/ti";
+//import { useDispatch } from "react-redux";
+import { useAddFavoriteMutation, useRemoveFavoriteMutation } from "../../../redux/sercives/favoriteApi";
+import { addToCart } from "../../../redux/slices/BasketSlice";
+import StarRating from "../../../components/Rating/StarRating";
+//import style from "../../HomePage.module.scss";
+import { Link, useNavigate } from "react-router-dom";
 import { SlBasket } from "react-icons/sl";
-import { Rating } from "@mui/material";
-import { useState } from "react";
+import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import style from "./ProductCard.module.scss";
 
-const ProductCard = ({data}) => {
-  const { name, price, image, rating } = data;
-  // console.log(data)
+const ProductCard = ({ data,favoriteProductIds, refetchFavorites  }) => {
+  const { name, price, discountPrice, imageUrl, rating, id } = data;
+  // console.log(name);
+  const [addFavorite] = useAddFavoriteMutation();
+  const [removeFavorite] = useRemoveFavoriteMutation();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+ // const isFavorite = favoriteProductIds.includes(id);
+  // const handleToggleFavorite = async (event) => {
+  //   event.stopPropagation();
+  //   event.preventDefault();
+
+  //   const token = localStorage.getItem("accessToken");
+
+  //   if (!token) {
+  //     console.log("Token tapılmadı. Login səhifəsinə yönləndiriləcək...");
+  //     toast.error("Daxil olunmamısınız. Zəhmət olmasa, giriş edin.");
+  //     navigate("/login");
+  //     return;
+  //   }
+
+  //   try {
+  //     if (isFavorite) {
+  //       // Favoritdən çıxar
+  //       await removeFavorite(id).unwrap();
+  //       toast.success("Favoritlərdən silindi!");
+  //     } else {
+  //       // Favoritə əlavə et
+  //       await addFavorite(id).unwrap();
+  //       toast.success("Favoritlərə əlavə olundu!");
+  //     }
+
+  //     // Yeniləmək üçün `refetchFavorites` çağırılır
+  //     refetchFavorites();
+  //   } catch (error) {
+  //     console.error("Favorit əməliyyatı zamanı xəta:", error);
+  //     toast.error("Favorit əməliyyatı uğursuz oldu.");
+  //   }
+  // };
   const [selectedImage, setSelectedImage] = useState(0);
   const [lastMouseX, setLastMouseX] = useState(null);
-
   const handleMouseMove = (e) => {
     const { clientX } = e;
 
     if (lastMouseX === null) {
-      setLastMouseX(clientX); // Initialize lastMouseX when the mouse first moves
+      setLastMouseX(clientX);
       return;
     }
 
     const deltaX = clientX - lastMouseX;
 
-    if (Math.abs(deltaX) > 50) { // Change image every 50px movement
-      const newIndex = deltaX < 0
-        ? (selectedImage - 1 + image.length) % image.length // Move left
-        : (selectedImage + 1) % image.length; // Move right
+    if (Math.abs(deltaX) > 50) {
+      const newIndex =
+        deltaX < 0
+          ? (selectedImage - 1 + imageUrl.length) % imageUrl.length
+          : (selectedImage + 1) % imageUrl.length;
 
-      setSelectedImage(newIndex); // Update the displayed image
-      setLastMouseX(clientX); // Reset the reference point for mouse movement
+      setSelectedImage(newIndex);
+      setLastMouseX(clientX);
     }
   };
 
   const handleDivClick = (index) => {
     setSelectedImage(index);
   };
+  const addBasket = () => {
+    dispatch(addToCart(card));
+  };
 
   return (
-    <div className={style.card}>
+    <div
+      style={{ textDecoration: "none" }}
+      className={style.card}
+    >
       <span className={style.cardAnimationSpan}></span>
       <span className={style.cardAnimationSpan}></span>
       <span className={style.cardAnimationSpan}></span>
       <span className={style.cardAnimationSpan}></span>
 
       <div style={{ position: "relative" }}>
-        {/* Mouse movement changes the image */}
         <div
           className={style.cardImgContainer}
           onMouseMove={handleMouseMove}
@@ -52,64 +102,82 @@ const ProductCard = ({data}) => {
             className={style.imageSlider}
             style={{
               transform: `translateX(-${selectedImage * 25}%)`,
-              // width: `${image.length * 100}%`,
-              height: "100%"
+              width: `${imageUrl.length * 100}%`,
+              height: "100%",
             }}
           >
-            {/* {image.map((imgSrc, index) => (
-              <img
-                key={index}
-                className={style.cardImg}
-                src={imgSrc}
-                alt={name}
-                style={{ width: `${100 / image.length}%` }}
-              />
-            ))} */}
+            <Link to={`/product?id=${id}`}>
+              {imageUrl.map((imgSrc, index) => (
+                <img
+                  key={index}
+                  className={style.cardImg}
+                  src={imgSrc}
+                  alt={name}
+                  style={{ width: `${100 / imageUrl.length}%` }}
+                />
+              ))}
+            </Link>
           </div>
         </div>
 
-        {/* Image selector dots */}
         <div className={style.radioButtons}>
-          {/* {image.map((_, index) => (
+          {imageUrl.map((_, index) => (
             <div
               key={index}
-              className={`${style.radioDiv} ${selectedImage === index ? style.selected : ''}`}
+              className={`${style.radioDiv} ${selectedImage === index ? style.selected : ""
+                }`}
               onClick={() => handleDivClick(index)}
             />
-          ))} */}
+          ))}
         </div>
 
-        {/* Heart icon */}
-        <div className={style.heartSpan}>
-          <PiHeartBold />
+        <div className={style.heartSpan} 
+    >
+          {/* {isFavorite ? (
+            <TiHeartFullOutline style={{ color: "red" }} />
+          ) : ( */}
+            <PiHeartBold style={{ fill: "red" }} />
+          
         </div>
 
-        <div className={style.mailTitle}>
+        <div className={style.cardBottomTitles}>
           <div className={style.namePrice}>
             <h4>{name}</h4>
-            <p>{price} AZN</p>
+            <p>
+              {discountPrice ? (
+                <>
+                  <span
+                    style={{
+                      textDecoration: "line-through",
+                      marginRight: "10px",
+                      color: "#BFBFBF",
+                      fontWeight: "500",
+                      fontSize: "16px"
+                    }}
+                  >
+                    {price} AZN
+                  </span>
+                  <span>{discountPrice} AZN</span>
+                </>
+              ) : (
+                <span>{price} AZN</span>
+              )}
+            </p>
           </div>
 
-          {/* Rating and basket icon */}
           <div className={style.ratingBasket}>
-            <Rating
-              size="small"
-              precision={0.5}
-              name="read-only"
-              value={rating}
-              readOnly
-            />
+            <StarRating fontSize="1.2em" value={rating} />
+
             <div className={style.basketBg}>
-              <a href="#">
+              <button onClick={addBasket}>
                 <SlBasket style={{ width: "18px", height: "18px" }} />
-              </a>
+              </button>
             </div>
           </div>
         </div>
       </div>
-
     </div>
   );
-}
+};
 
-export default ProductCard
+export default ProductCard;

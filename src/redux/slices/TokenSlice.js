@@ -15,7 +15,6 @@ const authSlice = createSlice({
             state.accessToken = null;
             state.refreshToken = null;
         },
-
     }
 });
 

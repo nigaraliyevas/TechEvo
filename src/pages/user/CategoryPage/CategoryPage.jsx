@@ -1,18 +1,27 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-// import CardPC from "../../components/HomePageSections/CardPC/CardPC";
-// import CardPC from "../../components/CardPC/CardPC";
 import styles from "./CategoryPage.module.scss";
 import Pagination from "../../../components/Pagination/Pagination";
 import SearchBar from "../../../components/Search/SearchBar";
-import { useState } from "react";
-import { products, queries } from "../../../products";
+import { useState,useEffect } from "react";
+// import { products, queries } from "../../../products";
 import ProductCard from "../../../components/common/ProductCard/ProductCard";
 import FilterSidebar from "../../../components/FilteredProducts/FilterSideBar";
+import { useFilterProductsBySpecsQuery, useGetProductsByCategoryNameQuery, useGetProductsQuery } from "../../../redux/sercives/productApi";
+import { useParams } from "react-router-dom";
+import { useGetFilterNameWithValuesQuery } from "../../../redux/sercives/productApi";
 
 const CategoryPage = () => {
-//* PcPage idi adi dinamik olmalidi deye CategoryPage qoydum adini
-//* Sectiyimiz sehifeye uygun ya pc ya laptop ve.s avtomatik islemelidir
+  const { category } = useParams();
+  const { data, error, isLoading } = useFilterProductsBySpecsQuery({
+    categoryName: category,
+  });
 
+  const { data:queries } = useGetFilterNameWithValuesQuery(category); // Use the query hook
+
+  const [priceRange,setPriceRange] = useState({
+    min: 0,
+    max: 10000,
+  })
   const [filterQueries, setFilterQueries] = useState({
     query: "",
     price: {
@@ -24,47 +33,100 @@ const CategoryPage = () => {
     processor: [],
     videoCard: [],
     ram: [],
-    storage: []
+    storage: [],
   });
 
 
-  const handleSearch = (data) => {
+  const [test,setTest] = useState({});  
+  const handleFilterItem = (key,value) => {
+    let arr = test[key];
+    if(arr.includes(value)){
+      arr = arr.filter(item => item !== value);
+      console.log({arr});
+      
+    }else{
+      arr.push(value);
+    }
+    setTest({...test,[key]:arr});
+    
+  }
+
+  useEffect(() => {
+    if (queries) {
+      const temp = {};
+      for(let query in queries){
+        temp[query] = [];
+      }
+      setTest(temp);
+    }
+  }, [queries]);
+  
+
+
+  const [currentPage, setCurrentPage] = useState(0); // Səhifə nömrəsi
+  const itemsPerPage = 21; // Hər səhifədə göstərilən məhsul sayı
+
+  const handleSearch = data => {
     setFilterQueries({ ...filterQueries, query: data });
   };
 
-  const handleSorting = (sortType) => {
-    setFilterQueries((prev) => ({ ...prev, sortType }));
-  }
-
-  
-
-  const handleFilter = (data, key) => {
-    setFilterQueries({ ...filterQueries, [key]: data });
-  }
+  const handleSorting = sortType => {
+    setFilterQueries(prev => ({ ...prev, sortType }));
+  };
 
 
-  const handlePrice = (data) => {
-    setFilterQueries({ ...filterQueries, price: data });
-  }
+  const [filters, setFilters] = useState({});
 
-  const filteredProducts = products.filter((prod) => {
-    // Apply search query filter
+  const handleFilter = (key, value) => {
+    setFilters(prevFilters => {
+      const updatedFilters = { ...prevFilters };
+
+      // If the filter already exists for this key, toggle its selection.
+      if (updatedFilters[key]?.includes(value)) {
+        updatedFilters[key] = updatedFilters[key].filter(item => item !== value);
+      } else {
+        updatedFilters[key] = [...(updatedFilters[key] || []), value];
+      }
+
+      return updatedFilters;
+    });
+  };
+
+  const handlePageClick = event => {
+    setCurrentPage(event.selected); // Səhifə nömrəsini yenilə
+    window.scrollTo({ top: 0, behavior: "smooth" }); // Səhifə nömrəsi dəyişdikdə yuxarıya fırlat
+  };
+
+  const handlePrice = data => {
+    setPriceRange(data)
+  };
+
+  const filteredProducts = data?.filter(prod => {
     const matchesQuery = prod.name.toLocaleLowerCase().includes(filterQueries.query.toLocaleLowerCase());
-  
-    // Apply price filter
-    const matchesPrice = prod.price >= filterQueries.price.min && prod.price <= filterQueries.price.max;
-  
-    // Apply other filters like category, brand, processor, etc.
-    const matchesCategory = filterQueries.category.length === 0 || filterQueries.category.includes(prod.category);
-    const matchesBrand = filterQueries.brand.length === 0 || filterQueries.brand.includes(prod.brand);
-    const matchesProcessor = filterQueries.processor.length === 0 || filterQueries.processor.includes(prod.processor);
-  
-    return matchesQuery && matchesPrice && matchesCategory && matchesBrand && matchesProcessor;
+    const priceRangeQuery = prod.price >= priceRange.min && prod.price <= priceRange.max 
+    let matchFilter = true;
+    for (let i in test) {
+      if(test[i].length > 0){
+        matchFilter = test[i].some(val => {
+          // console.log(prod.specifications[i] === val);
+          console.log(prod.specifications[i],{val});
+          console.log(prod.specifications[i] === val);
+          
+          return prod.specifications[i] === val;
+        });
+        if (!matchFilter) break;
+      }
+      // Ensure all values match
+ // Break early if any filter doesn't match
+    }
+
+
+    return matchesQuery && matchFilter && priceRangeQuery;
   });
 
   let sortedProducts = [];
-  if(filteredProducts.length > 0 || filterQueries.sortType) {
-    sortedProducts = (filteredProducts.length > 0) && filteredProducts.sort((a, b) => {
+  if (filteredProducts?.length > 0 || filterQueries?.sortType) {
+    sortedProducts = filteredProducts.sort((a, b) => {
       switch (filterQueries.sortType) {
         case "priceAsc":
           return a.price - b.price;
@@ -79,43 +141,39 @@ const CategoryPage = () => {
         case "ratingDesc":
           return b.rating - a.rating;
         default:
-          return 0; // No sorting if sortType is not set
+          return 0;
       }
-    })  
+    });
   }
-  else sortedProducts = [];
-  
-  console.log(sortedProducts.length)
+
+  // Mövcud səhifə üçün məhsulları hesablayın
+  const offset = currentPage * itemsPerPage;
+  const currentProducts = sortedProducts.slice(offset, offset + itemsPerPage); // Hər səhifədə göstəriləcək məhsullar
+
   return (
     <section className="pc">
-        <div className={styles.pc_content}>
-          <div className="row mb-4" style={{ marginLeft: "0px", marginRight: "0px" }}>
-            <SearchBar filteredProducts = {filteredProducts} sortedProducts={sortedProducts} handleSearch={handleSearch} handleSorting = {handleSorting}/>
-          </div>
-          <div className="container">
-            <div className={`row ${styles.pc__bottom}`}>
-              <div className="filter-side col-lg-3">
-                <FilterSidebar data={queries} handleFilter={handleFilter} handlePrice={handlePrice} />
+      <div className={styles.pc_content}>
+        <div className="row mb-4" style={{ marginLeft: "0px", marginRight: "0px" }}>
+          <SearchBar filteredProducts={filteredProducts} sortedProducts={sortedProducts} handleSearch={handleSearch} handleSorting={handleSorting} />
+        </div>
+        <div className="container">
+          <div className={`row ${styles.pc__bottom}`}>
+            <div className="filter-side col-lg-3">
+              <FilterSidebar handleFilterItem = {handleFilterItem} queries={queries} handleFilter={handleFilter} handlePrice={handlePrice} />
+            </div>
+            <div className="product-side col-lg-9">
+              <div className={styles.pc_section}>
+                <div className="d-flex flex-wrap" style={{ gap: "30px" }}>
+                  {currentProducts.length === 0 ? <div className={styles.noProductsMessage}>There are no products.</div> : currentProducts.map(card => <ProductCard key={card.id} data={card} />)}
+                </div>
               </div>
-              <div className="product-side col-lg-9">
-                <div className={styles.pc_section}>
-                  <div className="d-flex flex-wrap" style={{ gap: "30px" }}>
-                    {(sortedProducts.length === 0 || filteredProducts.length === 0) ? (
-                      <div className={styles.noProductsMessage}>There are no products.</div>
-                    ) : (
-                      sortedProducts.map(card => (
-                        <ProductCard key={card.id} data={card} />
-                      ))
-                    )}
-                  </div>
-                </div>
-                <div className="pagination-side">
-                  <Pagination products={sortedProducts} />
-                </div>
+              <div className="pagination-side">
+                <Pagination products={sortedProducts} itemsPerPage={itemsPerPage} handlePageClick={handlePageClick} currentPage={currentPage} />
               </div>
             </div>
           </div>
         </div>
+      </div>
     </section>
   );
 };

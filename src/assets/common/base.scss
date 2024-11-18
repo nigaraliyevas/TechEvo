@@ -12,10 +12,14 @@ body {
 }
 
 .container {
-
   width: 100%;
   max-width: 1440px !important;
   margin: 0 auto;
   padding: 0 160px !important;
 }
-
+a {
+  text-decoration: none !important;
+}
+a:visited {
+  color: white !important;
+}

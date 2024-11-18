@@ -18,10 +18,9 @@ const LoginPage = () => {
     setShowPassword(prev => !prev);
   };
 
-
   const login = useLogin();
 
-  const handleLogin = (e) => {
+  const handleLogin = e => {
     e.preventDefault();
     console.log(email, password);
     login(email, password);
@@ -69,7 +68,7 @@ const LoginPage = () => {
                 <Link to="/forget">şifrəni unutmusan?</Link>
               </div>
               {/* <Button buttonText={isLoading ? "Gözləyin..." : "Daxil ol"} type="submit" disabled={isLoading} /> */}
-              <Button buttonText="Daxil ol" type="submit"/>
+              <Button buttonText="Daxil ol" type="submit" />
             </form>
           </div>
         </div>

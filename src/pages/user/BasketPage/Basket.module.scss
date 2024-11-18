@@ -5,6 +5,10 @@
     margin: 0 auto;
     padding: 56px 165px 120px;
     margin-top: 96px;
+    
+    @media (max-width: 600px) {
+        padding: 28px 16px 80px;
+    }
 
     .basket_title {
         font-family: $fontFamily;
@@ -20,13 +24,22 @@
         display: flex;
        gap: 30px;
        margin-top: 32px;
+       @media (max-width: 1360px) {
+      flex-direction: column;
+      }
     }
 
-    .basket_items {
-        flex-basis: 730px;
-    }
 
     .basket_total {
         flex-basis: 350px;
     }
+    .basket_empty_conatiner{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 48px;
+        margin-top: 48px;
+    }
+    
 }

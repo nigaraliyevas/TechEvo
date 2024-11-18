@@ -13,7 +13,7 @@ const store = configureStore({
     basket: basketSlice,
 
     [productApi.reducerPath]: productApi.reducer,
-    [reviewsApi.reducerPath]: reviewsApi.reducer, // commentApi reducer-i əlavə et
+    [reviewsApi.reducerPath]: reviewsApi.reducer,
     [favoriteApi.reducerPath]: favoriteApi.reducer,
     [orderApi.reducerPath]: orderApi.reducer,
     [userApi.reducerPath]: userApi.reducer,

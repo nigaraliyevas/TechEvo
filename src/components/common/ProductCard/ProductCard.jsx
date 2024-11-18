@@ -1,36 +1,36 @@
-import { PiHeartBold } from "react-icons/pi"
+import { PiHeartBold } from "react-icons/pi";
 import style from "./ProductCard.module.scss";
 import { SlBasket } from "react-icons/sl";
 import { Rating } from "@mui/material";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
-const ProductCard = ({data}) => {
-  const { name, price, image, rating } = data;
-  // console.log(data)
+const ProductCard = ({ data }) => {
+  const { name, price, discountPrice, imageUrl, rating, id } = data;
+  // console.log(name);
+
   const [selectedImage, setSelectedImage] = useState(0);
   const [lastMouseX, setLastMouseX] = useState(null);
 
-  const handleMouseMove = (e) => {
+  const handleMouseMove = e => {
     const { clientX } = e;
 
     if (lastMouseX === null) {
-      setLastMouseX(clientX); // Initialize lastMouseX when the mouse first moves
+      setLastMouseX(clientX);
       return;
     }
 
     const deltaX = clientX - lastMouseX;
 
-    if (Math.abs(deltaX) > 50) { // Change image every 50px movement
-      const newIndex = deltaX < 0
-        ? (selectedImage - 1 + image.length) % image.length // Move left
-        : (selectedImage + 1) % image.length; // Move right
+    if (Math.abs(deltaX) > 50) {
+      const newIndex = deltaX < 0 ? (selectedImage - 1 + imageUrl.length) % imageUrl.length : (selectedImage + 1) % imageUrl.length;
 
-      setSelectedImage(newIndex); // Update the displayed image
-      setLastMouseX(clientX); // Reset the reference point for mouse movement
+      setSelectedImage(newIndex);
+      setLastMouseX(clientX);
     }
   };
 
-  const handleDivClick = (index) => {
+  const handleDivClick = index => {
     setSelectedImage(index);
   };
 
@@ -42,63 +42,49 @@ const ProductCard = ({data}) => {
       <span className={style.cardAnimationSpan}></span>
 
       <div style={{ position: "relative" }}>
-        {/* Mouse movement changes the image */}
-        <div
-          className={style.cardImgContainer}
-          onMouseMove={handleMouseMove}
-          style={{ overflow: "hidden" }}
-        >
-          <div
+        {/* Image Slider */}
+        <div className={style.cardImgContainer} onMouseMove={handleMouseMove} style={{ overflow: "hidden" }}>
+          <Link
+            to={`/product?id=${id}`}
             className={style.imageSlider}
             style={{
-              transform: `translateX(-${selectedImage * 25}%)`,
-              // width: `${image.length * 100}%`,
-              height: "100%"
+              transform: `translateX(-${selectedImage * 100}%)`,
+              width: `${imageUrl.length * 100}%`,
+              height: "100%",
+              display: "flex",
             }}
           >
-            {/* {image.map((imgSrc, index) => (
-              <img
-                key={index}
-                className={style.cardImg}
-                src={imgSrc}
-                alt={name}
-                style={{ width: `${100 / image.length}%` }}
-              />
-            ))} */}
-          </div>
+            {imageUrl.map((imgSrc, index) => (
+              <img key={index} className={style.cardImg} src={imgSrc} alt={`${name} image ${index + 1}`} style={{ flex: "0 0 100%" }} />
+            ))}
+          </Link>
         </div>
 
-        {/* Image selector dots */}
+        {/* Image Selector Dots */}
         <div className={style.radioButtons}>
-          {/* {image.map((_, index) => (
-            <div
-              key={index}
-              className={`${style.radioDiv} ${selectedImage === index ? style.selected : ''}`}
-              onClick={() => handleDivClick(index)}
-            />
-          ))} */}
+          {imageUrl.map((_, index) => (
+            <div key={index} className={`${style.radioDiv} ${selectedImage === index ? style.selected : ""}`} onClick={() => handleDivClick(index)} />
+          ))}
         </div>
 
-        {/* Heart icon */}
+        {/* Favorite Icon */}
         <div className={style.heartSpan}>
           <PiHeartBold />
         </div>
 
+        {/* Product Information */}
         <div className={style.mailTitle}>
           <div className={style.namePrice}>
             <h4>{name}</h4>
-            <p>{price} AZN</p>
+            <p>
+              <span style={{ color: "#bebebe", textDecoration: discountPrice ? "line-through" : "none" }}>{price} AZN</span>
+              {discountPrice && <span style={{ marginLeft: "8px" }}>{discountPrice} AZN</span>}
+            </p>
           </div>
 
-          {/* Rating and basket icon */}
+          {/* Rating and Add to Cart */}
           <div className={style.ratingBasket}>
-            <Rating
-              size="small"
-              precision={0.5}
-              name="read-only"
-              value={rating}
-              readOnly
-            />
+            <Rating size="small" precision={0.5} name="read-only" value={rating} readOnly />
             <div className={style.basketBg}>
               <a href="#">
                 <SlBasket style={{ width: "18px", height: "18px" }} />
@@ -107,9 +93,8 @@ const ProductCard = ({data}) => {
           </div>
         </div>
       </div>
-
     </div>
   );
-}
+};
 
-export default ProductCard
+export default ProductCard;

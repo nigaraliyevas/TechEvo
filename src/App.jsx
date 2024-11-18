@@ -3,6 +3,7 @@ import store from "./redux/store";
 import { Provider } from "react-redux";
 import UserRouter from "./router/UserRouter";
 import { useState } from "react";
+import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 // import RoutesPage from "./pages/user/RouterPage/RoutesPage";
 const App = () => {
   const [exist,setExist]=useState(false)
@@ -10,6 +11,7 @@ const App = () => {
   return (
     <Provider store={store}>
       <BrowserRouter>
+      <ScrollToTop />
         <Routes>
           <Route path="/*" element={<UserRouter exist={exist} setExist={setExist} confirm={confirm} setConfirm={setConfirm}/>} />
         </Routes>

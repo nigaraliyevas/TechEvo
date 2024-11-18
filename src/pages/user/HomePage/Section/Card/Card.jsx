@@ -10,7 +10,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { SlBasket } from "react-icons/sl";
 
 function Card({ card, favoriteProductIds, refetchFavorites }) {
-  console.log("backd'di", favoriteProductIds);
+  // console.log("backd'di", favoriteProductIds);
   const { name, price, imageUrl, rating, id, discountPrice } = card;
   const navigate = useNavigate();
 

@@ -53,31 +53,11 @@ const UserRouter = ({ setConfirm, confirm, setExist, exist }) => {
         <Route path="/basket" element={<BasketPage />} />
         <Route path="/confirm" element={<ConfirmBasket />} />
 
-        <Route
-          path="/accountpage"
-          element={
-            <AccountPage
-              setConfirm={setConfirm}
-              setExist={setExist}
-              confirm={confirm}
-              exist={exist}
-            />
-          }
-        />
+        <Route path="/accountpage" element={<AccountPage setConfirm={setConfirm} setExist={setExist} confirm={confirm} exist={exist} />} />
         <Route path="/accountpage" element={<AccountPage />} />
         <Route path="/idealpc" element={<IdealPcPage />} />
 
-        <Route
-          path="/accountpage"
-          element={
-            <AccountPage
-              setConfirm={setConfirm}
-              setExist={setExist}
-              confirm={confirm}
-              exist={exist}
-            />
-          }
-        />
+        <Route path="/accountpage" element={<AccountPage setConfirm={setConfirm} setExist={setExist} confirm={confirm} exist={exist} />} />
         <Route path="/orders" element={<AllOrders />} />
       </Route>
     </Routes>

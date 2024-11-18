@@ -9,8 +9,9 @@ import style from "../../HomePage.module.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { SlBasket } from "react-icons/sl";
 
+
 function Card({ card, favoriteProductIds, refetchFavorites }) {
-  // console.log("backd'di", favoriteProductIds);
+  console.log("backd'di",favoriteProductIds)
   const { name, price, imageUrl, rating, id, discountPrice } = card;
   const navigate = useNavigate();
 
@@ -21,7 +22,7 @@ function Card({ card, favoriteProductIds, refetchFavorites }) {
   // Favorit olub-olmadığını yoxlamaq üçün favoriteProductIds istifadə olunur
   const isFavorite = favoriteProductIds.includes(id);
 
-  const handleToggleFavorite = async event => {
+  const handleToggleFavorite = async (event) => {
     event.stopPropagation();
     event.preventDefault();
 
@@ -50,7 +51,7 @@ function Card({ card, favoriteProductIds, refetchFavorites }) {
 
   const [selectedImage, setSelectedImage] = useState(0);
   const [lastMouseX, setLastMouseX] = useState(null);
-  const handleMouseMove = e => {
+  const handleMouseMove = (e) => {
     const { clientX } = e;
 
     if (lastMouseX === null) {
@@ -61,14 +62,17 @@ function Card({ card, favoriteProductIds, refetchFavorites }) {
     const deltaX = clientX - lastMouseX;
 
     if (Math.abs(deltaX) > 50) {
-      const newIndex = deltaX < 0 ? (selectedImage - 1 + imageUrl.length) % imageUrl.length : (selectedImage + 1) % imageUrl.length;
+      const newIndex =
+        deltaX < 0
+          ? (selectedImage - 1 + imageUrl.length) % imageUrl.length
+          : (selectedImage + 1) % imageUrl.length;
 
       setSelectedImage(newIndex);
       setLastMouseX(clientX);
     }
   };
 
-  const handleDivClick = index => {
+  const handleDivClick = (index) => {
     setSelectedImage(index);
   };
 
@@ -77,14 +81,21 @@ function Card({ card, favoriteProductIds, refetchFavorites }) {
   };
 
   return (
-    <div style={{ textDecoration: "none" }} className={style.card}>
+    <div
+      style={{ textDecoration: "none" }}
+      className={style.card}
+    >
       <span className={style.cardAnimationSpan}></span>
       <span className={style.cardAnimationSpan}></span>
       <span className={style.cardAnimationSpan}></span>
       <span className={style.cardAnimationSpan}></span>
 
       <div style={{ position: "relative" }}>
-        <div className={style.cardImgContainer} onMouseMove={handleMouseMove} style={{ overflow: "hidden" }}>
+        <div
+          className={style.cardImgContainer}
+          onMouseMove={handleMouseMove}
+          style={{ overflow: "hidden" }}
+        >
           <div
             className={style.imageSlider}
             style={{
@@ -95,7 +106,13 @@ function Card({ card, favoriteProductIds, refetchFavorites }) {
           >
             <Link to={`/product?id=${id}`}>
               {imageUrl.map((imgSrc, index) => (
-                <img key={index} className={style.cardImg} src={imgSrc} alt={name} style={{ width: `${100 / imageUrl.length}%` }} />
+                <img
+                  key={index}
+                  className={style.cardImg}
+                  src={imgSrc}
+                  alt={name}
+                  style={{ width: `${100 / imageUrl.length}%` }}
+                />
               ))}
             </Link>
           </div>
@@ -103,12 +120,21 @@ function Card({ card, favoriteProductIds, refetchFavorites }) {
 
         <div className={style.radioButtons}>
           {imageUrl.map((_, index) => (
-            <div key={index} className={`${style.radioDiv} ${selectedImage === index ? style.selected : ""}`} onClick={() => handleDivClick(index)} />
+            <div
+              key={index}
+              className={`${style.radioDiv} ${selectedImage === index ? style.selected : ""
+                }`}
+              onClick={() => handleDivClick(index)}
+            />
           ))}
         </div>
 
         <div className={style.heartSpan} onClick={handleToggleFavorite}>
-          {isFavorite ? <TiHeartFullOutline style={{ color: "red" }} /> : <PiHeartBold style={{ fill: "red" }} />}
+          {isFavorite ? (
+            <TiHeartFullOutline style={{ color: "red" }} />
+          ) : (
+            <PiHeartBold style={{ fill: "red" }} />
+          )}
         </div>
 
         <div className={style.cardBottomTitles}>
@@ -123,7 +149,7 @@ function Card({ card, favoriteProductIds, refetchFavorites }) {
                       marginRight: "10px",
                       color: "#BFBFBF",
                       fontWeight: "500",
-                      fontSize: "16px",
+                      fontSize: "16px"
                     }}
                   >
                     {price} AZN

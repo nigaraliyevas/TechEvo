@@ -23,10 +23,22 @@ const Header = ({ exist, confirm }) => {
     setOpenPc(false)
     setOpenLaptop(false)
     setOpenAccessory(false)
+    setOpenAccount(false) 
+  };
+  const toggleMenu2 = () => {
+    setOpenAccessory(false)
+    console.log("fasle");
+    
   };
   const [openPc, setOpenPc] = useState(false);
   const [openLaptop,setOpenLaptop] = useState(false)
   const [openAccessory,setOpenAccessory]= useState(false)
+  const [openAccount,setOpenAccount] = useState(false)
+
+  function closeButton() {
+    setOpenAccount(false)
+    console.log("fasle");
+  }
   return (
     <header
       style={{
@@ -419,7 +431,10 @@ const Header = ({ exist, confirm }) => {
                     }}
                     className={styles.responsive_navbar_item_link_catagories}
                   >
-                    <img onClick={()=>setOpenAccessory(false)} src={rightIcon} alt="" />
+                    <div onClick={()=>setOpenAccessory(false)}>
+                    <img  src={rightIcon} alt="" />
+
+                    </div>
                     <div className={styles.responsive_navbar_catagories_items}>
                       <div className={styles.responsive_navbar_catagories_item}>
                         <span
@@ -482,12 +497,66 @@ const Header = ({ exist, confirm }) => {
                 </div>
                 Səbət
               </Link>
-              <Link className={styles.responsive_navbar_item_link}>
+              <div onClick={()=>setOpenAccount(true)} className={styles.responsive_navbar_item_link}>
                 <div className={styles.responsive_navbar_icon}>
                   <BiUser size={28} />
                 </div>
                 Hesab
-              </Link>
+                <div    style={{
+                     backgroundColor: openAccount
+                        ? "red"
+                        : "",
+                    
+                    }} className={styles.navbar_users_items}>
+                 <div onClick={toggleMenu2}>
+                    <img  src={rightIcon} alt="" />
+                    </div>
+                  <div className={styles.navbar_users_item}>
+               
+                    <span>
+                      <LiaUserPlusSolid size={24} />
+                    </span>
+                    <NavLink
+                      style={{ color: "rgb(204, 204, 204)" }}
+                      className="text-decoration-none "
+                      to="/register"
+                    >
+                      Qeydiyyat
+                    </NavLink>
+                  </div>
+                  <div className={styles.navbar_users_item}>
+                    <span>
+                      <PiSignInFill size={24} />
+                    </span>
+                    <NavLink
+                      style={{ color: "rgb(204, 204, 204)" }}
+                      className="text-decoration-none"
+                      to="/login"
+                    >
+                      Daxil ol
+                    </NavLink>
+                  </div>
+                  <Link
+                    style={{
+                      textDecoration: "none",
+                      color: "rgba(204, 204, 204, 1)",
+                    }}
+                    to={"/accountpage"}
+                    className={styles.navbar_users_item}
+                  >
+                    <span>
+                      <BiUser size={24} />
+                    </span>
+                    Hesabım
+                  </Link>
+                  <div className={styles.navbar_users_item}>
+                    <span>
+                      <IoSettingsOutline size={24} />
+                    </span>
+                    Parametrlər
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           {/* MOBILE NAVBAR END*/}

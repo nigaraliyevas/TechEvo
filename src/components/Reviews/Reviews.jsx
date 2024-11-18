@@ -11,13 +11,7 @@ import { AiFillStar } from "react-icons/ai";
 import { setTokens } from "../../redux/slices/TokenSlice"; // TokenSlice-ə daxil et
 
 const StarRating = ({ rating, setRating }) => {
-<<<<<<< HEAD
   const handleStarClick = index => {
-=======
-
-  const handleStarClick = index => {
-
->>>>>>> 6046be295a24d25be23c106e6cdf5895361aa348
     setRating(index + 1);
   };
 

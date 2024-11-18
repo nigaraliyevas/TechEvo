@@ -1,98 +1,68 @@
-import { fetchBaseQuery } from "@reduxjs/toolkit/query";
-<<<<<<< HEAD
-import { setTokens, clearTokens } from "../slices/TokenSlice"; // TokenSlice daxil etmək
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-const baseUrl = import.meta.env.VITE_SOME_KEY;
-console.log(baseUrl);
-export const baseQueryWithReauth = async (args, api, extraOptions) => {
-  let result = await fetchBaseQuery({
-    baseUrl: baseUrl,
-    prepareHeaders: (headers, { getState }) => {
-      const { accessToken } = getState().auth;
-      if (accessToken) {
-        headers.set("Authorization", `Bearer ${accessToken}`);
-      }
-      return headers;
-    },
-  })(args, api, extraOptions);
+// Giriş funksiyası - burada API çağırışı edilir
+export const login = createAsyncThunk("auth/login", async ({ email, password }, { rejectWithValue }) => {
+  try {
+    const response = await fetch("http://ec2-51-20-32-195.eu-north-1.compute.amazonaws.com:8081/api/v1/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+    });
 
-  if (result?.error?.status === 401) {
-    // Token bitdiyi halda
-    const refreshToken = api.getState().auth.refreshToken;
-    console.log(refreshToken);
-    if (refreshToken) {
-      const refreshResponse = await fetch(`${baseUrl}auth/refresh`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ token: refreshToken }),
-      });
+    const data = await response.json();
 
-      if (refreshResponse.ok) {
-        const { accessToken: newAccessToken } = await refreshResponse.json();
-
-        // Yeni access token ilə redux state-i yeniləyirik
-        api.dispatch(setTokens({ accessToken: newAccessToken }));
-
-        // İndi yenidən request göndəririk yeni token ilə
-        result = await fetchBaseQuery({
-          baseUrl: baseUrl,
-          prepareHeaders: headers => {
-            headers.set("Authorization", `Bearer ${newAccessToken}`);
-=======
-import { setTokens, clearTokens } from "../slices/TokenSlice";  // TokenSlice daxil etmək
-
-const BASE_URL = `http://ec2-51-20-32-195.eu-north-1.compute.amazonaws.com:8081`;
-
-export const baseQueryWithReauth = async (args, api, extraOptions) => {
-    let result = await fetchBaseQuery({
-        baseUrl: BASE_URL,
-        prepareHeaders: (headers, { getState }) => {
-            const { accessToken } = getState().auth;
-            if (accessToken) {
-                headers.set('Authorization', `Bearer ${accessToken}`);
-            }
->>>>>>> 6046be295a24d25be23c106e6cdf5895361aa348
-            return headers;
-        },
-    })(args, api, extraOptions);
-
-<<<<<<< HEAD
-  return result;
-};
-=======
-    if (result?.error?.status === 401) { // Token bitdiyi halda
-        const refreshToken = api.getState().auth.refreshToken;
-
-        if (refreshToken) {
-            const refreshResponse = await fetch(`${BASE_URL}/api/v1/auth/refresh`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ token: refreshToken }),
-            });
-
-            if (refreshResponse.ok) {
-                const { accessToken: newAccessToken } = await refreshResponse.json();
-
-                // Yeni access token ilə redux state-i yeniləyirik
-                api.dispatch(setTokens({ accessToken: newAccessToken }));
-
-                // İndi yenidən request göndəririk yeni token ilə
-                result = await fetchBaseQuery({
-                    baseUrl: BASE_URL,
-                    prepareHeaders: (headers) => {
-                        headers.set('Authorization', `Bearer ${newAccessToken}`);
-                        return headers;
-                    },
-                })(args, api, extraOptions);
-            } else {
-                api.dispatch(clearTokens());  // Refresh token etibarsızdırsa, tokenləri silirik
-                // Burada istifadəçini login səhifəsinə yönləndirmək olar
-            }
-        } else {
-            api.dispatch(clearTokens());  // Refresh token yoxdursa, tokenləri silirik
-        }
+    if (!response.ok) {
+      return rejectWithValue(data);
     }
 
-    return result;
-};
->>>>>>> 6046be295a24d25be23c106e6cdf5895361aa348
+    localStorage.setItem("accessToken", data.accessToken);
+    localStorage.setItem("refreshToken", data.refreshToken);
+
+    return data;
+  } catch (err) {
+    return rejectWithValue(err.message);
+  }
+});
+
+const authSlice = createSlice({
+  name: "auth",
+  initialState: {
+    accessToken: localStorage.getItem("accessToken") || null,
+    refreshToken: localStorage.getItem("refreshToken") || null,
+    user: null,
+    isLoading: false,
+    error: null,
+  },
+  reducers: {
+    logout: state => {
+      state.accessToken = null;
+      state.refreshToken = null;
+      state.user = null;
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken");
+    },
+  },
+  extraReducers: builder => {
+    builder
+      .addCase(login.pending, state => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(login.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.accessToken = action.payload.accessToken;
+        state.refreshToken = action.payload.refreshToken;
+        state.user = action.payload.user;
+      })
+      .addCase(login.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload || "Xəta baş verdi";
+      });
+  },
+});
+
+export const { logout } = authSlice.actions;
+
+export default authSlice.reducer;

@@ -172,4 +172,4 @@ const Reviews = ({ data }) => {
   );
 };
 
-export default Reviews;
+export default Reviews;

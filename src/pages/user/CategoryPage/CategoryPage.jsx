@@ -2,21 +2,26 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import styles from "./CategoryPage.module.scss";
 import Pagination from "../../../components/Pagination/Pagination";
 import SearchBar from "../../../components/Search/SearchBar";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 // import { products, queries } from "../../../products";
 import ProductCard from "../../../components/common/ProductCard/ProductCard";
 import FilterSidebar from "../../../components/FilteredProducts/FilterSideBar";
 import { useFilterProductsBySpecsQuery, useGetProductsByCategoryNameQuery, useGetProductsQuery } from "../../../redux/sercives/productApi";
 import { useParams } from "react-router-dom";
+import { useGetFilterNameWithValuesQuery } from "../../../redux/sercives/productApi";
 
 const CategoryPage = () => {
   const { category } = useParams();
-  console.log(category);
   const { data, error, isLoading } = useFilterProductsBySpecsQuery({
     categoryName: category,
   });
 
-  console.log(data);
+  const { data:queries } = useGetFilterNameWithValuesQuery(category); // Use the query hook
+
+  const [priceRange,setPriceRange] = useState({
+    min: 0,
+    max: 10000,
+  })
   const [filterQueries, setFilterQueries] = useState({
     query: "",
     price: {
@@ -30,6 +35,33 @@ const CategoryPage = () => {
     ram: [],
     storage: [],
   });
+
+
+  const [test,setTest] = useState({});  
+  const handleFilterItem = (key,value) => {
+    let arr = test[key];
+    if(arr.includes(value)){
+      arr = arr.filter(item => item !== value);
+      console.log({arr});
+      
+    }else{
+      arr.push(value);
+    }
+    setTest({...test,[key]:arr});
+    
+  }
+
+  useEffect(() => {
+    if (queries) {
+      const temp = {};
+      for(let query in queries){
+        temp[query] = [];
+      }
+      setTest(temp);
+    }
+  }, [queries]);
+  
+
 
   const [currentPage, setCurrentPage] = useState(0); // Səhifə nömrəsi
   const itemsPerPage = 21; // Hər səhifədə göstərilən məhsul sayı
@@ -75,17 +107,39 @@ const CategoryPage = () => {
   };
 
   const handlePrice = data => {
-    setFilterQueries({ ...filterQueries, price: data });
+    setPriceRange(data)
   };
 
   const filteredProducts = data?.filter(prod => {
     const matchesQuery = prod.name.toLocaleLowerCase().includes(filterQueries.query.toLocaleLowerCase());
-    const matchesPrice = prod.price >= filterQueries.price.min && prod.price <= filterQueries.price.max;
-    const matchesCategory = filterQueries.category.length === 0 || filterQueries.category.includes(prod.category);
-    const matchesBrand = filterQueries.brand.length === 0 || filterQueries.brand.includes(prod.brand);
-    const matchesProcessor = filterQueries.processor.length === 0 || filterQueries.processor.includes(prod.processor);
+    const priceRangeQuery = prod.price >= priceRange.min && prod.price <= priceRange.max 
+    let matchFilter = true;
+    for (let i in test) {
+      if(test[i].length > 0){
+        matchFilter = test[i].some(val => {
+          // console.log(prod.specifications[i] === val);
+          console.log(prod.specifications[i],{val});
+          console.log(prod.specifications[i] === val);
+          
+          return prod.specifications[i] === val;
+        });
+        if (!matchFilter) break;
+      }
+      // Ensure all values match
+ // Break early if any filter doesn't match
+    }
 
-    return matchesQuery && matchesPrice && matchesCategory && matchesBrand && matchesProcessor;
+    // console.log({matchFilter});
+    
+    
+    
+    // const matchFilter = prod.specifications
+    // const matchesPrice = prod.price >= filterQueries.price.min && prod.price <= filterQueries.price.max;
+    // const matchesCategory = filterQueries.category.length === 0 || filterQueries.category.includes(prod.category);
+    // const matchesBrand = filterQueries.brand.length === 0 || filterQueries.brand.includes(prod.brand);
+    // const matchesProcessor = filterQueries.processor.length === 0 || filterQueries.processor.includes(prod.processor);
+
+    return matchesQuery && matchFilter && priceRangeQuery;
   });
 
   let sortedProducts = [];
@@ -123,7 +177,7 @@ const CategoryPage = () => {
         <div className="container">
           <div className={`row ${styles.pc__bottom}`}>
             <div className="filter-side col-lg-3">
-              <FilterSidebar queries={data} handleFilter={handleFilter} handlePrice={handlePrice} />
+              <FilterSidebar handleFilterItem = {handleFilterItem} queries={queries} handleFilter={handleFilter} handlePrice={handlePrice} />
             </div>
             <div className="product-side col-lg-9">
               <div className={styles.pc_section}>

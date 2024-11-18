@@ -8,10 +8,11 @@ import StarRating from "../../../../../components/Rating/StarRating";
 import style from "../../HomePage.module.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { SlBasket } from "react-icons/sl";
+import toast from "react-hot-toast";
 
 
 function Card({ card, favoriteProductIds, refetchFavorites }) {
-  console.log("backd'di",favoriteProductIds)
+
   const { name, price, imageUrl, rating, id, discountPrice } = card;
   const navigate = useNavigate();
 
@@ -29,6 +30,8 @@ function Card({ card, favoriteProductIds, refetchFavorites }) {
     const token = localStorage.getItem("accessToken");
 
     if (!token) {
+      console.log("Token tapılmadı. Login səhifəsinə yönləndiriləcək...");
+      toast.error("Daxil olunmamısınız. Zəhmət olmasa, giriş edin.");
       navigate("/login");
       return;
     }
@@ -37,15 +40,18 @@ function Card({ card, favoriteProductIds, refetchFavorites }) {
       if (isFavorite) {
         // Favoritdən çıxar
         await removeFavorite(id).unwrap();
+        toast.success("Favoritlərdən silindi!");
       } else {
         // Favoritə əlavə et
         await addFavorite(id).unwrap();
+        toast.success("Favoritlərə əlavə olundu!");
       }
 
-      // Yeniləmək üçün refetch çağırılır
+      // Yeniləmək üçün `refetchFavorites` çağırılır
       refetchFavorites();
     } catch (error) {
       console.error("Favorit əməliyyatı zamanı xəta:", error);
+      toast.error("Favorit əməliyyatı uğursuz oldu.");
     }
   };
 

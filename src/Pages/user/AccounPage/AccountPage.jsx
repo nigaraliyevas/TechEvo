@@ -11,11 +11,26 @@ import AllOrders from "../../../components/Orders/AllOrders";
 import { useState, useEffect } from "react";
 import Logout from "../../../components/Account/Logout";
 import AccountConfirme from "../../../components/Account/AccountConfirme";
+import { useGetUserQuery } from "../../../redux/sercives/userApi";
+import { useSelector } from "react-redux";
 
 const AccountPage = ({ setQuite, setConfirm, qiute, confirm }) => {
   const [account, setAccount] = useState(true);
   const [orders, setOrders] = useState(false);
   const [like, setLike] = useState(false);
+  const [user, setUser] = useState(null);
+
+  const { accessToken } = useSelector(state => state.auth); // Access tokens from Redux
+  console.log("access" + accessToken);
+  const { data, isError, isLoading } = useGetUserQuery(undefined, {
+    skip: localStorage.getItem("accessToken"),
+  });
+
+
+
+  const handleSubmit = e => {
+    e.preventDefault();
+  };
 
   useEffect(() => {
     if (qiute || confirm) {
@@ -84,18 +99,20 @@ const AccountPage = ({ setQuite, setConfirm, qiute, confirm }) => {
             <div className={style.account_right}>
               <div className={style.account_info}>Hesab məlumatları</div>
               <div>
-                <div className={style.user_inputs}>
+                <form onSubmit={handleSubmit} className={style.user_inputs}>
                   <div className={style.user_input}>
                     <div className={style.user_name}>
                       <label htmlFor="">Ad</label>
                       <div className={style.user_input}>
-                        <input type="text" placeholder="Ad" />
+                        <input value={user ? user.firstName : ""}  type="text" placeholder="Ad" />
                       </div>
                     </div>
                     <div className={style.user_name}>
                       <label htmlFor="">Soyad</label>
                       <div className={style.user_input}>
-                        <input type="text" placeholder="Soyad" />
+                        <input type="text" placeholder="Soyad" 
+                         value={user ? user.lastName : ""}
+                        />
                       </div>
                     </div>
                   </div>
@@ -124,7 +141,7 @@ const AccountPage = ({ setQuite, setConfirm, qiute, confirm }) => {
                   <div className={style.user_btn}>
                     <button onClick={() => setConfirm(true)}>Yadda saxla</button>
                   </div>
-                </div>
+                </ form>
               </div>
             </div>
           )}
@@ -132,8 +149,9 @@ const AccountPage = ({ setQuite, setConfirm, qiute, confirm }) => {
           {like && <Favorites />}
         </div>
       </div>
-      {qiute && <Logout setConfirm={setConfirm} setQuite={setQuite} />}
-      {confirm && <AccountConfirme setConfirm={setConfirm} />}
+
+       {/* <Logout setConfirm={setConfirm} setQuite={setQuite} /> */}
+      {confirm && <AccountConfirme setConfirm={setConfirm} />}  
     </div>
   );
 };

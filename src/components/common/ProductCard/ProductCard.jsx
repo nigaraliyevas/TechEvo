@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { PiHeartBold } from "react-icons/pi";
 import { TiHeartFullOutline } from "react-icons/ti";
-//import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useAddFavoriteMutation, useRemoveFavoriteMutation } from "../../../redux/sercives/favoriteApi";
 import { addToCart } from "../../../redux/slices/BasketSlice";
 import StarRating from "../../../components/Rating/StarRating";
@@ -9,49 +9,44 @@ import StarRating from "../../../components/Rating/StarRating";
 import { Link, useNavigate } from "react-router-dom";
 import { SlBasket } from "react-icons/sl";
 import toast from "react-hot-toast";
-import { useDispatch } from "react-redux";
 import style from "./ProductCard.module.scss";
 
-const ProductCard = ({ data,favoriteProductIds, refetchFavorites  }) => {
+const ProductCard = ({ data, favoriteProductIds, refetchFavorites }) => {
   const { name, price, discountPrice, imageUrl, rating, id } = data;
-  // console.log(name);
   const [addFavorite] = useAddFavoriteMutation();
   const [removeFavorite] = useRemoveFavoriteMutation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
- // const isFavorite = favoriteProductIds.includes(id);
-  // const handleToggleFavorite = async (event) => {
-  //   event.stopPropagation();
-  //   event.preventDefault();
+  const isFavorite = favoriteProductIds.includes(id);
 
-  //   const token = localStorage.getItem("accessToken");
+  const handleToggleFavorite = async (event) => {
+    event.stopPropagation();
+    event.preventDefault();
 
-  //   if (!token) {
-  //     console.log("Token tapılmadı. Login səhifəsinə yönləndiriləcək...");
-  //     toast.error("Daxil olunmamısınız. Zəhmət olmasa, giriş edin.");
-  //     navigate("/login");
-  //     return;
-  //   }
+    const token = localStorage.getItem("accessToken");
 
-  //   try {
-  //     if (isFavorite) {
-  //       // Favoritdən çıxar
-  //       await removeFavorite(id).unwrap();
-  //       toast.success("Favoritlərdən silindi!");
-  //     } else {
-  //       // Favoritə əlavə et
-  //       await addFavorite(id).unwrap();
-  //       toast.success("Favoritlərə əlavə olundu!");
-  //     }
+    if (!token) {
+      console.log("Token tapılmadı. Login səhifəsinə yönləndiriləcək...");
+      toast.error("Daxil olunmamısınız. Zəhmət olmasa, giriş edin.");
+      navigate("/login");
+      return;
+    }
 
-  //     // Yeniləmək üçün `refetchFavorites` çağırılır
-  //     refetchFavorites();
-  //   } catch (error) {
-  //     console.error("Favorit əməliyyatı zamanı xəta:", error);
-  //     toast.error("Favorit əməliyyatı uğursuz oldu.");
-  //   }
-  // };
+    try {
+      if (isFavorite) {
+        await removeFavorite(id).unwrap();
+        toast.success("Favoritlərdən silindi!");
+      } else {
+        await addFavorite(id).unwrap();
+        toast.success("Favoritlərə əlavə olundu!");
+      }
+      refetchFavorites();
+    } catch (error) {
+      console.error("Favorit əməliyyatı zamanı xəta:", error);
+      toast.error("Favorit əməliyyatı uğursuz oldu.");
+    }
+  };
   const [selectedImage, setSelectedImage] = useState(0);
   const [lastMouseX, setLastMouseX] = useState(null);
   const handleMouseMove = (e) => {
@@ -79,7 +74,7 @@ const ProductCard = ({ data,favoriteProductIds, refetchFavorites  }) => {
     setSelectedImage(index);
   };
   const addBasket = () => {
-    dispatch(addToCart(card));
+    dispatch(addToCart(data));
   };
 
   return (
@@ -131,13 +126,12 @@ const ProductCard = ({ data,favoriteProductIds, refetchFavorites  }) => {
           ))}
         </div>
 
-        <div className={style.heartSpan} 
-    >
-          {/* {isFavorite ? (
+        <div className={style.heartSpan} onClick={handleToggleFavorite}>
+          {isFavorite ? (
             <TiHeartFullOutline style={{ color: "red" }} />
-          ) : ( */}
+          ) : (
             <PiHeartBold style={{ fill: "red" }} />
-          
+          )}
         </div>
 
         <div className={style.cardBottomTitles}>

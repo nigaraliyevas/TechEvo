@@ -27,13 +27,10 @@ function FavoriteCard({ card, onRefetch, }) {
 
     const addBasket = (event) => {
         event.preventDefault(); // Default davranışın qarşısını alır
-        if (productData) dispatch(addToCart(productData));
+        if (card) dispatch(addToCart(card));
     };
 
-   
 
-    // Məhsul məlumatlarını productData-dan alın
-    //const { name, price, imageUrl, rating } = productData || {};
 
     return (
         <div className={style.containerFavoriteCards}>
@@ -87,7 +84,7 @@ function FavoriteCard({ card, onRefetch, }) {
                                 <span style={{ paddingRight: "8px" }}>
                                     <SlBasket className={style.boldBasketIcon} />
                                 </span>
-                                Səbətə əlavə et
+                                Səbətə at
                             </button>
                         </div>
                     </div>

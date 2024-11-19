@@ -147,7 +147,9 @@
                         width: 326px;
                         color: $firstColor;
                         height: 90px;
-
+                        @media (max-width: 600px) {
+                            width: 100%;
+                        }
                         .user_input {
                             border: 1px solid rgba(89, 89, 89, 1);
                             margin-top: 6px;

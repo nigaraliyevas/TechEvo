@@ -25,8 +25,8 @@ const Header = ({ exist, confirm }) => {
     setOpenAccessory(false)
   };
   const [openPc, setOpenPc] = useState(false);
-  const [openLaptop,setOpenLaptop] = useState(false)
-  const [openAccessory,setOpenAccessory]= useState(false)
+  const [openLaptop, setOpenLaptop] = useState(false)
+  const [openAccessory, setOpenAccessory] = useState(false)
   return (
     <header
       style={{
@@ -56,18 +56,54 @@ const Header = ({ exist, confirm }) => {
                         PC hissələri
                         <div className={styles.link_catagirie_dropdown}>
                           <ul>
-                            <NavLink to={"/Motherboard"}>Monitorlar</NavLink>
-                            <NavLink to={"/Motherboard"}>Prosessorlar</NavLink>
-                            <NavLink to={"/Psu"}>Qida bloku</NavLink>
-                            <NavLink to={"/Motherboard"}>Ana plata</NavLink>
-                            <NavLink to={"/Motherboard"}>Video kart</NavLink>
-                            <NavLink to={"/Ram"}>Operativ yaddaş</NavLink>
-                            <NavLink to={"/Hdd"}>HDD </NavLink>
-                            <NavLink to={"/Ssd"}>SSD </NavLink>
-                            <NavLink to={"/Motherboard"}>Soyutma sistemləri</NavLink>
-                            <NavLink to={"/Motherboard"}>Şəbəkə kartları</NavLink>
-                            <NavLink to={"/Motherboard"}>Səs kartları</NavLink>
-                            <NavLink to={"/Motherboard"}>Keyslər</NavLink>
+                            <li>
+                              <NavLink to={"/Motherboard"}>Monitorlar</NavLink>
+
+                            </li>
+                            <li>
+                              <NavLink to={"/Motherboard"}>Prosessorlar</NavLink>
+
+                            </li>
+                            <li>
+                              <NavLink to={"/Psu"}>Qida bloku</NavLink>
+
+                            </li>
+                            <li>
+                              <NavLink to={"/Motherboard"}>Ana plata</NavLink>
+
+                            </li>
+                            <li>
+                              <NavLink to={"/Motherboard"}>Video kart</NavLink>
+
+                            </li>
+                            <li>
+                              <NavLink to={"/Ram"}>Operativ yaddaş</NavLink>
+
+                            </li>
+                            <li>
+                              <NavLink to={"/Hdd"}>HDD </NavLink>
+
+                            </li>
+                            <li>
+                              <NavLink to={"/Ssd"}>SSD </NavLink>
+
+                            </li>
+                            <li>
+                              <NavLink to={"/Motherboard"}>Soyutma sistemləri</NavLink>
+
+                            </li>
+                            <li>
+                              <NavLink to={"/Motherboard"}>Şəbəkə kartları</NavLink>
+
+                            </li>
+                            <li>
+                              <NavLink to={"/Motherboard"}>Səs kartları</NavLink>
+
+                            </li>
+                            <li>
+                              <NavLink to={"/Motherboard"}>Keyslər</NavLink>
+
+                            </li>
                           </ul>
                         </div>
                       </li>
@@ -257,7 +293,7 @@ const Header = ({ exist, confirm }) => {
                   <Link className={styles.responsive_navbar_item_link}>
                     <div>PC</div>
                   </Link>
-                  <div onClick={()=>setOpenPc(true)}>
+                  <div onClick={() => setOpenPc(true)}>
                     <IoIosArrowForward />
                   </div>
 
@@ -269,7 +305,7 @@ const Header = ({ exist, confirm }) => {
                     }}
                     className={styles.responsive_navbar_item_link_catagories}
                   >
-                    <img onClick={()=>setOpenPc(false)} src={rightIcon} alt="" />
+                    <img onClick={() => setOpenPc(false)} src={rightIcon} alt="" />
                     <div className={styles.responsive_navbar_catagories_items}>
                       <div className={styles.responsive_navbar_catagories_item}>
                         <span
@@ -338,7 +374,7 @@ const Header = ({ exist, confirm }) => {
                   <Link className={styles.responsive_navbar_item_link}>
                     Laptop
                   </Link>
-                  <div onClick={()=>setOpenLaptop(true)}>
+                  <div onClick={() => setOpenLaptop(true)}>
                     <IoIosArrowForward size={20} />
                   </div>
                   <div
@@ -349,7 +385,7 @@ const Header = ({ exist, confirm }) => {
                     }}
                     className={styles.responsive_navbar_item_link_catagories}
                   >
-                    <img onClick={()=>setOpenLaptop(false)} src={rightIcon} alt="" />
+                    <img onClick={() => setOpenLaptop(false)} src={rightIcon} alt="" />
                     <div className={styles.responsive_navbar_catagories_items}>
                       <div className={styles.responsive_navbar_catagories_item}>
                         <span
@@ -396,7 +432,7 @@ const Header = ({ exist, confirm }) => {
                           }
                         ></span>
                         <p className={styles.responsive_navbar_catagories_text}>
-                        İkisi birində
+                          İkisi birində
                         </p>
                       </div>
                     </div>
@@ -408,19 +444,19 @@ const Header = ({ exist, confirm }) => {
                   <Link className={styles.responsive_navbar_item_link}>
                     Aksesuar
                   </Link>
-                  <div onClick={()=>setOpenAccessory(true)}>
-                    <IoIosArrowForward  size={20} />
+                  <div onClick={() => setOpenAccessory(true)}>
+                    <IoIosArrowForward size={20} />
                   </div>
                   <div
                     style={{
                       transform: openAccessory
                         ? "translateX(0px)"
                         : "",
-                    
+
                     }}
                     className={styles.responsive_navbar_item_link_catagories}
                   >
-                    <img onClick={()=>setOpenAccessory(false)} src={rightIcon} alt="" />
+                    <img onClick={() => setOpenAccessory(false)} src={rightIcon} alt="" />
                     <div className={styles.responsive_navbar_catagories_items}>
                       <div className={styles.responsive_navbar_catagories_item}>
                         <span
@@ -429,7 +465,7 @@ const Header = ({ exist, confirm }) => {
                           }
                         ></span>
                         <p className={styles.responsive_navbar_catagories_text}>
-                        Aksesuarlar
+                          Aksesuarlar
                         </p>
                       </div>
                       <div className={styles.responsive_navbar_catagories_item}>
@@ -439,7 +475,7 @@ const Header = ({ exist, confirm }) => {
                           }
                         ></span>
                         <p className={styles.responsive_navbar_catagories_text}>
-                        Avadanlıqlar
+                          Avadanlıqlar
                         </p>
                       </div>
                       <div className={styles.responsive_navbar_catagories_item}>

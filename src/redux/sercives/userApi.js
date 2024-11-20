@@ -17,7 +17,15 @@ export const userApi = createApi({
     getUser: builder.query({
       query: () => "/user",
     }),
+    updateUser: builder.mutation({
+      query: userData => ({
+        url: "/user",
+        method: "PUT", // Və ya POST/PATCH API-nizin tələblərinə uyğun olaraq
+        body: userData,
+      }),
+    }),
   }),
 });
 
-export const { useGetUserQuery } = userApi;
+export const { useGetUserQuery, useUpdateUserMutation } = userApi;
+

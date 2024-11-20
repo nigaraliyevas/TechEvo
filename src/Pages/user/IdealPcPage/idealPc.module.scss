@@ -8,6 +8,7 @@
         width: 100%;
         padding: 0px 165px 120px;
         margin-top: 176px;
+      
 
         .idealPage_top {
             display: flex;
@@ -15,6 +16,17 @@
             gap: 20px;
 
             .idealPage_title {
+                font-size: 16px;
+                font-weight: 500;
+                line-height: 28px;
+                text-align: center;
+                color: #FFFFFF;
+                margin-bottom: 48px;
+                position: relative;
+                padding-bottom: 8px;
+                cursor: pointer;
+            }
+            .idealPage_title2 {
                 font-size: 16px;
                 font-weight: 500;
                 line-height: 28px;

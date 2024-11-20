@@ -28,7 +28,6 @@ const UserRouter = ({ setConfirm, confirm, setExist, exist }) => {
     const loadTokensFromStorage = () => {
       const accessToken = localStorage.getItem("accessToken");
       const refreshToken = localStorage.getItem("refreshToken");
-
       if (accessToken && refreshToken) {
         dispatch(setTokens({ accessToken, refreshToken }));
       }

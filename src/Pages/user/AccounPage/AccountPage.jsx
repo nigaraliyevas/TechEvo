@@ -11,27 +11,82 @@ import AllOrders from "../../../components/Orders/AllOrders";
 import { useState, useEffect } from "react";
 import Logout from "../../../components/Account/Logout";
 import AccountConfirme from "../../../components/Account/AccountConfirme";
-import { useGetUserQuery } from "../../../redux/sercives/userApi";
+import { useGetUserQuery, useUpdateUserMutation } from "../../../redux/sercives/userApi";
 import { useSelector } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const AccountPage = ({ setQuite, setConfirm, qiute, confirm }) => {
   const [account, setAccount] = useState(true);
   const [orders, setOrders] = useState(false);
   const [like, setLike] = useState(false);
   const [user, setUser] = useState(null);
+  const navigate = useNavigate();
+  const location = useLocation();
+ 
+  const queryParams = new URLSearchParams(location.search);
+  const userData = queryParams.get("userData");
 
   const { accessToken } = useSelector(state => state.auth); // Access tokens from Redux
-  console.log("access" + accessToken);
+ 
   const { data, isError, isLoading } = useGetUserQuery(undefined, {
-    skip: localStorage.getItem("accessToken"),
+    skip: !localStorage.getItem("accessToken"),
   });
 
 
-
-  const handleSubmit = e => {
-    e.preventDefault();
+  const updateUserProfile = async (updatedUser) => {
+    try {
+      const response = await axios.put(
+        "/api/v1/user/profile/update",
+        updatedUser,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+      console.log("Cavab:", response.data);
+      alert("Məlumat uğurla yeniləndi!");
+      return response.data;
+    } catch (error) {
+      console.error("Xəta:", error.response?.data || error.message);
+      alert("Məlumat yenilənmədi: " + error.message);
+    }
   };
 
+  // const [updateUser, { isLoading: isUpdating }] = useUpdateUserMutation();
+
+  useEffect(() => {
+    if (data) {
+      setUser({
+        id: data.id || 0,
+        firstName: data.firstName || "",
+        lastName: data.lastName || "",
+        email: data.email || "",
+        profileImg: data.profileImg || "",
+        cityName: data.cityName || "",
+        favoriteProductIds: data.favoriteProductIds || [],
+        createdAt: data.createdAt || "",
+        updatedAt: data.updatedAt || ""
+      });
+    }  
+  }, [data]);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+  
+    const updatedUser = {
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      profileImg: user.profileImg,
+      cityName: user.cityName,
+    };
+  
+    await updateUserProfile(updatedUser);
+  };
+  console.log(user,"user");
+  
   useEffect(() => {
     if (qiute || confirm) {
       document.body.style.overflow = "hidden";
@@ -104,7 +159,8 @@ const AccountPage = ({ setQuite, setConfirm, qiute, confirm }) => {
                     <div className={style.user_name}>
                       <label htmlFor="">Ad</label>
                       <div className={style.user_input}>
-                        <input value={user ? user.firstName : ""}  type="text" placeholder="Ad" />
+                        <input value={user ? user.firstName : ""}  type="text" placeholder="Ad" onChange={(e) => setUser({ ...user, firstName: e.target.value })} />
+                        
                       </div>
                     </div>
                     <div className={style.user_name}>
@@ -112,6 +168,7 @@ const AccountPage = ({ setQuite, setConfirm, qiute, confirm }) => {
                       <div className={style.user_input}>
                         <input type="text" placeholder="Soyad" 
                          value={user ? user.lastName : ""}
+                         onChange={(e) => setUser({ ...user, lastName: e.target.value })}
                         />
                       </div>
                     </div>
@@ -120,13 +177,16 @@ const AccountPage = ({ setQuite, setConfirm, qiute, confirm }) => {
                     <div className={style.user_name}>
                       <label htmlFor="">E-mail</label>
                       <div className={style.user_input}>
-                        <input type="email" placeholder="E-mail" />
+                        <input type="email" placeholder="E-mail"  value={user ? user.email : ""} 
+                         onChange={(e) => setUser({ ...user, email: e.target.value })}/>
                       </div>
                     </div>
                     <div className={style.user_name}>
                       <label htmlFor="">Ünvan</label>
                       <div className={style.user_input}>
-                        <input type="text" placeholder="Ünvan" />
+                        <input type="text" placeholder="Ünvan"
+                           value={user ? user.address : ""}
+                           onChange={(e) => setUser({ ...user, address: e.target.value })} />
                       </div>
                     </div>
                   </div>
@@ -139,7 +199,7 @@ const AccountPage = ({ setQuite, setConfirm, qiute, confirm }) => {
                     </div>
                   </div>
                   <div className={style.user_btn}>
-                    <button onClick={() => setConfirm(true)}>Yadda saxla</button>
+                    <button>Yadda Saxla</button>
                   </div>
                 </ form>
               </div>

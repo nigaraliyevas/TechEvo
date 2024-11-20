@@ -18,6 +18,7 @@ const ConfirmBasketPage = () => {
     skip: !localStorage.getItem("accessToken"),
   });
 
+  
   const handleSubmit = e => {
     e.preventDefault();
     setShowModal(true);
@@ -29,6 +30,7 @@ const ConfirmBasketPage = () => {
   useEffect(() => {
     if (data) {
       setUser(data);
+      
     }
   }, [data]);
 

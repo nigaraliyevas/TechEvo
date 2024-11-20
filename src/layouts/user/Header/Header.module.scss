@@ -147,6 +147,7 @@ header {
               z-index: 1;
               padding: 24px;
               transform: translateX(-200%);
+
               .responsive_navbar_catagories_items {
                 display: flex;
                 flex-direction: column;
@@ -180,6 +181,7 @@ header {
           }
         }
       }
+
       .responsive_navbar_item_link {
         display: flex;
         gap: 12px;
@@ -247,8 +249,8 @@ header {
               z-index: 1;
               padding: 24px;
               transform: translateX(200%);
-              transition: all .5s ;
-             
+              transition: all .5s;
+
 
               .responsive_navbar_catagories_items {
                 display: flex;
@@ -570,7 +572,30 @@ header {
       padding-bottom: 8px;
       text-decoration: none;
       color: $firstColor;
+            div{
+              &:hover {
+                background: linear-gradient(102.09deg, #fd393f 4.1%, #db35e2 55.43%, #4e3dee 94.96%);
+                -webkit-background-clip: text;
+                background-clip: text;
+                -webkit-text-fill-color: transparent;
+              }
+              &:hover .navbar_rocet_icon2{
+              display: inline;
+              margin-left: 8px;
+              }
+              &:hover .navbar_rocet_icon{
+                display: none;
+                }
+              .navbar_rocet_icon{
+                display: inline-block;
+                margin-left: 8px;
+        
+              }
+              .navbar_rocet_icon2{
+                display: none;
 
+              }
+            }
 
 
 

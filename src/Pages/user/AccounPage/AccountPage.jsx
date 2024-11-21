@@ -11,7 +11,10 @@ import AllOrders from "../../../components/Orders/AllOrders";
 import { useState, useEffect } from "react";
 import Logout from "../../../components/Account/Logout";
 import AccountConfirme from "../../../components/Account/AccountConfirme";
-import { useGetUserQuery, useUpdateUserMutation } from "../../../redux/sercives/userApi";
+import {
+  useGetUserQuery,
+  useUpdateUserMutation,
+} from "../../../redux/sercives/userApi";
 import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -23,22 +26,27 @@ const AccountPage = ({ setQuite, setConfirm, qiute, confirm }) => {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
- 
+
   const queryParams = new URLSearchParams(location.search);
   const userData = queryParams.get("userData");
 
-  const { accessToken } = useSelector(state => state.auth); // Access tokens from Redux
- 
+  const { accessToken } = useSelector((state) => state.auth); 
+  
   const { data, isError, isLoading } = useGetUserQuery(undefined, {
-    skip: !localStorage.getItem("accessToken"),
+    skip: !accessToken, 
   });
-
-
   const updateUserProfile = async (updatedUser) => {
+    if (!data?.id) {
+      alert("İstifadəçi ID-si tapılmadı!");
+      return;
+    }
     try {
-      const response = await axios.put(
-        "/api/v1/user/profile/update",
-        updatedUser,
+      const response = await axios.post(
+        `http://ec2-51-20-32-195.eu-north-1.compute.amazonaws.com:8081/api/v1/user/profile/update/${data.id}`,
+        {
+          request: updatedUser,
+          profileImg: user?.profileImg || "testimg",
+        },
         {
           headers: {
             "Content-Type": "application/json",
@@ -46,16 +54,13 @@ const AccountPage = ({ setQuite, setConfirm, qiute, confirm }) => {
           },
         }
       );
-      console.log("Cavab:", response.data);
       alert("Məlumat uğurla yeniləndi!");
       return response.data;
     } catch (error) {
       console.error("Xəta:", error.response?.data || error.message);
-      alert("Məlumat yenilənmədi: " + error.message);
+      alert("Məlumat yenilənmədi: " + error.response?.data?.message || error.message);
     }
   };
-
-  // const [updateUser, { isLoading: isUpdating }] = useUpdateUserMutation();
 
   useEffect(() => {
     if (data) {
@@ -66,27 +71,35 @@ const AccountPage = ({ setQuite, setConfirm, qiute, confirm }) => {
         email: data.email || "",
         profileImg: data.profileImg || "",
         cityName: data.cityName || "",
-        favoriteProductIds: data.favoriteProductIds || [],
-        createdAt: data.createdAt || "",
-        updatedAt: data.updatedAt || ""
       });
-    }  
+    }
   }, [data]);
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-  
-    const updatedUser = {
-      firstName: user.firstName,
-      lastName: user.lastName,
-      email: user.email,
-      profileImg: user.profileImg,
-      cityName: user.cityName,
-    };
-  
-    await updateUserProfile(updatedUser);
+  const [updateUser] = useUpdateUserMutation();
+
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+  const updatedUser = {
+    firstName: user.firstName,
+    lastName: user.lastName,
+    email: user.email,
+    cityName: user.cityName,
   };
-  console.log(user,"user");
-  
+
+  try {
+    const response = await updateUserProfile({
+      id: user.id,
+      ...updatedUser,
+    });
+    setUser({ ...user, ...updatedUser }); // State-i yeniləyin
+    alert("Məlumat uğurla yeniləndi!");
+  } catch (error) {
+    console.error("Xəta:", error);
+    alert("Məlumat yenilənmədi: " + error.message);
+  }
+};
+
+  console.log(user, "user");
+
   useEffect(() => {
     if (qiute || confirm) {
       document.body.style.overflow = "hidden";
@@ -133,15 +146,28 @@ const AccountPage = ({ setQuite, setConfirm, qiute, confirm }) => {
               </div>
             </div>
             <div className={style.user_info}>
-              <div onClick={accountOpen} className={`${style.uer_info_item} ${account ? style.active : ""}`}>
+              <div
+                onClick={accountOpen}
+                className={`${style.uer_info_item} ${
+                  account ? style.active : ""
+                }`}
+              >
                 <img src={userIcon} alt="" />
                 <div>Hesab</div>
               </div>
-              <div onClick={orderOpen} className={`${style.uer_info_item} ${orders ? style.active : ""}`}>
+              <div
+                onClick={orderOpen}
+                className={`${style.uer_info_item} ${
+                  orders ? style.active : ""
+                }`}
+              >
                 <img src={order} alt="" />
                 <div>Sifarişlər</div>
               </div>
-              <div onClick={likeOpen} className={`${style.uer_info_item} ${like ? style.active : ""}`}>
+              <div
+                onClick={likeOpen}
+                className={`${style.uer_info_item} ${like ? style.active : ""}`}
+              >
                 <img src={heart} alt="" />
                 <div>Sevimlilər</div>
               </div>
@@ -159,16 +185,26 @@ const AccountPage = ({ setQuite, setConfirm, qiute, confirm }) => {
                     <div className={style.user_name}>
                       <label htmlFor="">Ad</label>
                       <div className={style.user_input}>
-                        <input value={user ? user.firstName : ""}  type="text" placeholder="Ad" onChange={(e) => setUser({ ...user, firstName: e.target.value })} />
-                        
+                        <input
+                          value={user ? user.firstName : ""}
+                          type="text"
+                          placeholder="Ad"
+                          onChange={(e) =>
+                            setUser({ ...user, firstName: e.target.value })
+                          }
+                        />
                       </div>
                     </div>
                     <div className={style.user_name}>
                       <label htmlFor="">Soyad</label>
                       <div className={style.user_input}>
-                        <input type="text" placeholder="Soyad" 
-                         value={user ? user.lastName : ""}
-                         onChange={(e) => setUser({ ...user, lastName: e.target.value })}
+                        <input
+                          type="text"
+                          placeholder="Soyad"
+                          value={user ? user.lastName : ""}
+                          onChange={(e) =>
+                            setUser({ ...user, lastName: e.target.value })
+                          }
                         />
                       </div>
                     </div>
@@ -177,16 +213,27 @@ const AccountPage = ({ setQuite, setConfirm, qiute, confirm }) => {
                     <div className={style.user_name}>
                       <label htmlFor="">E-mail</label>
                       <div className={style.user_input}>
-                        <input type="email" placeholder="E-mail"  value={user ? user.email : ""} 
-                         onChange={(e) => setUser({ ...user, email: e.target.value })}/>
+                        <input
+                          type="email"
+                          placeholder="E-mail"
+                          value={user ? user.email : ""}
+                          onChange={(e) =>
+                            setUser({ ...user, email: e.target.value })
+                          }
+                        />
                       </div>
                     </div>
                     <div className={style.user_name}>
                       <label htmlFor="">Ünvan</label>
                       <div className={style.user_input}>
-                        <input type="text" placeholder="Ünvan"
-                           value={user ? user.address : ""}
-                           onChange={(e) => setUser({ ...user, address: e.target.value })} />
+                        <input
+                          type="text"
+                          placeholder="Ünvan"
+                          value={user?.address || ""} // undefined olarsa boş dəyər ver
+                          onChange={(e) =>
+                            setUser({ ...user, address: e.target.value })
+                          }
+                        />
                       </div>
                     </div>
                   </div>
@@ -201,7 +248,7 @@ const AccountPage = ({ setQuite, setConfirm, qiute, confirm }) => {
                   <div className={style.user_btn}>
                     <button>Yadda Saxla</button>
                   </div>
-                </ form>
+                </form>
               </div>
             </div>
           )}
@@ -210,8 +257,8 @@ const AccountPage = ({ setQuite, setConfirm, qiute, confirm }) => {
         </div>
       </div>
 
-       {/* <Logout setConfirm={setConfirm} setQuite={setQuite} /> */}
-      {confirm && <AccountConfirme setConfirm={setConfirm} />}  
+      {/* <Logout setConfirm={setConfirm} setQuite={setQuite} /> */}
+      {confirm && <AccountConfirme setConfirm={setConfirm} />}
     </div>
   );
 };

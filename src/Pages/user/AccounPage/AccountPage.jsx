@@ -7,6 +7,7 @@ import out from "../../../assets/images/account/accountIcon/logout.svg";
 import password from "../../../assets/images/account/accountIcon/password.svg";
 import Favorites from "../../../components/Favorites/Favorites";
 import camre from "../../../assets/images/account/accountIcon/camere.svg";
+
 import AllOrders from "../../../components/Orders/AllOrders";
 import { useState, useEffect } from "react";
 import Logout from "../../../components/Account/Logout";
@@ -31,6 +32,8 @@ const AccountPage = ({ setQuite, setConfirm, qiute, confirm }) => {
   const userData = queryParams.get("userData");
 
   const { accessToken } = useSelector((state) => state.auth); 
+  console.log(accessToken);
+  
   
   const { data, isError, isLoading } = useGetUserQuery(undefined, {
     skip: !accessToken, 
@@ -40,9 +43,12 @@ const AccountPage = ({ setQuite, setConfirm, qiute, confirm }) => {
       alert("İstifadəçi ID-si tapılmadı!");
       return;
     }
+
+    console.log(accessToken,"accessToken");
+    
     try {
       const response = await axios.post(
-        `http://ec2-51-20-32-195.eu-north-1.compute.amazonaws.com:8081/api/v1/user/profile/update/${data.id}`,
+        `http://ec2-51-20-32-195.eu-north-1.compute.amazonaws.com:8081/api/v1/user/profile/update`,
         {
           request: updatedUser,
           profileImg: user?.profileImg || "testimg",
@@ -65,7 +71,6 @@ const AccountPage = ({ setQuite, setConfirm, qiute, confirm }) => {
   useEffect(() => {
     if (data) {
       setUser({
-        id: data.id || 0,
         firstName: data.firstName || "",
         lastName: data.lastName || "",
         email: data.email || "",
@@ -128,6 +133,10 @@ const AccountPage = ({ setQuite, setConfirm, qiute, confirm }) => {
     setOrders(false);
     setAccount(false);
   };
+
+  if (isLoading) {
+    return <div>Yüklənir...</div>; // Yüklənmə zamanı göstəriləcək mesaj
+  }
 
   return (
     <div className={style.container}>

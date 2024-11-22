@@ -128,9 +128,9 @@ const ProductCard = ({ data, favoriteProductIds, refetchFavorites }) => {
 
         <div className={style.heartSpan} onClick={handleToggleFavorite}>
           {isFavorite ? (
-            <TiHeartFullOutline style={{ color: "red" }} />
+            <TiHeartFullOutline style={{ color: "purple" }} />
           ) : (
-            <PiHeartBold style={{ fill: "red" }} />
+            <PiHeartBold style={{ fill: "purplegit" }} />
           )}
         </div>
 

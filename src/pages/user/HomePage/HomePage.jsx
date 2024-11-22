@@ -9,9 +9,10 @@ import Section from "./Section/Section";
 import SliderComponent from "./Section/Slider/Slider";
 import { useGetProductsByCategoryNameQuery } from "../../../redux/sercives/productApi";
 import { useGetFavoritesQuery } from "../../../redux/sercives/favoriteApi";
+import { useGetRecommendedProductsQuery } from "../../../redux/sercives/productApi";
 
 const HomePage = () => {
- 
+
   const { data: laptopsData } = useGetProductsByCategoryNameQuery({ categoryName: "Laptop" });
   const { data: mousesData } = useGetProductsByCategoryNameQuery({ categoryName: "Mouse" });
   const { data: klaviaturasData } = useGetProductsByCategoryNameQuery({ categoryName: "Klaviatura" });
@@ -19,6 +20,8 @@ const HomePage = () => {
   // Favorit məhsulları sorğulamaq
   const { data: favoriteData, refetch: refetchFavorites } = useGetFavoritesQuery();
   const favoriteProductIds = favoriteData ? favoriteData.map(fav => fav.id) : [];
+  // Tövsiyə olunan məhsullar sorğusu
+  const { data: recommendedData } = useGetRecommendedProductsQuery();
 
   return (
     <>
@@ -29,6 +32,18 @@ const HomePage = () => {
       </section>
       <section id={styles.specialselected}>
         <div className={styles.container_bottom}>
+          {recommendedData && (
+            <>
+              <h3 className={styles.specialH3} style={{marginBottom: "0px",paddingBottom: "0px"}}>Sizə Tövsiyyələr</h3>
+              <Section
+                // title={<h3 className="recomendedTitle">Sizə Tövsiyyələr</h3>}
+                data={recommendedData}
+                favoriteProductIds={favoriteProductIds}
+                refetchFavorites={refetchFavorites}
+              />
+
+            </>
+          )}
           <h3 className={styles.specialH3}>Xüsusi Seçimlər</h3>
 
           {/* Favorit məlumatları və yenidən yükləmə funksiyası ilə Section komponentlərinə məlumat göndərilir */}

@@ -1,0 +1,156 @@
+.serviceCont {
+    margin: 96px auto 120px;
+
+
+    .headingCont {
+        background: radial-gradient(circle, rgb(68, 29, 68) 20%, rgba(5, 0, 103, 0) 65%);
+        padding: 100px 168px;
+        color: white;
+        margin-bottom: 80px;
+
+
+        .headingText {
+            font-weight: 700;
+            font-size: 40px;
+            line-height: 56px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+
+        .headingInfo {
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 28px;
+            text-align: center;
+        }
+    }
+
+
+    .middleCont {
+        margin-bottom: 100px;
+
+
+        .middleHeading {
+            color: white;
+            font-weight: 700;
+            font-size: 32px;
+            line-height: 28px;
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+
+        .boxCont {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+
+
+            .box {
+                background-color: #161A1E;
+                padding: 28px;
+                border-radius: 4px;
+                font-weight: 500;
+
+
+                .boxHeading {
+                    color: #E6E6E6;
+                    font-size: 20px;
+                    line-height: 28px;
+                    text-align: center;
+                    margin-bottom: 20px;
+                }
+
+
+                .list {
+                    font-size: 16px;
+                    line-height: 19.09px;
+                    color: #999999;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 13px;
+
+
+                    .punct {
+                        display: flex;
+                        gap: 6px;
+
+
+                        .tickDiv {
+                            width: 20px;
+                            height: 20px;
+
+
+                            .tickImg {
+                                width: 100%;
+                                height: 100%;
+                                object-fit: cover;
+                                vertical-align: top !important;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+    .endingCont {
+        .endingHeading {
+            color: white;
+            font-weight: 700;
+            font-size: 32px;
+            line-height: 28px;
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+
+        .boxCont {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+
+
+            .box {
+                border: 1px solid #323437;
+                border-radius: 2px;
+                padding: 28px;
+
+
+                .no {
+                    width: 32px;
+                    height: 32px;
+                    border-radius: 50%;
+                    color: white;
+                    font-weight: 500;
+                    font-size: 18px;
+                    line-height: 21px;
+                    background: linear-gradient(120.61deg, #FD3C43 -10.5%, #B622DC 38.25%, #3F27EB 80.92%);
+                    padding: 4px 10.5px;
+                    margin: 0 auto 20px;
+                }
+
+
+                .boxHeader {
+                    font-weight: 700;
+                    color: white;
+                    font-size: 16px;
+                    line-height: 20px;
+                    text-align: center;
+                    margin-bottom: 12px;
+                }
+
+
+                .infoText {
+                    color: #989DA2;
+                    font-weight: 400;
+                    font-size: 14px;
+                    line-height: 17px;
+                    text-align: center;
+                }
+            }
+        }
+    }
+}

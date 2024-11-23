@@ -8,7 +8,7 @@ export const userApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: url,
     prepareHeaders: (headers) => {
-      const token = localStorage.getItem("accessToken");
+      const token = localStorage.getItem("refreshToken");
       if (token) {
         headers.set("Authorization", `Bearer ${token}`);
       }
@@ -22,13 +22,18 @@ export const userApi = createApi({
       providesTags: ["User"],
     }),
     updateUser: builder.mutation({
-      query: ({ id, ...userData }) => ({
-        url: `/user/profile/update/${id}`,
-        method: "PUT",
-        body: userData,
-      }),
+      query: ({ id, ...userData }) => {
+        const formData = new FormData();
+        formData.append("request", JSON.stringify(userData));
+        return {
+          url: `/user/profile/update`,
+          method: "PUT",
+          body: formData,
+        };
+      },
       invalidatesTags: ["User"],
     }),
+    
   }),
 });
 

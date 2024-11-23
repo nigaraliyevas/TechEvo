@@ -238,7 +238,7 @@ const Header = ({ exist, confirm }) => {
 
                   {/* <img  src={searchColor} alt="" /> */}
                   <svg
-                  className="search_color"
+                    className="search_color"
                     width="24"
                     height="24"
                     viewBox="0 0 24 24"
@@ -524,10 +524,9 @@ const Header = ({ exist, confirm }) => {
                     Hesabım
                   </NavLink>
                   <div className={styles.navbar_users_item}>
-                    <span>
-                      <IoSettingsOutline size={24} />
-                    </span>
-                    Parametrlər
+                    <div>
+                      <div>Sevimlilər</div>
+                    </div>
                   </div>
                 </div>
               </div>

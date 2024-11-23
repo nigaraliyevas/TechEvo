@@ -24,86 +24,135 @@ const AccountPage = ({ setQuite, setConfirm, qiute, confirm }) => {
   const [account, setAccount] = useState(true);
   const [orders, setOrders] = useState(false);
   const [like, setLike] = useState(false);
-  const [user, setUser] = useState(null);
+  // const [user, setUser] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
 
-  const queryParams = new URLSearchParams(location.search);
-  const userData = queryParams.get("userData");
+  // const queryParams = new URLSearchParams(location.search);
+  // const userData = queryParams.get("userData");
+  // const { data, isError, isLoading } = useGetUserQuery(undefined, {
+  //   skip: !accessToken, 
+  // });
+  // const updateUserProfile = async (updatedUser) => {
+  //   if (!data?.id) {
+  //     alert("İstifadəçi ID-si tapılmadı!");
+  //     return;
+  //   }
+  
+  //   try {
+  //     // FormData obyektini yaratmaq
+  //     const formData = new FormData();
+  //     formData.append(
+  //       "request",
+  //       JSON.stringify({
+  //         firstName: updatedUser.firstName,
+  //         lastName: updatedUser.lastName,
+  //         email: updatedUser.email,
+  //         cityName: updatedUser.cityName,
+  //       })
+  //     );
+  //     formData.append("profileImg", user?.profileImg || "defaultProfileImage");
+  
+      // API-yə sorğu göndərmək
+  //     const response = await axios.put(
+  //       `http://ec2-51-20-32-195.eu-north-1.compute.amazonaws.com:8081/api/v1/user/profile`,
+  //       formData,
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${accessToken}`,
+  //         },
+  //       }
+  //     );
+  
+  //     alert("Məlumat uğurla yeniləndi!");
+  //     return response.data;
+  //   } catch (error) {
+  //     console.error("Xəta:", error.response?.data || error.message);
+  //     alert(
+  //       "Məlumat yenilənmədi: " +
+  //         (error.response?.data?.message || error.message)
+  //     );
+  //   }
+  // };
+  
 
-  const { accessToken } = useSelector((state) => state.auth); 
-  console.log(accessToken);
-  
-  
-  const { data, isError, isLoading } = useGetUserQuery(undefined, {
-    skip: !accessToken, 
+  // useEffect(() => {
+    // if (data) {
+    //   const formData = new FormData();
+    //   formData.append("firstName", data.firstName || "");
+
+    //   sendFormDataToServer(formData);
+    // }
+  //   if (data) {
+
+  //     setUser({
+  //       firstName: data.firstName || "",
+  //       lastName: data.lastName || "",
+  //       email: data.email || "",
+  //       profileImg: data.profileImg || "",
+  //       cityName: data.cityName || "",
+  //     });
+  //   }
+  // }, [data]);
+  // const [updateUser] = useUpdateUserMutation();
+
+  const { accessToken } = useSelector((state) => state.auth);
+  const { data, isLoading } = useGetUserQuery(undefined, {
+    skip: !accessToken,
   });
-  const updateUserProfile = async (updatedUser) => {
-    if (!data?.id) {
-      alert("İstifadəçi ID-si tapılmadı!");
-      return;
-    }
-
-    console.log(accessToken,"accessToken");
-    
-    try {
-      const response = await axios.post(
-        `http://ec2-51-20-32-195.eu-north-1.compute.amazonaws.com:8081/api/v1/user/profile/update`,
-        {
-          request: updatedUser,
-          profileImg: user?.profileImg || "testimg",
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
-      );
-      alert("Məlumat uğurla yeniləndi!");
-      return response.data;
-    } catch (error) {
-      console.error("Xəta:", error.response?.data || error.message);
-      alert("Məlumat yenilənmədi: " + error.response?.data?.message || error.message);
-    }
-  };
-
-  useEffect(() => {
-    if (data) {
-      setUser({
-        firstName: data.firstName || "",
-        lastName: data.lastName || "",
-        email: data.email || "",
-        profileImg: data.profileImg || "",
-        cityName: data.cityName || "",
-      });
-    }
-  }, [data]);
   const [updateUser] = useUpdateUserMutation();
+  console.log(data)
+console.log(accessToken);
 
- const handleSubmit = async (e) => {
-  e.preventDefault();
-  const updatedUser = {
-    firstName: user.firstName,
-    lastName: user.lastName,
-    email: user.email,
-    cityName: user.cityName,
+const [user, setUser] = useState({
+  firstName: data?.firstName || "",
+  lastName: data?.lastName || "",
+  email: data?.email || "",
+  cityName: data?.cityName || "",
+  profileImg: data?.profileImg || null, // Şəkil üçün ayrıca sahə
+});
+
+  // useEffect(() => {
+  //   if (data) {
+  //     setUser({
+  //       firstName: data.firstName || "",
+  //       lastName: data.lastName || "",
+  //       email: data.email || "",
+  //       cityName: data.cityName || "",
+  //       profileImg: data.profileImg || null,
+  //     });
+  //   }
+  // }, [data]);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setUser((prevState) => ({ ...prevState, [name]: value }));
   };
 
-  try {
-    const response = await updateUserProfile({
-      id: user.id,
-      ...updatedUser,
-    });
-    setUser({ ...user, ...updatedUser }); // State-i yeniləyin
-    alert("Məlumat uğurla yeniləndi!");
-  } catch (error) {
-    console.error("Xəta:", error);
-    alert("Məlumat yenilənmədi: " + error.message);
-  }
-};
+  const handleFileChange = (e) => {
+    setUser((prevState) => ({ ...prevState, profileImg: e.target.files[0] }));
+  };
 
-  console.log(user, "user");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+  
+    const formData = new FormData();
+    formData.append("request", JSON.stringify(user)); // Correctly stringify the object
+    if (user.profileImg) {
+      formData.append("profileImg", user.profileImg); // Add the file if available
+    }
+  
+    try {
+      await updateUser(formData).unwrap(); // Send the form data
+      alert("Məlumat uğurla yeniləndi!");
+    } catch (error) {
+      console.error("Xəta:", error);
+      alert("Məlumat yenilənmədi: " + (error?.data?.message || error.message));
+    }
+  };
+  
+  console.log(user,"user");
+  
 
   useEffect(() => {
     if (qiute || confirm) {
@@ -134,9 +183,7 @@ const AccountPage = ({ setQuite, setConfirm, qiute, confirm }) => {
     setAccount(false);
   };
 
-  if (isLoading) {
-    return <div>Yüklənir...</div>; // Yüklənmə zamanı göstəriləcək mesaj
-  }
+ 
 
   return (
     <div className={style.container}>
@@ -173,13 +220,7 @@ const AccountPage = ({ setQuite, setConfirm, qiute, confirm }) => {
                 <img src={order} alt="" />
                 <div>Sifarişlər</div>
               </div>
-              <div
-                onClick={likeOpen}
-                className={`${style.uer_info_item} ${like ? style.active : ""}`}
-              >
-                <img src={heart} alt="" />
-                <div>Sevimlilər</div>
-              </div>
+            
             </div>
             <div onClick={() => setQuite(true)} className={style.user_out}>
               <img src={out} alt="" /> Çıxış
@@ -262,7 +303,7 @@ const AccountPage = ({ setQuite, setConfirm, qiute, confirm }) => {
             </div>
           )}
           {orders && <AllOrders />}
-          {like && <Favorites />}
+         
         </div>
       </div>
 

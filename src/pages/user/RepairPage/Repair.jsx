@@ -1,10 +1,15 @@
 import React from "react";
 // styles
-import styles from "./Services.module.scss";
+import styles from "./Repair.module.scss";
 // icons
 import tick from "../../../assets/images/Services/tick.svg";
+import { useGetservicesQuery } from "../../../redux/sercives/serviceApi";
 
-const Services = () => {
+const Repair = () => {
+
+  const {data: service, error: serviceError, isLoading: serviceLoading} = useGetservicesQuery();
+  if(!serviceError && !serviceLoading) console.log(service);
+
   return (
     <div className="container">
       <div className={styles.serviceCont}>
@@ -87,4 +92,4 @@ const Services = () => {
   );
 };
 
-export default Services;
+export default Repair;

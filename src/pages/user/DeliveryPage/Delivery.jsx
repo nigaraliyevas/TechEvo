@@ -6,9 +6,9 @@ import secIcon from "../../../assets/images/Services/security-safe.svg";
 
 const Delivery = () => {
   return (
-    <div className="container">
-      <div className={styles.delCont}>
-        <div className={styles.delHeader}>
+    <div className={styles.delCont}>
+      <div className={styles.delHeader}>
+        <div className="container">
           <div className={styles.headTitle}>Qapıdan Qapıya Çatdırılma</div>
           <div className={styles.headInfo}>
             Tech-evo olaraq, sifarişlərinizi rahatlığınız üçün birbaşa qapınıza
@@ -16,6 +16,9 @@ const Delivery = () => {
             asandır.
           </div>
         </div>
+      </div>
+
+      <div className="container">
         <div className={styles.delMiddle}>
           <div className={styles.midTitle}>Necə İşləyir?</div>
           <div className={styles.midBoxCont}>

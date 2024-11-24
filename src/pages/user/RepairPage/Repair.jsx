@@ -21,19 +21,20 @@ const Repair = () => {
   } = useGetStepsQuery();
 
   return (
-    <div className="container">
-      <div className={styles.serviceCont}>
-        <div className={styles.headingCont}>
-          <div className={styles.headingText}>
-            Texniki Çətinlikləriniz Var? Biz Həll Edirik!
-          </div>
-          <div className={styles.headingInfo}>
-            Tech-Evo-da kompüterlərinizin düzgün işləməsi üçün bir sıra
-            xidmətlər təklif edirik. Hardware təmiri, software problemləri,
-            rutin texniki xidmət və daha çox xidmətlərimizdən yararlana
-            bilərsiniz.
-          </div>
+    <div className={styles.serviceCont}>
+      <div className={styles.headingCont}>
+        <div className="container">
+        <div className={styles.headingText}>
+          Texniki Çətinlikləriniz Var? Biz Həll Edirik!
         </div>
+        <div className={styles.headingInfo}>
+          Tech-Evo-da kompüterlərinizin düzgün işləməsi üçün bir sıra xidmətlər
+          təklif edirik. Hardware təmiri, software problemləri, rutin texniki
+          xidmət və daha çox xidmətlərimizdən yararlana bilərsiniz.
+        </div>
+        </div>
+      </div>
+      <div className="container">
         <div className={styles.middleCont}>
           <div className={styles.middleHeading}>Xidmətlərimiz</div>
           <div className={styles.boxCont}>

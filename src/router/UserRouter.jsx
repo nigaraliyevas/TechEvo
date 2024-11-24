@@ -21,6 +21,7 @@ import { setTokens } from "../redux/slices/TokenSlice";
 import { useDispatch } from "react-redux";
 import Repair from "../pages/user/RepairPage/Repair";
 import Delivery from "../pages/user/DeliveryPage/Delivery";
+import Credit from "../pages/user/CreditPage/Credit";
 
 const UserRouter = ({ setConfirm, confirm, setQuite, quite }) => {
   const dispatch = useDispatch();
@@ -56,6 +57,7 @@ const UserRouter = ({ setConfirm, confirm, setQuite, quite }) => {
         <Route path="/orders" element={<AllOrders />} />
         <Route path="/repair" element={<Repair />} />
         <Route path="/delivery" element={<Delivery />} />
+        <Route path="/credit" element={<Credit />} />
       </Route>
     </Routes>
   );

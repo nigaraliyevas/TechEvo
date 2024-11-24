@@ -3,12 +3,12 @@ import React from "react";
 import styles from "./Repair.module.scss";
 // icons
 import tick from "../../../assets/images/Services/tick.svg";
-import { useGetservicesQuery } from "../../../redux/sercives/serviceApi";
+import { useGetServicesQuery, useGetStepsQuery } from "../../../redux/sercives/serviceApi";
 
 const Repair = () => {
 
-  const {data: service, error: serviceError, isLoading: serviceLoading} = useGetservicesQuery();
-  if(!serviceError && !serviceLoading) console.log(service);
+  const {data: service, error: serviceError, isLoading: serviceLoading} = useGetServicesQuery();
+  const {data: steps, error: stepsError, isLoading: stepsLoading} = useGetStepsQuery();
 
   return (
     <div className="container">
@@ -27,64 +27,36 @@ const Repair = () => {
         <div className={styles.middleCont}>
           <div className={styles.middleHeading}>Xidmətlərimiz</div>
           <div className={styles.boxCont}>
-            <div className={styles.box}>
-              <div className={styles.boxHeading}>Hardware Təmiri</div>
-              <div className={styles.list}>
-                <div className={styles.punct}>
-                  <div className={styles.tickDiv}>
-                    <img
-                      className={styles.tickImg}
-                      src={tick}
-                      alt="tick icon"
-                    />
+            {!serviceError && !serviceLoading ? service.map((srvc) => 
+              (<div key={srvc.id} className={styles.box}>
+                <div className={styles.boxHeading}>{srvc.serviceName}</div>
+                <div className={styles.list}>
+                  {srvc.serviceComponents.map((item, index) => (
+                    <div key={index} className={styles.punct}>
+                    <div className={styles.tickDiv}>
+                      <img
+                        className={styles.tickImg}
+                        src={tick}
+                        alt="tick icon"
+                      />
+                    </div>
+                    <div>{item}</div>
                   </div>
-                  <div>Ekran təmiri</div>
+                  ))}
                 </div>
-                <div className={styles.punct}>
-                  <div>
-                    <img src={tick} alt="tick icon" />
-                  </div>
-                  <div>Anakart dəyişdirilməsi</div>
-                </div>
-              </div>
-            </div>
-            <div className={styles.box}>
-              <div className={styles.boxHeading}>Software</div>
-              <div className={styles.list}>
-                <div className={styles.punct}>
-                  <div>
-                    <img src={tick} alt="tick icon" />
-                  </div>
-                  <div>Əməliyyat sistemi quraşdırılması (Windows, macOS)</div>
-                </div>
-                <div className={styles.punct}>
-                  <div>
-                    <img src={tick} alt="tick icon" />
-                  </div>
-                  <div>Driver quraşdırılması və yenilənməsi</div>
-                </div>
-              </div>
-            </div>
+              </div>)) : "Yüklənir..."}
           </div>
         </div>
         <div className={styles.endingCont}>
           <div className={styles.endingHeading}>Necə Başlamaq Olar?</div>
           <div className={styles.boxCont}>
-            <div className={styles.box}>
-                <div className={styles.no}>1</div>
-                <div className={styles.boxHeader}>Bizimlə Əlaqə saxlayın və ya bir-başa ünvanımıza gəlin</div>
-                <div className={styles.infoText}>Telefon, e-poçt və ya online əlaqə forması vasitəsilə bizə müraciət edə bilərsiniz.</div>
-            </div>
-            <div className={styles.box}>
-                <div className={styles.no}>2</div>
-                <div className={styles.boxHeader}>Probleminizi Təsvir Edin</div>
-                <div className={styles.infoText}>Qarşılaşdığınız problemi aydın şəkildə təsvir edin.</div>
-            </div>
-            <div className={styles.box}>
-                <div className={styles.no}>3</div>
-                <div className={styles.boxHeader}>Təmir Vaxtını Təyin Edin</div>
-                <div className={styles.infoText}>Cihazınızı təmir üçün gətirmək və ya götürmək üçün əlverişli vaxtı təyin edin.</div>
-            </div>
+            {!stepsError && !stepsLoading ? steps.map((step) => (
+              <div key={step.id} className={styles.box}>
+              <div className={styles.no}>{step.stepOrder}</div>
+              <div className={styles.boxHeader}>{step.stepName}</div>
+              <div className={styles.infoText}>{step.stepDescription}</div>
+          </div>
+            )) : "Yüklənir..."}
           </div>
         </div>
       </div>

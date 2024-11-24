@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 // Giriş funksiyası - burada API çağırışı edilir
@@ -14,24 +13,6 @@ export const login = createAsyncThunk("auth/login", async ({ email, password }, 
 
     const data = await response.json();
 
-=======
-
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-
-// Giriş funksiyası - burada API çağırışı edilir
-export const login = createAsyncThunk("auth/login", async ({ email, password }, { rejectWithValue }) => {
-  try {
-    const response = await fetch("http://ec2-51-20-32-195.eu-north-1.compute.amazonaws.com:8081/api/v1/auth/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password }),
-    });
-
-    const data = await response.json();
-
->>>>>>> 9dbde8d290f29905e63d1f4352352d71a656cb39
     if (!response.ok) {
       return rejectWithValue(data);
     }

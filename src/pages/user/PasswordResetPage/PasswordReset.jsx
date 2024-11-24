@@ -43,17 +43,16 @@ const PasswordReset = () => {
     const verificationCode = localStorage.getItem("otp");
     try {
       await changePassword({ newPassword: password, confirmPassword, email, verificationCode }).unwrap();
-    } catch (error) {
-      if (error.originalStatus == 200) {
+      if (data.message == "Password changed successfully") {
         localStorage.removeItem("changePasswordEmail");
         localStorage.removeItem("otp");
 
         nav("/login");
         setError("");
-      } else {
-        console.error("Error:", error);
-        setError("Şifrə dəyişdirilərkən xəta baş verdi.");
       }
+    } catch (error) {
+      console.error("Error:", error);
+      setError("Şifrə dəyişdirilərkən xəta baş verdi.");
     }
   };
 

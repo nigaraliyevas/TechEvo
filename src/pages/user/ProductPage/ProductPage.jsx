@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import styles from "./ProductPage.module.scss";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -8,7 +8,8 @@ import Features from "../../../components/DetailFeatures/Features";
 import Reviews from "../../../components/Reviews/Reviews";
 import { IoIosArrowForward, IoIosArrowBack, IoMdClose } from "react-icons/io";
 import { useSearchParams, useNavigate } from "react-router-dom";
-import { useGetProductByIdQuery } from "../../../redux/sercives/productApi";
+import { useGetProductByIdQuery, useGetProductsByCategoryNameQuery } from "../../../redux/sercives/productApi";
+import { Card } from "react-bootstrap";
 
 const ProductPage = () => {
   const [searchParams] = useSearchParams();
@@ -18,11 +19,28 @@ const ProductPage = () => {
   const { data: product, error, isLoading } = useGetProductByIdQuery(id);
   // console.log(product, "detailData");
 
+  const { data: categoryData, isLoading: isLaptopsLoading } = useGetProductsByCategoryNameQuery(product ? product.categoryName : undefined);
+  const filteredCategoryData = categoryData?.filter(item => item.id !== product?.id);
+
   const [modalShow, setModalShow] = useState(false);
   const [carouselImages, setCarouselImages] = useState([]);
+  const caruselRef = useRef();
+
   const [imageIndex, setImageIndex] = useState(0);
   const [currentIndex, setCurrentIndex] = useState();
+  const [itemsToShow, setItemsToShow] = useState(3);
+
   const extendedCarouselImages = [...carouselImages, ...carouselImages];
+
+  useEffect(() => {
+    const handleResize = () => {};
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     if (!id) {
@@ -86,7 +104,23 @@ const ProductPage = () => {
             </div>
             <div className={styles.similiarProducts}>
               <Row>
-                <Col>Oxşar məhsullar</Col>
+                <Col style={{ paddingLeft: "0px", paddingRight: "0px" }}>
+                  <div>
+                    <h2 className={styles.similar_header}>Oxşar Məhsullar</h2>
+                    <div className={styles.similar_product_list}>
+                      <div className="row">
+                        {filteredCategoryData?.slice(0, itemsToShow).map(card => (
+                          <div className={`col-${itemsToShow}`} key={card.id} style={{ flex: "1" }}>
+                            <div className="cardContainer">
+                              <Card card={card} />
+                              {console.log(card)}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </Col>
               </Row>
             </div>
           </div>

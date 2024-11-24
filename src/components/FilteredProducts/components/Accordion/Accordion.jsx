@@ -4,47 +4,54 @@ import ReactSlider from "react-slider";
 import styles from "./Accordion.module.css";
 import { useGetFilterNameWithValuesQuery } from "../../../../redux/sercives/productApi";
 
-const AccordionItem = ({ data, handleFilter, values }) => {
-
+const AccordionItem = ({ queries, handleFilter, values, handleFilterItem }) => {
   const [showContent, setShowContent] = useState(true);
-  console.log(data);
-  console.log(values);
-  const [filterValue, setFilterValue] = useState('');
+  // console.log(queries);
+  // console.log(values);
+  const [filterValue, setFilterValue] = useState("");
 
-  const handleFilterValueChange = (value) => {
-    setFilterValue((prevValues) =>
-      prevValues.includes(value)
-        ? prevValues.filter((v) => v !== value) // Əgər seçilibsə, çıxar
-        : [...prevValues, value] // Əgər seçilməyibsə, əlavə et
+  const handleFilterValueChange = value => {
+    setFilterValue(
+      prevValues =>
+        prevValues.includes(value)
+          ? prevValues.filter(v => v !== value) // Əgər seçilibsə, çıxar
+          : [...prevValues, value] // Əgər seçilməyibsə, əlavə et
     );
   };
 
   return (
     <div className={styles.accordion_item}>
       <div className={styles.accordion_title} onClick={() => setShowContent(!showContent)}>
-        {data}
+        {queries}
         {showContent ? <FaChevronUp className={styles.icon} /> : <FaChevronDown className={styles.icon} />}
       </div>
       {showContent && (
         <div className={styles.accordion_content}>
           <div id={styles.FilteredProductsSide}>
-            <div className={styles.filterItem} style={{ display: "flex", flexDirection: "column" }}  >
-
-              {values.map((v, i) =>
-                <div key={i}  style={{ display: "flex" ,alignItems:"center",gap:"10px" ,height:"45px"}} >
-                  <input type="checkbox" className={styles.checkbox}
-                    onChange={() => handleFilterValueChange(v)}
-                  />
-                  <span style={{fontSize:"20px"}}>{v}</span>
+            <div className={styles.filterItem} style={{ display: "flex", flexDirection: "column" }}>
+              {values.map((v, i) => (
+                <div key={i} style={{ height: "65px" }}>
+                  <div style={{ display: "flex" }}>
+                    <div>
+                      <input
+                        type="checkbox"
+                        className={styles.checkbox}
+                        onChange={() => {
+                          handleFilterValueChange(v);
+                          handleFilterItem(v);
+                        }}
+                      />
+                    </div>
+                    <div>
+                      <p style={{ marginLeft: "10px", fontSize: "17px" }}>{v}</p>
+                    </div>
+                  </div>
                 </div>
-              )
-              }
+              ))}
             </div>
           </div>
         </div>
       )}
-
-
     </div>
   );
 };
@@ -54,7 +61,7 @@ const PriceRangeSlider = ({ min, max, onPriceChange }) => {
 
   const [range, setRange] = useState([min, max]);
 
-  const handleSliderChange = (newRange) => {
+  const handleSliderChange = newRange => {
     if (newRange[0] < newRange[1]) {
       setRange(newRange);
       onPriceChange({ min: newRange[0], max: newRange[1] });
@@ -93,53 +100,27 @@ const PriceRangeSlider = ({ min, max, onPriceChange }) => {
   );
 };
 
-// const Accordion = ({ queries, handleFilter, handlePrice }) => {
-//   const [headers, setHeaders] = useState([]);
-//   const { data, error, isLoading } = useGetFilterNameWithValuesQuery("Laptop"); // Use the query hook
-//   console.log(data);
-
-//   // If the data is successfully fetched, get the keys (headers)
-//   useEffect(() => {
-//     if (data) {
-//       const keys = Object.keys(data); // Extract keys from the data object
-//       setHeaders(keys);
-//     }
-//   }, [data]);
-
-//   if (isLoading) return <div>Yüklənir...</div>; // Loading state
-//   if (error) return <div>Xəta baş verdi</div>; // Error state
-//   return (
-//     <div className={styles.accordion}>
-//       <PriceRangeSlider min={200} max={10000} onPriceChange={handlePrice} />{" "}
-//       {headers?.map((item, index) => (
-//         <AccordionItem key={index} handleFilter={handleFilter} data={item} />
-//       ))}
-//     </div>
-//   );
-// };
-const Accordion = ({ queries, handleFilter, handlePrice }) => {
+const Accordion = ({ queries, handleFilter, handlePrice, handleFilterItem }) => {
   const [headers, setHeaders] = useState([]);
-  const { data, error, isLoading } = useGetFilterNameWithValuesQuery("Laptop"); // Use the query hook
 
   useEffect(() => {
-    if (data) {
-      const keys = Object.keys(data); // Extract keys (headers) from the data object
+    if (queries) {
+      const keys = Object.keys(queries); // Extract keys (headers) from the queries object
       setHeaders(keys);
     }
-  }, [data]);
-
-  if (isLoading) return <div>Yüklənir...</div>; // Loading state
-  if (error) return <div>Xəta baş verdi</div>; // Error state
+  }, [queries]);
 
   return (
     <div className={styles.accordion}>
       <PriceRangeSlider min={200} max={10000} onPriceChange={handlePrice} />
       {headers?.map((item, index) => {
-        const values = data[item]; // Get the values for each header (e.g., "Ölçülər", "Əməliyyat Sistemi")
+        const values = queries[item]; // Get the values for each header (e.g., "Ölçülər", "Əməliyyat Sistemi")
+
         return (
           <AccordionItem
+            handleFilterItem={value => handleFilterItem(item, value)}
             key={index}
-            data={item} // Pass header name
+            queries={item} // Pass header name
             handleFilter={handleFilter} // Pass the filter handler
             values={values} // Pass the filter values
             queryKey={item} // Pass the key as query key (e.g., "Əməliyyat Sistemi")
@@ -151,4 +132,3 @@ const Accordion = ({ queries, handleFilter, handlePrice }) => {
 };
 
 export default Accordion;
-// onChange={() => handleFilter(item.key, queries.key)}

@@ -3,9 +3,7 @@ import filterImg from "../../assets/images/FilterSide/filterImg.svg";
 // import PriceRangeSlider from "./components/Slider/Slider";
 import Accordion from "./components/Accordion/Accordion";
 
-
-const FilterSidebar = ({queries , handleFilter , handlePrice}) => {
-
+const FilterSidebar = ({ queries, handleFilter, handlePrice, handleFilterItem }) => {
   return (
     <main>
       <section id={styles.filterSide}>
@@ -20,7 +18,7 @@ const FilterSidebar = ({queries , handleFilter , handlePrice}) => {
               </div>
             </div>
 
-            <Accordion handleFilter={handleFilter} handlePrice={handlePrice} queries={queries} />
+            <Accordion handleFilterItem={handleFilterItem} handleFilter={handleFilter} handlePrice={handlePrice} queries={queries} />
           </div>
         </div>
       </section>

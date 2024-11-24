@@ -5,14 +5,14 @@ import { useState, useEffect } from "react";
 import { useGetUserQuery } from "../../../redux/sercives/userApi";
 import { useSelector } from "react-redux";
 
-const ConfirmBasketPage = () => {
+const ConfirmBasketPage = ({ isItems }) => {
   // const [showPassword, setShowPassword] = useState(false);
   const [user, setUser] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
   const regions = [{ name: "Nəsimi rayonu" }, { name: "Nizami rayonu" }, { name: "Pirallahı rayonu" }, { name: "Xəzər rayonu" }, { name: "Nərimanov rayonu" }, { name: "Xəzər rayonu" }, { name: "Binəqədi rayonu" }, { name: "Yasamal rayonu" }, { name: "Suraxanı rayonu" }];
 
-  const { accessToken } = useSelector(state => state.auth); // Access tokens from Redux
+  const { accessToken } = useSelector(state => state.auth);
   console.log("access" + accessToken);
   const { data, isError, isLoading } = useGetUserQuery(undefined, {
     skip: !localStorage.getItem("accessToken"),
@@ -34,7 +34,6 @@ const ConfirmBasketPage = () => {
 
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>Failed to load user data</p>;
-
   return (
     <div>
       <section className={styles.confirmation}>
@@ -45,6 +44,12 @@ const ConfirmBasketPage = () => {
                 <form onSubmit={handleSubmit} action="" className={styles.confirmation_form} method="post">
                   <h2 className={styles.confirmation_header}>Səbəti təsdiqlə</h2>
                   <Row>
+                    <Col lg={12}>
+                      <div className={styles.confirmation_form_box}>
+                        <label className={styles.confirmation_label}>Email</label>
+                        <input placeholder="Email" value={user ? user.email : ""} type="text" className={`${styles.confirmation_input} ${styles.placeholder_white}`} />
+                      </div>
+                    </Col>
                     <Col lg={6}>
                       <div className={styles.confirmation_form_box}>
                         <label className={styles.confirmation_label}>Ad</label>
@@ -69,9 +74,9 @@ const ConfirmBasketPage = () => {
                         <input placeholder="Soyad" value={user ? user.lastName : ""} type="text" className={`${styles.confirmation_input} ${styles.placeholder_white}`} />
                       </div>
                       <div className={styles.confirmation_form_box}>
-                        <label className={styles.confirmation_label}>Şəhər</label>
+                        <label className={styles.confirmation_label}>Məntəqə</label>
                         <select name="" id="" className={styles.confirmation_select}>
-                          <option value="" disabled>
+                          <option value="" disabled selected>
                             Məntəqə
                           </option>
                           {regions.map((region, index) => (

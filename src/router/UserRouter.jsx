@@ -20,6 +20,7 @@ import { useEffect } from "react";
 import { setTokens } from "../redux/slices/TokenSlice";
 import { useDispatch } from "react-redux";
 import Repair from "../pages/user/RepairPage/Repair";
+import Delivery from "../pages/user/DeliveryPage/Delivery";
 
 const UserRouter = ({ setConfirm, confirm, setQuite, quite }) => {
   const dispatch = useDispatch();
@@ -54,6 +55,7 @@ const UserRouter = ({ setConfirm, confirm, setQuite, quite }) => {
         <Route path="/accountpage" element={<AccountPage setConfirm={setConfirm} setQuite={setQuite} confirm={confirm} quite={quite} />} />
         <Route path="/orders" element={<AllOrders />} />
         <Route path="/repair" element={<Repair />} />
+        <Route path="/delivery" element={<Delivery />} />
       </Route>
     </Routes>
   );

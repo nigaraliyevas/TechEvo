@@ -1,11 +1,9 @@
 .accordion {
   color: #cccccc;
-
 }
 
 .accordion_item {
   border-bottom: 1px solid #222527;
-
 }
 
 .accordion_title {
@@ -74,7 +72,6 @@
   transform: rotate(45deg);
 }
 
-
 .price_range_slider {
   /* width: 300px; */
   /* margin: 20px auto; */
@@ -88,6 +85,9 @@
   /* justify-content: space-between; */
   margin-bottom: 20px;
   gap: 10px;
+  input {
+    padding-left: 5px;
+  }
 }
 
 input {

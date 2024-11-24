@@ -8,16 +8,19 @@ export const serviceApi = createApi({
       "http://ec2-51-20-32-195.eu-north-1.compute.amazonaws.com:8081/api/v1/",
   }),
   endpoints: (builder) => ({
-    getservices: builder.query({
+    getServices: builder.query({
       query: () => `support`,
     }),
+    getSteps: builder.query({
+        query: () => `support/steps`,
+      }),
   }),
   keepUnusedDataFor: 60, // Istifade olunmayan datalari 60saniye saxlayir
 });
 
 
 
-export const { useGetservicesQuery } =
+export const { useGetServicesQuery, useGetStepsQuery } =
   serviceApi;
 
 

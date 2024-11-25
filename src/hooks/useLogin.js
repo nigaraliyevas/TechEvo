@@ -33,40 +33,6 @@ const useLogin = () => {
 
       toast.success(`${email} logged in.`);
       navigate("/");
-
-      // Set interval for token refresh every 10 minutes
-      setInterval(async () => {
-        try {
-          const storedRefreshToken = localStorage.getItem("refreshToken");
-          if (!storedRefreshToken) {
-            throw new Error("No refresh token found");
-          }
-
-          const refreshResponse = await fetch(`${url}auth/refresh`, {
-            method: "POST",
-            headers: {
-              Authorization: `Bearer ${storedRefreshToken}`,
-              "Content-Type": "application/json",
-            },
-          });
-
-          if (!refreshResponse.ok) {
-            throw new Error("Token refresh failed");
-          }
-
-          const refreshData = await refreshResponse.json();
-          const { newAccessToken, newRefreshToken } = refreshData;
-
-          // Update tokens in Redux and localStorage
-          dispatch(setTokens({ accessToken: newAccessToken, refreshToken: newRefreshToken }));
-          localStorage.setItem("accessToken", newAccessToken);
-          localStorage.setItem("refreshToken", newRefreshToken);
-        } catch (refreshError) {
-          console.error("Token refresh error:", refreshError);
-          toast.error("Session expired. Please log in again.");
-          // Handle token refresh failure (e.g., log out the user)
-        }
-      }, 10 * 60 * 1000); // 10 minutes in milliseconds
     } catch (error) {
       toast.error("Login failed");
       console.error(error);

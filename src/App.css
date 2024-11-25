@@ -1,47 +1,127 @@
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
-::-webkit-scrollbar { 
-    width: 4px; 
-  } 
-   
-  ::-webkit-scrollbar-track { 
-    background: transparent; 
-  } 
-   
-  ::-webkit-scrollbar-thumb { 
-    background-color: #214440; 
-    border: 3px solid gray; 
-  } 
-   
-  ::-webkit-scrollbar-thumb:hover { 
-    background-color: #555; 
-  } 
- 
- 
-   /* Target horizontal scrollbar specifically */ 
-::-webkit-scrollbar:horizontal { 
-  height: 4px; /* Adjust the height of the horizontal scrollbar */ 
-} 
- 
-::-webkit-scrollbar-thumb:horizontal { 
-  background-color: rgb(174, 172, 172); 
-  border: 2px solid gray; 
-  border-radius: 10px; 
-} 
- 
-::-webkit-scrollbar-thumb:horizontal:hover { 
-  background-color: #555; 
+::-webkit-scrollbar {
+  width: 4px;
 }
-.active{
-   /* background: linear-gradient(102.09deg, #fd393f 4.1%, #db35e2 55.43%, #4e3dee 94.96%);
-   -webkit-background-clip: text !important;
-   background-clip: text !important;
-   /* -webkit-text-fill-color: transparent !important; */ 
-   color: #b622dc !important;
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #214440;
+  border: 3px solid gray;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+/* Target horizontal scrollbar specifically */
+::-webkit-scrollbar:horizontal {
+  height: 4px; /* Adjust the height of the horizontal scrollbar */
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+  background-color: rgb(174, 172, 172);
+  border: 2px solid gray;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:horizontal:hover {
+  background-color: #555;
+}
+.active {
+  background: linear-gradient(
+    102.09deg,
+    #fd393f 4.1%,
+    #db35e2 55.43%,
+    #4e3dee 94.96%
+  );
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
 
 
- }
+}
+
+.active .ideal{
+  display:none !important;
+}
+.active span{
+  display:none ;
+}
+
+.active .idal_imag{
+  display:block !important;
+}
+.active svg{
+  background: linear-gradient(
+    102.09deg,
+    #fd393f 4.1%,
+    #db35e2 55.43%,
+    #4e3dee 94.96%
+  );
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+.search_color,.basket_color,.user_color{
+  display: none;
+}
+.user_div:hover .user_color{
+  display: block;
+}
+.user_div:hover .user{
+  display: none;
+}
+.basket_div:hover .basket_color{
+  display: block;
+}
+.basket_div:hover .basket{
+  display: none;
+}
+
+.serch_div:hover .search_color{
+  display: block;
+}
+.serch_div:hover .search{
+  display: none;
+}
+
+.active .basket_color{
+  display: block;
+}
+.active .basket{
+  display: none;
+}
+.active .user_svg{
+  display: none;
+}
+
+.user_svg_color{
+  display: none;
+}
+.active .user_svg_color{
+  display: block !important;
+}
+.user_login_svg{
+  display: none;
+}
+.active .user_login_svg{
+  display: block;
+}
+.active .favorites{
+  display: none;
+}
+.favorites_color{
+  display: none;
+}
+.active .favorites_color{
+  display: block;
+}

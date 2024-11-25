@@ -298,7 +298,7 @@ const CategoryPage = () => {
         <div className="container">
           <div className={`row ${styles.pc__bottom}`}>
             <div className="filter-side col-lg-3">
-              <FilterSidebar handleFilterItem={handleFilterItem} queries={queries} handleFilter={handleFilter} handlePrice={handlePrice} />
+              <FilterSidebar queries={queries} handleFilter={handleFilter} handlePrice={handlePrice}  handleFilterItem={handleFilterItem} />
             </div>
             <div className="product-side col-lg-9">
               <div className={styles.pc_section}>

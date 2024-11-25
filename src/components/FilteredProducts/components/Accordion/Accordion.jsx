@@ -104,7 +104,7 @@ const PriceRangeSlider = ({ min, max, onPriceChange }) => {
 
 
 
-const Accordion = ({ queries, handleFilter, handlePrice, handleFilterItem }) => {
+const Accordion = ({ handleFilterItem , handleFilter,  handlePrice,queries }) => {
   const [headers, setHeaders] = useState([]);
 
   useEffect(() => {

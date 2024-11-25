@@ -8,6 +8,7 @@ import { useGetServicesQuery, useGetStepsQuery } from "../../../redux/sercives/s
 const Repair = () => {
   const { data: service, error: serviceError, isLoading: serviceLoading } = useGetServicesQuery();
   const { data: steps, error: stepsError, isLoading: stepsLoading } = useGetStepsQuery();
+  if(!serviceError && !serviceLoading) console.log(service); 
 
   return (
     <div className={styles.serviceCont}>

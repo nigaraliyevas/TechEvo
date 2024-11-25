@@ -10,6 +10,7 @@ import { IoIosArrowForward, IoIosArrowBack, IoMdClose } from "react-icons/io";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { useGetProductByIdQuery, useGetProductsByCategoryNameQuery } from "../../../redux/sercives/productApi";
 import { Card } from "react-bootstrap";
+import SimilarProducts from "../../../components/SimilartProducts/SimilarProducts";
 
 const ProductPage = () => {
   const [searchParams] = useSearchParams();
@@ -17,10 +18,9 @@ const ProductPage = () => {
   const id = searchParams.get("id");
 
   const { data: product, error, isLoading } = useGetProductByIdQuery(id);
-  // console.log(product, "detailData");
 
-  const { data: categoryData, isLoading: isLaptopsLoading } = useGetProductsByCategoryNameQuery(product ? product.categoryName : undefined);
-  const filteredCategoryData = categoryData?.filter(item => item.id !== product?.id);
+  // const { data: categoryData, isLoading: isLaptopsLoading } = useGetProductsByCategoryNameQuery(product ? product.categoryName : undefined);
+  // const filteredCategoryData = categoryData?.filter(item => item.id !== product?.id);
 
   const [modalShow, setModalShow] = useState(false);
   const [carouselImages, setCarouselImages] = useState([]);
@@ -28,19 +28,19 @@ const ProductPage = () => {
 
   const [imageIndex, setImageIndex] = useState(0);
   const [currentIndex, setCurrentIndex] = useState();
-  const [itemsToShow, setItemsToShow] = useState(3);
+  // const [itemsToShow, setItemsToShow] = useState(3);
 
   const extendedCarouselImages = [...carouselImages, ...carouselImages];
 
-  useEffect(() => {
-    const handleResize = () => {};
+  // useEffect(() => {
+  //   const handleResize = () => {};
 
-    handleResize();
+  //   handleResize();
 
-    window.addEventListener("resize", handleResize);
+  //   window.addEventListener("resize", handleResize);
 
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  //   return () => window.removeEventListener("resize", handleResize);
+  // }, []);
 
   useEffect(() => {
     if (!id) {
@@ -105,21 +105,7 @@ const ProductPage = () => {
             <div className={styles.similiarProducts}>
               <Row>
                 <Col style={{ paddingLeft: "0px", paddingRight: "0px" }}>
-                  <div>
-                    <h2 className={styles.similar_header}>Oxşar Məhsullar</h2>
-                    <div className={styles.similar_product_list}>
-                      <div className="row">
-                        {filteredCategoryData?.slice(0, itemsToShow).map(card => (
-                          <div className={`col-${itemsToShow}`} key={card.id} style={{ flex: "1" }}>
-                            <div className="cardContainer">
-                              <Card card={card} />
-                              {console.log(card)}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
+                  <SimilarProducts product={product} categoryName={product?.categoryName} />
                 </Col>
               </Row>
             </div>

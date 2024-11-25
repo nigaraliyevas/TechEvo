@@ -22,23 +22,37 @@
 .accordion_content {
   padding: 20px 28px 24px 16px;
   background-color: #090c11;
- 
+  max-height: 300px; /* Maksimum hündürlük */
+  overflow-y: auto; /* Şaquli scroll təmin edir */
 }
 
+.accordion_content::-webkit-scrollbar {
+  width: 4px; /* Scrollbarın genişliyi */
+}
+.accordion_content::-webkit-scrollbar-track {
+  background: #151719; /* Scrollbar fon rəngi */
+  border-radius: 4px; /* Küncləri yuvarlaq */
+}
+.accordion_content::-webkit-scrollbar-thumb {
+  /* background: #555;  */
+  border-radius: 4px; /* Küncləri yuvarlaq */
+}
+.accordion_content::-webkit-scrollbar-thumb:hover {
+  background: #888; /* Hover zamanı çubuq rəngi */
+}
 .icon {
   margin-left: 10px;
   font-size: 17px;
 }
-
 #FilteredProductsSide {
   display: flex;
   flex-direction: column;
-  align-items: start;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
 }
 .filterItem {
   display: flex;
-
+  flex-direction: column;
   gap: 8px;
   p {
     font-size: 18px;
@@ -46,6 +60,7 @@
     top: -4px;
   }
 }
+
 
 .checkbox {
   appearance: none;
@@ -56,7 +71,6 @@
   cursor: pointer;
   position: relative;
   border-radius: 4px;
-  
 }
 
 .checkbox:checked {

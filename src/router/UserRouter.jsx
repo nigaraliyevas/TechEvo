@@ -19,7 +19,10 @@ import AllOrders from "../components/Orders/AllOrders";
 import { useEffect } from "react";
 import { setTokens } from "../redux/slices/TokenSlice";
 import { useDispatch } from "react-redux";
-import IdealPcPage from "../Pages/user/IdealPcPage/IdealPcPage";
+import IdealPcPage from "../pages/user/IdealPcPage/IdealPcPage";
+import Repair from "../pages/user/RepairPage/Repair";
+import Delivery from "../pages/user/DeliveryPage/Delivery";
+import Credit from "../pages/user/CreditPage/Credit";
 
 const UserRouter = ({ setConfirm, confirm, setExist, exist }) => {
   const dispatch = useDispatch();
@@ -60,7 +63,11 @@ const UserRouter = ({ setConfirm, confirm, setExist, exist }) => {
         <Route path="/idealpc" element={<IdealPcPage />} />
 
         <Route path="/accountpage" element={<AccountPage setConfirm={setConfirm} setExist={setExist} confirm={confirm} exist={exist} />} />
+
         <Route path="/orders" element={<AllOrders />} />
+        <Route path="/repair" element={<Repair />} />
+        <Route path="/delivery" element={<Delivery />} />
+        <Route path="/credit" element={<Credit />} />
       </Route>
     </Routes>
   );

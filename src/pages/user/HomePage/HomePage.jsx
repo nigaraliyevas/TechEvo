@@ -9,14 +9,12 @@ import Section from "./Section/Section";
 import SliderComponent from "./Section/Slider/Slider";
 import { useGetProductsByCategoryNameQuery } from "../../../redux/sercives/productApi";
 import { useGetFavoritesQuery } from "../../../redux/sercives/favoriteApi";
+import { useGetRecommendedProductsQuery } from "../../../redux/sercives/productApi";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
-  // <<<<<<< HEAD
-  //   // Məhsul məlumatlarını sorğulamaq
-  //   const { data: laptopsData, isLoading: isLaptopsLoading } = useGetProductsByCategoryNameQuery("Laptop");
-  //   const { data: mousesData, isLoading: isMousesLoading } = useGetProductsByCategoryNameQuery("Mouse");
-  //   const { data: klaviaturasData, isLoading: isKlaviaturasLoading } = useGetProductsByCategoryNameQuery("Klaviatura");
-  // =======
+  const navigate = useNavigate();
+
   const { data: laptopsData } = useGetProductsByCategoryNameQuery({ categoryName: "Laptop" });
   const { data: mousesData } = useGetProductsByCategoryNameQuery({ categoryName: "Mouse" });
   const { data: klaviaturasData } = useGetProductsByCategoryNameQuery({ categoryName: "Klaviatura" });
@@ -24,6 +22,8 @@ const HomePage = () => {
   // Favorit məhsulları sorğulamaq
   const { data: favoriteData, refetch: refetchFavorites } = useGetFavoritesQuery();
   const favoriteProductIds = favoriteData ? favoriteData.map(fav => fav.id) : [];
+  // Tövsiyə olunan məhsullar sorğusu
+  const { data: recommendedData } = useGetRecommendedProductsQuery();
 
   return (
     <>
@@ -34,6 +34,18 @@ const HomePage = () => {
       </section>
       <section id={styles.specialselected}>
         <div className={styles.container_bottom}>
+          {recommendedData && (
+            <>
+              <h3 className={styles.specialH3} style={{marginBottom: "0px",paddingBottom: "0px"}}>Sizə Tövsiyyələr</h3>
+              <Section
+                // title={<h3 className="recomendedTitle">Sizə Tövsiyyələr</h3>}
+                data={recommendedData}
+                favoriteProductIds={favoriteProductIds}
+                refetchFavorites={refetchFavorites}
+              />
+
+            </>
+          )}
           <h3 className={styles.specialH3}>Xüsusi Seçimlər</h3>
 
           {/* Favorit məlumatları və yenidən yükləmə funksiyası ilə Section komponentlərinə məlumat göndərilir */}
@@ -44,21 +56,24 @@ const HomePage = () => {
           <div className={styles.servicesDiv}>
             <div className={styles.services}>Xidmətlərimiz</div>
             <div className={styles.mainServices}>
-              <div className={` ${styles.border} ${styles.iconsCenter}`}>
+              <div className={` ${styles.border} ${styles.iconsCenter}`}
+               onClick={() => navigate("/credit")} >
                 <img src={InternCr} />
                 <div className={styles.text}>
                   <h3>Daxili kredit</h3>
                   <p>Bizim kredit təkliflərimizlə Tech məhsulları sizin büdcənizə uyğun olacaq.</p>
                 </div>
               </div>
-              <div className={`${styles.border} ${styles.iconsCenter}`}>
+              <div className={`${styles.border} ${styles.iconsCenter}`}
+               onClick={() => navigate("/delivery")} >
                 <img src={Delivery} />
                 <div className={styles.text}>
                   <h3>Çatdırılma</h3>
                   <p>Bizim kredit təkliflərimizlə Tech məhsulları sizin büdcənizə uyğun olacaq.</p>
                 </div>
               </div>
-              <div className={`${styles.border} ${styles.iconsCenter}`}>
+              <div className={`${styles.border} ${styles.iconsCenter}`}
+               onClick={() => navigate("/repair")} >
                 <img src={Repair} />
                 <div className={styles.text}>
                   <h3>Təmir</h3>

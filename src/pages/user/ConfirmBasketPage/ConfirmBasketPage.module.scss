@@ -48,10 +48,6 @@
   background-color: #090d11 !important;
   padding: 10px 5px !important;
 }
-// .confirmation_select option:hover {
-//   background-color: #999999 !important;
-//   color: white;
-// }
 select:hover option:hover {
   background-color: red !important;
   color: white;
@@ -60,11 +56,15 @@ select:hover option:hover {
   width: 380px;
   display: block;
   padding: 16px 14px;
-  background-color: rgba(22, 26, 30, 0.4);
+  background-color: #161a1e66 !important;
   border-radius: 2px;
   outline: none;
   color: #999999;
 }
+.confirmation_select option {
+  background-color: rgb(31, 31, 31); /* Black background for options */
+}
+
 .confirmation_select:focus {
   border-color: white;
 }
@@ -117,16 +117,12 @@ select:hover option:hover {
 
 modal-content {
   .btn-close {
-    color: #ffffff !important; // Set the close button to white
-    opacity: 1; // Ensure full opacity
-    font-size: 18px; // Optional: Adjust the size of the close button
-
-    &:hover {
-      color: #6a11cb; // Optional: Change color on hover
-    }
-
-    &:focus {
-      box-shadow: none; // Remove the focus outline
-    }
+    opacity: 1;
+    font-size: 18px;
+    filter: brightness(219%) saturate(294%) invert(141%) sepia(122%) saturate(259%) hue-rotate(38deg) brightness(160%) contrast(350%) !important;
   }
+}
+
+.option_wrapper {
+  background-color: rgba(22, 26, 30, 0.4) !important;
 }

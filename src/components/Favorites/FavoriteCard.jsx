@@ -27,13 +27,10 @@ function FavoriteCard({ card, onRefetch, }) {
 
     const addBasket = (event) => {
         event.preventDefault(); // Default davranışın qarşısını alır
-        if (productData) dispatch(addToCart(productData));
+        if (card) dispatch(addToCart(card));
     };
 
-   
 
-    // Məhsul məlumatlarını productData-dan alın
-    //const { name, price, imageUrl, rating } = productData || {};
 
     return (
         <div className={style.containerFavoriteCards}>
@@ -87,7 +84,7 @@ function FavoriteCard({ card, onRefetch, }) {
                                 <span style={{ paddingRight: "8px" }}>
                                     <SlBasket className={style.boldBasketIcon} />
                                 </span>
-                                Səbətə əlavə et
+                                Səbətə at
                             </button>
                         </div>
                     </div>
@@ -98,7 +95,13 @@ function FavoriteCard({ card, onRefetch, }) {
                         style={{ background: "none", border: "none" }}
                     >
                         <TiHeartFullOutline
-                            style={{ color: "white", cursor: "pointer", width: "24px", height: "24px" }}
+                            style={{
+                                color: "white", cursor: "pointer",
+                                width: "20px", height: "20px", position: "absolute",
+                                top: "14px",
+                                right: "12px",
+                                bottom: "14px"
+                            }}
                         />
                     </button>
                 </div>

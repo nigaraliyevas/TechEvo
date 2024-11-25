@@ -10,7 +10,7 @@ export const userApi = createApi({
     prepareHeaders: (headers) => {
       const token = localStorage.getItem("refreshToken");
       if (token) {
-        headers.set("Authorization", `Bearer ${token}`);
+        headers.set("Authorization", `Bearer ${token}`); // Backtick istifadə olundu
       }
       return headers;
     },

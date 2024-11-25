@@ -162,7 +162,7 @@ const CategoryPage = () => {
     categoryName: category,
   });
   const { data: favoriteData, refetch: refetchFavorites } = useGetFavoritesQuery();
-  const favoriteProductIds = favoriteData ? favoriteData.map((fav) => fav.id) : [];
+  const favoriteProductIds = favoriteData ? favoriteData.map(fav => fav.id) : [];
 
   const { data: queries } = useGetFilterNameWithValuesQuery(category); // Use the query hook
 
@@ -184,14 +184,12 @@ const CategoryPage = () => {
     storage: [],
   });
 
-
   const [test, setTest] = useState({});
   const handleFilterItem = (key, value) => {
     let arr = test[key];
     if (arr.includes(value)) {
       arr = arr.filter(item => item !== value);
       console.log({ arr });
-
     } else {
       arr.push(value);
     }
@@ -207,7 +205,6 @@ const CategoryPage = () => {
       setTest(temp);
     }
   }, [queries]);
-
   const [currentPage, setCurrentPage] = useState(0); // Səhifə nömrəsi
   const itemsPerPage = 21; // Hər səhifədə göstərilən məhsul sayı
 
@@ -262,6 +259,7 @@ const CategoryPage = () => {
       // Ensure all values match
       // Break early if any filter doesn't match
     }
+
     return matchesQuery && matchFilter && priceRangeQuery;
   });
 
@@ -305,15 +303,12 @@ const CategoryPage = () => {
             <div className="product-side col-lg-9">
               <div className={styles.pc_section}>
                 <div className="d-flex flex-wrap" style={{ gap: "30px" }}>
-                  {currentProducts.length === 0 ? <div className={styles.noProductsMessage}>There are no products.</div> : currentProducts.map(card => <ProductCard key={card.id} data={card}
-                    favoriteProductIds={favoriteProductIds}
-                    refetchFavorites={refetchFavorites} />)}
+                  {currentProducts.length === 0 ? <div className={styles.noProductsMessage}>There are no products.</div> : currentProducts.map(card => <ProductCard key={card.id} data={card} favoriteProductIds={favoriteProductIds} refetchFavorites={refetchFavorites} />)}
                 </div>
               </div>
               <div className="pagination-side">
                 <Pagination products={sortedProducts} itemsPerPage={itemsPerPage} handlePageClick={handlePageClick} currentPage={currentPage} />
               </div>
-
             </div>
           </div>
         </div>

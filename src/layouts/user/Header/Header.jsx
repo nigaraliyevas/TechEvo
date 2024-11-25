@@ -32,8 +32,13 @@ const Header = ({ exist, confirm }) => {
     setOpenAccessory(false);
   };
   const [openPc, setOpenPc] = useState(false);
+<<<<<<< HEAD
   const [openLaptop, setOpenLaptop] = useState(false);
   const [openAccessory, setOpenAccessory] = useState(false);
+=======
+  const [openLaptop, setOpenLaptop] = useState(false)
+  const [openAccessory, setOpenAccessory] = useState(false)
+>>>>>>> 9992ae0e6210addc2ddc24364d576b91789ec8dc
   return (
     <header
       style={{
@@ -51,7 +56,7 @@ const Header = ({ exist, confirm }) => {
             <ul className={styles.navbar_pages}>
               <li className={styles.navbar_links}>
                 <NavLink
-                  to={"/pc"}
+                  to={"/PC"}
                   style={{ color: "white", textDecoration: "none" }}
                 >
                   PC
@@ -63,17 +68,58 @@ const Header = ({ exist, confirm }) => {
                         PC hissələri
                         <div className={styles.link_catagirie_dropdown}>
                           <ul>
-                            <li>Monitorlar</li>
-                            <li>Prosessorlar</li>
-                            <li>Qida bloku</li>
-                            <li>Ana plata</li>
-                            <li>Video kart</li>
-                            <li>Operativ yaddaş</li>
-                            <li>HDD / SSD</li>
-                            <li>Soyutma sistemləri</li>
-                            <li>Şəbəkə kartları</li>
-                            <li>Səs kartları</li>
-                            <li>Keyslər</li>
+                            <li>
+                              <NavLink to={"/Monitorlar"}>Monitorlar</NavLink>
+
+                            </li>
+                            <li>
+                              <NavLink to={"/Cpu"}>Prosessorlar</NavLink>
+
+                            </li>
+                            <li>
+                              <NavLink to={"/Psu"}>Qida bloku</NavLink>
+
+                            </li>
+                            <li>
+                              <NavLink to={"/Motherboard"}>Ana plata</NavLink>
+
+                            </li>
+                            <li>
+                              <NavLink to={"/VideoCart"}>Video kart</NavLink>
+
+                            </li>
+                            <li>
+                              <NavLink to={"/Ram"}>Operativ yaddaş</NavLink>
+
+                            </li>
+                            <li>
+                              <NavLink to={"/Hdd"}>HDD </NavLink>
+
+                            </li>
+                            <li>
+                              <NavLink to={"/Ssd"}>SSD </NavLink>
+
+                            </li>
+                            <li>
+                              <NavLink to={"/Soyutma sistemi"}>Soyutma sistemləri</NavLink>
+
+                            </li>
+                            <li>
+                              <NavLink to={"/Şəbəkə kartı"}>Şəbəkə kartları</NavLink>
+
+                            </li>
+                            <li>
+                              <NavLink to={"/Sound Card"}>Səs kartları</NavLink>
+
+                            </li>
+                            <li>
+                              <NavLink to={"/Case"}>Keyslər</NavLink>
+
+                            </li>
+                            <li>
+                              <NavLink to={"/Gpu"}>Qrafik emal bloku</NavLink>
+
+                            </li>
                           </ul>
                         </div>
                       </li>

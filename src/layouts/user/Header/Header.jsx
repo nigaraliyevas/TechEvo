@@ -44,7 +44,7 @@ const Header = ({ exist, confirm }) => {
             <ul className={styles.navbar_pages}>
               <li className={styles.navbar_links}>
                 <NavLink
-                  to={"/GetAll"}
+                  to={"/PC"}
                   style={{ color: "white", textDecoration: "none" }}
                 >
                   PC
@@ -57,11 +57,11 @@ const Header = ({ exist, confirm }) => {
                         <div className={styles.link_catagirie_dropdown}>
                           <ul>
                             <li>
-                              <NavLink to={"/Motherboard"}>Monitorlar</NavLink>
+                              <NavLink to={"/Monitorlar"}>Monitorlar</NavLink>
 
                             </li>
                             <li>
-                              <NavLink to={"/Motherboard"}>Prosessorlar</NavLink>
+                              <NavLink to={"/Cpu"}>Prosessorlar</NavLink>
 
                             </li>
                             <li>
@@ -73,7 +73,7 @@ const Header = ({ exist, confirm }) => {
 
                             </li>
                             <li>
-                              <NavLink to={"/Motherboard"}>Video kart</NavLink>
+                              <NavLink to={"/VideoCart"}>Video kart</NavLink>
 
                             </li>
                             <li>
@@ -89,19 +89,23 @@ const Header = ({ exist, confirm }) => {
 
                             </li>
                             <li>
-                              <NavLink to={"/Motherboard"}>Soyutma sistemləri</NavLink>
+                              <NavLink to={"/Soyutma sistemi"}>Soyutma sistemləri</NavLink>
 
                             </li>
                             <li>
-                              <NavLink to={"/Motherboard"}>Şəbəkə kartları</NavLink>
+                              <NavLink to={"/Şəbəkə kartı"}>Şəbəkə kartları</NavLink>
 
                             </li>
                             <li>
-                              <NavLink to={"/Motherboard"}>Səs kartları</NavLink>
+                              <NavLink to={"/Sound Card"}>Səs kartları</NavLink>
 
                             </li>
                             <li>
-                              <NavLink to={"/Motherboard"}>Keyslər</NavLink>
+                              <NavLink to={"/Case"}>Keyslər</NavLink>
+
+                            </li>
+                            <li>
+                              <NavLink to={"/Gpu"}>Qrafik emal bloku</NavLink>
 
                             </li>
                           </ul>

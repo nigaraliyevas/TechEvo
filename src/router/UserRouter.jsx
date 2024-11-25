@@ -19,10 +19,15 @@ import AllOrders from "../components/Orders/AllOrders";
 import { useEffect } from "react";
 import { setTokens } from "../redux/slices/TokenSlice";
 import { useDispatch } from "react-redux";
+<<<<<<< HEAD
 import IdealPcPage from "../pages/user/IdealPcPage/IdealPcPage";
 import Repair from "../pages/user/RepairPage/Repair";
 import Delivery from "../pages/user/DeliveryPage/Delivery";
 import Credit from "../pages/user/CreditPage/Credit";
+=======
+import IdealPcPage from "../Pages/user/IdealPcPage/IdealPcPage";
+import Favorites from "../components/Favorites/Favorites";
+>>>>>>> 2e8b4e238617b3094ca9b38e664d0f16226e6826
 
 const UserRouter = ({ setConfirm, confirm, setExist, exist }) => {
   const dispatch = useDispatch();
@@ -31,7 +36,6 @@ const UserRouter = ({ setConfirm, confirm, setExist, exist }) => {
     const loadTokensFromStorage = () => {
       const accessToken = localStorage.getItem("accessToken");
       const refreshToken = localStorage.getItem("refreshToken");
-
       if (accessToken && refreshToken) {
         dispatch(setTokens({ accessToken, refreshToken }));
       }
@@ -68,6 +72,8 @@ const UserRouter = ({ setConfirm, confirm, setExist, exist }) => {
         <Route path="/repair" element={<Repair />} />
         <Route path="/delivery" element={<Delivery />} />
         <Route path="/credit" element={<Credit />} />
+        
+        <Route path="/favorites" element={<Favorites />} />
       </Route>
     </Routes>
   );

@@ -45,7 +45,7 @@
   -webkit-background-clip: text !important;
   background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
-  z-index: -999999;
+
 
 }
 
@@ -114,5 +114,14 @@
   display: none;
 }
 .active .user_login_svg{
+  display: block;
+}
+.active .favorites{
+  display: none;
+}
+.favorites_color{
+  display: none;
+}
+.active .favorites_color{
   display: block;
 }

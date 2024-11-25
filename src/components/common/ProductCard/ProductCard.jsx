@@ -1,18 +1,55 @@
+import React, { useState, useEffect } from "react";
 import { PiHeartBold } from "react-icons/pi";
-import style from "./ProductCard.module.scss";
+import { TiHeartFullOutline } from "react-icons/ti";
+import { useDispatch } from "react-redux";
+import { useAddFavoriteMutation, useRemoveFavoriteMutation } from "../../../redux/sercives/favoriteApi";
+import { addToCart } from "../../../redux/slices/BasketSlice";
+import StarRating from "../../../components/Rating/StarRating";
+//import style from "../../HomePage.module.scss";
+import { Link, useNavigate } from "react-router-dom";
 import { SlBasket } from "react-icons/sl";
-import { Rating } from "@mui/material";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
+import style from "./ProductCard.module.scss";
 
-const ProductCard = ({ data }) => {
+const ProductCard = ({ data, favoriteProductIds, refetchFavorites }) => {
   const { name, price, discountPrice, imageUrl, rating, id } = data;
-  // console.log(name);
+  const [addFavorite] = useAddFavoriteMutation();
+  const [removeFavorite] = useRemoveFavoriteMutation();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
+  const isFavorite = favoriteProductIds.includes(id);
+
+  const handleToggleFavorite = async (event) => {
+    event.stopPropagation();
+    event.preventDefault();
+
+    const token = localStorage.getItem("accessToken");
+
+    if (!token) {
+      console.log("Token tapılmadı. Login səhifəsinə yönləndiriləcək...");
+      toast.error("Daxil olunmamısınız. Zəhmət olmasa, giriş edin.");
+      navigate("/login");
+      return;
+    }
+
+    try {
+      if (isFavorite) {
+        await removeFavorite(id).unwrap();
+        toast.success("Favoritlərdən silindi!");
+      } else {
+        await addFavorite(id).unwrap();
+        toast.success("Favoritlərə əlavə olundu!");
+      }
+      refetchFavorites();
+    } catch (error) {
+      console.error("Favorit əməliyyatı zamanı xəta:", error);
+      toast.error("Favorit əməliyyatı uğursuz oldu.");
+    }
+  };
   const [selectedImage, setSelectedImage] = useState(0);
   const [lastMouseX, setLastMouseX] = useState(null);
-
-  const handleMouseMove = e => {
+  const handleMouseMove = (e) => {
     const { clientX } = e;
 
     if (lastMouseX === null) {
@@ -23,72 +60,112 @@ const ProductCard = ({ data }) => {
     const deltaX = clientX - lastMouseX;
 
     if (Math.abs(deltaX) > 50) {
-      const newIndex = deltaX < 0 ? (selectedImage - 1 + imageUrl.length) % imageUrl.length : (selectedImage + 1) % imageUrl.length;
+      const newIndex =
+        deltaX < 0
+          ? (selectedImage - 1 + imageUrl.length) % imageUrl.length
+          : (selectedImage + 1) % imageUrl.length;
 
       setSelectedImage(newIndex);
       setLastMouseX(clientX);
     }
   };
 
-  const handleDivClick = index => {
+  const handleDivClick = (index) => {
     setSelectedImage(index);
+  };
+  const addBasket = () => {
+    dispatch(addToCart(data));
   };
 
   return (
-    <div className={style.card}>
+    <div
+      style={{ textDecoration: "none" }}
+      className={style.card}
+    >
       <span className={style.cardAnimationSpan}></span>
       <span className={style.cardAnimationSpan}></span>
       <span className={style.cardAnimationSpan}></span>
       <span className={style.cardAnimationSpan}></span>
 
       <div style={{ position: "relative" }}>
-        {/* Image Slider */}
-        <div className={style.cardImgContainer} onMouseMove={handleMouseMove} style={{ overflow: "hidden" }}>
-          <Link
-            to={`/product?id=${id}`}
+        <div
+          className={style.cardImgContainer}
+          onMouseMove={handleMouseMove}
+          style={{ overflow: "hidden" }}
+        >
+          <div
             className={style.imageSlider}
             style={{
-              transform: `translateX(-${selectedImage * 100}%)`,
+              transform: `translateX(-${selectedImage * 25}%)`,
               width: `${imageUrl.length * 100}%`,
               height: "100%",
-              display: "flex",
             }}
           >
-            {imageUrl.map((imgSrc, index) => (
-              <img key={index} className={style.cardImg} src={imgSrc} alt={`${name} image ${index + 1}`} style={{ flex: "0 0 100%" }} />
-            ))}
-          </Link>
+            <Link to={`/product?id=${id}`}>
+              {imageUrl.map((imgSrc, index) => (
+                <img
+                  key={index}
+                  className={style.cardImg}
+                  src={imgSrc}
+                  alt={name}
+                  style={{ width: `${100 / imageUrl.length}%` }}
+                />
+              ))}
+            </Link>
+          </div>
         </div>
 
-        {/* Image Selector Dots */}
         <div className={style.radioButtons}>
           {imageUrl.map((_, index) => (
-            <div key={index} className={`${style.radioDiv} ${selectedImage === index ? style.selected : ""}`} onClick={() => handleDivClick(index)} />
+            <div
+              key={index}
+              className={`${style.radioDiv} ${selectedImage === index ? style.selected : ""
+                }`}
+              onClick={() => handleDivClick(index)}
+            />
           ))}
         </div>
 
-        {/* Favorite Icon */}
-        <div className={style.heartSpan}>
-          <PiHeartBold />
+        <div className={style.heartSpan} onClick={handleToggleFavorite}>
+          {isFavorite ? (
+            <TiHeartFullOutline style={{ color: "purple" }} />
+          ) : (
+            <PiHeartBold style={{ fill: "purplegit" }} />
+          )}
         </div>
 
-        {/* Product Information */}
-        <div className={style.mailTitle}>
+        <div className={style.cardBottomTitles}>
           <div className={style.namePrice}>
             <h4>{name}</h4>
             <p>
-              <span style={{ color: "#bebebe", textDecoration: discountPrice ? "line-through" : "none" }}>{price} AZN</span>
-              {discountPrice && <span style={{ marginLeft: "8px" }}>{discountPrice} AZN</span>}
+              {discountPrice ? (
+                <>
+                  <span
+                    style={{
+                      textDecoration: "line-through",
+                      marginRight: "10px",
+                      color: "#BFBFBF",
+                      fontWeight: "500",
+                      fontSize: "16px"
+                    }}
+                  >
+                    {price} AZN
+                  </span>
+                  <span>{discountPrice} AZN</span>
+                </>
+              ) : (
+                <span>{price} AZN</span>
+              )}
             </p>
           </div>
 
-          {/* Rating and Add to Cart */}
           <div className={style.ratingBasket}>
-            <Rating size="small" precision={0.5} name="read-only" value={rating} readOnly />
+            <StarRating fontSize="1.2em" value={rating} />
+
             <div className={style.basketBg}>
-              <a href="#">
+              <button onClick={addBasket}>
                 <SlBasket style={{ width: "18px", height: "18px" }} />
-              </a>
+              </button>
             </div>
           </div>
         </div>

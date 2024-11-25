@@ -20,6 +20,7 @@ import { useEffect } from "react";
 import { setTokens } from "../redux/slices/TokenSlice";
 import { useDispatch } from "react-redux";
 import IdealPcPage from "../Pages/user/IdealPcPage/IdealPcPage";
+import Favorites from "../components/Favorites/Favorites";
 
 const UserRouter = ({ setConfirm, confirm, setExist, exist }) => {
   const dispatch = useDispatch();
@@ -58,6 +59,7 @@ const UserRouter = ({ setConfirm, confirm, setExist, exist }) => {
 
         <Route path="/accountpage" element={<AccountPage setConfirm={setConfirm} setExist={setExist} confirm={confirm} exist={exist} />} />
         <Route path="/orders" element={<AllOrders />} />
+        <Route path="/favorites" element={<Favorites />} />
       </Route>
     </Routes>
   );

@@ -20,13 +20,16 @@ const Header = ({ exist, confirm }) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => {
     setIsOpen(!isOpen);
-    setOpenPc(false)
-    setOpenLaptop(false)
-    setOpenAccessory(false)
+    setOpenPc(false);
+    setOpenLaptop(false);
+    setOpenAccessory(false);
+    setOpen(false);
   };
   const [openPc, setOpenPc] = useState(false);
-  const [openLaptop,setOpenLaptop] = useState(false)
-  const [openAccessory,setOpenAccessory]= useState(false)
+  const [openLaptop, setOpenLaptop] = useState(false);
+  const [openAccessory, setOpenAccessory] = useState(false);
+  const [open, setOpen] = useState(false);
+
   return (
     <header
       style={{
@@ -256,19 +259,27 @@ const Header = ({ exist, confirm }) => {
                   <Link className={styles.responsive_navbar_item_link}>
                     <div>PC</div>
                   </Link>
-                  <div onClick={()=>setOpenPc(true)}>
+                  <div onClick={() => setOpenPc(true)}>
                     <IoIosArrowForward />
                   </div>
 
                   <div
                     style={{
-                      transform: openPc
-                        ? "translateX(0px)"
-                        : "",
+                      transform: openPc ? "translateX(0px)" : "",
+                      
                     }}
                     className={styles.responsive_navbar_item_link_catagories}
                   >
-                    <img onClick={()=>setOpenPc(false)} src={rightIcon} alt="" />
+                    <img
+                      onClick={() => setOpenPc(false)}
+                      src={rightIcon}
+                      style={
+                        {
+                          display:openPc?"block":"none"
+                        }
+                      }
+                      alt=""
+                    />
                     <div className={styles.responsive_navbar_catagories_items}>
                       <div className={styles.responsive_navbar_catagories_item}>
                         <span
@@ -337,18 +348,25 @@ const Header = ({ exist, confirm }) => {
                   <Link className={styles.responsive_navbar_item_link}>
                     Laptop
                   </Link>
-                  <div onClick={()=>setOpenLaptop(true)}>
+                  <div onClick={() => setOpenLaptop(true)}>
                     <IoIosArrowForward size={20} />
                   </div>
                   <div
                     style={{
-                      transform: openLaptop
-                        ? "translateX(0px)"
-                        : "",
+                      transform: openLaptop ? "translateX(0px)" : "",
                     }}
                     className={styles.responsive_navbar_item_link_catagories}
                   >
-                    <img onClick={()=>setOpenLaptop(false)} src={rightIcon} alt="" />
+                    <img
+                      onClick={() => setOpenLaptop(false)}
+                      src={rightIcon}
+                      alt=""
+                      style={
+                        {
+                          display:openLaptop?"block":"none"
+                        }
+                      }
+                    />
                     <div className={styles.responsive_navbar_catagories_items}>
                       <div className={styles.responsive_navbar_catagories_item}>
                         <span
@@ -395,7 +413,7 @@ const Header = ({ exist, confirm }) => {
                           }
                         ></span>
                         <p className={styles.responsive_navbar_catagories_text}>
-                        İkisi birində
+                          İkisi birində
                         </p>
                       </div>
                     </div>
@@ -407,19 +425,22 @@ const Header = ({ exist, confirm }) => {
                   <Link className={styles.responsive_navbar_item_link}>
                     Aksesuar
                   </Link>
-                  <div onClick={()=>setOpenAccessory(true)}>
-                    <IoIosArrowForward  size={20} />
+                  <div onClick={() => setOpenAccessory(true)}>
+                    <IoIosArrowForward size={20} />
                   </div>
                   <div
                     style={{
-                      transform: openAccessory
-                        ? "translateX(0px)"
-                        : "",
-                    
+                      transform: openAccessory ? "translateX(0px)" : "",
                     }}
                     className={styles.responsive_navbar_item_link_catagories}
                   >
-                    <img onClick={()=>setOpenAccessory(false)} src={rightIcon} alt="" />
+                    <div onClick={() => setOpenAccessory(false)}>
+                      <img   style={
+                        {
+                          display:openAccessory?"block":"none"
+                        }
+                      } src={rightIcon} alt="" />
+                    </div>
                     <div className={styles.responsive_navbar_catagories_items}>
                       <div className={styles.responsive_navbar_catagories_item}>
                         <span
@@ -428,7 +449,7 @@ const Header = ({ exist, confirm }) => {
                           }
                         ></span>
                         <p className={styles.responsive_navbar_catagories_text}>
-                        Aksesuarlar
+                          Aksesuarlar
                         </p>
                       </div>
                       <div className={styles.responsive_navbar_catagories_item}>
@@ -438,7 +459,7 @@ const Header = ({ exist, confirm }) => {
                           }
                         ></span>
                         <p className={styles.responsive_navbar_catagories_text}>
-                        Avadanlıqlar
+                          Avadanlıqlar
                         </p>
                       </div>
                       <div className={styles.responsive_navbar_catagories_item}>
@@ -476,18 +497,82 @@ const Header = ({ exist, confirm }) => {
               </div>
             </div>
             <div className={styles.responsive_navbar_icons}>
-              <Link to={"/basket"} className={styles.responsive_navbar_item_link}>
+              <Link
+                to={"/basket"}
+                className={styles.responsive_navbar_item_link}
+              >
                 <div className={styles.responsive_navbar_icon}>
                   <SlBasket size={28} />
                 </div>
                 Səbət
               </Link>
-              <Link className={styles.responsive_navbar_item_link}>
-                <div className={styles.responsive_navbar_icon}>
+              <div className={styles.responsive_navbar_item_link}>
+                <div
+                  onClick={() => setOpen(true)}
+                  className={styles.responsive_navbar_icon}
+                >
                   <BiUser size={28} />
                 </div>
                 Hesab
-              </Link>
+                <div
+                  style={{
+                    transform: open ? "translateX(0px)" : "",
+                  }}
+                  className={styles.navbar_users_items}
+                >
+                  <div onClick={() => setOpen(false)}>
+                    <img  style={
+                        {
+                          display:open?"block":"none"
+                        }
+                      } src={rightIcon} alt="" />
+                  </div>
+                  <div className={styles.navbar_users_item}>
+               
+                    <span>
+                      <LiaUserPlusSolid size={24} />
+                    </span>
+                    <NavLink
+                      style={{ color: "rgb(204, 204, 204)" }}
+                      className="text-decoration-none "
+                      to="/register"
+                    >
+                      Qeydiyyat
+                    </NavLink>
+                  </div>
+                  <div className={styles.navbar_users_item}>
+                    <span>
+                      <PiSignInFill size={24} />
+                    </span>
+                    <NavLink
+                      style={{ color: "rgb(204, 204, 204)" }}
+                      className="text-decoration-none"
+                      to="/login"
+                    >
+                      Daxil ol
+                    </NavLink>
+                  </div>
+                  <Link
+                    style={{
+                      textDecoration: "none",
+                      color: "rgba(204, 204, 204, 1)",
+                    }}
+                    to={"/accountpage"}
+                    className={styles.navbar_users_item}
+                  >
+                    <span>
+                      <BiUser size={24} />
+                    </span>
+                    Hesabım
+                  </Link>
+                  <div className={styles.navbar_users_item}>
+                    <span>
+                      <IoSettingsOutline size={24} />
+                    </span>
+                    Parametrlər
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           {/* MOBILE NAVBAR END*/}

@@ -3,11 +3,9 @@ import style from "./basketTotal.module.scss";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 const BasketTotalAmount = () => {
-  const { totalPrice } = useSelector((state) => state.basket);
-const totalamount = Math.round(totalPrice * 100) / 100;
-
-  
-    
+  const { totalPrice } = useSelector(state => state.basket);
+  const totalamount = Math.round(totalPrice * 100) / 100;
+  localStorage.setItem("total", totalamount);
 
   return (
     <div className={style.BasketTotalAmount}>
@@ -23,16 +21,11 @@ const totalamount = Math.round(totalPrice * 100) / 100;
       <div className={style.line}></div>
       <div className={style.total_texts}>
         <p>Toplam: </p>
-        <p>{totalamount} AZN</p> 
+        <p>{totalamount} AZN</p>
       </div>
       <Link to={"/confirm"} className={style.basket_btn}>
         Səbəti təsdiqlə
       </Link>
-
-
-
-
-
     </div>
   );
 };

@@ -5,10 +5,10 @@
 
   .head {
     display: flex;
-    // align-items: center;
+  align-items: center;
     justify-content: space-between;
     padding: 10px 16px 10px 16px;
-    // border-bottom: 1.5px solid rgb(35, 34, 34);
+    border-bottom: 1.5px solid rgb(35, 34, 34);
 
     height: 84px;
     .text {

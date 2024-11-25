@@ -23,7 +23,7 @@ import Repair from "../pages/user/RepairPage/Repair";
 import Delivery from "../pages/user/DeliveryPage/Delivery";
 import Credit from "../pages/user/CreditPage/Credit";
 import Favorites from "../components/Favorites/Favorites";
-// import IdealPcPage from "../Pages/user/IdealPcPage/IdealPcPage";
+import IdealPcPage from "../Pages/user/IdealPcPage/IdealPcPageTemp";
 
 const UserRouter = ({ setConfirm, confirm, setExist, exist }) => {
   const dispatch = useDispatch();
@@ -57,21 +57,16 @@ const UserRouter = ({ setConfirm, confirm, setExist, exist }) => {
         <Route path="/basket" element={<BasketPage />} />
 
         <Route path="/confirm" element={<ConfirmBasket isItems={isItems} />} />
-
         <Route path="/newpassword" element={<PasswordReset />} />
         <Route path="/otp" element={<EnterPasswordPage />} />
-
         <Route path="/accountpage" element={<AccountPage setConfirm={setConfirm} setExist={setExist} confirm={confirm} exist={exist} />} />
         <Route path="/accountpage" element={<AccountPage />} />
-        {/* <Route path="/idealpc" element={<IdealPcPage />} /> */}
-
+        <Route path="/idealpc" element={<IdealPcPage />} />
         <Route path="/accountpage" element={<AccountPage setConfirm={setConfirm} setExist={setExist} confirm={confirm} exist={exist} />} />
-
         <Route path="/orders" element={<AllOrders />} />
         <Route path="/repair" element={<Repair />} />
         <Route path="/delivery" element={<Delivery />} />
         <Route path="/credit" element={<Credit />} />
-        
         <Route path="/favorites" element={<Favorites />} />
       </Route>
     </Routes>

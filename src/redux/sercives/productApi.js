@@ -1,10 +1,18 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const base = import.meta.env.VITE_SOME_KEY;
+
 export const productApi = createApi({
   reducerPath: "productApi",
   baseQuery: fetchBaseQuery({
     baseUrl: base,
+    prepareHeaders: (headers) => {
+      const token = localStorage.getItem("accessToken");
+      if (token) {
+        headers.set("Authorization", ` ${token}`);
+      }
+      return headers;
+    },
   }),
   endpoints: (builder) => ({
     getProducts: builder.query({
@@ -16,7 +24,6 @@ export const productApi = createApi({
         `product/getAllByCategoryName?categoryName=${categoryName}`,
       invalidatesTags: ["Products"],
     }),
-
     getProductById: builder.query({
       query: (id) => `product/${id}`,
       invalidatesTags: ["Products"],
@@ -26,23 +33,12 @@ export const productApi = createApi({
       providesTags: ["Order"],
     }),
     getFilters: builder.query({
-      query: () => "product/filters", // Backend-in filtr endpointi
+      query: () => "product/filters",
     }),
     filterProductsBySpecs: builder.query({
       query: ({ categoryName, filters }) => {
         let url = `product/filterByPriceAndSpecs?categoryName=${categoryName}`;
-        
-
-        // if (filters) {
-        //   Object.keys(filters).forEach((key) => {
-        //     if (filters[key] && filters[key].length > 0) {
-        //       url += `&${key}=${filters[key]
-        //         .map(encodeURIComponent)
-        //         .join(",")}`;
-        //     }
-        //   });
-        // }
-
+        // Filtrləri əlavə etməyə ehtiyac varsa, burada əlavə edin
         return url;
       },
     }),
@@ -58,8 +54,12 @@ export const productApi = createApi({
       query: (categoryName) =>
         `product/category/getFilters?categoryName=${categoryName}`,
     }),
+    getRecommendedProducts: builder.query({
+      query: () => `product/recommendations`, // Endpoint düzəldildi
+      providesTags: ["RecommendedProducts"],
+    }),
   }),
-  keepUnusedDataFor: 60, // Istifade olunmayan datalari 60saniye saxlayir
+  keepUnusedDataFor: 60,
 });
 
 export const {
@@ -71,4 +71,5 @@ export const {
   useGetSpecificationsQuery,
   useGetFilterValuesQuery,
   useGetFilterNameWithValuesQuery,
+  useGetRecommendedProductsQuery, // Yeni hook
 } = productApi;

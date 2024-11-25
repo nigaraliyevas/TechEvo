@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+
+import { useState } from "react";
 import { PiHeartBold } from "react-icons/pi";
 import { TiHeartFullOutline } from "react-icons/ti";
 //import { useDispatch } from "react-redux";
@@ -139,9 +140,9 @@ function Card({ card, favoriteProductIds, refetchFavorites }) {
 
         <div className={style.heartSpan} onClick={handleToggleFavorite}>
           {isFavorite ? (
-            <TiHeartFullOutline style={{ color: "red" }} />
+            <TiHeartFullOutline style={{ color: "purple" }} />
           ) : (
-            <PiHeartBold style={{ fill: "red" }} />
+            <PiHeartBold style={{ fill: "purple" }} />
           )}
         </div>
 

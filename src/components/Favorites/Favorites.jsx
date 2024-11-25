@@ -18,7 +18,11 @@ function Favorites() {
   if (isError) return <p>Favoritləri yükləmək mümkün olmadı.</p>;
 
   return (
-    <div className={style.favoritesContainer}>
+    <div
+      className={`${style.favoritesContainer} ${
+        favoriteData.length === 0 ? style.empty : ""
+      }`}
+    >
       <h2>Sevimlilər</h2>
       <div className={style.favoritesList}>
         {favoriteData.length > 0 ? (

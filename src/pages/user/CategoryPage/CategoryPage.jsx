@@ -151,6 +151,7 @@ import { useState, useEffect } from "react";
 // import { products, queries } from "../../../products";
 import ProductCard from "../../../components/common/ProductCard/ProductCard";
 import FilterSidebar from "../../../components/FilteredProducts/FilterSideBar";
+import { useGetFavoritesQuery } from "../../../redux/sercives/favoriteApi";
 import { useFilterProductsBySpecsQuery, useGetProductsByCategoryNameQuery, useGetProductsQuery } from "../../../redux/sercives/productApi";
 import { useParams } from "react-router-dom";
 import { useGetFilterNameWithValuesQuery } from "../../../redux/sercives/productApi";
@@ -160,6 +161,8 @@ const CategoryPage = () => {
   const { data, error, isLoading } = useFilterProductsBySpecsQuery({
     categoryName: category,
   });
+  const { data: favoriteData, refetch: refetchFavorites } = useGetFavoritesQuery();
+  const favoriteProductIds = favoriteData ? favoriteData.map((fav) => fav.id) : [];
 
   const { data: queries } = useGetFilterNameWithValuesQuery(category); // Use the query hook
 
@@ -181,12 +184,14 @@ const CategoryPage = () => {
     storage: [],
   });
 
+
   const [test, setTest] = useState({});
   const handleFilterItem = (key, value) => {
     let arr = test[key];
     if (arr.includes(value)) {
       arr = arr.filter(item => item !== value);
       console.log({ arr });
+
     } else {
       arr.push(value);
     }
@@ -213,7 +218,6 @@ const CategoryPage = () => {
   const handleSorting = sortType => {
     setFilterQueries(prev => ({ ...prev, sortType }));
   };
-
   const [filters, setFilters] = useState({});
 
   const handleFilter = (key, value) => {
@@ -258,7 +262,6 @@ const CategoryPage = () => {
       // Ensure all values match
       // Break early if any filter doesn't match
     }
-
     return matchesQuery && matchFilter && priceRangeQuery;
   });
 
@@ -302,12 +305,15 @@ const CategoryPage = () => {
             <div className="product-side col-lg-9">
               <div className={styles.pc_section}>
                 <div className="d-flex flex-wrap" style={{ gap: "30px" }}>
-                  {currentProducts.length === 0 ? <div className={styles.noProductsMessage}>There are no products.</div> : currentProducts.map(card => <ProductCard key={card.id} data={card} />)}
+                  {currentProducts.length === 0 ? <div className={styles.noProductsMessage}>There are no products.</div> : currentProducts.map(card => <ProductCard key={card.id} data={card}
+                    favoriteProductIds={favoriteProductIds}
+                    refetchFavorites={refetchFavorites} />)}
                 </div>
               </div>
               <div className="pagination-side">
                 <Pagination products={sortedProducts} itemsPerPage={itemsPerPage} handlePageClick={handlePageClick} currentPage={currentPage} />
               </div>
+
             </div>
           </div>
         </div>

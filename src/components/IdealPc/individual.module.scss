@@ -4,18 +4,30 @@
     display: flex;
     align-items: center;
     gap: 30px;
-
+    @media screen and (max-width: 1360px) {
+        flex-direction: column;   
+    }
     .individual_left {
         width: 540px;
         background: rgba(17, 23, 29, 0.3);
         padding: 36px 32px;
-
+        border: 1px solid #323437;
+        background: radial-gradient(circle, rgba(59, 4, 59, 0.503) 20%, rgba(5, 0, 103, 0) 80%);
         .individual_left_select {
             display: flex;
             align-items: center;
             gap: 30px;
             margin-bottom: 24px;
-
+            div{
+                @media screen and (max-width: 1360px) {
+                    width: 100%;   
+                }
+            }
+            @media screen and (max-width: 1360px) {
+                flex-direction: column;
+                align-items: flex-start;
+                width: 100%;   
+            }
             .active_title {
                 color: $firstColor;
                 font-size: 16px;
@@ -35,6 +47,11 @@
                 font-weight: 400;
                 line-height: 20px;
                 text-align: left;
+                border-radius: 4px;
+                @media screen and (max-width: 1360px) {
+                    width: 100%; 
+                    height: 48px;  
+                }
             }
         }
         .redy_product_left_bottom {
@@ -66,7 +83,11 @@
         flex-direction: column;
         background: rgba(17, 23, 29, 0.4);
         padding: 30px 97px 71px;
-
+        border: 1px solid #323437;
+        background: radial-gradient(circle, rgba(59, 4, 59, 0.503) 20%, rgba(5, 0, 103, 0) 80%);
+        @media screen and (max-width: 1360px) {
+            display: none;   
+        }
         .redy_product_right_title {
             font-size: 20px;
             font-weight: 600;

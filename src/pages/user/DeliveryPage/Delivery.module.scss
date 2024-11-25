@@ -1,0 +1,125 @@
+.delCont {
+  margin: 96px auto 120px;
+
+  .delHeader {
+    background: radial-gradient(circle, rgb(44, 19, 44) 20%, rgba(5, 0, 103, 0.084) 65%);
+    padding: 100px 168px;
+    text-align: center;
+    margin-bottom: 80px;
+
+    .headTitle {
+      color: white;
+      font-weight: 700;
+      font-size: 40px;
+      line-height: 56px;
+      margin: 0 auto 40px;
+      width: 546px;
+    }
+
+    .headInfo {
+      color: #bfbfbf;
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 28px;
+      width: 546px;
+      margin: 0 auto;
+    }
+  }
+
+  .delMiddle {
+    margin-bottom: 100px;
+
+    .midTitle {
+      color: white;
+      font-weight: 700;
+      font-size: 32px;
+      line-height: 28px;
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .midBoxCont {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 30px;
+
+      .midBox {
+        padding: 28px;
+        border: 1px solid #323437;
+        border-radius: 2px;
+
+        .no {
+          width: max-content;
+          font-weight: 500;
+          font-size: 18px;
+          line-height: 21px;
+          color: #e6e6e6;
+          background: linear-gradient(120.61deg, #fd3c43 -10.5%, #b622dc 38.25%, #3f27eb 80.92%);
+          border-radius: 50%;
+          padding: 5px 11.5px;
+          margin: 0px auto 20px;
+        }
+
+        .boxTitle {
+          color: white;
+          font-weight: 700;
+          font-size: 16px;
+          line-height: 20px;
+          text-align: center;
+          margin-bottom: 12px;
+        }
+
+        .boxInfo {
+          color: #989da2;
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 17px;
+          text-align: center;
+        }
+      }
+    }
+  }
+
+  .delEnd {
+    .endHeader {
+      color: white;
+      font-weight: 700;
+      font-size: 32px;
+      line-height: 28px;
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .endBoxCont {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+
+      .endBox {
+        padding: 32px 34px;
+        background-color: #161a1e;
+        border-radius: 2px;
+
+        .iconDiv {
+          width: 80px;
+          height: 80px;
+          margin: 0px auto 16px;
+
+          .iconImg {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+
+        .endInfo {
+          color: #e6e6e6;
+          font-weight: 700;
+          font-size: 18px;
+          line-height: 21px;
+          text-align: center;
+        }
+      }
+    }
+  }
+}

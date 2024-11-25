@@ -56,7 +56,7 @@ const RedyProduct = () => {
             <div className={style.border}></div>
             </button>
             <button className={style.redy_product_right_btn}>
-              <span><SlBasket/></span>
+              <span style={{paddingRight:"12px"}}><SlBasket/></span>
             Səbətə at
             </button>
           </div>

@@ -13,37 +13,55 @@ import Logout from "../../../components/Account/Logout";
 import AccountConfirme from "../../../components/Account/AccountConfirme";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useSelector } from "react-redux";
+import { useGetUserQuery } from "../../../redux/sercives/userApi";
 const AccountPage = ({ setExist, setConfirm, exist, confirm }) => {
   const [account, setAccount] = useState(true);
   const [orders, setOrders] = useState(false);
   const [like, setLike] = useState(false);
-  const [userData, setUserData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    address: "",
-  });
-  useEffect(()=>{
-    axios.get("http://ec2-51-20-32-195.eu-north-1.compute.amazonaws.com:8081/api/v1/user")
-    .then((response)=>{
-      setUserData({...userData,firstName:response.data.firstName,lastName:response.data.lastName,email:response.data.email,address:response.data.cityName})
-    })
-    .catch((error)=>console.log(error)
-  )
-},[])
 
-const handleSubmit = async (e) => {
+  // const [userData, setUserData] = useState({
+  //   firstName: "",
+  //   lastName: "",
+  //   email: "",
+  //   address: "",
+  // });
+
+//   useEffect(()=>{
+//     axios.get("http://ec2-51-20-32-195.eu-north-1.compute.amazonaws.com:8081/api/v1/user")
+//     .then((response)=>{
+//       setUserData({...userData,firstName:response.data.firstName,lastName:response.data.lastName,email:response.data.email,address:response.data.cityName})
+//     })
+//     .catch((error)=>console.log(error)
+//   )
+// },[])
+
+// const handleSubmit = async (e) => {
+//   e.preventDefault();
+
+//   axios.put("http://ec2-51-20-32-195.eu-north-1.compute.amazonaws.com:8081/api/v1/user",userData)
+//   .then((response)=>{
+//     setConfirm(true)
+//   })
+//   .catch((error)=>alert("Melumatlar sehvdir")
+//   )
+
+//   }
+const [user, setUser] = useState(null);
+const [showModal, setShowModal] = useState(false);
+
+const regions = [{ name: "Nəsimi rayonu" }, { name: "Nizami rayonu" }, { name: "Pirallahı rayonu" }, { name: "Xəzər rayonu" }, { name: "Nərimanov rayonu" }, { name: "Xəzər rayonu" }, { name: "Binəqədi rayonu" }, { name: "Yasamal rayonu" }, { name: "Suraxanı rayonu" }];
+
+const { accessToken } = useSelector(state => state.auth); // Access tokens from Redux
+console.log("access" + accessToken);
+const { data, isError, isLoading } = useGetUserQuery(undefined, {
+  skip: !localStorage.getItem("accessToken"),
+});
+
+const handleSubmit = e => {
   e.preventDefault();
-
-  axios.put("http://ec2-51-20-32-195.eu-north-1.compute.amazonaws.com:8081/api/v1/user",userData)
-  .then((response)=>{
-    setConfirm(true)
-  })
-  .catch((error)=>alert("Melumatlar sehvdir")
-  )
-
-  }
-
+  setShowModal(true);
+};
   const navigate = useNavigate();
   useEffect(() => {
     if (exist || confirm) {
@@ -125,7 +143,7 @@ const handleSubmit = async (e) => {
             </div>
           </div>
           {account && (
-            <form onSubmit={handleSubmit} className={style.account_right}>
+            <form onClick={handleSubmit} className={style.account_right}>
               <div className={style.account_info}>Hesab məlumatları</div>
               <div>
                 <div className={style.user_inputs}>
@@ -136,8 +154,7 @@ const handleSubmit = async (e) => {
                         <input
                           type="text"
                           placeholder="Ad"
-                          value={userData.firstName}
-                          onChange={(e) => setUser({ ...userData, firstName: e.target.value })}
+                          value={user ? user.firstName : ""} 
                         />
                       </div>
                     </div>
@@ -147,8 +164,7 @@ const handleSubmit = async (e) => {
                         <input
                           type="text"
                           placeholder="Soyad"
-                          value={userData.lastName}
-                          onChange={(e) => setUser({ ...userData, lastName: e.target.value })}
+                          value={user ? user.lastName : ""}
                         />
                       </div>
                     </div>
@@ -160,8 +176,6 @@ const handleSubmit = async (e) => {
                         <input
                           type="email"
                           placeholder="E-mail"
-                          value={userData.email}
-                          onChange={(e) => setUser({ ...userData, email: e.target.value })}
                         />
                       </div>
                     </div>
@@ -171,8 +185,7 @@ const handleSubmit = async (e) => {
                         <input
                           type="text"
                           placeholder="Ünvan" 
-                          value={userData.address}
-                          onChange={(e) => setUser({ ...userData, address: e.target.value })}
+
                         />
                       </div>
                     </div>

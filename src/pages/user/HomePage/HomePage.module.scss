@@ -253,8 +253,6 @@ body {
     overflow: hidden;
     transition: 0.3s ease all;
     z-index: 2;
-
-
     //ANIMATION SPAN
     .cardAnimationSpan {
       position: absolute;
@@ -347,6 +345,7 @@ body {
     //END ANIMATION SPAN
 
 
+
     //INCLUDE CARD IMAGE
     .cardImgContainer {
 
@@ -368,7 +367,6 @@ body {
     }
 
     //END INCLUDE CARD IMAGE
-
 
     //RADIO BUTTONS
     .radioButtons {
@@ -451,6 +449,7 @@ body {
           width: 36px;
           height: 28px;
           background: $linearGradient;
+
           border-radius: 4px;
           display: flex;
           justify-content: center;
@@ -740,9 +739,6 @@ body {
       .cardBottomTitles {
         .namePrice {
           font-family: $fontFamily;
-
-
-
           h4 {
             // max-width: 250px !important;
             // height: 56px !important;

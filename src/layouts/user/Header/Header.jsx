@@ -190,7 +190,7 @@ const Header = ({ exist, confirm }) => {
                   </div>
                 </div>
               </li>
-              <NavLink to={"idealpc"} className={styles.navbar_ideal}>
+              <NavLink to={"/idealpc"} className={styles.navbar_ideal}>
                 <img
                   style={{ display: "none" }}
                   className="idal_imag"

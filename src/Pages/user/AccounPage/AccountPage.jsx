@@ -24,105 +24,25 @@ const AccountPage = ({ setQuite, setConfirm, qiute, confirm }) => {
   const [account, setAccount] = useState(true);
   const [orders, setOrders] = useState(false);
   const [like, setLike] = useState(false);
-  // const [user, setUser] = useState(null);
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  // const queryParams = new URLSearchParams(location.search);
-  // const userData = queryParams.get("userData");
-  // const { data, isError, isLoading } = useGetUserQuery(undefined, {
-  //   skip: !accessToken, 
-  // });
-  // const updateUserProfile = async (updatedUser) => {
-  //   if (!data?.id) {
-  //     alert("İstifadəçi ID-si tapılmadı!");
-  //     return;
-  //   }
-  
-  //   try {
-  //     // FormData obyektini yaratmaq
-  //     const formData = new FormData();
-  //     formData.append(
-  //       "request",
-  //       JSON.stringify({
-  //         firstName: updatedUser.firstName,
-  //         lastName: updatedUser.lastName,
-  //         email: updatedUser.email,
-  //         cityName: updatedUser.cityName,
-  //       })
-  //     );
-  //     formData.append("profileImg", user?.profileImg || "defaultProfileImage");
-  
-      // API-yə sorğu göndərmək
-  //     const response = await axios.put(
-  //       `http://ec2-51-20-32-195.eu-north-1.compute.amazonaws.com:8081/api/v1/user/profile`,
-  //       formData,
-  //       {
-  //         headers: {
-  //           Authorization: `Bearer ${accessToken}`,
-  //         },
-  //       }
-  //     );
-  
-  //     alert("Məlumat uğurla yeniləndi!");
-  //     return response.data;
-  //   } catch (error) {
-  //     console.error("Xəta:", error.response?.data || error.message);
-  //     alert(
-  //       "Məlumat yenilənmədi: " +
-  //         (error.response?.data?.message || error.message)
-  //     );
-  //   }
-  // };
-  
-
-  // useEffect(() => {
-    // if (data) {
-    //   const formData = new FormData();
-    //   formData.append("firstName", data.firstName || "");
-
-    //   sendFormDataToServer(formData);
-    // }
-  //   if (data) {
-
-  //     setUser({
-  //       firstName: data.firstName || "",
-  //       lastName: data.lastName || "",
-  //       email: data.email || "",
-  //       profileImg: data.profileImg || "",
-  //       cityName: data.cityName || "",
-  //     });
-  //   }
-  // }, [data]);
-  // const [updateUser] = useUpdateUserMutation();
-
+  const [user, setUser] = useState(null);
   const { accessToken } = useSelector((state) => state.auth);
   const { data, isLoading } = useGetUserQuery(undefined, {
     skip: !accessToken,
   });
   const [updateUser] = useUpdateUserMutation();
-  console.log(data)
-console.log(accessToken);
 
-const [user, setUser] = useState({
-  firstName: data?.firstName || "",
-  lastName: data?.lastName || "",
-  email: data?.email || "",
-  cityName: data?.cityName || "",
-  profileImg: data?.profileImg || null, // Şəkil üçün ayrıca sahə
-});
-
-  // useEffect(() => {
-  //   if (data) {
-  //     setUser({
-  //       firstName: data.firstName || "",
-  //       lastName: data.lastName || "",
-  //       email: data.email || "",
-  //       cityName: data.cityName || "",
-  //       profileImg: data.profileImg || null,
-  //     });
-  //   }
-  // }, [data]);
+  // İstifadəçi məlumatlarının saxlanması
+  useEffect(() => {
+    if (data) {
+      setUser({
+        firstName: data.firstName || "",
+        lastName: data.lastName || "",
+        email: data.email || "",
+        cityName: data.cityName || "",
+        profileImg: data.profileImg || null,
+      });
+    }
+  }, [data]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -135,24 +55,19 @@ const [user, setUser] = useState({
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     const formData = new FormData();
     formData.append("request", JSON.stringify(user));
-    if (user.profileImg) {
-      formData.append("profileImg", user.profileImg); 
-    }
-  
+    if (user.profileImg) formData.append("profileImg", user.profileImg);
+
     try {
-      await updateUser(formData).unwrap(); 
+      await updateUser(formData).unwrap();
       alert("Məlumat uğurla yeniləndi!");
     } catch (error) {
       console.error("Xəta:", error);
       alert("Məlumat yenilənmədi: " + (error?.data?.message || error.message));
     }
   };
-  
-  console.log(user,"user");
-  
 
   useEffect(() => {
     if (qiute || confirm) {

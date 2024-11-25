@@ -5,10 +5,13 @@
     display: flex;
     align-items: center;
     gap: 30px;
-
+    @media screen and (max-width: 1360px) {
+        flex-direction: column;   
+    }
     .redy_product_left {
         width: 540px;
-        background: rgba(17, 23, 29, 0.4);
+        border: 1px solid #323437;
+        background: radial-gradient(circle, rgba(59, 4, 59, 0.503) 20%, rgba(5, 0, 103, 0) 80%);
         backdrop-filter: blur(100px);
         padding: 36px 91px 36px;
 
@@ -60,8 +63,12 @@
         align-items: center;
         justify-content: center;
         flex-direction: column;
-        background: rgba(17, 23, 29, 0.4);
+        border: 1px solid #323437;
+        background: radial-gradient(circle, rgba(59, 4, 59, 0.503) 20%, rgba(5, 0, 103, 0) 80%);
         padding: 30px 97px 71px;
+        @media screen and (max-width: 1360px) {
+            display: none;   
+        }
 
         .redy_product_right_title {
             font-size: 20px;

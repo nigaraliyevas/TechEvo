@@ -90,7 +90,13 @@ const basketSlice = createSlice({
         state.totalPrice = calculateTotalPrice(state.basket);
         storeLocalStorage(state.basket);
         storeLocalCount(state.count);
-      }
+      } 
+    },
+    clearBasket: (state) => {
+      state.basket = []; 
+      state.count = 0
+      storeLocalStorage(state.basket);
+      storeLocalCount(state.count);
     },
   },
 });

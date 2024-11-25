@@ -19,8 +19,15 @@ import AllOrders from "../components/Orders/AllOrders";
 import { useEffect } from "react";
 import { setTokens } from "../redux/slices/TokenSlice";
 import { useDispatch } from "react-redux";
+<<<<<<< HEAD
+import IdealPcPage from "../pages/user/IdealPcPage/IdealPcPage";
+import Repair from "../pages/user/RepairPage/Repair";
+import Delivery from "../pages/user/DeliveryPage/Delivery";
+import Credit from "../pages/user/CreditPage/Credit";
+=======
 import IdealPcPage from "../Pages/user/IdealPcPage/IdealPcPage";
 import Favorites from "../components/Favorites/Favorites";
+>>>>>>> 2e8b4e238617b3094ca9b38e664d0f16226e6826
 
 const UserRouter = ({ setConfirm, confirm, setExist, exist }) => {
   const dispatch = useDispatch();
@@ -36,6 +43,9 @@ const UserRouter = ({ setConfirm, confirm, setExist, exist }) => {
 
     loadTokensFromStorage();
   }, [dispatch]);
+  const isItems = localStorage.getItem("basket") && JSON.parse(localStorage.getItem("basket")).length > 0;
+  console.log(isItems);
+
   return (
     <Routes>
       <Route element={<UserLayout confirm={confirm} exist={exist} />}>
@@ -45,20 +55,27 @@ const UserRouter = ({ setConfirm, confirm, setExist, exist }) => {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/registerpage2" element={<RegisterPage2 />} />
         <Route path="/activate" element={<EmailVerificationPage />} />
-        <Route path="/newpassword" element={<PasswordReset />} />
-        <Route path="/enterpassword" element={<EnterPasswordPage />} />
         <Route path="/:category" element={<CategoryPage />} />
         <Route path="/:category&filterByPrice/:price" element={<CategoryPage />} />
         <Route path="/product" element={<ProductPage />} />
         <Route path="/basket" element={<BasketPage />} />
-        <Route path="/confirm" element={<ConfirmBasket />} />
+
+        <Route path="/confirm" element={<ConfirmBasket isItems={isItems} />} />
+
+        <Route path="/newpassword" element={<PasswordReset />} />
+        <Route path="/otp" element={<EnterPasswordPage />} />
 
         <Route path="/accountpage" element={<AccountPage setConfirm={setConfirm} setExist={setExist} confirm={confirm} exist={exist} />} />
         <Route path="/accountpage" element={<AccountPage />} />
         <Route path="/idealpc" element={<IdealPcPage />} />
 
         <Route path="/accountpage" element={<AccountPage setConfirm={setConfirm} setExist={setExist} confirm={confirm} exist={exist} />} />
+
         <Route path="/orders" element={<AllOrders />} />
+        <Route path="/repair" element={<Repair />} />
+        <Route path="/delivery" element={<Delivery />} />
+        <Route path="/credit" element={<Credit />} />
+        
         <Route path="/favorites" element={<Favorites />} />
       </Route>
     </Routes>

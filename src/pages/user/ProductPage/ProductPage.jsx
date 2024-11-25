@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import styles from "./ProductPage.module.scss";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -8,7 +8,9 @@ import Features from "../../../components/DetailFeatures/Features";
 import Reviews from "../../../components/Reviews/Reviews";
 import { IoIosArrowForward, IoIosArrowBack, IoMdClose } from "react-icons/io";
 import { useSearchParams, useNavigate } from "react-router-dom";
-import { useGetProductByIdQuery } from "../../../redux/sercives/productApi";
+import { useGetProductByIdQuery, useGetProductsByCategoryNameQuery } from "../../../redux/sercives/productApi";
+import { Card } from "react-bootstrap";
+import SimilarProducts from "../../../components/SimilartProducts/SimilarProducts";
 
 const ProductPage = () => {
   const [searchParams] = useSearchParams();
@@ -16,13 +18,29 @@ const ProductPage = () => {
   const id = searchParams.get("id");
 
   const { data: product, error, isLoading } = useGetProductByIdQuery(id);
-  // console.log(product, "detailData");
+
+  // const { data: categoryData, isLoading: isLaptopsLoading } = useGetProductsByCategoryNameQuery(product ? product.categoryName : undefined);
+  // const filteredCategoryData = categoryData?.filter(item => item.id !== product?.id);
 
   const [modalShow, setModalShow] = useState(false);
   const [carouselImages, setCarouselImages] = useState([]);
+  const caruselRef = useRef();
+
   const [imageIndex, setImageIndex] = useState(0);
   const [currentIndex, setCurrentIndex] = useState();
+  // const [itemsToShow, setItemsToShow] = useState(3);
+
   const extendedCarouselImages = [...carouselImages, ...carouselImages];
+
+  // useEffect(() => {
+  //   const handleResize = () => {};
+
+  //   handleResize();
+
+  //   window.addEventListener("resize", handleResize);
+
+  //   return () => window.removeEventListener("resize", handleResize);
+  // }, []);
 
   useEffect(() => {
     if (!id) {
@@ -86,7 +104,9 @@ const ProductPage = () => {
             </div>
             <div className={styles.similiarProducts}>
               <Row>
-                <Col>Oxşar məhsullar</Col>
+                <Col style={{ paddingLeft: "0px", paddingRight: "0px" }}>
+                  <SimilarProducts product={product} categoryName={product?.categoryName} />
+                </Col>
               </Row>
             </div>
           </div>

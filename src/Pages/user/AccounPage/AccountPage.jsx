@@ -137,13 +137,13 @@ const [user, setUser] = useState({
     e.preventDefault();
   
     const formData = new FormData();
-    formData.append("request", JSON.stringify(user)); // Correctly stringify the object
+    formData.append("request", JSON.stringify(user));
     if (user.profileImg) {
-      formData.append("profileImg", user.profileImg); // Add the file if available
+      formData.append("profileImg", user.profileImg); 
     }
   
     try {
-      await updateUser(formData).unwrap(); // Send the form data
+      await updateUser(formData).unwrap(); 
       alert("Məlumat uğurla yeniləndi!");
     } catch (error) {
       console.error("Xəta:", error);

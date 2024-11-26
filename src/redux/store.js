@@ -24,7 +24,7 @@ const store = configureStore({
     [forgetPassApi.reducerPath]: forgetPassApi.reducer,
     [serviceApi.reducerPath]: serviceApi.reducer,
   },
-  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(productApi.middleware).concat(reviewsApi.middleware).concat(favoriteApi.middleware).concat(orderApi.middleware).concat(userApi.middleware).concat(forgetPassApi.middleware).concat(userApi.middleware).concat(apiMiddleware).concat(serviceApi.middleware), // commentApi middleware-i əlavə et
+  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(productApi.middleware).concat(reviewsApi.middleware).concat(favoriteApi.middleware).concat(orderApi.middleware).concat(userApi.middleware).concat(forgetPassApi.middleware).concat(serviceApi.middleware), // commentApi middleware-i əlavə et
 });
 
 export default store;

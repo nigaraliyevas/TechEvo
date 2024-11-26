@@ -20,7 +20,7 @@ import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const AccountPage = ({ setQuite, setConfirm, qiute, confirm }) => {
+const AccountPage = ({ setExist, setConfirm, exist, confirm }) => {
   const [account, setAccount] = useState(true);
   const [orders, setOrders] = useState(false);
   const [like, setLike] = useState(false);
@@ -70,7 +70,7 @@ const AccountPage = ({ setQuite, setConfirm, qiute, confirm }) => {
   };
 
   useEffect(() => {
-    if (qiute || confirm) {
+    if (exist || confirm) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
@@ -78,7 +78,7 @@ const AccountPage = ({ setQuite, setConfirm, qiute, confirm }) => {
     return () => {
       document.body.style.overflow = "auto";
     };
-  }, [qiute, confirm]);
+  }, [exist, confirm]);
 
   const accountOpen = () => {
     setAccount(true);
@@ -104,7 +104,7 @@ const AccountPage = ({ setQuite, setConfirm, qiute, confirm }) => {
     <div className={style.container}>
       <div
         style={{
-          marginTop: qiute || confirm ? "0" : "",
+          marginTop: exist || confirm ? "0" : "",
         }}
         className={style.account}
       >
@@ -137,7 +137,7 @@ const AccountPage = ({ setQuite, setConfirm, qiute, confirm }) => {
               </div>
             
             </div>
-            <div onClick={() => setQuite(true)} className={style.user_out}>
+            <div onClick={() => setExist(true)} className={style.user_out}>
               <img src={out} alt="" /> Çıxış
             </div>
           </div>
@@ -222,7 +222,7 @@ const AccountPage = ({ setQuite, setConfirm, qiute, confirm }) => {
         </div>
       </div>
 
-      {/* <Logout setConfirm={setConfirm} setQuite={setQuite} /> */}
+      {exist&&<Logout setConfirm={setConfirm} setExist={setExist} />}
       {confirm && <AccountConfirme setConfirm={setConfirm} />}
     </div>
   );

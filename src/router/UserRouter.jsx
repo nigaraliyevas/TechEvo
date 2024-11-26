@@ -19,7 +19,7 @@ import AllOrders from "../components/Orders/AllOrders";
 import { useEffect } from "react";
 import { setTokens } from "../redux/slices/TokenSlice";
 import { useDispatch } from "react-redux";
-import IdealPcPage from "../pages/user/IdealPcPage/IdealPcPageTemp";
+import IdealPcPage from "../pages/user/IdealPcPage/IdealPcPage";
 import Repair from "../pages/user/RepairPage/Repair";
 import Delivery from "../pages/user/DeliveryPage/Delivery";
 import Favorites from "../components/Favorites/Favorites";

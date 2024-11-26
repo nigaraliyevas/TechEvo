@@ -14,7 +14,7 @@ import BasketPage from "../pages/user/BasketPage/BasketPage";
 import ConfirmBasket from "../pages/user/ConfirmBasketPage/ConfirmBasketPage";
 import EmailVerificationPage from "../pages/user/Register/EmailVerificationPage";
 import RegisterPage2 from "../pages/user/Register/RegisterPage2";
-import AccountPage from "../pages/user/AccounPage/AccountPage";
+// import AccountPage from "../pages/user/AccounPage/AccountPage";
 import AllOrders from "../components/Orders/AllOrders";
 import { useEffect } from "react";
 import { setTokens } from "../redux/slices/TokenSlice";
@@ -23,7 +23,8 @@ import Repair from "../pages/user/RepairPage/Repair";
 import Delivery from "../pages/user/DeliveryPage/Delivery";
 import Credit from "../pages/user/CreditPage/Credit";
 import Favorites from "../components/Favorites/Favorites";
-import IdealPcPage from "../Pages/user/IdealPcPage/IdealPcPageTemp";
+import IdealPcPage from "../pages/user/IdealPcPage/IdealPcPageTemp";
+import AccountPage from "../pages/user/AccounPage/AccountPage";
 
 const UserRouter = ({ setConfirm, confirm, setExist, exist }) => {
   const dispatch = useDispatch();
@@ -60,9 +61,9 @@ const UserRouter = ({ setConfirm, confirm, setExist, exist }) => {
         <Route path="/newpassword" element={<PasswordReset />} />
         <Route path="/otp" element={<EnterPasswordPage />} />
         <Route path="/accountpage" element={<AccountPage setConfirm={setConfirm} setExist={setExist} confirm={confirm} exist={exist} />} />
-        <Route path="/accountpage" element={<AccountPage />} />
+        {/* <Route path="/accountpage" element={<AccountPage />} /> */}
         <Route path="/idealpc" element={<IdealPcPage />} />
-        <Route path="/accountpage" element={<AccountPage setConfirm={setConfirm} setExist={setExist} confirm={confirm} exist={exist} />} />
+        {/* <Route path="/accountpage" element={<AccountPage setConfirm={setConfirm} setExist={setExist} confirm={confirm} exist={exist} />} /> */}
         <Route path="/orders" element={<AllOrders />} />
         <Route path="/repair" element={<Repair />} />
         <Route path="/delivery" element={<Delivery />} />

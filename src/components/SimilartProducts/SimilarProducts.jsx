@@ -4,9 +4,6 @@ import styles from "./SimilarProducts.module.scss";
 import Card from "../../pages/user/HomePage/Section/Card/Card";
 
 const SimilarProducts = ({ product, categoryName }) => {
-  console.log(categoryName);
-  const [itemsToShow, setItemsToShow] = useState(3);
-  const { data: categoryData, isLoading: isLaptopsLoading } = useGetProductsByCategoryNameQuery(categoryName);
   useEffect(() => {
     const handleResize = () => {};
 
@@ -16,6 +13,9 @@ const SimilarProducts = ({ product, categoryName }) => {
 
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+  const [itemsToShow, setItemsToShow] = useState(3);
+  const { data: categoryData, isLoading: isLaptopsLoading } = useGetProductsByCategoryNameQuery({ categoryName });
+  console.log(categoryName);
   const filteredCategoryData = categoryData?.filter(item => item.id !== product?.id);
   return (
     <div>
@@ -25,8 +25,7 @@ const SimilarProducts = ({ product, categoryName }) => {
           {filteredCategoryData?.slice(0, itemsToShow).map(card => (
             <div className={`col-${itemsToShow}`} key={card.id} style={{ flex: "1" }}>
               <div className="cardContainer">
-                <Card card={card} />
-                {console.log(card)}
+                <Card card={card} favoriteProductIds={null} refetchFavorites={null} />
               </div>
             </div>
           ))}

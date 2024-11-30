@@ -41,14 +41,14 @@ const Reviews = ({ data }) => {
   const [newReview, setNewReview] = useState({ rating: 0, comment: "" });
   const [visibleCount, setVisibleCount] = useState(2);
   const { data: reviewsData, error, isLoading } = useGetReviewsQuery(Number(id));
-  console.log(Number(id));
+  // console.log(Number(id));
   const [postReview] = usePostReviewMutation();
-  console.log(reviewsData);
+  // console.log(reviewsData);
 
   const user = localStorage.getItem("email");
   const [reviews, setReviews] = useState([]);
 
-  console.log(token);
+  // console.log(token);
 
   useEffect(() => {
     if (reviewsData) {

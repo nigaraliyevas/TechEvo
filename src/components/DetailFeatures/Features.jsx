@@ -10,7 +10,7 @@ const Features = ({ id }) => {
 
   const { data, error, isLoading } = useGetProductByIdQuery(id);
 
-  console.log(data);
+  // console.log(data);
 
   useEffect(() => {
     if (data && data.specifications) {
@@ -21,10 +21,10 @@ const Features = ({ id }) => {
       }));
 
       setFeatures(featureArray);
-      console.log(data.specifications);
+      // console.log(data.specifications);
     }
   }, [data]);
-  console.log(features);
+  // console.log(features);
 
   const isOverflowing = el => {
     return el.scrollWidth > el.clientWidth;
@@ -39,7 +39,7 @@ const Features = ({ id }) => {
   }, [features]);
 
   if (isLoading) {
-    console.log("Loading data...");
+    // console.log("Loading data...");
   } else if (error) {
     console.log("Error fetching data:", error);
   }

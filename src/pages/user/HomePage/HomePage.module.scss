@@ -1,4 +1,3 @@
-
 @import "../../../assets/variables/variables";
 @import "../../../assets/common/base.scss";
 
@@ -10,15 +9,12 @@
 
 body {
   font-family: "SF Pro Display", sans-serif;
-  ;
   background-color: $bgColor !important;
-
 
   //TOP SLIDER
   .sliderContainer {
     margin-left: auto;
     margin-right: auto;
-
 
     .slick-arrow {
       display: none !important;
@@ -31,7 +27,6 @@ body {
         width: 100%;
         height: auto;
       }
-
 
       .slick-slider div {
         padding-top: 93px !important;
@@ -53,8 +48,6 @@ body {
           flex-direction: column;
           gap: 36px;
           font-family: "SF Pro Display", sans-serif;
-          ;
-
           h1 {
             font-size: 70px;
             font-weight: 700;
@@ -106,28 +99,18 @@ body {
               /* Hover zamanı gradient görünür */
             }
           }
-
-
         }
 
         span {
           margin: 0 5px;
           /* Sözlər arasında boşluq yaratmaq üçün */
         }
-
-
       }
-
-
-
     }
   }
 }
 
-
-
 //END TOP SLIDER
-
 
 //XUSUSI SECIMLER
 #specialselected {
@@ -149,7 +132,6 @@ body {
       padding-left: 30px;
       padding-right: 30px;
     }
- 
 
     .title {
       color: white;
@@ -164,8 +146,6 @@ body {
 }
 
 //END XUSUSI SECIMLER
-
-
 
 //CARDS
 .cardMain {
@@ -232,16 +212,7 @@ body {
     padding: 12px !important;
     border: 1px solid transparent;
     cursor: pointer;
-    background: radial-gradient(circle at 100% 100%,
-        #000000 0,
-        #000000 2px,
-        transparent 2px) 0% 0% / 3px 3px no-repeat,
-      radial-gradient(circle at 0 100%, #000000 0, #000000 2px, transparent 2px) 100% 0% / 3px 3px no-repeat,
-      radial-gradient(circle at 100% 0, #000000 0, #000000 2px, transparent 2px) 0% 100% / 3px 3px no-repeat,
-      radial-gradient(circle at 0 0, #000000 0, #000000 2px, transparent 2px) 100% 100% / 3px 3px no-repeat,
-      linear-gradient(#000000, #000000) 50% 50% / calc(100% - 1px) calc(100% - 6px) no-repeat,
-      linear-gradient(#000000, #000000) 50% 50% / calc(100% - 6px) calc(100% - 1px) no-repeat,
-      linear-gradient(to top left, #0b0b4b, #49146e);
+    background: radial-gradient(circle at 100% 100%, #000000 0, #000000 2px, transparent 2px) 0% 0% / 3px 3px no-repeat, radial-gradient(circle at 0 100%, #000000 0, #000000 2px, transparent 2px) 100% 0% / 3px 3px no-repeat, radial-gradient(circle at 100% 0, #000000 0, #000000 2px, transparent 2px) 0% 100% / 3px 3px no-repeat, radial-gradient(circle at 0 0, #000000 0, #000000 2px, transparent 2px) 100% 100% / 3px 3px no-repeat, linear-gradient(#000000, #000000) 50% 50% / calc(100% - 1px) calc(100% - 6px) no-repeat, linear-gradient(#000000, #000000) 50% 50% / calc(100% - 6px) calc(100% - 1px) no-repeat, linear-gradient(to top left, #0b0b4b, #49146e);
     border-radius: 5px;
     box-sizing: border-box;
     max-width: 350px;
@@ -344,14 +315,10 @@ body {
 
     //END ANIMATION SPAN
 
-
-
     //INCLUDE CARD IMAGE
     .cardImgContainer {
-
       width: 326px;
       height: 180px;
-
 
       .cardImg {
         height: 100%;
@@ -377,20 +344,20 @@ body {
       display: flex;
       background-color: rgba(128, 128, 128, 0.384);
       padding: 4px 8px;
-      border-radius: .5rem;
+      border-radius: 0.5rem;
       gap: 8px; // Radio button-lar arasında məsafə
 
       .radioDiv {
         width: 8px; // Radio button ölçüsü
         height: 8px;
         border-radius: 50%; // Dairəvi forma
-        background-color: #DFDFDF; // Default rəngi
+        background-color: #dfdfdf; // Default rəngi
         cursor: pointer; // Kursoru pointer edərək kliklənə biləcəyini göstər
         transition: background-color 0.3s ease, border-color 0.3s ease; // Keçidlər
 
         &.selected {
-          background-color: #2E2E2E; // Seçilmiş halda arxa fon
-          border: 2px solid #2E2E2E; // Seçilmiş halda çərçivə rəngi
+          background-color: #2e2e2e; // Seçilmiş halda arxa fon
+          border: 2px solid #2e2e2e; // Seçilmiş halda çərçivə rəngi
         }
 
         // Hover zamanı
@@ -401,7 +368,6 @@ body {
     }
 
     //  END RADIO BUTTONS
-
 
     .heartSpan {
       //color: white;
@@ -415,8 +381,6 @@ body {
     .cardBottomTitles {
       .namePrice {
         font-family: $fontFamily;
-
-
 
         h4 {
           //max-width: 250px;
@@ -435,7 +399,6 @@ body {
           line-height: 20px;
           margin-top: 12px;
           margin-bottom: 8px;
-
         }
       }
 
@@ -454,7 +417,6 @@ body {
           display: flex;
           justify-content: center;
           align-items: center;
-         
 
           button {
             color: white;
@@ -465,20 +427,17 @@ body {
             background-color: unset;
           }
 
-
           img {
             max-width: 100%;
             max-height: 100%;
           }
         }
       }
-
     }
-
   }
 }
 
-//END CARDS  
+//END CARDS
 
 //SERVICES
 .servicesDiv {
@@ -500,7 +459,6 @@ body {
     padding-bottom: 120px;
     padding-left: 30px;
     padding-right: 30px;
-
 
     .border {
       padding: 40px 10px 30px 10px;
@@ -548,17 +506,11 @@ body {
   }
 }
 
-
 //END SERVICES
-
-
-
-
 
 //MEDIA QUERIES//
 //Mobil cihazlar üçün
 @media (max-width: 480px) {
-
   //TOP SLIDER
   .sliderContainer {
     // max-height: 300px;
@@ -602,7 +554,6 @@ body {
           // padding-top: 48px !important;
           // padding-bottom: 48px !important;
 
-
           h1 {
             font-size: 24px !important;
             font-weight: 700 !important;
@@ -631,22 +582,15 @@ body {
             padding: 10px 24px !important;
             top: 95% !important;
 
-
-
-
-
             span {
               margin: 0 2px !important;
               /* Sözlər arasında boşluq yaratmaq üçün */
             }
-
           }
         }
       }
     }
   }
-
-
 
   //END TOP SLIDER
 
@@ -663,8 +607,6 @@ body {
         padding-left: 8px !important;
         padding-right: 30px !important;
       }
-
-      
 
       .title {
         color: white;
@@ -695,9 +637,6 @@ body {
       max-width: 198px !important;
       //max-height: 284px !important;
 
-
-
-
       //INCLUDE CARD IMAGE
       .cardImgContainer {
         width: 174px !important;
@@ -715,9 +654,7 @@ body {
         }
       }
 
-
       //END INCLUDE CARD IMAGE
-
 
       //RADIO BUTTONS
       .radioButtons {
@@ -725,7 +662,6 @@ body {
       }
 
       //  END RADIO BUTTONS
-
 
       .heartSpan {
         color: white;
@@ -758,7 +694,6 @@ body {
             line-height: 16px !important;
             margin-top: 0px !important;
             margin-bottom: 8px !important;
-
           }
         }
 
@@ -783,9 +718,8 @@ body {
               justify-content: center;
               align-items: center;
               border: none;
-              background-color: unset
+              background-color: unset;
             }
-
 
             img {
               max-width: 100% !important;
@@ -793,13 +727,11 @@ body {
             }
           }
         }
-
       }
     }
   }
 
-  //END CARDS 
-
+  //END CARDS
 
   //SERVICES
   .servicesDiv {
@@ -820,7 +752,6 @@ body {
       padding: 0 8px !important;
       gap: 20px !important;
       padding-bottom: 72px !important;
-
 
       .border {
         border: 1px solid rgba(89, 89, 89, 1);
@@ -844,7 +775,6 @@ body {
         display: flex !important;
         flex-direction: column !important;
         justify-content: center !important;
-
       }
 
       .text {
@@ -865,16 +795,307 @@ body {
       }
     }
   }
-
 }
 
 //END SERVICES
 
+//CARDS
+.cardMain {
+  display: flex;
+  flex-wrap: nowrap;
+  width: 100%;
+  gap: 20px;
 
+  //MOBILE-CARDS
 
+  .mobileCards {
+    display: flex;
+    overflow-x: scroll;
+    scrollbar-width: none;
+    /* Firefox */
+    gap: 10px;
+    padding-left: 8px;
+  }
 
+  .mobileCards::-webkit-scrollbar {
+    display: none;
+  }
 
+  //END MOBILE-CARDS
 
+  //SWIPPER
+  .swiper {
+    padding: 0 30px !important;
+
+    .swiperSlide {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: auto;
+    }
+
+    .swiperNav:after {
+      text-transform: none !important;
+      letter-spacing: 0;
+      font-size: 15px !important;
+      font-weight: 600;
+      font-variant: initial;
+      color: white !important;
+      // border: 2px solid white !important;
+      // border-radius: 50% !important;
+      width: 30px !important;
+      height: 30px !important;
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+    }
+
+    .swiperNavPrev {
+      left: 0px !important;
+    }
+
+    .swiperNavNext {
+      right: 0px !important;
+    }
+  }
+}
+.card {
+  padding: 12px !important;
+  border: 1px solid transparent;
+  cursor: pointer;
+  background: radial-gradient(circle at 100% 100%, #000000 0, #000000 2px, transparent 2px) 0% 0% / 3px 3px no-repeat, radial-gradient(circle at 0 100%, #000000 0, #000000 2px, transparent 2px) 100% 0% / 3px 3px no-repeat, radial-gradient(circle at 100% 0, #000000 0, #000000 2px, transparent 2px) 0% 100% / 3px 3px no-repeat, radial-gradient(circle at 0 0, #000000 0, #000000 2px, transparent 2px) 100% 100% / 3px 3px no-repeat, linear-gradient(#000000, #000000) 50% 50% / calc(100% - 1px) calc(100% - 6px) no-repeat, linear-gradient(#000000, #000000) 50% 50% / calc(100% - 6px) calc(100% - 1px) no-repeat, linear-gradient(to top left, #0b0b4b, #49146e);
+  border-radius: 5px;
+  box-sizing: border-box;
+  max-width: 350px;
+  background-clip: border-box;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  transition: 0.3s ease all;
+  z-index: 2;
+
+  //ANIMATION SPAN
+  .cardAnimationSpan {
+    position: absolute;
+    display: block;
+  }
+
+  &:hover .cardAnimationSpan:nth-child(1) {
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 0.125rem;
+    background: linear-gradient(90deg, transparent, #e31c25);
+    animation: btn-anim1 1s linear infinite;
+  }
+
+  @keyframes btn-anim1 {
+    0% {
+      left: -100%;
+    }
+
+    50%,
+    100% {
+      left: 100%;
+    }
+  }
+
+  &:hover .cardAnimationSpan:nth-child(2) {
+    top: -100%;
+    right: 0;
+    width: 0.125rem;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, #e31c25);
+    animation: btn-anim2 1s linear infinite;
+    animation-delay: 0.25s;
+  }
+
+  @keyframes btn-anim2 {
+    0% {
+      top: -100%;
+    }
+
+    50%,
+    100% {
+      top: 100%;
+    }
+  }
+
+  &:hover .cardAnimationSpan:nth-child(3) {
+    bottom: 0;
+    right: -100%;
+    width: 100%;
+    height: 0.125rem;
+    background: linear-gradient(270deg, transparent, #e31c25);
+    animation: btn-anim3 1s linear infinite;
+    animation-delay: 0.5s;
+  }
+
+  @keyframes btn-anim3 {
+    0% {
+      right: -100%;
+    }
+
+    50%,
+    100% {
+      right: 100%;
+    }
+  }
+
+  &:hover .cardAnimationSpan:nth-child(4) {
+    bottom: -100%;
+    left: 0;
+    width: 0.125rem;
+    height: 100%;
+    background: linear-gradient(360deg, transparent, #e31c25);
+    animation: btn-anim4 1s linear infinite;
+    animation-delay: 0.75s;
+  }
+
+  @keyframes btn-anim4 {
+    0% {
+      bottom: -100%;
+    }
+
+    50%,
+    100% {
+      bottom: 100%;
+    }
+  }
+
+  //END ANIMATION SPAN
+
+  //INCLUDE CARD IMAGE
+  .cardImgContainer {
+    width: 326px;
+    height: 180px;
+
+    .cardImg {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      transition: 0.5s ease all;
+
+      &:hover {
+        transform: scale(1.1);
+        transition: 0.5s ease all;
+      }
+    }
+  }
+
+  //END INCLUDE CARD IMAGE
+
+  //RADIO BUTTONS
+  .radioButtons {
+    position: absolute; // Şəkilin üstündə görünməsi üçün
+    top: 46%; // Yuxarıdan məsafə
+    left: 50%; // Sol kənardan mərkəzləşdirmək üçün
+    transform: translate(-50%, -50%); // Mərkəzləşdirmək
+    display: flex;
+    background-color: rgba(128, 128, 128, 0.384);
+    padding: 4px 8px;
+    border-radius: 0.5rem;
+    gap: 8px; // Radio button-lar arasında məsafə
+
+    .radioDiv {
+      width: 8px; // Radio button ölçüsü
+      height: 8px;
+      border-radius: 50%; // Dairəvi forma
+      background-color: #dfdfdf; // Default rəngi
+      cursor: pointer; // Kursoru pointer edərək kliklənə biləcəyini göstər
+      transition: background-color 0.3s ease, border-color 0.3s ease; // Keçidlər
+
+      &.selected {
+        background-color: #2e2e2e; // Seçilmiş halda arxa fon
+        border: 2px solid #2e2e2e; // Seçilmiş halda çərçivə rəngi
+      }
+
+      // Hover zamanı
+      &:hover {
+        background-color: #ccc; // Hover zamanı arxa fon
+      }
+    }
+  }
+
+  //  END RADIO BUTTONS
+
+  .heartSpan {
+    //color: white;
+    position: absolute;
+    right: 3%;
+    top: 0%;
+    font-size: x-large;
+  }
+
+  //CARD BOTTOM TITLES
+  .cardBottomTitles {
+    .namePrice {
+      font-family: $fontFamily;
+
+      h4 {
+        //max-width: 250px;
+        height: 56px;
+        color: white;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 28px;
+        margin-top: 16px;
+      }
+
+      p {
+        color: white;
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 20px;
+        margin-top: 12px;
+        margin-bottom: 8px;
+      }
+    }
+
+    .ratingBasket {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 28px;
+
+      .basketBg {
+        width: 36px;
+        height: 28px;
+        background: $linearGradient;
+        border-radius: 3px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        button {
+          color: white;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border: none;
+          background-color: unset;
+        }
+
+        a {
+          color: white;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        img {
+          max-width: 100%;
+          max-height: 100%;
+        }
+      }
+    }
+  }
+}
+
+//END CARDS
 
 /* Orta mobil cihazlar üçün */
 @media only screen and (min-width: 481px) and (max-width: 768px) {

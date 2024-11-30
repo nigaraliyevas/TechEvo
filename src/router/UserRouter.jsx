@@ -40,7 +40,6 @@ const UserRouter = ({ setConfirm, confirm, setExist, exist }) => {
     loadTokensFromStorage();
   }, [dispatch]);
   const isItems = localStorage.getItem("basket") && JSON.parse(localStorage.getItem("basket")).length > 0;
-  console.log(isItems);
 
   return (
     <Routes>

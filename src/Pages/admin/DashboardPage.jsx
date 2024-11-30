@@ -1,7 +1,16 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Link } from "react-router-dom";
-
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
+import { useGetAnalyticsQuery } from "../../redux/sercives/analyticsApi";
+import Chart from "../../components/admin/Chart/Chart";
 const Dashboard = () => {
+  // const { data, error, isLoading } = useGetAnalyticsQuery(); // Fetch analytics data
+  // const chartData = [
+  //   { name: "Week 1", Ziyaret: data.visitCount, Sifariş: data.successOrderCount, Qeydiyyat: data.loginUserCount },
+  //   { name: "Week 2", Ziyaret: data.visitCount * 1.5, Sifariş: data.successOrderCount * 2, Qeydiyyat: data.loginUserCount * 2 }, // Dummy values
+  //   { name: "Week 3", Ziyaret: data.visitCount * 0.8, Sifariş: data.successOrderCount * 0.5, Qeydiyyat: data.loginUserCount * 0.8 }, // Dummy values
+  //   { name: "Week 4", Ziyaret: data.visitCount * 1.2, Sifariş: data.successOrderCount * 1.5, Qeydiyyat: data.loginUserCount * 1.3 }, // Dummy values
+  // ];
+
   return (
     <>
       {/* Stats */}
@@ -20,13 +29,13 @@ const Dashboard = () => {
       <div className="col-12 row mb-4">
         {/* Graph */}
         <div className="col-12 col-md-8 mb-3">
-          <div className="card h-100">
+          <div className="card h-100" style={{ background: "#161A1E" }}>
             <div className="card-body">
-              <h5 className="card-title">Aylıq hesabat</h5>
+              <h5 className="card-title text-white" style={{ marginTop: "24px", marginBottom: "24px", marginLeft: "20px", fontSize: "24px", fontWeight: "700", lineHeight: "24.68px" }}>
+                Aylıq hesabat
+              </h5>
               <div className="chart-placeholder">
-                {" "}
-                {/* Replace this with your chart */}
-                <p>Chart will be rendered here</p>
+                <Chart />
               </div>
             </div>
           </div>

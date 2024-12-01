@@ -9,14 +9,17 @@ export const serviceApi = createApi({
     baseUrl: `${serverUrl}`,
   }),
   endpoints: builder => ({
-    getServices: builder.query({
+    getRepair: builder.query({
       query: () => `support`,
     }),
-    getSteps: builder.query({
+    getRepairSteps: builder.query({
       query: () => `support/steps`,
+    }),
+    getRepairHeader: builder.query({
+      query: () => `support/header`,
     }),
   }),
   keepUnusedDataFor: 60, // Istifade olunmayan datalari 60saniye saxlayir
 });
 
-export const { useGetServicesQuery, useGetStepsQuery } = serviceApi;
+export const { useGetRepairQuery, useGetRepairStepsQuery, useGetRepairHeaderQuery } = serviceApi;

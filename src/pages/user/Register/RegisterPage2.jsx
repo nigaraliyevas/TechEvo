@@ -96,7 +96,7 @@ export default function RegisterPage2() {
     }
     return "";
   };
-
+  const serverUrl = import.meta.env.VITE_SOME_KEY;
   const handleSubmit = async e => {
     e.preventDefault();
 
@@ -161,7 +161,7 @@ export default function RegisterPage2() {
     };
 
     try {
-      const response = await fetch("http://ec2-51-20-32-195.eu-north-1.compute.amazonaws.com:8081/api/v1/auth/register", {
+      const response = await fetch(`${serverUrl}auth/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

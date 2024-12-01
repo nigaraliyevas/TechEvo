@@ -2,36 +2,51 @@ import React from "react";
 // styles
 import styles from "./Comments.module.scss";
 import StarRating from "../../Rating/StarRating";
+import { useGetAllCommentsQuery } from "../../../redux/sercives/reviewsApi";
+// images
+import noProfile from "../../../assets/images/admin/Dashboard/user.svg"
 
 const Comments = () => {
+  const { data, error, isLoading } = useGetAllCommentsQuery();
+  if (!error && !isLoading) console.log(data);
   return (
     <div className={styles.comCont}>
       <h5 className={styles.comHead}>Son kommentlər</h5>
-      {[1, 2].map((comment, index) => (
+      {data?.map((comment, index) => (
         <div key={index} className={styles.comment}>
           <div className={styles.commentOwner}>
             <div className={styles.commentOwnerLeft}>
               <div className={styles.commentOwnerPhotoCont}>
                 <img
                   className={styles.commentOwnerPhotoImg}
-                  src="https://i.pravatar.cc/50"
+                  src={`${comment.profileImg ? comment.profileImg : noProfile}`}
                   alt="comment owner profile photo"
                 />
               </div>
               <div className={styles.commentOwnerNameAndDate}>
-                <strong>Leyla Babayeva</strong>
-                <p>Qeydiyyat tarixi: 09/25/2024</p>
+                <strong>{comment.commentOwner}</strong>
+                <p>
+                  Qeydiyyat tarixi:{" "}
+                  {(() => {
+                    const dateObj = new Date(comment.createdAt);
+                    const day = String(dateObj.getDate()).padStart(2, "0");
+                    const month = String(dateObj.getMonth() + 1).padStart(
+                      2,
+                      "0"
+                    );
+                    const year = dateObj.getFullYear();
+
+                    return `${day}/${month}/${year}`;
+                  })()}
+                </p>
               </div>
             </div>
             <div className={styles.commentOwnerRight}>
-              <StarRating fontSize={"0.75rem"} value={5} />
+              <StarRating fontSize={"0.75rem"} value={comment.rating} />
             </div>
           </div>
           <p>
-            I recently purchased the XYZ Laptop, and it's been a game-changer
-            for my productivity. The performance is outstanding, thanks to the
-            Intel i7 processor and 16GB RAM. Multitasking is a breeze, even with
-            demanding applications.
+            {comment.comment}
           </p>
         </div>
       ))}

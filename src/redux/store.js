@@ -9,7 +9,6 @@ import { favoriteApi } from "./sercives/favoriteApi";
 import { orderApi } from "./sercives/orderApi";
 import { userApi } from "./sercives/userApi";
 import { forgetPassApi } from "./sercives/forgetPassApi";
-import apiMiddleware from "./sercives/middleware/apiMiddleware";
 import { serviceApi } from "./sercives/serviceApi";
 import { viewCountApi } from "./sercives/viewCountApi";
 import { analyticsApi } from "./sercives/analyticsApi";

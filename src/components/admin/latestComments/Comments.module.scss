@@ -2,6 +2,9 @@
     background-color: #161A1E;
     padding: 8px 20px;
     border-radius: 4px;
+    height: 504px;
+    overflow-y: scroll;
+    overflow-x: hidden;
 
 
     .comHead {
@@ -16,6 +19,7 @@
     .comment {
         margin-bottom: 24px;
         border-bottom: 1px solid #323437;
+        width: 492px;
 
 
         .commentOwner {
@@ -72,9 +76,7 @@
             }
 
 
-            .commentOwnerRight {
-                
-            }
+            .commentOwnerRight {}
         }
 
 
@@ -84,6 +86,13 @@
             font-size: 14px;
             line-height: 19px;
             margin-bottom: 24px;
+            max-width: 455px;
+
+            word-wrap: break-word;
+            /* Break long words */
+            overflow-wrap: break-word;
+            /* Handle overflow */
+            white-space: normal;
         }
     }
 }

@@ -233,16 +233,16 @@ const Header = ({ exist, confirm }) => {
                         y2="11.0587"
                         gradientUnits="userSpaceOnUse"
                       >
-                        <stop stop-color="#F43F45" stop-opacity="0.8" />
+                        <stop stopColor="#F43F45" stopOpacity="0.8" />
                         <stop
                           offset="0.565"
-                          stop-color="#D036D6"
-                          stop-opacity="0.8"
+                          stopColor="#D036D6"
+                          stopOpacity="0.8"
                         />
                         <stop
                           offset="1"
-                          stop-color="#5A4AF5"
-                          stop-opacity="0.8"
+                          stopColor="#5A4AF5"
+                          stopOpacity="0.8"
                         />
                       </linearGradient>
                     </defs>
@@ -271,9 +271,9 @@ const Header = ({ exist, confirm }) => {
                     <path
                       d="M21 21L16.65 16.65M19 11C19 15.4183 15.4183 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11Z"
                       stroke="#BFBFBF"
-                      stroke-width="1.6"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeWidth="1.6"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
                   </svg>
 
@@ -294,17 +294,17 @@ const Header = ({ exist, confirm }) => {
                         x2="100%"
                         y2="100%"
                       >
-                        <stop offset="4.1%" stop-color="#FD393F" />
-                        <stop offset="55.43%" stop-color="#DB35E2" />
-                        <stop offset="94.96%" stop-color="#4E3DEE" />
+                        <stop offset="4.1%" stopColor="#FD393F" />
+                        <stop offset="55.43%" stopColor="#DB35E2" />
+                        <stop offset="94.96%" stopColor="#4E3DEE" />
                       </linearGradient>
                     </defs>
                     <path
                       d="M21 21L16.65 16.65M19 11C19 15.4183 15.4183 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11Z"
                       stroke="url(#customGradient)"
-                      stroke-width="1.6"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeWidth="1.6"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
                   </svg>
                 </div>
@@ -342,40 +342,40 @@ const Header = ({ exist, confirm }) => {
                         <path
                           d="M12 12C14.7614 12 17 9.76142 17 7C17 4.23858 14.7614 2 12 2C9.23858 2 7 4.23858 7 7C7 9.76142 9.23858 12 12 12Z"
                           stroke="#CCCCCC"
-                          stroke-width="1.5"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                         <path
                           d="M3.41016 22C3.41016 18.13 7.26015 15 12.0002 15C12.9602 15 13.8902 15.13 14.7602 15.37"
                           stroke="#CCCCCC"
-                          stroke-width="1.5"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                         <path
                           d="M22 18C22 18.32 21.96 18.63 21.88 18.93C21.79 19.33 21.63 19.72 21.42 20.06C20.73 21.22 19.46 22 18 22C16.97 22 16.04 21.61 15.34 20.97C15.04 20.71 14.78 20.4 14.58 20.06C14.21 19.46 14 18.75 14 18C14 16.92 14.43 15.93 15.13 15.21C15.86 14.46 16.88 14 18 14C19.18 14 20.25 14.51 20.97 15.33C21.61 16.04 22 16.98 22 18Z"
                           stroke="#CCCCCC"
-                          stroke-width="1.5"
-                          stroke-miterlimit="10"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="1.5"
+                          strokeMiterlimit="10"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                         <path
                           d="M19.4897 17.98H16.5098"
                           stroke="#CCCCCC"
-                          stroke-width="1.5"
-                          stroke-miterlimit="10"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="1.5"
+                          strokeMiterlimit="10"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                         <path
                           d="M18 16.52V19.51"
                           stroke="#CCCCCC"
-                          stroke-width="1.5"
-                          stroke-miterlimit="10"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="1.5"
+                          strokeMiterlimit="10"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                       </svg>
 
@@ -395,48 +395,48 @@ const Header = ({ exist, confirm }) => {
                             x2="100%"
                             y2="100%"
                           >
-                            <stop offset="4.1%" stop-color="#FD393F" />
-                            <stop offset="55.43%" stop-color="#DB35E2" />
-                            <stop offset="94.96%" stop-color="#4E3DEE" />
+                            <stop offset="4.1%" stopColor="#FD393F" />
+                            <stop offset="55.43%" stopColor="#DB35E2" />
+                            <stop offset="94.96%" stopColor="#4E3DEE" />
                           </linearGradient>
                         </defs>
                         <path
                           d="M12 12C14.7614 12 17 9.76142 17 7C17 4.23858 14.7614 2 12 2C9.23858 2 7 4.23858 7 7C7 9.76142 9.23858 12 12 12Z"
                           stroke="url(#gradient)"
-                          stroke-width="1.5"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                         <path
                           d="M3.41016 22C3.41016 18.13 7.26015 15 12.0002 15C12.9602 15 13.8902 15.13 14.7602 15.37"
                           stroke="url(#gradient)"
-                          stroke-width="1.5"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                         <path
                           d="M22 18C22 18.32 21.96 18.63 21.88 18.93C21.79 19.33 21.63 19.72 21.42 20.06C20.73 21.22 19.46 22 18 22C16.97 22 16.04 21.61 15.34 20.97C15.04 20.71 14.78 20.4 14.58 20.06C14.21 19.46 14 18.75 14 18C14 16.92 14.43 15.93 15.13 15.21C15.86 14.46 16.88 14 18 14C19.18 14 20.25 14.51 20.97 15.33C21.61 16.04 22 16.98 22 18Z"
                           stroke="url(#gradient)"
-                          stroke-width="1.5"
-                          stroke-miterlimit="10"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="1.5"
+                          strokeMiterlimit="10"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                         <path
                           d="M19.4897 17.98H16.5098"
                           stroke="url(#gradient)"
-                          stroke-width="1.5"
-                          stroke-miterlimit="10"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="1.5"
+                          strokeMiterlimit="10"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                         <path
                           d="M18 16.52V19.51"
                           stroke="url(#gradient)"
-                          stroke-width="1.5"
-                          stroke-miterlimit="10"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="1.5"
+                          strokeMiterlimit="10"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                       </svg>
                     </span>
@@ -455,9 +455,9 @@ const Header = ({ exist, confirm }) => {
                         <path
                           d="M15 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H15M10 17L15 12M15 12L10 7M15 12H3"
                           stroke="#CCCCCC"
-                          stroke-width="1.6"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="1.6"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                       </svg>
                       <svg
@@ -476,17 +476,17 @@ const Header = ({ exist, confirm }) => {
                             x2="100%"
                             y2="100%"
                           >
-                            <stop offset="4.1%" stop-color="#FD393F" />
-                            <stop offset="55.43%" stop-color="#DB35E2" />
-                            <stop offset="94.96%" stop-color="#4E3DEE" />
+                            <stop offset="4.1%" stopColor="#FD393F" />
+                            <stop offset="55.43%" stopColor="#DB35E2" />
+                            <stop offset="94.96%" stopColor="#4E3DEE" />
                           </linearGradient>
                         </defs>
                         <path
                           d="M15 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H15M10 17L15 12M15 12L10 7M15 12H3"
                           stroke="url(#customGradi)"
-                          stroke-width="1.6"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="1.6"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                       </svg>
                     </span>
@@ -512,16 +512,16 @@ const Header = ({ exist, confirm }) => {
                         <path
                           d="M16.0007 15.9998C19.6825 15.9998 22.6673 13.0151 22.6673 9.33317C22.6673 5.65127 19.6825 2.6665 16.0007 2.6665C12.3188 2.6665 9.33398 5.65127 9.33398 9.33317C9.33398 13.0151 12.3188 15.9998 16.0007 15.9998Z"
                           stroke="#E6E6E6"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                         <path
                           d="M27.4535 29.3333C27.4535 24.1733 22.3202 20 16.0002 20C9.6802 20 4.54688 24.1733 4.54688 29.3333"
                           stroke="#E6E6E6"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                       </svg>
 
@@ -541,24 +541,24 @@ const Header = ({ exist, confirm }) => {
                             x2="100%"
                             y2="100%"
                           >
-                            <stop offset="4.1%" stop-color="#FD393F" />
-                            <stop offset="55.43%" stop-color="#DB35E2" />
-                            <stop offset="94.96%" stop-color="#4E3DEE" />
+                            <stop offset="4.1%" stopColor="#FD393F" />
+                            <stop offset="55.43%" stopColor="#DB35E2" />
+                            <stop offset="94.96%" stopColor="#4E3DEE" />
                           </linearGradient>
                         </defs>
                         <path
                           d="M16.0007 15.9998C19.6825 15.9998 22.6673 13.0151 22.6673 9.33317C22.6673 5.65127 19.6825 2.6665 16.0007 2.6665C12.3188 2.6665 9.33398 5.65127 9.33398 9.33317C9.33398 13.0151 12.3188 15.9998 16.0007 15.9998Z"
                           stroke="url(#gradie)"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                         <path
                           d="M27.4535 29.3333C27.4535 24.1733 22.3202 20 16.0002 20C9.6802 20 4.54688 24.1733 4.54688 29.3333"
                           stroke="url(#gradie)"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                       </svg>
                     </span>
@@ -578,9 +578,9 @@ const Header = ({ exist, confirm }) => {
                         <path
                           d="M12.62 20.8101C12.28 20.9301 11.72 20.9301 11.38 20.8101C8.48 19.8201 2 15.6901 2 8.6901C2 5.6001 4.49 3.1001 7.56 3.1001C9.38 3.1001 10.99 3.9801 12 5.3401C13.01 3.9801 14.63 3.1001 16.44 3.1001C19.51 3.1001 22 5.6001 22 8.6901C22 15.6901 15.52 19.8201 12.62 20.8101Z"
                           stroke="#CCCCCC"
-                          stroke-width="1.5"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                       </svg>
                       <svg
@@ -596,17 +596,17 @@ const Header = ({ exist, confirm }) => {
                             id="grad"
                             gradientTransform="rotate(102.09)"
                           >
-                            <stop offset="4.1%" stop-color="#fd393f" />
-                            <stop offset="55.43%" stop-color="#db35e2" />
-                            <stop offset="94.96%" stop-color="#4e3dee" />
+                            <stop offset="4.1%" stopColor="#fd393f" />
+                            <stop offset="55.43%" stopColor="#db35e2" />
+                            <stop offset="94.96%" stopColor="#4e3dee" />
                           </linearGradient>
                         </defs>
                         <path
                           d="M12.62 20.8101C12.28 20.9301 11.72 20.9301 11.38 20.8101C8.48 19.8201 2 15.6901 2 8.6901C2 5.6001 4.49 3.1001 7.56 3.1001C9.38 3.1001 10.99 3.9801 12 5.3401C13.01 3.9801 14.63 3.1001 16.44 3.1001C19.51 3.1001 22 5.6001 22 8.6901C22 15.6901 15.52 19.8201 12.62 20.8101Z"
                           stroke="url(#grad)"
-                          stroke-width="1.5"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                       </svg>
 

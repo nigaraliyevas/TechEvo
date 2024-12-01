@@ -2,6 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 import { useGetAnalyticsQuery } from "../../redux/sercives/analyticsApi";
 import Chart from "../../components/admin/Chart/Chart";
+import Comments from "../../components/admin/latestComments/Comments";
 const Dashboard = () => {
   // const { data, error, isLoading } = useGetAnalyticsQuery(); // Fetch analytics data
   // const chartData = [
@@ -41,23 +42,7 @@ const Dashboard = () => {
           </div>
         </div>
         {/* Comments */}
-        <div className="col-12 col-md-4">
-          <div className="card h-100">
-            <div className="card-body">
-              <h5 className="card-title">Son şərhlər</h5>
-              {[1, 2].map((comment, index) => (
-                <div key={index} className="mb-3">
-                  <strong>Leyla Babayeva</strong>
-                  <p className="small text-muted">Qeydiyyat tarixi: 09/25/2024</p>
-                  <p className="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
-                  <div className="d-flex justify-content-between align-items-center">
-                    <span className="badge bg-success">5.0 ⭐</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+        <div className="col-12 col-md-4"><Comments /></div>
       </div>
 
       {/* Orders */}

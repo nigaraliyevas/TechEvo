@@ -12,7 +12,7 @@ const Comments = () => {
   return (
     <div className={styles.comCont}>
       <h5 className={styles.comHead}>Son kommentlər</h5>
-      {data?.map((comment, index) => (
+      {data?.slice(0).reverse().map((comment, index) => (
         <div key={index} className={styles.comment}>
           <div className={styles.commentOwner}>
             <div className={styles.commentOwnerLeft}>

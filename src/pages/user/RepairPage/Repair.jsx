@@ -3,12 +3,14 @@ import React from "react";
 import styles from "./Repair.module.scss";
 // icons
 import tick from "../../../assets/images/Services/tick.svg";
-import { useGetServicesQuery, useGetStepsQuery } from "../../../redux/sercives/serviceApi";
+import { useGetRepairHeaderQuery, useGetRepairQuery, useGetRepairStepsQuery } from "../../../redux/sercives/serviceApi";
 
 const Repair = () => {
-  const { data: service, error: serviceError, isLoading: serviceLoading } = useGetServicesQuery();
-  if(!serviceError && !serviceLoading) console.log(service)
-  const { data: steps, error: stepsError, isLoading: stepsLoading } = useGetStepsQuery();
+  const { data: service, error: serviceError, isLoading: serviceLoading } = useGetRepairQuery();
+  const { data: steps, error: stepsError, isLoading: stepsLoading } = useGetRepairStepsQuery();
+  const { data: header, error: headerError, isLoading: headerLoading} = useGetRepairHeaderQuery();
+  if(!headerError && !headerLoading) console.log(header);
+
 
   return (
     <div className={styles.serviceCont}>

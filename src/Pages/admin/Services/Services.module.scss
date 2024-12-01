@@ -1,0 +1,67 @@
+.serviceCont {
+    background-color: #161A1E;
+    padding: 20px 24px;
+    border-radius: 8px;
+
+
+    .serviceHead {
+        color: white;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 40px;
+        margin-bottom: 24px;
+    }
+
+
+    table {
+        width: 100%;
+
+
+        thead {
+            color: white;
+            font-weight: 700;
+            font-size: 18px;
+            line-height: 28px;
+            border-bottom: 1px solid #323437;
+
+
+            th {
+                padding-bottom: 20px;
+            }
+            .tHead {
+                padding-left: 8px;
+            }
+        }
+
+
+        tbody {
+            color: #CCCCCC;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 28px;
+
+
+            td {
+                padding: 16.5px 20px;
+                border-bottom: 1px solid #323437;
+            }
+            .edit {
+                display: flex;
+                gap: 16px;
+
+                .imgCont {
+                    cursor: pointer;
+                    width: 28px;
+                    height: 28px;
+
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+                }
+            }
+        }
+    }
+}

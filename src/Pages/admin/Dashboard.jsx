@@ -1,4 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
+import RecentOrders from "../../components/AdminComponents/RecentOrders";
+// import style from "../../components/AdminComponents/RecentOrders.module.scss";
+
 
 const Dashboard = () => {
   return (
@@ -98,39 +101,8 @@ const Dashboard = () => {
             </div>
 
             {/* Orders */}
-            <div className="col-12">
-              <div className="card">
-                <div className="card-body">
-                  <h5 className="card-title">Son Sifarişlər</h5>
-                  <table className="table">
-                    <thead>
-                      <tr>
-                        <th>Məhsul</th>
-                        <th>Sifariş nömrəsi</th>
-                        <th>Tarix</th>
-                        <th>Qiymət</th>
-                        <th>Miqdar</th>
-                        <th>Status</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {["Macbook 15, Mouse Logitech, Keyboard", "Macbook 15", "Macbook 15"].map((product, index) => (
-                        <tr key={index}>
-                          <td>{product}</td>
-                          <td>12345678</td>
-                          <td>02/05/2024</td>
-                          <td>500 AZN</td>
-                          <td>{index + 1}</td>
-                          <td>
-                            <span className={`badge ${index === 0 ? "bg-success" : index === 1 ? "bg-warning" : "bg-danger"}`}>{index === 0 ? "Çatdırılıb" : index === 1 ? "Gözləyir" : "İmtina"}</span>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
+           <RecentOrders />
+            
           </div>
         </div>
       </div>

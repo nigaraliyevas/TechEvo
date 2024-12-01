@@ -1,0 +1,9 @@
+/* RecentOrders.module.scss */
+.productNames {
+    display: block; /* Bir sətirdə göstərmək üçün */
+    overflow: hidden; /* Çox olan mətnləri gizlət */
+    text-overflow: ellipsis; /* Mətnin gizlənən hissəsini "..." ilə əvəz et */
+    white-space: nowrap; /* Sətir sıçrayışını qarşısını al */
+    max-width: 320px; /* Maksimum eni təyin et */
+  }
+  

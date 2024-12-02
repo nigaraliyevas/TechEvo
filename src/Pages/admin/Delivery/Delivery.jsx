@@ -1,14 +1,14 @@
 import React from "react";
 // styles
-import styles from "./Services.module.scss";
+import styles from "./Delivery.module.scss";
 // images
-import editIcon from "../../../assets/images/admin/Services/edit.svg"
-import trashIcon from "../../../assets/images/admin/Services/trash.svg"
+import editIcon from "../../../assets/images/admin/Delivery/edit.svg"
+import trashIcon from "../../../assets/images/admin/Delivery/trash.svg"
 
-const Services = () => {
+const Delivery = () => {
   return (
     <div className={styles.serviceCont}>
-      <div className={styles.serviceHead}>Xidmətlər</div>
+      <div className={styles.serviceHead}>Çatdırılma</div>
       <table>
         <thead>
           <tr>
@@ -39,4 +39,4 @@ const Services = () => {
   );
 };
 
-export default Services;
+export default Delivery;

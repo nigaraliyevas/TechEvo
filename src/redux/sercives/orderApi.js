@@ -1,11 +1,13 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-// Create the API
+const url = import.meta.env.VITE_SOME_KEY;
+
+// API yaratmaq
 export const orderApi = createApi({
   reducerPath: "orderApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://ec2-51-20-32-195.eu-north-1.compute.amazonaws.com:8081/api/v1/",
-    prepareHeaders: headers => {
+    baseUrl: url,
+    prepareHeaders: (headers) => {
       const token = localStorage.getItem("accessToken");
       if (token) {
         headers.set("Authorization", `Bearer ${token}`);
@@ -13,19 +15,53 @@ export const orderApi = createApi({
       return headers;
     },
   }),
-  endpoints: builder => ({
+  endpoints: (builder) => ({
+    // Sifarişləri əldə etmək
     getOrders: builder.query({
       query: () => `profile/getOrders`,
     }),
+
+    // Yeni sifariş göndərmək
     submitOrder: builder.mutation({
-      query: order => ({
+      query: (order) => ({
         url: "order",
         method: "POST",
         body: order,
       }),
     }),
+
+    // Bütün sifarişləri əldə etmək
+    getAllOrders: builder.query({
+      query: () => `order/getAllOrders`,
+    }),
+
+    // Sifariş statusunu yeniləmək
+    updateOrderStatus: builder.mutation({
+      query: ({ orderId, orderStatus }) => ({
+        url: `admin/order/${orderId}`,
+        method: "PUT",
+        body: { orderStatus },  // orderStatus burada string olaraq göndərilir
+      }),
+      invalidatesTags: ["Orders"], // Orders siyahısını yeniləyir
+    }),
+
+    // Sifarişi silmək
+    deleteOrder: builder.mutation({
+      query: (orderId) => ({
+        url: `order/delete/${orderId}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Orders"],
+    }),
   }),
-  keepUnusedDataFor: 60, // Istifade olunmayan datalari 60saniye saxlayir
+  keepUnusedDataFor: 60, // Istifadə olunmayan dataları 60 saniyə saxlayır
 });
 
-export const { useGetOrdersQuery,useSubmitOrderMutation } = orderApi;
+// Hook-ları ixrac etmək
+export const {
+  useGetOrdersQuery,
+  useSubmitOrderMutation,
+  useGetAllOrdersQuery,
+  useUpdateOrderStatusMutation,
+  useDeleteOrderMutation,
+} = orderApi;

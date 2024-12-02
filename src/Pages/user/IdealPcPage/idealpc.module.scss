@@ -50,4 +50,55 @@
 
         }
     }
+  max-width: 1440px;
+  margin: 0 auto;
+
+  .idealPage_container {
+      margin-left: auto;
+      margin-left: auto;
+      width: 100%;
+      padding: 0px 165px 120px;
+      margin-top: 176px;
+    
+
+      .idealPage_top {
+          display: flex;
+          align-items: center;
+          gap: 20px;
+
+          .idealPage_title {
+              font-size: 16px;
+              font-weight: 500;
+              line-height: 28px;
+              text-align: center;
+              color: #FFFFFF;
+              margin-bottom: 48px;
+              position: relative;
+              padding-bottom: 8px;
+              cursor: pointer;
+          }
+          .idealPage_title2 {
+              font-size: 16px;
+              font-weight: 500;
+              line-height: 28px;
+              text-align: center;
+              color: #FFFFFF;
+              margin-bottom: 48px;
+              position: relative;
+              padding-bottom: 8px;
+              cursor: pointer;
+              &::after {
+                  content: "";
+                  position: absolute;
+                  left: 0;
+                  bottom: 0;
+                  width: 100%;
+                  height: 1px;
+                  background: linear-gradient(120.61deg, #FD3C43 -10.5%, #B622DC 38.25%, #3F27EB 80.92%);
+
+              }
+          }
+
+      }
+  }
 }

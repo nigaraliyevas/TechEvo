@@ -18,8 +18,26 @@ export const serviceApi = createApi({
     getRepairHeader: builder.query({
       query: () => `support/header`,
     }),
+    getDoor: builder.query({
+      query: () => `door`,
+    }),
+    getDoorSteps: builder.query({
+      query: () => `door/step`,
+    }),
+    getDoorHeader: builder.query({
+      query: () => `door/header`,
+    }),
+    getCreditHeader1: builder.query({
+      query: () => `creditcard/header1`,
+    }),
+    getCreditHeader2: builder.query({
+      query: () => `creditcard/header2`,
+    }),
+    getCreditCard: builder.query({
+      query: () => `creditcard`,
+    }),
   }),
   keepUnusedDataFor: 60, // Istifade olunmayan datalari 60saniye saxlayir
 });
 
-export const { useGetRepairQuery, useGetRepairStepsQuery, useGetRepairHeaderQuery } = serviceApi;
+export const { useGetRepairQuery, useGetRepairStepsQuery, useGetRepairHeaderQuery, useGetDoorQuery, useGetDoorStepsQuery, useGetDoorHeaderQuery, useGetCreditCardQuery, useGetCreditHeader1Query, useGetCreditHeader2Query } = serviceApi;

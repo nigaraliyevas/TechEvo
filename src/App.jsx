@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import UserRouter from "./router/UserRouter";
 import { useState, useEffect } from "react";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
+import AdminRouter from "./router/AdminRouter";
 
 const App = () => {
   const [exist, setExist] = useState(false);
@@ -11,15 +12,14 @@ const App = () => {
 
   // Function to handle token refresh
   const refreshToken = () => {
-    console.log("Refreshing token...");
     const base = import.meta.env.VITE_SOME_KEY;
-    const url = `${base}auth/refresh`; 
+    const url = `${base}auth/refresh`;
 
     fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("refreshToken")}`, 
+        Authorization: `Bearer ${localStorage.getItem("refreshToken")}`,
       },
     })
       .then(response => {
@@ -34,7 +34,6 @@ const App = () => {
           localStorage.setItem("accessToken", data.accessToken);
           localStorage.setItem("refreshToken", data.refreshToken);
         }
-        console.log("Token refreshed successfully:", data);
       })
       .catch(error => {
         console.error("Error refreshing token:", error);
@@ -43,7 +42,7 @@ const App = () => {
 
   // Persistent interval logic
   useEffect(() => {
-    const intervalTime = 120000; 
+    const intervalTime = 120000;
     const lastRefreshTimeKey = "lastRefreshTime";
 
     const calculateNextInterval = () => {
@@ -78,6 +77,7 @@ const App = () => {
         <ScrollToTop />
         <Routes>
           <Route path="/*" element={<UserRouter exist={exist} setExist={setExist} confirm={confirm} setConfirm={setConfirm} />} />
+          <Route path="/admin/*" element={<AdminRouter />} />
         </Routes>
       </BrowserRouter>
     </Provider>

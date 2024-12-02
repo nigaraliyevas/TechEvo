@@ -54,7 +54,7 @@ const AllOrders = () => {
         try {
           // Create a list of promises to fetch product data for each ID
           const productPromises = productIds.map(id =>
-            fetch(`http://ec2-51-20-32-195.eu-north-1.compute.amazonaws.com:8081/api/v1/product/${id}`).then(res => res.json()) // Replace with your API call
+            fetch(`http://srv654911.hstgr.cloud:8081/api/v1/product/${id}`).then(res => res.json()) // Replace with your API call
           );
           // Wait for all the promises to resolve
           const productResults = await Promise.all(productPromises);

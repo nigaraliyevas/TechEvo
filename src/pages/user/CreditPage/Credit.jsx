@@ -3,8 +3,16 @@ import React from "react";
 import styles from "./Credit.module.scss";
 // images
 import birbank from "../../../assets/images/Services/birbank.png";
+import { useGetCreditCardQuery, useGetCreditHeader2Query, useGetDoorHeaderQuery } from "../../../redux/sercives/serviceApi";
 
 const Credit = () => {
+  const {data: creditHeader1Error, error: creditHeader1ErrorError, isLoading: creditHeader1ErrorLoading} = useGetDoorHeaderQuery();
+  const {data: creditHeader2Error, error: creditHeader2ErrorError, isLoading: creditHeader2ErrorLoading} = useGetCreditHeader2Query(); 
+  const {data: credit, error: creditError, isLoading: creditLoading} = useGetCreditCardQuery();
+  if(!creditError && !creditLoading) console.log(credit);
+
+
+
   return (
     <div className={styles.creditCont}>
       <div className={styles.crHeader}>

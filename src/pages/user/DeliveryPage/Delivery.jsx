@@ -3,8 +3,15 @@ import React from "react";
 import styles from "./Delivery.module.scss";
 // icons
 import secIcon from "../../../assets/images/Services/security-safe.svg";
+import { useGetDoorHeaderQuery, useGetDoorQuery, useGetDoorStepsQuery } from "../../../redux/sercives/serviceApi";
 
 const Delivery = () => {
+  const {data: header, error: headerError, isLoading: headerLoading} = useGetDoorHeaderQuery();
+  const {data: deliverySteps, error: deliveryStepsError, isLoading: deliveryStepsLoading} = useGetDoorStepsQuery(); // merheleler
+  const {data: delivery, error: deliveryError, isLoading: deliveryLoading} = useGetDoorQuery(); // elave faydalar
+  if(!deliveryStepsError && !deliveryStepsLoading) console.log(deliverySteps);
+
+
   return (
     <div className={styles.delCont}>
       <div className={styles.delHeader}>

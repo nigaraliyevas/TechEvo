@@ -9,15 +9,14 @@ const Repair = () => {
   const { data: service, error: serviceError, isLoading: serviceLoading } = useGetRepairQuery();
   const { data: steps, error: stepsError, isLoading: stepsLoading } = useGetRepairStepsQuery();
   const { data: header, error: headerError, isLoading: headerLoading} = useGetRepairHeaderQuery();
-  if(!headerError && !headerLoading) console.log(header);
 
 
   return (
     <div className={styles.serviceCont}>
       <div className={styles.headingCont}>
         <div className="container">
-          <div className={styles.headingText}>Texniki Çətinlikləriniz Var? Biz Həll Edirik!</div>
-          <div className={styles.headingInfo}>Tech-Evo-da kompüterlərinizin düzgün işləməsi üçün bir sıra xidmətlər təklif edirik. Hardware təmiri, software problemləri, rutin texniki xidmət və daha çox xidmətlərimizdən yararlana bilərsiniz.</div>
+          <div className={styles.headingText}>{header?.headerName}</div>
+          <div className={styles.headingInfo}>{header?.headerDescription}</div>
         </div>
       </div>
       <div className="container">

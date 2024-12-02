@@ -44,13 +44,16 @@ const Sidebar = () => {
             <div className={styles.dropdown_menu}>
               <ul className={styles.dropdown_menu__list}>
                 <li className={styles.dropdown_menu__item}>
-                  <Link to="/">İkinci əl satış</Link>
+                  <Link>İkinci əl satış</Link>
                 </li>
                 <li className={styles.dropdown_menu__item}>
-                  <Link to="/">Təmir</Link>
+                  <Link to="/admin/adminRepair">Təmir</Link>
                 </li>
                 <li className={styles.dropdown_menu__item}>
-                  <Link to="/">Çatdırılma</Link>
+                  <Link to="/admin/adminDelivery">Çatdırılma</Link>
+                </li>
+                <li className={styles.dropdown_menu__item}>
+                  <Link to="/admin/adminCredit">Daxili kredit</Link>
                 </li>
                 <li className={styles.dropdown_menu__item}>
                   <Link to="/">Ana səhifə</Link>

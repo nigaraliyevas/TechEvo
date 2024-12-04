@@ -7,18 +7,23 @@ export const orderApi = createApi({
   reducerPath: "orderApi",
   baseQuery: fetchBaseQuery({
     baseUrl: url,
-    prepareHeaders: (headers) => {
+    prepareHeaders: (headers, { endpoint }) => {
       const token = localStorage.getItem("accessToken");
-      if (token) {
+      console.log(`Endpoint: ${endpoint}, Token: ${token}`);
+      if (token && endpoint !== "getAllOrders") {
         headers.set("Authorization", `Bearer ${token}`);
       }
       return headers;
     },
+
   }),
   endpoints: (builder) => ({
     // Sifarişləri əldə etmək
     getOrders: builder.query({
-      query: () => `profile/getOrders`,
+      query: () => ({
+        url: "/profile/getOrders",
+        method: "GET",
+      }),
     }),
 
     // Yeni sifariş göndərmək
@@ -32,15 +37,20 @@ export const orderApi = createApi({
 
     // Bütün sifarişləri əldə etmək
     getAllOrders: builder.query({
-      query: () => `order/getAllOrders`,
+      query: () => ({
+        url: "/getAllOrders",
+        method: "GET",
+        //headers: {}, // Boş saxlanılır
+      }),
     }),
+
 
     // Sifariş statusunu yeniləmək
     updateOrderStatus: builder.mutation({
       query: ({ orderId, orderStatus }) => ({
         url: `admin/order/${orderId}`,
         method: "PUT",
-        body: { orderStatus },  // orderStatus burada string olaraq göndərilir
+        body: { orderStatus }, // orderStatus burada string olaraq göndərilir
       }),
       invalidatesTags: ["Orders"], // Orders siyahısını yeniləyir
     }),

@@ -1,5 +1,8 @@
 import React from "react";
 import {  useUpdateOrderStatusMutation } from "../../redux/sercives/orderApi";
+import style from "./RecentOrders.module.scss";
+
+
 
 const OrderActions = ({ order }) => {
   const [updateOrder] =  useUpdateOrderStatusMutation();
@@ -33,13 +36,13 @@ const OrderActions = ({ order }) => {
   
 
   return (
-    <select
+    <select className={style.status} style={{ backgroundColor:"#222527", color:"#B8BCBF", width:"106px", height:"40px",borderRadius:"6px", border:"none",padding:"8px", cursor:"pointer", }}
     value={order && order.status ? order.status : "Gözləyir"} // Status yoxlanır
     onChange={(e) => handleStatusChange(e.target.value)}
   >
-    <option value="Gözləyir">Gözləyir</option>
-    <option value="Çatdırılıb">Çatdırılıb</option>
-    <option value="İmtina">İmtina</option>
+    <option style={{ color: "#B8BCBF" }} value="Gözləyir" >Gözləyir</option>
+    <option style={{ color: "green" }} value="Çatdırılıb">Çatdırılıb</option>
+    <option style={{ color: "red" }} value="İmtina">İmtina</option>
   </select>
   
   );

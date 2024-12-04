@@ -40,7 +40,7 @@ const OrderActions = ({ order }) => {
     value={order && order.status ? order.status : "Gözləyir"} // Status yoxlanır
     onChange={(e) => handleStatusChange(e.target.value)}
   >
-    <option style={{ color: "#B8BCBF" }} value="Gözləyir" >Gözləyir</option>
+    <option style={{ color: "#B8BCBF", marginBottom:"10px" }} value="Gözləyir" >Gözləyir</option>
     <option style={{ color: "green" }} value="Çatdırılıb">Çatdırılıb</option>
     <option style={{ color: "red" }} value="İmtina">İmtina</option>
   </select>

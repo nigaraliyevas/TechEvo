@@ -10,10 +10,15 @@ const RecentOrders = () => {
   if (isError) return <p>Səhv baş verdi. Xahiş edirik sonra yenidən cəhd edin.</p>;
 
   return (
-    <div className="col-12">
+    <div className="col-xxl-10">
       <div className={`card ${style.card}`}>
         <div className="card-body">
-          <h5 className="card-title">Son Sifarişlər</h5>
+          <h5 className="card-title" style={{
+            paddingLeft: "24px",
+            paddingTop: "20px",
+            fontWeight: "700",
+            fontSize: "24px"
+          }}>Son Sifarişlər</h5>
           <table
             style={{
               width: "100%",
@@ -22,81 +27,143 @@ const RecentOrders = () => {
               fontSize: "16px",
               lineHeight: "28px",
               height: "340px !important",
-             
+              borderCollapse: "separate",
+              borderSpacing: "43px 0px",
+
 
             }}
+
           >
+
             <thead>
-              <tr style={{height:"64px"}}>
-                <th>Məhsul</th>
-                <th>Sifariş nömrəsi</th>
-                <th>Tarix</th>
-                <th>Qiymət</th>
-                <th>Miqdar</th>
-                <th>Status</th>
+              <tr style={{ height: "64px" }}>
+                <th
+                  style={{
+                    borderBottom: "1px solid #333",
+                    paddingBottom: "10px",
+                  }}
+                >
+                  Məhsul
+                </th>
+                <th
+                  style={{
+                    borderBottom: "1px solid #333",
+                    paddingBottom: "10px",
+                  }}
+                >
+                  Sifariş nömrəsi
+                </th>
+                <th
+                  style={{
+                    borderBottom: "1px solid #333",
+                    paddingBottom: "10px",
+                  }}
+                >
+                  Tarix
+                </th>
+                <th
+                  style={{
+                    borderBottom: "1px solid #333",
+                    paddingBottom: "10px",
+                  }}
+                >
+                  Qiymət
+                </th>
+                <th
+                  style={{
+                    borderBottom: "1px solid #333",
+                    paddingBottom: "10px",
+                  }}
+                >
+                  Miqdar
+                </th>
+                <th
+                  style={{
+                    borderBottom: "1px solid #333",
+                    paddingBottom: "10px",
+                  }}
+                >
+                  Status
+                </th>
               </tr>
             </thead>
             <tbody>
               {orders && orders.length > 0 ? (
-                orders.map((order) => (
-                  <tr key={order.orderId} style={{height:"64px",borderBottom:"1px solid #333"}}>
-                    {/* Məhsul */}
-                    <td>
-                      {order.orderItems && order.orderItems.length > 0 ? (
-                        <div
-                          className={style.productNames}
-                          title={order.orderItems
-                            .map((item) => item.productName)
-                            .join(", ")}
-                        >
-                          {order.orderItems
-                            .map((item) => item.productName)
-                            .join(", ")}
-                        </div>
-                      ) : (
-                        <p>Heç bir məhsul yoxdur</p>
-                      )}
-                    </td>
+                orders.map((order, index) => (
+                  <React.Fragment key={order.orderId}>
+                    <tr
+                      style={{
+                        height: "64px",
+                      }}
+                    >
+                      {/* Məhsul */}
+                      <td style={{ width: "320px" }}>
+                        {order.orderItems && order.orderItems.length > 0 ? (
+                          <div
+                            className={style.productNames}
+                            title={order.orderItems.map((item) => item.productName).join(", ")}
+                          >
+                            {order.orderItems.map((item) => item.productName).join(", ")}
+                          </div>
+                        ) : (
+                          <p>Heç bir məhsul yoxdur</p>
+                        )}
+                      </td>
 
-                    {/* Sifariş nömrəsi */}
-                    <td>{order.orderId}</td>
+                      {/* Sifariş nömrəsi */}
+                      <td style={{ width: "140px" }}>{order.orderId}</td>
 
-                    {/* Tarix */}
-                    <td>
-                      {new Date(order.createdAt).toLocaleDateString("az-AZ", {
-                        day: "2-digit",
-                        month: "2-digit",
-                        year: "numeric",
-                      })}
-                    </td>
+                      {/* Tarix */}
+                      <td style={{ width: "110px" }}>
+                        {new Date(order.createdAt).toLocaleDateString("az-AZ", {
+                          day: "2-digit",
+                          month: "2-digit",
+                          year: "numeric",
+                        })}
+                      </td>
 
-                    {/* Qiymət */}
-                    <td>{order.totalPrice} AZN</td>
+                      {/* Qiymət */}
+                      <td style={{ width: "120px" }}>{order.totalPrice} AZN</td>
 
-                    {/* Miqdar */}
-                    <td>
-                      {order.orderItems.reduce(
-                        (total, item) => total + item.quantity,
-                        0
-                      )}
-                    </td>
+                      {/* Miqdar */}
+                      <td style={{ width: "65px" }}>
+                        {order.orderItems.reduce((total, item) => total + item.quantity, 0)}
+                      </td>
 
-                    {/* Status */}
-                    <td>
-                      <OrderActions order={order} />
-                    </td>
-                  </tr>
+                      {/* Status */}
+                      <td>
+                        <OrderActions order={order} />
+                      </td>
+                    </tr>
+
+                    {/* Yalnız son sətirdən sonra `hr` əlavə etməmək üçün */}
+                    {index !== orders.length - 1 && (
+                      <tr>
+                        <td colSpan="6">
+                          <hr
+                            style={{
+                              border: "none",
+                              borderTop: "1px solid #CCCCCC",
+                              margin: "5px 0",
+                            }}
+                          />
+                        </td>
+                      </tr>
+                    )}
+                  </React.Fragment>
                 ))
               ) : (
-                <tr style={{height:"64px"}}>
-                  <td colSpan="6">Heç bir sifariş tapılmadı</td>
+                <tr>
+                  <td colSpan="6" style={{ textAlign: "center", padding: "20px" }}>
+                    Heç bir sifariş tapılmadı
+                  </td>
                 </tr>
               )}
             </tbody>
           </table>
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 

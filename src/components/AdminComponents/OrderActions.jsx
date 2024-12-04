@@ -1,30 +1,26 @@
-import React from "react";
-import {  useUpdateOrderStatusMutation } from "../../redux/sercives/orderApi";
-import style from "./RecentOrders.module.scss";
-
-
+import React, { useState } from "react";
+import { useUpdateOrderStatusMutation } from "../../redux/sercives/orderApi";
+import styles from "./RecentOrders.module.scss";
+import { FaChevronDown } from 'react-icons/fa'; // FontAwesome icon istifadə edəcəyik
+import style from "./OrderActions.module.scss";
 
 const OrderActions = ({ order }) => {
-  const [updateOrder] =  useUpdateOrderStatusMutation();
+  const [updateOrder] = useUpdateOrderStatusMutation();
+  const [status, setStatus] = useState(order?.status || "Gözləyir");
 
   const handleStatusChange = async (newStatus) => {
-    // Konsolda Order obyektini yoxlayın
-    console.log("Order obyektinin dəyəri:", order);
-  
-    // `orderId` mövcudluğunu yoxlayın
     if (!order || !order.orderId) {
       console.error("Order ID mövcud deyil!");
       return;
     }
-  
+
     try {
       const result = await updateOrder({
-        orderId: order.orderId, // Düzgün orderId göndərilməlidir
+        orderId: order.orderId, 
         status: newStatus,
       }).unwrap();
-  
-      console.log("Cavab:", result);
       alert("Status uğurla dəyişdirildi!");
+      setStatus(newStatus);
     } catch (error) {
       console.error("Status dəyişdirilə bilmədi:", error);
       if (error.data) {
@@ -32,19 +28,44 @@ const OrderActions = ({ order }) => {
       }
     }
   };
-  
-  
+
+  const getStatusColor = (status) => {
+    if (status === "Çatdırılıb") return "green";
+    if (status === "İmtina") return "red";
+    return "#B8BCBF"; // default color for "Gözləyir"
+  };
 
   return (
-    <select className={style.status} style={{ backgroundColor:"#222527", color:"#B8BCBF", width:"106px", height:"40px",borderRadius:"6px", border:"none",padding:"8px", cursor:"pointer", }}
-    value={order && order.status ? order.status : "Gözləyir"} // Status yoxlanır
-    onChange={(e) => handleStatusChange(e.target.value)}
-  >
-    <option style={{ color: "#B8BCBF", marginBottom:"10px" }} value="Gözləyir" >Gözləyir</option>
-    <option style={{ color: "green" }} value="Çatdırılıb">Çatdırılıb</option>
-    <option style={{ color: "red" }} value="İmtina">İmtina</option>
-  </select>
-  
+    <div className={style.selectContainer}>
+      <select
+        className={styles.status}
+        style={{
+          width: "106px",
+          height: "40px",
+          borderRadius: "6px",
+          border: "none",
+          padding: "8px",
+          cursor: "pointer",
+          backgroundColor: "#222527", 
+          color: getStatusColor(status),
+          appearance: "none", 
+          WebkitAppearance: "none", 
+          MozAppearance: "none", 
+          paddingRight: "30px", // Ensuring enough space for the arrow
+        }}
+        value={status} 
+        onChange={(e) => handleStatusChange(e.target.value)}
+      >
+        <option style={{ color: "#B8BCBF" }} value="Gözləyir">Gözləyir</option>
+        <option style={{ color: "green" }} value="Çatdırılıb">Çatdırılıb</option>
+        <option style={{ color: "red" }} value="İmtina">İmtina</option>
+      </select>
+      
+      {/* Yeni əlavə olunan ox iconu */}
+      <span className={style.iconWrapper}>
+        <FaChevronDown style={{ color: "#BFBFBF", fontSize: "14px" }} />
+      </span>
+    </div>
   );
 };
 

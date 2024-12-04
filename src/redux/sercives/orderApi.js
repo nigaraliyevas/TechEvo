@@ -9,12 +9,13 @@ export const orderApi = createApi({
     baseUrl: url,
     prepareHeaders: (headers, { endpoint }) => {
       const token = localStorage.getItem("accessToken");
-      console.log(`Endpoint: ${endpoint}, Token: ${token}`);
       if (token && endpoint !== "getAllOrders") {
         headers.set("Authorization", `Bearer ${token}`);
       }
       return headers;
     },
+    
+    
 
   }),
   endpoints: (builder) => ({
@@ -38,7 +39,7 @@ export const orderApi = createApi({
     // Bütün sifarişləri əldə etmək
     getAllOrders: builder.query({
       query: () => ({
-        url: "/getAllOrders",
+        url: "order/getAllOrders",
         method: "GET",
         //headers: {}, // Boş saxlanılır
       }),
@@ -48,12 +49,21 @@ export const orderApi = createApi({
     // Sifariş statusunu yeniləmək
     updateOrderStatus: builder.mutation({
       query: ({ orderId, orderStatus }) => ({
-        url: `admin/order/${orderId}`,
+        url: `order/status/${orderId}`,
         method: "PUT",
-        body: { orderStatus }, // orderStatus burada string olaraq göndərilir
+        body: { status: orderStatus },
+        headers: {
+          "Content-Type": "application/json",
+        },
+        responseHandler: (response) => response.text(), // Cavabı düz string kimi oxuyur
       }),
-      invalidatesTags: ["Orders"], // Orders siyahısını yeniləyir
+      transformResponse: (response, meta, arg) => {
+        // Cavabın strukturunu özünüz idarə edə bilərsiniz
+        return { message: response };
+      },
+      invalidatesTags: ["Orders"],
     }),
+    
 
     // Sifarişi silmək
     deleteOrder: builder.mutation({

@@ -50,7 +50,7 @@ const Dashboard = () => {
         <div className="card">
           <div className="card-body">
             <h5 className="card-title">Son Sifarişlər</h5>
-            <table className="table">
+            <table className="table bg-success" style={{ background: `#161A1E }`, color: "#fff" }}>
               <thead>
                 <tr>
                   <th>Məhsul</th>

@@ -40,7 +40,7 @@ const Dashboard = () => {
         </div>
 
         {/* Main Content */}
-        <div className="col-12 col-md-9 col-lg-10">
+        <div className="col-12 col-md-9 col-lg-10" >
           <div className="row p-4">
             {/* Header */}
             <div className="col-12 d-flex justify-content-between align-items-center mb-4">
@@ -101,7 +101,7 @@ const Dashboard = () => {
             </div>
 
             {/* Orders */}
-           <RecentOrders />
+           <RecentOrders  />
             
           </div>
         </div>

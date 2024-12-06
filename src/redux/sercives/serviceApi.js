@@ -8,15 +8,19 @@ export const serviceApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: `${serverUrl}`,
   }),
+  tagTypes: ["RepairHeader", "Repair", "RepairSteps"],
   endpoints: builder => ({
     getRepair: builder.query({
       query: () => `support`,
+      providesTags: ["Repair"],
     }),
     getRepairSteps: builder.query({
       query: () => `support/steps`,
+      providesTags: ["RepairSteps"],
     }),
     getRepairHeader: builder.query({
       query: () => `support/header`,
+      providesTags: ["RepairHeader"],
     }),
     getDoor: builder.query({
       query: () => `door`,
@@ -42,9 +46,16 @@ export const serviceApi = createApi({
         method: 'POST',
         body: data,
       })
+    }),
+    deleteRepairHeader: builder.mutation({
+      query: () => ({
+        url: `admin/support/header/delete`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ["RepairHeader", "Repair", "RepairSteps"],
     })
   }),
   keepUnusedDataFor: 60, // Istifade olunmayan datalari 60saniye saxlayir
 });
 
-export const { useGetRepairQuery, useGetRepairStepsQuery, useGetRepairHeaderQuery, useGetDoorQuery, useGetDoorStepsQuery, useGetDoorHeaderQuery, useGetCreditCardQuery, useGetCreditHeader1Query, useGetCreditHeader2Query, useCreateRepairHeaderMutation } = serviceApi;
+export const { useGetRepairQuery, useGetRepairStepsQuery, useGetRepairHeaderQuery, useGetDoorQuery, useGetDoorStepsQuery, useGetDoorHeaderQuery, useGetCreditCardQuery, useGetCreditHeader1Query, useGetCreditHeader2Query, useCreateRepairHeaderMutation, useDeleteRepairHeaderMutation } = serviceApi;

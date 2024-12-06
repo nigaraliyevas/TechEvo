@@ -1,32 +1,11 @@
 .accordion {
   color: #cccccc;
-  max-height: 100vh; /* Ekran hündürlüyünə uyğun maksimum hündürlük */
-  overflow-y: auto; /* Bütün accordion üçün scroll */
-  scrollbar-width: thin; /* Firefox üçün incə scroll */
-  scrollbar-color: #4d4d4d #1e1e1e; /* Scroll bar rəngi və fon */
-}
 
-.accordion::-webkit-scrollbar {
-  width: 4px !important; /* Scrollbar genişliyi */
-}
-
-.accordion::-webkit-scrollbar-track {
-  background: #1e1e1e; /* Scroll fon rəngi */
-  border-radius: 10px; /* Küncləri yuvarlaq */
-}
-
-.accordion::-webkit-scrollbar-thumb {
-  background: #4d4d4d; /* Scroll bar rəngi */
-  border-radius: 10px; /* Küncləri yuvarlaq */
-}
-
-
-.accordion::-webkit-scrollbar-thumb:hover {
-  background: #6b6b6b; /* Hover zamanı scroll bar rəngi */
 }
 
 .accordion_item {
   border-bottom: 1px solid #222527;
+
 }
 
 .accordion_title {
@@ -43,37 +22,45 @@
 .accordion_content {
   padding: 20px 28px 24px 16px;
   background-color: #090c11;
+  max-height: 300px; /* Maksimum hündürlük */
+  overflow-y: auto; /* Şaquli scroll təmin edir */
 }
 
-
-.accordion::-webkit-scrollbar-button {
-  display: none;
+.accordion_content::-webkit-scrollbar {
+  width: 4px; /* Scrollbarın genişliyi */
 }
-
-
+.accordion_content::-webkit-scrollbar-track {
+  background: #151719; /* Scrollbar fon rəngi */
+  border-radius: 4px; /* Küncləri yuvarlaq */
+}
+.accordion_content::-webkit-scrollbar-thumb {
+  /* background: #555;  */
+  border-radius: 4px; /* Küncləri yuvarlaq */
+}
+.accordion_content::-webkit-scrollbar-thumb:hover {
+  background: #888; /* Hover zamanı çubuq rəngi */
+}
 .icon {
   margin-left: 10px;
   font-size: 17px;
 }
-
 #FilteredProductsSide {
   display: flex;
   flex-direction: column;
-  align-items: start;
+  align-items: flex-start;
   justify-content: flex-start;
 }
-
 .filterItem {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  p {
+    font-size: 18px;
+    position: relative;
+    top: -4px;
+  }
 }
 
-.filterItem p {
-  font-size: 18px;
-  position: relative;
-  top: -4px;
-}
 
 .checkbox {
   appearance: none;
@@ -103,23 +90,28 @@
   transform: rotate(45deg);
 }
 
+
 .price_range_slider {
+  /* width: 300px; */
+  /* margin: 20px auto; */
+  /* text-align: center; */
   padding-bottom: 10px;
   margin-top: -15px;
 }
 
 .inputs {
   display: flex;
+  /* justify-content: space-between; */
   margin-bottom: 20px;
   gap: 10px;
-}
-
-.inputs input {
-  padding-left: 5px;
+  input{
+    padding-left: 5px;
+  }
 }
 
 input {
   width: 100px;
+  /* padding: 5px; */
   height: 36px;
   border: 1px solid #151719;
   border-radius: 2px;

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { useGetAllOrdersQuery, useUpdateOrderStatusMutation } from "../../../redux/sercives/orderApi";
+import { useGetAllOrdersQuery, useUpdateStatusOrderMutation } from "../../../redux/sercives/orderApi";
 import styles from "./AllOrders.module.scss";
 
 const OrdersTable = () => {
   const { data: orders, isLoading, error } = useGetAllOrdersQuery();
-  const [updateOrderStatus] = useUpdateOrderStatusMutation();
+  const [updateStatusOrder] = useUpdateStatusOrderMutation();
 
   const [sortType, setSortType] = useState("");
   const [showSortOptions, setShowSortOptions] = useState(false);
@@ -13,7 +13,7 @@ const OrdersTable = () => {
 
   const handleChangeStatus = async (orderId, newStatus) => {
     try {
-      await updateOrderStatus({ orderId, orderStatus: newStatus }).unwrap();
+      await updateStatusOrder({ orderId, orderStatus: newStatus }).unwrap();
       setOrderStatuses(prevStatuses => ({ ...prevStatuses, [orderId]: newStatus }));
       alert(`Order ${orderId} status updated to ${newStatus}`);
     } catch (err) {

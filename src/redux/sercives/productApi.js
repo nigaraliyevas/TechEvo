@@ -32,6 +32,8 @@ export const productApi = createApi({
       query: (orderItemId) => `order/orderItem/${orderItemId}`,
       providesTags: ["Order"],
     }),
+
+    
     getFilters: builder.query({
       query: () => "product/filters",
     }),

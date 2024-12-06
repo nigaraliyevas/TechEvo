@@ -3,7 +3,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 // Giriş funksiyası - burada API çağırışı edilir
 export const login = createAsyncThunk("auth/login", async ({ email, password }, { rejectWithValue }) => {
   try {
-    const response = await fetch("http://ec2-51-20-32-195.eu-north-1.compute.amazonaws.com:8081/api/v1/auth/login", {
+    const response = await fetch("http://srv654911.hstgr.cloud:8081/swagger-ui/index.html/api/v1/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

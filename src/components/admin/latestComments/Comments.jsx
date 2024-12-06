@@ -8,7 +8,6 @@ import noProfile from "../../../assets/images/admin/Dashboard/user.svg"
 
 const Comments = () => {
   const { data, error, isLoading } = useGetAllCommentsQuery();
-  if (!error && !isLoading) console.log(data);
   return (
     <div className={styles.comCont}>
       <h5 className={styles.comHead}>Son kommentlər</h5>

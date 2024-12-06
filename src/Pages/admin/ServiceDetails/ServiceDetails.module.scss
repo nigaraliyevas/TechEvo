@@ -117,7 +117,7 @@
             height: 100%;
             padding: 16px 14px;
             font-size: 16px;
-            color: #737373;
+            color: white;
             background-color: transparent;
             border: none;
             outline: none;
@@ -159,4 +159,19 @@
         color: white;
         border: none;
     }
+}
+.disabledInput {
+    pointer-events: none;
+    background-color: #737373 !important;
+}
+.disabledButton {
+    pointer-events: none;
+    background-color: #737373 !important;
+    padding: 8px 28px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 28px;
+    border: none;
+    border-radius: 2px;
+    color: white;
 }

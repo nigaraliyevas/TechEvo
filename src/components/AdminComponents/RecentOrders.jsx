@@ -3,6 +3,7 @@ import { useGetAllOrdersQuery } from "../../redux/sercives/orderApi";
 import OrderActions from "./OrderActions";
 import style from "./RecentOrders.module.scss";
 
+
 const RecentOrders = () => {
   const { data: orders, isLoading, isError } = useGetAllOrdersQuery();
 
@@ -36,57 +37,20 @@ const RecentOrders = () => {
           >
 
             <thead>
+             
               <tr style={{ height: "64px" }}>
-                <th
-                  style={{
-                    borderBottom: "1px solid #333",
-                    paddingBottom: "10px",
-                  }}
-                >
-                  Məhsul
-                </th>
-                <th
-                  style={{
-                    borderBottom: "1px solid #333",
-                    paddingBottom: "10px",
-                  }}
-                >
-                  Sifariş nömrəsi
-                </th>
-                <th
-                  style={{
-                    borderBottom: "1px solid #333",
-                    paddingBottom: "10px",
-                  }}
-                >
-                  Tarix
-                </th>
-                <th
-                  style={{
-                    borderBottom: "1px solid #333",
-                    paddingBottom: "10px",
-                  }}
-                >
-                  Qiymət
-                </th>
-                <th
-                  style={{
-                    borderBottom: "1px solid #333",
-                    paddingBottom: "10px",
-                  }}
-                >
-                  Miqdar
-                </th>
-                <th
-                  style={{
-                    borderBottom: "1px solid #333",
-                    paddingBottom: "10px",
-                  }}
-                >
-                  Status
-                </th>
+                <th style={{ paddingBottom: "10px" }}>Məhsul</th>
+                <th style={{ paddingBottom: "10px" }}>Sifariş nömrəsi</th>
+                <th style={{ paddingBottom: "10px" }}>Tarix</th>
+                <th style={{ paddingBottom: "10px" }}>Qiymət</th>
+                <th style={{ paddingBottom: "10px" }}>Miqdar</th>
+                <th style={{ paddingBottom: "10px" }}>Status</th>
+   
+                
               </tr>
             </thead>
+    
+
             <tbody>
               {orders && orders.length > 0 ? (
                 orders.map((order, index) => (

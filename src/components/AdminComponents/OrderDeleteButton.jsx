@@ -1,8 +1,8 @@
 import React from "react";
-import { useGetDeleteOrderMutation } from "../../redux/sercives/orderApi";
+import { useDeleteOrderMutation } from "../../redux/sercives/orderApi";
 
 const OrderDeleteButton = ({ orderId }) => {
-  const [deleteOrder] = useGetDeleteOrderMutation();
+  const [deleteOrder] = useDeleteOrderMutation();
 
   const handleDelete = async () => {
     if (window.confirm("Sifarişi silmək istədiyinizdən əminsiniz?")) {

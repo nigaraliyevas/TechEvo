@@ -1,6 +1,8 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import RecentOrders from "../../components/AdminComponents/RecentOrders";
-// import style from "../../components/AdminComponents/RecentOrders.module.scss";
+import OrderDetails from "../../components/AdminComponents/OrderDetailsAdmin";
+import OrderDetailsAdmin from "../../components/AdminComponents/OrderDetailsAdmin";
+
 
 
 const Dashboard = () => {
@@ -102,7 +104,8 @@ const Dashboard = () => {
 
             {/* Orders */}
            <RecentOrders  />
-            
+           <OrderDetailsAdmin />
+     
           </div>
         </div>
       </div>

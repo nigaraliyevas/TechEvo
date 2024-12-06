@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 // import authReducer from "./slices/AuthSlice";
 import { productApi } from "./sercives/productApi";
-import { reviewsApi } from "./sercives/reviewsApi"; // commentApi faylını import et
+import { reviewsApi } from "./sercives/reviewsApi";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import basketSlice from "./slices/BasketSlice";
 import TokenReducer from "./slices/TokenSlice";
@@ -12,11 +12,13 @@ import { forgetPassApi } from "./sercives/forgetPassApi";
 import { serviceApi } from "./sercives/serviceApi";
 import { viewCountApi } from "./sercives/viewCountApi";
 import { analyticsApi } from "./sercives/analyticsApi";
+
 const store = configureStore({
   reducer: {
     auth: TokenReducer,
     basket: basketSlice,
 
+    // API reducers
     [productApi.reducerPath]: productApi.reducer,
     [reviewsApi.reducerPath]: reviewsApi.reducer,
     [favoriteApi.reducerPath]: favoriteApi.reducer,
@@ -24,7 +26,6 @@ const store = configureStore({
     [userApi.reducerPath]: userApi.reducer,
     [forgetPassApi.reducerPath]: forgetPassApi.reducer,
     [serviceApi.reducerPath]: serviceApi.reducer,
-    //admin
     [viewCountApi.reducerPath]: viewCountApi.reducer,
     [analyticsApi.reducerPath]: analyticsApi.reducer,
   },

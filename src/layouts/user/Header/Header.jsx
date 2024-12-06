@@ -64,7 +64,7 @@ const Header = ({ exist, confirm }) => {
                         <div className={styles.link_catagirie_dropdown}>
                           <ul>
                             <li>
-                              <NavLink to={"/Monitorlar"}>Monitorlar</NavLink>
+                              <NavLink to={"/Monitor"}>Monitorlar</NavLink>
 
                             </li>
                             <li>
@@ -80,7 +80,7 @@ const Header = ({ exist, confirm }) => {
 
                             </li>
                             <li>
-                              <NavLink to={"/VideoCart"}>Video kart</NavLink>
+                              <NavLink to={"/Video Cart"}>Video kart</NavLink>
 
                             </li>
                             <li>
@@ -96,11 +96,11 @@ const Header = ({ exist, confirm }) => {
 
                             </li>
                             <li>
-                              <NavLink to={"/Soyutma sistemi"}>Soyutma sistemləri</NavLink>
+                              <NavLink to={"/Cooler"}>Soyutma sistemləri</NavLink>
 
                             </li>
                             <li>
-                              <NavLink to={"/Şəbəkə kartı"}>Şəbəkə kartları</NavLink>
+                              <NavLink to={"/Network Card"}>Şəbəkə kartları</NavLink>
 
                             </li>
                             <li>

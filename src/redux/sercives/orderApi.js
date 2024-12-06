@@ -25,8 +25,8 @@ export const orderApi = createApi({
         body: order,
       }),
     }),
-    //admin
 
+    //admin
     getAllOrders: builder.query({
       query: () => "order/getAllOrders",
     }),

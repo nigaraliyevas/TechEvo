@@ -1,19 +1,12 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import Chart from "../../../components/admin/Chart/Chart";
 import Comments from "../../../components/admin/LatestComments/Comments";
+import AnalyticsList from "../../../components/admin/AnalyticsList/AnalyticsList";
 const Dashboard = () => {
   return (
     <>
-      <div className="col-12 d-flex flex-wrap justify-content-between mb-4">
-        {["Ümumi Sifarişlər", "Uğurlu Çatdırılmalar", "Gözləyən Sifarişlər", "Qeydiyyatdan Keçən İstifadəçilər"].map((stat, index) => (
-          <div key={index} className="card text-center flex-grow-1 mx-2 mb-3" style={{ maxWidth: "200px" }}>
-            <div className="card-body">
-              <h5 className="card-title">500</h5>
-              <p className="card-text">{stat}</p>
-            </div>
-          </div>
-        ))}
-      </div>
+      {/* Stats */}
+      <AnalyticsList />
 
       <div className="col-12 row mb-4">
         <div className="col-12 col-md-8 mb-3">

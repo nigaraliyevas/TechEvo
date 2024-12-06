@@ -6,11 +6,9 @@ const OrdersTable = () => {
   const { data: orders, isLoading, error } = useGetAllOrdersQuery();
   const [updateOrderStatus] = useUpdateOrderStatusMutation();
 
-  // Sorting state
   const [sortType, setSortType] = useState("");
   const [showSortOptions, setShowSortOptions] = useState(false);
 
-  // Local state for order statuses
   const [orderStatuses, setOrderStatuses] = useState({});
 
   const handleChangeStatus = async (orderId, newStatus) => {
@@ -19,7 +17,6 @@ const OrdersTable = () => {
       setOrderStatuses(prevStatuses => ({ ...prevStatuses, [orderId]: newStatus }));
       alert(`Order ${orderId} status updated to ${newStatus}`);
     } catch (err) {
-      console.error("Failed to update status", err);
       alert("Error updating status");
     }
   };

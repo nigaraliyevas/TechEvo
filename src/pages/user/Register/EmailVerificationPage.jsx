@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 export default function EmailVerificationPage() {
   const navigate = useNavigate();
+  const serverUrl = import.meta.env.VITE_SOME_KEY;
   useEffect(() => {
     
     const verifyToken = async() => {
@@ -14,7 +15,7 @@ export default function EmailVerificationPage() {
       
       if (token && email) {
         try {
-          const response = await fetch('http://ec2-51-20-32-195.eu-north-1.compute.amazonaws.com:8081/api/v1/auth/activate', {
+          const response = await fetch(`${serverUrl}auth/activate`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

@@ -14,7 +14,6 @@ const Sidebar = () => {
       {/* Logo */}
       <img src="/src/assets/images/HeaderPage/tech-evo-logo 1.png" alt="Logo" style={{ width: "48px", height: "41px" }} className="mb-4" />
 
-      {/* Navigation links */}
       <ul className="nav flex-column">
         <li className={`${styles.nav_item} mb-2`}>
           <Link to="/admin" className="nav-link text-white">
@@ -44,13 +43,16 @@ const Sidebar = () => {
             <div className={styles.dropdown_menu}>
               <ul className={styles.dropdown_menu__list}>
                 <li className={styles.dropdown_menu__item}>
-                  <Link to="/">İkinci əl satış</Link>
+                  <Link>İkinci əl satış</Link>
                 </li>
                 <li className={styles.dropdown_menu__item}>
-                  <Link to="/">Təmir</Link>
+                  <Link to="/admin/adminRepair">Təmir</Link>
                 </li>
                 <li className={styles.dropdown_menu__item}>
-                  <Link to="/">Çatdırılma</Link>
+                  <Link to="/admin/adminDelivery">Çatdırılma</Link>
+                </li>
+                <li className={styles.dropdown_menu__item}>
+                  <Link to="/admin/adminCredit">Daxili kredit</Link>
                 </li>
                 <li className={styles.dropdown_menu__item}>
                   <Link to="/">Ana səhifə</Link>

@@ -49,7 +49,10 @@ export const reviewsApi = createApi({
         body: { ...comment, productId },
       }),
     }),
+    getAllComments: builder.query({
+      query: () => `product/comment/getAll`,
+    })
   }),
 });
 
-export const { useGetReviewsQuery, usePostReviewMutation } = reviewsApi;
+export const { useGetReviewsQuery, usePostReviewMutation, useGetAllCommentsQuery } = reviewsApi;

@@ -34,6 +34,7 @@ const Header = ({ exist, confirm }) => {
   const [openPc, setOpenPc] = useState(false);
   const [openLaptop, setOpenLaptop] = useState(false);
   const [openAccessory, setOpenAccessory] = useState(false);
+
   return (
     <header
       style={{

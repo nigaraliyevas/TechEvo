@@ -1,23 +1,30 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-// api link
-const serverUrl = import.meta.env.VITE_SOME_KEY;
-// Create the API
+
+const url = import.meta.env.VITE_SOME_KEY;
+
+// API yaratmaq
 export const orderApi = createApi({
   reducerPath: "orderApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: serverUrl,
-    prepareHeaders: headers => {
+    baseUrl: url,
+    prepareHeaders: (headers, { endpoint }) => {
       const token = localStorage.getItem("accessToken");
-      if (token) {
+      if (token && endpoint !== "getAllOrders") {
         headers.set("Authorization", `Bearer ${token}`);
       }
       return headers;
     },
   }),
   endpoints: builder => ({
+    // Sifarişləri əldə etmək
     getOrders: builder.query({
-      query: () => `profile/getOrders`,
+      query: () => ({
+        url: "/profile/getOrders",
+        method: "GET",
+      }),
     }),
+
+    // Yeni sifariş göndərmək
     submitOrder: builder.mutation({
       query: order => ({
         url: "order",
@@ -30,15 +37,40 @@ export const orderApi = createApi({
     getAllOrders: builder.query({
       query: () => "order/getAllOrders",
     }),
-    updateOrderStatus: builder.mutation({
+    updateStatusOrder: builder.mutation({
       query: ({ orderId, orderStatus }) => ({
         url: `/admin/order/${orderId}`,
         method: "PUT",
         body: { orderStatus },
       }),
     }),
+
+    updateOrderStatus: builder.mutation({
+      query: ({ orderId, orderStatus }) => ({
+        url: `order/status/${orderId}`,
+        method: "PUT",
+        body: { status: orderStatus },
+        headers: {
+          "Content-Type": "application/json",
+        },
+        responseHandler: response => response.text(), // Cavabı düz string kimi oxuyur
+      }),
+      transformResponse: (response, meta, arg) => {
+        // Cavabın strukturunu özünüz idarə edə bilərsiniz
+        return { message: response };
+      },
+      invalidatesTags: ["Orders"],
+    }),
+
+    deleteOrder: builder.mutation({
+      query: orderId => ({
+        url: `order/delete/${orderId}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Orders"],
+    }),
   }),
-  keepUnusedDataFor: 60, // Istifade olunmayan datalari 60saniye saxlayir
+  keepUnusedDataFor: 60, // Istifadə olunmayan dataları 60 saniyə saxlayır
 });
 
-export const { useGetOrdersQuery, useSubmitOrderMutation, useGetAllOrdersQuery, useUpdateOrderStatusMutation } = orderApi;
+export const { useGetOrdersQuery, useSubmitOrderMutation, useUpdateOrderStatusMutation, useUpdateStatusOrderMutation, useGetAllOrdersQuery, useDeleteOrderMutation } = orderApi;

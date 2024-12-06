@@ -1,0 +1,27 @@
+.selectContainer {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .status {
+    width: 106px;
+    height: 40px;
+    border-radius: 6px;
+    border: none;
+    padding: 8px;
+    background-color: #222527;
+    color: #B8BCBF;  /* Default text color */
+    cursor: pointer;
+    appearance: none; /* Remove default arrow */
+    padding-right: 30px; /* Ensure space for the custom icon */
+  }
+  
+  .iconWrapper {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    pointer-events: none; /* Prevent the icon from blocking interactions with the select */
+   
+  }
+  

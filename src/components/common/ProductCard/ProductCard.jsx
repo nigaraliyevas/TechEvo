@@ -130,7 +130,7 @@ const ProductCard = ({ data, favoriteProductIds, refetchFavorites }) => {
           {isFavorite ? (
             <TiHeartFullOutline style={{ color: "purple" }} />
           ) : (
-            <PiHeartBold style={{ fill: "purplegit" }} />
+            <PiHeartBold style={{ fill: "purple" }} />
           )}
         </div>
 

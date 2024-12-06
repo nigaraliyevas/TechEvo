@@ -1,10 +1,11 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-// Create the API
+const url = import.meta.env.VITE_SOME_KEY;
+
 export const orderApi = createApi({
   reducerPath: "orderApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://ec2-51-20-32-195.eu-north-1.compute.amazonaws.com:8081/api/v1/",
+    baseUrl: url,
     prepareHeaders: headers => {
       const token = localStorage.getItem("accessToken");
       if (token) {
@@ -24,8 +25,20 @@ export const orderApi = createApi({
         body: order,
       }),
     }),
+    //admin
+
+    getAllOrders: builder.query({
+      query: () => "order/getAllOrders",
+    }),
+    updateOrderStatus: builder.mutation({
+      query: ({ orderId, orderStatus }) => ({
+        url: `/admin/order/${orderId}`,
+        method: "PUT",
+        body: { orderStatus },
+      }),
+    }),
   }),
   keepUnusedDataFor: 60, // Istifade olunmayan datalari 60saniye saxlayir
 });
 
-export const { useGetOrdersQuery,useSubmitOrderMutation } = orderApi;
+export const { useGetOrdersQuery, useSubmitOrderMutation, useGetAllOrdersQuery, useUpdateOrderStatusMutation } = orderApi;

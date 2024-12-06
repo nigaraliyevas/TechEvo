@@ -17,7 +17,7 @@ const ConfirmBasketPage = ({ isItems }) => {
   const regions = [{ name: "Nəsimi rayonu" }, { name: "Nizami rayonu" }, { name: "Pirallahı rayonu" }, { name: "Xəzər rayonu" }, { name: "Nərimanov rayonu" }, { name: "Binəqədi rayonu" }, { name: "Yasamal rayonu" }, { name: "Suraxanı rayonu" }];
 
   const { accessToken } = useSelector(state => state.auth);
-  console.log("access" + accessToken);
+  // console.log("access" + accessToken);
 
   const {
     data,
@@ -26,7 +26,6 @@ const ConfirmBasketPage = ({ isItems }) => {
   } = useGetUserQuery(undefined, {
     skip: !localStorage.getItem("accessToken"),
   });
-
 
   const [submitOrder, { isLoading: isSubmitOrderLoading, isError: isSubmitOrderError, isSuccess }] = useSubmitOrderMutation();
 
@@ -43,12 +42,13 @@ const ConfirmBasketPage = ({ isItems }) => {
     quantity: item.count,
     price: item.price,
     productId: item.id,
+    productName: item.productName,
+    orderStatus: "Gözləyir",
   }));
 
   useEffect(() => {
     if (data) {
       setUser(data);
-      
     }
   }, [data]);
 
@@ -98,13 +98,13 @@ const ConfirmBasketPage = ({ isItems }) => {
                     <Col lg={12}>
                       <div className={styles.confirmation_form_box}>
                         <label className={styles.confirmation_label}>Email</label>
-                        <input placeholder="Email" value={user ? user.email : ""} type="text" className={`${styles.confirmation_input} ${styles.placeholder_white}`} required />
+                        <input placeholder="Email" value={user && user.email} type="text" className={`${styles.confirmation_input} ${styles.placeholder_white}`} required />
                       </div>
                     </Col>
                     <Col lg={6}>
                       <div className={styles.confirmation_form_box}>
                         <label className={styles.confirmation_label}>Ad</label>
-                        <input placeholder="Ad" value={user ? user.firstName : ""} type="text" className={`${styles.confirmation_input} ${styles.placeholder_white}`} required />
+                        <input placeholder="Ad" value={user && user.firstName} type="text" className={`${styles.confirmation_input} ${styles.placeholder_white}`} required />
                       </div>
                       <div className={styles.confirmation_form_box}>
                         <label className={styles.confirmation_label}>Şəhər</label>
@@ -122,7 +122,7 @@ const ConfirmBasketPage = ({ isItems }) => {
                     <Col lg={6}>
                       <div className={styles.confirmation_form_box}>
                         <label className={styles.confirmation_label}>Soyad</label>
-                        <input placeholder="Soyad" value={user ? user.lastName : ""} type="text" className={`${styles.confirmation_input} ${styles.placeholder_white}`} required />
+                        <input placeholder="Soyad" value={user && user.lastName} type="text" className={`${styles.confirmation_input} ${styles.placeholder_white}`} required />
                       </div>
                       <div className={styles.confirmation_form_box}>
                         <label className={styles.confirmation_label}>Məntəqə</label>

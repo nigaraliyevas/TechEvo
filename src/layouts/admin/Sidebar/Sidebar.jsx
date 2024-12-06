@@ -17,7 +17,7 @@ const Sidebar = () => {
       {/* Navigation links */}
       <ul className="nav flex-column">
         <li className={`${styles.nav_item} mb-2`}>
-          <Link to="" className="nav-link text-white">
+          <Link to="/admin" className="nav-link text-white">
             <img src="/src/assets/images/admin/Dashboard/esasLovhe.svg" className={styles.nav_icon} alt="" />
             Əsas lövhə
           </Link>
@@ -29,7 +29,7 @@ const Sidebar = () => {
           </Link>
         </li>
         <li className={`${styles.nav_item} mb-2`}>
-          <Link to="" className="nav-link text-white">
+          <Link to="/admin/orders" className="nav-link text-white">
             <img src="/src/assets/images/admin/Dashboard/baskket.svg" className={styles.nav_icon} alt="" />
             Sifarişlər
           </Link>

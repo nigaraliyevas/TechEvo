@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 // styles
 import styles from "./Repair.module.scss";
 // images
@@ -10,7 +10,7 @@ import {
   useGetRepairQuery,
   useGetRepairStepsQuery,
 } from "../../../redux/sercives/serviceApi";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import ServiceDetails from "../ServiceDetails/ServiceDetails";
 
 const Repair = () => {
@@ -18,23 +18,38 @@ const Repair = () => {
     data: repairHeader,
     isLoading: repairHeaderLoading,
     isError: repairHeaderError,
+    refetch: refetchRepairHeader,
   } = useGetRepairHeaderQuery();
 
   const {
     data: repair,
     isLoading: repairLoading,
     isError: repairError,
+    refetch: refetchRepair,
   } = useGetRepairQuery();
 
   const {
     data: repairSteps,
     isLoading: repairStepsLoading,
     isError: repairStepsError,
+    refetch: refetchRepairSteps,
   } = useGetRepairStepsQuery();
   const navigate = useNavigate();
+  const location = useLocation();
 
+  useEffect(() => {
+      if (
+        location.state?.head || location.state?.header || location.state?.description
+      ) {
+        refetchRepairHeader();
+        refetchRepair();
+        refetchRepairSteps();
+      }
+  }, [location.state, refetchRepairHeader, refetchRepair, refetchRepairSteps]);
   const handleEditing = (head, header, description) => {
-    navigate('/admin/adminServiceDetails', { state: { head, header,description } });
+    navigate("/admin/adminServiceDetails", {
+      state: { head, header, description },
+    });
   };
   return (
     <div className={styles.mainCont}>
@@ -57,7 +72,17 @@ const Repair = () => {
               </td>
               <td className={styles.edit}>
                 <div className={styles.imgCont}>
-                  <img onClick={() => handleEditing('Təmir', repairHeader?.headerName, repairHeader?.headerDescription)} src={editIcon} alt="edit icon" />
+                  <img
+                    onClick={() =>
+                      handleEditing(
+                        "Təmir",
+                        repairHeader?.headerName,
+                        repairHeader?.headerDescription
+                      )
+                    }
+                    src={editIcon}
+                    alt="edit icon"
+                  />
                 </div>
                 <div className={styles.imgCont}>
                   <img src={trashIcon} alt="trash icon" />
@@ -105,7 +130,7 @@ const Repair = () => {
                 <td className={styles.edit}>
                   <div className={styles.imgCont}>
                     <img
-                      onClick={() => handleEditing('Xidmətlərimiz')}
+                      onClick={() => handleEditing("Xidmətlərimiz")}
                       src={editIcon}
                       alt="edit icon"
                     />
@@ -124,24 +149,47 @@ const Repair = () => {
         <div className={styles.serviceHead}>Necə Başlamaq Olar?</div>
         <table>
           <thead>
-            <tr style={{ display: "flex", gap: "290px", justifyContent: "flex-start" }}>
+            <tr
+              style={{
+                display: "flex",
+                gap: "290px",
+                justifyContent: "flex-start",
+              }}
+            >
               <th style={{ width: "110px" }} className={styles.tHead}>
                 Header
               </th>
-              <th style={{paddingLeft: "8px"}}>Təsvir</th>
-              <th style={{paddingLeft: "8px"}}>Sıra</th>
+              <th style={{ paddingLeft: "8px" }}>Təsvir</th>
+              <th style={{ paddingLeft: "8px" }}>Sıra</th>
               <th>Redaktə</th>
             </tr>
           </thead>
           <tbody>
             {/* this tr below must be mapped */}
             {repairSteps?.map((step, index) => (
-              <tr key={index} style={{ justifyContent: "flex-start", gap: "12px", width: "99%" }}>
-                <td style={{minWidth: "372px", whiteSpace: "nowrap", overflow: "hidden",
-                      textOverflow: "ellipsis",}} className={styles.lastColHeader}>
+              <tr
+                key={index}
+                style={{
+                  justifyContent: "flex-start",
+                  gap: "12px",
+                  width: "99%",
+                }}
+              >
+                <td
+                  style={{
+                    minWidth: "372px",
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                  }}
+                  className={styles.lastColHeader}
+                >
                   {step.stepName}
                 </td>
-                <td style={{minWidth: "353px"}} className={styles.lastColDescription}>
+                <td
+                  style={{ minWidth: "353px" }}
+                  className={styles.lastColDescription}
+                >
                   <div
                     style={{
                       width: "200px",
@@ -153,11 +201,16 @@ const Repair = () => {
                     {step.stepDescription}
                   </div>
                 </td>
-                <td style={{minWidth: "246px"}} className={styles.lastColNum}>{step.stepOrder}</td>
-                <td style={{minWidth: "91px", paddingLeft: "36px"}} className={styles.edit}>
-                  <div style={{width: "30px"}} className={styles.imgCont} >
+                <td style={{ minWidth: "246px" }} className={styles.lastColNum}>
+                  {step.stepOrder}
+                </td>
+                <td
+                  style={{ minWidth: "91px", paddingLeft: "36px" }}
+                  className={styles.edit}
+                >
+                  <div style={{ width: "30px" }} className={styles.imgCont}>
                     <img
-                      onClick={() => handleEditing('Necə Başlamaq Olar?')}
+                      onClick={() => handleEditing("Necə Başlamaq Olar?")}
                       src={editIcon}
                       alt="edit icon"
                     />

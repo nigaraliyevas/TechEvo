@@ -37,10 +37,10 @@ export const serviceApi = createApi({
       query: () => `creditcard`,
     }),
     createRepairHeader : builder.mutation({
-      query: () => ({
+      query: (data) => ({
         url: `admin/supportHeader`,
         method: 'POST',
-        body: {},
+        body: data,
       })
     })
   }),

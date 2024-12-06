@@ -2,6 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 import { useGetAnalyticsQuery } from "../../redux/sercives/analyticsApi";
 import Chart from "../../components/admin/Chart/Chart";
+import AnalyticsList from "./AnalyticsList";
 const Dashboard = () => {
   // const { data, error, isLoading } = useGetAnalyticsQuery(); // Fetch analytics data
   // const chartData = [
@@ -14,16 +15,7 @@ const Dashboard = () => {
   return (
     <>
       {/* Stats */}
-      <div className="col-12 d-flex flex-wrap justify-content-between mb-4">
-        {["Ümumi Sifarişlər", "Uğurlu Çatdırılmalar", "Gözləyən Sifarişlər", "Qeydiyyatdan Keçən İstifadəçilər"].map((stat, index) => (
-          <div key={index} className="card text-center flex-grow-1 mx-2 mb-3" style={{ maxWidth: "200px" }}>
-            <div className="card-body">
-              <h5 className="card-title">500</h5>
-              <p className="card-text">{stat}</p>
-            </div>
-          </div>
-        ))}
-      </div>
+   <AnalyticsList/>
 
       {/* Graph and Comments */}
       <div className="col-12 row mb-4">

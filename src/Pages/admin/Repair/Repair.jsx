@@ -11,6 +11,7 @@ import {
   useGetRepairStepsQuery,
 } from "../../../redux/sercives/serviceApi";
 import { useNavigate } from "react-router-dom";
+import ServiceDetails from "../ServiceDetails/ServiceDetails";
 
 const Repair = () => {
   const {
@@ -32,8 +33,8 @@ const Repair = () => {
   } = useGetRepairStepsQuery();
   const navigate = useNavigate();
 
-  const handleEditing = () => {
-    navigate('/admin/adminServiceDetails');
+  const handleEditing = (head, header, description) => {
+    navigate('/admin/adminServiceDetails', { state: { head, header,description } });
   };
   return (
     <div className={styles.mainCont}>
@@ -56,7 +57,7 @@ const Repair = () => {
               </td>
               <td className={styles.edit}>
                 <div className={styles.imgCont}>
-                  <img onClick={handleEditing} src={editIcon} alt="edit icon" />
+                  <img onClick={() => handleEditing('Təmir', repairHeader?.headerName, repairHeader?.headerDescription)} src={editIcon} alt="edit icon" />
                 </div>
                 <div className={styles.imgCont}>
                   <img src={trashIcon} alt="trash icon" />
@@ -104,7 +105,7 @@ const Repair = () => {
                 <td className={styles.edit}>
                   <div className={styles.imgCont}>
                     <img
-                      onClick={handleEditing}
+                      onClick={() => handleEditing('Xidmətlərimiz')}
                       src={editIcon}
                       alt="edit icon"
                     />
@@ -156,7 +157,7 @@ const Repair = () => {
                 <td style={{minWidth: "91px", paddingLeft: "36px"}} className={styles.edit}>
                   <div style={{width: "30px"}} className={styles.imgCont} >
                     <img
-                      onClick={handleEditing}
+                      onClick={() => handleEditing('Necə Başlamaq Olar?')}
                       src={editIcon}
                       alt="edit icon"
                     />

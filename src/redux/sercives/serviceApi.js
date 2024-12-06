@@ -36,8 +36,15 @@ export const serviceApi = createApi({
     getCreditCard: builder.query({
       query: () => `creditcard`,
     }),
+    createRepairHeader : builder.mutation({
+      query: () => ({
+        url: `admin/supportHeader`,
+        method: 'POST',
+        body: {},
+      })
+    })
   }),
   keepUnusedDataFor: 60, // Istifade olunmayan datalari 60saniye saxlayir
 });
 
-export const { useGetRepairQuery, useGetRepairStepsQuery, useGetRepairHeaderQuery, useGetDoorQuery, useGetDoorStepsQuery, useGetDoorHeaderQuery, useGetCreditCardQuery, useGetCreditHeader1Query, useGetCreditHeader2Query } = serviceApi;
+export const { useGetRepairQuery, useGetRepairStepsQuery, useGetRepairHeaderQuery, useGetDoorQuery, useGetDoorStepsQuery, useGetDoorHeaderQuery, useGetCreditCardQuery, useGetCreditHeader1Query, useGetCreditHeader2Query, useCreateRepairHeaderMutation } = serviceApi;

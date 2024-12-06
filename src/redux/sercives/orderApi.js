@@ -1,10 +1,11 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-
+// api link
+const serverUrl = import.meta.env.VITE_SOME_KEY;
 // Create the API
 export const orderApi = createApi({
   reducerPath: "orderApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://ec2-51-20-32-195.eu-north-1.compute.amazonaws.com:8081/api/v1/",
+    baseUrl: serverUrl,
     prepareHeaders: headers => {
       const token = localStorage.getItem("accessToken");
       if (token) {

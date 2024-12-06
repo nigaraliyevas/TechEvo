@@ -47,8 +47,12 @@ const AnalyticsList = () => {
                         style={{ width: "200px", backgroundColor: "#f8f9fa" }}
                     >
                         <div className="card-body">
-                            <h5 className="card-title">{value}</h5>
-                            <p className="card-text">{key}</p>
+                            <h5 className="card-title">{key}</h5>
+                            <ul className="list-unstyled">
+                                <li><strong>Login Sayı:</strong> {value.loginUserCount}</li>
+                                <li><strong>Ziyarət Sayı:</strong> {value.visitCount}</li>
+                                <li><strong>Sifariş Sayı:</strong> {value.orderCount}</li>
+                            </ul>
                         </div>
                     </div>
                 ))}
@@ -57,4 +61,3 @@ const AnalyticsList = () => {
 };
 
 export default AnalyticsList;
-

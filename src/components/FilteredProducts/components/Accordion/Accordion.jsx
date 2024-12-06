@@ -6,7 +6,7 @@ import { useGetFilterNameWithValuesQuery } from "../../../../redux/sercives/prod
 
 const AccordionItem = ({ queries, handleFilter, values, handleFilterItem }) => {
 
-  const [showContent, setShowContent] = useState(true);
+  const [showContent, setShowContent] = useState(false);
   // console.log(queries);
   // console.log(values);
   const [filterValue, setFilterValue] = useState('');
@@ -115,11 +115,10 @@ const Accordion = ({ queries, handleFilter, handlePrice, handleFilterItem }) => 
   }, [queries]);
 
   return (
-    <div className={styles.accordion}>
+    <div className={styles.accordion} style={{ maxHeight: "100vh", overflowY: "auto" }}>
       <PriceRangeSlider min={200} max={10000} onPriceChange={handlePrice} />
       {headers?.map((item, index) => {
         const values = queries[item]; // Get the values for each header (e.g., "Ölçülər", "Əməliyyat Sistemi")
-
         return (
           <AccordionItem
             handleFilterItem={(value) => handleFilterItem(item, value)}

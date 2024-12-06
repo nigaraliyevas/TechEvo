@@ -7,10 +7,10 @@ export const analyticsApi = createApi({
     baseUrl: url,
   }),
   endpoints: builder => ({
-    getAnalytics: builder.query({
+    getChart: builder.query({
       query: () => "admin/getAnalytics",
     }),
   }),
 });
 
-export const { useGetAnalyticsQuery } = analyticsApi;
+export const { useGetChartQuery } = analyticsApi;

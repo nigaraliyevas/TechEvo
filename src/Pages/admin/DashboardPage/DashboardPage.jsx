@@ -1,7 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
-import { useGetAnalyticsQuery } from "../../redux/sercives/analyticsApi";
-import Chart from "../../components/admin/Chart/Chart";
+import Chart from "../../../components/admin/Chart/Chart";
 const Dashboard = () => {
   // const { data, error, isLoading } = useGetAnalyticsQuery(); // Fetch analytics data
   // const chartData = [

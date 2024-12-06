@@ -9,7 +9,6 @@ import { favoriteApi } from "./sercives/favoriteApi";
 import { orderApi } from "./sercives/orderApi";
 import { userApi } from "./sercives/userApi";
 import { forgetPassApi } from "./sercives/forgetPassApi";
-import apiMiddleware from "./sercives/middleware/apiMiddleware";
 import { serviceApi } from "./sercives/serviceApi";
 import { viewCountApi } from "./sercives/viewCountApi";
 import { analyticsApi } from "./sercives/analyticsApi";
@@ -29,7 +28,7 @@ const store = configureStore({
     [viewCountApi.reducerPath]: viewCountApi.reducer,
     [analyticsApi.reducerPath]: analyticsApi.reducer,
   },
-  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(productApi.middleware).concat(reviewsApi.middleware).concat(favoriteApi.middleware).concat(orderApi.middleware).concat(userApi.middleware).concat(forgetPassApi.middleware).concat(userApi.middleware).concat(apiMiddleware).concat(serviceApi.middleware).concat(viewCountApi.middleware).concat(analyticsApi.middleware), // commentApi middleware-i əlavə et
+  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(productApi.middleware).concat(reviewsApi.middleware).concat(favoriteApi.middleware).concat(orderApi.middleware).concat(userApi.middleware).concat(forgetPassApi.middleware).concat(userApi.middleware).concat(serviceApi.middleware).concat(viewCountApi.middleware).concat(analyticsApi.middleware), // commentApi middleware-i əlavə et
 });
 
 export default store;

@@ -1,17 +1,9 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import Chart from "../../../components/admin/Chart/Chart";
+import Comments from "../../../components/admin/LatestComments/Comments";
 const Dashboard = () => {
-  // const { data, error, isLoading } = useGetAnalyticsQuery(); // Fetch analytics data
-  // const chartData = [
-  //   { name: "Week 1", Ziyaret: data.visitCount, Sifariş: data.successOrderCount, Qeydiyyat: data.loginUserCount },
-  //   { name: "Week 2", Ziyaret: data.visitCount * 1.5, Sifariş: data.successOrderCount * 2, Qeydiyyat: data.loginUserCount * 2 }, // Dummy values
-  //   { name: "Week 3", Ziyaret: data.visitCount * 0.8, Sifariş: data.successOrderCount * 0.5, Qeydiyyat: data.loginUserCount * 0.8 }, // Dummy values
-  //   { name: "Week 4", Ziyaret: data.visitCount * 1.2, Sifariş: data.successOrderCount * 1.5, Qeydiyyat: data.loginUserCount * 1.3 }, // Dummy values
-  // ];
-
   return (
     <>
-      {/* Stats */}
       <div className="col-12 d-flex flex-wrap justify-content-between mb-4">
         {["Ümumi Sifarişlər", "Uğurlu Çatdırılmalar", "Gözləyən Sifarişlər", "Qeydiyyatdan Keçən İstifadəçilər"].map((stat, index) => (
           <div key={index} className="card text-center flex-grow-1 mx-2 mb-3" style={{ maxWidth: "200px" }}>
@@ -23,9 +15,7 @@ const Dashboard = () => {
         ))}
       </div>
 
-      {/* Graph and Comments */}
       <div className="col-12 row mb-4">
-        {/* Graph */}
         <div className="col-12 col-md-8 mb-3">
           <div className="card h-100" style={{ background: "#161A1E" }}>
             <div className="card-body">
@@ -38,32 +28,16 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-        {/* Comments */}
         <div className="col-12 col-md-4">
-          <div className="card h-100">
-            <div className="card-body">
-              <h5 className="card-title">Son şərhlər</h5>
-              {[1, 2].map((comment, index) => (
-                <div key={index} className="mb-3">
-                  <strong>Leyla Babayeva</strong>
-                  <p className="small text-muted">Qeydiyyat tarixi: 09/25/2024</p>
-                  <p className="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
-                  <div className="d-flex justify-content-between align-items-center">
-                    <span className="badge bg-success">5.0 ⭐</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+          <Comments />
         </div>
       </div>
 
-      {/* Orders */}
       <div className="col-12">
         <div className="card">
           <div className="card-body">
             <h5 className="card-title">Son Sifarişlər</h5>
-            <table className="table">
+            <table className="table bg-success" style={{ background: `#161A1E }`, color: "#fff" }}>
               <thead>
                 <tr>
                   <th>Məhsul</th>

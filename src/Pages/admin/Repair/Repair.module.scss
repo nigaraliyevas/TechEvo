@@ -1,0 +1,128 @@
+.mainCont {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+
+.serviceCont {
+    background-color: #161A1E;
+    padding: 20px 24px;
+    border-radius: 8px;
+
+
+    .serviceHead {
+        color: white;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 40px;
+        margin-bottom: 26px;
+    }
+
+    .serviceHeadText {
+        color: white;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 40px;
+    }
+    .serviceSubHeader {
+        display: flex;
+        gap: 8px;
+        padding: 8px 16px;
+        border: 1px solid #323437;
+        cursor: pointer;
+
+
+        .addIconCont {
+            width: 32px;
+            height: 32px;
+            margin-top: 3px;
+
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                vertical-align: baseline !important;
+            }
+        }
+    }
+
+
+    table {
+        width: 100%;
+
+
+        thead {
+            color: white;
+            font-weight: 700;
+            font-size: 18px;
+            line-height: 28px;
+            border-bottom: 1px solid #323437;
+
+
+            th {
+                padding-bottom: 20px;
+            }
+            .tHead {
+                padding-left: 8px;
+            }
+            tr {
+                display: flex;
+                justify-content: space-between;
+            }
+        }
+
+
+        tbody {
+            color: #CCCCCC;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 28px;
+
+
+
+            .edit {
+                display: flex;
+                gap: 16px;
+
+                .imgCont {
+                    cursor: pointer;
+                    width: 28px;
+                    height: 28px;
+
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+                }
+            }
+
+            
+            .colHeader {
+                width: 330px;
+                margin-right: 72px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            .colDescription {
+            width: 330px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            tr {
+                display: flex;
+                justify-content: space-between;
+                border-bottom: 1px solid #323437;
+                width: 100%;
+                padding: 16.5px 20px;
+            }
+        }
+    }
+}
+

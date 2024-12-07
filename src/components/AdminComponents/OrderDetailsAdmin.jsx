@@ -39,7 +39,7 @@ const OrderDetails = () => {
                             </div>
                             <div className={styles.orderHeaderRight}>
                                 <p>
-                                    Status: {order.status}
+                                    Status:{order.status}
                                 </p>
                                 <OrderActions order={order} />
                             </div>

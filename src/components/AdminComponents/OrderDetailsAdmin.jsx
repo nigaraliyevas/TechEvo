@@ -1,12 +1,23 @@
 import React from "react";
-import { useGetAllOrdersQuery } from "../../redux/sercives/orderApi";
+import { useGetAllOrdersQuery, useDeleteOrderMutation } from "../../redux/sercives/orderApi";
 import OrderActions from "./OrderActions";
-import OrderDeleteButton from "./OrderDeleteButton";
+import { FiTrash } from "react-icons/fi";
 import styles from "./OrderDetails.module.scss";
-import { FiTrash } from "react-icons/fi"; // İkona kitabxanasını import edin
 
 const OrderDetails = () => {
     const { data: orders, isLoading, error } = useGetAllOrdersQuery();
+    const [deleteOrder] = useDeleteOrderMutation();
+
+    const handleDeleteOrder = async (orderId) => {
+        if (window.confirm("Sifarişi silmək istədiyinizdən əminsiniz?")) {
+            try {
+                await deleteOrder(orderId).unwrap();
+                alert("Sifariş uğurla silindi!");
+            } catch (error) {
+                console.error("Sifariş silinə bilmədi:", error);
+            }
+        }
+    };
 
     if (isLoading) return <p>Yüklənir...</p>;
     if (error) return <p>Xəta baş verdi: {error.message}</p>;
@@ -16,76 +27,60 @@ const OrderDetails = () => {
             <div className={styles.orderDetails}>
                 {orders.map((order) => (
                     <div key={order.orderId} className={styles.orderCard}>
-
                         <div className={styles.orderHeader}>
-                            <h3>Sifariş #{order.orderId}</h3>
-                            <p>
-                                <strong>Tarix:</strong> {new Date(order.createdAt).toLocaleDateString()}
-                            </p>
-                            <p>
-                                <strong>Ümumi qiymət:</strong> {order.totalPrice} AZN
-                            </p>
-                            <OrderActions order={order} />
+                            <div className={styles.orderHeaderLeft}>
+                                <h3>Sifariş #{order.orderId}</h3>
+                                <p>
+                                    <strong>Tarix:</strong> {new Date(order.createdAt).toLocaleDateString()}
+                                </p>
+                                <p>
+                                    <strong>Ümumi qiymət:</strong> {order.totalPrice} AZN
+                                </p>
+                            </div>
+                            <div className={styles.orderHeaderRight}>
+                                <p>
+                                    Status: {order.status}
+                                </p>
+                                <OrderActions order={order} />
+                            </div>
                         </div>
 
+                        {/* Müştəri Məlumatları */}
                         <div className={styles.userOrder}>
                             <div className={styles.userDetails}>
                                 <h4>Müştəri məlumatları</h4>
+                                <p>Ad: {order.userData.name}</p>
+                                <p>Soyad: {order.userData.surname}</p>
+                                <p>Email: {order.userEmail}</p>
                                 <p>
-                                    <strong>Ad:</strong> {order.userData.name}
-                                </p>
-                                <p>
-                                    <strong>Soyad:</strong> {order.userData.surname}
-                                </p>
-                                <p>
-                                    <strong>Email:</strong> {order.userEmail}
-                                </p>
-                                <p>
-                                    <strong>Əlaqə nömrəsi:</strong> {order.userData.phoneNumber}
-                                </p>
-                                <p>
-                                    <strong>Çatdırılma ünvanı:</strong>{" "}
-                                    {order.address.city}, {order.address.street}, {order.address.building}, {order.address.area}
+                                    Çatdırılma ünvanı: {order.address.city}, {order.address.area}, {order.address.street}, {order.address.building}
                                 </p>
                             </div>
+                        </div>
 
-                            <div className={styles.orderItems}>
-
-                                {order.orderItems.map((item) => (
-                                    <div key={item.id} className={styles.orderItem}>
+                        {/* Məhsul Siyahısı */}
+                        <div className={styles.orderItems}>
+                            {order.orderItems.map((item, index) => (
+                                <div key={item.id} className={styles.orderItem}>
+                                    <div className={styles.itemDetails}>
                                         <div className={styles.infoDelete}>
-                                            <h4>Məhsullar Məlumatı</h4>
-                                           
+                                            <h4 className={styles.productHeader}>Məhsul məlumatları №{index + 1}</h4>
                                             <FiTrash
                                                 style={{ color: "red", cursor: "pointer" }}
                                                 className={styles.deleteButton}
-                                                onClick={() => {
-                                                    OrderDeleteButton(item.id);
-                                                }}
-                                               
-                                            >
-
-                                            </FiTrash>
+                                                onClick={() => handleDeleteOrder(item.id)}
+                                            />
                                         </div>
-                                        <div className={styles.itemDetails}>
-                                            <p>
-                                                <strong>Məhsul adı:</strong> {item.productName}
-                                            </p>
-                                            <p>
-                                                <strong>Miqdar:</strong> {item.quantity}
-                                            </p>
-                                            <p>
-                                                <strong>Qiymət:</strong> {item.price} AZN
-                                            </p>
+                                        <div className={styles.productDetails}>
+                                            <p>Məhsul adı:{item.productName}</p>
+                                            <p>Miqdar:{item.quantity}</p>
+                                            <p>Qiymət:{item.price} AZN</p>
                                         </div>
-
                                     </div>
-                                ))}
-                            </div>
-
+                                </div>
+                            ))}
                         </div>
                     </div>
-
                 ))}
             </div>
         </div>

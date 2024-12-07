@@ -1,8 +1,8 @@
+
 import React from "react";
 import { useGetAllOrdersQuery } from "../../redux/sercives/orderApi";
 import OrderActions from "./OrderActions";
 import style from "./RecentOrders.module.scss";
-
 
 const RecentOrders = () => {
   const { data: orders, isLoading, isError } = useGetAllOrdersQuery();
@@ -11,18 +11,23 @@ const RecentOrders = () => {
   if (isError) return <p>Səhv baş verdi. Xahiş edirik sonra yenidən cəhd edin.</p>;
 
   return (
-    <div className="col-xxl-10">
+    <div className="col-12">
       <div className={`card ${style.card}`}>
         <div className="card-body">
-          <h5 className="card-title" style={{
-            paddingLeft: "24px",
-            paddingTop: "20px",
-            fontWeight: "700",
-            fontSize: "24px"
-          }}>Son Sifarişlər</h5>
+          <h5
+            className="card-title"
+            style={{
+              paddingLeft: "24px",
+              paddingTop: "20px",
+              fontWeight: "700",
+              fontSize: "24px",
+            }}
+          >
+            Son Sifarişlər
+          </h5>
           <table
             style={{
-              width: "100%",
+              //width: "100%",
               backgroundColor: "#161A1E",
               color: "#CCCCCC",
               fontSize: "16px",
@@ -30,31 +35,26 @@ const RecentOrders = () => {
               height: "340px !important",
               borderCollapse: "separate",
               borderSpacing: "43px 0px",
-
-
             }}
-
           >
-
             <thead>
-             
-              <tr style={{ height: "64px" }}>
-                <th style={{ paddingBottom: "10px" }}>Məhsul</th>
+              <tr style={{ height: "64px" }}> 
+                <th style={{ paddingBottom: "10px" }}>Məhsul</th> 
                 <th style={{ paddingBottom: "10px" }}>Sifariş nömrəsi</th>
                 <th style={{ paddingBottom: "10px" }}>Tarix</th>
                 <th style={{ paddingBottom: "10px" }}>Qiymət</th>
                 <th style={{ paddingBottom: "10px" }}>Miqdar</th>
                 <th style={{ paddingBottom: "10px" }}>Status</th>
-   
-                
               </tr>
+              {/* <hr></hr> */}
             </thead>
-    
+          
 
             <tbody>
               {orders && orders.length > 0 ? (
                 orders.map((order, index) => (
                   <React.Fragment key={order.orderId}>
+                    
                     <tr
                       style={{
                         height: "64px",
@@ -62,9 +62,10 @@ const RecentOrders = () => {
                     >
                       {/* Məhsul */}
                       <td style={{ width: "320px" }}>
+                        
                         {order.orderItems && order.orderItems.length > 0 ? (
                           <div
-                            className={style.productNames}
+                            className={style.productNames} style={{ display: "block", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", width: "320px",marginRight: "130px" }}
                             title={order.orderItems.map((item) => item.productName).join(", ")}
                           >
                             {order.orderItems.map((item) => item.productName).join(", ")}
@@ -90,9 +91,7 @@ const RecentOrders = () => {
                       <td style={{ width: "120px" }}>{order.totalPrice} AZN</td>
 
                       {/* Miqdar */}
-                      <td style={{ width: "65px" }}>
-                        {order.orderItems.reduce((total, item) => total + item.quantity, 0)}
-                      </td>
+                      <td style={{ width: "65px" }}>{order.orderItems.reduce((total, item) => total + item.quantity, 0)}</td>
 
                       {/* Status */}
                       <td>
@@ -127,7 +126,7 @@ const RecentOrders = () => {
           </table>
         </div>
       </div>
-    </div >
+    </div>
   );
 };
 

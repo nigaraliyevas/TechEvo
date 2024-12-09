@@ -62,9 +62,10 @@ export const orderApi = createApi({
       invalidatesTags: ["Orders"],
     }),
 
-    deleteOrder: builder.mutation({
-      query: orderId => ({
-        url: `order/delete/${orderId}`,
+    // Sifariş elementini silmək
+    deleteOrderItem: builder.mutation({
+      query: ({ orderId, orderItemId }) => ({
+        url: `order/${orderId}/items/${orderItemId}`,
         method: "DELETE",
       }),
       invalidatesTags: ["Orders"],
@@ -73,4 +74,4 @@ export const orderApi = createApi({
   keepUnusedDataFor: 60, // Istifadə olunmayan dataları 60 saniyə saxlayır
 });
 
-export const { useGetOrdersQuery, useSubmitOrderMutation, useUpdateOrderStatusMutation, useUpdateStatusOrderMutation, useGetAllOrdersQuery, useDeleteOrderMutation } = orderApi;
+export const { useGetOrdersQuery, useSubmitOrderMutation, useUpdateOrderStatusMutation, useUpdateStatusOrderMutation, useGetAllOrdersQuery, useDeleteOrderMutation, useDeleteOrderItemMutation } = orderApi;

@@ -1,107 +1,144 @@
-// .orderContainer {
-//     display: flex;
-//     //flex-direction: column;
-//     gap: 20px;
-//     margin-top: 20px
-// }
+@import '../../assets/variables/variables';
+
 .orderDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.orderCard {
+  background: #1f2428;
+  color: white;
+  padding: 20px;
+  border-radius: 8px;
+
+ 
+.orderGridContainer{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(560px, 1fr)); // Məhsul məlumatları üçün grid
+  gap: 20px;
+  margin-top: 20px;
+}
+  .infoDelete {
     display: flex;
-    flex-direction: column;
-    gap: 20px;
-    width: 1156px;
+    justify-content: space-between;
   }
-  
-  .orderCard {
-    background: #1f2428;
-    color: white;
-    padding: 20px;
-    border-radius: 8px;
-    margin-bottom: 20px;
 
-    .userOrder {
-        display: flex;
-        gap:24px;
+  .orderHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
 
-    }
-    .infoDelete{
-        display: flex;
-        justify-content: space-between;
-    }
-   
-  
-    .orderHeader {
+
+    .orderHeaderLeft {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #444;
-      padding-bottom: 10px;
-  
-      h3 {
-        font-size: 20px;
-      }
-  
-      /* Silmək düyməsi */
-      button {
-        background-color: #e74c3c;
-        color: white;
-        border: none;
-        padding: 5px 10px;
-        font-size: 14px;
-        cursor: pointer;
-        border-radius: 4px;
-  
-        &:hover {
-          background-color: #c0392b;
-        }
-      }
+      flex-direction: row;
+      gap: 40px;
+      /* Sol tərəf üçün məlumat arası məsafə */
     }
-  
-    .userDetails, .addressDetails {
-      margin-top: 20px;
-      background: #2b3035;
-      padding: 15px;
-      border-radius: 8px;
-    //   width: 566px;
-    //   height: 320px;
-  
-      h4 {
-        margin-bottom: 10px;
-        font-size: 18px;
-      }
-  
+
+    .orderHeaderRight {
+      display: flex;
+      flex-direction: row;
+      align-items: baseline;
+      /* Sağ tərəfdə düzləşmə sağa */
+      gap: 0px;
+
       p {
-        margin: 5px 0;
-        font-size: 14px;
-  
-        strong {
-          font-weight: bold;
-        }
+        font-size: 18px;
+        font-weight: 500;
+        margin-right: 12px;
       }
     }
-  
-    .orderItems {
-      margin-top: 20px;
-  
-      h4 {
-        margin-bottom: 10px;
-        font-size: 18px;
-      }
-  
-      .orderItem {
-        background: #2b3035;
-        padding: 10px;
-        border-radius: 6px;
-        margin-bottom: 10px;
-  
-        p {
-          margin: 5px 0;
-          font-size: 14px;
-  
-          strong {
-            font-weight: bold;
-          }
-        }
+
+    h3 {
+      font-size: 20px;
+    }
+
+    /* Silmək düyməsi */
+    button {
+      background-color: #e74c3c;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 4px;
+
+      &:hover {
+        background-color: #c0392b;
       }
     }
   }
+  .orderItems {
+   display: contents;
+  }
+  
+
+  p {
+    font-weight: 500 !important;
+    font-size: 18px !important;
+    line-height: 28px;
+    font-family: $fontFamily;
+    color: #FFFFFF;
+  }
+}
+
+.orderItem,
+.userDetails {
+  background: #2b3035;
+  padding: 15px;
+  border-radius: 8px;
+  height: auto;
+  width: 100%;
+  max-width: 560px;
+  margin-top: 10px;
+}
+
+.userDetails h4,
+.orderItem h4 {
+  margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 28px;
+}
+
+.userDetails p,
+.orderItem p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #BFBFBF;
+
+  strong {
+    font-weight: bold;
+  }
+}
+
+
+
+.addButton {
+  background-color: #323437;
+  color: white;
+  font-size: 16px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.addButton:hover {
+  background-color: #333;
+}
+
+.addButtonIcon {
+  margin-left: 8px;
+  font-size: 20px;
+}
+
+
+
   

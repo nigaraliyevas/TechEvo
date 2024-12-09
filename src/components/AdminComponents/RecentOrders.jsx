@@ -1,22 +1,19 @@
-
 import React from "react";
-//import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom"; // Navigasiya üçün hook
 import { useGetAllOrdersQuery } from "../../redux/sercives/orderApi";
 import OrderActions from "./OrderActions";
 import style from "./RecentOrders.module.scss";
-//import { useEffect } from "react";
 
 const RecentOrders = () => {
-
   const { data: orders, isLoading, isError } = useGetAllOrdersQuery();
-  // useEffect(() => {
-  //   if (orders) {
-  //     // Burada sifarişləri Redux store-a göndərə bilərsiniz, əgər lazım olarsa.
-  //   }
-  // }, [orders]);
+  const navigate = useNavigate(); // useNavigate hook-u çağırın
 
   if (isLoading) return <p>Yüklənir...</p>;
   if (isError) return <p>Səhv baş verdi. Xahiş edirik sonra yenidən cəhd edin.</p>;
+
+  const handleRowClick = (orderId) => {
+    navigate(`/order-details/${orderId}`); // Yönləndirmə
+  };
 
   return (
     <div className="col-12">
@@ -35,7 +32,6 @@ const RecentOrders = () => {
           </h5>
           <table
             style={{
-              //width: "100%",
               backgroundColor: "#161A1E",
               color: "#CCCCCC",
               fontSize: "16px",
@@ -45,52 +41,49 @@ const RecentOrders = () => {
               borderSpacing: "43px 0px",
             }}
           >
-             {/* <div className={style.headerBottom} style={{ borderBottom: "1px solid white"}}></div> */}
             <thead>
-              <tr style={{ height: "64px" }}> 
-               
-                <th style={{ paddingBottom: "10px" }}>Məhsul</th> 
+              <tr style={{ height: "64px" }}>
+                <th style={{ paddingBottom: "10px" }}>Məhsul</th>
                 <th style={{ paddingBottom: "10px" }}>Sifariş nömrəsi</th>
                 <th style={{ paddingBottom: "10px" }}>Tarix</th>
                 <th style={{ paddingBottom: "10px" }}>Qiymət</th>
                 <th style={{ paddingBottom: "10px" }}>Miqdar</th>
                 <th style={{ paddingBottom: "10px" }}>Status</th>
-                
               </tr>
-              {/* <hr></hr> */}
             </thead>
-            {/* <div/> */}
-          
-
             <tbody>
               {orders && orders.length > 0 ? (
                 orders.map((order, index) => (
                   <React.Fragment key={order.orderId}>
-                    
                     <tr
-                      style={{
-                        height: "64px",
-                      }}
+                      style={{ height: "64px", cursor: "pointer" }}
+                      onClick={() => handleRowClick(order.orderId)} // Klik funksiyası
                     >
-                      {/* Məhsul */}
                       <td style={{ width: "320px" }}>
-                        
                         {order.orderItems && order.orderItems.length > 0 ? (
                           <div
-                            className={style.productNames} style={{ display: "block", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", width: "320px",marginRight: "130px" }}
-                            title={order.orderItems.map((item) => item.productName).join(", ")}
+                            className={style.productNames}
+                            style={{
+                              display: "block",
+                              overflow: "hidden",
+                              textOverflow: "ellipsis",
+                              whiteSpace: "nowrap",
+                              width: "320px",
+                              marginRight: "130px",
+                            }}
+                            title={order.orderItems
+                              .map((item) => item.productName)
+                              .join(", ")}
                           >
-                            {order.orderItems.map((item) => item.productName).join(", ")}
+                            {order.orderItems
+                              .map((item) => item.productName)
+                              .join(", ")}
                           </div>
                         ) : (
                           <p>Heç bir məhsul yoxdur</p>
                         )}
                       </td>
-
-                      {/* Sifariş nömrəsi */}
                       <td style={{ width: "140px" }}>{order.orderId}</td>
-
-                      {/* Tarix */}
                       <td style={{ width: "110px" }}>
                         {new Date(order.createdAt).toLocaleDateString("az-AZ", {
                           day: "2-digit",
@@ -98,20 +91,17 @@ const RecentOrders = () => {
                           year: "numeric",
                         })}
                       </td>
-
-                      {/* Qiymət */}
                       <td style={{ width: "120px" }}>{order.totalPrice} AZN</td>
-
-                      {/* Miqdar */}
-                      <td style={{ width: "65px" }}>{order.orderItems.reduce((total, item) => total + item.quantity, 0)}</td>
-
-                      {/* Status */}
+                      <td style={{ width: "65px" }}>
+                        {order.orderItems.reduce(
+                          (total, item) => total + item.quantity,
+                          0
+                        )}
+                      </td>
                       <td>
                         <OrderActions order={order} />
                       </td>
                     </tr>
-
-                    {/* Yalnız son sətirdən sonra `hr` əlavə etməmək üçün */}
                     {index !== orders.length - 1 && (
                       <tr>
                         <td colSpan="6">
@@ -129,7 +119,10 @@ const RecentOrders = () => {
                 ))
               ) : (
                 <tr>
-                  <td colSpan="6" style={{ textAlign: "center", padding: "20px" }}>
+                  <td
+                    colSpan="6"
+                    style={{ textAlign: "center", padding: "20px" }}
+                  >
                     Heç bir sifariş tapılmadı
                   </td>
                 </tr>

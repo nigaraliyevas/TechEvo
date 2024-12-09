@@ -6,6 +6,7 @@ import { useState } from "react";
 // navigating page
 // import RegisterPage2 from "./RegisterPage2";
 // common button
+
 import "../../../components/css/Button.scss";
 export default function RegisterPage() {
   const [error, setError] = useState("");
@@ -13,7 +14,7 @@ export default function RegisterPage() {
   // const [showPage2, setShowPage2] = useState(false)
   const [email, setEmail] = useState("");
   // const navigate = useNavigate();
-
+  const serverUrl = import.meta.env.VITE_SOME_KEY;
   const validateEmail = email => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
@@ -45,7 +46,7 @@ export default function RegisterPage() {
     try {
       console.log(email);
 
-      const response = await fetch("http://ec2-51-20-32-195.eu-north-1.compute.amazonaws.com:8081/api/v1/auth/register-email", {
+      const response = await fetch(`${serverUrl}auth/register-email`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

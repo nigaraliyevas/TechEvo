@@ -13,6 +13,7 @@ import { useGetOrdersQuery } from "../../redux/sercives/orderApi";
 import { useGetProductByIdQuery } from "../../redux/sercives/productApi";
 import { skipToken } from "@reduxjs/toolkit/query";
 
+
 const Desktop = ({ children }) => {
   const isDesktop = useMediaQuery({ minWidth: 992 });
   return isDesktop ? children : null;
@@ -34,7 +35,7 @@ const AllOrders = () => {
     isLoading: ordersLoading,
   } = useGetOrdersQuery();
   // const productIds = ordersData?.flatMap(order => order.orderItems.map(item => item.productId)) || [];
-  
+  const serverUrl = import.meta.env.VITE_SOME_KEY;
    // Get all productIds from the ordersData
    const getProductIds = () => {
     if (ordersData && ordersData.length > 0 && !ordersError && !ordersLoading) {
@@ -54,7 +55,7 @@ const AllOrders = () => {
         try {
           // Create a list of promises to fetch product data for each ID
           const productPromises = productIds.map(id =>
-            fetch(`http://srv654911.hstgr.cloud:8081/api/v1/product/${id}`).then(res => res.json()) // Replace with your API call
+            fetch(`${serverUrl}order/${id}`).then(res => res.json()) // Replace with your API call
           );
           // Wait for all the promises to resolve
           const productResults = await Promise.all(productPromises);

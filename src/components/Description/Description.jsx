@@ -3,7 +3,7 @@ import Birkart from "../../assets/images/Description/birbank.png";
 import { RiShieldCheckLine } from "react-icons/ri";
 import { LuBox } from "react-icons/lu";
 import { SlBasket } from "react-icons/sl";
-import StarRating from '../../components/Rating/StarRating';
+import StarRating from "../../components/Rating/StarRating";
 import { addToCart } from "../../redux/slices/BasketSlice";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -14,28 +14,25 @@ const Description = ({ product }) => {
   }
 
   const { name, price, description, rating } = product;
-  const count = rating
-  console.log(product, "product detal");
-  const {basket} = useSelector((state)=>state.basket)
- 
-  const dispatch = useDispatch()
-    const addbasket = () => {
-      dispatch(addToCart(product));
-    };
+  const count = rating;
+  // console.log(product, "product detal");
+  const { basket } = useSelector(state => state.basket);
+
+  const dispatch = useDispatch();
+  const addbasket = () => {
+    dispatch(addToCart(product));
+  };
   return (
     <div className={style.productCard}>
       <h1 className={style.productTitle}>{name}</h1>
       <div className={style.rating}>
-        <StarRating style={{color: "gold"}} value={rating}/>
-       
+        <StarRating style={{ color: "gold" }} value={rating} />
       </div>
       <p className={style.price}>{price} AZN</p>
-      <button onClick={addbasket}  className={style.addToCartButton}>
+      <button onClick={addbasket} className={style.addToCartButton}>
         <span style={{ paddingRight: "13px" }}>
           <a href="#">
-            <SlBasket
-              style={{ width: "22px", height: "21px", color: "white" }}
-            />
+            <SlBasket style={{ width: "22px", height: "21px", color: "white" }} />
           </a>
         </span>
         Səbətə at

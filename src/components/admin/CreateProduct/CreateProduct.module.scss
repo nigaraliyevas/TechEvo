@@ -1,0 +1,120 @@
+.productCatalog {
+  background-color: #161a1e;
+  color: #fff;
+  padding: 20px 24px;
+  .product_header {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 40px;
+    margin-bottom: 34px;
+  }
+
+  .form {
+    display: flex;
+    // gap: 10px;
+
+    .row {
+      gap: 20px;
+      flex-wrap: wrap;
+
+      .column {
+        flex: 1;
+        min-width: 200px;
+
+        input,
+        textarea,
+        select {
+          width: 100%;
+          background-color: #161a1e;
+          border: 1px solid #595959;
+          border-radius: 4px;
+          padding: 14px;
+          color: #fff;
+          height: 30px;
+        }
+        ::placeholder {
+          color: #737373;
+        }
+        textarea {
+          resize: none;
+          height: 202px;
+          margin-bottom: 24px;
+        }
+      }
+    }
+
+    .images {
+      width: 100%;
+
+      .imageGrid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin-top: 5px;
+
+        .imageBox {
+          background-color: #444;
+          height: 60px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 4px;
+          color: #fff;
+          font-size: 14px;
+        }
+      }
+
+      p {
+        font-size: 12px;
+        color: #bbb;
+        margin-top: 5px;
+      }
+    }
+
+    .specifications {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+
+      .specField {
+        display: flex;
+        flex-direction: column;
+
+        select {
+          font-size: 14px;
+        }
+      }
+    }
+
+    .actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+
+      button {
+        padding: 10px 20px;
+        font-size: 14px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .cancel {
+        background-color: #444;
+        color: #fff;
+      }
+
+      .save {
+        background-color: #007bff;
+        color: #fff;
+      }
+    }
+  }
+}
+label {
+  margin-bottom: 10px;
+  display: block;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 28px;
+}

@@ -5,12 +5,12 @@ import UserRouter from "./router/UserRouter";
 import { useState, useEffect } from "react";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import AdminRouter from "./router/AdminRouter";
+import ReactGA from "react-ga4";
 
 const App = () => {
   const [exist, setExist] = useState(false);
   const [confirm, setConfirm] = useState(false);
 
-  // Function to handle token refresh
   const refreshToken = () => {
     const base = import.meta.env.VITE_SOME_KEY;
     const url = `${base}auth/refresh`;
@@ -29,7 +29,6 @@ const App = () => {
         return response.json();
       })
       .then(data => {
-        // Save the new access and refresh tokens
         if (data.accessToken) {
           localStorage.setItem("accessToken", data.accessToken);
           localStorage.setItem("refreshToken", data.refreshToken);
@@ -40,7 +39,6 @@ const App = () => {
       });
   };
 
-  // Persistent interval logic
   useEffect(() => {
     const intervalTime = 120000;
     const lastRefreshTimeKey = "lastRefreshTime";
@@ -70,7 +68,24 @@ const App = () => {
       startRefreshInterval();
     }
   }, []);
+  // useEffect(() => {
+  //   ReactGA.initialize("G-NS1ZF3HPR5"); // Replace with your Tracking ID
+  //   ReactGA.send("pageview");
+  // }, []);
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://www.googletagmanager.com/gtag/js?id=G-NS1ZF3HPR5";
+    script.async = true;
+    document.head.appendChild(script);
 
+    // Initialize Google Analytics
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      window.dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+    gtag("config", "G-NS1ZF3HPR5");
+  }, []);
   return (
     <Provider store={store}>
       <BrowserRouter>

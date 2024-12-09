@@ -1,0 +1,32 @@
+.statsContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 boxes in a row */
+  gap: 20px; /* Space between the boxes */
+  margin: 20px 0;
+}
+
+.card {
+  background-color: #323338;
+  color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+}
+
+.card .card-body {
+  padding: 20px;
+}
+
+.card-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.card h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 10px;
+}

@@ -102,9 +102,7 @@ const Dashboard = () => {
               </div>
             </div>
 
-            {/* Orders */}
-           <RecentOrders  />
-           <OrderDetailsAdmin />
+
      
           </div>
         </div>

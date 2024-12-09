@@ -1,16 +1,19 @@
 import React from "react";
-import { useDeleteOrderMutation } from "../../redux/sercives/orderApi";
+import { useDeleteOrderItemMutation } from "../../redux/sercives/orderApi";
 
-const OrderDeleteButton = ({ orderId }) => {
-  const [deleteOrder] = useDeleteOrderMutation();
+const OrderDeleteButton = ({ orderId, orderItemId, onDeleted }) => {
+  const [deleteOrderItem] = useDeleteOrderItemMutation();
 
   const handleDelete = async () => {
-    if (window.confirm("Sifarişi silmək istədiyinizdən əminsiniz?")) {
+    if (window.confirm("Məhsulu sifarişdən silmək istədiyinizdən əminsiniz?")) {
       try {
-        await deleteOrder(orderId).unwrap();
-        alert("Sifariş uğurla silindi!");
+        await deleteOrderItem({ orderId, orderItemId }).unwrap();
+        alert("Məhsul sifarişdən uğurla silindi!");
+        if (onDeleted) {
+          onDeleted(orderItemId); // Məhsul silindikdən sonra vəziyyəti yeniləyirik
+        }
       } catch (error) {
-        console.error("Sifariş silinə bilmədi:", error);
+        console.error("Məhsul silinə bilmədi:", error);
       }
     }
   };

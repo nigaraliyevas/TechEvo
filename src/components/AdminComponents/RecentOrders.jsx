@@ -1,11 +1,19 @@
 
 import React from "react";
+//import { useDispatch } from "react-redux";
 import { useGetAllOrdersQuery } from "../../redux/sercives/orderApi";
 import OrderActions from "./OrderActions";
 import style from "./RecentOrders.module.scss";
+//import { useEffect } from "react";
 
 const RecentOrders = () => {
+
   const { data: orders, isLoading, isError } = useGetAllOrdersQuery();
+  // useEffect(() => {
+  //   if (orders) {
+  //     // Burada sifarişləri Redux store-a göndərə bilərsiniz, əgər lazım olarsa.
+  //   }
+  // }, [orders]);
 
   if (isLoading) return <p>Yüklənir...</p>;
   if (isError) return <p>Səhv baş verdi. Xahiş edirik sonra yenidən cəhd edin.</p>;
@@ -37,17 +45,21 @@ const RecentOrders = () => {
               borderSpacing: "43px 0px",
             }}
           >
+             {/* <div className={style.headerBottom} style={{ borderBottom: "1px solid white"}}></div> */}
             <thead>
               <tr style={{ height: "64px" }}> 
+               
                 <th style={{ paddingBottom: "10px" }}>Məhsul</th> 
                 <th style={{ paddingBottom: "10px" }}>Sifariş nömrəsi</th>
                 <th style={{ paddingBottom: "10px" }}>Tarix</th>
                 <th style={{ paddingBottom: "10px" }}>Qiymət</th>
                 <th style={{ paddingBottom: "10px" }}>Miqdar</th>
                 <th style={{ paddingBottom: "10px" }}>Status</th>
+                
               </tr>
               {/* <hr></hr> */}
             </thead>
+            {/* <div/> */}
           
 
             <tbody>

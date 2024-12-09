@@ -65,10 +65,10 @@ export const orderApi = createApi({
     }),
     
 
-    // Sifarişi silmək
-    deleteOrder: builder.mutation({
-      query: (orderId) => ({
-        url: `order/delete/${orderId}`,
+    // Sifariş elementini silmək
+    deleteOrderItem: builder.mutation({
+      query: ({ orderId, orderItemId }) => ({
+        url: `order/${orderId}/items/${orderItemId}`,
         method: "DELETE",
       }),
       invalidatesTags: ["Orders"],
@@ -83,5 +83,5 @@ export const {
   useSubmitOrderMutation,
   useGetAllOrdersQuery,
   useUpdateOrderStatusMutation,
-  useDeleteOrderMutation,
+  useDeleteOrderItemMutation,
 } = orderApi;

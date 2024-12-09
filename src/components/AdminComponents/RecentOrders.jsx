@@ -1,16 +1,23 @@
 import React from "react";
+//import { useDispatch } from "react-redux";
 import { useGetAllOrdersQuery } from "../../redux/sercives/orderApi";
 import OrderActions from "./OrderActions";
 import style from "./RecentOrders.module.scss";
+//import { useEffect } from "react";
 
 const RecentOrders = () => {
   const { data: orders, isLoading, isError } = useGetAllOrdersQuery();
+  // useEffect(() => {
+  //   if (orders) {
+  //     // Burada sifarişləri Redux store-a göndərə bilərsiniz, əgər lazım olarsa.
+  //   }
+  // }, [orders]);
 
   if (isLoading) return <p>Yüklənir...</p>;
   if (isError) return <p>Səhv baş verdi. Xahiş edirik sonra yenidən cəhd edin.</p>;
 
   return (
-    <div className="col-12q">
+    <div className="col-12">
       <div className={`card ${style.card}`}>
         <div className="card-body">
           <h5
@@ -26,26 +33,35 @@ const RecentOrders = () => {
           </h5>
           <table
             style={{
-              width: "100%",
+              //width: "100%",
               backgroundColor: "#161A1E",
               color: "#CCCCCC",
               fontSize: "16px",
               lineHeight: "28px",
               height: "340px !important",
-              borderCollapse: "separate",
+              borderCollapse: "collapse",
               borderSpacing: "43px 0px",
             }}
           >
+            {/* <div className={style.headerBottom} style={{ borderBottom: "1px solid white"}}></div> */}
             <thead>
               <tr style={{ height: "64px" }}>
-                <th style={{ paddingBottom: "10px" }}>Məhsul</th>
+                {/* <th style={{ paddingBottom: "10px" }}>Məhsul</th>
                 <th style={{ paddingBottom: "10px" }}>Sifariş nömrəsi</th>
                 <th style={{ paddingBottom: "10px" }}>Tarix</th>
                 <th style={{ paddingBottom: "10px" }}>Qiymət</th>
                 <th style={{ paddingBottom: "10px" }}>Miqdar</th>
-                <th style={{ paddingBottom: "10px" }}>Status</th>
+                <th style={{ paddingBottom: "10px" }}>Status</th> */}
+                <th style={{ width: "25%" }}>Məhsul</th>
+                <th style={{ width: "20%" }}>Sifariş nömrəsi</th>
+                <th style={{ width: "15%" }}>Tarix</th>
+                <th style={{ width: "20%" }}>Qiymət</th>
+                <th style={{ width: "10%" }}>Miqdar</th>
+                <th style={{ width: "10%" }}>Status</th>
               </tr>
+              {/* <hr></hr> */}
             </thead>
+            {/* <div/> */}
 
             <tbody>
               {orders && orders.length > 0 ? (
@@ -59,7 +75,7 @@ const RecentOrders = () => {
                       {/* Məhsul */}
                       <td style={{ width: "320px" }}>
                         {order.orderItems && order.orderItems.length > 0 ? (
-                          <div className={style.productNames} title={order.orderItems.map(item => item.productName).join(", ")}>
+                          <div className={style.productNames} style={{ display: "block", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", width: "320px", marginRight: "130px" }} title={order.orderItems.map(item => item.productName).join(", ")}>
                             {order.orderItems.map(item => item.productName).join(", ")}
                           </div>
                         ) : (
@@ -90,7 +106,6 @@ const RecentOrders = () => {
                         <OrderActions order={order} />
                       </td>
                     </tr>
-
                     {/* Yalnız son sətirdən sonra `hr` əlavə etməmək üçün */}
                     {index !== orders.length - 1 && (
                       <tr>
@@ -98,7 +113,7 @@ const RecentOrders = () => {
                           <hr
                             style={{
                               border: "none",
-                              borderTop: "1px solid #CCCCCC",
+                              // borderTop: "1px solid #CCCCCC",
                               margin: "5px 0",
                             }}
                           />

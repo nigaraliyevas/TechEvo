@@ -8,6 +8,7 @@ import Repair from "../pages/admin/Repair/Repair";
 import ServiceDetails from "../pages/admin/ServiceDetails/ServiceDetails";
 import StorePage from "../pages/admin/StorePage/StorePage";
 import CreatePage from "../pages/admin/CreatePage/CreatePage";
+import OrderDetailPage from "../pages/admin/OrderDetailPage/OrderDetailPage";
 
 const AdminRouter = () => {
   return (
@@ -19,6 +20,7 @@ const AdminRouter = () => {
         <Route path="store" element={<StorePage />} />
         <Route path="create" element={<CreatePage />} />
 
+        <Route path="/detail" element={<OrderDetailPage />} />
 
         <Route path="adminDelivery" element={<Delivery />} />
         <Route path="adminRepair" element={<Repair />} />

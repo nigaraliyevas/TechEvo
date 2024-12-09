@@ -92,15 +92,25 @@ const Repair = () => {
     }
   }
 
-  const handleAdding = (head) => {
+  const handleAdding = (head, header, description) => {
     if(head === "Xidmətlərimiz") {
       sessionStorage.setItem('method', 'addxidmet');
     }
-    else sessionStorage.setItem('method', 'addstep');
+    else if(head === "Necə başlamaq olar?") sessionStorage.setItem('method', 'addstep');
     navigate("/admin/adminServiceDetails", {
-      state: { head },
+      state: {
+        head,
+        header: header ?? "", // Ensure fallback to an empty string
+        description: description ?? "", // Ensure fallback to an empty string
+      },
     });
   }
+
+  const handleAddSteps = (head, header, description) => {
+    navigate("/admin/adminServiceDetails", {
+      state: { head, header, description },
+    });
+  };
 
   const handleDeleteSteps = async (id) => {
     try {
@@ -242,7 +252,7 @@ const Repair = () => {
           <div style={{ marginBottom: "0px" }} className={styles.serviceHead}>
             Necə başlamaq olar?
           </div>
-          <div onClick={() => handleAdding("Necə başlamaq olar?")} className={styles.serviceSubHeader}>
+          <div onClick={() => handleAddSteps("Necə başlamaq olar?", "", "")} className={styles.serviceSubHeader}>
             <div className={styles.serviceHeadText}>Əlavə et</div>
             <div className={styles.addIconCont}>
               <img src={addIcon} alt="əlavə et iconu" />

@@ -70,10 +70,9 @@ const ServiceDetails = () => {
   const handleOrderChanging = (e) => {
     setNewOrder(e.target.value)
   }
-  const handleSave = async () => {
-
-    console.log(head);    // creating(editing) header and description of the first part
+  const handleSave = async () => {   // creating(editing) header and description of the first part
     if (head === "Təmir") {
+      console.log(location.state); 
       if (localHeader.trim() === "" || localDescription.trim() === "") {
         alert("Xanalar bos olmamalidir");
         return;
@@ -150,7 +149,9 @@ const ServiceDetails = () => {
       }
       return;
     }
-    else if(head === "Necə Başlamaq Olar?" && sessionStorage.getItem('method') === 'addstep') {
+
+    else if(head === "Necə başlamaq olar?" && sessionStorage.getItem('method') === 'addstep') {
+      console.log(location.state);  
       if (localHeader.trim() === "" || localDescription.trim() === "") {
         alert("Xanalar bos olmamalidir");
         return;
@@ -253,7 +254,7 @@ const ServiceDetails = () => {
           disabled={repairHeaderChangeIsLoading || repairChangeIsLoading || repairCreateIsLoading || stepCreateIsLoading}
           onClick={handleSave}
         >
-          {repairHeaderChangeIsLoading || repairChangeIsLoading || repairCreateIsLoading ? "Saving..." : "Save"}
+          {repairHeaderChangeIsLoading || repairChangeIsLoading || repairCreateIsLoading || stepCreateIsLoading ? "Saving..." : "Save"}
         </button>
       </div>
     </div>

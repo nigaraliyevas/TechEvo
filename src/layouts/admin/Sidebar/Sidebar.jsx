@@ -22,7 +22,7 @@ const Sidebar = () => {
           </Link>
         </li>
         <li className={`${styles.nav_item} mb-2`}>
-          <Link to="" className="nav-link text-white">
+          <Link to="/admin/store" className="nav-link text-white">
             <img src="/src/assets/images/admin/Dashboard/magaza.svg" className={styles.nav_icon} alt="" />
             Mağaza
           </Link>

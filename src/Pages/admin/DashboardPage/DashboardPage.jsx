@@ -3,6 +3,7 @@ import Chart from "../../../components/admin/Chart/Chart";
 import Comments from "../../../components/admin/LatestComments/Comments";
 import AnalyticsList from "../../../components/admin/AnalyticsList/AnalyticsList";
 import RecentOrders from "../../../components/AdminComponents/RecentOrders";
+import OrderDetailsAdmin from "../../../components/AdminComponents/OrderDetailsAdmin";
 const Dashboard = () => {
   return (
     <>
@@ -28,6 +29,7 @@ const Dashboard = () => {
       </div>
 
       <div className="col-12">
+        {/* Orders */}
         <RecentOrders />
       </div>
     </>

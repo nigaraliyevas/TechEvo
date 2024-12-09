@@ -6,13 +6,20 @@ import Delivery from "../pages/admin/Delivery/Delivery";
 import Credit from "../pages/admin/Credit/Credit";
 import Repair from "../pages/admin/Repair/Repair";
 import ServiceDetails from "../pages/admin/ServiceDetails/ServiceDetails";
+import StorePage from "../pages/admin/StorePage/StorePage";
+import CreatePage from "../pages/admin/CreatePage/CreatePage";
 
 const AdminRouter = () => {
   return (
     <Routes>
       <Route path="/" element={<AdminLayout />}>
         <Route index element={<Dashboard />} />
+
         <Route path="orders" element={<OrdersPage />} />
+        <Route path="store" element={<StorePage />} />
+        <Route path="create" element={<CreatePage />} />
+
+
         <Route path="adminDelivery" element={<Delivery />} />
         <Route path="adminRepair" element={<Repair />} />
         <Route path="adminCredit" element={<Credit />} />

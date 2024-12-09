@@ -3,8 +3,16 @@ import React from "react";
 import styles from "./Credit.module.scss";
 // images
 import birbank from "../../../assets/images/Services/birbank.png";
+import { useGetCreditCardQuery, useGetCreditHeader2Query, useGetDoorHeaderQuery } from "../../../redux/sercives/serviceApi";
 
 const Credit = () => {
+  const {data: creditHeader1, error: creditHeader1Error, isLoading: creditHeader1Loading} = useGetDoorHeaderQuery();
+  const {data: creditHeader2, error: creditHeader2Error, isLoading: creditHeader2Loading} = useGetCreditHeader2Query(); 
+  const {data: credit, error: creditError, isLoading: creditLoading} = useGetCreditCardQuery();
+  if(!creditError && !creditLoading) console.log(credit);
+
+
+
   return (
     <div className={styles.creditCont}>
       <div className={styles.crHeader}>
@@ -16,11 +24,9 @@ const Credit = () => {
 
       <div className="container">
         <div className={styles.crMid}>
-          <div className={styles.midTitle}>Daxili Kredit</div>
+          <div className={styles.midTitle}>{creditHeader2?.headerName}</div>
           <div className={styles.midInfo}>
-            Şəxsiyyət vəsiqənizi təqdim edərək, məhsulu dərhal əldə edə
-            bilərsiniz. Sonra isə daxili Kredit ilə 6, 12 və ya 24 ay müddətinə
-            rahatlıqla ödəyə bilərsiniz.
+            {creditHeader2?.headerDescription}
           </div>
         </div>
       </div>

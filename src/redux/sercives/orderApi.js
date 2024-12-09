@@ -14,11 +14,8 @@ export const orderApi = createApi({
       }
       return headers;
     },
-    
-    
-
   }),
-  endpoints: (builder) => ({
+  endpoints: builder => ({
     // Sifarişləri əldə etmək
     getOrders: builder.query({
       query: () => ({
@@ -29,24 +26,25 @@ export const orderApi = createApi({
 
     // Yeni sifariş göndərmək
     submitOrder: builder.mutation({
-      query: (order) => ({
+      query: order => ({
         url: "order",
         method: "POST",
         body: order,
       }),
     }),
 
-    // Bütün sifarişləri əldə etmək
+    //admin
     getAllOrders: builder.query({
-      query: () => ({
-        url: "order/getAllOrders",
-        method: "GET",
-        //headers: {}, // Boş saxlanılır
+      query: () => "order/getAllOrders",
+    }),
+    updateStatusOrder: builder.mutation({
+      query: ({ orderId, orderStatus }) => ({
+        url: `/admin/order/${orderId}`,
+        method: "PUT",
+        body: { orderStatus },
       }),
     }),
 
-
-    // Sifariş statusunu yeniləmək
     updateOrderStatus: builder.mutation({
       query: ({ orderId, orderStatus }) => ({
         url: `order/status/${orderId}`,
@@ -55,7 +53,7 @@ export const orderApi = createApi({
         headers: {
           "Content-Type": "application/json",
         },
-        responseHandler: (response) => response.text(), // Cavabı düz string kimi oxuyur
+        responseHandler: response => response.text(), // Cavabı düz string kimi oxuyur
       }),
       transformResponse: (response, meta, arg) => {
         // Cavabın strukturunu özünüz idarə edə bilərsiniz
@@ -63,7 +61,6 @@ export const orderApi = createApi({
       },
       invalidatesTags: ["Orders"],
     }),
-    
 
     // Sifariş elementini silmək
     deleteOrderItem: builder.mutation({
@@ -77,11 +74,4 @@ export const orderApi = createApi({
   keepUnusedDataFor: 60, // Istifadə olunmayan dataları 60 saniyə saxlayır
 });
 
-// Hook-ları ixrac etmək
-export const {
-  useGetOrdersQuery,
-  useSubmitOrderMutation,
-  useGetAllOrdersQuery,
-  useUpdateOrderStatusMutation,
-  useDeleteOrderItemMutation,
-} = orderApi;
+export const { useGetOrdersQuery, useSubmitOrderMutation, useUpdateOrderStatusMutation, useUpdateStatusOrderMutation, useGetAllOrdersQuery, useDeleteOrderMutation, useDeleteOrderItemMutation } = orderApi;

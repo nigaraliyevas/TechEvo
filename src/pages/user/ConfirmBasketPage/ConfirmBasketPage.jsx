@@ -43,7 +43,7 @@ const ConfirmBasketPage = ({ isItems }) => {
     price: item.price,
     productId: item.id,
     productName: item.name,
-    orderStatus: "İmtina",
+    orderStatus: "Gözləyir",
   }));
 
   useEffect(() => {

@@ -53,9 +53,47 @@ export const serviceApi = createApi({
         method: 'DELETE',
       }),
       invalidatesTags: ["RepairHeader", "Repair", "RepairSteps"],
-    })
+    }),
+    changeRepair: builder.mutation({
+      query: (id, data) => ({
+        url:`admin/support/${id}`,
+        method: 'PUT',
+        body: data,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+    }),
+    deleteRepair: builder.mutation({
+      query: (id) => ({
+        url: `admin/support/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ["RepairHeader", "Repair", "RepairSteps"],
+    }),
+    createRepair : builder.mutation({
+      query: (data) => ({
+        url: `admin/support`,
+        method: 'POST',
+        body: data,
+      })
+    }),
+    deleteSteps: builder.mutation({
+      query: (id) => ({
+        url: `admin/supportStep/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ["RepairHeader", "Repair", "RepairSteps"],
+    }),
+    createStep : builder.mutation({
+      query: (data) => ({
+        url: `admin/supportStep`,
+        method: 'POST',
+        body: data,
+      })
+    }),
   }),
   keepUnusedDataFor: 60, // Istifade olunmayan datalari 60saniye saxlayir
 });
 
-export const { useGetRepairQuery, useGetRepairStepsQuery, useGetRepairHeaderQuery, useGetDoorQuery, useGetDoorStepsQuery, useGetDoorHeaderQuery, useGetCreditCardQuery, useGetCreditHeader1Query, useGetCreditHeader2Query, useCreateRepairHeaderMutation, useDeleteRepairHeaderMutation } = serviceApi;
+export const { useGetRepairQuery, useGetRepairStepsQuery, useGetRepairHeaderQuery, useGetDoorQuery, useGetDoorStepsQuery, useGetDoorHeaderQuery, useGetCreditCardQuery, useGetCreditHeader1Query, useGetCreditHeader2Query, useCreateRepairHeaderMutation, useDeleteRepairHeaderMutation, useChangeRepairMutation, useDeleteRepairMutation, useCreateRepairMutation, useDeleteStepsMutation, useCreateStepMutation } = serviceApi;

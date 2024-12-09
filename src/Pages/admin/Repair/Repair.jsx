@@ -7,6 +7,8 @@ import trashIcon from "../../../assets/images/admin/Delivery/trash.svg";
 import addIcon from "../../../assets/images/admin/Repair/add-circle.svg";
 import {
   useDeleteRepairHeaderMutation,
+  useDeleteRepairMutation,
+  useDeleteStepsMutation,
   useGetRepairHeaderQuery,
   useGetRepairQuery,
   useGetRepairStepsQuery,
@@ -36,6 +38,8 @@ const Repair = () => {
     refetch: refetchRepairSteps,
   } = useGetRepairStepsQuery();
   const [deleteRepairHeader] = useDeleteRepairHeaderMutation();
+  const [deleteRepair] = useDeleteRepairMutation();
+  const [deleteSteps] = useDeleteStepsMutation();
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -49,7 +53,8 @@ const Repair = () => {
     if (
       location.state?.head ||
       location.state?.header ||
-      location.state?.description
+      location.state?.description ||
+      location.state?.id
     ) {
       refetchRepairHeader();
       refetchRepair();
@@ -61,11 +66,47 @@ const Repair = () => {
       state: { head, header, description },
     });
   };
+  const handleEditing2 = (head, header, description, id) => {
+    navigate("/admin/adminServiceDetails", {
+      state: { head, header, description, id},
+    });
+  };
+  
   const handleDelete = async () => {
     try {
       await deleteRepairHeader();
       alert('Ugurla silindi');
       refetchRepairHeader();
+    } catch(err) {
+      console.log('error bash verdi', err);
+    }
+  }
+
+  const handleDeleteRepair = async (id) => {
+    try {
+      await deleteRepair(id);
+      alert('Ugurla silindi');
+      refetchRepair();
+    } catch(err) {
+      console.log('error bash verdi', err);
+    }
+  }
+
+  const handleAdding = (head) => {
+    if(head === "Xidmətlərimiz") {
+      sessionStorage.setItem('method', 'addxidmet');
+    }
+    else sessionStorage.setItem('method', 'addstep');
+    navigate("/admin/adminServiceDetails", {
+      state: { head },
+    });
+  }
+
+  const handleDeleteSteps = async (id) => {
+    try {
+      await deleteSteps(id);
+      alert('Ugurla silindi');
+      refetchRepairSteps();
     } catch(err) {
       console.log('error bash verdi', err);
     }
@@ -149,7 +190,7 @@ const Repair = () => {
           <div style={{ marginBottom: "0px" }} className={styles.serviceHead}>
             Xidmətlərimiz
           </div>
-          <div className={styles.serviceSubHeader}>
+          <div onClick={() => handleAdding("Xidmətlərimiz")} className={styles.serviceSubHeader}>
             <div className={styles.serviceHeadText}>Əlavə et</div>
             <div className={styles.addIconCont}>
               <img src={addIcon} alt="əlavə et iconu" />
@@ -175,13 +216,13 @@ const Repair = () => {
                 <td className={styles.edit}>
                   <div className={styles.imgCont}>
                     <img
-                      onClick={() => handleEditing("Xidmətlərimiz")}
+                      onClick={() => handleEditing2("Xidmətlərimiz", item.serviceName, item.serviceComponents, item.id)}
                       src={editIcon}
                       alt="edit icon"
                     />
                   </div>
                   <div className={styles.imgCont}>
-                    <img src={trashIcon} alt="trash icon" />
+                    <img onClick={() => handleDeleteRepair(item.id)} src={trashIcon} alt="trash icon" />
                   </div>
                 </td>
               </tr>
@@ -191,7 +232,23 @@ const Repair = () => {
       </div>
 
       <div className={styles.serviceCont}>
-        <div className={styles.serviceHead}>Necə Başlamaq Olar?</div>
+      <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            marginBottom: "26px",
+          }}
+        >
+          <div style={{ marginBottom: "0px" }} className={styles.serviceHead}>
+            Necə başlamaq olar?
+          </div>
+          <div onClick={() => handleAdding("Necə başlamaq olar?")} className={styles.serviceSubHeader}>
+            <div className={styles.serviceHeadText}>Əlavə et</div>
+            <div className={styles.addIconCont}>
+              <img src={addIcon} alt="əlavə et iconu" />
+            </div>
+          </div>
+        </div>
         <table>
           <thead>
             <tr
@@ -261,7 +318,7 @@ const Repair = () => {
                     />
                   </div>
                   <div className={styles.imgCont}>
-                    <img src={trashIcon} alt="trash icon" />
+                    <img onClick={() => handleDeleteSteps(step.id)} src={trashIcon} alt="trash icon" />
                   </div>
                 </td>
               </tr>

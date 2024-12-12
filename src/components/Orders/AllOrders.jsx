@@ -9,7 +9,10 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import OrderDetails from "./OrderDetails";
 import { useMediaQuery } from "react-responsive";
-import { useGetOrderQuery, useGetOrdersQuery } from "../../redux/sercives/orderApi";
+import {
+  useGetOrderQuery,
+  useGetOrdersQuery,
+} from "../../redux/sercives/orderApi";
 import { useGetProductByIdQuery } from "../../redux/sercives/productApi";
 import { skipToken } from "@reduxjs/toolkit/query";
 
@@ -58,13 +61,13 @@ const AllOrders = () => {
       if (productIds.length > 0) {
         try {
           // Create a list of promises to fetch product data for each ID
-          const productPromises = productIds.map(
-            (id) => fetch(`${serverUrl}product/${id}`).then((res) => res.json()) 
+          const productPromises = productIds.map((id) =>
+            fetch(`${serverUrl}product/${id}`).then((res) => res.json())
           );
-          console.log(productPromises); 
+          console.log(productPromises);
           // Wait for all the promises to resolve
           const productResults = await Promise.all(productPromises);
-          console.log(productResults)
+          console.log(productResults);
           // Update state with the fetched products
           setProductsData(productResults);
         } catch (error) {
@@ -116,7 +119,7 @@ const AllOrders = () => {
                             const product = productsData.find(
                               (prod) => prod.id === item.productId
                             );
-                            console.log(product)
+                            console.log(product);
                             // console.log(item.productId)
                             // console.log(productsData)
                             return (
@@ -260,26 +263,45 @@ const AllOrders = () => {
                             const product = productsData.find(
                               (prod) => prod.id === item.productId
                             );
+                            console.log(product);
                             // console.log(item.productId)
                             // console.log(productsData)
                             return (
                               <div key={item.id} className={styles.orderCont}>
-                                <div className={styles.leftSide}>
-                                  <div className={styles.ordersImgCont}>
-                                    <img
-                                      className={styles.ordersImg}
-                                      src={
-                                        product?.imageUrl[0] ||
-                                        "https://tinyurl.com/54mef8ky"
-                                      }
-                                      alt=""
-                                    />
-                                  </div>
+                                <div className={styles.aboveSide}>
                                   <div className={styles.ordrDateAndPrice}>
                                     <div className={styles.date}>
-                                      {`${order.day} ${order.month} ${order.year}`}
+                                      {(() => {
+                                        const date = new Date(order.createdAt);
+
+                                        // Azerbaijani month names
+                                        const monthNamesAz = [
+                                          "yanvar",
+                                          "fevral",
+                                          "mart",
+                                          "aprel",
+                                          "may",
+                                          "iyun",
+                                          "iyul",
+                                          "avqust",
+                                          "sentyabr",
+                                          "oktyabr",
+                                          "noyabr",
+                                          "dekabr",
+                                        ];
+
+                                        // Extract day, month, and year
+                                        const day = date.getDate();
+                                        const month =
+                                          monthNamesAz[date.getMonth()];
+                                        const year = date.getFullYear();
+
+                                        // Return formatted date
+                                        return `${day} ${month} ${year}`;
+                                      })()}
                                     </div>
-                                    <div className={styles.date}>
+
+                                    <div className={styles.price}>
                                       Ümumi :{" "}
                                       <span>
                                         {product?.discountPrice
@@ -295,23 +317,6 @@ const AllOrders = () => {
                                             100}{" "}
                                         azn
                                       </span>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div className={styles.rightSide}>
-                                  <div className={styles.orderNoAndStatus}>
-                                    <div className={styles.orderNo}>
-                                      Sifariş nömrəsi : {order.orderId}
-                                    </div>
-                                    <div className={styles.orderStatus}>
-                                      <div className={styles.statusIconCont}>
-                                        <img
-                                          className={styles.statusIcon}
-                                          src={tickSquare}
-                                          alt="tick square"
-                                        />
-                                      </div>
-                                      <div>{order.orderStatus}</div>
                                     </div>
                                   </div>
                                   <div
@@ -332,6 +337,33 @@ const AllOrders = () => {
                                       />
                                     </div>
                                   </div>
+                                </div>
+                                <div className={styles.belowSide}>
+                                  <div className={styles.ordersImgCont}>
+                                    <img
+                                      className={styles.ordersImg}
+                                      src={
+                                        product?.imageUrl[0] ||
+                                        "https://tinyurl.com/54mef8ky"
+                                      }
+                                      alt=""
+                                    />
+                                  </div>
+                                    <div className={styles.orderNoAndStatus}>
+                                      <div className={styles.orderNo}>
+                                        Sifariş nömrəsi : {order.orderId}
+                                      </div>
+                                      <div className={styles.orderStatus}>
+                                        <div className={styles.statusIconCont}>
+                                          <img
+                                            className={styles.statusIcon}
+                                            src={tickSquare}
+                                            alt="tick square"
+                                          />
+                                        </div>
+                                        <div>{order.orderStatus}</div>
+                                      </div>
+                                    </div>
                                 </div>
                               </div>
                             );

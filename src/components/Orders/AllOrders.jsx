@@ -36,11 +36,11 @@ const AllOrders = () => {
     error: ordersError,
     isLoading: ordersLoading,
   } = useGetOrdersQuery();
-  const {
-    data: userOrders,
-    error: userOrdersError,
-    isLoading: userOrdersLoading,
-  } = useGetOrderQuery();
+  // const {
+  //   data: userOrders,
+  //   error: userOrdersError,
+  //   isLoading: userOrdersLoading,
+  // } = useGetOrderQuery();
   // const productIds = ordersData?.flatMap(order => order.orderItems.map(item => item.productId)) || [];
   const serverUrl = import.meta.env.VITE_SOME_KEY;
   // Get all productIds from the ordersData
@@ -80,7 +80,7 @@ const AllOrders = () => {
   }, [ordersData]);
 
   if (ordersError) {
-    return <div> Xəta bas verdi</div>;
+    return <div>Giriş etdikdən sonra səhifəni yenidən yükləyin</div>;
   } else if (ordersLoading) {
     return <div> Yüklənir...</div>;
   } else console.log(ordersData);

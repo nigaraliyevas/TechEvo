@@ -18,6 +18,15 @@ export const orderApi = createApi({
     getOrders: builder.query({
       query: () => `profile/getOrders`,
     }),
+    getOrder: builder.query({
+      query: token => ({
+        url: `order`, // Replace with the actual endpoint
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }),
+    }),
     submitOrder: builder.mutation({
       query: order => ({
         url: "order",
@@ -29,4 +38,4 @@ export const orderApi = createApi({
   keepUnusedDataFor: 60, // Istifade olunmayan datalari 60saniye saxlayir
 });
 
-export const { useGetOrdersQuery,useSubmitOrderMutation } = orderApi;
+export const { useGetOrdersQuery,useSubmitOrderMutation, useGetOrderQuery } = orderApi;

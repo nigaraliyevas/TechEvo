@@ -51,7 +51,7 @@ const SearchBar = ({handleSearch, handleSorting, sortedProducts}) => {
   const handleShowSearchedProducts = () => {
     setShowSearchedProducts(false);
   }
-// console.log(sortedProducts.length)
+console.log(sortedProducts)
   return (
     <div className={styles.searchBarContainer}>
       <section className={styles.section}>
@@ -75,7 +75,7 @@ const SearchBar = ({handleSearch, handleSorting, sortedProducts}) => {
                 {sortedProducts.slice(0, 5).map((prod, index) => (
                   <div key={index} className={styles.prodCont}>
                     <div className={styles.imgAndTitle}>
-                      <div className={styles.prodImg}><img src={prod.image} alt={prod.name} /></div>
+                      <div className={styles.prodImg}><img src={prod.imageUrl[0]} alt={prod.name} /></div>
                       <div className={styles.prodTitle}>{prod.name}</div>
                     </div>
                     <div className={styles.price}>{prod.price} AZN</div>

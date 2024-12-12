@@ -138,4 +138,128 @@
         line-height: 28px;
         margin-bottom: 24px;
     }
+    .orderContainers {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+    .orderHistory {
+        padding: 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+    
+    .orderCont {
+        border: 1px solid #323437;
+        border-radius: 4px;
+        padding: 12px 14px;
+        display: block;
+        white-space: nowrap;
+    }
+    
+    .aboveSide {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-bottom: 8px;
+        border-bottom: 1px solid #323437;
+        margin-bottom: 8px;
+    }
+    
+    .ordersImgCont {
+        width: 48px;
+        height: 48px;
+        border-radius: 0;
+    }
+    
+    .ordersImg {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 0;
+    }
+    
+    .ordrDateAndPrice {
+        color: white;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 14px;
+        padding: 0;
+        border-right: none;
+
+
+        .price {
+            font-size: 16px;
+            line-height: 19px;
+            margin-top: 2px;
+        }
+    
+        span {
+            font-weight: 700;
+        }
+    }
+
+    .orderDetails {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        color: white;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 14px;
+        padding: 5px 4px;
+        cursor: pointer;
+    }
+    .deatilsIconCont {
+        width: 16px;
+        height: 16px;
+    }
+    .detailsIcon {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        vertical-align: baseline !important;
+    }
+    
+    .belowSide {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        justify-content: start;
+        width: 100%;
+    }
+    
+    .orderNoAndStatus {
+        padding: 0;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 14px;
+    }
+    
+    .orderNo {
+        color: white;
+        margin-bottom: 6px;
+    }
+    
+    .orderStatus {
+        color: #00C181;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+    
+    .statusIconCont {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .statusIcon {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        vertical-align: baseline !important;
+    }
+    
+    
 }

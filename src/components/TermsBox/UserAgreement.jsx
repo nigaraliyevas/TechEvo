@@ -1,11 +1,14 @@
 import styles from './UserAgreement.module.scss'
 import tick from "../../assets/images/Register/tick-circle.svg";
 import { useState, useEffect } from 'react';
+import { useGetTermsQuery } from '../../redux/sercives/termsApi';
 const UserAgreement = ( { sendDataToParent, updateFormData } ) => {
   let [isCheckedFromBox, setIsCheckedFromBox] = useState(false);
+  const { data, isError, isLoading } = useGetTermsQuery();
+  if(!isError && !isLoading) console.log(data)
 
   const handleAccept = () => {
-    setIsCheckedFromBox(true);
+    setIsCheckedFromBox((prev) => true);
     updateFormData(true);
   }
 
@@ -13,8 +16,9 @@ const UserAgreement = ( { sendDataToParent, updateFormData } ) => {
     setIsCheckedFromBox(false);
   }
 
+
   useEffect(() => {
-    sendDataToParent(isCheckedFromBox);
+    sendDataToParent = isCheckedFromBox;
   }, [isCheckedFromBox, sendDataToParent])
 
 

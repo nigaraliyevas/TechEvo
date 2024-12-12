@@ -6,7 +6,7 @@ import birbank from "../../../assets/images/Services/birbank.png";
 import {
   useGetCreditCardQuery,
   useGetCreditHeader2Query,
-  useGetDoorHeaderQuery,
+  useGetCreditHeader1Query,
 } from "../../../redux/sercives/serviceApi";
 
 const Credit = () => {
@@ -14,7 +14,7 @@ const Credit = () => {
     data: creditHeader1,
     error: creditHeader1Error,
     isLoading: creditHeader1Loading,
-  } = useGetDoorHeaderQuery();
+  } = useGetCreditHeader1Query();
   const {
     data: creditHeader2,
     error: creditHeader2Error,
@@ -30,9 +30,9 @@ const Credit = () => {
   return (
     <div className={styles.creditCont}>
       <div className={styles.crHeader}>
-        <div className={styles.headTitle}>Rahat alış-veriş seçimləri</div>
+        <div className={styles.headTitle}>{creditHeader1?.headerName}</div>
         <div className={styles.headInfo}>
-          Tech-Evo olaraq sizə rahat alış-veriş təklif edirik.
+        {creditHeader1?.headerDescription}
         </div>
       </div>
 

@@ -62,7 +62,14 @@ export const serviceApi = createApi({
         headers: {
           'Content-Type': 'application/json',
         },
-      })
+        responseHandler: (response) => response.text(),
+      }),
+      transformResponse: (response, meta, arg) => {
+        // Cavabın strukturunu özünüz idarə edə bilərsiniz
+        return { message: response };
+      },
+      invalidatesTags: ["RepairHeader", "Repair", "RepairSteps"],
+
     }),
     deleteRepair: builder.mutation({
       query: (id) => ({

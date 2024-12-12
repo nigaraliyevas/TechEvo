@@ -48,16 +48,14 @@ const Credit = () => {
       <div className={styles.crEnd}>
         <div className={`${styles.myCont} ${styles.endCont}`}>
           <div className={styles.endLeft}>
-            <div className={styles.endTitle}>Birkart Taksit:</div>
+            <div className={styles.endTitle}>{credit?.cardHeader}</div>
             <div className={styles.endInfo}>
-              Birkartınızla 6, 12 və ya 24 ay müddətinə taksitlə ödəniş edə
-              bilərsiniz. Kredit Şərtləri ilə bağlı daha ətraflı məlumat üçün
-              mağazamıza müraciət edin.
+            {credit?.cardDescription}
             </div>
           </div>
           <div className={styles.endRight}>
             <div className={styles.endDiv}>
-              <img className={styles.endImg} src={birbank} alt="card photo" />
+              <img className={styles.endImg} src={credit?.cardImage} alt="card photo" />
             </div>
           </div>
         </div>

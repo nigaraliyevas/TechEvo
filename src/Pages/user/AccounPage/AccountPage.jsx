@@ -17,8 +17,6 @@ import {
   useUpdateUserMutation,
 } from "../../../redux/sercives/userApi";
 import { useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
-import axios from "axios";
 
 const AccountPage = ({ setExist, setConfirm, exist, confirm }) => {
   const [account, setAccount] = useState(true);
@@ -30,8 +28,6 @@ const AccountPage = ({ setExist, setConfirm, exist, confirm }) => {
     skip: !accessToken,
   });
   const [updateUser] = useUpdateUserMutation();
-
-  // İstifadəçi məlumatlarının saxlanması
   useEffect(() => {
     if (data) {
       setUser({
@@ -39,7 +35,6 @@ const AccountPage = ({ setExist, setConfirm, exist, confirm }) => {
         lastName: data.lastName || "",
         email: data.email || "",
         cityName: data.cityName || "",
-        profileImg: data.profileImg || null,
       });
     }
   }, [data]);
@@ -52,22 +47,28 @@ const AccountPage = ({ setExist, setConfirm, exist, confirm }) => {
   const handleFileChange = (e) => {
     setUser((prevState) => ({ ...prevState, profileImg: e.target.files[0] }));
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const formData = new FormData();
-    formData.append("request", JSON.stringify(user));
-    if (user.profileImg) formData.append("profileImg", user.profileImg);
-
+  
+    const userData = {
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      cityName: user.cityName,
+    };
+  
     try {
-      await updateUser(formData).unwrap();
+      const response = await updateUser(userData).unwrap();
+      console.log(response);
       alert("Məlumat uğurla yeniləndi!");
     } catch (error) {
       console.error("Xəta:", error);
       alert("Məlumat yenilənmədi: " + (error?.data?.message || error.message));
     }
   };
+  
+  
+  
 
   useEffect(() => {
     if (exist || confirm) {
@@ -91,14 +92,6 @@ const AccountPage = ({ setExist, setConfirm, exist, confirm }) => {
     setAccount(false);
     setLike(false);
   };
-
-  const likeOpen = () => {
-    setLike(true);
-    setOrders(false);
-    setAccount(false);
-  };
-
- 
 
   return (
     <div className={style.container}>
@@ -135,7 +128,6 @@ const AccountPage = ({ setExist, setConfirm, exist, confirm }) => {
                 <img src={order} alt="" />
                 <div>Sifarişlər</div>
               </div>
-            
             </div>
             <div onClick={() => setExist(true)} className={style.user_out}>
               <img src={out} alt="" /> Çıxış
@@ -218,11 +210,10 @@ const AccountPage = ({ setExist, setConfirm, exist, confirm }) => {
             </div>
           )}
           {orders && <AllOrders />}
-         
         </div>
       </div>
 
-      {exist&&<Logout setConfirm={setConfirm} setExist={setExist} />}
+      {exist && <Logout setConfirm={setConfirm} setExist={setExist} />}
       {confirm && <AccountConfirme setConfirm={setConfirm} />}
     </div>
   );

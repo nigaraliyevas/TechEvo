@@ -5,10 +5,12 @@
     overflow-y: auto;
     padding-right: 20px;
     overflow-x: hidden;
+
     @media (max-width: 1360px) {
-       height: auto;
-       padding-right: 0;
+        height: auto;
+        padding-right: 0;
     }
+
     .basket_item {
         width: 700px;
         height: 224px;
@@ -30,6 +32,24 @@
             img {
                 width: 235px;
                 height: 100%;
+                border-radius: 4px;
+                @media (max-width: 600px) {
+                    width: 112px;
+                    height: 150px;
+                    object-fit: cover;
+                }
+                @media (max-width: 374px) {
+                    width: 100px;
+                }
+            }
+
+            @media (max-width: 600px) {
+              display: flex;
+              align-items: center;
+                width: 112px;
+            }
+            @media (max-width: 374px) {
+                width: 100px;
             }
         }
 
@@ -37,8 +57,12 @@
             display: flex;
             flex-direction: column;
             padding-left: 30px;
-            width:calc(100% - 80px);
-
+            width: calc(100% - 80px);
+            @media (max-width: 984px) {
+               padding-left: 12px;
+            }
+            @media (max-width: 600px) {
+            }
             .item_average_title {
                 min-height: 56px;
                 font-family: $fontFamily;
@@ -47,10 +71,20 @@
                 line-height: 28px;
                 text-align: left;
                 color: $firstColor;
-                
-        @media (max-width: 984px) {
-            min-height: auto;
-        }
+
+                @media (max-width: 984px) {
+                    min-height: auto;
+                }
+
+                @media (max-width: 600px) {
+                    display: -webkit-box;       /* Flexbox tabanlı bir kutu modeli kullanır */
+                    -webkit-box-orient: vertical; /* Dikey hizalamayı belirler */
+                    overflow: hidden;           /* Taşan kısmı gizler */
+                    text-overflow: ellipsis;    /* Taşan metni "..." ile belirtir */
+                    -webkit-line-clamp: 2;      /* Görünmesini istediğiniz satır sayısı (2 için ayarla) */
+                    line-height: 1.5;           /* Satır yüksekliğini ayarlar */
+                    max-height: calc(1.5em * 2)
+                }
             }
 
             .item_average_rating {
@@ -80,6 +114,10 @@
                 color: $firstColor;
                 margin-bottom: 25px;
 
+                @media (max-width: 600px) {
+                    font-size: 14px;
+                }
+
 
             }
 
@@ -90,6 +128,11 @@
                 border-radius: 2px;
                 border-left: none;
 
+                @media (max-width: 600px) {
+                    width: 76px;
+                    height: 28px;
+                }
+
                 .count_button {
                     width: 32px;
                     height: 100%;
@@ -98,6 +141,10 @@
                     color: rgba(204, 204, 204, 1);
                     border-left: 1px solid rgba(50, 52, 55, 1);
 
+                    @media (max-width: 600px) {
+                        width: 25px;
+
+                    }
                 }
             }
         }
@@ -107,6 +154,10 @@
             flex-direction: column;
             justify-content: space-between;
             align-items: flex-end;
+
+            @media (max-width: 600px) {
+                justify-content: space-between;
+            }
 
             .item_left_delete {
                 color: rgba(180, 42, 42, 1);
@@ -118,13 +169,18 @@
                 flex-direction: column;
                 align-items: flex-end;
                 width: 87px;
-
+               
                 .amount_name {
                     font-family: $fontFamily;
                     font-size: 18px;
                     font-weight: 500;
                     line-height: 28px;
                     color: $firstColor;
+
+                    @media (max-width: 600px) {
+                        font-size: 14px;
+                        padding-right: 12px;
+                    }
                 }
 
                 .amount_price {
@@ -135,6 +191,11 @@
                     color: $firstColor;
                     min-width: 200px;
                     text-align: end;
+
+                    @media (max-width: 600px) {
+                        font-size: 14px;
+                        padding-right: 12px;
+                    }
 
                 }
             }

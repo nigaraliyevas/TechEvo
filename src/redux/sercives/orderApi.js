@@ -16,7 +16,6 @@ export const orderApi = createApi({
     },
   }),
   endpoints: (builder) => ({
-    // Sifarişləri əldə etmək
     getOrders: builder.query({
       query: () => `profile/getOrders`,
     }),

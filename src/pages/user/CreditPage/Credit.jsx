@@ -3,15 +3,29 @@ import React from "react";
 import styles from "./Credit.module.scss";
 // images
 import birbank from "../../../assets/images/Services/birbank.png";
-import { useGetCreditCardQuery, useGetCreditHeader2Query, useGetDoorHeaderQuery } from "../../../redux/sercives/serviceApi";
+import {
+  useGetCreditCardQuery,
+  useGetCreditHeader2Query,
+  useGetDoorHeaderQuery,
+} from "../../../redux/sercives/serviceApi";
 
 const Credit = () => {
-  const {data: creditHeader1, error: creditHeader1Error, isLoading: creditHeader1Loading} = useGetDoorHeaderQuery();
-  const {data: creditHeader2, error: creditHeader2Error, isLoading: creditHeader2Loading} = useGetCreditHeader2Query(); 
-  const {data: credit, error: creditError, isLoading: creditLoading} = useGetCreditCardQuery();
-  if(!creditError && !creditLoading) console.log(credit);
-
-
+  const {
+    data: creditHeader1,
+    error: creditHeader1Error,
+    isLoading: creditHeader1Loading,
+  } = useGetDoorHeaderQuery();
+  const {
+    data: creditHeader2,
+    error: creditHeader2Error,
+    isLoading: creditHeader2Loading,
+  } = useGetCreditHeader2Query();
+  const {
+    data: credit,
+    error: creditError,
+    isLoading: creditLoading,
+  } = useGetCreditCardQuery();
+  if (!creditError && !creditLoading) console.log(credit);
 
   return (
     <div className={styles.creditCont}>
@@ -22,7 +36,7 @@ const Credit = () => {
         </div>
       </div>
 
-      <div className="container">
+       <div className={styles.myCont}>
         <div className={styles.crMid}>
           <div className={styles.midTitle}>{creditHeader2?.headerName}</div>
           <div className={styles.midInfo}>
@@ -32,7 +46,7 @@ const Credit = () => {
       </div>
 
       <div className={styles.crEnd}>
-        <div className={`container ${styles.endCont}`}>
+        <div className={`${styles.myCont} ${styles.endCont}`}>
           <div className={styles.endLeft}>
             <div className={styles.endTitle}>Birkart Taksit:</div>
             <div className={styles.endInfo}>

@@ -108,7 +108,7 @@ const dispatch = useDispatch()
         </div>
       </div>
       <div className={style.redy_product_right}>
-        {produc && (
+        {produc ? (
           <div>
             {produc && <img style={{width:"336px"}} src={produc?.imageUrl[0]} alt="laptop" />}
 
@@ -130,7 +130,7 @@ const dispatch = useDispatch()
               </button>
             </div>
           </div>
-        )}
+        ):<div style={{fontSize:"20px",color:"white",textAlign:"center"}}>Xanaları doldurub tap düyməsini sıxdıqdan sonra məhsulu burada görəcəksiniz.</div>}
       </div>
     </div>
   );

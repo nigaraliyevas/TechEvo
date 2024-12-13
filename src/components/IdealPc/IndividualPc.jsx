@@ -3,6 +3,19 @@ import laptop from '../../assets/images/IdealPc/laptop.svg'
 import { SlBasket } from "react-icons/sl";
 
 const IndividualPc = () => {
+
+  fetch("http://srv654911.hstgr.cloud:8081/api/v1/product/filterCreatePc")
+  .then((data) => {
+    console.log(data); // Cavabı yoxlayın
+    return data.text(); // JSON-a çevirməzdən əvvəl mətn şəklində cavabı yoxlayın
+  })
+  .then((text) => {
+    console.log("Raw response:", text); // Raw cavabı göstər
+    return JSON.parse(text); // JSON-a çevirin
+  })
+  .then((res) => console.log(res))
+  .catch((err) => console.error("Error:", err));
+
   return (
     <div className={style.individual_container}>
       <div className={style.individual_left}>

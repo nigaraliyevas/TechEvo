@@ -17,112 +17,27 @@ import {
   useUpdateUserMutation,
 } from "../../../redux/sercives/userApi";
 import { useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
-import axios from "axios";
 
-const AccountPage = ({ setQuite, setConfirm, qiute, confirm }) => {
+const AccountPage = ({ setExist, setConfirm, exist, confirm }) => {
   const [account, setAccount] = useState(true);
   const [orders, setOrders] = useState(false);
   const [like, setLike] = useState(false);
-  // const [user, setUser] = useState(null);
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  // const queryParams = new URLSearchParams(location.search);
-  // const userData = queryParams.get("userData");
-  // const { data, isError, isLoading } = useGetUserQuery(undefined, {
-  //   skip: !accessToken, 
-  // });
-  // const updateUserProfile = async (updatedUser) => {
-  //   if (!data?.id) {
-  //     alert("İstifadəçi ID-si tapılmadı!");
-  //     return;
-  //   }
-  
-  //   try {
-  //     // FormData obyektini yaratmaq
-  //     const formData = new FormData();
-  //     formData.append(
-  //       "request",
-  //       JSON.stringify({
-  //         firstName: updatedUser.firstName,
-  //         lastName: updatedUser.lastName,
-  //         email: updatedUser.email,
-  //         cityName: updatedUser.cityName,
-  //       })
-  //     );
-  //     formData.append("profileImg", user?.profileImg || "defaultProfileImage");
-  
-      // API-yə sorğu göndərmək
-  //     const response = await axios.put(
-  //       `http://ec2-51-20-32-195.eu-north-1.compute.amazonaws.com:8081/api/v1/user/profile`,
-  //       formData,
-  //       {
-  //         headers: {
-  //           Authorization: `Bearer ${accessToken}`,
-  //         },
-  //       }
-  //     );
-  
-  //     alert("Məlumat uğurla yeniləndi!");
-  //     return response.data;
-  //   } catch (error) {
-  //     console.error("Xəta:", error.response?.data || error.message);
-  //     alert(
-  //       "Məlumat yenilənmədi: " +
-  //         (error.response?.data?.message || error.message)
-  //     );
-  //   }
-  // };
-  
-
-  // useEffect(() => {
-    // if (data) {
-    //   const formData = new FormData();
-    //   formData.append("firstName", data.firstName || "");
-
-    //   sendFormDataToServer(formData);
-    // }
-  //   if (data) {
-
-  //     setUser({
-  //       firstName: data.firstName || "",
-  //       lastName: data.lastName || "",
-  //       email: data.email || "",
-  //       profileImg: data.profileImg || "",
-  //       cityName: data.cityName || "",
-  //     });
-  //   }
-  // }, [data]);
-  // const [updateUser] = useUpdateUserMutation();
-
+  const [user, setUser] = useState(null);
   const { accessToken } = useSelector((state) => state.auth);
   const { data, isLoading } = useGetUserQuery(undefined, {
     skip: !accessToken,
   });
   const [updateUser] = useUpdateUserMutation();
-  console.log(data)
-console.log(accessToken);
-
-const [user, setUser] = useState({
-  firstName: data?.firstName || "",
-  lastName: data?.lastName || "",
-  email: data?.email || "",
-  cityName: data?.cityName || "",
-  profileImg: data?.profileImg || null, // Şəkil üçün ayrıca sahə
-});
-
-  // useEffect(() => {
-  //   if (data) {
-  //     setUser({
-  //       firstName: data.firstName || "",
-  //       lastName: data.lastName || "",
-  //       email: data.email || "",
-  //       cityName: data.cityName || "",
-  //       profileImg: data.profileImg || null,
-  //     });
-  //   }
-  // }, [data]);
+  useEffect(() => {
+    if (data) {
+      setUser({
+        firstName: data.firstName || "",
+        lastName: data.lastName || "",
+        email: data.email || "",
+        cityName: data.cityName || "",
+      });
+    }
+  }, [data]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -132,18 +47,19 @@ const [user, setUser] = useState({
   const handleFileChange = (e) => {
     setUser((prevState) => ({ ...prevState, profileImg: e.target.files[0] }));
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
   
-    const formData = new FormData();
-    formData.append("request", JSON.stringify(user)); // Correctly stringify the object
-    if (user.profileImg) {
-      formData.append("profileImg", user.profileImg); // Add the file if available
-    }
+    const userData = {
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      cityName: user.cityName,
+    };
   
     try {
-      await updateUser(formData).unwrap(); // Send the form data
+      const response = await updateUser(userData).unwrap();
+      console.log(response);
       alert("Məlumat uğurla yeniləndi!");
     } catch (error) {
       console.error("Xəta:", error);
@@ -151,11 +67,11 @@ const [user, setUser] = useState({
     }
   };
   
-  console.log(user,"user");
+  
   
 
   useEffect(() => {
-    if (qiute || confirm) {
+    if (exist || confirm) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
@@ -163,7 +79,7 @@ const [user, setUser] = useState({
     return () => {
       document.body.style.overflow = "auto";
     };
-  }, [qiute, confirm]);
+  }, [exist, confirm]);
 
   const accountOpen = () => {
     setAccount(true);
@@ -177,19 +93,11 @@ const [user, setUser] = useState({
     setLike(false);
   };
 
-  const likeOpen = () => {
-    setLike(true);
-    setOrders(false);
-    setAccount(false);
-  };
-
- 
-
   return (
     <div className={style.container}>
       <div
         style={{
-          marginTop: qiute || confirm ? "0" : "",
+          marginTop: exist || confirm ? "0" : "",
         }}
         className={style.account}
       >
@@ -220,9 +128,8 @@ const [user, setUser] = useState({
                 <img src={order} alt="" />
                 <div>Sifarişlər</div>
               </div>
-            
             </div>
-            <div onClick={() => setQuite(true)} className={style.user_out}>
+            <div onClick={() => setExist(true)} className={style.user_out}>
               <img src={out} alt="" /> Çıxış
             </div>
           </div>
@@ -303,11 +210,10 @@ const [user, setUser] = useState({
             </div>
           )}
           {orders && <AllOrders />}
-         
         </div>
       </div>
 
-      {/* <Logout setConfirm={setConfirm} setQuite={setQuite} /> */}
+      {exist && <Logout setConfirm={setConfirm} setExist={setExist} />}
       {confirm && <AccountConfirme setConfirm={setConfirm} />}
     </div>
   );

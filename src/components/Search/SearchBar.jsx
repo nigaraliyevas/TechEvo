@@ -68,18 +68,19 @@ console.log(sortedProducts)
           <>
             {/* {setShowSearchedProducts(true)} */}
             <div className={styles.searchAbsContainer}>
-              <Link to="/product" style={{ textDecoration: "none", color: "inherit", all: "unset" }}>
+              <Link style={{ textDecoration: "none", color: "inherit", all: "unset" }}>
               <div className={styles.prodHeader}>Məhsullar</div>
               <div className={styles.productsContainer}>
                 {/* Mapping sortedProducts here */}
                 {sortedProducts.slice(0, 5).map((prod, index) => (
-                  <div key={index} className={styles.prodCont}>
-                    <div className={styles.imgAndTitle}>
-                      <div className={styles.prodImg}><img src={prod.imageUrl[0]} alt={prod.name} /></div>
-                      <div className={styles.prodTitle}>{prod.name}</div>
-                    </div>
-                    <div className={styles.price}>{prod.price} AZN</div>
-                  </div>
+                  console.log(prod)
+                  // (<div key={index} className={styles.prodCont}>
+                  //   <div className={styles.imgAndTitle}>
+                  //     <div className={styles.prodImg}><img src={prod.imageUrl[0]} alt={prod.name} /></div>
+                  //     <div className={styles.prodTitle}>{prod.name}</div>
+                  //   </div>
+                  //   <div className={styles.price}>{prod.price} AZN</div>
+                  // </div>)
                 ))}
               </div>
               </Link>

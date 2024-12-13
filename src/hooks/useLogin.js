@@ -2,6 +2,7 @@ import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setTokens } from "../redux/slices/TokenSlice";
+import Cookies from "js-cookie";
 
 const useLogin = () => {
   const navigate = useNavigate();
@@ -28,6 +29,13 @@ const useLogin = () => {
       // Set tokens in Redux and localStorage
       dispatch(setTokens({ accessToken, refreshToken }));
       localStorage.setItem("refreshToken", refreshToken);
+
+      // Cookies.set("refreshToken", refreshToken, {
+      //   expires: 30, // Token expiry 
+      //   secure: true, // Ensures HTTPS
+      //   sameSite: "Strict", // Prevents CSRF
+      // });
+
       localStorage.setItem("accessToken", accessToken);
       localStorage.setItem("email", email);
 

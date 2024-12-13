@@ -860,6 +860,7 @@ body {
     }
   }
 }
+
 .card {
   padding: 12px !important;
   border: 1px solid transparent;
@@ -1094,7 +1095,117 @@ body {
     }
   }
 }
+@import "../../../assets/variables/variables";
+@import "../../../assets/common/base";
 
+// MEDIA QUERIES
+//Mobil cihazlar üçün
+@media (max-width: 480px) {
+  .card {
+    max-width: 164px !important;
+    height: auto !important;
+    position: relative;
+    z-index: 1; /* Filter siyahısının arxasında */
+
+    //INCLUDE CARD IMAGE
+    .cardImgContainer {
+      width: 146px !important;
+      height: 120px !important;
+
+      .cardImg {
+        object-fit: cover !important;
+        transition: 0.5s ease all;
+        //height: 100% !important;
+
+        &:hover {
+          transform: scale(1.1);
+          transition: 0.5s ease all;
+        }
+      }
+    }
+
+    //END INCLUDE CARD IMAGE
+
+    //RADIO BUTTONS
+    .radioButtons {
+      display: none !important;
+    }
+
+    //  END RADIO BUTTONS
+
+    .heartSpan {
+      color: white;
+      position: absolute;
+      right: 3%;
+      top: 0%;
+      font-size: large;
+    }
+
+    //CARD BOTTOM TITLES
+    .cardBottomTitles {
+      .namePrice {
+        font-family: $fontFamily;
+        h4 {
+          // max-width: 250px !important;
+          // height: 56px !important;
+          color: white;
+          font-weight: 400 !important;
+          font-size: 12px !important;
+          line-height: 18px !important;
+          margin-top: 16px !important;
+          font-family: $fontFamily !important;
+          margin-bottom: 0px !important;
+        }
+
+        p {
+          span {
+            color: white;
+            font-size: 12px !important;
+            font-weight: 700 !important;
+            line-height: 16px !important;
+            margin-top: 0px !important;
+            margin-bottom: 8px !important;
+          }
+        }
+      }
+
+      .ratingBasket {
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        padding-bottom: 10px !important;
+
+        .ratingContainer {
+          width: 69px !important;
+        }
+
+        .basketBg {
+          width: 30px;
+          height: 24px;
+          background: $linearGradient;
+          border-radius: 3px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          button {
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: none;
+            background-color: unset;
+          }
+
+          img {
+            max-width: 100% !important;
+            max-height: 100% !important;
+          }
+        }
+      }
+    }
+  }
+}
 //END CARDS
 
 /* Orta mobil cihazlar üçün */

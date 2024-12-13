@@ -61,9 +61,6 @@ console.log(sortedProducts)
           <div className={styles.searchIconContainer}>
             <img className={styles.searchIcon} src={SearchIcon} alt="Search Icon" />
           </div>
-
-
-
           {(query && sortedProducts.length !== 0 && showSearchedProducts) ? (
           <>
             {/* {setShowSearchedProducts(true)} */}

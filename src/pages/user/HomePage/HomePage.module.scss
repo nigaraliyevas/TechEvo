@@ -635,7 +635,7 @@ body {
 
     .card {
       max-width: 198px !important;
-      //max-height: 284px !important;
+      height: auto !important;
 
       //INCLUDE CARD IMAGE
       .cardImgContainer {
@@ -688,12 +688,14 @@ body {
           }
 
           p {
-            color: white;
-            font-size: 14px !important;
-            font-weight: 700 !important;
-            line-height: 16px !important;
-            margin-top: 0px !important;
-            margin-bottom: 8px !important;
+            span {
+              color: white;
+              font-size: 14px !important;
+              font-weight: 700 !important;
+              line-height: 16px !important;
+              margin-top: 0px !important;
+              margin-bottom: 8px !important;
+            }
           }
         }
 
@@ -799,65 +801,59 @@ body {
 
 //END SERVICES
 
-//CARDS
-.cardMain {
+// //CARDS
+
+//MOBILE-CARDS
+
+.mobileCards {
   display: flex;
-  flex-wrap: nowrap;
-  width: 100%;
-  gap: 20px;
+  overflow-x: scroll;
+  scrollbar-width: none;
+  /* Firefox */
+  gap: 10px;
+  padding-left: 8px;
+}
 
-  //MOBILE-CARDS
+.mobileCards::-webkit-scrollbar {
+  display: none;
+}
 
-  .mobileCards {
+//END MOBILE-CARDS
+
+//SWIPPER
+.swiper {
+  padding: 0 30px !important;
+
+  .swiperSlide {
+    position: relative;
     display: flex;
-    overflow-x: scroll;
-    scrollbar-width: none;
-    /* Firefox */
-    gap: 10px;
-    padding-left: 8px;
+    justify-content: center;
+    align-items: center;
+    height: auto;
   }
 
-  .mobileCards::-webkit-scrollbar {
-    display: none;
+  .swiperNav:after {
+    text-transform: none !important;
+    letter-spacing: 0;
+    font-size: 15px !important;
+    font-weight: 600;
+    font-variant: initial;
+    color: white !important;
+    // border: 2px solid white !important;
+    // border-radius: 50% !important;
+    width: 30px !important;
+    height: 30px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
   }
 
-  //END MOBILE-CARDS
+  .swiperNavPrev {
+    left: 0px !important;
+  }
 
-  //SWIPPER
-  .swiper {
-    padding: 0 30px !important;
-
-    .swiperSlide {
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: auto;
-    }
-
-    .swiperNav:after {
-      text-transform: none !important;
-      letter-spacing: 0;
-      font-size: 15px !important;
-      font-weight: 600;
-      font-variant: initial;
-      color: white !important;
-      // border: 2px solid white !important;
-      // border-radius: 50% !important;
-      width: 30px !important;
-      height: 30px !important;
-      display: flex !important;
-      justify-content: center !important;
-      align-items: center !important;
-    }
-
-    .swiperNavPrev {
-      left: 0px !important;
-    }
-
-    .swiperNavNext {
-      right: 0px !important;
-    }
+  .swiperNavNext {
+    right: 0px !important;
   }
 }
 

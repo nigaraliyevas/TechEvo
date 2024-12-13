@@ -49,10 +49,10 @@ const StarRating = ({ value, fontSize }) => {
       <span
         className={styles.star_value}
         style={{
-          marginLeft: "8px",
-          fontSize: fontSize ? `calc(${parseFloat(fontSize) * 0.8}rem)` : "1rem",
-          color: "white",
-          fontWeight: "400",
+          marginLeft: '5px',
+          fontSize: fontSize ? `calc(${parseFloat(fontSize) * 0.6}rem)` : '0.8rem',
+          color: 'white',
+          fontWeight: '400',
         }}
       >
         {rating.toFixed(1)}

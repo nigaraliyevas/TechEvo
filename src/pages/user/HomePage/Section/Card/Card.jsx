@@ -117,7 +117,7 @@ function Card({ card, favoriteProductIds, refetchFavorites }) {
         </div>
 
         <div className={style.heartSpan} onClick={handleToggleFavorite}>
-          {isFavorite ? <TiHeartFullOutline style={{ color: "purple" }} /> : <PiHeartBold style={{ fill: "purple" }} />}
+          {isFavorite ? <TiHeartFullOutline style={{ color: "white" }} /> : <PiHeartBold style={{ fill: "white" }} />}
         </div>
 
         <div className={style.cardBottomTitles}>

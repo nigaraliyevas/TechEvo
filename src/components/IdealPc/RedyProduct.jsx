@@ -70,7 +70,7 @@ const dispatch = useDispatch()
               Dizayn işləri
             </option>
             <option value="Gaming, Content Creation">Ofis işləri</option>
-            <option value="Content Creation, Productivity">Kodlaşdırma</option>
+            <option value="Content Creation, Professional Work">Kodlaşdırma</option>
             <option value="Music Production">İnternet Browsing</option>
             <option value="Workstation">
               Evdə yüngül istifadə
@@ -88,7 +88,7 @@ const dispatch = useDispatch()
           >
             <option value="">Seçin</option>
             <option value="Home, Office">Evdə</option>
-            <option value="Home Studio">Evdən kənarda</option>
+            <option value="Office, Home">Evdən kənarda</option>
           </select>
         </div>
         <div className={style.redy_product_title}>
@@ -98,10 +98,9 @@ const dispatch = useDispatch()
           <select value={look} onChange={(e) => setLook(e.target.value)}>
             <option value="">Seçin</option>
             <option value="Sleek and Modern">Aqressiv və seçilən</option>
-            <option value="Professional">Sadə və minimalist</option>
-            <option value="Sleek and Modern">Eleqant</option>
-            <option value="Sleek and Modern">Kompakt</option>
-            <option value="Sleek and Modern">Önəmli deyil</option>
+            <option value="Sleek and Professional">Sadə və minimalist</option>
+            <option value="Sleek and Elegant">Eleqant</option>
+            <option value="Futuristic and Sleek">Kompakt</option>
           </select>
         </div>
         <div className={style.redy_product_left_bottom}>
@@ -111,7 +110,7 @@ const dispatch = useDispatch()
       <div className={style.redy_product_right}>
         {produc && (
           <div>
-            {produc && <img src={produc?.imageUrl[0]} alt="laptop" />}
+            {produc && <img style={{width:"336px"}} src={produc?.imageUrl[0]} alt="laptop" />}
 
             <div className={style.redy_product_right_title}>
               {produc.name}

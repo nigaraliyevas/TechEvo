@@ -53,7 +53,7 @@ const Section = ({ title, data = [], favoriteProductIds, refetchFavorites }) => 
             spaceBetween={30}
             slidesPerView={3}
             autoplay={{
-              delay: 400000,
+              delay: 4000,
               disableOnInteraction: false,
             }}
             loop={true}

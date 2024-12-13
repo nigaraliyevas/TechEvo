@@ -128,9 +128,9 @@ const ProductCard = ({ data, favoriteProductIds, refetchFavorites }) => {
 
         <div className={style.heartSpan} onClick={handleToggleFavorite}>
           {isFavorite ? (
-            <TiHeartFullOutline style={{ color: "purple" }} />
+            <TiHeartFullOutline style={{ color: "white" }} />
           ) : (
-            <PiHeartBold style={{ fill: "purple" }} />
+            <PiHeartBold style={{ fill: "white" }} />
           )}
         </div>
 
@@ -160,11 +160,13 @@ const ProductCard = ({ data, favoriteProductIds, refetchFavorites }) => {
           </div>
 
           <div className={style.ratingBasket}>
-            <StarRating fontSize="1.2em" value={rating} />
-
+            <div className={style.ratingContainer}>
+            <StarRating width= "100%" fontSize="1.4em" value={rating}  />
+            </div>
+              
             <div className={style.basketBg}>
               <button onClick={addBasket}>
-                <SlBasket style={{ width: "18px", height: "18px" }} />
+                <SlBasket style={{ width: "16px", height: "16px" }} />
               </button>
             </div>
           </div>

@@ -17,8 +17,9 @@ import { useEffect } from "react";
 const HomePage = () => {
   const navigate = useNavigate();
 
-  const { data: laptopsData } = useGetProductsByCategoryNameQuery({ categoryName: "Laptop" });
-  const { data: mousesData } = useGetProductsByCategoryNameQuery({ categoryName: "Mouse" });
+ const { data: laptopsData} = useGetProductsByCategoryNameQuery({categoryName: "Laptop" });
+
+  const { data: mousesData } = useGetProductsByCategoryNameQuery({categoryName: "Mouse" });
   const { data: klaviaturasData } = useGetProductsByCategoryNameQuery({ categoryName: "Klaviatura" });
 
   const [countVisits] = useCountVisitsMutation(); // Destructure the mutation function

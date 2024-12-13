@@ -48,8 +48,8 @@ const StarRating = ({ value, fontSize }) => {
       ))}
       <span
         style={{
-          marginLeft: '8px',
-          fontSize: fontSize ? `calc(${parseFloat(fontSize) * 0.8}rem)` : '1rem',
+          marginLeft: '5px',
+          fontSize: fontSize ? `calc(${parseFloat(fontSize) * 0.6}rem)` : '0.8rem',
           color: 'white',
           fontWeight: '400',
         }}

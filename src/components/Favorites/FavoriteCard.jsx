@@ -12,7 +12,7 @@ import { addToCart } from "../../redux/slices/BasketSlice";
 function FavoriteCard({ card, onRefetch, }) {
     const { name, price, imageUrl, rating } = card;
     const dispatch = useDispatch();
-    const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
+    const isMobile = useMediaQuery({ query: '(max-width: 480px)' });
     const [removeFavorite] = useRemoveFavoriteMutation();
 
     const handleRemoveFavorite = async (event) => {

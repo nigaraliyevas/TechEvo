@@ -5,7 +5,13 @@ import Card from "../../pages/user/HomePage/Section/Card/Card";
 
 const SimilarProducts = ({ product, categoryName }) => {
   useEffect(() => {
-    const handleResize = () => {};
+    const handleResize = () => {
+      if (window.innerWidth <= 768) {
+        setItemsToShow(2);
+      } else {
+        setItemsToShow(3);
+      }
+    };
 
     handleResize();
 

@@ -34,7 +34,6 @@ const Header = ({ exist, confirm }) => {
   const [openPc, setOpenPc] = useState(false);
   const [openLaptop, setOpenLaptop] = useState(false);
   const [openAccessory, setOpenAccessory] = useState(false);
-
   return (
     <header
       style={{
@@ -175,8 +174,13 @@ const Header = ({ exist, confirm }) => {
                   </div>
                 </div>
               </li>
-              <NavLink to={"idealpc"} className={styles.navbar_ideal}>
-                <img style={{ display: "none" }} className="idal_imag" src={idal} alt="" />
+              <NavLink to={"/idealpc"} className={styles.navbar_ideal}>
+                <img
+                  style={{ display: "none" }}
+                  className="idal_imag"
+                  src={idal}
+                  alt=""
+                />
                 <div className="ideal">
                   Özün seç
                   <svg className={styles.navbar_rocet_icon} width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">

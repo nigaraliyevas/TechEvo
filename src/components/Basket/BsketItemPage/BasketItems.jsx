@@ -32,7 +32,10 @@ const BasketItems = ({ basket }) => {
   return (
     <div className={style.basket_items}>
       {basket.map((item, index) => (
-        <div key={index} className={style.basket_item}>
+        <>
+         
+
+         <div key={index} className={style.basket_item}>
           <div className={style.basket_image}>
             <img src={item.imageUrl[0]} alt="" />
           </div>
@@ -73,6 +76,9 @@ const BasketItems = ({ basket }) => {
             </div>
           </div>
         </div>
+        </>
+
+     
       ))}
     </div>
   );

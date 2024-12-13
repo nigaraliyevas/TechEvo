@@ -41,7 +41,6 @@ const UserRouter = ({ setConfirm, confirm, setExist, exist }) => {
     loadTokensFromStorage();
   }, [dispatch]);
   const isItems = localStorage.getItem("basket") && JSON.parse(localStorage.getItem("basket")).length > 0;
-
   return (
     <Routes>
       <Route element={<UserLayout confirm={confirm} exist={exist} />}>
@@ -60,7 +59,7 @@ const UserRouter = ({ setConfirm, confirm, setExist, exist }) => {
         <Route path="/newpassword" element={<PasswordReset />} />
         <Route path="/otp" element={<EnterPasswordPage />} />
         <Route path="/accountpage" element={<AccountPage setConfirm={setConfirm} setExist={setExist} confirm={confirm} exist={exist} />} />
-        {/* <Route path="/accountpage" element={<AccountPage />} /> */}
+        <Route path="/idealpc" element={<IdealPcPage />} />
         <Route path="/idealpc" element={<IdealPcPage />} />
         {/* <Route path="/accountpage" element={<AccountPage setConfirm={setConfirm} setExist={setExist} confirm={confirm} exist={exist} />} /> */}
         <Route path="/orders" element={<AllOrders />} />

@@ -41,6 +41,9 @@ header {
     @media (max-width: 600px) {
       padding: 0px 16px;
     }
+    @media (max-width: 374px) {
+      padding: 0px 4px;
+    }
   }
 
   .navbar {

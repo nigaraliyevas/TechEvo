@@ -1,6 +1,11 @@
 .delCont {
   margin: 96px auto 120px;
 
+  .myCont {
+    max-width: 1440px;
+    padding: 0 160px;
+  }
+
   .delHeader {
     background: radial-gradient(circle, rgb(44, 19, 44) 20%, rgba(5, 0, 103, 0.084) 65%);
     padding: 100px 168px;
@@ -118,6 +123,107 @@
           font-size: 18px;
           line-height: 21px;
           text-align: center;
+        }
+      }
+    }
+  }
+}
+
+
+@media(max-width: 600px) {
+  .delCont {
+    margin: 80px auto 72px;
+
+    .myCont {
+      padding: 0 16px;
+    }
+
+    .delHeader {
+      padding: 53.5px 22px;
+      text-align: center;
+      margin: 0 auto 32px;
+  
+      .headTitle {
+        color: white;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 31px;
+        margin: 0 auto 16px;
+        width: 330px;
+      }
+  
+      .headInfo {
+        color: #bfbfbf;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 16px;
+        width: 330px;
+        margin: 0 auto;
+      }
+    }
+
+
+    .delMiddle {
+      margin-bottom: 72px;
+  
+      .midTitle {
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 40px;
+        margin-bottom: 20px;
+      }
+  
+      .midBoxCont {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        row-gap: 12px;
+        column-gap: 13px;
+  
+        .midBox {
+          padding: 20px 12px;
+  
+          .no {
+            padding: 5px 11.5px;
+          }
+  
+          .boxTitle {
+            font-size: 12px;
+            line-height: 16px;
+          }
+  
+          .boxInfo {
+            font-size: 12px;
+            line-height: 15px;
+          }
+        }
+      }
+    }
+
+
+    .delEnd {
+      .endHeader {
+        font-size: 24px;
+        line-height: 40px;
+        margin-bottom: 20px;
+      }
+  
+      .endBoxCont {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+        .endBox {
+          padding: 33.5px 24px;
+  
+          .iconDiv {
+            width: 64px;
+            height: 64px;
+          }
+  
+          .endInfo {
+            font-size: 16px;
+            line-height: 19px;
+          }
         }
       }
     }

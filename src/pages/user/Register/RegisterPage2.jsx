@@ -56,7 +56,8 @@ export default function RegisterPage2() {
 
   const handleTerms = e => {
     e.stopPropagation(); // Prevent closing when clicking on the terms menu itself
-    setShowTerms(!showTerms);
+    setShowTerms((prevShowTerms) => !prevShowTerms);
+    console.log(isChecked)
   };
 
   const handleChangeChecked = event => {
@@ -67,6 +68,18 @@ export default function RegisterPage2() {
       acceptTerms: isChecked,
     }));
     setErrors(prevErrors => ({ ...prevErrors, acceptTerms: "" }));
+  };
+
+  const updateFormData = (acceptTerms) => {
+
+    setFormData((prevData) => ({
+
+      ...prevData,
+
+      acceptTerms
+
+    }));
+
   };
 
   const handleChildData = data => {
@@ -254,7 +267,7 @@ export default function RegisterPage2() {
           {/* Agreement Field */}
           <div className={styles.agreementBox}>
             <div className={styles.checkBoxContainer}>
-              <input onChange={handleChangeChecked} className={styles.checkBoxInput} type="checkbox" checked={isChecked} />
+              <input onChange={handleChangeChecked} className={styles.checkBoxInput} type="checkbox" checked={formData.acceptTerms} />
               <span className={styles.customCheckmark}></span>
             </div>
             <div className={styles.termsText} onClick={handleTerms}>
@@ -269,7 +282,7 @@ export default function RegisterPage2() {
           </button>
         </form>
       </div>
-      {showTerms ? <UserAgreement /> : null}
+      {showTerms ? <UserAgreement sendDataToParent={handleChildData} updateFormData={updateFormData} /> : null}
     </>
   );
 }

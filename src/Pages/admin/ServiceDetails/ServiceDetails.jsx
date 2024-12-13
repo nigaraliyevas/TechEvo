@@ -66,6 +66,7 @@ const ServiceDetails = () => {
   const handleRepairDescriptionChange = (e) => {
     // setLocalDescription(e.target.value.split(","));
     setLocalArray(e.target.value.split(","));
+    console.log(e.target.value);
   };
   const handleOrderChanging = (e) => {
     setNewOrder(e.target.value)
@@ -99,18 +100,20 @@ const ServiceDetails = () => {
 
     // editing header and description of the second part
     else if (head === "Xidmətlərimiz" && sessionStorage.getItem('method') === 'editxidmet') {
+      console.log(location.state);  
       if (localHeader.trim() === "" || localDescription.length === 0 || localDescription.some(item => item.trim() === "")) {
         alert("Xanalar bos olmamalidir");
         return;
       }
       const body2 = {
         serviceName: localHeader.trim(),
-        serviceComponents: localDescription,
+        serviceComponents: localArray,
       };
       // console.log(id, typeof body2.serviceComponents, typeof body2.serviceName);
       console.log(JSON.stringify(body2, null, 2));
       try {
-        await changeRepair(id, body2);
+        const res= await changeRepair(id, body2);
+        console.log(res);
         // navigate("/admin/adminRepair", {
         //   state: {
         //     head: head,
@@ -239,7 +242,7 @@ const ServiceDetails = () => {
                   ? handleHeaderDescriptionChange
                   : handleRepairDescriptionChange
               }
-              value={localDescription}
+              value={head === "Necə başlamaq olar?" ? localArray : localDescription}
               placeholder="Təsvir"
             ></textarea>
           </div>

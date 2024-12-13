@@ -44,11 +44,6 @@ const Repair = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // useEffect(() => {
-  //   if(repairHeader?.length === 0) setIsRepairHeaderEmpty(true);
-  //   else setIsRepairHeaderEmpty(false);
-  // }, [repairHeader])
-
   useEffect(() => {
     if (
       location.state?.head ||
@@ -67,6 +62,7 @@ const Repair = () => {
     });
   };
   const handleEditing2 = (head, header, description, id) => {
+    sessionStorage.setItem('method', 'editxidmet');
     navigate("/admin/adminServiceDetails", {
       state: { head, header, description, id},
     });

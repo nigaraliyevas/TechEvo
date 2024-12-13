@@ -73,7 +73,7 @@ export default function RegisterPage() {
 
   return (
     <div className={styles.container}>
-      {/* {showPage2 ? (<RegisterPage2/>) : */}(
+      {/* {showPage2 ? (<RegisterPage2/>) : */}
       <div className={styles.innerCont}>
         <div className={styles.topText}>Qeydiyyat</div>
         <div className={styles.infoText}>Daxil olmaq üçün aşağıdakı xanaları doldurun.</div>
@@ -88,7 +88,7 @@ export default function RegisterPage() {
           </button>
         </form>
       </div>
-      ){/* } */}
+      {/* } */}
     </div>
   );
 }

@@ -9,13 +9,15 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import OrderDetails from "./OrderDetails";
 import { useMediaQuery } from "react-responsive";
-import { useGetOrdersQuery } from "../../redux/sercives/orderApi";
+import {
+  useGetOrderQuery,
+  useGetOrdersQuery,
+} from "../../redux/sercives/orderApi";
 import { useGetProductByIdQuery } from "../../redux/sercives/productApi";
 import { skipToken } from "@reduxjs/toolkit/query";
 
-
 const Desktop = ({ children }) => {
-  const isDesktop = useMediaQuery({ minWidth: 992 });
+  const isDesktop = useMediaQuery({ minWidth: 601 });
   return isDesktop ? children : null;
 };
 
@@ -34,13 +36,18 @@ const AllOrders = () => {
     error: ordersError,
     isLoading: ordersLoading,
   } = useGetOrdersQuery();
+  // const {
+  //   data: userOrders,
+  //   error: userOrdersError,
+  //   isLoading: userOrdersLoading,
+  // } = useGetOrderQuery();
   // const productIds = ordersData?.flatMap(order => order.orderItems.map(item => item.productId)) || [];
   const serverUrl = import.meta.env.VITE_SOME_KEY;
-   // Get all productIds from the ordersData
-   const getProductIds = () => {
+  // Get all productIds from the ordersData
+  const getProductIds = () => {
     if (ordersData && ordersData.length > 0 && !ordersError && !ordersLoading) {
-      return ordersData.flatMap(order =>
-        order.orderItems.map(item => item.productId)
+      return ordersData.flatMap((order) =>
+        order.orderItems.map((item) => item.productId)
       );
     }
     return []; // Return an empty array if no valid data
@@ -54,12 +61,13 @@ const AllOrders = () => {
       if (productIds.length > 0) {
         try {
           // Create a list of promises to fetch product data for each ID
-          const productPromises = productIds.map(id =>
-            fetch(`${serverUrl}order/${id}`).then(res => res.json()) // Replace with your API call
+          const productPromises = productIds.map((id) =>
+            fetch(`${serverUrl}product/${id}`).then((res) => res.json())
           );
+          console.log(productPromises);
           // Wait for all the promises to resolve
           const productResults = await Promise.all(productPromises);
-
+          console.log(productResults);
           // Update state with the fetched products
           setProductsData(productResults);
         } catch (error) {
@@ -69,10 +77,10 @@ const AllOrders = () => {
     };
 
     fetchProducts();
-  }, [ordersData]); 
+  }, [ordersData]);
 
   if (ordersError) {
-    return <div> Xəta bas verdi</div>;
+    return <div>Giriş etdikdən sonra səhifəni yenidən yükləyin</div>;
   } else if (ordersLoading) {
     return <div> Yüklənir...</div>;
   } else console.log(ordersData);
@@ -94,128 +102,281 @@ const AllOrders = () => {
               selectedItemId={selectedItemId}
               setShowDetails={setShowDetails}
             />
-          ) : 
+          ) : (
             <div>
               <div className={styles.heading}>Sifarişlər</div>
-                {ordersData && ordersData.length > 0 ? (
-
-              <div className={styles.orderContainers}>
-                {!ordersLoading &&
-                  !ordersError &&
-                  ordersData.map((order) => {
-                    return (
-                      <div key={order.orderId} className={styles.orderHistory}>
-                        {order.orderItems.map((item) => {
-                           const product = productsData.find((prod) => prod.id === item.productId);
-                          // console.log(item.productId)
-                          // console.log(productsData)
-                          return (
-                            <div key={item.id} className={styles.orderCont}>
-                              <div className={styles.leftSide}>
-                                <div className={styles.ordersImgCont}>
-                                  <img
-                                    className={styles.ordersImg}
-                                    src={
-                                      product?.imageUrl[0] ||
-                                      "https://tinyurl.com/54mef8ky"
-                                    }
-                                    alt=""
-                                  />
-                                </div>
-                                <div className={styles.ordrDateAndPrice}>
-                                  <div className={styles.date}>
-                                    {`${order.day} ${order.month} ${order.year}`}
-                                  </div>
-                                  <div className={styles.date}>
-                                    Ümumi :{" "}
-                                    <span>
-                                      {product?.discountPrice ? item.quantity * Math.floor(product?.discountPrice * 100) / 100 : item.quantity * Math.floor(product?.price * 100) / 100} azn
-                                    </span>
-                                  </div>
-                                </div>
-                              </div>
-                              <div className={styles.rightSide}>
-                                <div className={styles.orderNoAndStatus}>
-                                  <div className={styles.orderNo}>
-                                    Sifariş nömrəsi : {order.orderId}
-                                  </div>
-                                  <div className={styles.orderStatus}>
-                                    <div className={styles.statusIconCont}>
-                                      <img
-                                        className={styles.statusIcon}
-                                        src={tickSquare}
-                                        alt="tick square"
-                                      />
-                                    </div>
-                                    <div>{order.orderStatus}</div>
-                                  </div>
-                                </div>
-                                <div
-                                  onClick={() =>
-                                    handleDetails(item.productId, order.orderId)
-                                  }
-                                  className={styles.orderDetails}
-                                >
-                                  <div>Təfərrüatlar</div>
-                                  <div className={styles.deatilsIconCont}>
+              {ordersData && ordersData.length > 0 ? (
+                <div className={styles.orderContainers}>
+                  {!ordersLoading &&
+                    !ordersError &&
+                    ordersData.map((order) => {
+                      return (
+                        <div
+                          key={order.orderId}
+                          className={styles.orderHistory}
+                        >
+                          {order.orderItems.map((item) => {
+                            const product = productsData.find(
+                              (prod) => prod.id === item.productId
+                            );
+                            console.log(product);
+                            // console.log(item.productId)
+                            // console.log(productsData)
+                            return (
+                              <div key={item.id} className={styles.orderCont}>
+                                <div className={styles.leftSide}>
+                                  <div className={styles.ordersImgCont}>
                                     <img
-                                      className={styles.detailsIcon}
-                                      src={rightArrow}
-                                      alt="right arrow"
+                                      className={styles.ordersImg}
+                                      src={
+                                        product?.imageUrl[0] ||
+                                        "https://tinyurl.com/54mef8ky"
+                                      }
+                                      alt=""
                                     />
                                   </div>
+                                  <div className={styles.ordrDateAndPrice}>
+                                    <div className={styles.date}>
+                                      {(() => {
+                                        const date = new Date(order.createdAt);
+
+                                        // Azerbaijani month names
+                                        const monthNamesAz = [
+                                          "yanvar",
+                                          "fevral",
+                                          "mart",
+                                          "aprel",
+                                          "may",
+                                          "iyun",
+                                          "iyul",
+                                          "avqust",
+                                          "sentyabr",
+                                          "oktyabr",
+                                          "noyabr",
+                                          "dekabr",
+                                        ];
+
+                                        // Extract day, month, and year
+                                        const day = date.getDate();
+                                        const month =
+                                          monthNamesAz[date.getMonth()];
+                                        const year = date.getFullYear();
+
+                                        // Return formatted date
+                                        return `${day} ${month} ${year}`;
+                                      })()}
+                                    </div>
+
+                                    <div className={styles.date}>
+                                      Ümumi :{" "}
+                                      <span>
+                                        {product?.discountPrice
+                                          ? (item.quantity *
+                                              Math.floor(
+                                                product?.discountPrice * 100
+                                              )) /
+                                            100
+                                          : (item.quantity *
+                                              Math.floor(
+                                                product?.price * 100
+                                              )) /
+                                            100}{" "}
+                                        azn
+                                      </span>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div className={styles.rightSide}>
+                                  <div className={styles.orderNoAndStatus}>
+                                    <div className={styles.orderNo}>
+                                      Sifariş nömrəsi : {order.orderId}
+                                    </div>
+                                    <div className={styles.orderStatus}>
+                                      <div className={styles.statusIconCont}>
+                                        <img
+                                          className={styles.statusIcon}
+                                          src={tickSquare}
+                                          alt="tick square"
+                                        />
+                                      </div>
+                                      <div>{order.orderStatus}</div>
+                                    </div>
+                                  </div>
+                                  <div
+                                    onClick={() =>
+                                      handleDetails(
+                                        item.productId,
+                                        order.orderId
+                                      )
+                                    }
+                                    className={styles.orderDetails}
+                                  >
+                                    <div>Təfərrüatlar</div>
+                                    <div className={styles.deatilsIconCont}>
+                                      <img
+                                        className={styles.detailsIcon}
+                                        src={rightArrow}
+                                        alt="right arrow"
+                                      />
+                                    </div>
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                          );
-                        })}
-                      </div>
-                    );
-                  })}
-              </div>
-
-              
-              ) : <NoOrder />}
+                            );
+                          })}
+                        </div>
+                      );
+                    })}
+                </div>
+              ) : (
+                <NoOrder />
+              )}
             </div>
-           }
-          
+          )}
         </div>
       </Desktop>
 
       <Mobile>
-        <div className={styles.mobileCont}>
-          <div>Sifarişlər</div>
-          <div>
-            {/* Products will be mapped here */}
+        <div className={styles.allOrders}>
+          {/* Deatils of the clicked product */}
+          {showDetails ? (
+            <OrderDetails
+              prods={ordersData}
+              selectedOrderId={selectedOrderId}
+              selectedItemId={selectedItemId}
+              setShowDetails={setShowDetails}
+            />
+          ) : (
             <div>
-              <div>
-                <div>
-                  <div>11 oktyabr 2024</div>
-                  <div>Ümumi : 2500 azn</div>
+              <div className={styles.heading}>Sifarişlər</div>
+              {ordersData && ordersData.length > 0 ? (
+                <div className={styles.orderContainers}>
+                  {!ordersLoading &&
+                    !ordersError &&
+                    ordersData.map((order) => {
+                      return (
+                        <div
+                          key={order.orderId}
+                          className={styles.orderHistory}
+                        >
+                          {order.orderItems.map((item) => {
+                            const product = productsData.find(
+                              (prod) => prod.id === item.productId
+                            );
+                            console.log(product);
+                            // console.log(item.productId)
+                            // console.log(productsData)
+                            return (
+                              <div key={item.id} className={styles.orderCont}>
+                                <div className={styles.aboveSide}>
+                                  <div className={styles.ordrDateAndPrice}>
+                                    <div className={styles.date}>
+                                      {(() => {
+                                        const date = new Date(order.createdAt);
+
+                                        // Azerbaijani month names
+                                        const monthNamesAz = [
+                                          "yanvar",
+                                          "fevral",
+                                          "mart",
+                                          "aprel",
+                                          "may",
+                                          "iyun",
+                                          "iyul",
+                                          "avqust",
+                                          "sentyabr",
+                                          "oktyabr",
+                                          "noyabr",
+                                          "dekabr",
+                                        ];
+
+                                        // Extract day, month, and year
+                                        const day = date.getDate();
+                                        const month =
+                                          monthNamesAz[date.getMonth()];
+                                        const year = date.getFullYear();
+
+                                        // Return formatted date
+                                        return `${day} ${month} ${year}`;
+                                      })()}
+                                    </div>
+
+                                    <div className={styles.price}>
+                                      Ümumi :{" "}
+                                      <span>
+                                        {product?.discountPrice
+                                          ? (item.quantity *
+                                              Math.floor(
+                                                product?.discountPrice * 100
+                                              )) /
+                                            100
+                                          : (item.quantity *
+                                              Math.floor(
+                                                product?.price * 100
+                                              )) /
+                                            100}{" "}
+                                        azn
+                                      </span>
+                                    </div>
+                                  </div>
+                                  <div
+                                    onClick={() =>
+                                      handleDetails(
+                                        item.productId,
+                                        order.orderId
+                                      )
+                                    }
+                                    className={styles.orderDetails}
+                                  >
+                                    <div>Təfərrüatlar</div>
+                                    <div className={styles.deatilsIconCont}>
+                                      <img
+                                        className={styles.detailsIcon}
+                                        src={rightArrow}
+                                        alt="right arrow"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                                <div className={styles.belowSide}>
+                                  <div className={styles.ordersImgCont}>
+                                    <img
+                                      className={styles.ordersImg}
+                                      src={
+                                        product?.imageUrl[0] ||
+                                        "https://tinyurl.com/54mef8ky"
+                                      }
+                                      alt=""
+                                    />
+                                  </div>
+                                    <div className={styles.orderNoAndStatus}>
+                                      <div className={styles.orderNo}>
+                                        Sifariş nömrəsi : {order.orderId}
+                                      </div>
+                                      <div className={styles.orderStatus}>
+                                        <div className={styles.statusIconCont}>
+                                          <img
+                                            className={styles.statusIcon}
+                                            src={tickSquare}
+                                            alt="tick square"
+                                          />
+                                        </div>
+                                        <div>{order.orderStatus}</div>
+                                      </div>
+                                    </div>
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      );
+                    })}
                 </div>
-                <div>
-                  <div>Təfərrüatlar</div>
-                  <div>
-                    <img src={rightArrow} alt="right arrow" />
-                  </div>
-                </div>
-              </div>
-              <div>
-                <div>
-                  {/* <img src="https://tinyurl.com/54mef8ky" alt="product image" /> */}
-                </div>
-                <div>
-                  <div>Sifariş nömrəsi : 1234</div>
-                  <div>
-                    <div>
-                      <img src={tickSquare} alt="tick square icon" />
-                    </div>
-                    <div>Çatdırıldı </div>
-                  </div>
-                </div>
-              </div>
+              ) : (
+                <NoOrder />
+              )}
             </div>
-          </div>
+          )}
         </div>
       </Mobile>
     </div>

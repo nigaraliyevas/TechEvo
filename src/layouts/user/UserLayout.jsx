@@ -8,9 +8,9 @@ import { Outlet } from "react-router-dom"
 const UserLayout = ({exist,confirm}) => {
     return (
         <>
-            {/* <Header confirm={confirm} exist={exist} /> */}
+            <Header confirm={confirm} exist={exist} />
             <Outlet />
-            {/* <Footer /> */}
+            <Footer />
         </>
     )
 }

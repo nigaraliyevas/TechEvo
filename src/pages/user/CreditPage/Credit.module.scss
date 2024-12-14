@@ -1,6 +1,11 @@
 .creditCont {
   margin: 96px auto 120px;
 
+  .myCont {
+    // max-width: 1440px;
+    padding: 0 160px;
+  }
+
   .crHeader {
     background: radial-gradient(circle, rgb(44, 19, 44) 20%, rgba(5, 0, 103, 0.084) 65%);
     padding: 100px 168px;
@@ -85,6 +90,78 @@
           width: 100%;
           height: 100%;
           object-fit: cover;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .creditCont {
+    margin: 80px auto 72px;
+
+    .myCont {
+      padding: 0 16px;
+    }
+
+    .crHeader {
+      padding: 71.5px 22px;
+      margin-bottom: 32px;
+
+      .headTitle {
+        font-size: 24px;
+        line-height: 31px;
+        margin: 0 auto 16px;
+        width: 330px;
+      }
+
+      .headInfo {
+        font-size: 16px;
+        line-height: 12px;
+        width: 330px;
+      }
+    }
+
+    .crMid {
+      margin-bottom: 72px;
+
+      .midTitle {
+        font-size: 20px;
+        margin-bottom: 20px;
+      }
+
+      .midInfo {
+        font-size: 12px;
+        line-height: 16px;
+      }
+    }
+
+    .crEnd {
+      padding: 20px 16px;
+
+      .endCont {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 39px;
+      }
+
+      .endLeft {
+        .endTitle {
+          font-size: 20px;
+          margin-bottom: 24px;
+        }
+
+        .endInfo {
+          font-size: 12px;
+          line-height: 16px;
+        }
+      }
+
+      .endRight {
+        .endDiv {
+          width: 72px;
+          height: 141px;
         }
       }
     }

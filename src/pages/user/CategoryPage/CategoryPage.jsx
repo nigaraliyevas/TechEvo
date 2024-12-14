@@ -111,7 +111,8 @@ const CategoryPage = () => {
 
   let sortedProducts = [];
   if (filteredProducts?.length > 0 || filterQueries?.sortType) {
-    sortedProducts = filteredProducts.sort((a, b) => {
+    sortedProducts = filteredProducts
+    filteredProducts.sort((a, b) => {
       switch (filterQueries.sortType) {
         case "priceAsc":
           return a.price - b.price;
@@ -217,7 +218,7 @@ const CategoryPage = () => {
                 <FilterSidebar
                   handleFilterItem={handleFilterItem}
                   queries={queries}
-                  handleFilter={handleFilter}
+handleFilter={handleFilter}
                   handlePrice={handlePrice}
                 />
               </div>

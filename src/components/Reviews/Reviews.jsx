@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import { parseISO, formatDistanceToNowStrict } from "date-fns";
-import { tr } from "date-fns/locale";
+import { az } from "date-fns/locale";
 import { useGetReviewsQuery, usePostReviewMutation } from "../../redux/sercives/reviewsApi";
 import styles from "./Reviews.module.scss";
 import { FaUserCircle } from "react-icons/fa";
@@ -18,6 +18,7 @@ const StarRating = ({ rating, setRating }) => {
     <div className={styles.star_rating}>
       {[...Array(5)].map((_, index) => (
         <span
+          className={styles.starPoint}
           key={index}
           onClick={() => handleStarClick(index)}
           style={{
@@ -60,7 +61,7 @@ const Reviews = ({ data }) => {
   const calculateTimeAgo = timestamp => {
     try {
       const date = parseISO(timestamp);
-      return formatDistanceToNowStrict(date, { addSuffix: true, locale: tr });
+      return formatDistanceToNowStrict(date, { addSuffix: true, locale: az });
     } catch (error) {
       return "Bilinməyən vaxt";
     }
@@ -133,7 +134,9 @@ const Reviews = ({ data }) => {
 
   return (
     <div className={styles.totalBox}>
-      <h3 style={{ fontSize: "24px", marginBottom: "40px", color: "#fff" }}>İstifadəçi rəyləri</h3>
+      <h3 className={styles.userComments} style={{ fontSize: "24px", marginBottom: "40px", color: "#fff" }}>
+        İstifadəçi rəyləri
+      </h3>
 
       <div className={styles.addReview}>
         <div className={styles.textAreaContainer}>

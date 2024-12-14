@@ -17,9 +17,7 @@ const LoginPage = () => {
   const handleTogglePassword = () => {
     setShowPassword(prev => !prev);
   };
-
   const login = useLogin();
-
   const handleLogin = e => {
     e.preventDefault();
     console.log(email, password);

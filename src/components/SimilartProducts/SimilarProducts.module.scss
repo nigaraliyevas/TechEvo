@@ -4,7 +4,6 @@
       padding: 0 !important;
     }
   }
- 
 }
 .similar_header {
   font-size: 28px;
@@ -12,4 +11,12 @@
   color: white;
   margin-top: 80px;
   margin-bottom: 40px;
+}
+@media screen and (max-width: 480px) {
+  .similar_header {
+    font-size: 18px !important;
+    font-weight: 500px;
+    margin-bottom: 16px;
+    margin-top: 16px;
+  }
 }

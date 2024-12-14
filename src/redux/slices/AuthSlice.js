@@ -1,9 +1,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import Cookies from "js-cookie";
 
 // Giriş funksiyası - burada API çağırışı edilir
+
+const url = import.meta.env.VITE_SOME_KEY;
 export const login = createAsyncThunk("auth/login", async ({ email, password }, { rejectWithValue }) => {
   try {
-    const response = await fetch("http://srv654911.hstgr.cloud:8081/swagger-ui/index.html/api/v1/auth/login", {
+    const response = await fetch(`${url}auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -19,6 +22,11 @@ export const login = createAsyncThunk("auth/login", async ({ email, password }, 
 
     localStorage.setItem("accessToken", data.accessToken);
     localStorage.setItem("refreshToken", data.refreshToken);
+    // Cookies.set("refreshToken", data.refreshToken, {
+    //   expires: 30,
+    //   secure: true,
+    //   sameSite: "Strict",
+    // });
 
     return data;
   } catch (err) {
@@ -30,7 +38,7 @@ const authSlice = createSlice({
   name: "auth",
   initialState: {
     accessToken: localStorage.getItem("accessToken") || null,
-    refreshToken: localStorage.getItem("refreshToken") || null,
+    refreshToken: localStorage.getItem('refreshToken') || null,
     user: null,
     isLoading: false,
     error: null,
@@ -42,6 +50,8 @@ const authSlice = createSlice({
       state.user = null;
       localStorage.removeItem("accessToken");
       localStorage.removeItem("refreshToken");
+      // Cookies.remove('refreshToken');
+      // Cookies.remove('refreshToken');
     },
   },
   extraReducers: builder => {

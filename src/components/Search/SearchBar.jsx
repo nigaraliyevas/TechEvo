@@ -5,15 +5,16 @@ import DropDownIcon from "../../assets/images/Search/dropdownIcon.svg";
 import DropUpIcon from "../../assets/images/Search/dropupIcon.svg";
 import { Link } from "react-router-dom";
 
-const SearchBar = ({ handleSearch, handleSorting, sortedProducts }) => {
+const SearchBar = ({handleSearch, handleSorting, sortedProducts}) => {
   const [showOrder, setShowOrder] = useState(false);
   const [showSearchedProducts, setShowSearchedProducts] = useState(false);
   const [query, setQuery] = useState("");
 
-  const handleQuery = ({ target }) => {
-    setQuery(target.value);
+  const handleQuery = ({ target }) => { 
+    setQuery(target.value)
     handleSearch(target.value);
   };
+
 
   useEffect(() => {
     const handleClickOutside = () => {
@@ -34,7 +35,7 @@ const SearchBar = ({ handleSearch, handleSorting, sortedProducts }) => {
     };
   }, [showOrder]);
 
-  const handleOrder = e => {
+  const handleOrder = (e) => {
     e.stopPropagation(); // Prevent closing when clicking on the order menu itself
     setShowOrder(!showOrder);
     setShowSearchedProducts(false);
@@ -43,13 +44,14 @@ const SearchBar = ({ handleSearch, handleSorting, sortedProducts }) => {
   useEffect(() => {
     if (query && sortedProducts.length !== 0) {
       setShowSearchedProducts(true);
-    } else setShowSearchedProducts(false);
+    }
+    else setShowSearchedProducts(false);
   }, [query, sortedProducts]); // Runs only when query or sortedProducts changes
 
   const handleShowSearchedProducts = () => {
     setShowSearchedProducts(false);
-  };
-  console.log(sortedProducts);
+  }
+console.log(sortedProducts)
   return (
     <div className={styles.searchBarContainer}>
       <section className={styles.section}>
@@ -60,32 +62,36 @@ const SearchBar = ({ handleSearch, handleSorting, sortedProducts }) => {
             <img className={styles.searchIcon} src={SearchIcon} alt="Search Icon" />
           </div>
 
-          {query && sortedProducts.length !== 0 && showSearchedProducts ? (
-            <>
-              {/* {setShowSearchedProducts(true)} */}
-              <div className={styles.searchAbsContainer}>
-                <Link style={{ textDecoration: "none", color: "inherit", all: "unset" }}>
-                  <div className={styles.prodHeader}>Məhsullar</div>
-                  <div className={styles.productsContainer}>
-                    {/* Mapping sortedProducts here */}
-                    {sortedProducts.slice(0, 5).map((prod, index) =>
-                      console.log(prod)
-                      // (<div key={index} className={styles.prodCont}>
-                      //   <div className={styles.imgAndTitle}>
-                      //     <div className={styles.prodImg}><img src={prod.imageUrl[0]} alt={prod.name} /></div>
-                      //     <div className={styles.prodTitle}>{prod.name}</div>
-                      //   </div>
-                      //   <div className={styles.price}>{prod.price} AZN</div>
-                      // </div>)
-                    )}
+
+
+          {(query && sortedProducts.length !== 0 && showSearchedProducts) ? (
+          <>
+            {/* {setShowSearchedProducts(true)} */}
+            <div className={styles.searchAbsContainer}>
+              <Link to="/product" style={{ textDecoration: "none", color: "inherit", all: "unset" }}>
+              <div className={styles.prodHeader}>Məhsullar</div>
+              <div className={styles.productsContainer}>
+                {/* Mapping sortedProducts here */}
+                {sortedProducts.slice(0, 5).map((prod, index) => (
+                  <div key={index} className={styles.prodCont}>
+                    <div className={styles.imgAndTitle}>
+                      <div className={styles.prodImg}><img src={prod.imageUrl[0]} alt={prod.name} /></div>
+                      <div className={styles.prodTitle}>{prod.name}</div>
+                    </div>
+                    <div className={styles.price}>{prod.price} AZN</div>
                   </div>
-                </Link>
-                <div onClick={handleShowSearchedProducts} className={styles.showAllBtn}>
-                  Bütün axtarış nəticələri ({sortedProducts.length})
-                </div>
+                ))}
               </div>
-            </>
-          ) : null}
+              </Link>
+              <div onClick={handleShowSearchedProducts} className={styles.showAllBtn}>
+                Bütün axtarış nəticələri ({sortedProducts.length})
+              </div>
+            </div>
+          </>
+      ) : null}
+
+
+          
         </div>
         <div className={styles.orderContainer}>
           <div onClick={handleOrder} className={styles.ordr}>

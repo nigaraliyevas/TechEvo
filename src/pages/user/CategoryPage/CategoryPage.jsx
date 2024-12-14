@@ -10,7 +10,7 @@ import { useFilterProductsBySpecsQuery, useGetFilterNameWithValuesQuery } from "
 import { useParams } from "react-router-dom";
 import useIsMobile from "../../../hooks/useIsMobile";
 import filterImg from "../../../assets/images/FilterSide/filterImg.svg";
-import style from "../../../components/Search/SearchBar.module.scss";
+//import style from "../../../components/Search/SearchBar.module.scss";
 
 const CategoryPage = () => {
   const { category } = useParams();
@@ -68,13 +68,13 @@ const CategoryPage = () => {
   const handleSorting = sortType => {
     setFilterQueries(prev => ({ ...prev, sortType }));
   };
+
   const [filters, setFilters] = useState({});
 
   const handleFilter = (key, value) => {
     setFilters(prevFilters => {
       const updatedFilters = { ...prevFilters };
 
-      // If the filter already exists for this key, toggle its selection.
       if (updatedFilters[key]?.includes(value)) {
         updatedFilters[key] = updatedFilters[key].filter(item => item !== value);
       } else {
@@ -111,7 +111,7 @@ const CategoryPage = () => {
 
   let sortedProducts = [];
   if (filteredProducts?.length > 0 || filterQueries?.sortType) {
-    sortedProducts = filteredProducts
+    sortedProducts = filteredProducts;
     filteredProducts.sort((a, b) => {
       switch (filterQueries.sortType) {
         case "priceAsc":
@@ -136,10 +136,10 @@ const CategoryPage = () => {
   const currentProducts = sortedProducts.slice(offset, offset + itemsPerPage);
 
   return (
-    <section className="category-page">
+    <div className={styles.mobile_content}>
       {isMobile ? (
-        <div className={styles.mobile_content}>
-          <div className="search-bar-container">
+        <>
+          <div className={styles.searchBarContainer}>
             <SearchBar
               filteredProducts={filteredProducts}
               sortedProducts={sortedProducts}
@@ -147,9 +147,9 @@ const CategoryPage = () => {
               handleSorting={handleSorting}
             />
           </div>
-          <div className="product-container px-3">
+          <div className={`${styles.productContainer} px-3`}>
             <button
-              className="filter-button"
+              className={styles.filterButton}
               style={{
                 width: "110px",
                 height: "40px",
@@ -159,7 +159,7 @@ const CategoryPage = () => {
                 marginBottom: "16px",
                 borderRadius: "2px",
               }}
-              onClick={toggleSidebar} // Açıb-bağlama funksiyası
+              onClick={toggleSidebar}
             >
               <div className={styles.filterContainer}>
                 <div>
@@ -171,9 +171,23 @@ const CategoryPage = () => {
               </div>
             </button>
 
-            <button className="siralama-button" style={{ width: "110px", height: "40px", backgroundColor: "#323437", color: "#BFBFBF", marginLeft: "127px", borderRadius: "2px", border: "none", marginBottom: "16px" }}>Sıralama</button>
+            {/* <button
+              className={styles.siralamaButton}
+              style={{
+                width: "110px",
+                height: "40px",
+                backgroundColor: "#323437",
+                color: "#BFBFBF",
+                marginLeft: "127px",
+                borderRadius: "2px",
+                border: "none",
+                marginBottom: "16px",
+              }}
+            >
+              Sıralama
+            </button> */}
 
-            {isSidebarOpen && ( // isSidebarOpen true olduqda siyahı göstərilir
+            {isSidebarOpen && (
               <div className={styles.filterSidebarOverlay} onClick={toggleSidebar}>
                 <div className={styles.filterSidebar} onClick={(e) => e.stopPropagation()}>
                   <FilterSidebar
@@ -185,19 +199,21 @@ const CategoryPage = () => {
                 </div>
               </div>
             )}
-            <div className={styles.product_grid}>
-              {currentProducts.length === 0 ? (
-                <div className={styles.noProductsMessage}>There are no products.</div>
-              ) : (
-                currentProducts.map(card => (
-                  <ProductCard
-                    key={card.id}
-                    data={card}
-                    favoriteProductIds={favoriteProductIds}
-                    refetchFavorites={refetchFavorites}
-                  />
-                ))
-              )}
+            <div className={styles.product_side}>
+              <div className={styles.productGrid}>
+                {currentProducts.length === 0 ? (
+                  <div className={styles.noProductsMessage}>There are no products.</div>
+                ) : (
+                  currentProducts.map(card => (
+                    <ProductCard
+                      key={card.id}
+                      data={card}
+                      favoriteProductIds={favoriteProductIds}
+                      refetchFavorites={refetchFavorites}
+                    />
+                  ))
+                )}
+              </div>
             </div>
             <Pagination
               products={sortedProducts}
@@ -206,53 +222,56 @@ const CategoryPage = () => {
               currentPage={currentPage}
             />
           </div>
-        </div>
+        </>
       ) : (
-        <div className={styles.pc_content}>
-          <div className="row mb-4" style={{ marginLeft: "0px", marginRight: "0px" }}>
-            <SearchBar filteredProducts={filteredProducts} sortedProducts={sortedProducts} handleSearch={handleSearch} handleSorting={handleSorting} />
-          </div>
-          <div className="container">
-            <div className={`row ${styles.pc__bottom}`}>
-              <div className="filter-side col-lg-3">
-                <FilterSidebar
-                  handleFilterItem={handleFilterItem}
-                  queries={queries}
-handleFilter={handleFilter}
-                  handlePrice={handlePrice}
-                />
-              </div>
-              <div className="product-side col-lg-9">
-                <div className={styles.pc_section}>
-                  <div className="d-flex flex-wrap" style={{ gap: "30px" }}>
-                    {currentProducts.length === 0 ? (
-                      <div className={styles.noProductsMessage}>There are no products.</div>
-                    ) : (
-                      currentProducts.map(card => (
-                        <ProductCard
-                          key={card.id}
-                          data={card}
-                          favoriteProductIds={favoriteProductIds}
-                          refetchFavorites={refetchFavorites}
-                        />
-                      ))
-                    )}
-                  </div>
-                </div>
-                <div className="pagination-side">
-                  <Pagination
-                    products={sortedProducts}
-                    itemsPerPage={itemsPerPage}
-                    handlePageClick={handlePageClick}
-                    currentPage={currentPage}
+        <section className="category-page">
+          <div className={styles.pcContent}>
+            <div className="row mb-4" style={{ marginLeft: "0px", marginRight: "0px" }}>
+              <SearchBar filteredProducts={filteredProducts} sortedProducts={sortedProducts} handleSearch={handleSearch} handleSorting={handleSorting} />
+            </div>
+            <div className="container">
+              <div className={`row ${styles.pcBottom}`}>
+                <div className="filter-side col-lg-3">
+                  <FilterSidebar
+                    handleFilterItem={handleFilterItem}
+                    queries={queries}
+                    handleFilter={handleFilter}
+                    handlePrice={handlePrice}
                   />
+                </div>
+                <div className="product-side col-lg-9">
+                  <div className={styles.pcSection}>
+                    <div className="d-flex flex-wrap" style={{ gap: "30px" }}>
+                      {currentProducts.length === 0 ? (
+                        <div className={styles.noProductsMessage}>There are no products.</div>
+                      ) : (
+                        currentProducts.map(card => (
+                          <ProductCard
+                            key={card.id}
+                            data={card}
+                            favoriteProductIds={favoriteProductIds}
+                            refetchFavorites={refetchFavorites}
+                          />
+                        ))
+                      )}
+                    </div>
+                  </div>
+                  <div className="pagination-side">
+                    <Pagination
+                      products={sortedProducts}
+                      itemsPerPage={itemsPerPage}
+                      handlePageClick={handlePageClick}
+                      currentPage={currentPage}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </section>
       )}
-    </section>
+
+    </div>
   );
 };
 

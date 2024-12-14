@@ -1,15 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 import styles from "./ProductPage.module.scss";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import DetailImageComponent from "../../../components/DetailImage/DetailImageComponent";
 import Description from "../../../components/Description/Description";
 import Features from "../../../components/DetailFeatures/Features";
 import Reviews from "../../../components/Reviews/Reviews";
 import { IoIosArrowForward, IoIosArrowBack, IoMdClose } from "react-icons/io";
 import { useSearchParams, useNavigate } from "react-router-dom";
-import { useGetProductByIdQuery, useGetProductsByCategoryNameQuery } from "../../../redux/sercives/productApi";
-import { Card } from "react-bootstrap";
+import { useGetProductByIdQuery } from "../../../redux/sercives/productApi";
 import SimilarProducts from "../../../components/SimilartProducts/SimilarProducts";
 
 const ProductPage = () => {
@@ -19,28 +16,14 @@ const ProductPage = () => {
 
   const { data: product, error, isLoading } = useGetProductByIdQuery(id);
 
-  // const { data: categoryData, isLoading: isLaptopsLoading } = useGetProductsByCategoryNameQuery(product ? product.categoryName : undefined);
-  // const filteredCategoryData = categoryData?.filter(item => item.id !== product?.id);
-
   const [modalShow, setModalShow] = useState(false);
   const [carouselImages, setCarouselImages] = useState([]);
   const caruselRef = useRef();
 
   const [imageIndex, setImageIndex] = useState(0);
   const [currentIndex, setCurrentIndex] = useState();
-  // const [itemsToShow, setItemsToShow] = useState(3);
 
   const extendedCarouselImages = [...carouselImages, ...carouselImages];
-
-  // useEffect(() => {
-  //   const handleResize = () => {};
-
-  //   handleResize();
-
-  //   window.addEventListener("resize", handleResize);
-
-  //   return () => window.removeEventListener("resize", handleResize);
-  // }, []);
 
   useEffect(() => {
     if (!id) {
@@ -50,8 +33,6 @@ const ProductPage = () => {
 
   if (!id) return null;
 
-  // console.log(carouselImages, "detailImage");
-
   useEffect(() => {
     if (modalShow) {
       setCurrentIndex(imageIndex);
@@ -59,6 +40,7 @@ const ProductPage = () => {
       setCurrentIndex(null);
     }
   }, [modalShow, imageIndex]);
+
   const scrollNext = () => {
     setCurrentIndex(prevIndex => (prevIndex + 1) % carouselImages.length);
   };
@@ -73,41 +55,41 @@ const ProductPage = () => {
         {!modalShow && (
           <div className={styles.productpage_content}>
             <div className={styles.productDetail}>
-              <Row>
-                <Col xs={5} style={{ paddingLeft: "0px", paddingRight: "0px" }}>
+              <div className={`d-flex ${styles.productWrapper}`}>
+                <div className="col-12 col-sm-5 px-0">
                   <DetailImageComponent
                     product={product}
                     setModalShow={setModalShow}
                     setCarouselImages={images => setCarouselImages(images || [])}
                     setImageIndex={setImageIndex} // Başlanğıc şəkil indeksini təyin etmək üçün
                   />
-                </Col>
-                <Col xs={7}>
+                </div>
+                <div className="col-12 col-sm-7">
                   <Description product={product} />
-                </Col>
-              </Row>
+                </div>
+              </div>
             </div>
 
             <div className={styles.productDescription}>
-              <Row>
-                <Col style={{ paddingLeft: "0px", paddingRight: "0px" }}>
+              <div className="row">
+                <div className="col-12 px-0">
                   <Features id={id} />
-                </Col>
-              </Row>
+                </div>
+              </div>
             </div>
             <div className={styles.comments_side}>
-              <Row>
-                <Col style={{ paddingLeft: "0px", paddingRight: "0px" }}>
+              <div className="row">
+                <div className="col-12 px-0">
                   <Reviews data={{ id }} />
-                </Col>
-              </Row>
+                </div>
+              </div>
             </div>
             <div className={styles.similiarProducts}>
-              <Row>
-                <Col style={{ paddingLeft: "0px", paddingRight: "0px" }}>
+              <div className="row">
+                <div className="col-12 px-0">
                   <SimilarProducts product={product} categoryName={product?.categoryName} />
-                </Col>
-              </Row>
+                </div>
+              </div>
             </div>
           </div>
         )}

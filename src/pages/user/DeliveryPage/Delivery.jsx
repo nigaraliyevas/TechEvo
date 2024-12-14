@@ -30,15 +30,13 @@ const Delivery = () => {
   return (
     <div className={styles.delCont}>
       <div className={styles.delHeader}>
-        <div className="container">
+        <div className={styles.myCont}>
           <div className={styles.headTitle}>{header?.headerName}</div>
-          <div className={styles.headInfo}>
-            {header?.headerDescription}
-          </div>
+          <div className={styles.headInfo}>{header?.headerDescription}</div>
         </div>
       </div>
-
-      <div className="container">
+      
+      <div className={styles.myCont}>
         <div className={styles.delMiddle}>
           <div className={styles.midTitle}>Necə İşləyir?</div>
           <div className={styles.midBoxCont}>
@@ -53,6 +51,7 @@ const Delivery = () => {
             ))}
           </div>
         </div>
+
         <div className={styles.delEnd}>
           <div className={styles.endHeader}>Əlavə Faydalar</div>
           <div className={styles.endBoxCont}>

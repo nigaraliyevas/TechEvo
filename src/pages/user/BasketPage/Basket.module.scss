@@ -40,6 +40,11 @@
         justify-content: center;
         gap: 48px;
         margin-top: 48px;
+        img{
+            @media (max-width: 600px) {
+                width: 100%;
+              } 
+        }
     }
     
 }

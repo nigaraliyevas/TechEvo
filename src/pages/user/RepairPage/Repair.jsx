@@ -14,12 +14,12 @@ const Repair = () => {
   return (
     <div className={styles.serviceCont}>
       <div className={styles.headingCont}>
-        <div className="container">
+        <div className={styles.myCont}>
           <div className={styles.headingText}>{header?.headerName}</div>
           <div className={styles.headingInfo}>{header?.headerDescription}</div>
         </div>
       </div>
-      <div className="container">
+      <div className={styles.myCont}>
         <div className={styles.middleCont}>
           <div className={styles.middleHeading}>Xidmətlərimiz</div>
           <div className={styles.boxCont}>

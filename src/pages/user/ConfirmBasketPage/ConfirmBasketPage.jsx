@@ -11,6 +11,7 @@ const ConfirmBasketPage = ({ isItems }) => {
   const [user, setUser] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [orderId, setOrderId] = useState(null);
+  const [additionalInfo, setAdditionalInfo] = useState(null);
 
   const nav = useNavigate();
 
@@ -42,8 +43,7 @@ const ConfirmBasketPage = ({ isItems }) => {
     quantity: item.count,
     price: item.price,
     productId: item.id,
-    productName: item.name,
-    orderStatus: "Gözləyir",
+    // productName: item.name,
   }));
 
   useEffect(() => {
@@ -52,37 +52,23 @@ const ConfirmBasketPage = ({ isItems }) => {
     }
   }, [data]);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
 
     const orderData = {
-      totalPrice: parseInt(localStorage.getItem("total")) || 0, // Total qiyməti
-      deliveryType: "Pulsuz", // Çatdırılma növü
-      orderItems: orderItems.map(item => ({
-        id: 0, // Backend özü dolduracaq
-        quantity: item.quantity,
-        price: item.price,
-        productId: item.productId,
-        productName: item.productName,
-        productUrl: item.productUrl || "", // Əgər url yoxdursa boş verilir
-      })),
+      totalPrice: parseInt(localStorage.getItem("total")) || 0,
+      deliveryType: "Pulsuz", 
+      orderItems: orderItems,
       address: {
-        id: 0, // Backend özü dolduracaq
         street: address.street || "string",
         city: address.city || "string",
         building: address.building || "string",
         area: address.area || "string",
       },
       userData: {
-        id: 0, // Backend özü dolduracaq
-        name: user?.firstName || "string",
-        surname: user?.lastName || "string",
-        phoneNumber: user?.phoneNumber || "string", // Əgər istifadəçi məlumatında varsa
-        additionalInfo: "", // Kuryer üçün əlavə məlumat
+        phoneNumber: user?.phoneNumber || "string",
+        additionalInfo: additionalInfo ? additionalInfo : "",
       },
-      userEmail: user?.email || "string", // İstifadəçinin emaili
-      orderStatus: "Pending", // Default olaraq "Pending" statusu
-      createdAt: new Date().toISOString(), // Hazır tarix
     };
 
     try {
@@ -99,7 +85,6 @@ const ConfirmBasketPage = ({ isItems }) => {
       console.error("Failed to submit order:", error);
     }
   };
-
 
   const handleCloseModal = () => {
     setShowModal(false);
@@ -170,7 +155,7 @@ const ConfirmBasketPage = ({ isItems }) => {
                     <Col lg={12}>
                       <div className={styles.confirmation_form_box}>
                         <p className={styles.confirmation_title}>Kuryer üçün əlavə məlumat</p>
-                        <textarea className={styles.confirmation_textarea} />
+                        <textarea onChange={e => setAdditionalInfo(e.target.value)} className={styles.confirmation_textarea} />
                         <p className={styles.confirmation_title}>*çatdırılma müddəti: sifariş hazırlandıqdan sonra 1-3 iş günü ərzində</p>
                       </div>
                     </Col>

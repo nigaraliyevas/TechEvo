@@ -54,7 +54,7 @@
   background-color: #111;
   color: #fff;
   overflow-y: auto;
-  z-index: 101;
+  z-index: 10001;
   padding: 20px;
 }
 
@@ -86,9 +86,8 @@
     height: 100%;
   }
 }
-@media screen and (max-width: 480px) {
-  .search-bar-container,
-  .searchBarContainer {
-    display: none !important;
-  }
-}
+// @media screen and (max-width: 480px) {
+//   .searchBarContainer {
+//     width: 300px !important;
+//   }
+// }

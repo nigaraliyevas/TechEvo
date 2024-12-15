@@ -12,9 +12,9 @@ const RecentOrders = () => {
   if (isLoading) return <p>Yüklənir...</p>;
   if (isError) return <p>Səhv baş verdi. Xahiş edirik sonra yenidən cəhd edin.</p>;
 
-  const handleRowClick = (orderId) => {
-    navigate(`/order-details/${orderId}`); // Yönləndirmə
-  };
+  // const handleRowClick = (orderId) => {
+  //   navigate(`/order-details/${orderId}`); // Yönləndirmə
+  // };
 
   return (
     <div className="col-12">

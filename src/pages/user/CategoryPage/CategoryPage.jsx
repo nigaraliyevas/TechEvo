@@ -171,10 +171,10 @@ const CategoryPage = () => {
               </div>
             </button>
 
-            {/* <button
+            <button
               className={styles.siralamaButton}
               style={{
-                width: "110px",
+                width: "109px",
                 height: "40px",
                 backgroundColor: "#323437",
                 color: "#BFBFBF",
@@ -185,7 +185,7 @@ const CategoryPage = () => {
               }}
             >
               Sıralama
-            </button> */}
+            </button>
 
             {isSidebarOpen && (
               <div className={styles.filterSidebarOverlay} onClick={toggleSidebar}>

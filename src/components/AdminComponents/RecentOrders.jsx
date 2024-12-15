@@ -1,25 +1,37 @@
-
-import React from "react";
-import { useNavigate } from "react-router-dom"; // Navigasiya üçün hook
-import { useGetAllOrdersQuery } from "../../redux/sercives/orderApi";
-import OrderActions from "./OrderActions";
-import style from "./RecentOrders.module.scss";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useGetAllOrdersQuery, useUpdateStatusOrderMutation } from "../../redux/sercives/orderApi";
+import styles from "./RecentOrders.module.scss";
 
 const RecentOrders = () => {
-  const { data: orders, isLoading, isError } = useGetAllOrdersQuery();
-  const navigate = useNavigate(); // useNavigate hook-u çağırın
+  const { data: orders = [], isLoading, error } = useGetAllOrdersQuery();
+  const [updateStatusOrder] = useUpdateStatusOrderMutation();
+  const [orderStatuses, setOrderStatuses] = useState({});
+  const navigate = useNavigate();
 
-  if (isLoading) return <p>Yüklənir...</p>;
-  if (isError) return <p>Səhv baş verdi. Xahiş edirik sonra yenidən cəhd edin.</p>;
 
-  // const handleRowClick = (orderId) => {
-  //   navigate(`/order-details/${orderId}`); // Yönləndirmə
-  // };
+  const handleChangeStatus = async (orderId, newStatus) => {
+    try {
+      await updateStatusOrder({ orderId, orderStatus: newStatus }).unwrap();
+      setOrderStatuses(prevStatuses => ({ ...prevStatuses, [orderId]: newStatus }));
+      alert(`Order ${orderId} status updated to ${newStatus}`);
+    } catch (err) {
+      alert("Error updating status");
+    }
+  };
+
+
+  const handleRowClick = orderId => {
+    navigate(`/admin/detail/${orderId}`);
+  };
+
+  if (isLoading) return <p>Loading orders...</p>;
+  if (error) return <p>Error loading orders. Please try again later.</p>;
 
   return (
     <div className="col-12">
-      <div className={`card ${style.card}`}>
-        <div className="card-body">
+      <div className={`card ${styles.card}`}>
+        <div className={styles.card_body}>
           <h5
             className="card-title"
             style={{
@@ -31,103 +43,54 @@ const RecentOrders = () => {
           >
             Son Sifarişlər
           </h5>
-          <table
-            style={{
-              backgroundColor: "#161A1E",
-              color: "#CCCCCC",
-              fontSize: "16px",
-              lineHeight: "28px",
-              height: "340px !important",
-              borderCollapse: "separate",
-              borderSpacing: "43px 0px",
-            }}
-          >
+          <table className={styles.table}>
             <thead>
-              <tr style={{ height: "64px" }}>
-                <th style={{ paddingBottom: "10px" }}>Məhsul</th>
-                <th style={{ paddingBottom: "10px" }}>Sifariş nömrəsi</th>
-                <th style={{ paddingBottom: "10px" }}>Tarix</th>
-                <th style={{ paddingBottom: "10px" }}>Qiymət</th>
-                <th style={{ paddingBottom: "10px" }}>Miqdar</th>
-                <th style={{ paddingBottom: "10px" }}>Status</th>
+              <tr id={styles.table_header}>
+                <th>Məhsul</th>
+                <th>Sifariş nömrəsi</th>
+                <th>Tarix</th>
+                <th>Qiymət</th>
+                <th>Miqdar</th>
+                <th>Status</th>
               </tr>
             </thead>
             <tbody>
-              {orders && orders.length > 0 ? (
-                orders.map((order, index) => (
-                  <React.Fragment key={order.orderId}>
-                    <tr
-                      style={{ height: "64px", cursor: "pointer" }}
-                      onClick={() => handleRowClick(order.orderId)} // Klik funksiyası
-                    >
-                      <td style={{ width: "320px" }}>
-                        {order.orderItems && order.orderItems.length > 0 ? (
-                          <div
-                            className={style.productNames}
-                            style={{
-                              display: "block",
-                              overflow: "hidden",
-                              textOverflow: "ellipsis",
-                              whiteSpace: "nowrap",
-                              width: "320px",
-                              marginRight: "130px",
-                            }}
-                            title={order.orderItems
-                              .map((item) => item.productName)
-                              .join(", ")}
-                          >
-                            {order.orderItems
-                              .map((item) => item.productName)
-                              .join(", ")}
-                          </div>
-                        ) : (
-                          <p>Heç bir məhsul yoxdur</p>
-                        )}
-                      </td>
-                      <td style={{ width: "140px" }}>{order.orderId}</td>
-                      <td style={{ width: "110px" }}>
-                        {new Date(order.createdAt).toLocaleDateString("az-AZ", {
-                          day: "2-digit",
-                          month: "2-digit",
-                          year: "numeric",
-                        })}
-                      </td>
-                      <td style={{ width: "120px" }}>{order.totalPrice} AZN</td>
-                      <td style={{ width: "65px" }}>
-                        {order.orderItems.reduce(
-                          (total, item) => total + item.quantity,
-                          0
-                        )}
-                      </td>
-                      <td>
-                        <OrderActions order={order} />
-                      </td>
-                    </tr>
-                    {index !== orders.length - 1 && (
-                      <tr>
-                        <td colSpan="6">
-                          <hr
-                            style={{
-                              border: "none",
-                              borderTop: "1px solid #CCCCCC",
-                              margin: "5px 0",
-                            }}
-                          />
-                        </td>
-                      </tr>
-                    )}
-                  </React.Fragment>
-                ))
-              ) : (
-                <tr>
-                  <td
-                    colSpan="6"
-                    style={{ textAlign: "center", padding: "20px" }}
-                  >
-                    Heç bir sifariş tapılmadı
-                  </td>
-                </tr>
-              )}
+              {orders.map(order => {
+                const currentStatus = orderStatuses[order.orderId] || order.orderStatus;
+
+                return (
+                  <tr key={order.orderId}>
+                    <td style={{ cursor: "pointer" }} onClick={() => handleRowClick(order.orderId)}>
+                      {order.orderItems.map(item => (
+                        <div key={item.id}>{item.productName}</div>
+                      ))}
+                    </td>
+                    <td>{order.orderId}</td>
+                    <td>{new Date(order.createdAt).toLocaleDateString()}</td>
+                    <td>{order.totalPrice} AZN</td>
+                    <td>{order.orderItems.reduce((sum, item) => sum + item.quantity, 0)}</td>
+                    <td>
+                      <select
+                        value={currentStatus}
+                        onChange={e => handleChangeStatus(order.orderId, e.target.value)}
+                        style={{
+                          color: currentStatus === "Pending" ? "gray" : currentStatus === "Delivered" ? "green" : "red",
+                        }}
+                      >
+                        <option value="Pending" style={{ color: "#B8BCBF" }}>
+                          Gözləyir
+                        </option>
+                        <option value="Delivered" style={{ color: "green" }}>
+                          Çatdırılıb
+                        </option>
+                        <option value="Canceled" style={{ color: "red" }}>
+                          İmtina
+                        </option>
+                      </select>
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>

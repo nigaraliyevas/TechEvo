@@ -13,8 +13,7 @@ import { useMediaQuery } from "react-responsive";
 //   useGetOrderQuery,
 //   useGetOrdersQuery,
 // } from "../../redux/sercives/orderApi";
-// import { useGetProductByIdQuery } from "../../redux/sercives/productApi";
-// import { skipToken } from "@reduxjs/toolkit/query";
+
 
 const Desktop = ({ children }) => {
   const isDesktop = useMediaQuery({ minWidth: 601 });

@@ -2,7 +2,7 @@ import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setTokens } from "../redux/slices/TokenSlice";
-import Cookies from "js-cookie";
+// import Cookies from "js-cookie";
 
 const useLogin = () => {
   const navigate = useNavigate();

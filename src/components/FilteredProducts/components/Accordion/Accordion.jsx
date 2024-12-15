@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import ReactSlider from "react-slider";
-import styles from "./Accordion.module.css";
+import styles from "./Accordion.module.scss";
 import { useGetFilterNameWithValuesQuery } from "../../../../redux/sercives/productApi";
 
 const AccordionItem = ({ queries, handleFilter, values, handleFilterItem }) => {
@@ -115,7 +115,7 @@ const Accordion = ({ queries, handleFilter, handlePrice, handleFilterItem }) => 
   }, [queries]);
 
   return (
-    <div className={styles.accordion} style={{ maxHeight: "100vh", overflowY: "auto" }}>
+    <div className={styles.accordion} style={{ maxHeight: "100vh"}}>
       <PriceRangeSlider min={200} max={10000} onPriceChange={handlePrice} />
       {headers?.map((item, index) => {
         const values = queries[item]; // Get the values for each header (e.g., "Ölçülər", "Əməliyyat Sistemi")

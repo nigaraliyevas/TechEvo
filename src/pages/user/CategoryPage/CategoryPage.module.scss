@@ -1,63 +1,64 @@
 .pc_content {
   padding-top: 152px;
 }
+
 .pc__bottom {
   padding-bottom: 120px !important;
 }
 
-//Mobil cihazlar üçün
-// CategoryPage.module.scss
+// Mobil cihazlar üçün
 .mobile_content {
-  .product_grid {
+  .product_side {
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 16px;
+  
+  
+  .productGrid {
     display: flex;
-    flex-wrap: wrap; /* Məhsulları bir sətrə yerləşdirib ehtiyac olduqda yeni sətrə keçirtmək */
-    gap: 16px; /* Kartlar arasında məsafə */
-    justify-content: space-between; /* Bütün məhsulları yan-yana düzəltmək */
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: space-between;
   }
-
-  .product-side {
-    flex: 1 1 calc(50% - 16px); /* Məhsulları 2 sütuna ayırır */
-    max-width: calc(50% - 16px); /* Sütunların maksimum eni */
-    box-sizing: border-box; /* Padding və border əlavə olunduqda eni düzgün hesablanır */
-    padding: 8px; /* Kartın daxilində məsafə */
-  }
+}
 
   .noProductsMessage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%; 
     text-align: center;
-    margin: 20px 0;
     font-size: 18px;
     color: #777;
   }
 }
 
-/* Filter button-a kliklə açılan siyahı */
+// Filter button-a kliklə açılan siyahı
 .filterSidebarWrapper {
-  position: fixed; /* Ekranın üstündə */
+  position: fixed;
   top: 0;
   left: 0;
-  width: 100%; /* Tam ekran örtmək üçün */
-  height: 100%; /* Ekranın tam hündürlüyü */
-  background-color: rgba(0, 0, 0, 0.5); /* Şəffaf fon */
-  z-index: 10; /* Cardlardan yüksək */
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 100;
 }
 
-/* Sidebarın öz stili */
+// Sidebarın öz stili
 .filterSidebar {
   position: absolute;
   top: 0;
   left: 0;
-  width: 80%; /* Filter sidebar eni */
+  width: 80%;
   height: 100%;
-  background-color: #111; /* Sidebar rəngi */
-  color: #fff; /* Mətn rəngi */
-  overflow-y: auto; /* Uzun siyahı üçün scroll */
-  z-index: 11; /* Hətta şəffaf fonun üstündə */
+  background-color: #111;
+  color: #fff;
+  overflow-y: auto;
+  z-index: 101;
   padding: 20px;
 }
 
-/* Cardların z-index dəyəri */
-
-/* Close button */
+// Close button
 .filterCloseButton {
   position: absolute;
   top: 10px;
@@ -68,16 +69,16 @@
   color: #fff;
   cursor: pointer;
 }
+
 .filterContainer {
-  display: flex; /* Elementləri yan-yana düzür */
-  // align-items: center; /* Dikey olaraq ortalayır */
-  gap: 8px; /* Aralarında boşluq */
+  display: flex;
+  gap: 8px;
   justify-content: center;
   margin-top: 6px;
 }
 
 .filterImg {
-  width: 20px; /* SVG ölçüsünü tənzimləyin */
+  width: 20px;
   height: 20px;
 
   img {

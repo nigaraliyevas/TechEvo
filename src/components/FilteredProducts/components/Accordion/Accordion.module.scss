@@ -1,12 +1,11 @@
 .accordion {
   color: #cccccc;
-  .head {
-    display: flex;
-  align-items: center;
-    justify-content: space-between;
-    padding: 10px 16px 10px 16px;
-    border-bottom: 1.5px solid rgb(35, 34, 34);
-}
+  overflow-y: auto;
+
+  @media (max-width: 480px) {
+    overflow-y: hidden;
+  }
+
 }
 
 .accordion_item {
@@ -30,6 +29,8 @@
   background-color: #090c11;
   max-height: 300px; /* Maksimum hündürlük */
   overflow-y: auto; /* Şaquli scroll təmin edir */
+
+  
 }
 
 .accordion_content::-webkit-scrollbar {

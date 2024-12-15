@@ -20,11 +20,7 @@ const ConfirmBasketPage = ({ isItems }) => {
   const { accessToken } = useSelector(state => state.auth);
   // console.log("access" + accessToken);
 
-  const {
-    data,
-    isError: isGetUserError,
-    isLoading: isGetUserLoading,
-  } = useGetUserQuery(undefined, {
+  const { data } = useGetUserQuery(undefined, {
     skip: !localStorage.getItem("accessToken"),
   });
 
@@ -43,7 +39,6 @@ const ConfirmBasketPage = ({ isItems }) => {
     quantity: item.count,
     price: item.price,
     productId: item.id,
-    // productName: item.name,
   }));
 
   useEffect(() => {
@@ -57,7 +52,7 @@ const ConfirmBasketPage = ({ isItems }) => {
 
     const orderData = {
       totalPrice: parseInt(localStorage.getItem("total")) || 0,
-      deliveryType: "Pulsuz", 
+      deliveryType: "Pulsuz",
       orderItems: orderItems,
       address: {
         street: address.street || "string",
@@ -80,9 +75,10 @@ const ConfirmBasketPage = ({ isItems }) => {
         localStorage.removeItem("total");
         localStorage.removeItem("basket");
         localStorage.removeItem("count");
+        nav("/");
       }
     } catch (error) {
-      console.error("Failed to submit order:", error);
+      alert("Failed to submit order:", error);
     }
   };
 
@@ -155,7 +151,7 @@ const ConfirmBasketPage = ({ isItems }) => {
                     <Col lg={12}>
                       <div className={styles.confirmation_form_box}>
                         <p className={styles.confirmation_title}>Kuryer üçün əlavə məlumat</p>
-                        <textarea onChange={e => setAdditionalInfo(e.target.value)} className={styles.confirmation_textarea} />
+                        <textarea onChange={e => setAdditionalInfo(e.target.value)} className={styles.confirmation_textarea} required />
                         <p className={styles.confirmation_title}>*çatdırılma müddəti: sifariş hazırlandıqdan sonra 1-3 iş günü ərzində</p>
                       </div>
                     </Col>

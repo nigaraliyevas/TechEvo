@@ -1,7 +1,42 @@
+// import { Routes, Route } from "react-router-dom";
+// import AdminLayout from "../layouts/admin/AdminLayout";
+// import DashboardPage from "../pages/admin/DashboardPage/DashboardPage";
+// import OrdersPage from "../pages/admin/OrdersPage/OrdersPage";
+// import OrderDetailPage from "../pages/admin/OrderDetailPage/OrderDetailPage";
+// import Delivery from "../pages/admin/Delivery/Delivery";
+// import Credit from "../pages/admin/Credit/Credit";
+// import Repair from "../pages/admin/Repair/Repair";
+// import ServiceDetails from "../pages/admin/ServiceDetails/ServiceDetails";
+// import StorePage from "../pages/admin/StorePage/StorePage";
+// import CreatePage from "../pages/admin/CreatePage/CreatePage";
+
+// const AdminRouter = () => {
+//   return (
+//     <Routes>
+//       <Route path="/" element={<AdminLayout />}>
+//         <Route index element={<DashboardPage />} />
+//         <Route path="orders" element={<OrdersPage />} />
+//         <Route path="orders/:orderId" element={<OrderDetailPage />} />
+//         <Route path="store" element={<StorePage />} />
+//         <Route path="create" element={<CreatePage />} />
+//         <Route path="delivery" element={<Delivery />} />
+//         <Route path="repair" element={<Repair />} />
+//         <Route path="credit" element={<Credit />} />
+//         <Route path="service-details" element={<ServiceDetails />} />
+//       </Route>
+//     </Routes>
+//   );
+// };
+
+
+// export default AdminRouter;
+
+
+
 import { Route, Routes } from "react-router-dom";
 import AdminLayout from "../layouts/admin/AdminLayout";
 import Dashboard from "../pages/admin/DashboardPage/DashboardPage";
-import OrdersPage from "../pages/admin/OrdersPage/OrdersPage"; // Assuming this is your orders page
+import OrdersPage from "../pages/admin/OrdersPage/OrdersPage";
 import Delivery from "../pages/admin/Delivery/Delivery";
 import Credit from "../pages/admin/Credit/Credit";
 import Repair from "../pages/admin/Repair/Repair";
@@ -20,7 +55,9 @@ const AdminRouter = () => {
         <Route path="store" element={<StorePage />} />
         <Route path="create" element={<CreatePage />} />
 
-        <Route path="/detail" element={<OrderDetailPage />} />
+        {/* Burada orderId ilə bir səhifə göstərmək üçün: */}
+        <Route path="detail/:orderId" element={<OrderDetailPage />} />
+
 
         <Route path="adminDelivery" element={<Delivery />} />
         <Route path="adminRepair" element={<Repair />} />
@@ -32,3 +69,4 @@ const AdminRouter = () => {
 };
 
 export default AdminRouter;
+

@@ -140,6 +140,20 @@ const CategoryPage = () => {
       {isMobile ? (
         <>
           <div className={styles.searchBarContainer}>
+            <div style={{ position: "relative" }}>
+              <p
+                style={{
+                  position: "absolute",
+                  top: "105px",
+                  zIndex: 9999,
+                  color: "white",
+                  fontSize: "20px",
+                  left: "16px",
+                }}
+              >
+                PC
+              </p>
+            </div>
             <SearchBar filteredProducts={filteredProducts} sortedProducts={sortedProducts} handleSearch={handleSearch} handleSorting={handleSorting} />
           </div>
           <div className={`${styles.productContainer} px-3`}>
@@ -166,22 +180,6 @@ const CategoryPage = () => {
               </div>
             </button>
 
-            <button
-              className={styles.siralamaButton}
-              style={{
-                width: "109px",
-                height: "40px",
-                backgroundColor: "#323437",
-                color: "#BFBFBF",
-                marginLeft: "127px",
-                borderRadius: "2px",
-                border: "none",
-                marginBottom: "16px",
-              }}
-            >
-              Sıralama
-            </button>
-
             {isSidebarOpen && (
               <div className={styles.filterSidebarOverlay} onClick={toggleSidebar}>
                 <div className={styles.filterSidebar} onClick={e => e.stopPropagation()}>
@@ -190,26 +188,36 @@ const CategoryPage = () => {
               </div>
             )}
             <div className={styles.product_side}>
-              <div className={styles.productGrid}>{currentProducts.length === 0 ? <div className={styles.noProductsMessage}>There are no products.</div> : currentProducts.map(card => <ProductCard key={card.id} data={card} favoriteProductIds={favoriteProductIds} refetchFavorites={refetchFavorites} />)}</div>
+              <div className={styles.productGrid}>
+                {currentProducts.length === 0 ? (
+                  <div className={styles.noProductsMessage}>There are no products.</div>
+                ) : (
+                  currentProducts.map(card => <ProductCard key={card.id} data={card} favoriteProductIds={favoriteProductIds} refetchFavorites={refetchFavorites} />)
+                )}
+              </div>
             </div>
             <Pagination products={sortedProducts} itemsPerPage={itemsPerPage} handlePageClick={handlePageClick} currentPage={currentPage} />
           </div>
         </>
       ) : (
-        <section className="category-page">
-          <div className={styles.pcContent}>
+        <section className="pc">
+          <div className={styles.pc_content}>
             <div className="row mb-4" style={{ marginLeft: "0px", marginRight: "0px" }}>
               <SearchBar filteredProducts={filteredProducts} sortedProducts={sortedProducts} handleSearch={handleSearch} handleSorting={handleSorting} />
             </div>
             <div className="container">
-              <div className={`row ${styles.pcBottom}`}>
+              <div className={`row ${styles.pc__bottom}`}>
                 <div className="filter-side col-lg-3">
                   <FilterSidebar handleFilterItem={handleFilterItem} queries={queries} handleFilter={handleFilter} handlePrice={handlePrice} />
                 </div>
                 <div className="product-side col-lg-9">
-                  <div className={styles.pcSection}>
+                  <div className={styles.pc_section}>
                     <div className="d-flex flex-wrap" style={{ gap: "30px" }}>
-                      {currentProducts.length === 0 ? <div className={styles.noProductsMessage}>There are no products.</div> : currentProducts.map(card => <ProductCard key={card.id} data={card} favoriteProductIds={favoriteProductIds} refetchFavorites={refetchFavorites} />)}
+                      {currentProducts.length === 0 ? (
+                        <div className={styles.noProductsMessage}>There are no products.</div>
+                      ) : (
+                        currentProducts.map(card => <ProductCard key={card.id} data={card} favoriteProductIds={favoriteProductIds} refetchFavorites={refetchFavorites} />)
+                      )}
                     </div>
                   </div>
                   <div className="pagination-side">

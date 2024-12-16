@@ -51,7 +51,6 @@ const SearchBar = ({handleSearch, handleSorting, sortedProducts}) => {
   const handleShowSearchedProducts = () => {
     setShowSearchedProducts(false);
   }
-console.log(sortedProducts)
   return (
     <div className={styles.searchBarContainer}>
       <section className={styles.section}>

@@ -9,24 +9,23 @@
 // Mobil cihazlar üçün
 .mobile_content {
   .product_side {
-    display: flex; 
-    flex-wrap: wrap; 
-    gap: 16px;
-  
-  
-  .productGrid {
     display: flex;
     flex-wrap: wrap;
     gap: 16px;
-    justify-content: space-between;
+
+    .productGrid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: space-between;
+    }
   }
-}
 
   .noProductsMessage {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%; 
+    height: 100%;
     text-align: center;
     font-size: 18px;
     color: #777;
@@ -87,8 +86,8 @@
   }
 }
 @media screen and (max-width: 480px) {
-  .search-bar-container,
-  .searchBarContainer {
-    display: none !important;
-  }
+  // .search-bar-container,
+  // .searchBarContainer {
+  //   display: none !important;
+  // }
 }

@@ -139,8 +139,8 @@ const CategoryPage = () => {
     <div className={styles.mobile_content}>
       {isMobile ? (
         <>
-          <div className={styles.searchBarContainer}>
-            <SearchBar filteredProducts={filteredProducts} sortedProducts={sortedProducts} handleSearch={handleSearch} handleSorting={handleSorting} />
+          <div className={styles.searchBarContainer} style={{ paddingTop: "154px" }}>
+            <SearchBar filteredProducts={filteredProducts} sortedProducts={sortedProducts} handleSearch={handleSearch} handleSorting={handleSorting} isMobile={isMobile} />
           </div>
           <div className={`${styles.productContainer} px-3`}>
             <button
@@ -198,7 +198,7 @@ const CategoryPage = () => {
       ) : (
         <section className="category-page">
           <div className={styles.pcContent}>
-            <div className="row mb-4" style={{ marginLeft: "0px", marginRight: "0px" }}>
+            <div className="row mb-4" style={{ marginLeft: "0px", marginRight: "0px", paddingTop: "154px" }}>
               <SearchBar filteredProducts={filteredProducts} sortedProducts={sortedProducts} handleSearch={handleSearch} handleSorting={handleSorting} />
             </div>
             <div className="container">

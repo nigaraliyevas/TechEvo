@@ -139,7 +139,7 @@ const CategoryPage = () => {
     <div className={styles.mobile_content}>
       {isMobile ? (
         <>
-          <div className={styles.searchBarContainer} style={{ paddingTop: "100px" }}>
+          <div className={styles.searchBarContainer} style={{ paddingTop: "110px" }}>
             <SearchBar
               filteredProducts={filteredProducts}
               sortedProducts={sortedProducts}

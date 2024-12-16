@@ -94,7 +94,7 @@ const ConfirmBasketPage = ({ isItems }) => {
   return (
     <div>
       <section className={styles.confirmation}>
-        <div className="container">
+        <div className={`container ${styles.gradient_area}`}>
           <div className={styles.confirmation_area}>
             <div className={styles.confirmation_box}>
               <div className={styles.confirmation_content}>

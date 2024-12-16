@@ -3,9 +3,8 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 // Əsas sorğu funksiyası
 const baseQuery = fetchBaseQuery({
   baseUrl: import.meta.env.VITE_SOME_KEY, // Mühit dəyişəninizin doğru olduğuna əmin olun
-  prepareHeaders: (headers) => {
+  prepareHeaders: headers => {
     const token = localStorage.getItem("accessToken");
-    console.log("Token:", token); 
     if (token) {
       headers.set("Authorization", `Bearer ${token}`);
     }
@@ -53,15 +52,13 @@ export const userApi = createApi({
   reducerPath: "userApi",
   baseQuery: baseQueryWithReauth,
   tagTypes: ["User"],
-  endpoints: (builder) => ({
+  endpoints: builder => ({
     getUser: builder.query({
       query: () => "/user",
       providesTags: ["User"],
     }),
     updateUser: builder.mutation({
-      query: (userData) => {
-        console.log(userData);
-
+      query: userData => {
         return {
           url: "user/profile/update",
           method: "PUT",

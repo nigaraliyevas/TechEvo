@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import AdminLayout from "../layouts/admin/AdminLayout";
 import Dashboard from "../pages/admin/DashboardPage/DashboardPage";
-import OrdersPage from "../pages/admin/OrdersPage/OrdersPage"; // Assuming this is your orders page
+import OrdersPage from "../pages/admin/OrdersPage/OrdersPage";
 import Delivery from "../pages/admin/Delivery/Delivery";
 import Credit from "../pages/admin/Credit/Credit";
 import Repair from "../pages/admin/Repair/Repair";
@@ -20,7 +20,9 @@ const AdminRouter = () => {
         <Route path="store" element={<StorePage />} />
         <Route path="create" element={<CreatePage />} />
 
-        <Route path="/detail" element={<OrderDetailPage />} />
+        {/* Burada orderId ilə bir səhifə göstərmək üçün: */}
+        <Route path="detail/:orderId" element={<OrderDetailPage />} />
+
 
         <Route path="adminDelivery" element={<Delivery />} />
         <Route path="adminRepair" element={<Repair />} />
@@ -32,3 +34,4 @@ const AdminRouter = () => {
 };
 
 export default AdminRouter;
+

@@ -10,7 +10,6 @@ import { useFilterProductsBySpecsQuery, useGetFilterNameWithValuesQuery } from "
 import { useParams } from "react-router-dom";
 import useIsMobile from "../../../hooks/useIsMobile";
 import filterImg from "../../../assets/images/FilterSide/filterImg.svg";
-//import style from "../../../components/Search/SearchBar.module.scss";
 
 const CategoryPage = () => {
   const { category } = useParams();
@@ -22,7 +21,7 @@ const CategoryPage = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const toggleSidebar = () => {
-    setIsSidebarOpen(prevState => !prevState); // Mövcud vəziyyəti tərs çevirir
+    setIsSidebarOpen(prevState => !prevState);
   };
 
   const isMobile = useIsMobile();
@@ -86,8 +85,8 @@ const CategoryPage = () => {
   };
 
   const handlePageClick = event => {
-    setCurrentPage(event.selected); // Səhifə nömrəsini yenilə
-    window.scrollTo({ top: 0, behavior: "smooth" }); // Səhifə nömrəsi dəyişdikdə yuxarıya fırlat
+    setCurrentPage(event.selected);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const handlePrice = data => {
@@ -146,10 +145,10 @@ const CategoryPage = () => {
             <button
               className={styles.filterButton}
               style={{
-                width: "110px",
+                width: isSidebarOpen ? "130px" : "110px",
                 height: "40px",
-                backgroundColor: "#323437",
-                color: "#BFBFBF",
+                backgroundColor: isSidebarOpen ? "#323437" : "#323437",
+                color: isSidebarOpen ? "#BFBFBF" : "#BFBFBF",
                 border: "none",
                 marginBottom: "16px",
                 borderRadius: "2px",
@@ -157,31 +156,12 @@ const CategoryPage = () => {
               onClick={toggleSidebar}
             >
               <div className={styles.filterContainer}>
-                <div>
-                  <p>Filter</p>
-                </div>
+                <p>{isSidebarOpen ? "Filteri bağla" : "Filter"}</p>
                 <div className={styles.filterImg}>
                   <img src={filterImg} alt="Filter Icon" />
                 </div>
               </div>
             </button>
-
-            {/* <button
-              className={styles.siralamaButton}
-              style={{
-                width: "110px",
-                height: "40px",
-                backgroundColor: "#323437",
-                color: "#BFBFBF",
-                marginLeft: "127px",
-                borderRadius: "2px",
-                border: "none",
-                marginBottom: "16px",
-              }}
-            >
-              Sıralama
-            </button> */}
-
             {isSidebarOpen && (
               <div className={styles.filterSidebarOverlay} onClick={toggleSidebar}>
                 <div className={styles.filterSidebar} onClick={e => e.stopPropagation()}>
@@ -189,6 +169,7 @@ const CategoryPage = () => {
                 </div>
               </div>
             )}
+
             <div className={styles.product_side}>
               <div className={styles.productGrid}>{currentProducts.length === 0 ? <div className={styles.noProductsMessage}>There are no products.</div> : currentProducts.map(card => <ProductCard key={card.id} data={card} favoriteProductIds={favoriteProductIds} refetchFavorites={refetchFavorites} />)}</div>
             </div>

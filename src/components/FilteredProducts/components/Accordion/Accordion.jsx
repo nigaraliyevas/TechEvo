@@ -115,7 +115,7 @@ const Accordion = ({ queries, handleFilter, handlePrice, handleFilterItem }) => 
   }, [queries]);
 
   return (
-    <div className={styles.accordion} style={{ maxHeight: "100vh"}}>
+    <div className={styles.accordion}>
       <PriceRangeSlider min={200} max={10000} onPriceChange={handlePrice} />
       {headers?.map((item, index) => {
         const values = queries[item]; // Get the values for each header (e.g., "Ölçülər", "Əməliyyat Sistemi")

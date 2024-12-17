@@ -193,9 +193,6 @@
   pointer-events: none;
 }
 @media screen and (max-width: 480px) {
-  .orderContainer {
-    display: none !important;
-  }
   .searchContainer {
     max-width: 269px;
   }
@@ -210,6 +207,62 @@
     font-size: 20px;
     font-weight: 500;
     line-height: 28px;
+  }
+  .prodHeader {
+    font-size: 16px !important;
+    font-weight: 700;
+    padding: 10px !important;
+  }
+  .prodTitle {
+    font-size: 14px;
+  }
+  .price {
+    font-size: 14px;
+  }
+  .searchAbsContainer {
+    padding: 11px;
+  }
+  .showAllBtn {
+    padding: 11px !important;
+    font-size: 16px !important;
+    font-weight: 700;
+  }
+  .searchBarContainer {
+    position: relative;
+    padding: 6px;
+  }
+  .orderContainer {
+    position: absolute !important;
+    top: 124px;
+    right: 18px;
+  }
+
+  .ordr {
+    width: 110px;
+    height: 40px;
+    background-color: #323437;
+    gap: 12px;
+    font-size: 16px;
+    padding: 8px 8px;
+  }
+  .orderMenu {
+    bottom: -298px;
+  }
+  .searchContainer {
+    max-width: 269px;
+  }
+  .section {
+    width: 100%;
+    padding: 6px;
+  }
+  .searchInput {
+    background-color: #151719;
+  }
+  .pc {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 28px;
+    padding-left: 11px;
   }
   .prodHeader {
     font-size: 16px !important;

@@ -12,14 +12,17 @@ const RecentOrders = () => {
   const handleChangeStatus = async (orderId, newStatus) => {
     try {
       await updateStatusOrder({ orderId, orderStatus: newStatus }).unwrap();
-      setOrderStatuses(prevStatuses => ({ ...prevStatuses, [orderId]: newStatus }));
+      setOrderStatuses((prevStatuses) => ({
+        ...prevStatuses,
+        [orderId]: newStatus,
+      }));
       alert(`Order ${orderId} status updated to ${newStatus}`);
     } catch (err) {
       alert("Error updating status");
     }
   };
 
-  const handleRowClick = orderId => {
+  const handleRowClick = (orderId) => {
     navigate(`/admin/detail/${orderId}`);
   };
 
@@ -53,26 +56,60 @@ const RecentOrders = () => {
               </tr>
             </thead>
             <tbody>
-              {orders.map(order => {
-                const currentStatus = orderStatuses[order.orderId] || order.orderStatus;
+              {orders.map((order) => {
+                const currentStatus =
+                  orderStatuses[order.orderId] || order.orderStatus;
 
                 return (
                   <tr key={order.orderId}>
-                    <td style={{ cursor: "pointer" }} onClick={() => handleRowClick(order.orderId)}>
-                      {order.orderItems.map(item => (
-                        <div key={item.id}>{item.productName}</div>
-                      ))}
+                    <td
+                      style={{ cursor: "pointer", width: "320px" }}
+                      onClick={() => handleRowClick(order.orderId)}
+                    >
+                      {order.orderItems && order.orderItems.length > 0 ? (
+                        <div
+                          className={styles.productNames}
+                          style={{
+                            display: "block",
+                            overflow: "hidden",
+                            textOverflow: "ellipsis",
+                            whiteSpace: "nowrap",
+                            width: "320px",
+                          }}
+                          title={order.orderItems
+                            .map((item) => item.productName)
+                            .join(", ")}
+                        >
+                          {order.orderItems
+                            .map((item) => item.productName)
+                            .join(", ")}
+                        </div>
+                      ) : (
+                        "Məhsul yoxdur"
+                      )}
                     </td>
                     <td>{order.orderId}</td>
                     <td>{new Date(order.createdAt).toLocaleDateString()}</td>
                     <td>{order.totalPrice} AZN</td>
-                    <td>{order.orderItems.reduce((sum, item) => sum + item.quantity, 0)}</td>
+                    <td>
+                      {order.orderItems.reduce(
+                        (sum, item) => sum + item.quantity,
+                        0
+                      )}
+                    </td>
                     <td>
                       <select
                         value={currentStatus}
-                        onChange={e => handleChangeStatus(order.orderId, e.target.value)}
+                        onChange={(e) =>
+                          handleChangeStatus(order.orderId, e.target.value)
+                        }
                         style={{
-                          color: currentStatus === "Pending" ? "gray" : currentStatus === "Delivered" ? "green" : "red",
+                          color:
+                            currentStatus === "Pending"
+                              ? "gray"
+                              : currentStatus === "Delivered"
+                              ? "green"
+                              : "red",
                         }}
                       >
                         <option value="Pending" style={{ color: "#B8BCBF" }}>

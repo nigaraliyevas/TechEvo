@@ -22,45 +22,65 @@
   background-color: #090c11;
   font-weight: 500;
   font-size: 20px;
+
+  @media (max-width: 480px) {
+
+    padding: 7px 40px 20px 12px;
+    font-size: 16px;
+  }
 }
 
 .accordion_content {
   padding: 20px 28px 24px 16px;
   background-color: #090c11;
-  max-height: 300px; /* Maksimum hündürlük */
-  overflow-y: auto; /* Şaquli scroll təmin edir */
+  max-height: 300px;
+  /* Maksimum hündürlük */
+  overflow-y: auto;
+  /* Şaquli scroll təmin edir */
 
-  
+
 }
 
 .accordion_content::-webkit-scrollbar {
-  width: 4px; /* Scrollbarın genişliyi */
+  width: 4px;
+  /* Scrollbarın genişliyi */
 }
+
 .accordion_content::-webkit-scrollbar-track {
-  background: #151719; /* Scrollbar fon rəngi */
-  border-radius: 4px; /* Küncləri yuvarlaq */
+  background: #151719;
+  /* Scrollbar fon rəngi */
+  border-radius: 4px;
+  /* Küncləri yuvarlaq */
 }
+
 .accordion_content::-webkit-scrollbar-thumb {
   /* background: #555;  */
-  border-radius: 4px; /* Küncləri yuvarlaq */
+  border-radius: 4px;
+  /* Küncləri yuvarlaq */
 }
+
 .accordion_content::-webkit-scrollbar-thumb:hover {
-  background: #888; /* Hover zamanı çubuq rəngi */
+  background: #888;
+  /* Hover zamanı çubuq rəngi */
 }
+
 .icon {
   margin-left: 10px;
   font-size: 17px;
 }
+
 #FilteredProductsSide {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
 }
+
 .filterItem {
   display: flex;
   flex-direction: column;
   gap: 8px;
+
   p {
     font-size: 18px;
     position: relative;
@@ -111,7 +131,8 @@
   /* justify-content: space-between; */
   margin-bottom: 20px;
   gap: 10px;
-  input{
+
+  input {
     padding-left: 5px;
   }
 }

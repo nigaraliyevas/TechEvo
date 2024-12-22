@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styles from "./Store.module.scss";
-import { Range } from "react-range";
+// import { Range } from "react-range";
+
 import { useGetAllProductsQuery } from "../../../redux/sercives/productApi";
 import { Link } from "react-router-dom";
 

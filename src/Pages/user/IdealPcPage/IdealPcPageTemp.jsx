@@ -1,5 +1,5 @@
 import { useState } from "react";
-import IndividualPc from "../../../components/IdealPc/IndividualPc";
+// import IndividualPc from "../../../components/IdealPc/IndividualPc";
 import RedyProduct from "../../../components/IdealPc/RedyProduct";
 import style from "./idealpc.module.scss";
 

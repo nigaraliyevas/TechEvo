@@ -3,12 +3,12 @@ import AdminLayout from "../layouts/admin/AdminLayout";
 import Dashboard from "../pages/admin/DashboardPage/DashboardPage";
 import OrdersPage from "../pages/admin/OrdersPage/OrdersPage";
 import Delivery from "../pages/admin/Delivery/Delivery";
-import Credit from "../pages/admin/Credit/Credit";
 import Repair from "../pages/admin/Repair/Repair";
 import ServiceDetails from "../pages/admin/ServiceDetails/ServiceDetails";
 import StorePage from "../pages/admin/StorePage/StorePage";
 import CreatePage from "../pages/admin/CreatePage/CreatePage";
 import OrderDetailPage from "../pages/admin/OrderDetailPage/OrderDetailPage";
+import Credit from "../Pages/admin/Credit/Credit";
 
 const AdminRouter = () => {
   return (

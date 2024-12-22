@@ -9,11 +9,12 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import OrderDetails from "./OrderDetails";
 import { useMediaQuery } from "react-responsive";
-// import {
-//   useGetOrderQuery,
-//   useGetOrdersQuery,
-// } from "../../redux/sercives/orderApi";
-
+import {
+  useGetOrderQuery,
+  useGetOrdersQuery,
+} from "../../redux/sercives/orderApi";
+import { useGetProductByIdQuery } from "../../redux/sercives/productApi";
+import { skipToken } from "@reduxjs/toolkit/query";
 
 const Desktop = ({ children }) => {
   const isDesktop = useMediaQuery({ minWidth: 601 });

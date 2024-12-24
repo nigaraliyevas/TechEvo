@@ -30,9 +30,9 @@ const AccordionItem = ({ queries, handleFilter, values, handleFilterItem }) => {
           <div id={styles.FilteredProductsSide}>
             <div className={styles.filterItem} style={{ display: "flex", flexDirection: "column" }}  >
 
-              {values.map((v, i) =>
+              {values?.map((v, i) =>
                 <div key={i} style={{ height: "65px" }} >
-                  <div style={{display:"flex"}}>
+                  <div style={{ display: "flex" }}>
                     <div>
                       <input type="checkbox" className={styles.checkbox}
                         onChange={() => {

@@ -8,20 +8,28 @@ import { Link } from "react-router-dom";
 // import { login } from "../../../redux/slices/AuthSlice";
 import Button from "../../../components/Button/Button";
 import useLogin from "../../../hooks/useLogin";
+import toast from "react-hot-toast";
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const [error, setError] = useState(""); // State for the error message
+
   const handleTogglePassword = () => {
     setShowPassword(prev => !prev);
   };
   const login = useLogin();
-  const handleLogin = e => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    console.log(email, password);
-    login(email, password);
+    try {
+      await login(email, password);
+      setError(""); // Clear error if login succeeds
+    } catch (error) {
+      setError(error.message); // Display backend error message
+      toast.error(error.message);
+    }
   };
 
   return (
@@ -37,11 +45,12 @@ const LoginPage = () => {
               <label htmlFor="email" className={styles.labelContent}>
                 E-poçt
               </label>
-              <input type="text" placeholder="E-poçt" id="email" value={email} className={styles.inp} onChange={e => setEmail(e.target.value)} required />
+              <input type="email" required placeholder="E-poçt" id="email" value={email} className={styles.inp} onChange={e => setEmail(e.target.value)}  />
 
               <label htmlFor="password" className={styles.labelContent}>
                 Şifrə
               </label>
+
               <div style={{ position: "relative", display: "inline-block" }}>
                 <input className={styles.inp} type={showPassword ? "text" : "password"} value={password} id="password" placeholder="Şifrəni daxil edin" onChange={e => setPassword(e.target.value)} required style={{ paddingRight: "2.5rem" }} />
                 <img
@@ -60,7 +69,7 @@ const LoginPage = () => {
                 />
               </div>
 
-              {/* {error && <p className={styles.error}>{error}</p>} */}
+              {error && <p className={styles.error}>{error}</p>}
 
               <div className={styles.forgetPassword}>
                 <Link to="/forget">şifrəni unutmusan?</Link>

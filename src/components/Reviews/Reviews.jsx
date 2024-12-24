@@ -8,6 +8,10 @@ import styles from "./Reviews.module.scss";
 import { FaUserCircle } from "react-icons/fa";
 import { RxChevronDown } from "react-icons/rx";
 import { AiFillStar } from "react-icons/ai";
+import { FaRegStar } from "react-icons/fa";
+import { FaStar } from "react-icons/fa";
+
+
 
 const StarRating = ({ rating, setRating }) => {
   const handleStarClick = index => {
@@ -22,12 +26,17 @@ const StarRating = ({ rating, setRating }) => {
           key={index}
           onClick={() => handleStarClick(index)}
           style={{
-            fontSize: "24px",
-            color: index < rating ? "#ffc107" : "#e4e5e9",
+            fontSize: "18px",
+            color:  "#FFDB4A" ,
             cursor: "pointer",
+            marginLeft:"4px",
+          
+
           }}
         >
-          ★
+         {
+          index < rating ? <FaStar/> : <FaRegStar/>
+         }
         </span>
       ))}
     </div>

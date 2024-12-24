@@ -153,12 +153,15 @@ input {
   border-radius: 5px;
 }
 
+
+
 .thumb {
-  background: #fff;
-  height: 18px;
-  width: 17.4px;
-  position: relative;
-  top: -8px;
-  border-radius: 50%;
-  cursor: pointer;
+  background: #fff !important;
+  height: 18px !important;
+    width: 17.4px !important;
+  border-radius: 50% !important;
+  position: absolute !important;
+  top: -8px !important;
+  z-index: 10 !important;
+  cursor: pointer !important;
 }

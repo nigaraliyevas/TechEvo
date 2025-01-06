@@ -96,13 +96,14 @@ const CategoryPage = () => {
 
   const filteredProducts = data?.filter(prod => {
     const matchesQuery = prod.name.toLocaleLowerCase().includes(filterQueries.query.toLocaleLowerCase());
-    const priceRangeQuery = prod.discountPrice >= priceRange.min && prod.discountPrice <= priceRange.max;
+    const priceRangeQuery = (prod.discountPrice ? prod.discountPrice : prod.price) >= priceRange.min && (prod.discountPrice ? prod.discountPrice : prod.price) <= priceRange.max;
     let matchFilter = true;
 
     for (let i in test) {
       if (test[i].length > 0) {
         matchFilter = test[i].some(val => prod.specifications[i] === val);
         if (!matchFilter) break;
+        
       }
     }
 

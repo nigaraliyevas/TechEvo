@@ -75,7 +75,9 @@ const ConfirmBasketPage = ({ isItems }) => {
         localStorage.removeItem("total");
         localStorage.removeItem("basket");
         localStorage.removeItem("count");
-        nav("/");
+        // setTimeout(() => {
+        //   nav("/");
+        // }, 10000);
       }
     } catch (error) {
       alert("Failed to submit order:", error);
@@ -157,8 +159,12 @@ const ConfirmBasketPage = ({ isItems }) => {
                     </Col>
                     <Col lg={12}>
                       <div className={styles.confirmation_btn_area}>
-                        <button type="submit" className={styles.confirmation_button}>
-                          Sifarişi təsdiqlə
+                        <button
+                          type="submit"
+                          className={styles.confirmation_button}
+                          disabled={isSubmitOrderLoading} // Optionally disable the button during the request
+                        >
+                          {isSubmitOrderLoading ? "Gözləyin..." : "Sifarişi təsdiqlə"}
                         </button>
                       </div>
                     </Col>
@@ -171,7 +177,25 @@ const ConfirmBasketPage = ({ isItems }) => {
       </section>
       {/* Modal */}
       <Modal show={showModal} onHide={handleCloseModal} centered>
-        <Modal.Header closeButton style={{ background: "#161A1E", color: "white", borderBottom: "none" }}></Modal.Header>
+        <Modal.Header
+          style={{
+            background: "#161A1E",
+            color: "white",
+            borderBottom: "none",
+          }}
+        >
+          <button
+            onClick={handleCloseModal} // Ensure functionality for the close button
+            style={{
+              filter: "brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(41deg) brightness(106%) contrast(102%)",
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+            }}
+            aria-label="Close"
+            className="btn-close"
+          ></button>
+        </Modal.Header>
         <Modal.Body style={{ background: "#161A1E", color: "white", textAlign: "center" }}>
           <Modal.Title>Sifariş üçün təşəkkür edirik!</Modal.Title>
           <p>Sizə yenidən xidmət etməyi səbirsizliklə gözləyirik!</p>

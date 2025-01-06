@@ -95,7 +95,7 @@ const CategoryPage = () => {
 
   const filteredProducts = data?.filter(prod => {
     const matchesQuery = prod.name.toLocaleLowerCase().includes(filterQueries.query.toLocaleLowerCase());
-    const priceRangeQuery = prod.price >= priceRange.min && prod.price <= priceRange.max;
+    const priceRangeQuery = (prod.discountPrice ? prod.discountPrice : prod.price) >= priceRange.min && (prod.discountPrice ? prod.discountPrice : prod.price) <= priceRange.max;
     let matchFilter = true;
 
     for (let i in test) {

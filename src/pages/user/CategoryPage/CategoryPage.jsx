@@ -88,6 +88,7 @@ const CategoryPage = () => {
     setCurrentPage(event.selected);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+  
 
   const handlePrice = data => {
     setPriceRange(data);

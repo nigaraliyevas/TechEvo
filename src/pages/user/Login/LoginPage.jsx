@@ -10,6 +10,7 @@ import Button from "../../../components/Button/Button";
 import useLogin from "../../../hooks/useLogin";
 import toast from "react-hot-toast";
 
+
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
@@ -31,6 +32,7 @@ const LoginPage = () => {
       toast.error(error.message);
     }
   };
+
 
   return (
     <div className="container" id={styles.container_bg}>

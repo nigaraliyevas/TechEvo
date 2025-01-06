@@ -5,7 +5,7 @@ import Description from "../../../components/Description/Description";
 import Features from "../../../components/DetailFeatures/Features";
 import Reviews from "../../../components/Reviews/Reviews";
 import { IoIosArrowForward, IoIosArrowBack, IoMdClose } from "react-icons/io";
-import { useSearchParams, useNavigate } from "react-router-dom";
+import { useSearchParams, useNavigate, useLocation } from "react-router-dom";
 import { useGetProductByIdQuery } from "../../../redux/sercives/productApi";
 import SimilarProducts from "../../../components/SimilartProducts/SimilarProducts";
 
@@ -24,7 +24,11 @@ const ProductPage = () => {
   const [currentIndex, setCurrentIndex] = useState();
 
   const extendedCarouselImages = [...carouselImages, ...carouselImages];
+  const location = useLocation();
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
   useEffect(() => {
     if (!id) {
       navigate("/");

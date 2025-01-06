@@ -91,17 +91,16 @@ import { addToCart } from "../../redux/slices/BasketSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const Description = ({ product }) => {
-  if (!product) {
-    return <div>Loading product details...</div>;
-  }
-
-  const { name, price, description, rating } = product;
-  const { basket } = useSelector(state => state.basket);
-
   const dispatch = useDispatch();
   const addbasket = () => {
     dispatch(addToCart(product));
   };
+  if (!product) {
+    return <div>Loading product details...</div>;
+  }
+  console.log(product);
+  const { name, price, description, rating, discountPrice } = product;
+  const { basket } = useSelector(state => state.basket);
 
   return (
     <div className={style.productCard}>
@@ -109,7 +108,27 @@ const Description = ({ product }) => {
       <div className={style.rating}>
         <StarRating style={{ color: "gold" }} value={rating} />
       </div>
-      <p className={style.price}>{price} AZN</p>
+      <p className={style.price}>
+        {discountPrice !== 0 ? (
+          <>
+            <span
+              style={{
+                textDecoration: "line-through",
+                marginRight: "10px",
+                color: "rgb(191, 191, 191)",
+                fontWeight: 500,
+                fontSize: "16px",
+              }}
+            >
+              {discountPrice} AZN
+            </span>
+            {price} AZN
+          </>
+        ) : (
+          `${price} AZN`
+        )}
+      </p>
+
       <button onClick={addbasket} className={style.addToCartButton}>
         <span style={{ paddingRight: "13px" }}>
           <a href="#">

@@ -5,7 +5,6 @@ import eyeIcon from "../../../assets/images/Welcome/Faeye.png";
 import openEye from "../../../assets/images/Welcome/OpenEye.png";
 import "../../../assets/common/base.scss";
 import { Link } from "react-router-dom";
-// import { login } from "../../../redux/slices/AuthSlice";
 import Button from "../../../components/Button/Button";
 import useLogin from "../../../hooks/useLogin";
 import toast from "react-hot-toast";

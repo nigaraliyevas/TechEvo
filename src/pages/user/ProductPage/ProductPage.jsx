@@ -18,10 +18,6 @@ const ProductPage = () => {
   const id = searchParams.get("id");
 
   const { data: product, error, isLoading } = useGetProductByIdQuery(id);
-
-  // const { data: categoryData, isLoading: isLaptopsLoading } = useGetProductsByCategoryNameQuery(product ? product.categoryName : undefined);
-  // const filteredCategoryData = categoryData?.filter(item => item.id !== product?.id);
-
   const [modalShow, setModalShow] = useState(false);
   const [carouselImages, setCarouselImages] = useState([]);
   const caruselRef = useRef();

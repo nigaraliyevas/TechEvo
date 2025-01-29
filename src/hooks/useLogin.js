@@ -20,6 +20,7 @@ const useLogin = () => {
       });
 
       if (!response.ok) {
+        const errorData = await response.json(); 
         throw new Error("Login failed");
       }
 
@@ -43,7 +44,8 @@ const useLogin = () => {
       navigate("/");
     } catch (error) {
       toast.error("Login failed");
-      console.error(error);
+      console.log(error);
+      throw error;
     }
   };
 

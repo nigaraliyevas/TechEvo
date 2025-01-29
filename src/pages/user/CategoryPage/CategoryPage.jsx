@@ -88,6 +88,7 @@ const CategoryPage = () => {
     setCurrentPage(event.selected);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+  
 
   const handlePrice = data => {
     setPriceRange(data);
@@ -102,6 +103,7 @@ const CategoryPage = () => {
       if (test[i].length > 0) {
         matchFilter = test[i].some(val => prod.specifications[i] === val);
         if (!matchFilter) break;
+        
       }
     }
 

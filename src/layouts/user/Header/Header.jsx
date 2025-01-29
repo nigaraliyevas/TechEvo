@@ -73,7 +73,7 @@ const Header = ({ exist, confirm }) => {
                               <NavLink to={"/Motherboard"}>Ana plata</NavLink>
                             </li>
                             <li>
-                              <NavLink to={"/Video Cart"}>Video kart</NavLink>
+                              <NavLink to={"/Video Card"}>Video kart</NavLink>
                             </li>
                             <li>
                               <NavLink to={"/Ram"}>Operativ yaddaş</NavLink>
@@ -138,12 +138,25 @@ const Header = ({ exist, confirm }) => {
                         Aksesuarlar
                         <div className={styles.link_catagirie_dropdown}>
                           <ul>
-                            <li>Klaviatura</li>
-                            <li>Siçan</li>
-                            <li>Qulaqlıq</li>
-                            <li>Kontrollerlər</li>
-                            <li>Veb-kamera</li>
-                            <li>Mikrofonlar</li>
+                            <li>
+                              <NavLink to={"/Keyboard"}>Klaviatura </NavLink>
+                            </li>
+                            <li>
+                              <NavLink to={"/Mouse"}>Siçan </NavLink>
+                            </li>
+                            <li>
+                              <NavLink to={"/Headset"}>Qulaqlıq </NavLink>
+                            </li>
+                            <li>
+                              <NavLink to={"/Controller"}>Kontrollerlər </NavLink>
+                            </li>
+                            <li>
+                              <NavLink to={"/Webcam"}>Veb-kamera </NavLink>
+                            </li>
+                            <li>
+                              <NavLink to={"/Microphone"}>Mikrofonlar </NavLink>
+                            </li>
+                         
                             <li>Digər</li>
                           </ul>
                         </div>

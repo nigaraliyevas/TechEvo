@@ -20,7 +20,7 @@ const HomePage = () => {
  const { data: laptopsData} = useGetProductsByCategoryNameQuery({categoryName: "Laptop" });
 
   const { data: mousesData } = useGetProductsByCategoryNameQuery({categoryName: "Mouse" });
-  const { data: klaviaturasData } = useGetProductsByCategoryNameQuery({ categoryName: "Klaviatura" });
+  const { data: klaviaturasData } = useGetProductsByCategoryNameQuery({ categoryName: "Keyboard" });
 
   const [countVisits] = useCountVisitsMutation(); // Destructure the mutation function
 

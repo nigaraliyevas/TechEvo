@@ -12,6 +12,9 @@ const ConfirmBasketPage = ({ isItems }) => {
   const [showModal, setShowModal] = useState(false);
   const [orderId, setOrderId] = useState(null);
   const [additionalInfo, setAdditionalInfo] = useState(null);
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [surname, setsurname] = useState("");
 
   const nav = useNavigate();
 
@@ -52,7 +55,8 @@ const ConfirmBasketPage = ({ isItems }) => {
 
     const orderData = {
       totalPrice: parseInt(localStorage.getItem("total")) || 0,
-      deliveryType: "Pulsuz",
+      deliveryType: "Standard",
+      email: email,
       orderItems: orderItems,
       address: {
         street: address.street || "string",
@@ -61,8 +65,10 @@ const ConfirmBasketPage = ({ isItems }) => {
         area: address.area || "string",
       },
       userData: {
-        phoneNumber: user?.phoneNumber || "string",
+        phoneNumber: user?.phoneNumber || "+1234567890",
         additionalInfo: additionalInfo ? additionalInfo : "",
+        name: name,
+        surname: surname,
       },
     };
 
@@ -106,13 +112,13 @@ const ConfirmBasketPage = ({ isItems }) => {
                     <Col lg={12}>
                       <div className={styles.confirmation_form_box}>
                         <label className={styles.confirmation_label}>Email</label>
-                        <input placeholder="Email" value={user && user.email} type="text" className={`${styles.confirmation_input} ${styles.placeholder_white}`} required />
+                        <input placeholder="Email" value={user && user.email} type="email" className={`${styles.confirmation_input} ${styles.placeholder_white}`} onChange={e => setEmail(user ? user.email : e.target.value)} required />
                       </div>
                     </Col>
                     <Col lg={6}>
                       <div className={styles.confirmation_form_box}>
                         <label className={styles.confirmation_label}>Ad</label>
-                        <input placeholder="Ad" value={user && user.firstName} type="text" className={`${styles.confirmation_input} ${styles.placeholder_white}`} required />
+                        <input placeholder="Ad" onChange={e => setName(user ? user.firstName : e.target.value)} value={user && user.firstName} type="text" className={`${styles.confirmation_input} ${styles.placeholder_white}`} required />
                       </div>
                       <div className={styles.confirmation_form_box}>
                         <label className={styles.confirmation_label}>Şəhər</label>
@@ -130,7 +136,7 @@ const ConfirmBasketPage = ({ isItems }) => {
                     <Col lg={6}>
                       <div className={styles.confirmation_form_box}>
                         <label className={styles.confirmation_label}>Soyad</label>
-                        <input placeholder="Soyad" value={user && user.lastName} type="text" className={`${styles.confirmation_input} ${styles.placeholder_white}`} required />
+                        <input placeholder="Soyad" onChange={e => setsurname(user ? user.lastName : e.target.value)} value={user && user.lastName} type="text" className={`${styles.confirmation_input} ${styles.placeholder_white}`} required />
                       </div>
                       <div className={styles.confirmation_form_box}>
                         <label className={styles.confirmation_label}>Məntəqə</label>
